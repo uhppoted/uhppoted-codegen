@@ -1,7 +1,10 @@
 package codegen
 
 import (
-	"fmt"
+	//	"fmt"
+	"os"
+	"path/filepath"
+	"text/template"
 )
 
 type Generator struct {
@@ -21,5 +24,37 @@ func New(templates string, out string, debug bool) Generator {
 }
 
 func (g Generator) Generate() error {
-	return fmt.Errorf("NOT IMPLEMENTED")
+	fsys := os.DirFS(g.templates)
+
+	if err := os.MkdirAll(g.out, 0777); err != nil {
+		return err
+	}
+
+	templates, err := template.ParseFS(fsys, "*")
+	if err != nil {
+		return err
+	}
+
+	list := templates.Templates()
+	for _, t := range list {
+		g.generate(t)
+	}
+
+	return nil
+}
+
+func (g Generator) generate(t *template.Template) error {
+	data := map[string]string{}
+	path := filepath.Join(g.out, t.Name())
+
+	file, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	t.Execute(file, data)
+
+	return nil
 }

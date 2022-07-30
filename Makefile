@@ -73,7 +73,8 @@ help: build
 	$(CMD) help help
 
 go: build
-	$(CMD) --templates languages/go --out generated/go
+	$(CMD) --templates languages/_go --out generated/_go
+	go run generated/_go/main.go
 
 rust: build
 	$(CMD) --templates languages/rust --out generated/rust
