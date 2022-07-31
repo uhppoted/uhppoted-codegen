@@ -74,7 +74,7 @@ help: build
 
 go: build
 	$(CMD) --templates languages/_go --out generated/_go
-	go run generated/_go/main.go
+	cd generated/_go && go run main.go
 
 rust: build
 	$(CMD) --templates languages/rust --out generated/rust

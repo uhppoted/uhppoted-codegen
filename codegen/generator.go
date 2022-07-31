@@ -1,7 +1,7 @@
 package codegen
 
 import (
-	//	"fmt"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -24,35 +24,48 @@ func New(templates string, out string, debug bool) Generator {
 }
 
 func (g Generator) Generate() error {
+	data := map[string]any{}
 	fsys := os.DirFS(g.templates)
 
 	if err := os.MkdirAll(g.out, 0777); err != nil {
 		return err
 	}
 
-	templates, err := template.ParseFS(fsys, "*")
-	if err != nil {
-		return err
+	f := func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		} else if d.IsDir() {
+			return nil
+		}
+
+		return g.generate(fsys, path, data)
 	}
 
-	list := templates.Templates()
-	for _, t := range list {
-		g.generate(t)
+	if err := fs.WalkDir(fsys, ".", f); err != nil {
+		return err
 	}
 
 	return nil
 }
 
-func (g Generator) generate(t *template.Template) error {
-	data := map[string]string{}
-	path := filepath.Join(g.out, t.Name())
+func (g Generator) generate(fsys fs.FS, src string, data map[string]any) error {
+	dest := filepath.Join(g.out, src)
 
-	file, err := os.Create(path)
+	if err := os.MkdirAll(filepath.Dir(dest), 0777); err != nil {
+		return err
+	}
+
+	file, err := os.Create(dest)
 	if err != nil {
 		return err
 	}
 
 	defer file.Close()
+
+	t, err := template.ParseFS(fsys, src)
+	if err != nil {
+		return err
+	}
 
 	t.Execute(file, data)
 
