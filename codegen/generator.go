@@ -16,40 +16,17 @@ type Generator struct {
 	debug     bool
 }
 
-type function struct {
-	Name string
-	Args []arg
-}
-
-type arg struct {
-	Name string
-	Type string
-}
-
-var functions = template.FuncMap{
+var funcs = template.FuncMap{
 	"CamelCase": CamelCase,
 	"camelCase": camelCase,
 }
 
 var data = struct {
 	Functions []function
+	Requests  []request
 }{
-	Functions: []function{
-		function{
-			Name: "get all controllers",
-			Args: []arg{},
-		},
-
-		function{
-			Name: "get controller",
-			Args: []arg{
-				arg{
-					Name: "device id",
-					Type: "uint32",
-				},
-			},
-		},
-	},
+	Functions: functions,
+	Requests:  requests,
 }
 
 func New(templates string, out string, debug bool) Generator {
@@ -76,7 +53,7 @@ func (g Generator) Generate() error {
 			return nil
 		}
 
-		return g.generate(fsys, path, data, functions)
+		return g.generate(fsys, path, data, funcs)
 	}
 
 	if err := fs.WalkDir(fsys, ".", f); err != nil {
