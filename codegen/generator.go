@@ -4,13 +4,52 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
+	"strings"
 	"text/template"
+	"unicode"
 )
 
 type Generator struct {
 	templates string
 	out       string
 	debug     bool
+}
+
+type function struct {
+	Name string
+	Args []arg
+}
+
+type arg struct {
+	Name string
+	Type string
+}
+
+var functions = template.FuncMap{
+	"CamelCase": CamelCase,
+	"camelCase": camelCase,
+}
+
+var data = struct {
+	Functions []function
+}{
+	Functions: []function{
+		function{
+			Name: "get all controllers",
+			Args: []arg{},
+		},
+
+		function{
+			Name: "get controller",
+			Args: []arg{
+				arg{
+					Name: "device id",
+					Type: "uint32",
+				},
+			},
+		},
+	},
 }
 
 func New(templates string, out string, debug bool) Generator {
@@ -24,7 +63,6 @@ func New(templates string, out string, debug bool) Generator {
 }
 
 func (g Generator) Generate() error {
-	data := map[string]any{}
 	fsys := os.DirFS(g.templates)
 
 	if err := os.MkdirAll(g.out, 0777); err != nil {
@@ -38,7 +76,7 @@ func (g Generator) Generate() error {
 			return nil
 		}
 
-		return g.generate(fsys, path, data)
+		return g.generate(fsys, path, data, functions)
 	}
 
 	if err := fs.WalkDir(fsys, ".", f); err != nil {
@@ -48,7 +86,12 @@ func (g Generator) Generate() error {
 	return nil
 }
 
-func (g Generator) generate(fsys fs.FS, src string, data map[string]any) error {
+func (g Generator) generate(fsys fs.FS, src string, data any, functions template.FuncMap) error {
+	bytes, err := fs.ReadFile(fsys, src)
+	if err != nil {
+		return err
+	}
+
 	dest := filepath.Join(g.out, src)
 
 	if err := os.MkdirAll(filepath.Dir(dest), 0777); err != nil {
@@ -62,7 +105,7 @@ func (g Generator) generate(fsys fs.FS, src string, data map[string]any) error {
 
 	defer file.Close()
 
-	t, err := template.ParseFS(fsys, src)
+	t, err := template.New("codegen").Funcs(functions).Parse(string(bytes))
 	if err != nil {
 		return err
 	}
@@ -70,4 +113,34 @@ func (g Generator) generate(fsys fs.FS, src string, data map[string]any) error {
 	t.Execute(file, data)
 
 	return nil
+}
+
+func CamelCase(s string) string {
+	tokens := regexp.MustCompile(`\s+`).Split(s, -1)
+
+	for i, token := range tokens {
+		tokens[i] = capitalize(token)
+	}
+
+	return strings.Join(tokens, "")
+}
+
+func camelCase(s string) string {
+	tokens := regexp.MustCompile(`\s+`).Split(s, -1)
+
+	for i, token := range tokens[1:] {
+		tokens[i+1] = capitalize(token)
+	}
+
+	return strings.Join(tokens, "")
+}
+
+func capitalize(s string) string {
+	runes := []rune(s)
+
+	if len(runes) > 0 {
+		runes[0] = unicode.ToUpper(runes[0])
+	}
+
+	return string(runes)
 }
