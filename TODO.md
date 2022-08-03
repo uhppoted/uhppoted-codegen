@@ -1,4 +1,4 @@
 # TODO
 
-- [ ] Clean out dir
+- [x] Clean out dir
 - [ ] Generate to tempfile

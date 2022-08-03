@@ -14,6 +14,7 @@ import (
 type Generate struct {
 	templates string
 	out       string
+	clean     bool
 	debug     bool
 }
 
@@ -26,6 +27,7 @@ func (cmd *Generate) flags() *flag.FlagSet {
 
 	flagset.StringVar(&cmd.templates, "templates", "", "folder containing the language templates for the code generator")
 	flagset.StringVar(&cmd.out, "out", "", "output folder for the generated native code UHPPOTE interface")
+	flagset.BoolVar(&cmd.clean, "clean", false, "deletes all existing files and folders from the output folder")
 	flagset.BoolVar(&cmd.debug, "debug", false, "Enables verbose debugging information")
 
 	return flagset
@@ -66,10 +68,19 @@ func (cmd *Generate) Execute(args ...interface{}) error {
 		return fmt.Errorf("missing 'templates' folder")
 	} else if _, err := os.Stat(cmd.templates); err != nil && os.IsNotExist(err) {
 		return fmt.Errorf("templates folder '%v' does not exist", cmd.templates)
+	} else if err != nil {
+		return err
 	}
 
 	if cmd.out == "" {
 		return fmt.Errorf("missing 'out' folder for the generated code")
+	}
+
+	if cmd.clean {
+		log.Printf("deleting existing content from %v", cmd.out)
+		if err := os.RemoveAll(cmd.out); err != nil {
+			return err
+		}
 	}
 
 	codegen := codegen.New(cmd.templates, cmd.out, cmd.debug)
