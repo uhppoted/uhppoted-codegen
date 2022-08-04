@@ -73,9 +73,9 @@ help: build
 	$(CMD) help help
 
 go: build
-	$(CMD) --templates languages/_go --out generated/_go --clean
-	cd generated/_go && go fmt ./... && go run main.go
+	$(CMD) --templates _languages/go --out generated/go --clean
+	cd generated/go && go fmt ./... && go run main.go
 
 rust: build
-	$(CMD) --templates languages/rust --out generated/rust
+	$(CMD) --templates _languages/rust --out generated/rust
 
