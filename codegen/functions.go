@@ -11,15 +11,7 @@ type function struct {
 }
 
 var functions = []function{
-	GetAllControllers,
 	GetController,
-}
-
-var GetAllControllers = function{
-	Name:    "get all controllers",
-	Args:    []arg{},
-	Request: GetAllControllersRequest,
-	Wait:    2500,
 }
 
 var GetController = function{

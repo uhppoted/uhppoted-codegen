@@ -8,6 +8,7 @@
 - [ ] Replace GetAllControllers function with hardcoded template function
 - [ ] Generate to tempfile
 - [ ] .template folder for utility template files
+- [ ] Test data
 
 ## Go
 

@@ -9,14 +9,7 @@ type request struct {
 }
 
 var requests = []request{
-	GetAllControllersRequest,
 	GetControllerRequest,
-}
-
-var GetAllControllersRequest = request{
-	Name:    "get all controllers request",
-	MsgType: 0x94,
-	Fields:  []field{},
 }
 
 var GetControllerRequest = request{

@@ -1,10 +1,11 @@
 package uhppote
 
 import(
+    "encoding/hex"
     "fmt"
     "net"
     "net/netip"    
-    "reflect"
+    "regexp"
     "time"
 )
 
@@ -13,11 +14,38 @@ const BROADCAST = "192.168.1.255:60000"
 const WRITE_TIMEOUT = 1000 * time.Millisecond
 var NEVER = time.Time{}
 
+func GetAllControllers() ([]*GetControllerResponse, error) {
+    request, err := GetControllerRequest(0)
+    if err != nil {
+        return nil, err
+    }
+
+    fmt.Printf("%v\n", dump(request, "   "))
+
+    replies, err := send(request, 2500*time.Millisecond)
+    if err != nil {
+        return nil, err
+    }
+
+    list := []*GetControllerResponse{}
+    for _, reply := range replies {
+        fmt.Printf("%v\n", dump(reply, "   "))
+
+        if response, err := getControllerResponse(reply); err != nil {
+            return nil, err
+        } else if response != nil {
+            list = append(list, response)
+        }
+    }
+
+    return list, nil
+}
+
 {{range .Functions}}{{template "function" .}}
 {{end}}
 
 {{define "function"}}
-func {{CamelCase .Name}}({{template "args" .Args}}) (any,error) {
+func {{CamelCase .Name}}({{template "args" .Args}}) (*{{CamelCase .Response.Name}},error) {
     fmt.Printf(">> {{.Name}}\n")
 
     request,err := {{CamelCase .Request.Name}}({{template "params" .Args}})
@@ -25,25 +53,24 @@ func {{CamelCase .Name}}({{template "args" .Args}}) (any,error) {
         return nil,err
     }
 
-    fmt.Printf(">> %v\n", request)
+    fmt.Printf("%v\n", dump(request, "   "))
 
     replies,err := send(request, {{.Wait}} * time.Millisecond)
     if err != nil {
         return nil,err
     }
 
-    fmt.Printf(">> %v\n", replies)
-
-    list := []any{}
     for _,reply := range replies {
-        if response,err := decode(reply); err != nil {
+        fmt.Printf("%v\n", dump(reply, "   "))
+
+        if response,err := {{camelCase .Response.Name}}(reply); err != nil {
             return nil, err
-        } else if response != nil && !reflect.ValueOf(response).IsNil(){
-            list = append(list, response)
+        } else if response != nil {
+            return response, nil
         }
     }
 
-    return list,nil
+    return nil, nil
 }{{end}}
 
 func send(request []byte, wait time.Duration) ([][]byte, error) {
@@ -111,6 +138,13 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
             return nil, err
         }
     }
+}
+
+func dump(m []byte, prefix string) string {
+    p := regexp.MustCompile(`\s*\|.*?\|`).ReplaceAllString(hex.Dump(m), "")
+    q := regexp.MustCompile("(?m)^(.*)").ReplaceAllString(p, prefix+"$1")
+
+    return fmt.Sprintf("%s", q)
 }
 
 {{define "args"}}{{range .}}{{camelCase .Name}} {{template "type" .Type}}{{end}}{{end}}
