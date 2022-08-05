@@ -3,15 +3,11 @@ package codegen
 import ()
 
 type function struct {
-	Name    string
-	Args    []arg
-	Request request
-	Timeout uint32
-}
-
-type arg struct {
-	Name string
-	Type string
+	Name     string
+	Args     []arg
+	Request  request
+	Response response
+	Wait     uint32
 }
 
 var functions = []function{
@@ -23,7 +19,7 @@ var GetAllControllers = function{
 	Name:    "get all controllers",
 	Args:    []arg{},
 	Request: GetAllControllersRequest,
-	Timeout: 5000,
+	Wait:    2500,
 }
 
 var GetController = function{
@@ -34,6 +30,7 @@ var GetController = function{
 			Type: "uint32",
 		},
 	},
-	Request: GetControllerRequest,
-	Timeout: 1000,
+	Request:  GetControllerRequest,
+	Response: GetControllerResponse,
+	Wait:     0,
 }

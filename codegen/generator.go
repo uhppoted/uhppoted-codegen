@@ -19,14 +19,17 @@ type Generator struct {
 var funcs = template.FuncMap{
 	"CamelCase": CamelCase,
 	"camelCase": camelCase,
+	"kebabCase": kebabCase,
 }
 
 var data = struct {
 	Functions []function
 	Requests  []request
+	Responses []response
 }{
 	Functions: functions,
 	Requests:  requests,
+	Responses: responses,
 }
 
 func New(templates string, out string, debug bool) Generator {
@@ -110,6 +113,16 @@ func camelCase(s string) string {
 	}
 
 	return strings.Join(tokens, "")
+}
+
+func kebabCase(s string) string {
+	tokens := regexp.MustCompile(`\s+`).Split(s, -1)
+
+	for i, token := range tokens[1:] {
+		tokens[i+1] = strings.ToLower(token)
+	}
+
+	return strings.Join(tokens, "-")
 }
 
 func capitalize(s string) string {

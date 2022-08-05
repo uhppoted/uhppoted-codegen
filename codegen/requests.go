@@ -8,21 +8,9 @@ type request struct {
 	Fields  []field
 }
 
-type field struct {
-	Name   string
-	Type   string
-	Offset uint8
-}
-
 var requests = []request{
 	GetAllControllersRequest,
 	GetControllerRequest,
-}
-
-var DeviceID = field{
-	Name:   "device id",
-	Type:   "uint32",
-	Offset: 4,
 }
 
 var GetAllControllersRequest = request{

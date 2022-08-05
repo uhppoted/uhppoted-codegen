@@ -4,6 +4,7 @@ import(
     "fmt"
     "net"
     "net/netip"    
+    "reflect"
     "time"
 )
 
@@ -16,27 +17,36 @@ var NEVER = time.Time{}
 {{end}}
 
 {{define "function"}}
-func {{CamelCase .Name}}({{template "args" .Args}}) error {
+func {{CamelCase .Name}}({{template "args" .Args}}) (any,error) {
     fmt.Printf(">> {{.Name}}\n")
 
     request,err := {{CamelCase .Request.Name}}({{template "params" .Args}})
     if err != nil {
-        return err
+        return nil,err
     }
 
     fmt.Printf(">> %v\n", request)
 
-    reply,err := send(request, {{.Timeout}} * time.Millisecond)
+    replies,err := send(request, {{.Wait}} * time.Millisecond)
     if err != nil {
-        return err
+        return nil,err
     }
 
-    fmt.Printf(">> %v\n", reply)
+    fmt.Printf(">> %v\n", replies)
 
-    return nil
-}
-{{end}}
-func send(request []byte, timeout time.Duration) ([][]byte, error) {
+    list := []any{}
+    for _,reply := range replies {
+        if response,err := decode(reply); err != nil {
+            return nil, err
+        } else if response != nil && !reflect.ValueOf(response).IsNil(){
+            list = append(list, response)
+        }
+    }
+
+    return list,nil
+}{{end}}
+
+func send(request []byte, wait time.Duration) ([][]byte, error) {
     any := netip.MustParseAddrPort(ANY)
     broadcast := netip.MustParseAddrPort(BROADCAST)
     
@@ -63,8 +73,9 @@ func send(request []byte, timeout time.Duration) ([][]byte, error) {
     }
 
     reply := make(chan []byte)
-    e     := make(chan error)
-    t := time.After(timeout)
+    e := make(chan error)
+    waited := time.After(wait)
+    timeout := time.After((wait + 5000) * time.Millisecond)
 
     replies := [][]byte{}
 
@@ -84,12 +95,20 @@ func send(request []byte, timeout time.Duration) ([][]byte, error) {
         select {
         case m := <-reply:
             replies = append(replies, m)
+            if wait == 0 {
+                return replies, nil
+            }
+
+        case <-waited:
+            if wait > 0 {
+                return replies, nil                
+            }
+
+        case <-timeout:
+            return nil, fmt.Errorf("timeout")
 
         case err := <-e:
             return nil, err
-
-        case <-t:
-            return replies, nil
         }
     }
 }
