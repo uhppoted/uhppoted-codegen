@@ -9,10 +9,25 @@ import(
     "time"
 )
 
-const ANY = "0.0.0.0:0"
-const BROADCAST = "192.168.1.255:60000"
 const WRITE_TIMEOUT = 1000 * time.Millisecond
 var NEVER = time.Time{}
+
+var bindAddr *net.UDPAddr
+var destAddr *net.UDPAddr
+
+func SetBindAddr(addr string) {
+    bindAddr = resolve(addr)
+}
+
+func SetDestAddr(addr string) {
+    destAddr = resolve(addr)
+}
+
+func resolve(address string) *net.UDPAddr {
+    addr := netip.MustParseAddrPort(address)
+    
+    return net.UDPAddrFromAddrPort(addr)
+}
 
 func GetAllControllers() ([]*GetControllerResponse, error) {
     request, err := GetControllerRequest(0)
@@ -74,13 +89,7 @@ func {{CamelCase .Name}}({{template "args" .Args}}) (*{{CamelCase .Response.Name
 }{{end}}
 
 func send(request []byte, wait time.Duration) ([][]byte, error) {
-    any := netip.MustParseAddrPort(ANY)
-    broadcast := netip.MustParseAddrPort(BROADCAST)
-    
-    bind := net.UDPAddrFromAddrPort(any)
-    dest := net.UDPAddrFromAddrPort(broadcast)
-
-    socket, err := net.ListenUDP("udp", bind)
+    socket, err := net.ListenUDP("udp", bindAddr)
     if err != nil {
         return nil, err
     }
@@ -95,7 +104,7 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
         return nil, fmt.Errorf("Failed to set UDP read timeout [%v]", err)
     }
 
-    if _, err := socket.WriteToUDP(request, dest); err != nil {
+    if _, err := socket.WriteToUDP(request, destAddr); err != nil {
         return nil, err
     }
 

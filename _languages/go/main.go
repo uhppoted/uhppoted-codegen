@@ -7,14 +7,20 @@ import (
 	"uhppoted/uhppote"
 )
 
+const ANY = "0.0.0.0:0"
+const BROADCAST = "192.168.1.255:60000"
+
 func main() {
 	fmt.Printf("uhppoted-codegen: Go test\n")
+
+	uhppote.SetBindAddr(ANY)
+	uhppote.SetDestAddr(BROADCAST)
 
 	if response, err := uhppote.GetAllControllers(); err != nil {
 		log.Fatalf("ERROR  %v", err)
 	} else {
-		for _,v := range response {
-			log.Printf("INFO  %+v", *v)			
+		for _, v := range response {
+			log.Printf("INFO  %+v", *v)
 		}
 	}
 
