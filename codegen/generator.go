@@ -17,10 +17,15 @@ type Generator struct {
 }
 
 var funcs = template.FuncMap{
+	"trim":      trim,
 	"CamelCase": CamelCase,
 	"camelCase": camelCase,
 	"kebabCase": kebabCase,
+	"lookup":    lookup,
+	"stash":     stash,
 }
+
+var kv = map[string]string{}
 
 var data = struct {
 	Functions []function
@@ -95,6 +100,10 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 	return nil
 }
 
+func trim(s string) string {
+	return strings.TrimSpace(s)
+}
+
 func CamelCase(s string) string {
 	tokens := regexp.MustCompile(`\s+`).Split(s, -1)
 
@@ -133,4 +142,17 @@ func capitalize(s string) string {
 	}
 
 	return string(runes)
+}
+
+func lookup(s string) string {
+	if v, ok := kv[s]; ok {
+		return v
+	}
+
+	return ""
+}
+
+func stash(key string, value string) string {
+	kv[key] = value
+	return ""
 }
