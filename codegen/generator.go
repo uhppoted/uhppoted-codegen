@@ -17,10 +17,13 @@ type Generator struct {
 }
 
 var funcs = template.FuncMap{
+	"lowercase": lowercase,
+	"uppercase": uppercase,
 	"trim":      trim,
 	"CamelCase": CamelCase,
 	"camelCase": camelCase,
 	"kebabCase": kebabCase,
+	"snakeCase": snakeCase,
 	"lookup":    lookup,
 	"stash":     stash,
 }
@@ -102,6 +105,14 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 	return nil
 }
 
+func lowercase(s string) string {
+	return strings.ToLower(s)
+}
+
+func uppercase(s string) string {
+	return strings.ToUpper(s)
+}
+
 func trim(s string) string {
 	return strings.TrimSpace(s)
 }
@@ -134,6 +145,16 @@ func kebabCase(s string) string {
 	}
 
 	return strings.Join(tokens, "-")
+}
+
+func snakeCase(s string) string {
+	tokens := regexp.MustCompile(`\s+`).Split(s, -1)
+
+	for i, token := range tokens[1:] {
+		tokens[i+1] = strings.ToLower(token)
+	}
+
+	return strings.Join(tokens, "_")
 }
 
 func capitalize(s string) string {

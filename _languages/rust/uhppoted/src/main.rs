@@ -15,7 +15,7 @@ const COMMANDS: [&Command; 2] = [
     },
     &Command {
         name: "get-controller",
-        func: || -> Result<i32, String> { uhppote::get_controller() },
+        func: || -> Result<i32, String> { uhppote::get_controller(405419896) },
     },
 ];
 
