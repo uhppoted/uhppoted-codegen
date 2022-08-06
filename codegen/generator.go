@@ -59,6 +59,8 @@ func (g Generator) Generate() error {
 			return err
 		} else if d.IsDir() {
 			return nil
+		} else if strings.HasPrefix(path, "_") {
+			return nil
 		}
 
 		return g.generate(fsys, path, data, funcs)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 
@@ -11,32 +12,63 @@ import (
 const ANY = "0.0.0.0:0"
 const BROADCAST = "192.168.1.255:60000"
 
+type command struct {
+	name string
+	f    func() (any, error)
+}
+
+var commands = []command{
+	command{"get-all-controllers", func() (any, error) {
+		return uhppote.GetAllControllers()
+	}},
+	command{"get-controller", func() (any, error) {
+		return uhppote.GetController(405419896)
+	}},
+}
+
 func main() {
 	fmt.Printf("uhppoted-codegen: Go test\n")
+
+	flag.Parse()
+
+	if len(flag.Args()) == 0 {
+		usage()
+		return
+	}
 
 	uhppote.SetBindAddr(ANY)
 	uhppote.SetDestAddr(BROADCAST)
 
-	if response, err := uhppote.GetAllControllers(); err != nil {
-		log.Fatalf("ERROR  %v", err)
-	} else {
-		for _, v := range response {
-			log.Printf("INFO  %+v", pprint(v))
+	list := flag.Args()
+	for _, cmd := range list {
+		for _, c := range commands {
+			if c.name == cmd {
+				if response, err := c.f(); err != nil {
+					log.Fatalf("ERROR  %v", err)
+				} else if response == nil {
+					log.Fatalf("ERROR  %v", response)
+				} else {
+					log.Printf("INFO  %+v", pprint(response))
+				}
+			}
 		}
-	}
-
-	if response, err := uhppote.GetController(405419896); err != nil {
-		log.Fatalf("ERROR  %v", err)
-	} else if response == nil {
-		log.Fatalf("ERROR  %v", response)
-	} else {
-		log.Printf("INFO  %+v", pprint(response))
 	}
 }
 
+func usage() {
+	fmt.Println("Usage: go run main.go [commands]")
+	fmt.Println("")
+	fmt.Println("  Supported commands:")
+	fmt.Println("")
+	for _, c := range commands {
+		fmt.Printf("    %v\n", c.name)
+	}
+	fmt.Println("")
+}
+
 func pprint(v any) string {
-	if bytes,err := json.MarshalIndent(v,"","  "); err != nil {
-		return fmt.Sprintf("%v",v)
+	if bytes, err := json.MarshalIndent(v, "", "  "); err != nil {
+		return fmt.Sprintf("%v", v)
 	} else {
 		return string(bytes)
 	}

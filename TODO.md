@@ -1,10 +1,7 @@
 # TODO
 
-- [ ] .template folder for utility template files
+- [ ] _templates folder for utility template files
 - [ ] Replace _go with more specific fmt and build commands
-- [x] Decode response
-- [x] Remove Wait from function definition
-- [x] Replace GetAllControllers function with hardcoded template function
 - [ ] Generate to tempfile
 - [ ] Test data
 
@@ -17,4 +14,7 @@
 
 ## Javascript
 
+## Markdown
+
 ## ASN.1
+
