@@ -74,8 +74,11 @@ help: build
 
 go: build
 	$(CMD) --templates _languages/go --out generated/go --clean
+	# cd generated/go && go fmt ./... && go run main.go
 	cd generated/go && go fmt ./... && go run main.go get-all-controllers get-controller
 
 rust: build
 	$(CMD) --templates _languages/rust --out generated/rust
+	# cd generated/rust/uhppoted && cargo fmt && cargo build && ./target/debug/uhppoted
+	cd generated/rust/uhppoted && cargo fmt && cargo build && ./target/debug/uhppoted get-all-controllers get-controller
 

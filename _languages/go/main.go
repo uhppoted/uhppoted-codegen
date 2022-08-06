@@ -27,7 +27,7 @@ var commands = []command{
 }
 
 func main() {
-	fmt.Printf("uhppoted-codegen: Go test\n")
+	fmt.Printf("uhppoted-codegen: Go sample application\n")
 
 	flag.Parse()
 
@@ -56,14 +56,16 @@ func main() {
 }
 
 func usage() {
-	fmt.Println("Usage: go run main.go [commands]")
-	fmt.Println("")
-	fmt.Println("  Supported commands:")
-	fmt.Println("")
+	fmt.Println()
+	fmt.Println("  Usage: go run main.go [commands]")
+	fmt.Println()
+	fmt.Println("    Supported commands:")
+	
 	for _, c := range commands {
-		fmt.Printf("    %v\n", c.name)
+		fmt.Printf("      %v\n", c.name)
 	}
-	fmt.Println("")
+	
+	fmt.Println()
 }
 
 func pprint(v any) string {
