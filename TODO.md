@@ -9,8 +9,10 @@
 
 - [ ] Type constraint for send() return value
       - (?) Option
+- [ ] Use find a la Rust
 
 ## Rust
+- [ ] build command list from args and **then** check usage
 
 ## Javascript
 
