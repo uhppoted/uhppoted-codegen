@@ -3,7 +3,6 @@ package uhppote
 import (
     "encoding/binary"
     "fmt"
-    "net"
     "net/netip"
     "strings"
     "time"
@@ -45,12 +44,12 @@ func unpackIPv4(packet []byte, offset uint8) netip.Addr {
     return addr
 }
 
-func unpackMAC(packet []byte, offset uint8) net.HardwareAddr {
+func unpackMAC(packet []byte, offset uint8) MAC {
     mac := make([]byte,6)
 
     copy(mac,packet[offset : offset+6])
     
-    return net.HardwareAddr(mac)
+    return MAC(mac)
 }
 
 func unpackVersion(packet []byte, offset uint8) string {
@@ -60,13 +59,13 @@ func unpackVersion(packet []byte, offset uint8) string {
     return fmt.Sprintf("v%x.%02x", major, minor)
 }
 
-func unpackDate(packet []byte, offset uint8) time.Time {
+func unpackDate(packet []byte, offset uint8) Date {
     if bcd, err := bcd2string(packet[offset:offset+4]); err != nil {
-        return time.Time{}
+        return Date(time.Time{})
     } else if date, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
-        return time.Time{}
+        return Date(time.Time{})
     } else {
-        return date
+        return Date(date)
     }
 }
 
@@ -115,9 +114,9 @@ type {{CamelCase .Name}} struct { {{range .Fields}}
 {{define "initialise"}}
 {{stash "uint32"  "uint32"}}
 {{stash "IPv4"    "netip.Addr"}}
-{{stash "MAC"     "net.HardwareAddr"}}
+{{stash "MAC"     "MAC"}}
 {{stash "version" "string"}}
-{{stash "date"    "time.Time"}}
+{{stash "date"    "Date"}}
 {{end}}
 
 {{define "type"}}{{lookup .}}{{end}}

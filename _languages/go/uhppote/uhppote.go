@@ -1,16 +1,16 @@
 package uhppote
 
-import(
+import (
     "encoding/hex"
     "fmt"
     "net"
-    "net/netip"    
+    "net/netip"
     "regexp"
     "time"
 )
 
+const READ_TIMEOUT = 5000 * time.Millisecond
 const WRITE_TIMEOUT = 1000 * time.Millisecond
-var NEVER = time.Time{}
 
 var bindAddr *net.UDPAddr
 var destAddr *net.UDPAddr
@@ -21,12 +21,6 @@ func SetBindAddr(addr string) {
 
 func SetDestAddr(addr string) {
     destAddr = resolve(addr)
-}
-
-func resolve(address string) *net.UDPAddr {
-    addr := netip.MustParseAddrPort(address)
-    
-    return net.UDPAddrFromAddrPort(addr)
 }
 
 func GetAllControllers() ([]*GetControllerResponse, error) {
@@ -70,7 +64,7 @@ func {{CamelCase .Name}}({{template "args" .Args}}) (*{{CamelCase .Response.Name
 
     fmt.Printf("%v\n", dump(request, "   "))
 
-    replies,err := send(request, {{.Wait}} * time.Millisecond)
+    replies,err := send(request, 0 * time.Millisecond)
     if err != nil {
         return nil,err
     }
@@ -100,7 +94,7 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
         return nil, err
     }
 
-    if err := socket.SetReadDeadline(NEVER); err != nil {
+    if err := socket.SetReadDeadline(time.Now().Add(READ_TIMEOUT)); err != nil {
         return nil, fmt.Errorf("Failed to set UDP read timeout [%v]", err)
     }
 
@@ -111,7 +105,6 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
     reply := make(chan []byte)
     e := make(chan error)
     waited := time.After(wait)
-    timeout := time.After((wait + 5000) * time.Millisecond)
 
     replies := [][]byte{}
 
@@ -140,13 +133,16 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
                 return replies, nil                
             }
 
-        case <-timeout:
-            return nil, fmt.Errorf("timeout")
-
         case err := <-e:
             return nil, err
         }
     }
+}
+
+func resolve(address string) *net.UDPAddr {
+    addr := netip.MustParseAddrPort(address)
+    
+    return net.UDPAddrFromAddrPort(addr)
 }
 
 func dump(m []byte, prefix string) string {

@@ -7,7 +7,6 @@ type function struct {
 	Args     []arg
 	Request  request
 	Response response
-	Wait     uint32
 }
 
 var functions = []function{
@@ -24,5 +23,4 @@ var GetController = function{
 	},
 	Request:  GetControllerRequest,
 	Response: GetControllerResponse,
-	Wait:     0,
 }

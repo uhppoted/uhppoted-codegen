@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -20,7 +21,7 @@ func main() {
 		log.Fatalf("ERROR  %v", err)
 	} else {
 		for _, v := range response {
-			log.Printf("INFO  %+v", *v)
+			log.Printf("INFO  %+v", pprint(v))
 		}
 	}
 
@@ -29,6 +30,14 @@ func main() {
 	} else if response == nil {
 		log.Fatalf("ERROR  %v", response)
 	} else {
-		log.Printf("INFO  %+v", *response)
+		log.Printf("INFO  %+v", pprint(response))
+	}
+}
+
+func pprint(v any) string {
+	if bytes,err := json.MarshalIndent(v,"","  "); err != nil {
+		return fmt.Sprintf("%v",v)
+	} else {
+		return string(bytes)
 	}
 }
