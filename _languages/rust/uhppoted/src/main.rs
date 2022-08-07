@@ -1,21 +1,22 @@
 use std::env;
+use std::any::Any;
 
 #[path = "uhppote.rs"]
 mod uhppote;
 
 struct Command {
     name: &'static str,
-    func: fn() -> Result<i32, Box<dyn std::error::Error>>,
+    func: fn() -> Result<Box<dyn Any>, Box<dyn std::error::Error>>,
 }
 
 const COMMANDS: [&Command; 2] = [
     &Command {
         name: "get-all-controllers",
-        func: || -> Result<i32, Box<dyn std::error::Error>> { uhppote::get_all_controllers() },
+        func: || -> Result<Box<dyn Any>, Box<dyn std::error::Error>> { uhppote::get_all_controllers() },
     },
     &Command {
         name: "get-controller",
-        func: || -> Result<i32, Box<dyn std::error::Error>> { uhppote::get_controller(405419896) },
+        func: || -> Result<Box<dyn Any>, Box<dyn std::error::Error>> { uhppote::get_controller(405419896) },
     },
 ];
 
@@ -55,7 +56,7 @@ impl Command {
     pub fn exec(&self) {
         println!("{}", self.name);
         match (self.func)() {
-            Ok(v) => println!("{}", v),
+            Ok(v) => println!("{:?}", v),
             Err(error) => panic!("ERROR  {:?}", error),
         }
     }

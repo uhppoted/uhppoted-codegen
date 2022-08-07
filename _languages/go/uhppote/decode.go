@@ -22,7 +22,7 @@ func {{camelCase .Name}}(packet []byte) (*{{CamelCase .Name}}, error) {
         return nil, fmt.Errorf("invalid reply packet length (%v)", len(packet))
     }
 
-    if packet[1] != {{.MsgType}} {
+    if packet[1] != {{printf "0x%02x" .MsgType}} {
         return nil, fmt.Errorf("invalid reply function code (%02x)", packet[1])
     }
 

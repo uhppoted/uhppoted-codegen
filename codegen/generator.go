@@ -150,8 +150,8 @@ func kebabCase(s string) string {
 func snakeCase(s string) string {
 	tokens := regexp.MustCompile(`\s+`).Split(s, -1)
 
-	for i, token := range tokens[1:] {
-		tokens[i+1] = strings.ToLower(token)
+	for i, token := range tokens {
+		tokens[i] = strings.ToLower(token)
 	}
 
 	return strings.Join(tokens, "_")

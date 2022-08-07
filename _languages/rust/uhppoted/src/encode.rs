@@ -1,8 +1,10 @@
+use std::error::Error;
+
 {{range .Requests}}{{template "request" .}}
 {{end}}
 
 {{define "request"}}
-pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], String> {
+pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], Box<dyn Error>> {
     let mut packet = [0x00; 64];
 
     packet[0] = 0x17;
@@ -20,7 +22,7 @@ pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], Stri
 fn pack_u32(packet: &mut [u8; 64], v: u32, offset: usize) {
     let bytes = v.to_le_bytes();
 
-    packet[offset..offset+4].clone_from_slice(&bytes);
+    packet[offset..offset + 4].clone_from_slice(&bytes);
 }
 
 {{define "args"}}{{range .}}{{snakeCase .Name}}: {{template "type" .Type}}{{end}}{{end}}
