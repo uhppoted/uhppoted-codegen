@@ -109,7 +109,7 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
     replies := [][]byte{}
 
     go func() {
-        buffer := make([]byte, 2048)
+        buffer := make([]byte, 1024)
 
         for {
             if N, _, err := socket.ReadFromUDP(buffer); err != nil {

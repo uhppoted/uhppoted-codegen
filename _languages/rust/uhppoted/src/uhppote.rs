@@ -1,30 +1,64 @@
+use std::io;
+use std::net::UdpSocket;
+use std::time::Duration;
+
 #[path = "encode.rs"]
 mod encode;
 
-pub fn get_all_controllers() -> Result<i32, String> {
-    let request = encode::get_controller_request(0);
+const READ_TIMEOUT: Duration = Duration::from_millis(5000);
+const WRITE_TIMEOUT: Duration = Duration::from_millis(1000);
 
-    match request {
-        Ok(rq) => {
-            dump(&rq);
-            return Ok(1);
-        }
+// static bindAddr: String = "0.0.0.0:0".to_string();
+// static destAddr: String = "192.168.1.255:60000".to_string();
 
-        Err(error) => return Err(error),
+pub fn get_all_controllers() -> Result<i32, Box<dyn std::error::Error>> {
+    let request = encode::get_controller_request(0)?;
+
+    dump(&request);
+        
+    for reply in send(&request)? {
+        dump(&reply);
     }
+            
+    return Ok(2);
 }
 
-pub fn get_controller(device_id: u32) -> Result<i32, String> {
-    let request = encode::get_controller_request(device_id);
+pub fn get_controller(device_id: u32) -> Result<i32, Box<dyn std::error::Error>> {
+    let request = encode::get_controller_request(device_id)?;
 
-    match request {
-        Ok(rq) => {
-            dump(&rq);
-            return Ok(2);
-        }
-
-        Err(error) => return Err(error),
+    dump(&request);
+        
+    for reply in send(&request)? {
+        dump(&reply);
     }
+
+    return Ok(2);
+}
+
+pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, io::Error> {
+    let socket = UdpSocket::bind("0.0.0.0:60001")?;
+
+    socket.set_write_timeout(Some(WRITE_TIMEOUT))?;
+    socket.set_read_timeout(Some(READ_TIMEOUT))?;
+    socket.send_to(packet, "192.168.1.100:60000")?;
+
+    let mut replies: Vec<[u8; 64]> = vec![];
+    let mut buffer = [0x00; 1024];
+
+    match socket.recv(&mut buffer) {
+        Ok(n) => {
+            if n == 64 {
+                let mut reply = [0x00; 64];
+
+                reply.clone_from_slice(&buffer[..n]);
+                replies.push(reply);
+            }
+        },
+
+        Err(e) => println!("recv function failed: {e:?}"),
+    }
+
+    return Ok(replies);
 }
 
 pub fn dump(packet: &[u8; 64]) {
@@ -42,6 +76,8 @@ pub fn dump(packet: &[u8; 64]) {
             v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7]
         );
 
-        println!("   {:08x}  {}  {}", offset, p, q);
+        println!("   {offset:08x}  {p}  {q}");
     }
+
+    println!();
 }

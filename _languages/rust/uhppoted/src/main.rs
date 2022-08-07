@@ -5,17 +5,17 @@ mod uhppote;
 
 struct Command {
     name: &'static str,
-    func: fn() -> Result<i32, String>,
+    func: fn() -> Result<i32, Box<dyn std::error::Error>>,
 }
 
 const COMMANDS: [&Command; 2] = [
     &Command {
         name: "get-all-controllers",
-        func: || -> Result<i32, String> { uhppote::get_all_controllers() },
+        func: || -> Result<i32, Box<dyn std::error::Error>> { uhppote::get_all_controllers() },
     },
     &Command {
         name: "get-controller",
-        func: || -> Result<i32, String> { uhppote::get_controller(405419896) },
+        func: || -> Result<i32, Box<dyn std::error::Error>> { uhppote::get_controller(405419896) },
     },
 ];
 
