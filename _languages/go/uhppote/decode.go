@@ -112,12 +112,12 @@ type {{CamelCase .Name}} struct { {{range .Fields}}
 {{end}}
 
 {{define "initialise"}}
-{{stash "uint32"  "uint32"}}
-{{stash "IPv4"    "netip.Addr"}}
-{{stash "MAC"     "MAC"}}
-{{stash "version" "string"}}
-{{stash "date"    "Date"}}
+{{put "types" "uint32"  "uint32"}}
+{{put "types" "IPv4"    "netip.Addr"}}
+{{put "types" "MAC"     "MAC"}}
+{{put "types" "version" "string"}}
+{{put "types" "date"    "Date"}}
 {{end}}
 
-{{define "type"}}{{lookup .}}{{end}}
+{{define "type"}}{{get "types" .}}{{end}}
 

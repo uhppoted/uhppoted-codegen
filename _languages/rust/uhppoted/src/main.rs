@@ -31,6 +31,9 @@ fn main() {
         return;
     }
 
+    uhppote::set_bind_addr("192.168.1.100:0");
+    uhppote::set_broadcast_addr("192.168.1.255:60000");
+
     for cmd in args {
         match COMMANDS.iter().find(|c| c.name == cmd) {
             Some(c) => c.exec(),

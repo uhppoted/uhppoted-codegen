@@ -1,8 +1,11 @@
 use std::any::Any;
-use std::io;
 use std::error::Error;
+use std::io;
 use std::net::UdpSocket;
+use std::sync::RwLock;
 use std::time::Duration;
+
+use lazy_static::lazy_static;
 
 #[path = "encode.rs"]
 mod encode;
@@ -13,8 +16,22 @@ mod decode;
 const READ_TIMEOUT: Duration = Duration::from_millis(5000);
 const WRITE_TIMEOUT: Duration = Duration::from_millis(1000);
 
-// static bindAddr: String = "0.0.0.0:0".to_string();
-// static destAddr: String = "192.168.1.255:60000".to_string();
+lazy_static! {
+    static ref BIND_ADDR: RwLock<String> = RwLock::new("0.0.0.0:0".to_string());
+    static ref BROADCAST_ADDR: RwLock<String> = RwLock::new("255.255.255.255:60000".to_string());
+}
+
+pub fn set_bind_addr(addr: &str) {
+    if let Ok(mut guard) = BIND_ADDR.write() {
+        *guard = addr.to_string();
+    }
+}
+
+pub fn set_broadcast_addr(addr: &str) {
+    if let Ok(mut guard) = BROADCAST_ADDR.write() {
+        *guard = addr.to_string();
+    }
+}
 
 pub fn get_all_controllers() -> Result<Box<dyn Any>, Box<dyn Error>> {
     let request = encode::get_controller_request(0)?;
@@ -25,7 +42,7 @@ pub fn get_all_controllers() -> Result<Box<dyn Any>, Box<dyn Error>> {
         dump(&reply);
         let response = decode::get_controller_response(&reply)?;
 
-        println!(">>> {:?}",response);
+        println!(">>> {:?}", response);
 
         return Ok(Box::new(response));
     }
@@ -40,10 +57,10 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
 
     for reply in send(&request)? {
         dump(&reply);
-        
+
         let response = decode::get_controller_response(&reply)?;
 
-        println!(">>> {:?}",response);
+        println!(">>> {:?}", response);
 
         return Ok(Box::new(response));
     }
@@ -52,11 +69,15 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
 }
 
 pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, io::Error> {
-    let socket = UdpSocket::bind("0.0.0.0:60001")?;
+    let bind = BIND_ADDR.read().unwrap();
+    let broadcast = BROADCAST_ADDR.read().unwrap();
+
+    let socket = UdpSocket::bind(bind.as_str())?;
 
     socket.set_write_timeout(Some(WRITE_TIMEOUT))?;
     socket.set_read_timeout(Some(READ_TIMEOUT))?;
-    socket.send_to(packet, "192.168.1.100:60000")?;
+    socket.set_broadcast(true)?;
+    socket.send_to(packet, broadcast.as_str())?;
 
     let mut replies: Vec<[u8; 64]> = vec![];
     let mut buffer = [0x00; 1024];

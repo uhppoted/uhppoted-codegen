@@ -24,11 +24,11 @@ var funcs = template.FuncMap{
 	"camelCase": camelCase,
 	"kebabCase": kebabCase,
 	"snakeCase": snakeCase,
-	"lookup":    lookup,
-	"stash":     stash,
+	"put":       put,
+	"get":       get,
 }
 
-var kv = map[string]string{}
+var bag = map[string]map[string]string{}
 
 var data = struct {
 	Functions []function
@@ -167,15 +167,26 @@ func capitalize(s string) string {
 	return string(runes)
 }
 
-func lookup(s string) string {
-	if v, ok := kv[s]; ok {
-		return v
+func put(table string, key string, value string) string {
+	kv := map[string]string{}
+
+	if m, ok := bag[table]; ok {
+		kv = m
+	} else {
+		bag[table] = kv
 	}
+
+	kv[key] = value
 
 	return ""
 }
 
-func stash(key string, value string) string {
-	kv[key] = value
+func get(table string, s string) string {
+	if kv, ok := bag[table]; ok {
+		if v, ok := kv[s]; ok {
+			return v
+		}
+	}
+
 	return ""
 }

@@ -95,12 +95,12 @@ fn unpack_date(packet: &[u8; 64], offset: usize) -> NaiveDate {
 const BCD: [char; 10] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 {{define "initialise"}}
-{{stash "uint32"  "u32"}}
-{{stash "IPv4"    "Ipv4Addr"}}
-{{stash "MAC"     "[u8; 6]"}}
-{{stash "version" "String"}}
-{{stash "date"    "NaiveDate"}}
+{{put "types" "uint32"  "u32"}}
+{{put "types" "IPv4"    "Ipv4Addr"}}
+{{put "types" "MAC"     "[u8; 6]"}}
+{{put "types" "version" "String"}}
+{{put "types" "date"    "NaiveDate"}}
 {{end}}
 
-{{define "type"}}{{lookup .}}{{end}}
+{{define "type"}}{{get "types" .}}{{end}}
 
