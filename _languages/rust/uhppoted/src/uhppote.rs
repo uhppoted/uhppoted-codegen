@@ -1,11 +1,13 @@
 use std::any::Any;
 use std::error::Error;
-use std::io;
+use std::sync::mpsc;
 use std::net::UdpSocket;
 use std::sync::RwLock;
 use std::time::Duration;
 
 use lazy_static::lazy_static;
+use futures;
+use futures::FutureExt;
 
 #[path = "encode.rs"]
 mod encode;
@@ -68,7 +70,7 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
     return Ok(Box::new(2));
 }
 
-pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, io::Error> {
+pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
     let bind = BIND_ADDR.read().unwrap();
     let broadcast = BROADCAST_ADDR.read().unwrap();
 
@@ -79,23 +81,47 @@ pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, io::Error> {
     socket.set_broadcast(true)?;
     socket.send_to(packet, broadcast.as_str())?;
 
+    let replies = futures::executor::block_on(read(&socket))?;
+    
+    return Ok(replies); 
+}
+
+async fn read(socket: &UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
     let mut replies: Vec<[u8; 64]> = vec![];
-    let mut buffer = [0x00; 1024];
+    let (tx, rx) = mpsc::channel::<[u8; 64]>();
 
-    match socket.recv(&mut buffer) {
-        Ok(n) => {
-            if n == 64 {
-                let mut reply = [0x00; 64];
+    let t = recv(&socket,tx).fuse(); 
 
-                reply.clone_from_slice(&buffer[..n]);
-                replies.push(reply);
-            }
-        }
+    futures::pin_mut!(t);
 
-        Err(e) => println!("recv function failed: {e:?}"),
+    futures::select! {
+        () = t => replies.push(rx.recv().unwrap()),
     }
 
     return Ok(replies);
+}
+
+async fn recv(socket: &UdpSocket, ch: mpsc::Sender<[u8; 64]>) {
+    let mut buffer = [0x00; 1024];
+
+    loop {
+        match socket.recv(&mut buffer) {
+            Ok(n) => {
+                if n == 64 {
+                    let mut reply = [0x00; 64];
+                    reply.clone_from_slice(&buffer[..n]);
+
+                    ch.send(reply);
+                    break;
+                }
+            },
+
+            Err(e) => {
+                println!("recv error {e}");
+                break;
+            }
+        }
+    }
 }
 
 pub fn dump(packet: &[u8; 64]) {

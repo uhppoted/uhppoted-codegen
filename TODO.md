@@ -12,7 +12,8 @@
 - [ ] Use find a la Rust
 
 ## Rust
-- [ ] build command list from args and **then** check usage
+- [ ] Build command list from args and **then** check usage
+- [ ] Command line bind/broadcast address options
 
 ## Javascript
 
