@@ -1,13 +1,12 @@
 use std::any::Any;
 use std::error::Error;
-use std::sync::mpsc;
 use std::net::UdpSocket;
 use std::sync::RwLock;
 use std::time::Duration;
 
-use lazy_static::lazy_static;
+use async_std::future;
 use futures;
-use futures::FutureExt;
+use lazy_static::lazy_static;
 
 #[path = "encode.rs"]
 mod encode;
@@ -40,7 +39,9 @@ pub fn get_all_controllers() -> Result<Box<dyn Any>, Box<dyn Error>> {
 
     dump(&request);
 
-    for reply in send(&request)? {
+    let replies = send(&request)?;
+
+    for reply in replies {
         dump(&reply);
         let response = decode::get_controller_response(&reply)?;
 
@@ -57,7 +58,9 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
 
     dump(&request);
 
-    for reply in send(&request)? {
+    let replies = send(&request)?;
+
+    for reply in replies {
         dump(&reply);
 
         let response = decode::get_controller_response(&reply)?;
@@ -71,8 +74,8 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
 }
 
 pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
-    let bind = BIND_ADDR.read().unwrap();
-    let broadcast = BROADCAST_ADDR.read().unwrap();
+    let bind = BIND_ADDR.read()?;
+    let broadcast = BROADCAST_ADDR.read()?;
 
     let socket = UdpSocket::bind(bind.as_str())?;
 
@@ -81,47 +84,29 @@ pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
     socket.set_broadcast(true)?;
     socket.send_to(packet, broadcast.as_str())?;
 
-    let replies = futures::executor::block_on(read(&socket))?;
-    
-    return Ok(replies); 
+    let wait = Duration::from_millis(5000);
+    let recv = future::timeout(wait, read(socket));
+
+    match futures::executor::block_on(recv) {
+        Ok(replies) => return replies,
+        Err(_) => Ok(vec![]),
+    }
 }
 
-async fn read(socket: &UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+async fn read(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+    let sock = async_std::net::UdpSocket::from(socket);
     let mut replies: Vec<[u8; 64]> = vec![];
-    let (tx, rx) = mpsc::channel::<[u8; 64]>();
+    let mut buffer = [0u8; 1024];
+    let n = sock.recv(&mut buffer).await?;
 
-    let t = recv(&socket,tx).fuse(); 
+    if n == 64 {
+        let mut reply = [0u8; 64];
+        reply.clone_from_slice(&buffer[..n]);
 
-    futures::pin_mut!(t);
-
-    futures::select! {
-        () = t => replies.push(rx.recv().unwrap()),
+        replies.push(reply);
     }
 
-    return Ok(replies);
-}
-
-async fn recv(socket: &UdpSocket, ch: mpsc::Sender<[u8; 64]>) {
-    let mut buffer = [0x00; 1024];
-
-    loop {
-        match socket.recv(&mut buffer) {
-            Ok(n) => {
-                if n == 64 {
-                    let mut reply = [0x00; 64];
-                    reply.clone_from_slice(&buffer[..n]);
-
-                    ch.send(reply);
-                    break;
-                }
-            },
-
-            Err(e) => {
-                println!("recv error {e}");
-                break;
-            }
-        }
-    }
+    Ok(replies)
 }
 
 pub fn dump(packet: &[u8; 64]) {
