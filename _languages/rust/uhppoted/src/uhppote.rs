@@ -39,7 +39,8 @@ pub fn get_all_controllers() -> Result<Box<dyn Any>, Box<dyn Error>> {
 
     dump(&request);
 
-    let replies = send(&request)?;
+    let replies = send(&request, 1000)?;
+    let mut list: Vec<decode::GetControllerResponse> = vec![];
 
     for reply in replies {
         dump(&reply);
@@ -47,10 +48,10 @@ pub fn get_all_controllers() -> Result<Box<dyn Any>, Box<dyn Error>> {
 
         println!(">>> {:?}", response);
 
-        return Ok(Box::new(response));
+        list.push(response);
     }
 
-    return Ok(Box::new(1));
+    return Ok(Box::new(list));
 }
 
 pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
@@ -58,7 +59,7 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
 
     dump(&request);
 
-    let replies = send(&request)?;
+    let replies = send(&request, 100)?;
 
     for reply in replies {
         dump(&reply);
@@ -73,10 +74,10 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
     return Ok(Box::new(2));
 }
 
-pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+pub fn send(packet: &[u8; 64], wait: u64) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
-
+    let timeout = Duration::from_millis(wait);
     let socket = UdpSocket::bind(bind.as_str())?;
 
     socket.set_write_timeout(Some(WRITE_TIMEOUT))?;
@@ -84,29 +85,42 @@ pub fn send(packet: &[u8; 64]) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
     socket.set_broadcast(true)?;
     socket.send_to(packet, broadcast.as_str())?;
 
-    let wait = Duration::from_millis(5000);
-    let recv = future::timeout(wait, read(socket));
+    let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
+
+    let read = async {
+        let sock = async_std::net::UdpSocket::from(socket);
+        let mut buffer = [0u8; 1024];
+
+        loop {
+            match sock.recv(&mut buffer).await {
+                Ok(n) => {
+                    if n == 64 {
+                        let mut reply = [0u8; 64];
+                        reply.clone_from_slice(&buffer[..n]);
+
+                        replies.write().unwrap().push(reply);
+                    }
+                }
+                Err(e) => {
+                    println!("ERROR {e}"); // return Err(e);
+                    break;
+                }
+            }
+        }
+    };
+
+    let recv = future::timeout(timeout, read);
 
     match futures::executor::block_on(recv) {
-        Ok(replies) => return replies,
-        Err(_) => Ok(vec![]),
+        Ok(_) => return Ok(replies.read().unwrap().to_vec()),
+
+        Err(future::TimeoutError { .. }) => {
+            return Ok(replies.read().unwrap().to_vec());
+        }
+        // Err(e) => {
+        //    return Err(Box::new(e));
+        // }
     }
-}
-
-async fn read(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
-    let sock = async_std::net::UdpSocket::from(socket);
-    let mut replies: Vec<[u8; 64]> = vec![];
-    let mut buffer = [0u8; 1024];
-    let n = sock.recv(&mut buffer).await?;
-
-    if n == 64 {
-        let mut reply = [0u8; 64];
-        reply.clone_from_slice(&buffer[..n]);
-
-        replies.push(reply);
-    }
-
-    Ok(replies)
 }
 
 pub fn dump(packet: &[u8; 64]) {
