@@ -22,3 +22,14 @@ impl fmt::Display for Timeout {
         write!(f, "timeout waiting for response from controller")
     }
 }
+
+#[derive(Debug)]
+pub struct NoResponse;
+
+impl Error for NoResponse {}
+
+impl fmt::Display for NoResponse {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "no response to request")
+    }
+}

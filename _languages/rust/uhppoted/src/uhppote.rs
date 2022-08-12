@@ -1,6 +1,11 @@
 use std::error::Error;
 use std::time::Duration;
 
+use decode::*;
+use encode::*;
+use errors::*;
+use udp::send;
+
 #[path = "encode.rs"]
 mod encode;
 
@@ -25,14 +30,14 @@ pub fn set_debug(enabled: bool) {
     udp::set_debug(enabled)
 }
 
-pub fn get_all_controllers() -> Result<Vec<decode::GetControllerResponse>, Box<dyn Error>> {
-    let request = encode::get_controller_request(0)?;
-    let replies = udp::send(&request, Duration::from_millis(2500))?;
+pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Box<dyn Error>> {
+    let request = get_controller_request(0)?;
+    let replies = send(&request, Duration::from_millis(2500))?;
 
     let mut list: Vec<decode::GetControllerResponse> = vec![];
 
     for reply in replies {
-        let response = decode::get_controller_response(&reply)?;
+        let response = get_controller_response(&reply)?;
 
         list.push(response);
     }
@@ -40,15 +45,24 @@ pub fn get_all_controllers() -> Result<Vec<decode::GetControllerResponse>, Box<d
     return Ok(list);
 }
 
-pub fn get_controller(device_id: u32) -> Result<decode::GetControllerResponse, Box<dyn Error>> {
-    let request = encode::get_controller_request(device_id)?;
-    let replies = udp::send(&request, Duration::ZERO)?;
+{{range .Functions}}{{template "function" .}}
+{{end}}
+
+{{define "function"}}
+pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> Result<{{CamelCase .Response.Name}}, Box<dyn Error>> {
+    let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
+    let replies = send(&request, Duration::ZERO)?;
 
     for reply in replies {
-        let response = decode::get_controller_response(&reply)?;
+        let response = {{snakeCase .Response.Name}}(&reply)?;
 
         return Ok(response);
     }
 
-    return Err(Box::new(errors::Oops));
+    return Err(Box::new(NoResponse));
 }
+{{end}}
+
+{{define "args"}}{{range .}}{{snakeCase .Name}}: {{template "type" .Type}}{{end}}{{end}}
+{{define "params"}}{{range .}}{{snakeCase .Name}}{{end}}{{end}}
+{{define "type"}}{{if eq . "uint32"}}u32{{else}}any{{end}}{{end}}

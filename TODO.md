@@ -17,13 +17,13 @@
 ## Rust
 
 - [x] Fix Any return 
-- [ ] use std::io::Error throughout instead of Box<dyn Error>
-- [ ] Build command list from args and **then** check usage
 - [ ] Command line bind/broadcast address options
+- [ ] Build command list from args and **then** check usage
 - [ ] 'all' command
 - [x] dump if debug
 - [ ] Macro for timeout future
 - [ ] uhppote::error with kind a lá std::io::error
+      - [ ] replace all Box<dyn Error>
       - [ ] wrap std::io::error
 
 ## Javascript
