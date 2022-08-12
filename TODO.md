@@ -16,7 +16,7 @@
 
 ## Rust
 
-- [ ] Use enum instead of Any for return 
+- [ ] Use enum/Option instead of Any for return 
 - [ ] use std::io::Error throughout instead of Box<dyn Error>
 - [ ] Build command list from args and **then** check usage
 - [ ] Command line bind/broadcast address options

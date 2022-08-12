@@ -95,57 +95,50 @@ async fn recv(socket: UdpSocket, wait: Duration) -> Result<Vec<[u8; 64]>, Box<dy
     let never = future::pending::<()>();
     let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
 
-    enum Reply {
-        Ok,
-        Err,
-    }
-
     let read = async {
         let sock = async_std::net::UdpSocket::from(socket);
         let mut buffer = [0u8; 1024];
 
         loop {
             match sock.recv(&mut buffer).await {
-                Ok(n) => {
-                    if n == 64 {
-                        let mut reply = [0u8; 64];
-                        reply.clone_from_slice(&buffer[..n]);
+                Ok(64) => {
+                    let mut reply = [0u8; 64];
+                    reply.clone_from_slice(&buffer[..64]);
 
-                        replies.write().unwrap().push(reply);
+                    replies.write().unwrap().push(reply);
 
-                        if wait.is_zero() {
-                            return Reply::Ok;
-                        }
+                    if wait.is_zero() {
+                        return Ok(());
                     }
                 }
 
-                Err(_e) => {
-                    return Reply::Err;
-                }
+                Err(e) => return Err(e),
+
+                _ => continue,
             }
         }
     }
     .fuse();
 
-    let waited = if wait.is_zero() {
-        future::timeout(Duration::from_millis(1000000), never).fuse()
-    } else {
-        future::timeout(wait, never).fuse()
-    };
+    let waited = future::timeout(wait, never).fuse();
 
     futures::pin_mut!(waited, read);
 
-    futures::select! {
-        v = read => match v {
-            Reply::Ok => {
-                return Ok(replies.read().unwrap().to_vec());
+    loop {
+        futures::select! {
+            v = read => {
+                match v {
+                    Ok(_) =>  return Ok(replies.read().unwrap().to_vec()),
+                    Err(e) => return Err(Box::new(e))
+                }
             },
-            Reply::Err => {
-                return Err(Box::new(std::io::Error::new(std::io::ErrorKind::Other,"ooops")));
-            },
-        },
 
-        _ = waited => return Ok(replies.read().unwrap().to_vec()),
+            _ = waited => {
+                if !wait.is_zero() {
+                    return Ok(replies.read().unwrap().to_vec())
+                }
+            }
+        }
     }
 }
 
