@@ -1,5 +1,5 @@
-use std::any::Any;
 use std::error::Error;
+use std::fmt;
 use std::net::UdpSocket;
 use std::sync::RwLock;
 use std::time::Duration;
@@ -15,12 +15,24 @@ mod encode;
 #[path = "decode.rs"]
 mod decode;
 
+#[derive(Debug)]
+struct Oops;
+
+impl Error for Oops {}
+
+impl fmt::Display for Oops {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "ooops")
+    }
+}
+
 const READ_TIMEOUT: Duration = Duration::from_millis(5000);
 const WRITE_TIMEOUT: Duration = Duration::from_millis(1000);
 
 lazy_static! {
     static ref BIND_ADDR: RwLock<String> = RwLock::new("0.0.0.0:0".to_string());
     static ref BROADCAST_ADDR: RwLock<String> = RwLock::new("255.255.255.255:60000".to_string());
+    static ref DEBUG: RwLock<bool> = RwLock::new(false);
 }
 
 pub fn set_bind_addr(addr: &str) {
@@ -35,7 +47,13 @@ pub fn set_broadcast_addr(addr: &str) {
     }
 }
 
-pub fn get_all_controllers() -> Result<Box<dyn Any>, Box<dyn Error>> {
+pub fn set_debug(enabled: bool) {
+    if let Ok(mut guard) = DEBUG.write() {
+        *guard = enabled;
+    }
+}
+
+pub fn get_all_controllers() -> Result<Vec<decode::GetControllerResponse>, Box<dyn Error>> {
     let request = encode::get_controller_request(0)?;
 
     dump(&request);
@@ -47,15 +65,13 @@ pub fn get_all_controllers() -> Result<Box<dyn Any>, Box<dyn Error>> {
         dump(&reply);
         let response = decode::get_controller_response(&reply)?;
 
-        println!(">>> {:?}", response);
-
         list.push(response);
     }
 
-    return Ok(Box::new(list));
+    return Ok(list);
 }
 
-pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
+pub fn get_controller(device_id: u32) -> Result<decode::GetControllerResponse, Box<dyn Error>> {
     let request = encode::get_controller_request(device_id)?;
 
     dump(&request);
@@ -67,12 +83,10 @@ pub fn get_controller(device_id: u32) -> Result<Box<dyn Any>, Box<dyn Error>> {
 
         let response = decode::get_controller_response(&reply)?;
 
-        println!(">>> {:?}", response);
-
-        return Ok(Box::new(response));
+        return Ok(response);
     }
 
-    return Ok(Box::new(2));
+    return Err(Box::new(Oops));
 }
 
 pub fn send(packet: &[u8; 64], wait: Duration) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
@@ -143,22 +157,30 @@ async fn recv(socket: UdpSocket, wait: Duration) -> Result<Vec<[u8; 64]>, Box<dy
 }
 
 pub fn dump(packet: &[u8; 64]) {
-    for i in 0..4 {
-        let offset = i * 16;
-        let u = &packet[offset..offset + 8];
-        let v = &packet[offset + 8..offset + 16];
+    let debug = if let Ok(guard) = DEBUG.read() {
+        *guard
+    } else {
+        false
+    };
 
-        let p = format!(
-            "{:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x}",
-            u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7]
-        );
-        let q = format!(
-            "{:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x}",
-            v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7]
-        );
+    if debug {
+        for i in 0..4 {
+            let offset = i * 16;
+            let u = &packet[offset..offset + 8];
+            let v = &packet[offset + 8..offset + 16];
 
-        println!("   {offset:08x}  {p}  {q}");
+            let p = format!(
+                "{:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x}",
+                u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7]
+            );
+            let q = format!(
+                "{:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x} {:02x}",
+                v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7]
+            );
+
+            println!("   {offset:08x}  {p}  {q}");
+        }
+
+        println!();
     }
-
-    println!();
 }

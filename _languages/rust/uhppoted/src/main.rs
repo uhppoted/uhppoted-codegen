@@ -1,24 +1,12 @@
 use std::env;
-use std::any::Any;
+
+use commands::COMMANDS;
+
+#[path = "commands.rs"]
+mod commands;
 
 #[path = "uhppote.rs"]
 mod uhppote;
-
-struct Command {
-    name: &'static str,
-    func: fn() -> Result<Box<dyn Any>, Box<dyn std::error::Error>>,
-}
-
-const COMMANDS: [&Command; 2] = [
-    &Command {
-        name: "get-all-controllers",
-        func: || -> Result<Box<dyn Any>, Box<dyn std::error::Error>> { uhppote::get_all_controllers() },
-    },
-    &Command {
-        name: "get-controller",
-        func: || -> Result<Box<dyn Any>, Box<dyn std::error::Error>> { uhppote::get_controller(405419896) },
-    },
-];
 
 fn main() {
     println!("uhppoted-codegen: Rust sample application");
@@ -33,34 +21,31 @@ fn main() {
 
     uhppote::set_bind_addr("192.168.1.100:0");
     uhppote::set_broadcast_addr("192.168.1.255:60000");
+    uhppote::set_debug(true);
 
     for cmd in args {
         match COMMANDS.iter().find(|c| c.name == cmd) {
             Some(c) => c.exec(),
             None => println!("invalid command {}", cmd),
         }
+
+        println!()
     }
 }
 
 fn usage() {
     println!();
-    println!("  Usage: uhppoted [commands]");
+    println!("  Usage: uhppoted [--debug] [--bind <address>] [--broadcast <address>] [commands]");
     println!();
-    println!("    Supported commands:");
+    println!("    Options:");
+    println!("    --debug                Displays sent and received UDP packets");
+    println!("    --bind <address>       IPv4 address to which to bind. Defaults to 0.0.0.0:0");
+    println!("    --broadcast <address>  IPv4 address to which for UDP broadcast. Defaults to 255.255.255.255:60000");
 
+    println!("    Supported commands:");
     for c in COMMANDS {
         println!("      {}", c.name);
     }
 
     println!();
-}
-
-impl Command {
-    pub fn exec(&self) {
-        println!("{}", self.name);
-        match (self.func)() {
-            Ok(v) => println!("{:?}", v),
-            Err(error) => panic!("ERROR  {:?}", error),
-        }
-    }
 }

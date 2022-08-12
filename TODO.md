@@ -16,12 +16,12 @@
 
 ## Rust
 
-- [ ] Use enum/Option instead of Any for return 
+- [x] Fix Any return 
 - [ ] use std::io::Error throughout instead of Box<dyn Error>
 - [ ] Build command list from args and **then** check usage
 - [ ] Command line bind/broadcast address options
 - [ ] 'all' command
-- [ ] dump if debug
+- [x] dump if debug
 
 ## Javascript
 
