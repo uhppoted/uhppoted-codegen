@@ -11,3 +11,14 @@ impl fmt::Display for Oops {
         write!(f, "ooops")
     }
 }
+
+#[derive(Debug)]
+pub struct Timeout;
+
+impl Error for Timeout {}
+
+impl fmt::Display for Timeout {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "timeout waiting for response from controller")
+    }
+}

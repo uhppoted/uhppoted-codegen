@@ -8,8 +8,11 @@ use futures;
 use futures::future::FutureExt;
 use lazy_static::lazy_static;
 
+use super::errors;
+
 const READ_TIMEOUT: Duration = Duration::from_millis(5000);
 const WRITE_TIMEOUT: Duration = Duration::from_millis(1000);
+const TIMEOUT: Duration = Duration::from_millis(2500);
 
 lazy_static! {
     static ref BIND_ADDR: RwLock<String> = RwLock::new("0.0.0.0:0".to_string());
@@ -54,7 +57,6 @@ pub fn send(packet: &[u8; 64], wait: Duration) -> Result<Vec<[u8; 64]>, Box<dyn 
 }
 
 async fn recv(socket: UdpSocket, wait: Duration) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
-    let never = future::pending::<()>();
     let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
 
     let read = async {
@@ -66,9 +68,9 @@ async fn recv(socket: UdpSocket, wait: Duration) -> Result<Vec<[u8; 64]>, Box<dy
                 Ok(64) => {
                     let mut reply = [0u8; 64];
                     reply.clone_from_slice(&buffer[..64]);
+                    replies.write().unwrap().push(reply);
 
                     dump(&reply);
-                    replies.write().unwrap().push(reply);
 
                     if wait.is_zero() {
                         return Ok(());
@@ -83,9 +85,10 @@ async fn recv(socket: UdpSocket, wait: Duration) -> Result<Vec<[u8; 64]>, Box<dy
     }
     .fuse();
 
-    let waited = future::timeout(wait, never).fuse();
+    let waited = future::timeout(wait, future::pending::<()>()).fuse();
+    let timeout = future::timeout(wait.saturating_add(TIMEOUT), future::pending::<()>()).fuse();
 
-    futures::pin_mut!(waited, read);
+    futures::pin_mut!(waited, read, timeout);
 
     loop {
         futures::select! {
@@ -100,6 +103,10 @@ async fn recv(socket: UdpSocket, wait: Duration) -> Result<Vec<[u8; 64]>, Box<dy
                 if !wait.is_zero() {
                     return Ok(replies.read().unwrap().to_vec())
                 }
+            },
+
+            _ = timeout => {
+                return Err(Box::new(errors::Timeout));
             }
         }
     }
