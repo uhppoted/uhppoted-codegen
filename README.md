@@ -2,13 +2,13 @@
 
 # uhppoted-codegen
 
-Code generation tool for creating native UHPPOTE interfaces in languages other than Go
+Code generation tool for creating native UHPPOTE controller interfaces in languages other than Go.
 
 ## Raison d'être
 
 ## Status
 
-_IN DEVELOPMENT_
+**IN DEVELOPMENT**
 
 ## Releases
 
@@ -29,7 +29,7 @@ Installation is straightforward - download the archive and extract it to a direc
 ### Building from source
 
 Required tools:
-- [Go 1.18+](https://go.dev)
+- [Go 1.19+](https://go.dev)
 - make (optional but recommended)
 
 To build using the included Makefile:
@@ -55,6 +55,7 @@ The above commands build the `uhppoted-codegen` executable to the `bin` director
 | *Dependency*                                                            | *Description*                        |
 | ----------------------------------------------------------------------- | -------------------------------------|
 | [uhppote-core](https://github.com/uhppoted/uhppote-core)                | Device level API implementation      |
+| [uhppoted-lib](https://github.com/uhppoted/uhppoted-lib)                | Common function library              |
 
 
 ## uhppoted-codegen
@@ -75,16 +76,15 @@ Generates a native UHPPOTE interface from the languages templates..
 
 Command line:
 
-` uhppoted-codegen [--debug] --template <folder> --out <folder> [options]`
+` uhppoted-codegen [--debug] [--clean] --templates <folder> --out <folder>`
 
 ```
-  --template <folder>  The folder containing the code generation templates for the target language.
-
-  --out <folder> The folder for the generated code.
-
-  --debug       Displays verbose debugging information
+  --templates <folder>  The folder containing the code generation templates for the target language.
+  --out <folder>        The folder for the generated code.
 
   Options:
 
+  --clean Erases 'out' folder before generating code from templates. Defaults to false
+  --debug Displays verbose debugging information. Defaults to false
 ```
 

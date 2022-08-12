@@ -22,6 +22,9 @@
 - [ ] Command line bind/broadcast address options
 - [ ] 'all' command
 - [x] dump if debug
+- [ ] Macro for timeout future
+- [ ] uhppote::error with kind a lá std::io::error
+      - [ ] wrap std::io::error
 
 ## Javascript
 

@@ -25,7 +25,10 @@ impl Command {
 
 fn get_all_controllers() {
     match uhppote::get_all_controllers() {
-        Ok(v) => println!("{:?}", v),
+        Ok(list) => for response in list {
+            println!("{:?}", response)
+        },
+
         Err(e) => panic!("ERROR  {:?}", e),
     }
 }

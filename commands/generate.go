@@ -23,7 +23,7 @@ var GENERATE = Generate{
 }
 
 func (cmd *Generate) flags() *flag.FlagSet {
-	flagset := flag.NewFlagSet("", flag.ExitOnError)
+	flagset := flag.NewFlagSet("generate", flag.ExitOnError)
 
 	flagset.StringVar(&cmd.templates, "templates", "", "folder containing the language templates for the code generator")
 	flagset.StringVar(&cmd.out, "out", "", "output folder for the generated native code UHPPOTE interface")
