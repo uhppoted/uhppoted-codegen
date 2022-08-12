@@ -10,6 +10,7 @@
 - [ ] Type constraint for send() return value
       - (?) Option
 - (?) Use find a la Rust
+- [ ] Restructure a lá Rust
 - [ ] 'all' command
 - [ ] dump if debug
 - [ ] Make dump look like Rust implementation
@@ -17,7 +18,7 @@
 ## Rust
 
 - [x] Fix Any return 
-- [ ] Command line bind/broadcast address options
+- [x] Command line bind/broadcast address options
 - [ ] Build command list from args and **then** check usage
 - [ ] 'all' command
 - [x] dump if debug

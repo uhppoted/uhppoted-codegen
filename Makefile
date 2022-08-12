@@ -80,5 +80,9 @@ go: build
 rust: build
 	$(CMD) --templates _languages/rust --out generated/rust
 	# cd generated/rust/uhppoted && cargo fmt && cargo build && ./target/debug/uhppoted
-	cd generated/rust/uhppoted && cargo fmt && cargo build && ./target/debug/uhppoted get-all-controllers get-controller
+	cd generated/rust/uhppoted && \
+	cargo fmt && cargo build   && \
+	./target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 \
+	                        get-all-controllers \
+	                        get-controller
 
