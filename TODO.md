@@ -1,9 +1,10 @@
 # TODO
 
 - [ ] _templates folder for utility template files
-- [ ] Replace _go with more specific fmt and build commands
+- [x] Replace _go with more specific fmt and build commands
 - [ ] Generate to tempfile
 - [ ] Test data
+- (?) Move UHPPOTE models to JSON
 
 ## Go
 
