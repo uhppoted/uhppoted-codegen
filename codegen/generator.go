@@ -73,7 +73,7 @@ func (g Generator) Generate() error {
 			return err
 		} else if d.IsDir() {
 			return nil
-		} else if strings.HasPrefix(path, "_") {
+		} else if strings.HasPrefix(path, ".templates") {
 			return nil
 		}
 
@@ -147,6 +147,11 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 	defer file.Close()
 
 	t, err := template.New("codegen").Funcs(functions).Parse(string(bytes))
+	if err != nil {
+		return err
+	}
+
+	t, err = t.ParseFS(fsys, ".templates/**")
 	if err != nil {
 		return err
 	}

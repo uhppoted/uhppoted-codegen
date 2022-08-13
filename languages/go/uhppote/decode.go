@@ -108,6 +108,3 @@ type {{CamelCase .Name}} struct { {{range .Fields}}
     {{CamelCase .Name}} {{template "type" .Type}} `json:"{{kebabCase .Name}}"`{{end}}
 }
 {{end}}
-
-{{define "type"}}{{lookup "go.types" . "???"}}{{end}}
-

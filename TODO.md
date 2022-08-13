@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] _templates folder for utility template files
+- [x] .templates folder for utility template files
 - [x] Replace _go with more specific fmt and build commands
 - [ ] Generate to tempfile
 - [ ] Test data

@@ -62,7 +62,3 @@ pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> Result<{{CamelCase .Res
     return Err(Box::new(NoResponse));
 }
 {{end}}
-
-{{define "args"}}{{range .}}{{snakeCase .Name}}: {{template "type" .Type}}{{end}}{{end}}
-{{define "params"}}{{range .}}{{snakeCase .Name}}{{end}}{{end}}
-{{define "type"}}{{lookup "rust.types" . "???"}}{{end}}
