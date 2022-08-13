@@ -8,12 +8,10 @@ import (
     "time"
 )
 
-{{template "initialise"}}
-
-{{range .Responses}}{{template "decode" .}}
+{{range .model.Responses}}{{template "decode" .}}
 {{end}}
 
-{{range .Responses}}{{template "response" .}}
+{{range .model.Responses}}{{template "response" .}}
 {{end}}
 
 {{define "decode"}}
@@ -111,13 +109,5 @@ type {{CamelCase .Name}} struct { {{range .Fields}}
 }
 {{end}}
 
-{{define "initialise"}}
-{{put "types" "uint32"  "uint32"}}
-{{put "types" "IPv4"    "netip.Addr"}}
-{{put "types" "MAC"     "MAC"}}
-{{put "types" "version" "string"}}
-{{put "types" "date"    "Date"}}
-{{end}}
-
-{{define "type"}}{{get "types" .}}{{end}}
+{{define "type"}}{{lookup "go.types" . "???"}}{{end}}
 

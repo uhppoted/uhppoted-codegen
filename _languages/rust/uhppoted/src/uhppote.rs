@@ -45,7 +45,7 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Box<dyn Error
     return Ok(list);
 }
 
-{{range .Functions}}{{template "function" .}}
+{{range .model.Functions}}{{template "function" .}}
 {{end}}
 
 {{define "function"}}
@@ -65,4 +65,4 @@ pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> Result<{{CamelCase .Res
 
 {{define "args"}}{{range .}}{{snakeCase .Name}}: {{template "type" .Type}}{{end}}{{end}}
 {{define "params"}}{{range .}}{{snakeCase .Name}}{{end}}{{end}}
-{{define "type"}}{{if eq . "uint32"}}u32{{else}}any{{end}}{{end}}
+{{define "type"}}{{lookup "rust.types" . "???"}}{{end}}

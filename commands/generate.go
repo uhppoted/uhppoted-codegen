@@ -12,6 +12,7 @@ import (
 )
 
 type Generate struct {
+	models    string
 	templates string
 	out       string
 	clean     bool
@@ -25,6 +26,7 @@ var GENERATE = Generate{
 func (cmd *Generate) flags() *flag.FlagSet {
 	flagset := flag.NewFlagSet("generate", flag.ExitOnError)
 
+	flagset.StringVar(&cmd.models, "models", "", "folder containing the code generator model JSON files")
 	flagset.StringVar(&cmd.templates, "templates", "", "folder containing the language templates for the code generator")
 	flagset.StringVar(&cmd.out, "out", "", "output folder for the generated native code UHPPOTE interface")
 	flagset.BoolVar(&cmd.clean, "clean", false, "deletes all existing files and folders from the output folder")
@@ -47,7 +49,7 @@ func (cmd *Generate) Usage() string {
 
 func (cmd *Generate) Help() {
 	fmt.Println()
-	fmt.Println("  Usage: uhppoted-codegen generate --templates <folder> --out <folder> --debug")
+	fmt.Println("  Usage: uhppoted-codegen generate --models <folder> --templates <folder> --out <folder> --debug")
 	fmt.Println()
 	fmt.Println("  Options:")
 	fmt.Println()
@@ -63,6 +65,14 @@ func (cmd *Generate) FlagSet() *flag.FlagSet {
 
 func (cmd *Generate) Execute(args ...interface{}) error {
 	log.Printf("%s %s (PID %d)\n", APPLICATION, core.VERSION, os.Getpid())
+
+	if cmd.models == "" {
+		return fmt.Errorf("missing 'models' folder")
+	} else if _, err := os.Stat(cmd.models); err != nil && os.IsNotExist(err) {
+		return fmt.Errorf("models folder '%v' does not exist", cmd.models)
+	} else if err != nil {
+		return err
+	}
 
 	if cmd.templates == "" {
 		return fmt.Errorf("missing 'templates' folder")
@@ -83,7 +93,7 @@ func (cmd *Generate) Execute(args ...interface{}) error {
 		}
 	}
 
-	codegen := codegen.New(cmd.templates, cmd.out, cmd.debug)
+	codegen := codegen.New(cmd.models, cmd.templates, cmd.out, cmd.debug)
 
 	return codegen.Generate()
 }

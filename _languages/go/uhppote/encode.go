@@ -4,7 +4,7 @@ import(
     "encoding/binary"
 )
 
-{{range .Requests}}{{template "request" .}}
+{{range .model.Requests}}{{template "request" .}}
 {{end}}
 
 {{define "request"}}
@@ -22,10 +22,9 @@ func {{CamelCase .Name}}({{template "args" .Fields}}) ([]byte,error) {
 }
 {{end}}
 
-{{define "args"}}{{range .}}{{camelCase .Name}} {{template "type" .Type}}{{end}}{{end}}
-
-{{define "type"}}{{if eq . "uint32"}}uint32{{else}}any{{end}}{{end}}
-
 func packUint32(packet []byte, v uint32, offset uint8) {
     binary.LittleEndian.PutUint32(packet[offset:offset+4], v)
 }
+
+{{define "args"}}{{range .}}{{camelCase .Name}} {{template "type" .Type}}{{end}}{{end}}
+{{define "type"}}{{lookup "go.types" . "???"}}{{end}}

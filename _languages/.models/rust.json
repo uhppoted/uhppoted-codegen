@@ -1,0 +1,11 @@
+{
+    "rust": {
+        "types": {
+            "uint32": "u32",
+            "IPv4": "Ipv4Addr",
+            "MAC": "[u8; 6]",
+            "version": "String",
+            "date": "NaiveDate"
+        }
+    }
+}

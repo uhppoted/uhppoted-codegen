@@ -1,6 +1,7 @@
 package codegen
 
 import (
+	"encoding/json"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -11,6 +12,7 @@ import (
 )
 
 type Generator struct {
+	models    string
 	templates string
 	out       string
 	debug     bool
@@ -24,13 +26,12 @@ var funcs = template.FuncMap{
 	"camelCase": camelCase,
 	"kebabCase": kebabCase,
 	"snakeCase": snakeCase,
-	"put":       put,
-	"get":       get,
+	"lookup": func(path, key, defval string) any {
+		return lookup(map[string]any{}, path, key, defval)
+	},
 }
 
-var bag = map[string]map[string]string{}
-
-var data = struct {
+var model = struct {
 	Functions []function
 	Requests  []request
 	Responses []response
@@ -40,8 +41,9 @@ var data = struct {
 	Responses: responses,
 }
 
-func New(templates string, out string, debug bool) Generator {
+func New(models string, templates string, out string, debug bool) Generator {
 	g := Generator{
+		models:    models,
 		templates: templates,
 		out:       out,
 		debug:     debug,
@@ -51,6 +53,15 @@ func New(templates string, out string, debug bool) Generator {
 }
 
 func (g Generator) Generate() error {
+	data, err := g.initialise()
+	if err != nil {
+		return err
+	}
+
+	funcs["lookup"] = func(path, key, defval string) any {
+		return lookup(data, path, key, defval)
+	}
+
 	fsys := os.DirFS(g.templates)
 
 	if err := os.MkdirAll(g.out, 0777); err != nil {
@@ -74,6 +85,46 @@ func (g Generator) Generate() error {
 	}
 
 	return nil
+}
+
+func (g Generator) initialise() (map[string]any, error) {
+	fsys := os.DirFS(g.models)
+
+	data := map[string]any{
+		"model": model,
+	}
+
+	read := func(path string) error {
+		m := map[string]any{}
+
+		if bytes, err := fs.ReadFile(fsys, path); err != nil {
+			return err
+		} else if err := json.Unmarshal(bytes, &m); err != nil {
+			return err
+		} else {
+			for k, v := range m {
+				data[k] = v
+			}
+
+			return nil
+		}
+	}
+
+	f := func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		} else if d.IsDir() {
+			return nil
+		}
+
+		return read(path)
+	}
+
+	if err := fs.WalkDir(fsys, ".", f); err != nil {
+		return nil, err
+	}
+
+	return data, nil
 }
 
 func (g Generator) generate(fsys fs.FS, src string, data any, functions template.FuncMap) error {
@@ -167,26 +218,23 @@ func capitalize(s string) string {
 	return string(runes)
 }
 
-func put(table string, key string, value string) string {
-	kv := map[string]string{}
+func lookup(data map[string]any, path, key, defval string) any {
+	p := strings.Split(path, ".")
+	table := data
 
-	if m, ok := bag[table]; ok {
-		kv = m
-	} else {
-		bag[table] = kv
-	}
-
-	kv[key] = value
-
-	return ""
-}
-
-func get(table string, s string) string {
-	if kv, ok := bag[table]; ok {
-		if v, ok := kv[s]; ok {
-			return v
+	for _, k := range p {
+		if v, ok := table[k]; !ok {
+			return defval
+		} else if t, ok := v.(map[string]any); !ok {
+			return defval
+		} else {
+			table = t
 		}
 	}
 
-	return ""
+	if v, ok := table[key]; ok {
+		return v
+	}
+
+	return defval
 }

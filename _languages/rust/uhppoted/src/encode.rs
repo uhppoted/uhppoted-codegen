@@ -1,6 +1,6 @@
 use std::error::Error;
 
-{{range .Requests}}{{template "request" .}}
+{{range .model.Requests}}{{template "request" .}}
 {{end}}
 
 {{define "request"}}
@@ -26,6 +26,4 @@ fn pack_u32(packet: &mut [u8; 64], v: u32, offset: usize) {
 }
 
 {{define "args"}}{{range .}}{{snakeCase .Name}}: {{template "type" .Type}}{{end}}{{end}}
-
-{{define "type"}}{{if eq . "uint32"}}u32{{else}}any{{end}}{{end}}
-
+{{define "type"}}{{lookup "rust.types" . "???"}}{{end}}

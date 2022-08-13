@@ -1,0 +1,11 @@
+{
+    "go": {
+        "types": {
+            "uint32": "uint32",
+            "IPv4": "netip.Addr",
+            "MAC": "MAC",
+            "version": "string",
+            "date": "Date"
+        }
+    }
+}

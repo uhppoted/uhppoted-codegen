@@ -50,7 +50,7 @@ func GetAllControllers() ([]*GetControllerResponse, error) {
     return list, nil
 }
 
-{{range .Functions}}{{template "function" .}}
+{{range .model.Functions}}{{template "function" .}}
 {{end}}
 
 {{define "function"}}
@@ -153,7 +153,5 @@ func dump(m []byte, prefix string) string {
 }
 
 {{define "args"}}{{range .}}{{camelCase .Name}} {{template "type" .Type}}{{end}}{{end}}
-
 {{define "params"}}{{range .}}{{camelCase .Name}}{{end}}{{end}}
-
-{{define "type"}}{{if eq . "uint32"}}uint32{{else}}any{{end}}{{end}}
+{{define "type"}}{{lookup "go.types" . "???"}}{{end}}

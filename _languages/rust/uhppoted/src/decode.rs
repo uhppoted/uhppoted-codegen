@@ -2,12 +2,10 @@ use chrono::NaiveDate;
 use std::error::Error;
 use std::net::Ipv4Addr;
 
-{{template "initialise"}}
-
-{{range .Responses}}{{template "response" .}}
+{{range .model.Responses}}{{template "response" .}}
 {{end}}
 
-{{range .Responses}}{{template "decode" .}}
+{{range .model.Responses}}{{template "decode" .}}
 {{end}}
 
 {{define "response"}}
@@ -94,13 +92,4 @@ fn unpack_date(packet: &[u8; 64], offset: usize) -> NaiveDate {
 
 const BCD: [char; 10] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-{{define "initialise"}}
-{{put "types" "uint32"  "u32"}}
-{{put "types" "IPv4"    "Ipv4Addr"}}
-{{put "types" "MAC"     "[u8; 6]"}}
-{{put "types" "version" "String"}}
-{{put "types" "date"    "NaiveDate"}}
-{{end}}
-
-{{define "type"}}{{get "types" .}}{{end}}
-
+{{define "type"}}{{lookup "rust.types" . "???"}}{{end}}
