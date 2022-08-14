@@ -20,7 +20,7 @@
 
 - [x] Fix Any return 
 - [x] Command line bind/broadcast address options
-- [ ] Build command list from args and **then** check usage
+- [ ] Report error and exit i.e. don't panic
 - [ ] 'all' command
 - [x] dump if debug
 - [ ] Macro for timeout future
