@@ -54,9 +54,10 @@ func GetAllControllers() ([]*GetControllerResponse, error) {
 {{end}}
 
 {{define "function"}}
-func {{CamelCase .Name}}({{template "args" .Args}}) (*{{CamelCase .Response.Name}},error) {
+func {{CamelCase .Name}}({{template "args" .Args}}) {{if .Response}}(*{{CamelCase .Response.Name}},error){{else}}error{{end}} {
     fmt.Printf(">> {{.Name}}\n")
 
+    {{if .Response}}
     request,err := {{CamelCase .Request.Name}}({{template "params" .Args}})
     if err != nil {
         return nil,err
@@ -79,7 +80,19 @@ func {{CamelCase .Name}}({{template "args" .Args}}) (*{{CamelCase .Response.Name
         }
     }
 
-    return nil, nil
+    return nil, nil{{else}}
+    request,err := {{CamelCase .Request.Name}}({{template "params" .Args}})
+    if err != nil {
+        return err
+    }
+
+    fmt.Printf("%v\n", dump(request, "   "))
+    
+    if _,err := send(request, 0 * time.Millisecond); err != nil {
+        return err
+    }
+    
+    return nil{{end}}
 }{{end}}
 
 func send(request []byte, wait time.Duration) ([][]byte, error) {

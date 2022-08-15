@@ -82,7 +82,7 @@ help: build
 go: build
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
 	# cd generated/go && go fmt ./... && go run main.go
-	cd generated/go && go fmt ./... && go run main.go get-all-controllers get-controller
+	cd generated/go && go fmt ./... && go run main.go get-all-controllers get-controller set-ip
 
 rust: build
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust

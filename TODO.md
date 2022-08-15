@@ -6,13 +6,22 @@
 - [ ] Test data
 - (?) Move UHPPOTE models to JSON
 
+- [ ] `set-ip`
+      - [x] codegen
+      - [x] Go
+      - [ ] Rust
+      - [ ] JS
+
 ## Go
 
-- [ ] Type constraint for send() return value
-      - (?) Option
-- (?) Use find a la Rust
-- [ ] Restructure a lá Rust
+- [ ] --debug
+- [ ] --bind
+- [ ] --broadcast
 - [ ] 'all' command
+- (?) Use find a la Rust
+- (?) Type constraint for send() return value
+      - (?) Option
+- [ ] Restructure a lá Rust
 - [ ] dump if debug
 - [ ] Make dump look like Rust implementation
 

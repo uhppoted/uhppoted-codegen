@@ -10,6 +10,7 @@ type request struct {
 
 var requests = []request{
 	GetControllerRequest,
+	SetIPRequest,
 }
 
 var GetControllerRequest = request{
@@ -17,5 +18,33 @@ var GetControllerRequest = request{
 	MsgType: 0x94,
 	Fields: []field{
 		DeviceID,
+	},
+}
+
+var SetIPRequest = request{
+	Name:    "set IP request",
+	MsgType: 0x94,
+	Fields: []field{
+		DeviceID,
+		field{
+			Name:   "address",
+			Type:   "IPv4",
+			Offset: 8,
+		},
+		field{
+			Name:   "netmask",
+			Type:   "IPv4",
+			Offset: 12,
+		},
+		field{
+			Name:   "gateway",
+			Type:   "IPv4",
+			Offset: 16,
+		},
+		field{
+			Name:   "",
+			Type:   "magic",
+			Offset: 20,
+		},
 	},
 }

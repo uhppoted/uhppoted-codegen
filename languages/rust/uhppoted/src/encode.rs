@@ -10,8 +10,7 @@ pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], Box<
     packet[0] = 0x17;
     packet[1] = {{printf "0x%02x" .MsgType}};
 
-    {{range .Fields}}
-    pack_{{template "type" .Type}}(&mut packet, {{snakeCase .Name}}, {{.Offset}});
+    {{range .Fields}}pack_{{template "type" .Type}}(&mut packet, {{snakeCase .Name}}, {{.Offset}});
     {{end}}
 
     return Ok(packet)
