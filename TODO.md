@@ -14,15 +14,15 @@
 
 ## Go
 
-- [ ] --debug
-- [ ] --bind
-- [ ] --broadcast
+- [x] --debug
+- [x] --bind
+- [x] --broadcast
 - [ ] 'all' command
 - (?) Use find a la Rust
 - (?) Type constraint for send() return value
       - (?) Option
 - [ ] Restructure a lá Rust
-- [ ] dump if debug
+- [x] dump if debug
 - [ ] Make dump look like Rust implementation
 
 ## Rust

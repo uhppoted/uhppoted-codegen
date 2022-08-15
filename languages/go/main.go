@@ -11,7 +11,7 @@ import (
 )
 
 const ANY = "0.0.0.0:0"
-const BROADCAST = "192.168.1.255:60000"
+const BROADCAST = "255.255.255.255:60000"
 
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -49,6 +49,20 @@ var commands = []command{
 func main() {
 	fmt.Printf("uhppoted-codegen: Go sample application\n")
 
+	options := struct{
+		bind string
+		broadcast string
+		debug bool
+	}{
+		bind: ANY,
+		broadcast: BROADCAST,
+		debug: false,
+	}
+
+	flag.StringVar(&options.bind, "bind", options.bind, "UDP IPv4 bind address. Defaults to 0.0.0.0:0")
+	flag.StringVar(&options.broadcast, "broadcast", options.broadcast, "UDP IPv4 broadcast address. Defaults to 255.255.255.255:60000")
+	flag.BoolVar(&options.debug, "debug", options.debug, "Displays sent and received UDP packets")
+
 	flag.Parse()
 
 	if len(flag.Args()) == 0 {
@@ -56,8 +70,9 @@ func main() {
 		return
 	}
 
-	uhppote.SetBindAddr(ANY)
-	uhppote.SetDestAddr(BROADCAST)
+	uhppote.SetBindAddr(options.bind)
+	uhppote.SetDestAddr(options.broadcast)
+	uhppote.SetDebug(options.debug)
 
 	list := flag.Args()
 	for _, cmd := range list {
@@ -77,9 +92,14 @@ func main() {
 
 func usage() {
 	fmt.Println()
-	fmt.Println("  Usage: go run main.go [commands]")
+	fmt.Println("  Usage: go run main.go [--debug] [--bind <address>] [--broadcast <address>] [commands]")
 	fmt.Println()
-	fmt.Println("    Supported commands:")
+	fmt.Println("    Options:")
+    fmt.Println("    --debug                Displays sent and received UDP packets");
+    fmt.Println("    --bind <address>       IPv4 address to which to bind. Defaults to 0.0.0.0:0");
+    fmt.Println("    --broadcast <address>  IPv4 address to which for UDP broadcast. Defaults to 255.255.255.255:60000");
+	fmt.Println()
+	fmt.Println("    Commands:")
 
 	for _, c := range commands {
 		fmt.Printf("      %v\n", c.name)
