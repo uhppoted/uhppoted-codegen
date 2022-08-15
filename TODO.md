@@ -17,16 +17,19 @@
 - [x] --debug
 - [x] --bind
 - [x] --broadcast
+- [x] dump if debug
+- [x] Make dump look like Rust implementation
+- [ ] Rework wait hack as read,readall,readnone
+- [ ] Move UDP stuff to udp.go
 - [ ] 'all' command
 - (?) Use find a la Rust
+- [ ] Restructure a lá Rust
 - (?) Type constraint for send() return value
       - (?) Option
-- [ ] Restructure a lá Rust
-- [x] dump if debug
-- [ ] Make dump look like Rust implementation
 
 ## Rust
 
+- [ ] Rework wait hack as read,readall,readnone
 - [ ] Report error and exit i.e. don't panic
 - [ ] 'all' command
 - [ ] Macro for timeout future

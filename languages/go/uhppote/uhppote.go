@@ -1,11 +1,9 @@
 package uhppote
 
 import (
-    "encoding/hex"
     "fmt"
     "net"
     "net/netip"
-    "regexp"
     "time"
 )
 
@@ -126,7 +124,7 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
                 e <- err
             } else {
                 reply <- buffer[0:N]
-            }            
+            }
         }
     }()
 
@@ -141,7 +139,7 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
 
         case <-waited:
             if wait > 0 {
-                return replies, nil                
+                return replies, nil
             }
 
         case err := <-e:
@@ -152,16 +150,27 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
 
 func resolve(address string) *net.UDPAddr {
     addr := netip.MustParseAddrPort(address)
-    
+
     return net.UDPAddrFromAddrPort(addr)
 }
 
-func dump(m []byte) {
-    prefix := "   "
+func dump(packet []byte) {
     if debug {
-        p := regexp.MustCompile(`\s*\|.*?\|`).ReplaceAllString(hex.Dump(m), "")
-        q := regexp.MustCompile("(?m)^(.*)").ReplaceAllString(p, prefix+"$1")
+        hex := "%02x %02x %02x %02x %02x %02x %02x %02x"
+        
+        for i:=0; i<4; i++ {
+            offset := i * 16;
+            u := packet[offset:offset + 8]
+            v := packet[offset + 8:offset + 16]
 
-        fmt.Printf("%s\n", q)        
+            p := fmt.Sprintf(hex,u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7])
+            q := fmt.Sprintf(hex,v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7])
+
+            fmt.Printf("   %08x  %v  %v\n",offset,p,q);
+        }
+
+        fmt.Println()
     }
 }
+
+
