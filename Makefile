@@ -1,9 +1,11 @@
 DIST   ?= development
 DEBUG  ?= --debug
 CMD     = ./bin/uhppoted-codegen
-MODELS  = languages/.models
-GO      = languages/go
-RUST    = languages/rust
+
+MODELS     = languages/.models
+GO         = languages/go
+RUST       = languages/rust
+JAVASCRIPT = languages/javascript
 
 .PHONY: update
 .PHONY: update-release
@@ -90,4 +92,8 @@ rust: build
 	./target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 \
 	                        get-all-controllers \
 	                        get-controller
+
+
+javascript: build
+	$(CMD) --models $(MODELS) --templates $(JAVASCRIPT) --out generated/javascript --clean
 

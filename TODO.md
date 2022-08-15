@@ -1,7 +1,7 @@
 # TODO
 
 - [x] .templates folder for utility template files
-- [x] Replace _go with more specific fmt and build commands
+      - [x] only if exists
 - [ ] Generate to tempfile
 - [ ] Test data
 - (?) Move UHPPOTE models to JSON
@@ -18,11 +18,8 @@
 
 ## Rust
 
-- [x] Fix Any return 
-- [x] Command line bind/broadcast address options
 - [ ] Report error and exit i.e. don't panic
 - [ ] 'all' command
-- [x] dump if debug
 - [ ] Macro for timeout future
 - [ ] uhppote::error with kind a lá std::io::error
       - [ ] replace all Box<dyn Error>

@@ -151,8 +151,17 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 		return err
 	}
 
-	t, err = t.ParseFS(fsys, ".templates/**")
-	if err != nil {
+	// ... attach common templates
+
+	if _, err := fs.Stat(fsys, ".templates"); err == nil {
+		if list, err := fs.Glob(fsys, ".templates/**"); err == nil && len(list) > 0 {
+			if t, err = t.ParseFS(fsys, ".templates/**"); err != nil {
+				return err
+			}
+		} else if err != nil {
+			return err
+		}
+	} else if !os.IsNotExist(err) {
 		return err
 	}
 
