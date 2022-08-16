@@ -81,34 +81,29 @@ help: build
 
 go: build
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
-	cd generated/go && go fmt ./... && go mod tidy && \
-	go run main.go --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 \
-	   get-all-controllers \
-	   get-controller \
-	   set-ip \
-	   get-time
+	cd generated/go && go fmt ./... && go mod tidy && go build main.go
 
-go-all: build
-	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
-	cd generated/go && go fmt ./... && go mod tidy && \
-	go run main.go --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+go-debug: go
+	./generated/go/main --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 get-time
+
+go-all: go
+	./generated/go/main --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
 
 go-usage: build
-	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
-	cd generated/go && go fmt ./... && go mod tidy && go run main.go
+	./generated/go/main
 
 rust: build
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
-	cd generated/rust/uhppoted && \
-	cargo fmt && cargo build   && \
-	./target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 \
-	                        get-all-controllers \
-	                        get-controller \
-	                        set-ip \
-	                        get-time
-rust-usage: build
-	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
-	cd generated/rust/uhppoted && cargo fmt && cargo build && ./target/debug/uhppoted
+	cd generated/rust/uhppoted && cargo fmt && cargo build
+
+rust-debug: rust
+	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 get-time
+
+rust-all: rust
+	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+
+rust-usage: rust
+	./generated/rust/uhppoted/target/debug/uhppoted
 
 javascript: build
 	$(CMD) --models $(MODELS) --templates $(JAVASCRIPT) --out generated/javascript --clean

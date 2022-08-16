@@ -43,6 +43,15 @@ fn main() -> ExitCode {
         return ExitCode::FAILURE
     }
 
+    if args.len() == 1 && args[0] == "all" {
+        for c in COMMANDS {
+            c.exec();
+            println!();
+        }
+        
+        return ExitCode::SUCCESS
+    }
+
     for cmd in args {
         let ok = match COMMANDS.iter().find(|c| c.name == cmd) {
             Some(c) => {
@@ -64,7 +73,7 @@ fn main() -> ExitCode {
         }
     }
 
-    ExitCode::SUCCESS
+    return ExitCode::SUCCESS
 }
 
 fn usage() {
