@@ -16,9 +16,8 @@
 ## Rust
 
 - [x] 'all' command
-- [ ] Rework wait hack as read,readall,readnone
+- [x] Rework wait hack as read,readall,readnone
 - [ ] Report error and exit i.e. don't panic
-- [ ] Macro for timeout future
 - [ ] Macro for bcd2string
 - [ ] uhppote::error with kind a lá std::io::error
       - [ ] replace all Box<dyn Error>

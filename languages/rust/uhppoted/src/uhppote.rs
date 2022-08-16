@@ -1,6 +1,5 @@
 use std::error::Error;
 use std::net::Ipv4Addr;
-use std::time::Duration;
 
 use decode::*;
 use encode::*;
@@ -33,7 +32,7 @@ pub fn set_debug(enabled: bool) {
 
 pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Box<dyn Error>> {
     let request = get_controller_request(0)?;
-    let replies = send(&request, Duration::from_millis(2500))?;
+    let replies = send(&request, udp::ReplyType::Multiple)?;
 
     let mut list: Vec<decode::GetControllerResponse> = vec![];
 
@@ -52,7 +51,7 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Box<dyn Error
 {{define "function"}}
 pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{if .Response}}Result<{{CamelCase .Response.Name}}, Box<dyn Error>> {{else}}Result<bool, Box<dyn Error>>{{end}} { {{if .Response}}
     let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
-    let replies = send(&request, Duration::ZERO)?;
+    let replies = send(&request, udp::ReplyType::Single)?;
 
     for reply in replies {
         let response = {{snakeCase .Response.Name}}(&reply)?;
@@ -63,7 +62,7 @@ pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{if .Response}}Result<
     return Err(Box::new(NoResponse));
     {{else}}
     let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
-    send(&request, Duration::ZERO)?;
+    send(&request, udp::ReplyType::Nothing)?;
 
     return Ok(true);
     {{end}}
