@@ -97,7 +97,8 @@ rust: build
 	cargo fmt && cargo build   && \
 	./target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 \
 	                        get-all-controllers \
-	                        get-controller
+	                        get-controller \
+	                        set-ip
 rust-usage: build
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
 	cd generated/rust/uhppoted && cargo fmt && cargo build && ./target/debug/uhppoted

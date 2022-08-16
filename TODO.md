@@ -36,6 +36,7 @@
 - [ ] uhppote::error with kind a lá std::io::error
       - [ ] replace all Box<dyn Error>
       - [ ] wrap std::io::error
+- (?) https://docs.rs/futures/0.1.13/futures/future/fn.loop_fn.html
 
 ## Javascript
 

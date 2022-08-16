@@ -1,4 +1,5 @@
 use std::error::Error;
+use std::net::Ipv4Addr;
 use std::time::Duration;
 
 use decode::*;
@@ -49,7 +50,7 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Box<dyn Error
 {{end}}
 
 {{define "function"}}
-pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> Result<{{CamelCase .Response.Name}}, Box<dyn Error>> {
+pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{if .Response}}Result<{{CamelCase .Response.Name}}, Box<dyn Error>> {{else}}Result<bool, Box<dyn Error>>{{end}} { {{if .Response}}
     let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
     let replies = send(&request, Duration::ZERO)?;
 
@@ -60,5 +61,11 @@ pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> Result<{{CamelCase .Res
     }
 
     return Err(Box::new(NoResponse));
+    {{else}}
+    let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
+    send(&request, Duration::ZERO)?;
+
+    return Ok(true);
+    {{end}}
 }
 {{end}}
