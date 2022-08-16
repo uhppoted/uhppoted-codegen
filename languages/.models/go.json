@@ -5,7 +5,8 @@
             "IPv4": "netip.Addr",
             "MAC": "MAC",
             "version": "string",
-            "date": "Date"
+            "date": "Date",
+            "datetime": "DateTime"
         }
     }
 }

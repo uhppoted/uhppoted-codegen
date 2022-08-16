@@ -67,6 +67,17 @@ func unpackDate(packet []byte, offset uint8) Date {
     }
 }
 
+func unpackDatetime(packet []byte, offset uint8) DateTime {
+    if bcd, err := bcd2string(packet[offset:offset+7]); err != nil {
+        return DateTime(time.Time{})
+    } else if date, err := time.ParseInLocation("20060102150405", bcd, time.Local); err != nil {
+        return DateTime(time.Time{})
+    } else {
+        return DateTime(date)
+    }
+}
+
+
 var BCD = map[uint8]rune {
     0x00: '0',
     0x01: '1',

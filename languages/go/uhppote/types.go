@@ -23,3 +23,15 @@ func (d Date) MarshalJSON() ([]byte, error) {
     
     return json.Marshal(s)
 }
+
+type DateTime time.Time
+
+func (d DateTime) String() string {
+    return time.Time(d).Format("2006-01-02 15:04:05")
+}
+
+func (d DateTime) MarshalJSON() ([]byte, error) {
+    s := time.Time(d).Format("2006-01-02 15:04:05")
+    
+    return json.Marshal(s)
+}

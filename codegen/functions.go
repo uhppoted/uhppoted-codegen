@@ -12,6 +12,7 @@ type function struct {
 var functions = []function{
 	GetController,
 	SetIP,
+	GetTime,
 }
 
 var GetController = function{
@@ -47,4 +48,16 @@ var SetIP = function{
 		},
 	},
 	Request: &SetIPRequest,
+}
+
+var GetTime = function{
+	Name: "get time",
+	Args: []arg{
+		arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+	},
+	Request:  &GetTimeRequest,
+	Response: &GetTimeResponse,
 }

@@ -1,4 +1,5 @@
 use chrono::NaiveDate;
+use chrono::NaiveDateTime;
 use std::error::Error;
 use std::net::Ipv4Addr;
 
@@ -21,7 +22,7 @@ pub fn {{snakeCase .Name}}(packet: &[u8; 64]) -> Result<{{CamelCase .Name}}, Box
         return Err(format!("invalid reply packet length ({})", packet.len()))?;
     }
  
-    if packet[1] != 0x94 {
+    if packet[1] != {{printf "0x%02x" .MsgType}} {
         return Err(format!("invalid reply function code ({:02x})", packet[1]))?;
     }
  
@@ -89,5 +90,35 @@ fn unpack_date(packet: &[u8; 64], offset: usize) -> NaiveDate {
         Err(_) => return NaiveDate::default()
     }
 }
+
+fn unpack_datetime(packet: &[u8; 64], offset: usize) -> NaiveDateTime {
+    let mut ix: [usize; 14] = [0; 14];
+    let mut offset = offset;
+    let mut index = 0;
+
+    for _ in 0..7 {
+        ix[index] = (packet[offset] >> 4 & 0x0f).into();
+        index += 1;
+
+        ix[index] = (packet[offset] >> 0 & 0x0f).into();
+        index += 1;
+
+        offset += 1;        
+    }
+
+    let mut chars: [char; 14] = [' '; 14];
+
+    for i in 0..14 {
+        chars[i] = BCD[ix[i]];
+    }
+
+    let d = String::from_iter(chars);
+
+    match NaiveDateTime::parse_from_str(&d, "%Y%m%d%H%M%S") {
+        Ok(datetime) => return datetime,
+        Err(_) => return NaiveDateTime::default()
+    }
+}
+
 
 const BCD: [char; 10] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

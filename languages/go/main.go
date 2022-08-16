@@ -15,6 +15,7 @@ import (
 
 const ANY = "0.0.0.0:0"
 const BROADCAST = "255.255.255.255:60000"
+const CONTROLLER uint32 = 405419896
 
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -35,17 +36,23 @@ var commands = []command{
 	command{
 		name: "get-controller",
 		f: func() (any, error) {
-			return uhppote.GetController(405419896)
+			return uhppote.GetController(CONTROLLER)
 		}},
 
 	command{
 		name: "set-ip",
 		f: func() (any, error) {
-			if err := uhppote.SetIP(405419896, ADDRESS, NETMASK, GATEWAY); err != nil {
+			if err := uhppote.SetIP(CONTROLLER, ADDRESS, NETMASK, GATEWAY); err != nil {
 				return nil, err
 			}
 
 			return nil, nil
+		}},
+
+	command{
+		name: "get-time",
+		f: func() (any, error) {
+			return uhppote.GetTime(CONTROLLER)
 		}},
 }
 

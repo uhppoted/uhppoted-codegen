@@ -11,6 +11,7 @@ type request struct {
 var requests = []request{
 	GetControllerRequest,
 	SetIPRequest,
+	GetTimeRequest,
 }
 
 var GetControllerRequest = request{
@@ -46,5 +47,13 @@ var SetIPRequest = request{
 			Type:   "magic",
 			Offset: 20,
 		},
+	},
+}
+
+var GetTimeRequest = request{
+	Name:    "get time request",
+	MsgType: 0x32,
+	Fields: []field{
+		DeviceID,
 	},
 }

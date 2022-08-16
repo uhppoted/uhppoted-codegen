@@ -3,13 +3,14 @@ package codegen
 import ()
 
 type response struct {
-	Name    string
-	MsgType uint8
-	Fields  []field
+	Name    string  `json:"name"`
+	MsgType uint8   `json:"type"`
+	Fields  []field `json:"fields"`
 }
 
 var responses = []response{
 	GetControllerResponse,
+	GetTimeResponse,
 }
 
 var GetControllerResponse = response{
@@ -47,6 +48,19 @@ var GetControllerResponse = response{
 			Name:   "date",
 			Type:   "date",
 			Offset: 28,
+		},
+	},
+}
+
+var GetTimeResponse = response{
+	Name:    "get time response",
+	MsgType: 0x32,
+	Fields: []field{
+		DeviceID,
+		field{
+			Name:   "datetime",
+			Type:   "datetime",
+			Offset: 8,
 		},
 	},
 }

@@ -1,6 +1,8 @@
 use super::uhppote;
 
-pub const COMMANDS: [&Command; 3] = [
+const CONTROLLER: u32 = 405419896;
+
+pub const COMMANDS: [&Command; 4] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -12,6 +14,10 @@ pub const COMMANDS: [&Command; 3] = [
     &Command {
         name: "set-ip",
         func: set_ip,
+    },
+    &Command {
+        name: "get-time",
+        func: get_time,
     },
 ];
 
@@ -40,19 +46,27 @@ fn get_all_controllers() {
 }
 
 fn get_controller() {
-    match uhppote::get_controller(405419896) {
+    match uhppote::get_controller(CONTROLLER) {
         Ok(v) => println!("{:?}", v),
         Err(e) => panic!("ERROR  {:?}", e),
     }
 }
 
 fn set_ip() {
-    let bind = "192.168.1.100".parse().unwrap();
+    let address = "192.168.1.100".parse().unwrap();
     let netmask = "255.255.255.0".parse().unwrap();
     let gateway = "192.168.1.1".parse().unwrap();
 
-    match uhppote::set_ip(405419896, bind, netmask, gateway) {
+    match uhppote::set_ip(CONTROLLER, address, netmask, gateway) {
         Ok(v) => println!("{:?}", v),
         Err(e) => panic!("ERROR  {:?}", e),
     }
 }
+
+fn get_time() {
+    match uhppote::get_time(CONTROLLER) {
+        Ok(v) => println!("{:?}", v),
+        Err(e) => panic!("ERROR  {:?}", e),
+    }
+}
+
