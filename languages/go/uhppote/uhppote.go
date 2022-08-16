@@ -32,7 +32,7 @@ func GetAllControllers() ([]*GetControllerResponse, error) {
         return nil, err
     }
 
-    replies, err := send(request, 2500*time.Millisecond)
+    replies, err := send(request, readAll)
     if err != nil {
         return nil, err
     }
@@ -62,7 +62,7 @@ func {{CamelCase .Name}}({{template "args" .Args}}) {{if .Response}}(*{{CamelCas
         return nil,err
     }
 
-    replies,err := send(request, 0 * time.Millisecond)
+    replies,err := send(request, read)
     if err != nil {
         return nil,err
     }
@@ -76,19 +76,16 @@ func {{CamelCase .Name}}({{template "args" .Args}}) {{if .Response}}(*{{CamelCas
     }
 
     return nil, nil{{else}}
-    request,err := {{CamelCase .Request.Name}}({{template "params" .Args}})
-    if err != nil {
+    if request, err := {{CamelCase .Request.Name}}({{template "params" .Args}}); err != nil {
         return err
-    }
-
-    if _,err := send(request, 0 * time.Millisecond); err != nil {
+    } else if _, err = send(request, readNone); err != nil {
         return err
     }
     
     return nil{{end}}
 }{{end}}
 
-func send(request []byte, wait time.Duration) ([][]byte, error) {
+func send(request []byte, f func(*net.UDPConn) ([][]byte, error)) ([][]byte, error) {
     dump(request)
 
     socket, err := net.ListenUDP("udp", bindAddr)
@@ -110,11 +107,12 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
         return nil, err
     }
 
+    return f(socket)
+}
+
+func readAll(socket *net.UDPConn) ([][]byte, error) {
     reply := make(chan []byte)
     e := make(chan error)
-    waited := time.After(wait)
-
-    replies := [][]byte{}
 
     go func() {
         buffer := make([]byte, 1024)
@@ -122,25 +120,60 @@ func send(request []byte, wait time.Duration) ([][]byte, error) {
         for {
             if N, _, err := socket.ReadFromUDP(buffer); err != nil {
                 e <- err
-            } else {
+            } else if N == 64 {
                 reply <- buffer[0:N]
             }
         }
     }()
+
+    replies := [][]byte{}
+    wait := time.After(2500 * time.Millisecond)
 
     for {
         select {
         case m := <-reply:
             dump(m)
             replies = append(replies, m)
-            if wait == 0 {
-                return replies, nil
-            }
 
-        case <-waited:
-            if wait > 0 {
-                return replies, nil
+        case <-wait:
+            return replies, nil
+
+        case err := <-e:
+            return nil, err
+        }
+    }
+}
+
+func readNone(socket *net.UDPConn) ([][]byte, error) {
+    return [][]byte{}, nil
+}
+
+func read(socket *net.UDPConn) ([][]byte, error) {
+    reply := make(chan []byte)
+    e := make(chan error)
+
+    go func() {
+        buffer := make([]byte, 1024)
+
+        for {
+            if N, _, err := socket.ReadFromUDP(buffer); err != nil {
+                e <- err
+            } else if N == 64 {
+                reply <- buffer[0:N]
             }
+        }
+    }()
+
+    timeout := time.After(5000 * time.Millisecond)
+
+    for {
+        select {
+        case m := <-reply:
+            dump(m)
+            return [][]byte{m}, nil
+
+        case <-timeout:
+            return nil, fmt.Errorf("timeout")
 
         case err := <-e:
             return nil, err
@@ -157,20 +190,18 @@ func resolve(address string) *net.UDPAddr {
 func dump(packet []byte) {
     if debug {
         hex := "%02x %02x %02x %02x %02x %02x %02x %02x"
-        
-        for i:=0; i<4; i++ {
-            offset := i * 16;
-            u := packet[offset:offset + 8]
-            v := packet[offset + 8:offset + 16]
 
-            p := fmt.Sprintf(hex,u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7])
-            q := fmt.Sprintf(hex,v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7])
+        for i := 0; i < 4; i++ {
+            offset := i * 16
+            u := packet[offset : offset+8]
+            v := packet[offset+8 : offset+16]
 
-            fmt.Printf("   %08x  %v  %v\n",offset,p,q);
+            p := fmt.Sprintf(hex, u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7])
+            q := fmt.Sprintf(hex, v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7])
+
+            fmt.Printf("   %08x  %v  %v\n", offset, p, q)
         }
 
         fmt.Println()
     }
 }
-
-
