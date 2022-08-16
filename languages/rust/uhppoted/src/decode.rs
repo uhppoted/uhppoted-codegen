@@ -3,6 +3,31 @@ use chrono::NaiveDateTime;
 use std::error::Error;
 use std::net::Ipv4Addr;
 
+const BCD: [char; 10] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+#[macro_export]
+macro_rules! bcd2string {
+    ($slice:expr, $size:expr) => { 
+        {
+            let mut ix: [usize; 2 * $size] = [0; 2 * $size];
+            let mut index = 0;
+
+            for b in $slice {
+                ix[index] = (b >> 4 & 0x0f).into();
+                ix[index+1] = (b >> 0 & 0x0f).into();
+                index += 2;
+            }
+
+            let mut chars: [char; 2 * $size] = [' '; 2 * $size];
+            for i in 0..2 * $size {
+                chars[i] = BCD[ix[i]];
+            }
+
+            String::from_iter(chars)
+        } 
+    };
+}
+
 {{range .model.Responses}}{{template "response" .}}
 {{end}}
 
@@ -67,58 +92,21 @@ fn unpack_version(packet: &[u8; 64], offset: usize) -> String {
 }
 
 fn unpack_date(packet: &[u8; 64], offset: usize) -> NaiveDate {
-    let ix: [usize; 8] = [
-        (packet[offset] >> 4 & 0x0f).into(),
-        (packet[offset] >> 0 & 0x0f).into(),
-        (packet[offset + 1] >> 4 & 0x0f).into(),
-        (packet[offset + 1] >> 0 & 0x0f).into(),
-        (packet[offset + 2] >> 4 & 0x0f).into(),
-        (packet[offset + 2] >> 0 & 0x0f).into(),
-        (packet[offset + 3] >> 4 & 0x0f).into(),
-        (packet[offset + 3] >> 0 & 0x0f).into(),
-    ];
+    let slice: &[u8; 4] = packet[offset..offset + 4].try_into().unwrap();
+    let s = bcd2string!(slice, 4);
 
-    let chars = [
-        BCD[ix[0]], BCD[ix[1]], BCD[ix[2]], BCD[ix[3]], BCD[ix[4]], BCD[ix[5]], BCD[ix[6]],
-        BCD[ix[7]],
-    ];
-
-    let d = String::from_iter(chars);
-
-    match NaiveDate::parse_from_str(&d, "%Y%m%d") {
+    match NaiveDate::parse_from_str(&s, "%Y%m%d") {
         Ok(date) => return date,
-        Err(_) => return NaiveDate::default()
+        Err(_) => return NaiveDate::default(),
     }
 }
 
 fn unpack_datetime(packet: &[u8; 64], offset: usize) -> NaiveDateTime {
-    let mut ix: [usize; 14] = [0; 14];
-    let mut offset = offset;
-    let mut index = 0;
+    let slice: &[u8; 7] = packet[offset..offset + 7].try_into().unwrap();
+    let s: String = bcd2string!(slice, 7);
 
-    for _ in 0..7 {
-        ix[index] = (packet[offset] >> 4 & 0x0f).into();
-        index += 1;
-
-        ix[index] = (packet[offset] >> 0 & 0x0f).into();
-        index += 1;
-
-        offset += 1;        
-    }
-
-    let mut chars: [char; 14] = [' '; 14];
-
-    for i in 0..14 {
-        chars[i] = BCD[ix[i]];
-    }
-
-    let d = String::from_iter(chars);
-
-    match NaiveDateTime::parse_from_str(&d, "%Y%m%d%H%M%S") {
+    match NaiveDateTime::parse_from_str(&s, "%Y%m%d%H%M%S") {
         Ok(datetime) => return datetime,
-        Err(_) => return NaiveDateTime::default()
+        Err(_) => return NaiveDateTime::default(),
     }
 }
-
-
-const BCD: [char; 10] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
