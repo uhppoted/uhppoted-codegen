@@ -6,11 +6,10 @@
 - [ ] Test data
 - (?) Move UHPPOTE models to JSON
 
-- [ ] `set-ip`
+- [x] `set-ip`
       - [x] codegen
       - [x] Go
-      - [ ] Rust
-      - [ ] JS
+      - [x] Rust
 
 ## Go
 
@@ -21,9 +20,9 @@
 - [x] Make dump look like Rust implementation
 - [x] Rework wait hack as read,readall,readnone
 - [x] Move UDP stuff to udp.go
-- [ ] 'all' command
-- (?) Use find a la Rust
-- [ ] Restructure a lá Rust
+- [x] 'all' command
+- [x] Use find a la Rust
+- [x] Restructure a lá Rust
 - (?) Type constraint for send() return value
       - (?) Option
 

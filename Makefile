@@ -81,15 +81,20 @@ help: build
 
 go: build
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
-	cd generated/go && go fmt ./... && \
+	cd generated/go && go fmt ./... && go mod tidy && \
 	go run main.go --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 \
 	   get-all-controllers \
 	   get-controller \
 	   set-ip
 
+go-all: build
+	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
+	cd generated/go && go fmt ./... && go mod tidy && \
+	go run main.go --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+
 go-usage: build
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
-	cd generated/go && go fmt ./... && go run main.go
+	cd generated/go && go fmt ./... && go mod tidy && go run main.go
 
 rust: build
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
