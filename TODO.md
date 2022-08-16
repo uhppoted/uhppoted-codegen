@@ -20,7 +20,7 @@
 - [x] dump if debug
 - [x] Make dump look like Rust implementation
 - [x] Rework wait hack as read,readall,readnone
-- [ ] Move UDP stuff to udp.go
+- [x] Move UDP stuff to udp.go
 - [ ] 'all' command
 - (?) Use find a la Rust
 - [ ] Restructure a lá Rust
