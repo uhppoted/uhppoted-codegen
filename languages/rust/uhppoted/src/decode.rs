@@ -1,15 +1,14 @@
-use chrono::NaiveDate;
-use chrono::NaiveDateTime;
 use std::error::Error;
 use std::net::Ipv4Addr;
 
-const BCD: [char; 10] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+use chrono::NaiveDate;
+use chrono::NaiveDateTime;
 
 #[macro_export]
 macro_rules! bcd2string {
     ($slice:expr, $size:expr) => { 
         {
-            let mut ix: [usize; 2 * $size] = [0; 2 * $size];
+            let mut ix: [u8; 2 * $size] = [0; 2 * $size];
             let mut index = 0;
 
             for b in $slice {
@@ -20,7 +19,7 @@ macro_rules! bcd2string {
 
             let mut chars: [char; 2 * $size] = [' '; 2 * $size];
             for i in 0..2 * $size {
-                chars[i] = BCD[ix[i]];
+                chars[i] = bcd(ix[i]);
             }
 
             String::from_iter(chars)
@@ -108,5 +107,21 @@ fn unpack_datetime(packet: &[u8; 64], offset: usize) -> NaiveDateTime {
     match NaiveDateTime::parse_from_str(&s, "%Y%m%d%H%M%S") {
         Ok(datetime) => return datetime,
         Err(_) => return NaiveDateTime::default(),
+    }
+}
+
+fn bcd(b: u8) -> char {
+    match b {
+        0 => '0',
+        1 => '1',
+        2 => '2',
+        3 => '3',
+        4 => '4',
+        5 => '5',
+        6 => '6',
+        7 => '7',
+        8 => '8',
+        9 => '9',
+        _ => panic!("invalid BCD digit {b}"),
     }
 }

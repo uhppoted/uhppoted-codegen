@@ -4,7 +4,6 @@ import (
     "encoding/binary"
     "fmt"
     "net/netip"
-    "strings"
     "time"
 )
 
@@ -58,9 +57,9 @@ func unpackVersion(packet []byte, offset uint8) string {
 }
 
 func unpackDate(packet []byte, offset uint8) Date {
-    if bcd, err := bcd2string(packet[offset:offset+4]); err != nil {
-        return Date(time.Time{})
-    } else if date, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
+    bcd := bcd2string(packet[offset:offset+4])
+
+    if date, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
         return Date(time.Time{})
     } else {
         return Date(date)
@@ -68,9 +67,9 @@ func unpackDate(packet []byte, offset uint8) Date {
 }
 
 func unpackDatetime(packet []byte, offset uint8) DateTime {
-    if bcd, err := bcd2string(packet[offset:offset+7]); err != nil {
-        return DateTime(time.Time{})
-    } else if date, err := time.ParseInLocation("20060102150405", bcd, time.Local); err != nil {
+    bcd := bcd2string(packet[offset:offset+7])
+
+    if date, err := time.ParseInLocation("20060102150405", bcd, time.Local); err != nil {
         return DateTime(time.Time{})
     } else {
         return DateTime(date)
@@ -78,39 +77,37 @@ func unpackDatetime(packet []byte, offset uint8) DateTime {
 }
 
 
-var BCD = map[uint8]rune {
-    0x00: '0',
-    0x01: '1',
-    0x02: '2',
-    0x03: '3',
-    0x04: '4',
-    0x05: '5',
-    0x06: '6',
-    0x07: '7',
-    0x08: '8',
-    0x09: '9',
-}
+func bcd2string(bytes []byte) string {
+    BCD := map[uint8]rune {
+        0x00: '0',
+        0x01: '1',
+        0x02: '2',
+        0x03: '3',
+        0x04: '4',
+        0x05: '5',
+        0x06: '6',
+        0x07: '7',
+        0x08: '8',
+        0x09: '9',
+    }
 
-func bcd2string(bytes []byte) (string, error) {
-    var s strings.Builder
-
-    s.Grow(len(bytes) * 2)
+    s := []rune{}
 
     for _, b := range bytes {
-        if v,ok := BCD[(b >> 4) & 0x0f]; ok {
-            s.WriteRune(v)
+        if v,ok := BCD[(b >> 4) & 0x0f]; !ok {
+            panic(fmt.Sprintf("invalid BCD digit (%v)", b))
         } else {
-            return "", fmt.Errorf("Invalid BCD number: '%x'", bytes)
+            s = append(s, v)                
         }
 
-        if v,ok := BCD[b & 0x0f]; ok {
-            s.WriteRune(v)
+        if v,ok := BCD[b & 0x0f]; !ok {
+            panic(fmt.Sprintf("invalid BCD digit (%v)", b))
         } else {
-            return "", fmt.Errorf("Invalid BCD number: '%x'", bytes)
+            s = append(s, v)                
         }
     }
 
-    return s.String(), nil
+    return string(s)
 }
 
 

@@ -2,17 +2,11 @@ package codegen
 
 import ()
 
-type function struct {
-	Name     string
-	Args     []arg
-	Request  *request
-	Response *response
-}
-
 var functions = []function{
 	GetController,
 	SetIP,
 	GetTime,
+	SetTime,
 }
 
 var GetController = function{
@@ -60,4 +54,20 @@ var GetTime = function{
 	},
 	Request:  &GetTimeRequest,
 	Response: &GetTimeResponse,
+}
+
+var SetTime = function{
+	Name: "set time",
+	Args: []arg{
+		arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		arg{
+			Name: "time",
+			Type: "datetime",
+		},
+	},
+	Request:  &SetTimeRequest,
+	Response: &SetTimeResponse,
 }

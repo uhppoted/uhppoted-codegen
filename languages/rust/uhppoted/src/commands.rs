@@ -1,8 +1,10 @@
+use chrono::offset::Local;
+
 use super::uhppote;
 
 const CONTROLLER: u32 = 405419896;
 
-pub const COMMANDS: [&Command; 4] = [
+pub const COMMANDS: [&Command; 5] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -18,6 +20,10 @@ pub const COMMANDS: [&Command; 4] = [
     &Command {
         name: "get-time",
         func: get_time,
+    },
+    &Command {
+        name: "set-time",
+        func: set_time,
     },
 ];
 
@@ -65,6 +71,15 @@ fn set_ip() {
 
 fn get_time() {
     match uhppote::get_time(CONTROLLER) {
+        Ok(v) => println!("{:?}", v),
+        Err(e) => panic!("ERROR  {:?}", e),
+    }
+}
+
+fn set_time() {
+    let now = Local::now().naive_local();
+
+    match uhppote::set_time(CONTROLLER, now) {
         Ok(v) => println!("{:?}", v),
         Err(e) => panic!("ERROR  {:?}", e),
     }

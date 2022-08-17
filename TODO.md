@@ -4,7 +4,7 @@
 - [ ] Test data
 - (?) Move UHPPOTE models to JSON
 
-- [x] get-time
+- [x] set-time
       - [x] codegen
       - [x] Go
       - [x] Rust
@@ -15,8 +15,6 @@
 
 ## Rust
 
-- [x] 'all' command
-- [x] Macro for bcd2string
 - [x] Rework wait hack as read,readall,readnone
       - [ ] https://stackoverflow.com/questions/66769143/rust-passing-async-function-pointers
       - [ ] https://stackoverflow.com/questions/68928795/async-function-as-a-function-pointer-type-what-is-the-correct-type-definition

@@ -1,6 +1,8 @@
 use std::error::Error;
 use std::net::Ipv4Addr;
 
+use chrono::NaiveDateTime;
+
 use decode::*;
 use encode::*;
 use errors::*;

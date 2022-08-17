@@ -30,6 +30,10 @@ func (d DateTime) String() string {
     return time.Time(d).Format("2006-01-02 15:04:05")
 }
 
+func (d DateTime) Format(format string) string {
+    return time.Time(d).Format(format)
+}
+
 func (d DateTime) MarshalJSON() ([]byte, error) {
     s := time.Time(d).Format("2006-01-02 15:04:05")
     

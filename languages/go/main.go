@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/netip"
 	"os"
+	"time"
 
 	"golang.org/x/exp/slices"
 
@@ -54,6 +55,12 @@ var commands = []command{
 		f: func() (any, error) {
 			return uhppote.GetTime(CONTROLLER)
 		}},
+
+	command{
+		name: "set-time",
+		f: func() (any, error) {
+			return uhppote.SetTime(CONTROLLER, uhppote.DateTime(time.Now()))
+		}},
 }
 
 func main() {
@@ -95,7 +102,10 @@ func main() {
 			if ix != -1 {
 				exec(commands[ix])
 			} else {
-				fmt.Printf("   *** ERROR: invalid command %v", cmd)
+				fmt.Println()
+				fmt.Printf("   *** ERROR: invalid command %v\n", cmd)
+				fmt.Println()
+
 				os.Exit(1)
 			}
 		}

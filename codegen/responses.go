@@ -1,24 +1,20 @@
 package codegen
 
-import ()
-
-type response struct {
-	Name    string  `json:"name"`
-	MsgType uint8   `json:"type"`
-	Fields  []field `json:"fields"`
-}
-
 var responses = []response{
 	GetControllerResponse,
 	GetTimeResponse,
+	SetTimeResponse,
 }
 
 var GetControllerResponse = response{
 	Name:    "get controller response",
 	MsgType: 0x94,
 	Fields: []field{
-		DeviceID,
-
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
 		field{
 			Name:   "ip address",
 			Type:   "IPv4",
@@ -56,7 +52,28 @@ var GetTimeResponse = response{
 	Name:    "get time response",
 	MsgType: 0x32,
 	Fields: []field{
-		DeviceID,
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		field{
+			Name:   "datetime",
+			Type:   "datetime",
+			Offset: 8,
+		},
+	},
+}
+
+var SetTimeResponse = response{
+	Name:    "set time response",
+	MsgType: 0x30,
+	Fields: []field{
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
 		field{
 			Name:   "datetime",
 			Type:   "datetime",

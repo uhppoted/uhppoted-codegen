@@ -1,24 +1,21 @@
 package codegen
 
-import ()
-
-type request struct {
-	Name    string
-	MsgType uint8
-	Fields  []field
-}
-
 var requests = []request{
 	GetControllerRequest,
 	SetIPRequest,
 	GetTimeRequest,
+	SetTimeRequest,
 }
 
 var GetControllerRequest = request{
 	Name:    "get controller request",
 	MsgType: 0x94,
 	Fields: []field{
-		DeviceID,
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
 	},
 }
 
@@ -26,7 +23,11 @@ var SetIPRequest = request{
 	Name:    "set IP request",
 	MsgType: 0x94,
 	Fields: []field{
-		DeviceID,
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
 		field{
 			Name:   "address",
 			Type:   "IPv4",
@@ -54,6 +55,27 @@ var GetTimeRequest = request{
 	Name:    "get time request",
 	MsgType: 0x32,
 	Fields: []field{
-		DeviceID,
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+	},
+}
+
+var SetTimeRequest = request{
+	Name:    "set time request",
+	MsgType: 0x30,
+	Fields: []field{
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		field{
+			Name:   "datetime",
+			Type:   "datetime",
+			Offset: 8,
+		},
 	},
 }
