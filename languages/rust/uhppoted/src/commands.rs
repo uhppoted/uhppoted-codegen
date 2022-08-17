@@ -46,15 +46,14 @@ fn get_all_controllers() {
                 println!("{:?}", response)
             }
         }
-
-        Err(e) => panic!("ERROR  {:?}", e),
+        Err(e) => error(e),
     }
 }
 
 fn get_controller() {
     match uhppote::get_controller(CONTROLLER) {
         Ok(v) => println!("{:?}", v),
-        Err(e) => panic!("ERROR  {:?}", e),
+        Err(e) => error(e),
     }
 }
 
@@ -65,14 +64,14 @@ fn set_ip() {
 
     match uhppote::set_ip(CONTROLLER, address, netmask, gateway) {
         Ok(v) => println!("{:?}", v),
-        Err(e) => panic!("ERROR  {:?}", e),
+        Err(e) => error(e),
     }
 }
 
 fn get_time() {
     match uhppote::get_time(CONTROLLER) {
         Ok(v) => println!("{:?}", v),
-        Err(e) => panic!("ERROR  {:?}", e),
+        Err(e) => error(e),
     }
 }
 
@@ -81,7 +80,12 @@ fn set_time() {
 
     match uhppote::set_time(CONTROLLER, now) {
         Ok(v) => println!("{:?}", v),
-        Err(e) => panic!("ERROR  {:?}", e),
+        Err(e) => error(e),
     }
 }
 
+fn error(e: Box<dyn std::error::Error>) {
+    println!();
+    println!("   *** ERROR: {e}");
+    println!();
+}

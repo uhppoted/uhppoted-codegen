@@ -12,7 +12,7 @@ mod uhppote;
 fn main() -> ExitCode {
     println!("uhppoted-codegen: Rust sample application");
 
-    let options = [ "--debug", "--bind", "--broadcast"];
+    let options = ["--debug", "--bind", "--broadcast"];
     let args: Vec<String> = env::args().collect();
     let mut args = &args[1..];
 
@@ -24,23 +24,27 @@ fn main() -> ExitCode {
         match arg {
             "--debug" => uhppote::set_debug(true),
 
-            "--bind" => if args.len() > 0 {
-                uhppote::set_bind_addr(args[0].as_str());            
-                args = &args[1..];
-            },
+            "--bind" => {
+                if args.len() > 0 {
+                    uhppote::set_bind_addr(args[0].as_str());
+                    args = &args[1..];
+                }
+            }
 
-            "--broadcast" =>  if args.len() > 0 {
-                uhppote::set_broadcast_addr(args[0].as_str());
-                args = &args[1..];
-            },
+            "--broadcast" => {
+                if args.len() > 0 {
+                    uhppote::set_broadcast_addr(args[0].as_str());
+                    args = &args[1..];
+                }
+            }
 
             _ => (),
         }
     }
-    
+
     if args.len() == 0 {
         usage();
-        return ExitCode::FAILURE
+        return ExitCode::FAILURE;
     }
 
     if args.len() == 1 && args[0] == "all" {
@@ -48,8 +52,8 @@ fn main() -> ExitCode {
             c.exec();
             println!();
         }
-        
-        return ExitCode::SUCCESS
+
+        return ExitCode::SUCCESS;
     }
 
     for cmd in args {
@@ -58,7 +62,7 @@ fn main() -> ExitCode {
                 c.exec();
                 println!();
                 true
-            },
+            }
 
             None => {
                 println!();
@@ -69,11 +73,11 @@ fn main() -> ExitCode {
         };
 
         if !ok {
-            return ExitCode::FAILURE
+            return ExitCode::FAILURE;
         }
     }
 
-    return ExitCode::SUCCESS
+    return ExitCode::SUCCESS;
 }
 
 fn usage() {
