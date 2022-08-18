@@ -7,6 +7,7 @@ var functions = []function{
 	SetIP,
 	GetTime,
 	SetTime,
+	GetStatus,
 }
 
 var GetController = function{
@@ -70,4 +71,16 @@ var SetTime = function{
 	},
 	Request:  &SetTimeRequest,
 	Response: &SetTimeResponse,
+}
+
+var GetStatus = function{
+	Name: "get status",
+	Args: []arg{
+		arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+	},
+	Request:  &GetStatusRequest,
+	Response: &GetStatusResponse,
 }

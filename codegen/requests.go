@@ -5,6 +5,7 @@ var requests = []request{
 	SetIPRequest,
 	GetTimeRequest,
 	SetTimeRequest,
+	GetStatusRequest,
 }
 
 var GetControllerRequest = request{
@@ -76,6 +77,18 @@ var SetTimeRequest = request{
 			Name:   "datetime",
 			Type:   "datetime",
 			Offset: 8,
+		},
+	},
+}
+
+var GetStatusRequest = request{
+	Name:    "get status request",
+	MsgType: 0x20,
+	Fields: []field{
+		field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
 		},
 	},
 }

@@ -12,6 +12,7 @@ func (m MAC) MarshalJSON() ([]byte, error) {
     return json.Marshal(net.HardwareAddr(m).String())
 }
 
+
 type Date time.Time
 
 func (d Date) String() string {
@@ -23,6 +24,20 @@ func (d Date) MarshalJSON() ([]byte, error) {
     
     return json.Marshal(s)
 }
+
+type Time time.Time
+
+func (t Time) String() string {
+    return time.Time(t).Format("15:04:05")
+}
+
+func (t Time) MarshalJSON() ([]byte, error) {
+    s := time.Time(t).Format("15:04:05")
+    
+    return json.Marshal(s)
+}
+
+
 
 type DateTime time.Time
 

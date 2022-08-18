@@ -1,11 +1,15 @@
 {
     "go": {
         "types": {
+            "uint8": "uint8",
             "uint32": "uint32",
+            "bool": "bool",
             "IPv4": "netip.Addr",
             "MAC": "MAC",
             "version": "string",
             "date": "Date",
+            "shortdate": "Date",
+            "time": "Time",
             "datetime": "DateTime"
         }
     }

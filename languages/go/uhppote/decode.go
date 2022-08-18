@@ -31,8 +31,16 @@ func {{camelCase .Name}}(packet []byte) (*{{CamelCase .Name}}, error) {
 }
 {{end}}
 
+func unpackUint8(packet []byte, offset uint8) uint8 {
+    return packet[offset]
+}
+
 func unpackUint32(packet []byte, offset uint8) uint32 {
     return binary.LittleEndian.Uint32(packet[offset:offset+4])
+}
+
+func unpackBool(packet []byte, offset uint8) bool {
+    return packet[offset] != 0x00
 }
 
 func unpackIPv4(packet []byte, offset uint8) netip.Addr {
@@ -63,6 +71,26 @@ func unpackDate(packet []byte, offset uint8) Date {
         return Date(time.Time{})
     } else {
         return Date(date)
+    }
+}
+
+func unpackShortdate(packet []byte, offset uint8) Date {
+    bcd := "20" + bcd2string(packet[offset:offset+3])
+
+    if date, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
+        return Date(time.Time{})
+    } else {
+        return Date(date)
+    }
+}
+
+func unpackTime(packet []byte, offset uint8) Time {
+    bcd := bcd2string(packet[offset:offset+3])
+
+    if t, err := time.ParseInLocation("150405", bcd, time.Local); err != nil {
+        return Time(time.Time{})
+    } else {
+        return Time(t)
     }
 }
 

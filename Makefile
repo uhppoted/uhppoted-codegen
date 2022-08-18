@@ -81,23 +81,23 @@ help: build
 
 go: build
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
-	cd generated/go && go fmt ./... && go mod tidy && go build main.go
+	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
 go-debug: go
-	./generated/go/main --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 set-time
+	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 get-status
 
 go-all: go
-	./generated/go/main --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
 
 go-usage: build
-	./generated/go/main
+	./generated/go/bin/uhppoted
 
 rust: build
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 set-time
+	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 get-status
 
 rust-all: rust
 	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all

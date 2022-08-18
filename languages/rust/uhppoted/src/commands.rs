@@ -4,7 +4,7 @@ use super::uhppote;
 
 const CONTROLLER: u32 = 405419896;
 
-pub const COMMANDS: [&Command; 5] = [
+pub const COMMANDS: [&Command; 6] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -25,6 +25,10 @@ pub const COMMANDS: [&Command; 5] = [
         name: "set-time",
         func: set_time,
     },
+    &Command {
+        name: "get-status",
+        func: get_status,
+    },
 ];
 
 pub struct Command {
@@ -43,7 +47,7 @@ fn get_all_controllers() {
     match uhppote::get_all_controllers() {
         Ok(list) => {
             for response in list {
-                println!("{:?}", response)
+                println!("{:#?}", response)
             }
         }
         Err(e) => error(e),
@@ -52,7 +56,7 @@ fn get_all_controllers() {
 
 fn get_controller() {
     match uhppote::get_controller(CONTROLLER) {
-        Ok(v) => println!("{:?}", v),
+        Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
@@ -63,14 +67,14 @@ fn set_ip() {
     let gateway = "192.168.1.1".parse().unwrap();
 
     match uhppote::set_ip(CONTROLLER, address, netmask, gateway) {
-        Ok(v) => println!("{:?}", v),
+        Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_time() {
     match uhppote::get_time(CONTROLLER) {
-        Ok(v) => println!("{:?}", v),
+        Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
@@ -79,7 +83,14 @@ fn set_time() {
     let now = Local::now().naive_local();
 
     match uhppote::set_time(CONTROLLER, now) {
-        Ok(v) => println!("{:?}", v),
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_status() {
+    match uhppote::get_status(CONTROLLER) {
+        Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }

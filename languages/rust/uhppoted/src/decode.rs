@@ -2,6 +2,7 @@ use std::error::Error;
 use std::net::Ipv4Addr;
 
 use chrono::NaiveDate;
+use chrono::NaiveTime;
 use chrono::NaiveDateTime;
 
 #[macro_export]
@@ -58,12 +59,20 @@ pub fn {{snakeCase .Name}}(packet: &[u8; 64]) -> Result<{{CamelCase .Name}}, Box
 }
 {{end}}
 
+fn unpack_uint8(packet: &[u8; 64], offset: usize) -> u8 {
+    return packet[offset];
+}
+
 fn unpack_uint32(packet: &[u8; 64], offset: usize) -> u32 {
     let mut bytes: [u8; 4] = [0; 4];
 
     bytes.clone_from_slice(&packet[offset..offset + 4]);
 
     return u32::from_le_bytes(bytes);
+}
+
+fn unpack_bool(packet: &[u8; 64], offset: usize) -> bool {
+    return packet[offset] != 0x00;
 }
 
 fn unpack_ipv4(packet: &[u8; 64], offset: usize) -> Ipv4Addr {
@@ -97,6 +106,26 @@ fn unpack_date(packet: &[u8; 64], offset: usize) -> NaiveDate {
     match NaiveDate::parse_from_str(&s, "%Y%m%d") {
         Ok(date) => return date,
         Err(_) => return NaiveDate::default(),
+    }
+}
+
+fn unpack_shortdate(packet: &[u8; 64], offset: usize) -> NaiveDate {
+    let slice: &[u8; 3] = packet[offset..offset + 3].try_into().unwrap();
+    let s = format!("20{}", bcd2string!(slice, 3));
+
+    match NaiveDate::parse_from_str(&s, "%Y%m%d") {
+        Ok(date) => return date,
+        Err(_) => return NaiveDate::default(),
+    }
+}
+
+fn unpack_time(packet: &[u8; 64], offset: usize) -> NaiveTime {
+    let slice: &[u8; 3] = packet[offset..offset + 3].try_into().unwrap();
+    let s: String = bcd2string!(slice, 3);
+
+    match NaiveTime::parse_from_str(&s, "%H%M%S") {
+        Ok(time) => return time,
+        Err(_) => return NaiveTime::default(),
     }
 }
 
