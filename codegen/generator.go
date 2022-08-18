@@ -32,9 +32,9 @@ var funcs = template.FuncMap{
 }
 
 var model = struct {
-	Functions []function
-	Requests  []request
-	Responses []response
+	Functions []function `json:"functions"`
+	Requests  []request  `json:"requests"`
+	Responses []response `jon:"responses"`
 }{
 	Functions: functions,
 	Requests:  requests,
@@ -133,19 +133,6 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 		return err
 	}
 
-	dest := filepath.Join(g.out, src)
-
-	if err := os.MkdirAll(filepath.Dir(dest), 0777); err != nil {
-		return err
-	}
-
-	file, err := os.Create(dest)
-	if err != nil {
-		return err
-	}
-
-	defer file.Close()
-
 	t, err := template.New("codegen").Funcs(functions).Parse(string(bytes))
 	if err != nil {
 		return err
@@ -165,7 +152,27 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 		return err
 	}
 
-	t.Execute(file, data)
+	// ... generate to tempfile
+
+	f, err := os.CreateTemp("", "uhppote-*.go")
+	if err != nil {
+		return err
+	} else {
+		defer os.Remove(f.Name())
+	}
+
+	t.Execute(f, data)
+
+	// ... copy to destination file
+	dest := filepath.Join(g.out, src)
+
+	if err := os.MkdirAll(filepath.Dir(dest), 0777); err != nil {
+		return err
+	}
+
+	if err := os.Rename(f.Name(), dest); err != nil {
+		return err
+	}
 
 	return nil
 }

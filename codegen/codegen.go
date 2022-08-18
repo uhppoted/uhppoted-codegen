@@ -1,16 +1,16 @@
 package codegen
 
 type function struct {
-	Name     string
-	Args     []arg
-	Request  *request
-	Response *response
+	Name     string    `json:"name"`
+	Args     []arg     `json:"args"`
+	Request  *request  `json:"request,omitempty"`
+	Response *response `json:"response,omitempty"`
 }
 
 type request struct {
-	Name    string
-	MsgType uint8
-	Fields  []field
+	Name    string  `json:"name"`
+	MsgType uint8   `json:"type"`
+	Fields  []field `json:"fields"`
 }
 
 type response struct {
@@ -20,12 +20,12 @@ type response struct {
 }
 
 type arg struct {
-	Name string
-	Type string
+	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 type field struct {
-	Name   string
-	Type   string
-	Offset uint8
+	Name   string `json:"name"`
+	Type   string `json:"type"`
+	Offset uint8  `json:"offset"`
 }
