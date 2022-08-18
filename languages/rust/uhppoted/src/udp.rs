@@ -178,6 +178,55 @@ async fn recv(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
     }
 }
 
+async fn recv_xxx(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+    let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
+
+    let read = async {
+        let sock = async_std::net::UdpSocket::from(socket);
+        let mut buffer = [0u8; 1024];
+
+        loop {
+            match sock.recv(&mut buffer).await {
+                Ok(64) => {
+                    let mut reply = [0u8; 64];
+                    reply.clone_from_slice(&buffer[..64]);
+                    replies.write().unwrap().push(reply);
+
+                    dump(&reply);
+
+                    return Ok(());
+                }
+
+                Err(e) => return Err(e),
+
+                _ => continue,
+            }
+        }
+    }
+    .fuse();
+
+    let never = future::pending::<()>();
+    let timeout = future::timeout(TIMEOUT, never).fuse();
+
+    futures::pin_mut!(read, timeout);
+
+    loop {
+        futures::select! {
+            v = read => {
+                match v {
+                    Ok(_) =>  return Ok(replies.read().unwrap().to_vec()),
+                    Err(e) => return Err(Box::new(e))
+                }
+            },
+
+            _ = timeout => {
+                return Err(Box::new(error::Error::new(Timeout)));
+            }
+        }
+    }
+}
+
+
 fn dump(packet: &[u8; 64]) {
     let debug = if let Ok(guard) = DEBUG.read() {
         *guard
