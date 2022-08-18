@@ -1,9 +1,9 @@
 # TODO
 
 - [x] Generate to tempfile
-- [ ] Test data
 - [ ] Move UHPPOTE models to JSON
       - [ ] `regen` command
+- [ ] Test data
 
 - [x] get-status
       - [x] codegen

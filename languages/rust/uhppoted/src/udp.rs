@@ -8,7 +8,8 @@ use futures;
 use futures::future::FutureExt;
 use lazy_static::lazy_static;
 
-use super::errors;
+use super::error;
+use error::ErrorKind::Timeout;
 
 const READ_TIMEOUT: Duration = Duration::from_millis(5000);
 const WRITE_TIMEOUT: Duration = Duration::from_millis(1000);
@@ -171,7 +172,7 @@ async fn recv(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
             },
 
             _ = timeout => {
-                return Err(Box::new(errors::Timeout));
+                return Err(Box::new(error::Error::new(Timeout)));
             }
         }
     }

@@ -5,7 +5,7 @@ use chrono::NaiveDateTime;
 
 use decode::*;
 use encode::*;
-use errors::*;
+use error::ErrorKind::NoResponse;
 use udp::send;
 
 #[path = "encode.rs"]
@@ -14,8 +14,8 @@ mod encode;
 #[path = "decode.rs"]
 mod decode;
 
-#[path = "errors.rs"]
-mod errors;
+#[path = "error.rs"]
+mod error;
 
 #[path = "udp.rs"]
 mod udp;
@@ -61,7 +61,7 @@ pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{if .Response}}Result<
         return Ok(response);
     }
 
-    return Err(Box::new(NoResponse));
+    return Err(Box::new(error::Error::new(NoResponse)));
     {{else}}
     let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
     send(&request, udp::ReplyType::Nothing)?;
