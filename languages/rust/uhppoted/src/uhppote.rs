@@ -61,7 +61,7 @@ pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{if .Response}}Result<
         return Ok(response);
     }
 
-    return Err(Box::new(error::Error::new(NoResponse)));
+    return Err(Box::new(error::Error::from(NoResponse)));
     {{else}}
     let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
     send(&request, udp::ReplyType::Nothing)?;

@@ -171,7 +171,7 @@ async fn recv(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
             },
 
             _ = timeout => {
-                return Err(error::Error::new(Timeout));
+                return Err(error::Error::from(Timeout));
             }
         }
     }

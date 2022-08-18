@@ -3,7 +3,7 @@ use std::sync::PoisonError;
 
 #[derive(Debug)]
 pub struct Error {
-    kind: ErrorKind,
+    _kind: ErrorKind,
     message: String,
 }
 
@@ -12,30 +12,33 @@ pub enum ErrorKind {
     NoResponse,
     Timeout,
     IO,
-    Oops,
+    Other,
 }
 
 impl std::error::Error for Error {}
 
 impl Error {
-    pub fn new(kind: ErrorKind) -> Error {
-        Error {
-            kind: kind,
-            message: format!("{}", kind),
-        }
-    }
 }
 
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{} {}", self.kind, self.message)
+        write!(f, "{}", self.message)
+    }
+}
+
+impl From<ErrorKind> for Error {
+    fn from(kind: ErrorKind) -> Error {
+        Error {
+            _kind: kind,
+            message: format!("{}", kind),
+        }
     }
 }
 
 impl From<std::io::Error> for Error {
     fn from(err: std::io::Error) -> Error {
         Error {
-            kind: ErrorKind::IO,
+            _kind: ErrorKind::IO,
             message: format!("{}", err),
         }
     }
@@ -44,7 +47,7 @@ impl From<std::io::Error> for Error {
 impl From<PoisonError<std::sync::RwLockReadGuard<'_, String>>> for Error {
     fn from(err: PoisonError<std::sync::RwLockReadGuard<'_, String>>) -> Error {
         Error {
-            kind: ErrorKind::Oops,
+            _kind: ErrorKind::Other,
             message: format!("{}", err),
         }
     }
@@ -57,7 +60,7 @@ impl ErrorKind {
             NoResponse => "no response to request",
             Timeout => "timeout waiting for response from controller",
             IO => "I/O",
-            Oops => "Other",
+            Other => "Other",
         }
     }
 }
