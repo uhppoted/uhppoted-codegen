@@ -1,4 +1,3 @@
-use std::error::Error;
 use std::net::UdpSocket;
 use std::sync::RwLock;
 use std::time::Duration;
@@ -45,7 +44,7 @@ pub fn set_debug(enabled: bool) {
     }
 }
 
-pub fn send(packet: &[u8; 64], reply_type: ReplyType) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+pub fn send(packet: &[u8; 64], reply_type: ReplyType) -> Result<Vec<[u8; 64]>, error::Error> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -76,7 +75,7 @@ pub fn send(packet: &[u8; 64], reply_type: ReplyType) -> Result<Vec<[u8; 64]>, B
     }
 }
 
-async fn recv_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+async fn recv_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
     let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
 
     let read = async {
@@ -113,7 +112,7 @@ async fn recv_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
             v = read => {
                 match v {
                     Ok(_) =>  return Ok(replies.read().unwrap().to_vec()),
-                    Err(e) => return Err(Box::new(e))
+                    Err(e) => return Err(error::Error::from(e))
                 }
             },
 
@@ -124,13 +123,13 @@ async fn recv_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
     }
 }
 
-async fn recv_none(_: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+async fn recv_none(_: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
     let replies: Vec<[u8; 64]> = vec![];
 
     return Ok(replies);
 }
 
-async fn recv(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
+async fn recv(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
     let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
 
     let read = async {
@@ -167,12 +166,12 @@ async fn recv(socket: UdpSocket) -> Result<Vec<[u8; 64]>, Box<dyn Error>> {
             v = read => {
                 match v {
                     Ok(_) =>  return Ok(replies.read().unwrap().to_vec()),
-                    Err(e) => return Err(Box::new(e))
+                    Err(e) => return Err(error::Error::from(e))
                 }
             },
 
             _ = timeout => {
-                return Err(Box::new(error::Error::new(Timeout)));
+                return Err(error::Error::new(Timeout));
             }
         }
     }

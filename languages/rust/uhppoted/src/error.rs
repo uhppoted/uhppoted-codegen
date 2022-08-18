@@ -1,4 +1,5 @@
 use std::fmt;
+use std::sync::PoisonError;
 
 #[derive(Debug)]
 pub struct Error {
@@ -9,12 +10,14 @@ pub struct Error {
 pub enum ErrorKind {
     NoResponse,
     Timeout,
+    IO,
+    Oops,
 }
 
 impl std::error::Error for Error {}
 
 impl Error {
-    pub fn new (kind: ErrorKind) -> Error {
+    pub fn new(kind: ErrorKind) -> Error {
         Error { kind: kind }
     }
 
@@ -29,12 +32,30 @@ impl fmt::Display for Error {
     }
 }
 
+impl From<std::io::Error> for Error {
+    fn from(err: std::io::Error) -> Error {
+        Error {
+            kind: ErrorKind::IO,
+        }
+    }
+}
+
+impl From<PoisonError<std::sync::RwLockReadGuard<'_, String>>> for Error {
+    fn from(err: PoisonError<std::sync::RwLockReadGuard<'_, String>>) -> Error {
+        Error {
+            kind: ErrorKind::Oops,
+        }
+    }
+}
+
 impl ErrorKind {
     pub(crate) fn as_str(&self) -> &'static str {
         use ErrorKind::*;
         match *self {
             NoResponse => "no response to request",
             Timeout => "timeout waiting for response from controller",
+            IO => "I/O error",
+            Oops => "oops",
         }
     }
 }

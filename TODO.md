@@ -19,7 +19,8 @@
 
 - [ ] uhppote::error with kind a lá std::io::error
       - [ ] replace all Box<dyn Error>
-      - [ ] wrap std::io::error
+      - [ ] wrap std::io::error properly
+
 - [ ] BCD error handling
 - [x] Rework wait hack as read,readall,readnone
 
