@@ -1,5 +1,6 @@
 use std::fmt;
 use std::sync::PoisonError;
+use async_std::future::TimeoutError;
 
 #[derive(Debug)]
 pub struct Error {
@@ -44,6 +45,24 @@ impl From<String> for Error {
     }
 }
 
+impl From<&str> for Error {
+    fn from(message: &str) -> Error {
+        Error {
+            _kind: ErrorKind::Other,
+            message: format!("{}", message),
+        }
+    }
+}
+
+impl From<TimeoutError> for Error {
+    fn from(_: TimeoutError) -> Error {
+        Error {
+            _kind: ErrorKind::Timeout,
+            message: format!("{}", ErrorKind::Timeout),
+        }
+    }
+}
+
 impl From<std::io::Error> for Error {
     fn from(err: std::io::Error) -> Error {
         Error {
@@ -60,6 +79,15 @@ impl From<PoisonError<std::sync::RwLockReadGuard<'_, String>>> for Error {
             message: format!("{}", err),
         }
     }
+}
+
+impl From<std::array::TryFromSliceError> for Error {
+    fn from(err: std::array::TryFromSliceError) -> Error {
+        Error {
+            _kind: ErrorKind::Other,
+            message: format!("{}", err),
+        }
+    }    
 }
 
 impl ErrorKind {

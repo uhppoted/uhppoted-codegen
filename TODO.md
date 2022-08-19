@@ -13,18 +13,15 @@
 
 ## Go
 - [ ] BCD error handling
-- [ ] JSON tags
+- (?) JSON tags for requests/responses
 - (?) Type constraint/variant for send() return value
 
 ## Rust
 - [x] uhppote::error with kind a lá std::io::error
       - [x] replace all Box<dyn Error>
-
-- [ ] Rework futures into something vaguely sane
-      - [ ] https://stackoverflow.com/questions/66769143/rust-passing-async-function-pointers
-      - [ ] https://stackoverflow.com/questions/68928795/async-function-as-a-function-pointer-type-what-is-the-correct-type-definition
-      - [ ] https://doc.rust-lang.org/std/ops/trait.Fn.html
-
+- [x] Rework futures into something vaguely sane
+- [ ] Wrap udp::read asyncs into something HOF'able
+      - (?) move executor::block into read
 - [ ] BCD error handling
 
 
