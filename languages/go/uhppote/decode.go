@@ -35,6 +35,10 @@ func unpackUint8(packet []byte, offset uint8) uint8 {
     return packet[offset]
 }
 
+func unpackUint16(packet []byte, offset uint8) uint16 {
+    return binary.LittleEndian.Uint16(packet[offset:offset+2])
+}
+
 func unpackUint32(packet []byte, offset uint8) uint32 {
     return binary.LittleEndian.Uint32(packet[offset:offset+4])
 }

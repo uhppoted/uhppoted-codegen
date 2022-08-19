@@ -4,7 +4,7 @@ use super::uhppote;
 
 const CONTROLLER: u32 = 405419896;
 
-pub const COMMANDS: [&Command; 6] = [
+pub const COMMANDS: [&Command; 7] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -28,6 +28,10 @@ pub const COMMANDS: [&Command; 6] = [
     &Command {
         name: "get-status",
         func: get_status,
+    },
+    &Command {
+        name: "get-listener",
+        func: get_listener,
     },
 ];
 
@@ -90,6 +94,13 @@ fn set_time() {
 
 fn get_status() {
     match uhppote::get_status(CONTROLLER) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_listener() {
+    match uhppote::get_listener(CONTROLLER) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

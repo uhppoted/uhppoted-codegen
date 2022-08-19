@@ -9,6 +9,8 @@ import (
 	"strings"
 	"text/template"
 	"unicode"
+
+	"github.com/uhppoted/uhppoted-codegen/model"
 )
 
 type Generator struct {
@@ -31,14 +33,10 @@ var funcs = template.FuncMap{
 	},
 }
 
-var model = struct {
-	Functions []function `json:"functions"`
-	Requests  []request  `json:"requests"`
-	Responses []response `jon:"responses"`
-}{
-	Functions: functions,
-	Requests:  requests,
-	Responses: responses,
+var uhppote = model.Model{
+	Functions: model.Functions,
+	Requests:  model.Requests,
+	Responses: model.Responses,
 }
 
 func New(models string, templates string, out string, debug bool) Generator {
@@ -91,7 +89,7 @@ func (g Generator) initialise() (map[string]any, error) {
 	fsys := os.DirFS(g.models)
 
 	data := map[string]any{
-		"model": model,
+		"model": uhppote,
 	}
 
 	read := func(path string) error {

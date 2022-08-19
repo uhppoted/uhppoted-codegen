@@ -24,35 +24,13 @@ type command struct {
 }
 
 var commands = []command{
-    command{
-        name: "get-all-controllers",
-        f:    getAllControllers,
-    },
-
-    command{
-        name: "get-controller",
-        f:    getController,
-    },
-
-    command{
-        name: "set-ip",
-        f:    setIP,
-    },
-
-    command{
-        name: "get-time",
-        f:    getTime,
-    },
-
-    command{
-        name: "set-time",
-        f:    setTime,
-    },
-
-    command{
-        name: "get-status",
-        f:    getStatus,
-    },
+    command{name: "get-all-controllers",f:    getAllControllers},
+    command{ name: "get-controller",f:    getController },
+    command{ name: "set-ip", f:    setIP},
+    command{ name: "get-time", f:    getTime},
+    command{name: "set-time", f:    setTime},
+    command{ name: "get-status", f:    getStatus},
+    command{ name: "get-listener", f:    getListener},
 }
 
 func (c command) exec() {
@@ -99,4 +77,8 @@ func setTime() (any, error) {
 
 func getStatus() (any, error) {
     return uhppote.GetStatus(CONTROLLER)
+}
+
+func getListener() (any, error) {
+    return uhppote.GetListener(CONTROLLER)
 }

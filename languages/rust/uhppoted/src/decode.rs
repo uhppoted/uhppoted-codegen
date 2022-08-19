@@ -63,6 +63,14 @@ fn unpack_uint8(packet: &[u8; 64], offset: usize) -> u8 {
     return packet[offset];
 }
 
+fn unpack_uint16(packet: &[u8; 64], offset: usize) -> u16 {
+    let mut bytes: [u8; 2] = [0; 2];
+
+    bytes.clone_from_slice(&packet[offset..offset + 2]);
+
+    return u16::from_le_bytes(bytes);
+}
+
 fn unpack_uint32(packet: &[u8; 64], offset: usize) -> u32 {
     let mut bytes: [u8; 4] = [0; 4];
 

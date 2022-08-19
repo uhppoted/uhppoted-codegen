@@ -2,6 +2,7 @@
     "rust": {
         "types": {
             "uint8": "u8",
+            "uint16": "u16",
             "uint32": "u32",
             "bool": "bool",
             "IPv4": "Ipv4Addr",

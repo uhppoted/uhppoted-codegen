@@ -1,32 +1,29 @@
 # TODO
 
-- [x] Generate to tempfile
 - [ ] Move UHPPOTE models to JSON
       - [ ] `regen` command
 - [ ] Test data
 
-- [x] get-status
+- [x] get-listener
       - [x] codegen
       - [x] Go
       - [x] Rust
 
 ## Go
-- (?) Type constraint for send() return value
-      - (?) Variant
 - [ ] BCD error handling
+- [ ] JSON tags
+- (?) Type constraint/variant for send() return value
 
 ## Rust
 - [ ] uhppote::error with kind a lá std::io::error
       - [ ] replace all Box<dyn Error>
-      - [x] wrap std::io::error
-
-- [ ] BCD error handling
-- [x] Rework wait hack as read,readall,readnone
 
 - [ ] Rework futures into something vaguely sane
       - [ ] https://stackoverflow.com/questions/66769143/rust-passing-async-function-pointers
       - [ ] https://stackoverflow.com/questions/68928795/async-function-as-a-function-pointer-type-what-is-the-correct-type-definition
       - [ ] https://doc.rust-lang.org/std/ops/trait.Fn.html
+
+- [ ] BCD error handling
 
 
 ## Javascript

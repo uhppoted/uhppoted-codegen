@@ -6,6 +6,10 @@ Code generation tool for creating native UHPPOTE controller interfaces in langua
 
 ## Raison d'être
 
+Because not everybody uses Go and although there is the [DLL](https://github.com/uhppoted/uhppoted-dll) for those
+use case it does require a DLL built specifically for the target machine. And of course, sometimes a basic, uncomplicated
+language binding that you can customize to your heart's content is what you really want anyway.
+
 ## Status
 
 **IN DEVELOPMENT**
