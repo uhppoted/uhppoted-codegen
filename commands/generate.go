@@ -64,7 +64,7 @@ func (cmd *Generate) FlagSet() *flag.FlagSet {
 }
 
 func (cmd *Generate) Execute(args ...interface{}) error {
-	log.Printf("%s %s (PID %d)\n", APPLICATION, core.VERSION, os.Getpid())
+	log.Printf("%s %s (PID %d)", APPLICATION, core.VERSION, os.Getpid())
 
 	if cmd.models == "" {
 		return fmt.Errorf("missing 'models' folder")
@@ -87,7 +87,7 @@ func (cmd *Generate) Execute(args ...interface{}) error {
 	}
 
 	if cmd.clean {
-		log.Printf("deleting existing content from %v", cmd.out)
+		log.Printf("%s deleting existing content from %v", APPLICATION, cmd.out)
 		if err := os.RemoveAll(cmd.out); err != nil {
 			return err
 		}
@@ -95,5 +95,11 @@ func (cmd *Generate) Execute(args ...interface{}) error {
 
 	codegen := codegen.New(cmd.models, cmd.templates, cmd.out, cmd.debug)
 
-	return codegen.Generate()
+	if err := codegen.Generate(); err != nil {
+		return err
+	}
+
+	log.Printf("%s generated code from %v to %v", APPLICATION, cmd.templates, cmd.out)
+
+	return nil
 }

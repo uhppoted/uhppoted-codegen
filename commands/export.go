@@ -13,15 +13,15 @@ import (
 	"github.com/uhppoted/uhppoted-codegen/model"
 )
 
-type Regenerate struct {
+type Export struct {
 	out string
 }
 
-var REGENERATE = Regenerate{
+var EXPORT = Export{
 	out: "models.json",
 }
 
-func (cmd *Regenerate) flags() *flag.FlagSet {
+func (cmd *Export) flags() *flag.FlagSet {
 	flagset := flag.NewFlagSet("regen", flag.ExitOnError)
 
 	flagset.StringVar(&cmd.out, "out", "models.json", "output folder for the generated models JSON")
@@ -29,19 +29,19 @@ func (cmd *Regenerate) flags() *flag.FlagSet {
 	return flagset
 }
 
-func (cmd *Regenerate) Name() string {
-	return "regen"
+func (cmd *Export) Name() string {
+	return "export"
 }
 
-func (cmd *Regenerate) Description() string {
+func (cmd *Export) Description() string {
 	return "Generates a models.json file from the internal UHPPOTE models"
 }
 
-func (cmd *Regenerate) Usage() string {
+func (cmd *Export) Usage() string {
 	return "uhppoted-codegen regen [--out <file>]"
 }
 
-func (cmd *Regenerate) Help() {
+func (cmd *Export) Help() {
 	fmt.Println()
 	fmt.Println("  Usage: uhppoted-codegen regen [--out <file]")
 	fmt.Println()
@@ -53,12 +53,12 @@ func (cmd *Regenerate) Help() {
 	fmt.Println()
 }
 
-func (cmd *Regenerate) FlagSet() *flag.FlagSet {
+func (cmd *Export) FlagSet() *flag.FlagSet {
 	return cmd.flags()
 }
 
-func (cmd *Regenerate) Execute(args ...interface{}) error {
-	log.Printf("%s %s (PID %d)\n", APPLICATION, core.VERSION, os.Getpid())
+func (cmd *Export) Execute(args ...interface{}) error {
+	log.Printf("%s %s (PID %d)", APPLICATION, core.VERSION, os.Getpid())
 
 	if cmd.out == "" {
 		return fmt.Errorf("missing 'out' folder for the generated models.json")
@@ -98,6 +98,8 @@ func (cmd *Regenerate) Execute(args ...interface{}) error {
 	} else if err := os.Rename(f.Name(), dest); err != nil {
 		return err
 	}
+
+	log.Printf("%s exported models to %v", APPLICATION, dest)
 
 	return nil
 }

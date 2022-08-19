@@ -7,7 +7,7 @@ Code generation tool for creating native UHPPOTE controller interfaces in langua
 ## Raison d'être
 
 Because not everybody uses Go and although there is the [DLL](https://github.com/uhppoted/uhppoted-dll) for those
-use case it does require a DLL built specifically for the target machine. And of course, sometimes a basic, uncomplicated
+use cases it does require a DLL built for the target machine. And of course, sometimes a basic, uncomplicated
 language binding that you can customize to your heart's content is what you really want anyway.
 
 ## Status
@@ -71,6 +71,7 @@ Supported commands:
 - `help`
 - `version`
 - `generate`
+- `regen`
 
 Defaults to `generate` if the command it not provided.
 
@@ -90,5 +91,26 @@ Command line:
 
   --clean Erases 'out' folder before generating code from templates. Defaults to false
   --debug Displays verbose debugging information. Defaults to false
+
+  Example:
+
+  uhppoted-codegen generate --models languages/.models --templates languages/rust --out generated/rust
+```
+
+### `export`
+
+Generates a _models.json_ file that represents the internal UHPPOTE models used to generate the functions,
+requests and responses.
+
+Command line:
+
+` uhppoted-codegen export [--out <file>]`
+
+```
+  --out <file> File for _models_ JSON. Defaults fot _models.json_.
+
+  Example:
+  
+  uhppoted-codegen export --out my-models.json
 ```
 
