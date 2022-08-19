@@ -1,7 +1,9 @@
 # TODO
 
 - [ ] Move UHPPOTE models to JSON
-      - [ ] `regen` command
+      - [x] `regen` command
+      - [ ] Use models.json
+
 - [ ] Test data
 
 - [x] get-listener

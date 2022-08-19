@@ -79,6 +79,9 @@ help: build
 	$(CMD) help version
 	$(CMD) help help
 
+regen: build
+	$(CMD) regen --out runtime/models.json
+
 go: build
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...

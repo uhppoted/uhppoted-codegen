@@ -151,7 +151,6 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 	}
 
 	// ... generate to tempfile
-
 	f, err := os.CreateTemp("", "uhppote-*.go")
 	if err != nil {
 		return err

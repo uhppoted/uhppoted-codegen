@@ -12,6 +12,7 @@ import (
 
 var cli = []lib.Command{
 	&commands.GENERATE,
+	&commands.REGENERATE,
 	&lib.Version{
 		Application: commands.APPLICATION,
 		Version:     core.VERSION,
