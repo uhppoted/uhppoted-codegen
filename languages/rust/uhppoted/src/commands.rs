@@ -1,6 +1,7 @@
 use chrono::offset::Local;
 
 use super::uhppote;
+use super::error;
 
 const CONTROLLER: u32 = 405419896;
 
@@ -106,7 +107,7 @@ fn get_listener() {
     }
 }
 
-fn error(e: Box<dyn std::error::Error>) {
+fn error(e: error::Error) {
     println!();
     println!("   *** ERROR: {e}");
     println!();

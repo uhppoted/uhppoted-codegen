@@ -3,3 +3,5 @@
 {{define "params"}}{{ range $index, $param := .}}{{if ne .Type "magic"}}{{if $index}}, {{end}}{{snakeCase .Name}}{{end}}{{end}}{{end}}
 
 {{define "type"}}{{lookup "rust.types" . "???"}}{{end}}
+
+{{define "result"}}{{if .Response}}Result<{{CamelCase .Response.Name}}, error::Error> {{else}}Result<bool, error::Error>{{end}}{{end}}

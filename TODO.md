@@ -17,8 +17,8 @@
 - (?) Type constraint/variant for send() return value
 
 ## Rust
-- [ ] uhppote::error with kind a lá std::io::error
-      - [ ] replace all Box<dyn Error>
+- [x] uhppote::error with kind a lá std::io::error
+      - [x] replace all Box<dyn Error>
 
 - [ ] Rework futures into something vaguely sane
       - [ ] https://stackoverflow.com/questions/66769143/rust-passing-async-function-pointers

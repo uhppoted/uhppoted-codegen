@@ -35,6 +35,15 @@ impl From<ErrorKind> for Error {
     }
 }
 
+impl From<String> for Error {
+    fn from(message: String) -> Error {
+        Error {
+            _kind: ErrorKind::Other,
+            message: format!("{}", message),
+        }
+    }
+}
+
 impl From<std::io::Error> for Error {
     fn from(err: std::io::Error) -> Error {
         Error {

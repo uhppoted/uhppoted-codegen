@@ -1,13 +1,14 @@
-use std::error::Error;
 use std::net::Ipv4Addr;
 
 use chrono::NaiveDateTime;
+
+use super::error;
 
 {{range .model.Requests}}{{template "request" .}}
 {{end}}
 
 {{define "request"}}
-pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], Box<dyn Error>> {
+pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], error::Error> {
     let mut packet = [0x00; 64];
 
     packet[0] = 0x17;

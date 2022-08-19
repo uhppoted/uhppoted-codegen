@@ -1,7 +1,8 @@
-use std::error::Error;
 use std::net::Ipv4Addr;
 
 use chrono::NaiveDateTime;
+
+use super::error;
 
 use decode::*;
 use encode::*;
@@ -13,9 +14,6 @@ mod encode;
 
 #[path = "decode.rs"]
 mod decode;
-
-#[path = "error.rs"]
-mod error;
 
 #[path = "udp.rs"]
 mod udp;
@@ -32,7 +30,7 @@ pub fn set_debug(enabled: bool) {
     udp::set_debug(enabled)
 }
 
-pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Box<dyn Error>> {
+pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, error::Error> {
     let request = get_controller_request(0)?;
     let replies = send(&request, udp::ReplyType::Multiple)?;
 
@@ -51,7 +49,7 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Box<dyn Error
 {{end}}
 
 {{define "function"}}
-pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{if .Response}}Result<{{CamelCase .Response.Name}}, Box<dyn Error>> {{else}}Result<bool, Box<dyn Error>>{{end}} { {{if .Response}}
+pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{template "result" .}}{ {{if .Response}}
     let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
     let replies = send(&request, udp::ReplyType::Single)?;
 
@@ -61,12 +59,10 @@ pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{if .Response}}Result<
         return Ok(response);
     }
 
-    return Err(Box::new(error::Error::from(NoResponse)));
-    {{else}}
+    return Err(error::Error::from(NoResponse)); {{else}}
     let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
     send(&request, udp::ReplyType::Nothing)?;
 
-    return Ok(true);
-    {{end}}
+    return Ok(true); {{end}}
 }
 {{end}}

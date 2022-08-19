@@ -1,9 +1,10 @@
-use std::error::Error;
 use std::net::Ipv4Addr;
 
 use chrono::NaiveDate;
 use chrono::NaiveTime;
 use chrono::NaiveDateTime;
+
+use super::error;
 
 #[macro_export]
 macro_rules! bcd2string {
@@ -42,7 +43,7 @@ pub struct {{CamelCase .Name}} { {{range .Fields}}
 {{end}}
 
 {{define "decode"}}
-pub fn {{snakeCase .Name}}(packet: &[u8; 64]) -> Result<{{CamelCase .Name}}, Box<dyn Error>> {
+pub fn {{snakeCase .Name}}(packet: &[u8; 64]) -> Result<{{CamelCase .Name}}, error::Error> {
     if packet.len() != 64 {
         return Err(format!("invalid reply packet length ({})", packet.len()))?;
     }

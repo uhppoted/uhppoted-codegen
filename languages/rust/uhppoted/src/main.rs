@@ -9,6 +9,9 @@ mod commands;
 #[path = "uhppote.rs"]
 mod uhppote;
 
+#[path = "error.rs"]
+mod error;
+
 fn main() -> ExitCode {
     println!("uhppoted-codegen: Rust sample application");
 
