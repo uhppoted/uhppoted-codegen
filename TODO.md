@@ -1,8 +1,8 @@
 # TODO
 
 - [ ] Move UHPPOTE models to JSON
-      - [x] `regen` command
-      - [ ] Use models.json
+      - [x] `export` command
+      - [ ] Use models.json in generate
 
 - [ ] Test data
 
