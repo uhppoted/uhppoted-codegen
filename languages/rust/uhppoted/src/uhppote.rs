@@ -45,22 +45,22 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, error::Error>
     return Ok(list);
 }
 
-{{range .model.Functions}}{{template "function" .}}
+{{range .model.functions}}{{template "function" .}}
 {{end}}
 
 {{define "function"}}
-pub fn {{snakeCase .Name}}({{template "args" .Args}}) -> {{template "result" .}}{ {{if .Response}}
-    let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
+pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ {{if .response}}
+    let request = {{snakeCase .request.name}}({{template "params" .args}})?;
     let replies = send(&request, udp::ReplyType::Single)?;
 
     for reply in replies {
-        let response = {{snakeCase .Response.Name}}(&reply)?;
+        let response = {{snakeCase .response.name}}(&reply)?;
 
         return Ok(response);
     }
 
     return Err(error::Error::from(NoResponse)); {{else}}
-    let request = {{snakeCase .Request.Name}}({{template "params" .Args}})?;
+    let request = {{snakeCase .request.name}}({{template "params" .args}})?;
     send(&request, udp::ReplyType::Nothing)?;
 
     return Ok(true); {{end}}

@@ -62,7 +62,9 @@ func readAll(socket *net.UDPConn) ([][]byte, error) {
             if N, _, err := socket.ReadFromUDP(buffer); err != nil {
                 e <- err
             } else if N == 64 {
-                reply <- buffer[0:N]
+                m := make([]byte, 64)
+                copy(m, buffer[0:N])
+                reply <- m
             }
         }
     }()

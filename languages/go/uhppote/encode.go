@@ -6,17 +6,17 @@ import(
     "net/netip"
 )
 
-{{range .model.Requests}}{{template "request" .}}
+{{range .model.requests}}{{template "request" .}}
 {{end}}
 
 {{define "request"}}
-func {{CamelCase .Name}}({{template "args" .Fields}}) ([]byte,error) {
+func {{CamelCase .name}}({{template "args" .fields}}) ([]byte,error) {
     packet := make([]byte,64)
 
     packet[0] = 0x17
-    packet[1] = {{printf "0x%02x" .MsgType}}
-    {{range .Fields}}
-    {{if ne .Type "magic"}}pack{{CamelCase .Type}}(packet, {{camelCase .Name}}, {{.Offset}}){{else}}packUint32(packet, 0x55aaaa55, {{.Offset}})
+    packet[1] = {{byte2hex .msgtype}}
+    {{range .fields}}
+    {{if ne .type "magic"}}pack{{CamelCase .type}}(packet, {{camelCase .name}}, {{.offset}}){{else}}packUint32(packet, 0x55aaaa55, {{.offset}})
     {{end}}{{end}}
 
     return packet, nil

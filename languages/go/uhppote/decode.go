@@ -7,24 +7,24 @@ import (
     "time"
 )
 
-{{range .model.Responses}}{{template "decode" .}}
+{{range .model.responses}}{{template "decode" .}}
 {{end}}
 
-{{range .model.Responses}}{{template "response" .}}
+{{range .model.responses}}{{template "response" .}}
 {{end}}
 
 {{define "decode"}}
-func {{camelCase .Name}}(packet []byte) (*{{CamelCase .Name}}, error) {
+func {{camelCase .name}}(packet []byte) (*{{CamelCase .name}}, error) {
     if len(packet) != 64 {
         return nil, fmt.Errorf("invalid reply packet length (%v)", len(packet))
     }
 
-    if packet[1] != {{printf "0x%02x" .MsgType}} {
+    if packet[1] != {{byte2hex .msgtype}} {
         return nil, fmt.Errorf("invalid reply function code (%02x)", packet[1])
     }
 
-    response := {{CamelCase .Name}}{ {{range .Fields}}
-        {{CamelCase .Name}}: unpack{{CamelCase .Type}}(packet, {{.Offset}}),{{end}}
+    response := {{CamelCase .name}}{ {{range .fields}}
+        {{CamelCase .name}}: unpack{{CamelCase .type}}(packet, {{.offset}}),{{end}}
     }
 
     return &response, nil
@@ -144,7 +144,7 @@ func bcd2string(bytes []byte) string {
 
 
 {{define "response"}}
-type {{CamelCase .Name}} struct { {{range .Fields}}
-    {{CamelCase .Name}} {{template "type" .Type}} `json:"{{kebabCase .Name}}"`{{end}}
+type {{CamelCase .name}} struct { {{range .fields}}
+    {{CamelCase .name}} {{template "type" .type}} `json:"{{kebabCase .name}}"`{{end}}
 }
 {{end}}

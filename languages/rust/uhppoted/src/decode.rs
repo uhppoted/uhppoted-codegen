@@ -29,31 +29,31 @@ macro_rules! bcd2string {
     };
 }
 
-{{range .model.Responses}}{{template "response" .}}
+{{range .model.responses}}{{template "response" .}}
 {{end}}
 
-{{range .model.Responses}}{{template "decode" .}}
+{{range .model.responses}}{{template "decode" .}}
 {{end}}
 
 {{define "response"}}
 #[derive(Clone, Debug)]
-pub struct {{CamelCase .Name}} { {{range .Fields}}
-    pub {{snakeCase .Name}}: {{template "type" .Type}},{{end}}
+pub struct {{CamelCase .name}} { {{range .fields}}
+    pub {{snakeCase .name}}: {{template "type" .type}},{{end}}
 }
 {{end}}
 
 {{define "decode"}}
-pub fn {{snakeCase .Name}}(packet: &[u8; 64]) -> Result<{{CamelCase .Name}}, error::Error> {
+pub fn {{snakeCase .name}}(packet: &[u8; 64]) -> Result<{{CamelCase .name}}, error::Error> {
     if packet.len() != 64 {
         return Err(format!("invalid reply packet length ({})", packet.len()))?;
     }
  
-    if packet[1] != {{printf "0x%02x" .MsgType}} {
+    if packet[1] != {{byte2hex .msgtype}} {
         return Err(format!("invalid reply function code ({:02x})", packet[1]))?;
     }
  
-    let response = {{CamelCase .Name}}{ {{range .Fields}}
-        {{snakeCase .Name}}: unpack_{{snakeCase .Type}}(packet, {{.Offset}}),{{end}}
+    let response = {{CamelCase .name}}{ {{range .fields}}
+        {{snakeCase .name}}: unpack_{{snakeCase .type}}(packet, {{.offset}}),{{end}}
     };
 
     return Ok(response);

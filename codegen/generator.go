@@ -2,6 +2,7 @@ package codegen
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -9,8 +10,6 @@ import (
 	"strings"
 	"text/template"
 	"unicode"
-
-	"github.com/uhppoted/uhppoted-codegen/model"
 )
 
 type Generator struct {
@@ -28,16 +27,17 @@ var funcs = template.FuncMap{
 	"camelCase": camelCase,
 	"kebabCase": kebabCase,
 	"snakeCase": snakeCase,
+	"byte2hex":  byte2hex,
 	"lookup": func(path, key, defval string) any {
 		return lookup(map[string]any{}, path, key, defval)
 	},
 }
 
-var uhppote = model.Model{
-	Functions: model.Functions,
-	Requests:  model.Requests,
-	Responses: model.Responses,
-}
+// var uhppote = model.Model{
+// 	Functions: model.Functions,
+// 	Requests:  model.Requests,
+// 	Responses: model.Responses,
+// }
 
 func New(models string, templates string, out string, debug bool) Generator {
 	g := Generator{
@@ -88,9 +88,7 @@ func (g Generator) Generate() error {
 func (g Generator) initialise() (map[string]any, error) {
 	fsys := os.DirFS(g.models)
 
-	data := map[string]any{
-		"model": uhppote,
-	}
+	data := map[string]any{}
 
 	read := func(path string) error {
 		m := map[string]any{}
@@ -234,6 +232,17 @@ func capitalize(s string) string {
 	}
 
 	return string(runes)
+}
+
+func byte2hex(v any) string {
+	switch b := v.(type) {
+	case uint8:
+		return fmt.Sprintf("0x%02x", b)
+	case float64:
+		return fmt.Sprintf("0x%02x", uint8(b))
+	}
+
+	return "??"
 }
 
 func lookup(data map[string]any, path, key, defval string) any {

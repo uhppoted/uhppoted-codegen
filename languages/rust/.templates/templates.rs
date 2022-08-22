@@ -1,7 +1,7 @@
-{{define "args"}}{{ range $index, $arg := .}}{{if ne .Type "magic"}}{{if $index}}, {{end}}{{snakeCase .Name}}: {{template "type" .Type}}{{end}}{{end}}{{end}}
+{{define "args"}}{{range $index, $arg := .}}{{if ne .type "magic"}}{{if $index}}, {{end}}{{snakeCase .name}}: {{template "type" .type}}{{end}}{{end}}{{end}}
 
-{{define "params"}}{{ range $index, $param := .}}{{if ne .Type "magic"}}{{if $index}}, {{end}}{{snakeCase .Name}}{{end}}{{end}}{{end}}
+{{define "params"}}{{range $index, $param := .}}{{if ne .type "magic"}}{{if $index}}, {{end}}{{snakeCase .name}}{{end}}{{end}}{{end}}
 
 {{define "type"}}{{lookup "rust.types" . "???"}}{{end}}
 
-{{define "result"}}{{if .Response}}Result<{{CamelCase .Response.Name}}, error::Error> {{else}}Result<bool, error::Error>{{end}}{{end}}
+{{define "result"}}{{if .response}}Result<{{CamelCase .response.name}}, error::Error> {{else}}Result<bool, error::Error>{{end}}{{end}}

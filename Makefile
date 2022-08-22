@@ -50,6 +50,9 @@ benchmark: build
 coverage: build
 	go test -cover ./...
 
+regen:
+	$(CMD) export --out languages/.models/models.json
+
 build-all: vet
 	mkdir -p dist/$(DIST)/windows
 	mkdir -p dist/$(DIST)/darwin
@@ -60,7 +63,7 @@ build-all: vet
 	env GOOS=darwin  GOARCH=amd64       GOWORK=off go build -trimpath -o dist/$(DIST)/darwin  ./...
 	env GOOS=windows GOARCH=amd64       GOWORK=off go build -trimpath -o dist/$(DIST)/windows ./...
 
-release: update-release build-all
+release: update-release build-all regen
 	find . -name ".DS_Store" -delete
 	tar --directory=dist --exclude=".DS_Store" -cvzf dist/$(DIST).tar.gz $(DIST)
 	cd dist;  zip --recurse-paths $(DIST).zip $(DIST)
@@ -83,7 +86,7 @@ help: build
 export: build
 	$(CMD) export --out runtime/models.json
 
-go: build
+go: build regen
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
@@ -93,10 +96,10 @@ go-debug: go
 go-all: go
 	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
 
-go-usage: build
+go-usage: regen build
 	./generated/go/bin/uhppoted
 
-rust: build
+rust: build regen 
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 

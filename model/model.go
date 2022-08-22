@@ -15,13 +15,13 @@ type Function struct {
 
 type Request struct {
 	Name    string  `json:"name"`
-	MsgType uint8   `json:"type"`
+	MsgType uint8   `json:"msgtype"`
 	Fields  []Field `json:"fields"`
 }
 
 type Response struct {
 	Name    string  `json:"name"`
-	MsgType uint8   `json:"type"`
+	MsgType uint8   `json:"msgtype"`
 	Fields  []Field `json:"fields"`
 }
 

@@ -4,18 +4,18 @@ use chrono::NaiveDateTime;
 
 use super::error;
 
-{{range .model.Requests}}{{template "request" .}}
+{{range .model.requests}}{{template "request" .}}
 {{end}}
 
 {{define "request"}}
-pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], error::Error> {
+pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<[u8; 64], error::Error> {
     let mut packet = [0x00; 64];
 
     packet[0] = 0x17;
-    packet[1] = {{printf "0x%02x" .MsgType}};
+    packet[1] = {{byte2hex .msgtype}};
 
-    {{range .Fields}}{{if ne .Type "magic"}}pack_{{snakeCase .Type}}(&mut packet, {{snakeCase .Name}}, {{.Offset}});
-    {{else}}pack_uint32(&mut packet, 0x55aaaa55, {{.Offset}});{{end}}{{end}}
+    {{range .fields}}{{if ne .type "magic"}}pack_{{snakeCase .type}}(&mut packet, {{snakeCase .name}}, {{.offset}});
+    {{else}}pack_uint32(&mut packet, 0x55aaaa55, {{.offset}});{{end}}{{end}}
 
     return Ok(packet)
 }

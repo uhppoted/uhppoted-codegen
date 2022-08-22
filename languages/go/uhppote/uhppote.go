@@ -1,7 +1,6 @@
 package uhppote
 
 import (
-    "fmt"
     "net/netip"
 )
 
@@ -28,14 +27,12 @@ func GetAllControllers() ([]*GetControllerResponse, error) {
     return list, nil
 }
 
-{{range .model.Functions}}{{template "function" .}}
+{{range .model.functions}}{{template "function" .}}
 {{end}}
 
 {{define "function"}}
-func {{CamelCase .Name}}({{template "args" .Args}}) {{if .Response}}(*{{CamelCase .Response.Name}},error){{else}}error{{end}} {
-    fmt.Printf(">> {{.Name}}\n")
-    {{if .Response}}
-    request,err := {{CamelCase .Request.Name}}({{template "params" .Args}})
+func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCase .response.name}},error){{else}}error{{end}} {
+    {{if .response}}request,err := {{CamelCase .request.name}}({{template "params" .args}})
     if err != nil {
         return nil,err
     }
@@ -46,7 +43,7 @@ func {{CamelCase .Name}}({{template "args" .Args}}) {{if .Response}}(*{{CamelCas
     }
 
     for _,reply := range replies {
-        if response,err := {{camelCase .Response.Name}}(reply); err != nil {
+        if response,err := {{camelCase .response.name}}(reply); err != nil {
             return nil, err
         } else if response != nil {
             return response, nil
@@ -54,7 +51,7 @@ func {{CamelCase .Name}}({{template "args" .Args}}) {{if .Response}}(*{{CamelCas
     }
 
     return nil, nil{{else}}
-    if request, err := {{CamelCase .Request.Name}}({{template "params" .Args}}); err != nil {
+    if request, err := {{CamelCase .request.name}}({{template "params" .args}}); err != nil {
         return err
     } else if _, err = send(request, readNone); err != nil {
         return err
