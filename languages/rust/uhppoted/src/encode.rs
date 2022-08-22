@@ -21,6 +21,12 @@ pub fn {{snakeCase .Name}}({{template "args" .Fields}}) -> Result<[u8; 64], erro
 }
 {{end}}
 
+fn pack_uint16(packet: &mut [u8; 64], v: u16, offset: usize) {
+    let bytes = v.to_le_bytes();
+
+    packet[offset..offset + 2].clone_from_slice(&bytes);
+}
+
 fn pack_uint32(packet: &mut [u8; 64], v: u32, offset: usize) {
     let bytes = v.to_le_bytes();
 

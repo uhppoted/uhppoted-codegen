@@ -34,7 +34,6 @@ func GetAllControllers() ([]*GetControllerResponse, error) {
 {{define "function"}}
 func {{CamelCase .Name}}({{template "args" .Args}}) {{if .Response}}(*{{CamelCase .Response.Name}},error){{else}}error{{end}} {
     fmt.Printf(">> {{.Name}}\n")
-
     {{if .Response}}
     request,err := {{CamelCase .Request.Name}}({{template "params" .Args}})
     if err != nil {

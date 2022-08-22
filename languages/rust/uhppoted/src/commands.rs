@@ -1,11 +1,11 @@
 use chrono::offset::Local;
 
-use super::uhppote;
 use super::error;
+use super::uhppote;
 
 const CONTROLLER: u32 = 405419896;
 
-pub const COMMANDS: [&Command; 7] = [
+pub const COMMANDS: [&Command; 8] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -33,6 +33,10 @@ pub const COMMANDS: [&Command; 7] = [
     &Command {
         name: "get-listener",
         func: get_listener,
+    },
+    &Command {
+        name: "set-listener",
+        func: set_listener,
     },
 ];
 
@@ -102,6 +106,16 @@ fn get_status() {
 
 fn get_listener() {
     match uhppote::get_listener(CONTROLLER) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn set_listener() {
+    let address = "192.168.1.100".parse().unwrap();
+    let port: u16 = 60001;
+
+    match uhppote::set_listener(CONTROLLER, address, port) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

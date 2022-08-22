@@ -17,6 +17,7 @@ const CONTROLLER uint32 = 405419896
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
 var GATEWAY = netip.MustParseAddr("192.168.1.1")
+var LISTENER = netip.MustParseAddrPort("192.168.1.100:60001")
 
 type command struct {
     name string
@@ -24,13 +25,14 @@ type command struct {
 }
 
 var commands = []command{
-    command{name: "get-all-controllers",f:    getAllControllers},
-    command{ name: "get-controller",f:    getController },
-    command{ name: "set-ip", f:    setIP},
-    command{ name: "get-time", f:    getTime},
-    command{name: "set-time", f:    setTime},
-    command{ name: "get-status", f:    getStatus},
-    command{ name: "get-listener", f:    getListener},
+    command{name: "get-all-controllers", f: getAllControllers},
+    command{name: "get-controller", f: getController},
+    command{name: "set-ip", f: setIP},
+    command{name: "get-time", f: getTime},
+    command{name: "set-time", f: setTime},
+    command{name: "get-status", f: getStatus},
+    command{name: "get-listener", f: getListener},
+    command{name: "set-listener", f: setListener},
 }
 
 func (c command) exec() {
@@ -81,4 +83,8 @@ func getStatus() (any, error) {
 
 func getListener() (any, error) {
     return uhppote.GetListener(CONTROLLER)
+}
+
+func setListener() (any, error) {
+    return uhppote.SetListener(CONTROLLER, LISTENER.Addr(), LISTENER.Port())
 }

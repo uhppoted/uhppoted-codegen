@@ -38,12 +38,12 @@ func (cmd *Export) Description() string {
 }
 
 func (cmd *Export) Usage() string {
-	return "uhppoted-codegen regen [--out <file>]"
+	return "uhppoted-codegen export [--out <file>]"
 }
 
 func (cmd *Export) Help() {
 	fmt.Println()
-	fmt.Println("  Usage: uhppoted-codegen regen [--out <file]")
+	fmt.Println("  Usage: uhppoted-codegen export [--out <file]")
 	fmt.Println()
 	fmt.Println("  Options:")
 	fmt.Println()

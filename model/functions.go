@@ -9,6 +9,7 @@ var Functions = []Function{
 	SetTime,
 	GetStatus,
 	GetListener,
+	SetListener,
 }
 
 var GetController = Function{
@@ -96,4 +97,24 @@ var GetListener = Function{
 	},
 	Request:  &GetListenerRequest,
 	Response: &GetListenerResponse,
+}
+
+var SetListener = Function{
+	Name: "set listener",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "address",
+			Type: "IPv4",
+		},
+		Arg{
+			Name: "port",
+			Type: "uint16",
+		},
+	},
+	Request:  &SetListenerRequest,
+	Response: &SetListenerResponse,
 }

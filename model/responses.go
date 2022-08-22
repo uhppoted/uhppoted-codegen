@@ -6,6 +6,7 @@ var Responses = []Response{
 	SetTimeResponse,
 	GetStatusResponse,
 	GetListenerResponse,
+	SetListenerResponse,
 }
 
 var GetControllerResponse = Response{
@@ -233,3 +234,19 @@ var GetListenerResponse = Response{
 	},
 }
 
+var SetListenerResponse = Response{
+	Name:    "set listener response",
+	MsgType: 0x90,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "ok",
+			Type:   "bool",
+			Offset: 8,
+		},
+	},
+}

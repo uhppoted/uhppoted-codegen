@@ -23,6 +23,10 @@ func {{CamelCase .Name}}({{template "args" .Fields}}) ([]byte,error) {
 }
 {{end}}
 
+func packUint16(packet []byte, v uint16, offset uint8) {
+    binary.LittleEndian.PutUint16(packet[offset:offset+2], v)
+}
+
 func packUint32(packet []byte, v uint32, offset uint8) {
     binary.LittleEndian.PutUint32(packet[offset:offset+4], v)
 }

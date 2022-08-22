@@ -81,7 +81,7 @@ Generates a native UHPPOTE interface from the languages templates..
 
 Command line:
 
-` uhppoted-codegen [--debug] [--clean] --templates <folder> --out <folder>`
+` uhppoted-codegen generate [--debug] [--clean] --templates <folder> --out <folder>`
 
 ```
   --templates <folder>  The folder containing the code generation templates for the target language.

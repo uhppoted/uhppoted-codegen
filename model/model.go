@@ -2,7 +2,7 @@ package model
 
 type Model struct {
 	Functions []Function `json:"functions"`
-	Requests  []Request `json:"requests"`
+	Requests  []Request  `json:"requests"`
 	Responses []Response `json:"responses"`
 }
 

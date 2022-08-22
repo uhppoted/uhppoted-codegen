@@ -7,6 +7,7 @@ var Requests = []Request{
 	SetTimeRequest,
 	GetStatusRequest,
 	GetListenerRequest,
+	SetListenerRequest,
 }
 
 var GetControllerRequest = Request{
@@ -106,3 +107,24 @@ var GetListenerRequest = Request{
 	},
 }
 
+var SetListenerRequest = Request{
+	Name:    "set listener request",
+	MsgType: 0x90,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "address",
+			Type:   "IPv4",
+			Offset: 8,
+		},
+		Field{
+			Name:   "port",
+			Type:   "uint16",
+			Offset: 12,
+		},
+	},
+}
