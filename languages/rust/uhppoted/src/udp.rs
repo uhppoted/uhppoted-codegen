@@ -18,11 +18,7 @@ lazy_static! {
     static ref DEBUG: RwLock<bool> = RwLock::new(false);
 }
 
-pub enum ReplyType {
-    Multiple,
-    Single,
-    Nothing,
-}
+type ReadFn = fn(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error>;
 
 pub fn set_bind_addr(addr: &str) {
     if let Ok(mut guard) = BIND_ADDR.write() {
@@ -42,7 +38,7 @@ pub fn set_debug(enabled: bool) {
     }
 }
 
-pub fn send(packet: &[u8; 64], reply_type: ReplyType) -> Result<Vec<[u8; 64]>, error::Error> {
+pub fn send(packet: &[u8; 64], f: ReadFn) -> Result<Vec<[u8; 64]>, error::Error> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -54,64 +50,10 @@ pub fn send(packet: &[u8; 64], reply_type: ReplyType) -> Result<Vec<[u8; 64]>, e
     socket.set_broadcast(true)?;
     socket.send_to(packet, broadcast.as_str())?;
 
-    // Do this the ugly way until I can figure out how to wrap the async functions nicely
-    match reply_type {
-        ReplyType::Multiple => match futures::executor::block_on(read_all(socket)) {
-            Ok(replies) => return Ok(replies),
-            Err(e) => return Err(e),
-        },
-
-        ReplyType::Single => match futures::executor::block_on(read(socket)) {
-            Ok(replies) => return Ok(replies),
-            Err(e) => return Err(e),
-        },
-
-        ReplyType::Nothing => match futures::executor::block_on(read_none(socket)) {
-            Ok(replies) => return Ok(replies),
-            Err(e) => return Err(e),
-        },
-    }
+    return f(socket);
 }
 
-async fn read_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
-    let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
-
-    let read = async {
-        let sock = async_std::net::UdpSocket::from(socket);
-        let mut buffer = [0u8; 1024];
-
-        let result: Result<(), error::Error> = loop {
-            match sock.recv(&mut buffer).await {
-                Ok(64) => {
-                    dump(buffer[..64].try_into()?);
-                    replies.write().unwrap().push(buffer[..64].try_into()?);
-                }
-
-                Err(e) => break Err(error::Error::from(e)),
-                _ => continue,
-            }
-        };
-
-        return result;
-    };
-
-    let f = future::timeout(Duration::from_millis(2500), read);
-
-    match f.await {
-        Ok(v) => match v {
-            Ok(_) => return Ok(replies.read().unwrap().to_vec()),
-            Err(e) => return Err(error::Error::from(e)),
-        },
-
-        Err(_) => return Ok(replies.read().unwrap().to_vec()),
-    }
-}
-
-async fn read_none(_: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
-    return Ok(vec![]);
-}
-
-async fn read(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
+pub fn read(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
     let f = future::timeout(TIMEOUT, async {
         let sock = async_std::net::UdpSocket::from(socket);
         let mut buffer = [0u8; 1024];
@@ -131,14 +73,64 @@ async fn read(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
         return result;
     });
 
-    match f.await {
-        Ok(v) => match v {
-            Ok(reply) => return Ok(vec![reply]),
-            Err(e) => return Err(e),
-        },
+    let g = async {
+        match f.await {
+            Ok(v) => match v {
+                Ok(reply) => return Ok(vec![reply]),
+                Err(e) => return Err(e),
+            },
 
-        Err(e) => return Err(error::Error::from(e)),
+            Err(e) => return Err(error::Error::from(e)),
+        }
+    };
+
+    match futures::executor::block_on(g) {
+        Ok(replies) => return Ok(replies),
+        Err(e) => return Err(e),
     }
+}
+
+pub fn read_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
+    let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
+
+    let f = future::timeout(Duration::from_millis(2500), async {
+        let sock = async_std::net::UdpSocket::from(socket);
+        let mut buffer = [0u8; 1024];
+
+        let result: Result<(), error::Error> = loop {
+            match sock.recv(&mut buffer).await {
+                Ok(64) => {
+                    dump(buffer[..64].try_into()?);
+                    replies.write().unwrap().push(buffer[..64].try_into()?);
+                }
+
+                Err(e) => break Err(error::Error::from(e)),
+                _ => continue,
+            }
+        };
+
+        return result;
+    });
+
+    let g = async {
+        match f.await {
+            Ok(v) => match v {
+                Ok(_) => return Ok(replies.read().unwrap().to_vec()),
+                Err(e) => return Err(error::Error::from(e)),
+            },
+
+            Err(_) => return Ok(replies.read().unwrap().to_vec()),
+        }
+    };
+
+    match futures::executor::block_on(g) {
+        Ok(replies) => return Ok(replies),
+        Err(e) => return Err(e),
+    }
+}
+
+pub fn read_none(_: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
+    return Ok(vec![]);
 }
 
 fn dump(packet: &[u8; 64]) {

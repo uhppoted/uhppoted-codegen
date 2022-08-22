@@ -32,7 +32,7 @@ pub fn set_debug(enabled: bool) {
 
 pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, error::Error> {
     let request = get_controller_request(0)?;
-    let replies = send(&request, udp::ReplyType::Multiple)?;
+    let replies = send(&request, udp::read_all)?;
 
     let mut list: Vec<decode::GetControllerResponse> = vec![];
 
@@ -51,7 +51,7 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, error::Error>
 {{define "function"}}
 pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ {{if .response}}
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    let replies = send(&request, udp::ReplyType::Single)?;
+    let replies = send(&request, udp::read)?;
 
     for reply in replies {
         let response = {{snakeCase .response.name}}(&reply)?;
@@ -61,7 +61,7 @@ pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}
 
     return Err(error::Error::from(NoResponse)); {{else}}
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    send(&request, udp::ReplyType::Nothing)?;
+    send(&request, udp::read_none)?;
 
     return Ok(true); {{end}}
 }

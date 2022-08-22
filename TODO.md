@@ -17,8 +17,8 @@
 - (?) Type constraint/variant for send() return value
 
 ## Rust
-- [ ] Wrap udp::read asyncs into something HOF'able
-      - (?) move executor::block into read
+- [x] Wrap udp::read asyncs into something HOF'able
+- [ ] typedef [u8; 64]
 - [ ] BCD error handling
 
 
