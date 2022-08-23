@@ -31,7 +31,8 @@
 - (?) Type constraint/variant for send() return value
 
 ## Rust
-- [ ] typedef [u8; 64]
+- [x] typedef [u8; 64]
+- [ ] Result<Vec[u8; 64], error> a lá std::io
 - [ ] BCD error handling
 
 ## Python

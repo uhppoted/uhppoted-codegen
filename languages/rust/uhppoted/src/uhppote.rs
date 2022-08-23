@@ -8,6 +8,7 @@ use decode::*;
 use encode::*;
 use error::ErrorKind::NoResponse;
 use udp::send;
+use udp::Msg;
 
 #[path = "encode.rs"]
 mod encode;

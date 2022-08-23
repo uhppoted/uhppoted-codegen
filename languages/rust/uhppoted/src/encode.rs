@@ -3,12 +3,13 @@ use std::net::Ipv4Addr;
 use chrono::NaiveDateTime;
 
 use super::error;
+use super::Msg;
 
 {{range .model.requests}}{{template "request" .}}
 {{end}}
 
 {{define "request"}}
-pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<[u8; 64], error::Error> {
+pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<Msg, error::Error> {
     let mut packet = [0x00; 64];
 
     packet[0] = 0x17;
@@ -21,29 +22,29 @@ pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<[u8; 64], erro
 }
 {{end}}
 
-fn pack_uint8(packet: &mut [u8; 64], v: u8, offset: usize) {
+fn pack_uint8(packet: &mut Msg, v: u8, offset: usize) {
     packet[offset] = v;
 }
 
-fn pack_uint16(packet: &mut [u8; 64], v: u16, offset: usize) {
+fn pack_uint16(packet: &mut Msg, v: u16, offset: usize) {
     let bytes = v.to_le_bytes();
 
     packet[offset..offset + 2].clone_from_slice(&bytes);
 }
 
-fn pack_uint32(packet: &mut [u8; 64], v: u32, offset: usize) {
+fn pack_uint32(packet: &mut Msg, v: u32, offset: usize) {
     let bytes = v.to_le_bytes();
 
     packet[offset..offset + 4].clone_from_slice(&bytes);
 }
 
-fn pack_ipv4(packet: &mut [u8; 64], v: Ipv4Addr, offset: usize) {
+fn pack_ipv4(packet: &mut Msg, v: Ipv4Addr, offset: usize) {
     let addr = v.octets();
 
     packet[offset..offset + 4].clone_from_slice(&addr);
 }
 
-fn pack_datetime(packet: &mut [u8; 64], v: NaiveDateTime, offset: usize) {
+fn pack_datetime(packet: &mut Msg, v: NaiveDateTime, offset: usize) {
     let s = v.format("%Y%m%d%H%M%S");
     let bcd = string2bcd(s.to_string());
 

@@ -18,7 +18,8 @@ lazy_static! {
     static ref DEBUG: RwLock<bool> = RwLock::new(false);
 }
 
-type ReadFn = fn(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error>;
+pub type Msg = [u8; 64];
+pub type ReadFn = fn(socket: UdpSocket) -> Result<Vec<Msg>, error::Error>;
 
 pub fn set_bind_addr(addr: &str) {
     if let Ok(mut guard) = BIND_ADDR.write() {
@@ -38,7 +39,7 @@ pub fn set_debug(enabled: bool) {
     }
 }
 
-pub fn send(packet: &[u8; 64], f: ReadFn) -> Result<Vec<[u8; 64]>, error::Error> {
+pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>, error::Error> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -53,12 +54,12 @@ pub fn send(packet: &[u8; 64], f: ReadFn) -> Result<Vec<[u8; 64]>, error::Error>
     return f(socket);
 }
 
-pub fn read(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
+pub fn read(socket: UdpSocket) -> Result<Vec<Msg>, error::Error> {
     let f = future::timeout(TIMEOUT, async {
         let sock = async_std::net::UdpSocket::from(socket);
         let mut buffer = [0u8; 1024];
 
-        let result: Result<[u8; 64], error::Error> = loop {
+        let result: Result<Msg, error::Error> = loop {
             match sock.recv(&mut buffer).await {
                 Ok(64) => {
                     dump(buffer[..64].try_into()?);
@@ -90,8 +91,8 @@ pub fn read(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
     }
 }
 
-pub fn read_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
-    let replies = RwLock::<Vec<[u8; 64]>>::new(vec![]);
+pub fn read_all(socket: UdpSocket) -> Result<Vec<Msg>, error::Error> {
+    let replies = RwLock::<Vec<Msg>>::new(vec![]);
 
     let f = future::timeout(Duration::from_millis(2500), async {
         let sock = async_std::net::UdpSocket::from(socket);
@@ -129,11 +130,11 @@ pub fn read_all(socket: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
     }
 }
 
-pub fn read_none(_: UdpSocket) -> Result<Vec<[u8; 64]>, error::Error> {
+pub fn read_none(_: UdpSocket) -> Result<Vec<Msg>, error::Error> {
     return Ok(vec![]);
 }
 
-fn dump(packet: &[u8; 64]) {
+fn dump(packet: &Msg) {
     let debug = if let Ok(guard) = DEBUG.read() {
         *guard
     } else {
