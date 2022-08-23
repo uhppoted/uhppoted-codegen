@@ -26,7 +26,7 @@
 - [ ] listen
 
 ## Go
-- [ ] BCD error handling
+- [x] Encode/decode error handling
 - (?) JSON tags for requests/responses
 - (?) Type constraint/variant for send() return value
 

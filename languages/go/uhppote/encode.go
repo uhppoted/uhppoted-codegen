@@ -16,38 +16,57 @@ func {{CamelCase .name}}({{template "args" .fields}}) ([]byte,error) {
     packet[0] = 0x17
     packet[1] = {{byte2hex .msgtype}}
     {{range .fields}}
-    {{if ne .type "magic"}}pack{{CamelCase .type}}(packet, {{camelCase .name}}, {{.offset}}){{else}}packUint32(packet, 0x55aaaa55, {{.offset}})
+    {{if ne .type "magic"}}
+    if err := pack{{CamelCase .type}}(packet, {{camelCase .name}}, {{.offset}}); err != nil {
+        return nil, err
+    }{{else}}
+    if err := packUint32(packet, 0x55aaaa55, {{.offset}}); err != nil {
+        return nil, err        
+    }
     {{end}}{{end}}
 
     return packet, nil
 }
 {{end}}
 
-func packUint8(packet []byte, v uint8, offset uint8) {
+func packUint8(packet []byte, v uint8, offset uint8) error {
     packet[offset] = v
+
+    return nil
 }
 
-func packUint16(packet []byte, v uint16, offset uint8) {
+func packUint16(packet []byte, v uint16, offset uint8) error {
     binary.LittleEndian.PutUint16(packet[offset:offset+2], v)
+
+    return nil
 }
 
-func packUint32(packet []byte, v uint32, offset uint8) {
+func packUint32(packet []byte, v uint32, offset uint8) error {
     binary.LittleEndian.PutUint32(packet[offset:offset+4], v)
+
+    return nil
 }
 
-func packIPv4(packet []byte, v netip.Addr, offset uint8) {
+func packIPv4(packet []byte, v netip.Addr, offset uint8) error {
     addr := v.As4()
     copy(packet[offset:], addr[:])
+
+    return nil
 }
 
-func packDatetime(packet []byte, v DateTime, offset uint8) {
+func packDatetime(packet []byte, v DateTime, offset uint8) error {
     s := v.Format("20060102150405")
-    bytes := string2bcd(s)
+    
+    if bytes, err := string2bcd(s); err != nil {
+        return err
+    } else {
+        copy(packet[offset:], bytes)
 
-    copy(packet[offset:], bytes)
+        return nil        
+    }
 }
 
-func string2bcd(s string) []byte {
+func string2bcd(s string) ([]byte, error) {
     BCD := map[rune]uint8 {
         '0': 0x00,
         '1': 0x01,
@@ -69,7 +88,7 @@ func string2bcd(s string) []byte {
 
     for _,ch := range s {        
         if n,ok := BCD[ch]; !ok {
-            panic(fmt.Sprintf("Invalid BCD digit (%v)", ch))
+            return nil, fmt.Errorf("invalid BCD string %v", s)
         } else {
             nibbles = append(nibbles, n)
         }
@@ -84,6 +103,6 @@ func string2bcd(s string) []byte {
         bytes = append(bytes,b)
     }
 
-    return bytes
+    return bytes, nil
 }
 
