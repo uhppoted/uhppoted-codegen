@@ -1,15 +1,18 @@
 # TODO
 
-- [ ] Test data
+- [ ] Tests
+      - [x] Add test data to model
+      - [ ] Export
+      - (?) Language test skeletons
 
 - [x] get-door-control
 - [x] set-door-control
 - [x] open-door
-- [ ] delete-cards
-- [ ] delete-card
-- [ ] get-cards
 - [ ] get-card
+- [ ] get-cards
 - [ ] put-card
+- [ ] delete-card
+- [ ] delete-cards
 - [ ] get-event
 - [ ] get-event-index
 - [ ] set-event-index

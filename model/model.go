@@ -14,15 +14,17 @@ type Function struct {
 }
 
 type Request struct {
-	Name    string  `json:"name"`
-	MsgType uint8   `json:"msgtype"`
-	Fields  []Field `json:"fields"`
+	Name     string  `json:"name"`
+	MsgType  uint8   `json:"msgtype"`
+	Fields   []Field `json:"fields"`
+	TestData []uint8 `json:"_,omitempty"`
 }
 
 type Response struct {
-	Name    string  `json:"name"`
-	MsgType uint8   `json:"msgtype"`
-	Fields  []Field `json:"fields"`
+	Name     string  `json:"name"`
+	MsgType  uint8   `json:"msgtype"`
+	Fields   []Field `json:"fields"`
+	TestData []uint8 `json:"_,omitempty"`
 }
 
 type Arg struct {
