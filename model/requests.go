@@ -8,6 +8,9 @@ var Requests = []Request{
 	GetStatusRequest,
 	GetListenerRequest,
 	SetListenerRequest,
+	GetDoorControlRequest,
+	SetDoorControlRequest,
+	OpenDoorRequest,
 }
 
 var GetControllerRequest = Request{
@@ -125,6 +128,67 @@ var SetListenerRequest = Request{
 			Name:   "port",
 			Type:   "uint16",
 			Offset: 12,
+		},
+	},
+}
+
+var GetDoorControlRequest = Request{
+	Name:    "get door control request",
+	MsgType: 0x82,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+		},
+	},
+}
+
+var SetDoorControlRequest = Request{
+	Name:    "set door control request",
+	MsgType: 0x80,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		Field{
+			Name:   "mode",
+			Type:   "uint8",
+			Offset: 9,
+		},
+		Field{
+			Name:   "delay",
+			Type:   "uint8",
+			Offset: 10,
+		},
+	},
+}
+
+var OpenDoorRequest = Request{
+	Name:    "open door request",
+	MsgType: 0x40,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
 		},
 	},
 }

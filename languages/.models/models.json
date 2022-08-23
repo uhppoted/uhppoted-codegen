@@ -435,6 +435,179 @@
             }
           ]
         }
+      },
+      {
+        "name": "get door control",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "door",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "get door control request",
+          "msgtype": 130,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            }
+          ]
+        },
+        "response": {
+          "name": "get door control response",
+          "msgtype": 130,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "offset": 9
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "offset": 10
+            }
+          ]
+        }
+      },
+      {
+        "name": "set door control",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "door",
+            "type": "uint8"
+          },
+          {
+            "name": "mode",
+            "type": "uint8"
+          },
+          {
+            "name": "delay",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "set door control request",
+          "msgtype": 128,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "offset": 9
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "offset": 10
+            }
+          ]
+        },
+        "response": {
+          "name": "set door control response",
+          "msgtype": 128,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "offset": 9
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "offset": 10
+            }
+          ]
+        }
+      },
+      {
+        "name": "open door",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "door",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "open door request",
+          "msgtype": 64,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            }
+          ]
+        },
+        "response": {
+          "name": "open door response",
+          "msgtype": 64,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "opened",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        }
       }
     ],
     "requests": [
@@ -547,6 +720,64 @@
             "name": "port",
             "type": "uint16",
             "offset": 12
+          }
+        ]
+      },
+      {
+        "name": "get door control request",
+        "msgtype": 130,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "set door control request",
+        "msgtype": 128,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "mode",
+            "type": "uint8",
+            "offset": 9
+          },
+          {
+            "name": "delay",
+            "type": "uint8",
+            "offset": 10
+          }
+        ]
+      },
+      {
+        "name": "open door request",
+        "msgtype": 64,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
           }
         ]
       }
@@ -783,6 +1014,74 @@
           },
           {
             "name": "ok",
+            "type": "bool",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "get door control response",
+        "msgtype": 130,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "mode",
+            "type": "uint8",
+            "offset": 9
+          },
+          {
+            "name": "delay",
+            "type": "uint8",
+            "offset": 10
+          }
+        ]
+      },
+      {
+        "name": "set door control response",
+        "msgtype": 128,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "mode",
+            "type": "uint8",
+            "offset": 9
+          },
+          {
+            "name": "delay",
+            "type": "uint8",
+            "offset": 10
+          }
+        ]
+      },
+      {
+        "name": "open door response",
+        "msgtype": 64,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "opened",
             "type": "bool",
             "offset": 8
           }

@@ -1,6 +1,7 @@
-DIST   ?= development
-DEBUG  ?= --debug
-CMD     = ./bin/uhppoted-codegen
+DIST    ?= development
+DEBUG   ?= --debug
+CMD      = ./bin/uhppoted-codegen
+COMMAND ?= open-door
 
 MODELS     = languages/.models
 GO         = languages/go
@@ -91,7 +92,7 @@ go: build regen
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
 go-debug: go
-	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 set-listener
+	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 go-all: go
 	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
@@ -104,7 +105,7 @@ rust: build regen
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 get-all-controllers
+	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 rust-all: rust
 	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all

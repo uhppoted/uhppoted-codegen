@@ -10,6 +10,9 @@ var Functions = []Function{
 	GetStatus,
 	GetListener,
 	SetListener,
+	GetDoorControl,
+	SetDoorControl,
+	OpenDoor,
 }
 
 var GetController = Function{
@@ -117,4 +120,60 @@ var SetListener = Function{
 	},
 	Request:  &SetListenerRequest,
 	Response: &SetListenerResponse,
+}
+
+var GetDoorControl = Function{
+	Name: "get door control",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "door",
+			Type: "uint8",
+		},
+	},
+	Request:  &GetDoorControlRequest,
+	Response: &GetDoorControlResponse,
+}
+
+var SetDoorControl = Function{
+	Name: "set door control",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "door",
+			Type: "uint8",
+		},
+		Arg{
+			Name: "mode",
+			Type: "uint8",
+		},
+		Arg{
+			Name: "delay",
+			Type: "uint8",
+		},
+	},
+	Request:  &SetDoorControlRequest,
+	Response: &SetDoorControlResponse,
+}
+
+var OpenDoor = Function{
+	Name: "open door",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "door",
+			Type: "uint8",
+		},
+	},
+	Request:  &OpenDoorRequest,
+	Response: &OpenDoorResponse,
 }

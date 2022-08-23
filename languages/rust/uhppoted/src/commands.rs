@@ -4,8 +4,11 @@ use super::error;
 use super::uhppote;
 
 const CONTROLLER: u32 = 405419896;
+const DOOR: u8 = 3;
+const MODE: u8 = 2;
+const DELAY: u8 = 10;
 
-pub const COMMANDS: [&Command; 8] = [
+pub const COMMANDS: [&Command; 11] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -37,6 +40,18 @@ pub const COMMANDS: [&Command; 8] = [
     &Command {
         name: "set-listener",
         func: set_listener,
+    },
+    &Command {
+        name: "get-door-control",
+        func: get_door_control,
+    },
+    &Command {
+        name: "set-door-control",
+        func: set_door_control,
+    },
+    &Command {
+        name: "open-door",
+        func: open_door,
     },
 ];
 
@@ -116,6 +131,27 @@ fn set_listener() {
     let port: u16 = 60001;
 
     match uhppote::set_listener(CONTROLLER, address, port) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_door_control() {
+    match uhppote::get_door_control(CONTROLLER, DOOR) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn set_door_control() {
+    match uhppote::set_door_control(CONTROLLER, DOOR, MODE, DELAY) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn open_door() {
+    match uhppote::open_door(CONTROLLER, DOOR) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

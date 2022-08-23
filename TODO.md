@@ -1,15 +1,26 @@
 # TODO
 
-- [x] Move UHPPOTE models to JSON
-      - [x] `export` command
-      - [x] Use models.json in generate
-
 - [ ] Test data
 
-- [x] set-listener
-      - [x] codegen
-      - [x] Go
-      - [x] Rust
+- [x] get-door-control
+- [x] set-door-control
+- [x] open-door
+- [ ] delete-cards
+- [ ] delete-card
+- [ ] get-cards
+- [ ] get-card
+- [ ] put-card
+- [ ] get-event
+- [ ] get-event-index
+- [ ] set-event-index
+- [ ] get-time-profile
+- [ ] record-special-events
+- [ ] set-time-profile
+- [ ] clear-time-profiles
+- [ ] add-task
+- [ ] clear-task-list
+- [ ] refresh-tasklist
+- [ ] listen
 
 ## Go
 - [ ] BCD error handling
@@ -17,14 +28,12 @@
 - (?) Type constraint/variant for send() return value
 
 ## Rust
-- [x] Wrap udp::read asyncs into something HOF'able
 - [ ] typedef [u8; 64]
 - [ ] BCD error handling
 
+## Python
 
 ## Erlang
-
-## Python
 
 ## Javascript
 

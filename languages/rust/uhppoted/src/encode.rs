@@ -21,6 +21,10 @@ pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<[u8; 64], erro
 }
 {{end}}
 
+fn pack_uint8(packet: &mut [u8; 64], v: u8, offset: usize) {
+    packet[offset] = v;
+}
+
 fn pack_uint16(packet: &mut [u8; 64], v: u16, offset: usize) {
     let bytes = v.to_le_bytes();
 

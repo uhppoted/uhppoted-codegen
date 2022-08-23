@@ -13,6 +13,9 @@ import (
 const ANY = "0.0.0.0:0"
 const BROADCAST = "255.255.255.255:60000"
 const CONTROLLER uint32 = 405419896
+const DOOR uint8 = 3
+const MODE uint8 = 2
+const DELAY uint8 = 10
 
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -33,6 +36,9 @@ var commands = []command{
     command{name: "get-status", f: getStatus},
     command{name: "get-listener", f: getListener},
     command{name: "set-listener", f: setListener},
+    command{name: "get-door-control", f: getDoorControl},
+    command{name: "set-door-control", f: setDoorControl},
+    command{name: "open-door", f: openDoor},
 }
 
 func (c command) exec() {
@@ -87,4 +93,16 @@ func getListener() (any, error) {
 
 func setListener() (any, error) {
     return uhppote.SetListener(CONTROLLER, LISTENER.Addr(), LISTENER.Port())
+}
+
+func getDoorControl() (any, error) {
+    return uhppote.GetDoorControl(CONTROLLER, DOOR)
+}
+
+func setDoorControl() (any, error) {
+    return uhppote.SetDoorControl(CONTROLLER, DOOR, MODE, DELAY)
+}
+
+func openDoor() (any, error) {
+    return uhppote.OpenDoor(CONTROLLER, DOOR)
 }
