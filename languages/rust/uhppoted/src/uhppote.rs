@@ -8,7 +8,6 @@ use encode::*;
 use udp::send;
 use udp::Msg;
 
-use super::error;
 use error::Error;
 use error::ErrorKind::NoResponse;
 
@@ -20,6 +19,9 @@ mod decode;
 
 #[path = "udp.rs"]
 mod udp;
+
+#[path = "error.rs"]
+pub mod error;
 
 pub type Result<T> = std::result::Result<T, Error>;
 

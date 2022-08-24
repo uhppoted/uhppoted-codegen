@@ -1,7 +1,6 @@
 use chrono::offset::Local;
 use chrono::NaiveDate;
 
-use super::error;
 use super::uhppote;
 
 const CONTROLLER: u32 = 405419896;
@@ -229,7 +228,7 @@ fn delete_all_cards() {
     }
 }
 
-fn error(e: error::Error) {
+fn error(e: uhppote::error::Error) {
     println!();
     println!("   *** ERROR: {e}");
     println!();

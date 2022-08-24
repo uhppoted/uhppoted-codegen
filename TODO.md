@@ -30,7 +30,7 @@
 ## Rust
 - [x] Result<Vec[u8; 64], error> a lá std::io
 - [x] Invalid date string (deleted card)
-- [ ] Fix error hierarchy
+- [x] Fix error hierarchy
 
 ## Python
 
