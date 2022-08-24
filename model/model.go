@@ -14,17 +14,17 @@ type Function struct {
 }
 
 type Request struct {
-	Name     string  `json:"name"`
-	MsgType  uint8   `json:"msgtype"`
-	Fields   []Field `json:"fields"`
-	TestData []uint8 `json:"_,omitempty"`
+	Name     string   `json:"name"`
+	MsgType  uint8    `json:"msgtype"`
+	Fields   []Field  `json:"fields"`
+	TestData TestData `json:"_,omitempty"`
 }
 
 type Response struct {
-	Name     string  `json:"name"`
-	MsgType  uint8   `json:"msgtype"`
-	Fields   []Field `json:"fields"`
-	TestData []uint8 `json:"_,omitempty"`
+	Name     string   `json:"name"`
+	MsgType  uint8    `json:"msgtype"`
+	Fields   []Field  `json:"fields"`
+	TestData TestData `json:"_,omitempty"`
 }
 
 type Arg struct {
@@ -36,4 +36,8 @@ type Field struct {
 	Name   string `json:"name"`
 	Type   string `json:"type"`
 	Offset uint8  `json:"offset"`
+}
+
+type TestData struct {
+	Bytes []uint8 `json:"bytes"`
 }
