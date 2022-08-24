@@ -21,6 +21,8 @@ mod decode;
 #[path = "udp.rs"]
 mod udp;
 
+pub type Result<T> = std::result::Result<T, Error>;
+
 pub fn set_bind_addr(addr: &str) {
     udp::set_bind_addr(addr)
 }
@@ -33,7 +35,7 @@ pub fn set_debug(enabled: bool) {
     udp::set_debug(enabled)
 }
 
-pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Error> {
+pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     let request = get_controller_request(0)?;
     let replies = send(&request, udp::read_all)?;
 

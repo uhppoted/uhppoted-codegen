@@ -4,4 +4,4 @@
 
 {{define "type"}}{{lookup "rust.types" . "???"}}{{end}}
 
-{{define "result"}}{{if .response}}Result<{{CamelCase .response.name}}, error::Error> {{else}}Result<bool, error::Error>{{end}}{{end}}
+{{define "result"}}{{if .response}}Result<{{CamelCase .response.name}}> {{else}}Result<bool>{{end}}{{end}}

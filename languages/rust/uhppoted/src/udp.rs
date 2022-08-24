@@ -8,6 +8,10 @@ use lazy_static::lazy_static;
 
 use super::error;
 
+pub type Msg = [u8; 64];
+pub type ReadFn = fn(socket: UdpSocket) -> Result<Vec<Msg>>;
+pub type Result<T> = std::result::Result<T, error::Error>;
+
 const READ_TIMEOUT: Duration = Duration::from_millis(5000);
 const WRITE_TIMEOUT: Duration = Duration::from_millis(1000);
 const TIMEOUT: Duration = Duration::from_millis(2500);
@@ -17,9 +21,6 @@ lazy_static! {
     static ref BROADCAST_ADDR: RwLock<String> = RwLock::new("255.255.255.255:60000".to_string());
     static ref DEBUG: RwLock<bool> = RwLock::new(false);
 }
-
-pub type Msg = [u8; 64];
-pub type ReadFn = fn(socket: UdpSocket) -> Result<Vec<Msg>, error::Error>;
 
 pub fn set_bind_addr(addr: &str) {
     if let Ok(mut guard) = BIND_ADDR.write() {
@@ -39,7 +40,7 @@ pub fn set_debug(enabled: bool) {
     }
 }
 
-pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>, error::Error> {
+pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -54,12 +55,12 @@ pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>, error::Error> {
     return f(socket);
 }
 
-pub fn read(socket: UdpSocket) -> Result<Vec<Msg>, error::Error> {
+pub fn read(socket: UdpSocket) -> Result<Vec<Msg>> {
     let f = future::timeout(TIMEOUT, async {
         let sock = async_std::net::UdpSocket::from(socket);
         let mut buffer = [0u8; 1024];
 
-        let result: Result<Msg, error::Error> = loop {
+        let result: Result<Msg> = loop {
             match sock.recv(&mut buffer).await {
                 Ok(64) => {
                     dump(buffer[..64].try_into()?);
@@ -91,14 +92,14 @@ pub fn read(socket: UdpSocket) -> Result<Vec<Msg>, error::Error> {
     }
 }
 
-pub fn read_all(socket: UdpSocket) -> Result<Vec<Msg>, error::Error> {
+pub fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
     let replies = RwLock::<Vec<Msg>>::new(vec![]);
 
     let f = future::timeout(Duration::from_millis(2500), async {
         let sock = async_std::net::UdpSocket::from(socket);
         let mut buffer = [0u8; 1024];
 
-        let result: Result<(), error::Error> = loop {
+        let result: Result<()> = loop {
             match sock.recv(&mut buffer).await {
                 Ok(64) => {
                     dump(buffer[..64].try_into()?);
@@ -130,7 +131,7 @@ pub fn read_all(socket: UdpSocket) -> Result<Vec<Msg>, error::Error> {
     }
 }
 
-pub fn read_none(_: UdpSocket) -> Result<Vec<Msg>, error::Error> {
+pub fn read_none(_: UdpSocket) -> Result<Vec<Msg>> {
     return Ok(vec![]);
 }
 
