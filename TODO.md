@@ -29,7 +29,7 @@
 
 ## Rust
 - [ ] Result<Vec[u8; 64], error> a lá std::io
-- [ ] Invalid date string (deleted card)
+- [x] Invalid date string (deleted card)
 
 ## Python
 
