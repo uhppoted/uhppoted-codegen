@@ -16,6 +16,8 @@ const CONTROLLER uint32 = 405419896
 const DOOR uint8 = 3
 const MODE uint8 = 2
 const DELAY uint8 = 10
+const CARD uint32 = 8165538
+const CARD_INDEX uint32 = 3
 
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -39,6 +41,12 @@ var commands = []command{
     command{name: "get-door-control", f: getDoorControl},
     command{name: "set-door-control", f: setDoorControl},
     command{name: "open-door", f: openDoor},
+    command{name: "get-cards", f: getCards},
+    command{name: "get-card", f: getCard},
+    command{name: "get-card-by-index", f: getCardByIndex},
+    command{name: "put-card", f: putCard},
+    command{name: "delete-card", f: deleteCard},
+    command{name: "delete-all-cards", f: deleteAllCards},
 }
 
 func (c command) exec() {
@@ -105,4 +113,31 @@ func setDoorControl() (any, error) {
 
 func openDoor() (any, error) {
     return uhppote.OpenDoor(CONTROLLER, DOOR)
+}
+
+func getCards() (any, error) {
+    return uhppote.GetCards(CONTROLLER)
+}
+
+func getCard() (any, error) {
+    return uhppote.GetCard(CONTROLLER, CARD)
+}
+
+func getCardByIndex() (any, error) {
+    return uhppote.GetCardByIndex(CONTROLLER, CARD_INDEX)
+}
+
+func putCard() (any, error) {
+    start, _ := time.Parse("2006-01-02", "2022-01-01")
+    end, _ := time.Parse("2006-01-02", "2022-12-31")
+
+    return uhppote.PutCard(CONTROLLER, CARD, uhppote.Date(start), uhppote.Date(end), 0, 1, 29, 0)
+}
+
+func deleteCard() (any, error) {
+    return uhppote.DeleteCard(CONTROLLER, CARD)
+}
+
+func deleteAllCards() (any, error) {
+    return uhppote.DeleteAllCards(CONTROLLER)
 }

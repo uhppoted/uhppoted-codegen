@@ -1,9 +1,36 @@
 use std::net::Ipv4Addr;
 
 use chrono::NaiveDateTime;
+use chrono::NaiveDate;
 
 use super::error::Error;
 use super::Msg;
+
+#[macro_export]
+macro_rules! string2bcd {
+    ($bcd:expr, $size:expr) => { 
+        {
+            let mut nibbles: [u8; 2 * $size] = [0; 2 * $size];
+            let mut bytes: [u8; $size] = [0; $size];
+            let mut ix = 0;
+
+            if $bcd.len() %2 != 0 {
+                ix = 1;
+            }
+
+            for ch in $bcd.chars() {
+                nibbles[ix] = bcd(ch)?;
+                ix += 1;
+            }
+
+            for (i,pair) in nibbles.chunks(2).enumerate() {
+                bytes[i] = (pair[0] << 4) | pair[1];
+            }
+
+            bytes
+        } 
+    };
+}
 
 {{range .model.requests}}{{template "request" .}}
 {{end}}
@@ -49,33 +76,20 @@ fn pack_ipv4(packet: &mut Msg, v: Ipv4Addr, offset: usize) -> Result<(), Error> 
     Ok(())
 }
 
-fn pack_datetime(packet: &mut Msg, v: NaiveDateTime, offset: usize) -> Result<(), Error> {
-    let s = v.format("%Y%m%d%H%M%S");
-    let bcd = string2bcd(s.to_string());
+fn pack_date(packet: &mut Msg, v: NaiveDate, offset: usize) -> Result<(), Error> {
+    let s = v.format("%Y%m%d");
+    let bcd = string2bcd!(s.to_string(),4);
 
-    packet[offset..offset + 7].clone_from_slice(&bcd?);
+    packet[offset..offset + 4].clone_from_slice(&bcd);
     Ok(())
 }
 
-fn string2bcd(s: String) -> Result<[u8; 7], Error> {
-    let mut nibbles:[u8; 14] = [0x00; 14];
-    let mut bytes:[u8; 7] = [0x00; 7];
-    let mut ix = 0;
+fn pack_datetime(packet: &mut Msg, v: NaiveDateTime, offset: usize) -> Result<(), Error> {
+    let s = v.format("%Y%m%d%H%M%S");
+    let bcd = string2bcd!(s.to_string(),7);
 
-    if s.len() %2 != 0 {
-        ix = 1;
-    }
-
-    for ch in s.chars() {
-        nibbles[ix] = bcd(ch)?;
-        ix += 1;
-    }
-
-    for (i,pair) in nibbles.chunks(2).enumerate() {
-        bytes[i] = (pair[0] << 4) | pair[1];
-    }
-
-    return Ok(bytes);
+    packet[offset..offset + 7].clone_from_slice(&bcd);
+    Ok(())
 }
 
 fn bcd(ch: char) -> Result<u8, Error> {

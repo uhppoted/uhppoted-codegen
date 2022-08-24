@@ -5,14 +5,12 @@
       - [ ] Export
       - (?) Language test skeletons
 
-- [x] get-door-control
-- [x] set-door-control
-- [x] open-door
-- [ ] get-card
-- [ ] get-cards
-- [ ] put-card
-- [ ] delete-card
-- [ ] delete-cards
+- [x] get-cards
+- [x] get-card
+- [x] get-card-by-index
+- [x] put-card
+- [x] delete-card
+- [x] delete-cards
 - [ ] get-event
 - [ ] get-event-index
 - [ ] set-event-index
@@ -26,14 +24,12 @@
 - [ ] listen
 
 ## Go
-- [x] Encode/decode error handling
 - (?) JSON tags for requests/responses
-- (?) Type constraint/variant for send() return value
+- (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [x] typedef [u8; 64]
-- [x] BCD error handling
 - [ ] Result<Vec[u8; 64], error> a lá std::io
+- [ ] Invalid date string (deleted card)
 
 ## Python
 

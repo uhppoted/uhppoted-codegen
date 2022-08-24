@@ -1,4 +1,5 @@
 use chrono::offset::Local;
+use chrono::NaiveDate;
 
 use super::error;
 use super::uhppote;
@@ -7,8 +8,10 @@ const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
 const MODE: u8 = 2;
 const DELAY: u8 = 10;
+const CARD: u32 = 8165538;
+const CARD_INDEX: u32 = 3;
 
-pub const COMMANDS: [&Command; 11] = [
+pub const COMMANDS: [&Command; 17] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -52,6 +55,30 @@ pub const COMMANDS: [&Command; 11] = [
     &Command {
         name: "open-door",
         func: open_door,
+    },
+    &Command {
+        name: "get-cards",
+        func: get_cards,
+    },
+    &Command {
+        name: "get-card",
+        func: get_card,
+    },
+    &Command {
+        name: "get-card-by-index",
+        func: get_card_by_index,
+    },
+    &Command {
+        name: "put-card",
+        func: put_card,
+    },
+    &Command {
+        name: "delete-card",
+        func: delete_card,
+    },
+    &Command {
+        name: "delete-all-cards",
+        func: delete_all_cards,
     },
 ];
 
@@ -152,6 +179,51 @@ fn set_door_control() {
 
 fn open_door() {
     match uhppote::open_door(CONTROLLER, DOOR) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_cards() {
+    match uhppote::get_cards(CONTROLLER) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_card() {
+    match uhppote::get_card(CONTROLLER, CARD) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_card_by_index() {
+    match uhppote::get_card_by_index(CONTROLLER, CARD_INDEX) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn put_card() {
+    let start = NaiveDate::from_ymd(2022, 1, 1);
+    let end = NaiveDate::from_ymd(2022, 12, 31);
+
+    match uhppote::put_card(CONTROLLER, CARD, start, end, 0, 1, 29, 0) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn delete_card() {
+    match uhppote::delete_card(CONTROLLER, CARD) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn delete_all_cards() {
+    match uhppote::delete_all_cards(CONTROLLER) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

@@ -19,11 +19,16 @@ func (d Date) String() string {
     return time.Time(d).Format("2006-01-02")
 }
 
+func (d Date) Format(format string) string {
+    return time.Time(d).Format(format)
+}
+
 func (d Date) MarshalJSON() ([]byte, error) {
     s := time.Time(d).Format("2006-01-02")
     
     return json.Marshal(s)
 }
+
 
 type Time time.Time
 

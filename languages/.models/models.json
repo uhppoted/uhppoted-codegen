@@ -627,6 +627,389 @@
           ],
           "_": "F0AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
+      },
+      {
+        "name": "get cards",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "get cards request",
+          "msgtype": 88,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            }
+          ],
+          "_": "F1gAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "get cards response",
+          "msgtype": 88,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "cards",
+              "type": "uint32",
+              "offset": 8
+            }
+          ],
+          "_": "F1gAAHg3KhgLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "get card",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "card number",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "get card request",
+          "msgtype": 90,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "card number",
+              "type": "uint32",
+              "offset": 8
+            }
+          ],
+          "_": "F1oAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "get card response",
+          "msgtype": 90,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "card number",
+              "type": "uint32",
+              "offset": 8
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "offset": 12
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "offset": 16
+            },
+            {
+              "name": "door 1",
+              "type": "uint8",
+              "offset": 20
+            },
+            {
+              "name": "door 2",
+              "type": "uint8",
+              "offset": 21
+            },
+            {
+              "name": "door 3",
+              "type": "uint8",
+              "offset": 22
+            },
+            {
+              "name": "door 4",
+              "type": "uint8",
+              "offset": 23
+            }
+          ],
+          "_": "F1oAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "get card by index",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "card index",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "get card by index request",
+          "msgtype": 92,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "card index",
+              "type": "uint32",
+              "offset": 8
+            }
+          ],
+          "_": "F1wAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "get card by index response",
+          "msgtype": 92,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "card number",
+              "type": "uint32",
+              "offset": 8
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "offset": 12
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "offset": 16
+            },
+            {
+              "name": "door 1",
+              "type": "uint8",
+              "offset": 20
+            },
+            {
+              "name": "door 2",
+              "type": "uint8",
+              "offset": 21
+            },
+            {
+              "name": "door 3",
+              "type": "uint8",
+              "offset": 22
+            },
+            {
+              "name": "door 4",
+              "type": "uint8",
+              "offset": 23
+            }
+          ],
+          "_": "F1wAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "put card",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "card number",
+            "type": "uint32"
+          },
+          {
+            "name": "start date",
+            "type": "date"
+          },
+          {
+            "name": "end date",
+            "type": "date"
+          },
+          {
+            "name": "door 1",
+            "type": "uint8"
+          },
+          {
+            "name": "door 2",
+            "type": "uint8"
+          },
+          {
+            "name": "door 3",
+            "type": "uint8"
+          },
+          {
+            "name": "door 4",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "put card request",
+          "msgtype": 80,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "card number",
+              "type": "uint32",
+              "offset": 8
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "offset": 12
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "offset": 16
+            },
+            {
+              "name": "door 1",
+              "type": "uint8",
+              "offset": 20
+            },
+            {
+              "name": "door 2",
+              "type": "uint8",
+              "offset": 21
+            },
+            {
+              "name": "door 3",
+              "type": "uint8",
+              "offset": 22
+            },
+            {
+              "name": "door 4",
+              "type": "uint8",
+              "offset": 23
+            }
+          ],
+          "_": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "put card response",
+          "msgtype": 80,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "stored",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": "F1AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "delete card",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "card number",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "delete card request",
+          "msgtype": 82,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "card number",
+              "type": "uint32",
+              "offset": 8
+            }
+          ],
+          "_": "F1IAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "delete card response",
+          "msgtype": 82,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "deleted",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": "F1IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "delete all cards",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "delete cards request",
+          "msgtype": 84,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "",
+              "type": "magic",
+              "offset": 8
+            }
+          ],
+          "_": "F1QAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "delete all cards response",
+          "msgtype": 84,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "deleted",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
       }
     ],
     "requests": [
@@ -809,6 +1192,133 @@
           }
         ],
         "_": "F0AAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "get cards request",
+        "msgtype": 88,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          }
+        ],
+        "_": "F1gAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "get card request",
+        "msgtype": 90,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "card number",
+            "type": "uint32",
+            "offset": 8
+          }
+        ],
+        "_": "F1oAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "get card by index request",
+        "msgtype": 92,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "card index",
+            "type": "uint32",
+            "offset": 8
+          }
+        ],
+        "_": "F1wAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "put card request",
+        "msgtype": 80,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "card number",
+            "type": "uint32",
+            "offset": 8
+          },
+          {
+            "name": "start date",
+            "type": "date",
+            "offset": 12
+          },
+          {
+            "name": "end date",
+            "type": "date",
+            "offset": 16
+          },
+          {
+            "name": "door 1",
+            "type": "uint8",
+            "offset": 20
+          },
+          {
+            "name": "door 2",
+            "type": "uint8",
+            "offset": 21
+          },
+          {
+            "name": "door 3",
+            "type": "uint8",
+            "offset": 22
+          },
+          {
+            "name": "door 4",
+            "type": "uint8",
+            "offset": 23
+          }
+        ],
+        "_": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "delete card request",
+        "msgtype": 82,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "card number",
+            "type": "uint32",
+            "offset": 8
+          }
+        ],
+        "_": "F1IAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "delete cards request",
+        "msgtype": 84,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "",
+            "type": "magic",
+            "offset": 8
+          }
+        ],
+        "_": "F1QAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
       }
     ],
     "responses": [
@@ -1124,6 +1634,168 @@
           }
         ],
         "_": "F0AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "get cards response",
+        "msgtype": 88,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "cards",
+            "type": "uint32",
+            "offset": 8
+          }
+        ],
+        "_": "F1gAAHg3KhgLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "get card response",
+        "msgtype": 90,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "card number",
+            "type": "uint32",
+            "offset": 8
+          },
+          {
+            "name": "start date",
+            "type": "date",
+            "offset": 12
+          },
+          {
+            "name": "end date",
+            "type": "date",
+            "offset": 16
+          },
+          {
+            "name": "door 1",
+            "type": "uint8",
+            "offset": 20
+          },
+          {
+            "name": "door 2",
+            "type": "uint8",
+            "offset": 21
+          },
+          {
+            "name": "door 3",
+            "type": "uint8",
+            "offset": 22
+          },
+          {
+            "name": "door 4",
+            "type": "uint8",
+            "offset": 23
+          }
+        ],
+        "_": "F1oAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "get card by index response",
+        "msgtype": 92,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "card number",
+            "type": "uint32",
+            "offset": 8
+          },
+          {
+            "name": "start date",
+            "type": "date",
+            "offset": 12
+          },
+          {
+            "name": "end date",
+            "type": "date",
+            "offset": 16
+          },
+          {
+            "name": "door 1",
+            "type": "uint8",
+            "offset": 20
+          },
+          {
+            "name": "door 2",
+            "type": "uint8",
+            "offset": 21
+          },
+          {
+            "name": "door 3",
+            "type": "uint8",
+            "offset": 22
+          },
+          {
+            "name": "door 4",
+            "type": "uint8",
+            "offset": 23
+          }
+        ],
+        "_": "F1wAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "put card response",
+        "msgtype": 80,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "stored",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": "F1AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "delete card response",
+        "msgtype": 82,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "deleted",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": "F1IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+      },
+      {
+        "name": "delete all cards response",
+        "msgtype": 84,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "deleted",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
       }
     ]
   }

@@ -1,7 +1,7 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= open-door
+COMMAND ?= get-cards
 
 MODELS     = languages/.models
 GO         = languages/go

@@ -1,14 +1,16 @@
 use std::net::Ipv4Addr;
 
 use chrono::NaiveDateTime;
-
-use super::error;
+use chrono::NaiveDate;
 
 use decode::*;
 use encode::*;
-use error::ErrorKind::NoResponse;
 use udp::send;
 use udp::Msg;
+
+use super::error;
+use error::Error;
+use error::ErrorKind::NoResponse;
 
 #[path = "encode.rs"]
 mod encode;
@@ -31,7 +33,7 @@ pub fn set_debug(enabled: bool) {
     udp::set_debug(enabled)
 }
 
-pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, error::Error> {
+pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>, Error> {
     let request = get_controller_request(0)?;
     let replies = send(&request, udp::read_all)?;
 

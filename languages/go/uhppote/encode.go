@@ -54,6 +54,18 @@ func packIPv4(packet []byte, v netip.Addr, offset uint8) error {
     return nil
 }
 
+func packDate(packet []byte, v Date, offset uint8) error {
+    s := v.Format("20060102")
+    
+    if bytes, err := string2bcd(s); err != nil {
+        return err
+    } else {
+        copy(packet[offset:], bytes)
+
+        return nil        
+    }
+}
+
 func packDatetime(packet []byte, v DateTime, offset uint8) error {
     s := v.Format("20060102150405")
     
