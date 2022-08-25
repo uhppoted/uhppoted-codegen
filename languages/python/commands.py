@@ -1,5 +1,6 @@
 import uhppote
 
+
 def commands():
     return {
         'get-all-controllers': get_all_controllers,
@@ -31,10 +32,11 @@ def commands():
         # 'clear-tasklist': clear_tasklist,
     }
 
+
 def exec(f):
     response = f()
     print(response)
 
+
 def get_all_controllers():
     print(uhppote.get_all_controllers())
-

@@ -24,14 +24,16 @@
 - [ ] listen
 
 ## Go
+- [ ] Rework pack_xxx to be (value, buffer, offset)
 - (?) JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
+- [ ] Rework pack_xxx to be (value, buffer, offset)
+- [ ] Move exec to commands a la Go/Python
 - [x] Result<Vec[u8; 64], error> a lá std::io
 - [x] Invalid date string (deleted card)
 - [x] Fix error hierarchy
-- [ ] Move exec to commands a la Go/Python
 
 ## Python
 
