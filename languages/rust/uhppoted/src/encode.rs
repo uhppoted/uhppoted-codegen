@@ -43,40 +43,40 @@ pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<Msg, Error> {
     packet[1] = {{byte2hex .msgtype}};
 
     {{range .fields}}
-    {{if ne .type "magic"}}pack_{{snakeCase .type}}(&mut packet, {{snakeCase .name}}, {{.offset}})?;
-    {{else}}pack_uint32(&mut packet, 0x55aaaa55, {{.offset}})?;{{end}}{{end}}
+    {{if ne .type "magic"}}pack_{{snakeCase .type}}({{snakeCase .name}}, &mut packet, {{.offset}})?;
+    {{else}}pack_uint32(0x55aaaa55, &mut packet, {{.offset}})?;{{end}}{{end}}
 
     return Ok(packet)
 }
 {{end}}
 
-fn pack_uint8(packet: &mut Msg, v: u8, offset: usize) -> Result<(), Error> {
+fn pack_uint8(v: u8, packet: &mut Msg, offset: usize) -> Result<(), Error> {
     packet[offset] = v;
     Ok(())
 }
 
-fn pack_uint16(packet: &mut Msg, v: u16, offset: usize) -> Result<(), Error> {
+fn pack_uint16(v: u16, packet: &mut Msg, offset: usize) -> Result<(), Error> {
     let bytes = v.to_le_bytes();
 
     packet[offset..offset + 2].clone_from_slice(&bytes);
     Ok(())
 }
 
-fn pack_uint32(packet: &mut Msg, v: u32, offset: usize) -> Result<(), Error> {
+fn pack_uint32(v: u32, packet: &mut Msg, offset: usize) -> Result<(), Error> {
     let bytes = v.to_le_bytes();
 
     packet[offset..offset + 4].clone_from_slice(&bytes);
     Ok(())
 }
 
-fn pack_ipv4(packet: &mut Msg, v: Ipv4Addr, offset: usize) -> Result<(), Error> {
+fn pack_ipv4(v: Ipv4Addr, packet: &mut Msg, offset: usize) -> Result<(), Error> {
     let addr = v.octets();
 
     packet[offset..offset + 4].clone_from_slice(&addr);
     Ok(())
 }
 
-fn pack_date(packet: &mut Msg, v: NaiveDate, offset: usize) -> Result<(), Error> {
+fn pack_date(v: NaiveDate, packet: &mut Msg, offset: usize) -> Result<(), Error> {
     let s = v.format("%Y%m%d");
     let bcd = string2bcd!(s.to_string(),4);
 
@@ -84,7 +84,7 @@ fn pack_date(packet: &mut Msg, v: NaiveDate, offset: usize) -> Result<(), Error>
     Ok(())
 }
 
-fn pack_datetime(packet: &mut Msg, v: NaiveDateTime, offset: usize) -> Result<(), Error> {
+fn pack_datetime(v: NaiveDateTime, packet: &mut Msg, offset: usize) -> Result<(), Error> {
     let s = v.format("%Y%m%d%H%M%S");
     let bcd = string2bcd!(s.to_string(),7);
 

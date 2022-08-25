@@ -17,10 +17,10 @@ func {{CamelCase .name}}({{template "args" .fields}}) ([]byte,error) {
     packet[1] = {{byte2hex .msgtype}}
     {{range .fields}}
     {{if ne .type "magic"}}
-    if err := pack{{CamelCase .type}}(packet, {{camelCase .name}}, {{.offset}}); err != nil {
+    if err := pack{{CamelCase .type}}({{camelCase .name}}, packet, {{.offset}}); err != nil {
         return nil, err
     }{{else}}
-    if err := packUint32(packet, 0x55aaaa55, {{.offset}}); err != nil {
+    if err := packUint32(0x55aaaa55, packet, {{.offset}}); err != nil {
         return nil, err        
     }
     {{end}}{{end}}
@@ -29,32 +29,32 @@ func {{CamelCase .name}}({{template "args" .fields}}) ([]byte,error) {
 }
 {{end}}
 
-func packUint8(packet []byte, v uint8, offset uint8) error {
+func packUint8(v uint8, packet []byte, offset uint8) error {
     packet[offset] = v
 
     return nil
 }
 
-func packUint16(packet []byte, v uint16, offset uint8) error {
+func packUint16(v uint16, packet []byte, offset uint8) error {
     binary.LittleEndian.PutUint16(packet[offset:offset+2], v)
 
     return nil
 }
 
-func packUint32(packet []byte, v uint32, offset uint8) error {
+func packUint32(v uint32, packet []byte, offset uint8) error {
     binary.LittleEndian.PutUint32(packet[offset:offset+4], v)
 
     return nil
 }
 
-func packIPv4(packet []byte, v netip.Addr, offset uint8) error {
+func packIPv4(v netip.Addr, packet []byte, offset uint8) error {
     addr := v.As4()
     copy(packet[offset:], addr[:])
 
     return nil
 }
 
-func packDate(packet []byte, v Date, offset uint8) error {
+func packDate(v Date, packet []byte, offset uint8) error {
     s := v.Format("20060102")
     
     if bytes, err := string2bcd(s); err != nil {
@@ -66,7 +66,7 @@ func packDate(packet []byte, v Date, offset uint8) error {
     }
 }
 
-func packDatetime(packet []byte, v DateTime, offset uint8) error {
+func packDatetime(v DateTime, packet []byte, offset uint8) error {
     s := v.Format("20060102150405")
     
     if bytes, err := string2bcd(s); err != nil {

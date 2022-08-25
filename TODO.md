@@ -17,12 +17,12 @@
 - [ ] listen
 
 ## Go
-- [ ] Rework pack_xxx to be (value, buffer, offset)
+- [x] Rework pack_xxx to be (value, buffer, offset)
 - (?) JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [ ] Move exec to commands a la Go/Python
+- [x] Move exec to commands a la Go/Python
 - [ ] Rework pack_xxx to be (value, buffer, offset)
 - [ ] Rework encode to use pack(...) for u32 etc
 
