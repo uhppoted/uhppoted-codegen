@@ -33,12 +33,6 @@ var funcs = template.FuncMap{
 	},
 }
 
-// var uhppote = model.Model{
-// 	Functions: model.Functions,
-// 	Requests:  model.Requests,
-// 	Responses: model.Responses,
-// }
-
 func New(models string, templates string, out string, debug bool) Generator {
 	g := Generator{
 		models:    models,

@@ -6,6 +6,7 @@ COMMAND ?= get-cards
 MODELS     = languages/.models
 GO         = languages/go
 RUST       = languages/rust
+PYTHON     = languages/python
 JAVASCRIPT = languages/javascript
 
 .PHONY: update
@@ -112,6 +113,19 @@ rust-all: rust
 
 rust-usage: rust
 	./generated/rust/uhppoted/target/debug/uhppoted
+
+python: build regen 
+	$(CMD) --models $(MODELS) --templates $(PYTHON) --out generated/python
+	cd generated/python && 	yapf -ri .
+
+python-debug: python
+	python3 ./generated/python/main.py --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+
+python-all: python
+	python3 ./generated/python/main.py --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+
+python-usage: python
+	python3 ./generated/python/main.py
 
 javascript: build
 	$(CMD) --models $(MODELS) --templates $(JAVASCRIPT) --out generated/javascript --clean

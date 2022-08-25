@@ -31,6 +31,7 @@
 - [x] Result<Vec[u8; 64], error> a lá std::io
 - [x] Invalid date string (deleted card)
 - [x] Fix error hierarchy
+- [ ] Move exec to commands a la Go/Python
 
 ## Python
 
