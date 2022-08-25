@@ -22,9 +22,9 @@
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [x] Move exec to commands a la Go/Python
-- [ ] Rework pack_xxx to be (value, buffer, offset)
-- [ ] Rework encode to use pack(...) for u32 etc
+- [x] Rework pack_xxx to be (value, buffer, offset)
+- [x] Rework encode to use Pack trait
+- [ ] Rework decode to use Unpack trait
 
 ## Python
 - https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python

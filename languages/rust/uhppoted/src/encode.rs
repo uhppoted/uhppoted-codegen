@@ -6,6 +6,10 @@ use chrono::NaiveDate;
 use super::error::Error;
 use super::Msg;
 
+pub type Result<T> = std::result::Result<T, Error>;
+
+const MAGIC: u32 = 0x55aaaa55;
+
 #[macro_export]
 macro_rules! string2bcd {
     ($bcd:expr, $size:expr) => { 
@@ -36,63 +40,79 @@ macro_rules! string2bcd {
 {{end}}
 
 {{define "request"}}
-pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<Msg, Error> {
+pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<Msg> {
     let mut packet = [0x00; 64];
 
     packet[0] = 0x17;
     packet[1] = {{byte2hex .msgtype}};
 
     {{range .fields}}
-    {{if ne .type "magic"}}pack_{{snakeCase .type}}({{snakeCase .name}}, &mut packet, {{.offset}})?;
-    {{else}}pack_uint32(0x55aaaa55, &mut packet, {{.offset}})?;{{end}}{{end}}
+    {{if ne .type "magic"}}{{snakeCase .name}}.pack(&mut packet, {{.offset}})?;
+    {{else}}MAGIC.pack(&mut packet, {{.offset}})?;{{end}}{{end}}
 
     return Ok(packet)
 }
 {{end}}
 
-fn pack_uint8(v: u8, packet: &mut Msg, offset: usize) -> Result<(), Error> {
-    packet[offset] = v;
-    Ok(())
+trait Pack {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()>;
 }
 
-fn pack_uint16(v: u16, packet: &mut Msg, offset: usize) -> Result<(), Error> {
-    let bytes = v.to_le_bytes();
-
-    packet[offset..offset + 2].clone_from_slice(&bytes);
-    Ok(())
+impl Pack for u8 {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()> {
+        packet[offset] = self;
+        Ok(())
+    }
 }
 
-fn pack_uint32(v: u32, packet: &mut Msg, offset: usize) -> Result<(), Error> {
-    let bytes = v.to_le_bytes();
+impl Pack for u16 {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()> {
+        let bytes = self.to_le_bytes();
 
-    packet[offset..offset + 4].clone_from_slice(&bytes);
-    Ok(())
+        packet[offset..offset + 2].clone_from_slice(&bytes);
+        Ok(())
+    }
 }
 
-fn pack_ipv4(v: Ipv4Addr, packet: &mut Msg, offset: usize) -> Result<(), Error> {
-    let addr = v.octets();
+impl Pack for u32 {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()> {
+        let bytes = self.to_le_bytes();
 
-    packet[offset..offset + 4].clone_from_slice(&addr);
-    Ok(())
+        packet[offset..offset + 4].clone_from_slice(&bytes);
+        Ok(())
+    }
 }
 
-fn pack_date(v: NaiveDate, packet: &mut Msg, offset: usize) -> Result<(), Error> {
-    let s = v.format("%Y%m%d");
-    let bcd = string2bcd!(s.to_string(),4);
+impl Pack for Ipv4Addr {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()> {
+        let addr = self.octets();
 
-    packet[offset..offset + 4].clone_from_slice(&bcd);
-    Ok(())
+        packet[offset..offset + 4].clone_from_slice(&addr);
+        Ok(())
+    }
 }
 
-fn pack_datetime(v: NaiveDateTime, packet: &mut Msg, offset: usize) -> Result<(), Error> {
-    let s = v.format("%Y%m%d%H%M%S");
-    let bcd = string2bcd!(s.to_string(),7);
+impl Pack for NaiveDate {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()> {
+        let s = self.format("%Y%m%d");
+        let bcd = string2bcd!(s.to_string(),4);
 
-    packet[offset..offset + 7].clone_from_slice(&bcd);
-    Ok(())
+        packet[offset..offset + 4].clone_from_slice(&bcd);
+        Ok(())
+    }
 }
 
-fn bcd(ch: char) -> Result<u8, Error> {
+impl Pack for NaiveDateTime {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()> {
+        let s = self.format("%Y%m%d%H%M%S");
+        let bcd = string2bcd!(s.to_string(),7);
+
+        packet[offset..offset + 7].clone_from_slice(&bcd);
+        Ok(())
+    }
+}
+
+fn bcd(ch: char) -> Result<u8> {
     match ch {
         '0' => Ok(0),
         '1' => Ok(1),
