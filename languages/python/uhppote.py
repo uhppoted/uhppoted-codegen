@@ -1,20 +1,19 @@
 import encode
+import decode
 import udp
 
 
-def get_all_controllers():
-    request = encode.get_controller_request(0)
-    replies = udp.send(request, udp.read_all)
+class Uhppote:
 
-    # list := []*GetControllerResponse{}
-    # for _, reply := range replies {
-    #     if response, err := getControllerResponse(reply); err != nil {
-    #         return nil, err
-    #     } else if response != nil {
-    #         list = append(list, response)
-    #     }
-    # }
+    def __init__(self, bind='0.0.0.0', broadcast='255.255.255.255:60000', debug=False):
+        self._udp = udp.UDP(bind, broadcast, debug)
 
-    # return list, nil
+    def get_all_controllers(self):
+        request = encode.get_controller_request(0)
+        replies = self._udp.send(request, udp.read_all)
 
-    raise Exception(f'not implemented')
+        list = []
+        for reply in replies:
+            list.append(decode.get_controller_response(reply))
+
+        return list

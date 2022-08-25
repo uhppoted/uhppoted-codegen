@@ -33,10 +33,11 @@ def commands():
     }
 
 
-def exec(f):
-    response = f()
+def exec(f, bind, broadcast, debug):
+    u = uhppote.Uhppote(bind, broadcast, debug)
+    response = f(u)
     print(response)
 
 
-def get_all_controllers():
-    print(uhppote.get_all_controllers())
+def get_all_controllers(u):
+    print(u.get_all_controllers())

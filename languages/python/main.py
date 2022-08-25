@@ -33,13 +33,16 @@ def main():
 
     args = parser.parse_args()
     cmd = args.command
+    bind = args.bind
+    broadcast = args.broadcast
+    debug = args.debug
 
     try:
         if cmd == 'all':
             for fn in commands().values():
-                exec(fn)
+                exec(fn, bind, broadcast, debug)
         elif cmd in commands():
-            exec(commands()[cmd])
+            exec(commands()[cmd], bind, broadcast, debug)
         else:
             print()
             print(f'  ERROR: invalid command ({cmd})')
