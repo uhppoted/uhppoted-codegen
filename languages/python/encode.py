@@ -13,4 +13,4 @@ def get_controller_request(device_id):
 
 
 def pack_uint32(v, packet, offset):
-    struct.pack_into('<I', packet, offset, v)
+    struct.pack_into('<L', packet, offset, v)

@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Tests
+- [ ] Test data
       - [ ] Export
       - (?) Language test skeletons
 
@@ -17,17 +17,29 @@
 - [ ] listen
 
 ## Go
+- [ ] bind address should not include port
+- [ ] Make MAC a string
 - [x] Rework pack_xxx to be (value, buffer, offset)
 - (?) JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
+- [ ] bind address should not include port
+- [ ] Make MAC a string
 - [x] Rework pack_xxx to be (value, buffer, offset)
 - [x] Rework encode to use Pack trait
 - [ ] Rework decode to use Unpack trait
 
 ## Python
-- https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python
+- [ ] Make bind, broadcast IPv4Address
+- [ ] pprint
+- [ ] asyncio
+      - https://docs.python.org/3/howto/sockets.html
+      - https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python
+      - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
+      - https://stackoverflow.com/questions/35585935/start-async-function-without-importing-the-asyncio-package
+      - https://realpython.com/async-io-python/
+      - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
 ## Erlang
 

@@ -4,7 +4,6 @@ import udp
 
 
 class Uhppote:
-
     def __init__(self, bind='0.0.0.0', broadcast='255.255.255.255:60000', debug=False):
         self._udp = udp.UDP(bind, broadcast, debug)
 

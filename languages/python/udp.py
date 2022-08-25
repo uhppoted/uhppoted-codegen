@@ -1,12 +1,12 @@
 import socket
 import struct
+import time
 
 READ_TIMEOUT = struct.pack('ll', 5, 0)
 WRITE_TIMEOUT = struct.pack('ll', 1, 0)
 
 
 class UDP:
-
     def __init__(self, bind='0.0.0.0', broadcast='255.255.255.255:60000', debug=False):
         self._bind = ('0.0.0.0', 0)
         self._broadcast = ('192.168.1.100', 60000)
@@ -16,7 +16,7 @@ class UDP:
         self.dump(request)
 
         # sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM | socket.SOCK_NONBLOCK)
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
 
         try:
             sock.bind(self._bind)
@@ -35,13 +35,20 @@ class UDP:
             dump(packet)
 
 
+# TODO convert to asyncio
 def read_all(sock, debug):
+    sock.settimeout(2.5)
+
     replies = []
-    reply = sock.recv(1024)
-    if len(reply) == 64:
-        replies.append(reply)
-        if debug:
-            dump(reply)
+    while True:
+        try:
+            reply = sock.recv(1024)
+            if len(reply) == 64:
+                replies.append(reply)
+                if debug:
+                    dump(reply)
+        except socket.timeout:
+            break
 
     return replies
 
