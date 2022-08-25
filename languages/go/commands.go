@@ -18,6 +18,7 @@ const MODE uint8 = 2
 const DELAY uint8 = 10
 const CARD uint32 = 8165538
 const CARD_INDEX uint32 = 3
+const EVENT_INDEX uint32 = 37
 
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -47,6 +48,9 @@ var commands = []command{
     command{name: "put-card", f: putCard},
     command{name: "delete-card", f: deleteCard},
     command{name: "delete-all-cards", f: deleteAllCards},
+    command{name: "get-event", f: getEvent},
+    command{name: "get-event-index", f: getEventIndex},
+    command{name: "set-event-index", f: setEventIndex},
 }
 
 func (c command) exec() {
@@ -140,4 +144,16 @@ func deleteCard() (any, error) {
 
 func deleteAllCards() (any, error) {
     return uhppote.DeleteAllCards(CONTROLLER)
+}
+
+func getEvent() (any, error) {
+    return uhppote.GetEvent(CONTROLLER, EVENT_INDEX)
+}
+
+func getEventIndex() (any, error) {
+    return uhppote.GetEventIndex(CONTROLLER)
+}
+
+func setEventIndex() (any, error) {
+    return uhppote.SetEventIndex(CONTROLLER, EVENT_INDEX)
 }

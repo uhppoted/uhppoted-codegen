@@ -3,11 +3,11 @@ DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
 COMMAND ?= get-cards
 
-MODELS     = languages/.models
-GO         = languages/go
-RUST       = languages/rust
-PYTHON     = languages/python
-JAVASCRIPT = languages/javascript
+MODELS = languages/.models
+GO     = languages/go
+RUST   = languages/rust
+PYTHON = languages/python
+HTTP   = languages/http
 
 .PHONY: update
 .PHONY: update-release
@@ -36,6 +36,8 @@ format:
 
 build: format
 	go build -trimpath -o bin/ ./...
+
+debug: go rust
 
 test: build
 	go test ./...
@@ -71,6 +73,8 @@ release: update-release build-all regen
 	cd dist;  zip --recurse-paths $(DIST).zip $(DIST)
 
 debug: build
+	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 delve: build
 #	dlv exec ./bin/uhppoted-codegen
@@ -127,6 +131,6 @@ python-all: python
 python-usage: python
 	python3 ./generated/python/main.py
 
-javascript: build
-	$(CMD) --models $(MODELS) --templates $(JAVASCRIPT) --out generated/javascript --clean
+http: build
+	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
 

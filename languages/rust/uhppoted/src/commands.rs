@@ -9,8 +9,9 @@ const MODE: u8 = 2;
 const DELAY: u8 = 10;
 const CARD: u32 = 8165538;
 const CARD_INDEX: u32 = 3;
+const EVENT_INDEX: u32 = 37;
 
-pub const COMMANDS: [&Command; 17] = [
+pub const COMMANDS: [&Command; 20] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -78,6 +79,18 @@ pub const COMMANDS: [&Command; 17] = [
     &Command {
         name: "delete-all-cards",
         func: delete_all_cards,
+    },
+    &Command {
+        name: "get-event",
+        func: get_event,
+    },
+    &Command {
+        name: "get-event-index",
+        func: get_event_index,
+    },
+    &Command {
+        name: "set-event-index",
+        func: set_event_index,
     },
 ];
 
@@ -223,6 +236,27 @@ fn delete_card() {
 
 fn delete_all_cards() {
     match uhppote::delete_all_cards(CONTROLLER) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_event() {
+    match uhppote::get_event(CONTROLLER, EVENT_INDEX) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_event_index() {
+    match uhppote::get_event_index(CONTROLLER) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn set_event_index() {
+    match uhppote::set_event_index(CONTROLLER, EVENT_INDEX) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

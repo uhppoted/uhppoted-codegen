@@ -1072,6 +1072,190 @@
             "bytes": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
           }
         }
+      },
+      {
+        "name": "get event",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "event index",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "get event request",
+          "msgtype": 176,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "event index",
+              "type": "uint32",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F7AAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "get event response",
+          "msgtype": 176,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "index",
+              "type": "uint32",
+              "offset": 8
+            },
+            {
+              "name": "event type",
+              "type": "uint8",
+              "offset": 12
+            },
+            {
+              "name": "access granted",
+              "type": "bool",
+              "offset": 13
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 14
+            },
+            {
+              "name": "direction",
+              "type": "uint8",
+              "offset": 15
+            },
+            {
+              "name": "card",
+              "type": "uint32",
+              "offset": 16
+            },
+            {
+              "name": "timestamp",
+              "type": "datetime",
+              "offset": 20
+            },
+            {
+              "name": "reason",
+              "type": "uint8",
+              "offset": 27
+            }
+          ],
+          "_": {
+            "bytes": "F7AAAHg3KhglAAAAAgEBAaCYfAAgGQgEIAIHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
+      },
+      {
+        "name": "get event index",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "get event index request",
+          "msgtype": 180,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            }
+          ],
+          "_": {
+            "bytes": "F7QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "get event index response",
+          "msgtype": 180,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "event index",
+              "type": "uint32",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F7QAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
+      },
+      {
+        "name": "set event index",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "event index",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "set event index request",
+          "msgtype": 178,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "event index",
+              "type": "uint32",
+              "offset": 8
+            },
+            {
+              "name": "",
+              "type": "magic",
+              "offset": 12
+            }
+          ],
+          "_": {
+            "bytes": "F7IAAHg3KhglAAAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "set event index response",
+          "msgtype": 178,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "updated",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F7IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
       }
     ],
     "requests": [
@@ -1412,6 +1596,63 @@
         ],
         "_": {
           "bytes": "F1QAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "get event request",
+        "msgtype": 176,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "event index",
+            "type": "uint32",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F7AAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "get event index request",
+        "msgtype": 180,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          }
+        ],
+        "_": {
+          "bytes": "F7QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "set event index request",
+        "msgtype": 178,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "event index",
+            "type": "uint32",
+            "offset": 8
+          },
+          {
+            "name": "",
+            "type": "magic",
+            "offset": 12
+          }
+        ],
+        "_": {
+          "bytes": "F7IAAHg3KhglAAAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ],
@@ -1919,6 +2160,98 @@
         ],
         "_": {
           "bytes": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "get event response",
+        "msgtype": 176,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "index",
+            "type": "uint32",
+            "offset": 8
+          },
+          {
+            "name": "event type",
+            "type": "uint8",
+            "offset": 12
+          },
+          {
+            "name": "access granted",
+            "type": "bool",
+            "offset": 13
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 14
+          },
+          {
+            "name": "direction",
+            "type": "uint8",
+            "offset": 15
+          },
+          {
+            "name": "card",
+            "type": "uint32",
+            "offset": 16
+          },
+          {
+            "name": "timestamp",
+            "type": "datetime",
+            "offset": 20
+          },
+          {
+            "name": "reason",
+            "type": "uint8",
+            "offset": 27
+          }
+        ],
+        "_": {
+          "bytes": "F7AAAHg3KhglAAAAAgEBAaCYfAAgGQgEIAIHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "get event index response",
+        "msgtype": 180,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "event index",
+            "type": "uint32",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F7QAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "set event index response",
+        "msgtype": 178,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "updated",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F7IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ]

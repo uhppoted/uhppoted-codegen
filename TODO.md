@@ -1,19 +1,12 @@
 # TODO
 
 - [ ] Tests
-      - [x] Add test data to model
       - [ ] Export
       - (?) Language test skeletons
 
-- [x] get-cards
-- [x] get-card
-- [x] get-card-by-index
-- [x] put-card
-- [x] delete-card
-- [x] delete-cards
-- [ ] get-event
-- [ ] get-event-index
-- [ ] set-event-index
+- [x] get-event
+- [x] get-event-index
+- [x] set-event-index
 - [ ] get-time-profile
 - [ ] record-special-events
 - [ ] set-time-profile
@@ -29,11 +22,9 @@
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [ ] Rework pack_xxx to be (value, buffer, offset)
 - [ ] Move exec to commands a la Go/Python
-- [x] Result<Vec[u8; 64], error> a lá std::io
-- [x] Invalid date string (deleted card)
-- [x] Fix error hierarchy
+- [ ] Rework pack_xxx to be (value, buffer, offset)
+- [ ] Rework encode to use pack(...) for u32 etc
 
 ## Python
 - https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python

@@ -19,6 +19,9 @@ var Functions = []Function{
 	PutCard,
 	DeleteCard,
 	DeleteAllCards,
+	GetEvent,
+	GetEventIndex,
+	SetEventIndex,
 }
 
 var GetController = Function{
@@ -294,4 +297,48 @@ var DeleteAllCards = Function{
 	},
 	Request:  &DeleteAllCardsRequest,
 	Response: &DeleteAllCardsResponse,
+}
+
+var GetEvent = Function{
+	Name: "get event",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "event index",
+			Type: "uint32",
+		},
+	},
+	Request:  &GetEventRequest,
+	Response: &GetEventResponse,
+}
+
+var GetEventIndex = Function{
+	Name: "get event index",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+	},
+	Request:  &GetEventIndexRequest,
+	Response: &GetEventIndexResponse,
+}
+
+var SetEventIndex = Function{
+	Name: "set event index",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "event index",
+			Type: "uint32",
+		},
+	},
+	Request:  &SetEventIndexRequest,
+	Response: &SetEventIndexResponse,
 }
