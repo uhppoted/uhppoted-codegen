@@ -1,5 +1,6 @@
 import socket
 import struct
+import re
 import time
 
 READ_TIMEOUT = struct.pack('ll', 5, 0)
@@ -8,8 +9,8 @@ WRITE_TIMEOUT = struct.pack('ll', 1, 0)
 
 class UDP:
     def __init__(self, bind='0.0.0.0', broadcast='255.255.255.255:60000', debug=False):
-        self._bind = ('0.0.0.0', 0)
-        self._broadcast = ('192.168.1.100', 60000)
+        self._bind = (bind, 0)
+        self._broadcast = resolve(broadcast)
         self._debug = debug
 
     def send(self, request, fn):
@@ -20,6 +21,7 @@ class UDP:
 
         try:
             sock.bind(self._bind)
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_SNDTIMEO, WRITE_TIMEOUT)
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVTIMEO, READ_TIMEOUT)
             # socket, err := net.ListenUDP("udp", bindAddr)
@@ -68,6 +70,14 @@ def read_all(sock, debug):
 
 def read_none(sock, debug):
     return None
+
+def resolve(addr):
+    match = re.match(r'(.*?):([0-9]+)', addr)
+    if match:
+        return (match.group(1), int(match.group(2)))
+    else:
+        address = ipaddress.IPv4Address(addr)
+        return (str(address), 60000)
 
 def dump(packet):
     for i in range(0, 4):

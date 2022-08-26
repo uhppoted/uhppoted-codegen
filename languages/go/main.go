@@ -23,7 +23,7 @@ func main() {
 		debug:     false,
 	}
 
-	flag.StringVar(&options.bind, "bind", options.bind, "UDP IPv4 bind address. Defaults to 0.0.0.0:0")
+	flag.StringVar(&options.bind, "bind", options.bind, "UDP IPv4 bind address. Defaults to 0.0.0.0")
 	flag.StringVar(&options.broadcast, "broadcast", options.broadcast, "UDP IPv4 broadcast address. Defaults to 255.255.255.255:60000")
 	flag.BoolVar(&options.debug, "debug", options.debug, "Displays sent and received UDP packets")
 	flag.Parse()
@@ -67,7 +67,7 @@ func usage() {
 	fmt.Println()
 	fmt.Println("    Options:")
 	fmt.Println("    --debug                Displays sent and received UDP packets")
-	fmt.Println("    --bind <address>       IPv4 address to which to bind. Defaults to 0.0.0.0:0")
+	fmt.Println("    --bind <address>       IPv4 address to which to bind. Defaults to 0.0.0.0")
 	fmt.Println("    --broadcast <address>  IPv4 address to which for UDP broadcast. Defaults to 255.255.255.255:60000")
 	fmt.Println()
 	fmt.Println("    Commands:")

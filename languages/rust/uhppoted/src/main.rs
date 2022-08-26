@@ -86,7 +86,7 @@ fn usage() {
     println!();
     println!("    Options:");
     println!("    --debug                Displays sent and received UDP packets");
-    println!("    --bind <address>       IPv4 address to which to bind. Defaults to 0.0.0.0:0");
+    println!("    --bind <address>       IPv4 address to which to bind. Defaults to 0.0.0.0");
     println!("    --broadcast <address>  IPv4 address to which for UDP broadcast. Defaults to 255.255.255.255:60000");
 
     println!("    Commands:");

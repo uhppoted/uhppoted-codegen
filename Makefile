@@ -42,7 +42,7 @@ build: format
 	go build -trimpath -o bin/ ./...
 
 debug: go rust python
-	$(GOBIN)   --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
 	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
@@ -96,10 +96,10 @@ go: build regen
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
 go-debug: go
-	$(GOBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 go-all: go
-	$(GOBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 all
 
 go-usage: regen build
 	$(GOBIN)
@@ -109,10 +109,10 @@ rust: build regen
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 rust-all: rust
-	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 all
 
 rust-usage: rust
 	$(RUSTBIN)
@@ -126,7 +126,7 @@ python-debug: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 python-all: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 all
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255 all
 
 python-usage: python
 	$(PYBIN)

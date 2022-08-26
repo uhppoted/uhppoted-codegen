@@ -24,7 +24,7 @@ lazy_static! {
 
 pub fn set_bind_addr(addr: &str) {
     if let Ok(mut guard) = BIND_ADDR.write() {
-        *guard = addr.to_string();
+        *guard = addr.to_string() + ":0";
     }
 }
 

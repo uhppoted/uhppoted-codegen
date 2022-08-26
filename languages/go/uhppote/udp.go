@@ -15,7 +15,9 @@ var destAddr *net.UDPAddr = resolve("255.255.255.255:60000")
 var debug bool = false
 
 func SetBindAddr(addr string) {
-    bindAddr = resolve(addr)
+    address := netip.MustParseAddr(addr)
+    addrPort := netip.AddrPortFrom(address, 0)
+    bindAddr = net.UDPAddrFromAddrPort(addrPort)
 }
 
 func SetDestAddr(addr string) {
