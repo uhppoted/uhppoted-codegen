@@ -26,3 +26,9 @@ def pack_uint16(v, packet, offset):
 
 def pack_uint32(v, packet, offset):
     struct.pack_into('<L', packet, offset, v)
+
+def pack_bool(v, packet, offset):
+    if v:
+        packet[offset] = 0x01
+    else:
+        packet[offset] = 0x00

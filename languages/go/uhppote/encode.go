@@ -78,6 +78,16 @@ func packDatetime(v DateTime, packet []byte, offset uint8) error {
     }
 }
 
+func packBool(v bool, packet []byte, offset uint8) error {
+    if v {
+        packet[offset] = 0x01
+    } else {
+        packet[offset] = 0x01
+    }
+
+    return nil
+}
+
 func string2bcd(s string) ([]byte, error) {
     BCD := map[rune]uint8 {
         '0': 0x00,

@@ -1,4 +1,4 @@
-#!python
+#!python3
 
 import argparse
 import sys
@@ -46,6 +46,7 @@ def main():
         else:
             print()
             print(f'  ERROR: invalid command ({cmd})')
+            print()
 
     except BaseException as x:
         print()

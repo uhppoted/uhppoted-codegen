@@ -51,6 +51,7 @@ var commands = []command{
     command{name: "get-event", f: getEvent},
     command{name: "get-event-index", f: getEventIndex},
     command{name: "set-event-index", f: setEventIndex},
+    command{name: "record-special-events", f: recordSpecialEvents},
 }
 
 func (c command) exec() {
@@ -156,4 +157,8 @@ func getEventIndex() (any, error) {
 
 func setEventIndex() (any, error) {
     return uhppote.SetEventIndex(CONTROLLER, EVENT_INDEX)
+}
+
+func recordSpecialEvents() (any, error) {
+    return uhppote.RecordSpecialEvents(CONTROLLER, true)
 }

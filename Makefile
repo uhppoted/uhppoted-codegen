@@ -1,13 +1,17 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= get-cards
+COMMAND ?= record-special-events
 
 MODELS = languages/.models
 GO     = languages/go
 RUST   = languages/rust
 PYTHON = languages/python
 HTTP   = languages/http
+
+GOBIN   = ./generated/go/bin/uhppoted
+RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
+PYBIN   = python3 ./generated/python/main.py
 
 .PHONY: update
 .PHONY: update-release
@@ -37,7 +41,10 @@ format:
 build: format
 	go build -trimpath -o bin/ ./...
 
-debug: go rust
+debug: go rust python
+	$(GOBIN)   --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 test: build
 	go test ./...
@@ -72,14 +79,6 @@ release: update-release build-all regen
 	tar --directory=dist --exclude=".DS_Store" -cvzf dist/$(DIST).tar.gz $(DIST)
 	cd dist;  zip --recurse-paths $(DIST).zip $(DIST)
 
-debug: build
-	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
-	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
-
-delve: build
-#	dlv exec ./bin/uhppoted-codegen
-	dlv test github.com/uhppoted/uhppoted-codegen -- run Test*
-
 version: build
 	$(CMD) version
 
@@ -97,39 +96,40 @@ go: build regen
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
 go-debug: go
-	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(GOBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 go-all: go
-	./generated/go/bin/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+	$(GOBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
 
 go-usage: regen build
-	./generated/go/bin/uhppoted
+	$(GOBIN)
 
 rust: build regen 
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 rust-all: rust
-	./generated/rust/uhppoted/target/debug/uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
+	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 all
 
 rust-usage: rust
-	./generated/rust/uhppoted/target/debug/uhppoted
+	$(RUSTBIN)
 
 python: build regen 
 	$(CMD) --models $(MODELS) --templates $(PYTHON) --out generated/python
-	cd generated/python && 	yapf -ri .
+	cd generated/python && yapf -ri .
+	chmod +x generated/python/main.py
 
 python-debug: python
-	python3 ./generated/python/main.py --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 python-all: python
-	python3 ./generated/python/main.py --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 all
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 all
 
 python-usage: python
-	python3 ./generated/python/main.py
+	$(PYBIN)
 
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean

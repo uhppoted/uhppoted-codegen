@@ -1256,6 +1256,57 @@
             "bytes": "F7IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
           }
         }
+      },
+      {
+        "name": "record special events",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "enable",
+            "type": "bool"
+          }
+        ],
+        "request": {
+          "name": "record special events request",
+          "msgtype": 142,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "enable",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "record special events response",
+          "msgtype": 142,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "enabled",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
       }
     ],
     "requests": [
@@ -1653,6 +1704,25 @@
         ],
         "_": {
           "bytes": "F7IAAHg3KhglAAAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "record special events request",
+        "msgtype": 142,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "enable",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ],
@@ -2252,6 +2322,25 @@
         ],
         "_": {
           "bytes": "F7IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "record special events response",
+        "msgtype": 142,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "enabled",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ]

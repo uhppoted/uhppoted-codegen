@@ -4,10 +4,7 @@
       - [ ] Export
       - (?) Language test skeletons
 
-- [x] get-event
-- [x] get-event-index
-- [x] set-event-index
-- [ ] record-special-events
+- [x] record-special-events
 - [ ] get-time-profile
 - [ ] set-time-profile
 - [ ] clear-time-profiles
@@ -19,15 +16,12 @@
 ## Go
 - [ ] bind address should not include port
 - [ ] Make MAC a string
-- [x] Rework pack_xxx to be (value, buffer, offset)
 - (?) JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
 - [ ] bind address should not include port
 - [ ] Make MAC a string
-- [x] Rework pack_xxx to be (value, buffer, offset)
-- [x] Rework encode to use Pack trait
 - [ ] Rework decode to use Unpack trait
 
 ## Python

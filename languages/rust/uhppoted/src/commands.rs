@@ -11,7 +11,7 @@ const CARD: u32 = 8165538;
 const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 
-pub const COMMANDS: [&Command; 20] = [
+pub const COMMANDS: [&Command; 21] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -91,6 +91,10 @@ pub const COMMANDS: [&Command; 20] = [
     &Command {
         name: "set-event-index",
         func: set_event_index,
+    },
+    &Command {
+        name: "record-special-events",
+        func: record_special_events,
     },
 ];
 
@@ -257,6 +261,13 @@ fn get_event_index() {
 
 fn set_event_index() {
     match uhppote::set_event_index(CONTROLLER, EVENT_INDEX) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn record_special_events() {
+    match uhppote::record_special_events(CONTROLLER, true) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

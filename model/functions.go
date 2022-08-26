@@ -22,6 +22,7 @@ var Functions = []Function{
 	GetEvent,
 	GetEventIndex,
 	SetEventIndex,
+	RecordSpecialEvents,
 }
 
 var GetController = Function{
@@ -341,4 +342,20 @@ var SetEventIndex = Function{
 	},
 	Request:  &SetEventIndexRequest,
 	Response: &SetEventIndexResponse,
+}
+
+var RecordSpecialEvents = Function{
+	Name: "record special events",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "enable",
+			Type: "bool",
+		},
+	},
+	Request:  &RecordSpecialEventsRequest,
+	Response: &RecordSpecialEventsResponse,
 }

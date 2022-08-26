@@ -38,7 +38,7 @@ def commands():
         # 'get-event-index': get_event_index,
         # 'set-event-index': set_event_index,
         # 'get-event': get_event,
-        # 'record-special-events': record_special_events,
+        'record-special-events': record_special_events,
         # 'get-time-profile': get_time_profile,
         # 'set-time-profile': set_time_profile,
         # 'clear-time-profiles': clear_time_profiles,
@@ -60,3 +60,6 @@ def get_all_controllers(u):
 
 def get_controller(u):
     return u.get_controller(CONTROLLER)
+
+def record_special_events(u):
+    return u.record_special_events(CONTROLLER, True)

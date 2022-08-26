@@ -112,6 +112,18 @@ impl Pack for NaiveDateTime {
     }
 }
 
+impl Pack for bool {
+    fn pack(self, packet: &mut Msg, offset: usize) -> Result<()> {
+        if self {
+            packet[offset] = 0x01; 
+        } else {
+            packet[offset] = 0x00;         
+        }
+
+        Ok(())
+    }
+}
+
 fn bcd(ch: char) -> Result<u8> {
     match ch {
         '0' => Ok(0),
