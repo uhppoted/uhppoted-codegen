@@ -66,6 +66,8 @@ def read_all(sock, debug):
 
     return replies
 
+def read_none(sock, debug):
+    return None
 
 def dump(packet):
     for i in range(0, 4):

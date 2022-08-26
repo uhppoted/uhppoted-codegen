@@ -50,11 +50,16 @@ def unpack_date(packet, offset):
 
     return datetime.datetime.strptime(bcd, '%Y%m%d').date()
 
-def unpack_bool(packet, offset):
-    return packet[offset] != 0x00
+def unpack_datetime(packet, offset):
+    bcd = f'{packet[offset]:02x}{packet[offset+1]:02x}{packet[offset+2]:02x}{packet[offset+3]:02x}{packet[offset+4]:02x}{packet[offset+5]:02x}{packet[offset+6]:02x}'
+
+    return datetime.datetime.strptime(bcd, '%Y%m%d%H%M%S')
 
 def unpack_HHmm(packet, offset):
     bcd = f'{packet[offset]:02x}{packet[offset+1]:02x}'
 
     return datetime.datetime.strptime(bcd, '%H%M').time()
+
+def unpack_bool(packet, offset):
+    return packet[offset] != 0x00
 

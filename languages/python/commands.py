@@ -1,4 +1,7 @@
 import pprint
+import ipaddress
+import datetime
+
 import uhppote
 
 # const ANY = "0.0.0.0:0"
@@ -12,19 +15,19 @@ CARD_INDEX = 3
 EVENT_INDEX = 37
 TIME_PROFILE_ID = 29
 
-# var ADDRESS = netip.MustParseAddr("192.168.1.100")
-# var NETMASK = netip.MustParseAddr("255.255.255.0")
-# var GATEWAY = netip.MustParseAddr("192.168.1.1")
-# var LISTENER = netip.MustParseAddrPort("192.168.1.100:60001")
+ADDRESS = ipaddress.IPv4Address('192.168.1.100')
+NETMASK = ipaddress.IPv4Address('255.255.255.0')
+GATEWAY = ipaddress.IPv4Address('192.168.1.1')
+# LISTENER = ipaddress.IPv4Address('192.168.1.100:60001')
 
 def commands():
     return {
         'get-all-controllers': get_all_controllers,
         'get-controller': get_controller,
-        # 'set-address': set_address,
+        'set-ip': set_ip,
+        'get-time': get_time,
+        'set-time': set_time,
         # 'get-status': get_status,
-        # 'get-time': {get_time,
-        # 'set-time': set_time,
         # 'get-listener': get_listener,
         # 'set-listener': set_listener,
         # 'get-door-control': get_door_control,
@@ -53,14 +56,22 @@ def exec(f, bind, broadcast, debug):
     u = uhppote.Uhppote(bind, broadcast, debug)
     response = f(u)
 
-    pprint.pprint(response)
-
+    pprint.pprint(response, indent=2, width=-1)
 
 def get_all_controllers(u):
     return u.get_all_controllers()
 
 def get_controller(u):
     return u.get_controller(CONTROLLER)
+
+def set_ip(u):
+    return u.set_ip(CONTROLLER, ADDRESS, NETMASK, GATEWAY)
+
+def get_time(u):
+    return u.get_time(CONTROLLER)
+
+def set_time(u):
+    return u.set_time(CONTROLLER, datetime.datetime.now())
 
 def record_special_events(u):
     return u.record_special_events(CONTROLLER, True)

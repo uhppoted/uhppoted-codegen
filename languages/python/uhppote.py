@@ -28,8 +28,10 @@ class Uhppote:
         for reply in replies:
             return decode.{{snakeCase .response.name}}(reply)
 
-        {{else}}request = encode.{{snakeCase .request.name}}({{template "params" .args}})
-        self._udp.send(request, read_none)
-        {{end}}
         return None
+        {{else}}request = encode.{{snakeCase .request.name}}({{template "params" .args}})
+        self._udp.send(request, udp.read_none)
+
+        return True
+        {{end}}
 {{end}}
