@@ -30,6 +30,9 @@ class {{CamelCase .name}}:{{range .fields}}
     {{snakeCase .name}}: {{template "type" .type}}{{end}}
 {{end}}
 
+def unpack_uint8(packet, offset):
+    return packet[offset]
+
 def unpack_uint32(packet, offset):
     return struct.unpack_from('<L', packet, offset)[0]
 
@@ -49,4 +52,9 @@ def unpack_date(packet, offset):
 
 def unpack_bool(packet, offset):
     return packet[offset] != 0x00
+
+def unpack_HHmm(packet, offset):
+    bcd = f'{packet[offset]:02x}{packet[offset+1]:02x}'
+
+    return datetime.datetime.strptime(bcd, '%H%M').time()
 

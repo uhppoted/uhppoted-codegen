@@ -161,6 +161,16 @@ fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime, Error> 
     }
 }
 
+fn unpack_hhmm(packet: &Msg, offset: usize) -> Result<NaiveTime, Error> {
+    let slice: &[u8; 2] = packet[offset..offset + 2].try_into().unwrap();
+    let s: String = bcd2string!(slice, 2);
+
+    match NaiveTime::parse_from_str(&s, "%H%M") {
+        Ok(time) => return Ok(time),
+        Err(_) => Err(Error::from(format!("invalid HHmm string {}",s))),
+    }
+}
+
 fn bcd(b: u8) -> Result<char, Error> {
     match b {
         0 => Ok('0'),

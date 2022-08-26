@@ -11,7 +11,8 @@
             "date": "Date",
             "shortdate": "Date",
             "time": "Time",
-            "datetime": "DateTime"
+            "datetime": "DateTime",
+            "HHmm": "HHmm"
         }
     }
 }

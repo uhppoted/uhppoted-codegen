@@ -10,8 +10,9 @@ const DELAY: u8 = 10;
 const CARD: u32 = 8165538;
 const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
+const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 21] = [
+pub const COMMANDS: [&Command; 22] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -95,6 +96,10 @@ pub const COMMANDS: [&Command; 21] = [
     &Command {
         name: "record-special-events",
         func: record_special_events,
+    },
+    &Command {
+        name: "get-time-profile",
+        func: get_time_profile,
     },
 ];
 
@@ -268,6 +273,13 @@ fn set_event_index() {
 
 fn record_special_events() {
     match uhppote::record_special_events(CONTROLLER, true) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn get_time_profile() {
+    match uhppote::get_time_profile(CONTROLLER, TIME_PROFILE_ID) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

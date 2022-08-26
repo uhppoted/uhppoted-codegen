@@ -43,7 +43,6 @@ func (t Time) MarshalJSON() ([]byte, error) {
 }
 
 
-
 type DateTime time.Time
 
 func (d DateTime) String() string {
@@ -56,6 +55,19 @@ func (d DateTime) Format(format string) string {
 
 func (d DateTime) MarshalJSON() ([]byte, error) {
     s := time.Time(d).Format("2006-01-02 15:04:05")
+    
+    return json.Marshal(s)
+}
+
+
+type HHmm time.Time
+
+func (t HHmm) String() string {
+    return time.Time(t).Format("15:04")
+}
+
+func (t HHmm) MarshalJSON() ([]byte, error) {
+    s := time.Time(t).Format("15:04")
     
     return json.Marshal(s)
 }

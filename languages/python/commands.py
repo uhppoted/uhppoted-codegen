@@ -10,6 +10,7 @@ DELAY = 10
 CARD = 8165538
 CARD_INDEX = 3
 EVENT_INDEX = 37
+TIME_PROFILE_ID = 29
 
 # var ADDRESS = netip.MustParseAddr("192.168.1.100")
 # var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -39,7 +40,7 @@ def commands():
         # 'set-event-index': set_event_index,
         # 'get-event': get_event,
         'record-special-events': record_special_events,
-        # 'get-time-profile': get_time_profile,
+        'get-time-profile': get_time_profile,
         # 'set-time-profile': set_time_profile,
         # 'clear-time-profiles': clear_time_profiles,
         # 'add-task': add_task,
@@ -63,3 +64,6 @@ def get_controller(u):
 
 def record_special_events(u):
     return u.record_special_events(CONTROLLER, True)
+
+def get_time_profile(u):
+    return u.get_time_profile(CONTROLLER, TIME_PROFILE_ID)

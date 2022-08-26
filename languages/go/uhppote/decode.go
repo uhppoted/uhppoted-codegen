@@ -113,6 +113,16 @@ func unpackDatetime(packet []byte, offset uint8) (DateTime, error) {
     }
 }
 
+func unpackHHmm(packet []byte, offset uint8) (HHmm, error) {
+    bcd := bcd2string(packet[offset:offset+2])
+
+    if t, err := time.ParseInLocation("1504", bcd, time.Local); err != nil {
+        return HHmm(time.Time{}), nil
+    } else {
+        return HHmm(t), nil
+    }
+}
+
 
 func bcd2string(bytes []byte) string {
     BCD := map[uint8]rune {

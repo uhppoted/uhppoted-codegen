@@ -11,7 +11,8 @@
             "date": "NaiveDate",
             "shortdate": "NaiveDate",
             "time": "NaiveTime",
-            "datetime": "NaiveDateTime"
+            "datetime": "NaiveDateTime",
+            "HHmm": "NaiveTime"
         }
     }
 }

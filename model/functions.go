@@ -23,6 +23,7 @@ var Functions = []Function{
 	GetEventIndex,
 	SetEventIndex,
 	RecordSpecialEvents,
+	GetTimeProfile,
 }
 
 var GetController = Function{
@@ -358,4 +359,20 @@ var RecordSpecialEvents = Function{
 	},
 	Request:  &RecordSpecialEventsRequest,
 	Response: &RecordSpecialEventsResponse,
+}
+
+var GetTimeProfile = Function{
+	Name: "get time profile",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "profile id",
+			Type: "uint8",
+		},
+	},
+	Request:  &GetTimeProfileRequest,
+	Response: &GetTimeProfileResponse,
 }

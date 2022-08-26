@@ -18,15 +18,20 @@
 - [ ] Make MAC a string
 - (?) JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
+- [ ] Rework bcd2string to use fmt
+- [ ] Optional time profile dates
 
 ## Rust
 - [ ] bind address should not include port
 - [ ] Make MAC a string
 - [ ] Rework decode to use Unpack trait
+- [ ] Rework bcd2string to use format!
+- [ ] Optional time profile dates
 
 ## Python
 - [ ] Make bind, broadcast IPv4Address
 - [x] pprint
+- [ ] Optional time profile dates
 - [ ] asyncio
       - https://docs.python.org/3/howto/sockets.html
       - https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python

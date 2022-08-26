@@ -19,6 +19,7 @@ const DELAY uint8 = 10
 const CARD uint32 = 8165538
 const CARD_INDEX uint32 = 3
 const EVENT_INDEX uint32 = 37
+const TIME_PROFILE_ID uint8 = 29
 
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -52,6 +53,7 @@ var commands = []command{
     command{name: "get-event-index", f: getEventIndex},
     command{name: "set-event-index", f: setEventIndex},
     command{name: "record-special-events", f: recordSpecialEvents},
+    command{name: "get-time-profile", f: getTimeProfile},
 }
 
 func (c command) exec() {
@@ -161,4 +163,8 @@ func setEventIndex() (any, error) {
 
 func recordSpecialEvents() (any, error) {
     return uhppote.RecordSpecialEvents(CONTROLLER, true)
+}
+
+func getTimeProfile() (any, error) {
+    return uhppote.GetTimeProfile(CONTROLLER, TIME_PROFILE_ID)
 }
