@@ -21,9 +21,9 @@ class Uhppote:
 {{end}}
 
 {{define "function"}}
-    def {{snakeCase .name}}({{template "args" .args}}):
+    def {{snakeCase .name}}(self, {{template "args" .args}}):
         {{if .response}}request = encode.{{snakeCase .request.name}}({{template "params" .args}})
-        replies,err = self._udp.send(request, udp.read)
+        replies = self._udp.send(request, udp.read)
 
         for reply in replies:
             return decode.{{snakeCase .response.name}}(reply)

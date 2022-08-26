@@ -123,7 +123,7 @@ python: build regen
 	cd generated/python && 	yapf -ri .
 
 python-debug: python
-	python3 ./generated/python/main.py --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-all-controllers
+	python3 ./generated/python/main.py --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 python-all: python
 	python3 ./generated/python/main.py --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 all

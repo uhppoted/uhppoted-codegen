@@ -34,6 +34,20 @@ class UDP:
         if self._debug:
             dump(packet)
 
+# TODO convert to asyncio
+def read(sock, debug):
+    sock.settimeout(2.5)
+
+    replies = []
+    while True:
+        reply = sock.recv(1024)
+        if len(reply) == 64:
+            replies.append(reply)
+            if debug:
+                dump(reply)
+            break
+
+    return replies
 
 # TODO convert to asyncio
 def read_all(sock, debug):

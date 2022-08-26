@@ -1,11 +1,25 @@
 import pprint
 import uhppote
 
+# const ANY = "0.0.0.0:0"
+# const BROADCAST = "255.255.255.255:60000"
+CONTROLLER = 405419896
+DOOR = 3
+MODE = 2
+DELAY = 10
+CARD = 8165538
+CARD_INDEX = 3
+EVENT_INDEX = 37
+
+# var ADDRESS = netip.MustParseAddr("192.168.1.100")
+# var NETMASK = netip.MustParseAddr("255.255.255.0")
+# var GATEWAY = netip.MustParseAddr("192.168.1.1")
+# var LISTENER = netip.MustParseAddrPort("192.168.1.100:60001")
 
 def commands():
     return {
         'get-all-controllers': get_all_controllers,
-        # 'get-controller': get_device,
+        'get-controller': get_controller,
         # 'set-address': set_address,
         # 'get-status': get_status,
         # 'get-time': {get_time,
@@ -43,3 +57,6 @@ def exec(f, bind, broadcast, debug):
 
 def get_all_controllers(u):
     return u.get_all_controllers()
+
+def get_controller(u):
+    return u.get_controller(CONTROLLER)
