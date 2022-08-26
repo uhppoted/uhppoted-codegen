@@ -90,7 +90,7 @@
         ],
         "request": {
           "name": "set IP request",
-          "msgtype": 148,
+          "msgtype": 150,
           "fields": [
             {
               "name": "device id",
@@ -1275,7 +1275,7 @@
       },
       {
         "name": "set IP request",
-        "msgtype": 148,
+        "msgtype": 150,
         "fields": [
           {
             "name": "device id",

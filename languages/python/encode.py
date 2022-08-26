@@ -1,16 +1,28 @@
 import struct
 
+{{range .model.requests}}{{template "request" .}}
+{{end}}
 
-def get_controller_request(device_id):
-    request = bytearray(64)
+{{define "request"}}
+def {{snakeCase .name}}({{template "args" .fields}}):
+    packet = bytearray(64)
 
-    request[0] = 0x17
-    request[1] = 0x94
+    packet[0] = 0x17
+    packet[1] = {{byte2hex .msgtype}}
+    
+    {{range .fields}}{{if ne .type "magic"}}pack_{{snakeCase .type}}({{snakeCase .name}}, packet, {{.offset}})
+    {{else}}pack_uint32(0x55aaaa55, packet, {{.offset}})
+    {{end}}{{end}}
 
-    pack_uint32(device_id, request, 4)
+    return packet
+{{end}}
 
-    return request
 
+def pack_uint8(v, packet, offset):
+    packet[offset] = v
+
+def pack_uint16(v, packet, offset):
+    struct.pack_into('<H', packet, offset, v)
 
 def pack_uint32(v, packet, offset):
     struct.pack_into('<L', packet, offset, v)

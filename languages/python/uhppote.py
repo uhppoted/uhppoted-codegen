@@ -16,3 +16,20 @@ class Uhppote:
             list.append(decode.get_controller_response(reply))
 
         return list
+
+{{range .model.functions}}{{template "function" .}}
+{{end}}
+
+{{define "function"}}
+    def {{snakeCase .name}}({{template "args" .args}}):
+        {{if .response}}request = encode.{{snakeCase .request.name}}({{template "params" .args}})
+        replies,err = self._udp.send(request, udp.read)
+
+        for reply in replies:
+            return decode.{{snakeCase .response.name}}(reply)
+
+        {{else}}request = encode.{{snakeCase .request.name}}({{template "params" .args}})
+        self._udp.send(request, read_none)
+        {{end}}
+        return None
+{{end}}

@@ -44,7 +44,7 @@ var GetControllerRequest = Request{
 
 var SetIPRequest = Request{
 	Name:    "set IP request",
-	MsgType: 0x94,
+	MsgType: 0x96,
 	Fields: []Field{
 		Field{
 			Name:   "device id",

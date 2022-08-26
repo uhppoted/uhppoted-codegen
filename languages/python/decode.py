@@ -5,23 +5,30 @@ from ipaddress import IPv4Address
 from dataclasses import dataclass
 
 
-def get_controller_response(packet):
+{{range .model.responses}}{{template "decode" .}}
+{{end}}
+
+{{range .model.responses}}{{template "response" .}}
+{{end}}
+
+{{define "decode"}}
+def {{snakeCase .name}}(packet):
     if len(packet) != 64:
         raise ValueError(f'invalid reply packet length ({len(packet)})')
 
-    if packet[1] != 0x94:
+    if packet[1] != {{byte2hex .msgtype}}:
         raise ValueError(f'invalid reply function code ({packet[1]:02x})')
 
-    return GetControllerResponse(
-        unpack_uint32(packet, 4),
-        unpack_IPv4(packet, 8),
-        unpack_IPv4(packet, 12),
-        unpack_IPv4(packet, 16),
-        unpack_MAC(packet, 20),
-        unpack_version(packet, 26),
-        unpack_date(packet, 28),
+    return {{CamelCase .name}}({{range .fields}}
+        unpack_{{.type}}(packet, {{.offset}}),{{end}}
     )
+{{end}}
 
+{{define "response"}}
+@dataclass
+class {{CamelCase .name}}:{{range .fields}}
+    {{snakeCase .name}}: {{template "type" .type}}{{end}}
+{{end}}
 
 def unpack_uint32(packet, offset):
     return struct.unpack_from('<L', packet, offset)[0]
@@ -45,12 +52,3 @@ def unpack_date(packet, offset):
     return datetime.datetime.strptime(bcd, '%Y%m%d').date()
 
 
-@dataclass
-class GetControllerResponse:
-    device_id: int
-    address: IPv4Address
-    subnet: IPv4Address
-    gateway: IPv4Address
-    MAC: str
-    version: str
-    date: datetime.date

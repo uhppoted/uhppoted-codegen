@@ -7,8 +7,8 @@
 - [x] get-event
 - [x] get-event-index
 - [x] set-event-index
-- [ ] get-time-profile
 - [ ] record-special-events
+- [ ] get-time-profile
 - [ ] set-time-profile
 - [ ] clear-time-profiles
 - [ ] add-task
@@ -32,7 +32,7 @@
 
 ## Python
 - [ ] Make bind, broadcast IPv4Address
-- [ ] pprint
+- [x] pprint
 - [ ] asyncio
       - https://docs.python.org/3/howto/sockets.html
       - https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python
