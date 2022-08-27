@@ -27,7 +27,7 @@ def commands():
         'set-ip': set_ip,
         'get-time': get_time,
         'set-time': set_time,
-        # 'get-status': get_status,
+        'get-status': get_status,
         # 'get-listener': get_listener,
         # 'set-listener': set_listener,
         # 'get-door-control': get_door_control,
@@ -72,6 +72,9 @@ def get_time(u):
 
 def set_time(u):
     return u.set_time(CONTROLLER, datetime.datetime.now())
+
+def get_status(u):
+    return u.get_status(CONTROLLER)
 
 def record_special_events(u):
     return u.record_special_events(CONTROLLER, True)
