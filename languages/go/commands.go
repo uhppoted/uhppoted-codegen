@@ -54,6 +54,7 @@ var commands = []command{
     command{name: "set-event-index", f: setEventIndex},
     command{name: "record-special-events", f: recordSpecialEvents},
     command{name: "get-time-profile", f: getTimeProfile},
+    command{name: "set-time-profile", f: setTimeProfile},
 }
 
 func (c command) exec() {
@@ -167,4 +168,31 @@ func recordSpecialEvents() (any, error) {
 
 func getTimeProfile() (any, error) {
     return uhppote.GetTimeProfile(CONTROLLER, TIME_PROFILE_ID)
+}
+
+func setTimeProfile() (any, error) {
+    start, _ := time.Parse("2006-01-02", "2022-01-01")
+    end, _ := time.Parse("2006-01-02", "2022-12-31")
+    monday := true
+    tuesday := true
+    wednesday := false
+    thursday := true
+    friday := false
+    saturday := false
+    sunday := true
+    segment1start, _ := time.Parse("15:04", "08:30")
+    segment1end, _ := time.Parse("15:04", "11:45")
+    segment2start, _ := time.Parse("15:04", "13:15")
+    segment2end, _ := time.Parse("15:04", "16:30")
+    segment3start, _ := time.Parse("15:04", "19:30")
+    segment3end, _ := time.Parse("15:04", "20:55")
+    linkedProfileID := uint8(30)
+
+    return uhppote.SetTimeProfile(CONTROLLER, TIME_PROFILE_ID, 
+        uhppote.Date(start), uhppote.Date(end), 
+        monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+        uhppote.HHmm(segment1start), uhppote.HHmm(segment1end),
+        uhppote.HHmm(segment2start), uhppote.HHmm(segment2end),
+        uhppote.HHmm(segment3start), uhppote.HHmm(segment3end),
+        linkedProfileID)
 }

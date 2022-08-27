@@ -78,11 +78,23 @@ func packDatetime(v DateTime, packet []byte, offset uint8) error {
     }
 }
 
+func packHHmm(v HHmm, packet []byte, offset uint8) error {
+    s := v.Format("1504")
+    
+    if bytes, err := string2bcd(s); err != nil {
+        return err
+    } else {
+        copy(packet[offset:], bytes)
+
+        return nil        
+    }
+}
+
 func packBool(v bool, packet []byte, offset uint8) error {
     if v {
         packet[offset] = 0x01
     } else {
-        packet[offset] = 0x01
+        packet[offset] = 0x00
     }
 
     return nil

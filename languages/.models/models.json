@@ -1438,6 +1438,201 @@
             "bytes": "F5gAAHg3KhgdICEBASAhEjEBAAAAAAAACDAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
           }
         }
+      },
+      {
+        "name": "set time profile",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "profile id",
+            "type": "uint8"
+          },
+          {
+            "name": "start date",
+            "type": "date"
+          },
+          {
+            "name": "end date",
+            "type": "date"
+          },
+          {
+            "name": "monday",
+            "type": "bool"
+          },
+          {
+            "name": "tuesday",
+            "type": "bool"
+          },
+          {
+            "name": "wednesday",
+            "type": "bool"
+          },
+          {
+            "name": "thursday",
+            "type": "bool"
+          },
+          {
+            "name": "friday",
+            "type": "bool"
+          },
+          {
+            "name": "saturday",
+            "type": "bool"
+          },
+          {
+            "name": "sunday",
+            "type": "bool"
+          },
+          {
+            "name": "segment 1 start",
+            "type": "HHmm"
+          },
+          {
+            "name": "segment 1 end",
+            "type": "HHmm"
+          },
+          {
+            "name": "segment 2 start",
+            "type": "HHmm"
+          },
+          {
+            "name": "segment 2 end",
+            "type": "HHmm"
+          },
+          {
+            "name": "segment 3 start",
+            "type": "HHmm"
+          },
+          {
+            "name": "segment 3 end",
+            "type": "HHmm"
+          },
+          {
+            "name": "linked profile id",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "set time profile request",
+          "msgtype": 136,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "profile id",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "offset": 9
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "offset": 13
+            },
+            {
+              "name": "monday",
+              "type": "bool",
+              "offset": 17
+            },
+            {
+              "name": "tuesday",
+              "type": "bool",
+              "offset": 18
+            },
+            {
+              "name": "wednesday",
+              "type": "bool",
+              "offset": 19
+            },
+            {
+              "name": "thursday",
+              "type": "bool",
+              "offset": 20
+            },
+            {
+              "name": "friday",
+              "type": "bool",
+              "offset": 21
+            },
+            {
+              "name": "saturday",
+              "type": "bool",
+              "offset": 22
+            },
+            {
+              "name": "sunday",
+              "type": "bool",
+              "offset": 23
+            },
+            {
+              "name": "segment 1 start",
+              "type": "HHmm",
+              "offset": 24
+            },
+            {
+              "name": "segment 1 end",
+              "type": "HHmm",
+              "offset": 26
+            },
+            {
+              "name": "segment 2 start",
+              "type": "HHmm",
+              "offset": 28
+            },
+            {
+              "name": "segment 2 end",
+              "type": "HHmm",
+              "offset": 30
+            },
+            {
+              "name": "segment 3 start",
+              "type": "HHmm",
+              "offset": 32
+            },
+            {
+              "name": "segment 3 end",
+              "type": "HHmm",
+              "offset": 34
+            },
+            {
+              "name": "linked profile id",
+              "type": "uint8",
+              "offset": 36
+            }
+          ],
+          "_": {
+            "bytes": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "set time profile response",
+          "msgtype": 136,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "stored",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F5gAAHg3KhgdICIBASAiEjEBAQABAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
       }
     ],
     "requests": [
@@ -1869,6 +2064,105 @@
             "name": "profile id",
             "type": "uint8",
             "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "set time profile request",
+        "msgtype": 136,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "profile id",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "start date",
+            "type": "date",
+            "offset": 9
+          },
+          {
+            "name": "end date",
+            "type": "date",
+            "offset": 13
+          },
+          {
+            "name": "monday",
+            "type": "bool",
+            "offset": 17
+          },
+          {
+            "name": "tuesday",
+            "type": "bool",
+            "offset": 18
+          },
+          {
+            "name": "wednesday",
+            "type": "bool",
+            "offset": 19
+          },
+          {
+            "name": "thursday",
+            "type": "bool",
+            "offset": 20
+          },
+          {
+            "name": "friday",
+            "type": "bool",
+            "offset": 21
+          },
+          {
+            "name": "saturday",
+            "type": "bool",
+            "offset": 22
+          },
+          {
+            "name": "sunday",
+            "type": "bool",
+            "offset": 23
+          },
+          {
+            "name": "segment 1 start",
+            "type": "HHmm",
+            "offset": 24
+          },
+          {
+            "name": "segment 1 end",
+            "type": "HHmm",
+            "offset": 26
+          },
+          {
+            "name": "segment 2 start",
+            "type": "HHmm",
+            "offset": 28
+          },
+          {
+            "name": "segment 2 end",
+            "type": "HHmm",
+            "offset": 30
+          },
+          {
+            "name": "segment 3 start",
+            "type": "HHmm",
+            "offset": 32
+          },
+          {
+            "name": "segment 3 end",
+            "type": "HHmm",
+            "offset": 34
+          },
+          {
+            "name": "linked profile id",
+            "type": "uint8",
+            "offset": 36
           }
         ],
         "_": {
@@ -2590,6 +2884,25 @@
         ],
         "_": {
           "bytes": "F5gAAHg3KhgdICEBASAhEjEBAAAAAAAACDAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "set time profile response",
+        "msgtype": 136,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "stored",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F5gAAHg3KhgdICIBASAiEjEBAQABAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ]

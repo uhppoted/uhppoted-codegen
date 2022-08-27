@@ -22,6 +22,7 @@ var Requests = []Request{
 	SetEventIndexRequest,
 	RecordSpecialEventsRequest,
 	GetTimeProfileRequest,
+	SetTimeProfileRequest,
 }
 
 var GetControllerRequest = Request{
@@ -578,6 +579,112 @@ var GetTimeProfileRequest = Request{
 			Name:   "profile id",
 			Type:   "uint8",
 			Offset: 8,
+		},
+	},
+
+	TestData: TestData{
+		Bytes: []uint8{
+			0x17, 0x98, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		},
+	},
+}
+
+var SetTimeProfileRequest = Request{
+	Name:    "set time profile request",
+	MsgType: 0x88,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "profile id",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		Field{
+			Name:   "start date",
+			Type:   "date",
+			Offset: 9,
+		},
+		Field{
+			Name:   "end date",
+			Type:   "date",
+			Offset: 13,
+		},
+		Field{
+			Name:   "monday",
+			Type:   "bool",
+			Offset: 17,
+		},
+		Field{
+			Name:   "tuesday",
+			Type:   "bool",
+			Offset: 18,
+		},
+		Field{
+			Name:   "wednesday",
+			Type:   "bool",
+			Offset: 19,
+		},
+		Field{
+			Name:   "thursday",
+			Type:   "bool",
+			Offset: 20,
+		},
+		Field{
+			Name:   "friday",
+			Type:   "bool",
+			Offset: 21,
+		},
+		Field{
+			Name:   "saturday",
+			Type:   "bool",
+			Offset: 22,
+		},
+		Field{
+			Name:   "sunday",
+			Type:   "bool",
+			Offset: 23,
+		},
+		Field{
+			Name:   "segment 1 start",
+			Type:   "HHmm",
+			Offset: 24,
+		},
+		Field{
+			Name:   "segment 1 end",
+			Type:   "HHmm",
+			Offset: 26,
+		},
+		Field{
+			Name:   "segment 2 start",
+			Type:   "HHmm",
+			Offset: 28,
+		},
+		Field{
+			Name:   "segment 2 end",
+			Type:   "HHmm",
+			Offset: 30,
+		},
+		Field{
+			Name:   "segment 3 start",
+			Type:   "HHmm",
+			Offset: 32,
+		},
+		Field{
+			Name:   "segment 3 end",
+			Type:   "HHmm",
+			Offset: 34,
+		},
+		Field{
+			Name:   "linked profile id",
+			Type:   "uint8",
+			Offset: 36,
 		},
 	},
 

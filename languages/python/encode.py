@@ -38,5 +38,9 @@ def pack_datetime(v, packet, offset):
     bcd = f'{v:%Y%m%d%H%M%S}'
     packet[offset:offset+7] = bytes.fromhex(bcd)
 
+def pack_HHmm(v, packet, offset):
+    bcd = f'{v:%H%M}'
+    packet[offset:offset+2] = bytes.fromhex(bcd)
+
 def pack_bool(v, packet, offset):
     packet[offset] = 0x00 if not v else 0x01

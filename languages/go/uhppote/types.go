@@ -66,6 +66,10 @@ func (t HHmm) String() string {
     return time.Time(t).Format("15:04")
 }
 
+func (t HHmm) Format(format string) string {
+    return time.Time(t).Format(format)
+}
+
 func (t HHmm) MarshalJSON() ([]byte, error) {
     s := time.Time(t).Format("15:04")
     

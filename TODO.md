@@ -5,7 +5,7 @@
       - (?) Language test skeletons
 - [ ] Code generation HOWTO
 
-- [ ] set-time-profile
+- [x] set-time-profile
 - [ ] clear-time-profiles
 - [ ] add-task
 - [ ] clear-task-list

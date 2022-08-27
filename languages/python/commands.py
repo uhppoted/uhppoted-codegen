@@ -43,7 +43,7 @@ def commands():
         'set-event-index': set_event_index,
         'record-special-events': record_special_events,
         'get-time-profile': get_time_profile,
-        # 'set-time-profile': set_time_profile,
+        'set-time-profile': set_time_profile,
         # 'clear-time-profiles': clear_time_profiles,
         # 'add-task': add_task,
         # 'refresh-tasklist': refresh_tasklist,
@@ -149,3 +149,30 @@ def record_special_events(u):
 
 def get_time_profile(u):
     return u.get_time_profile(CONTROLLER, TIME_PROFILE_ID)
+
+
+def set_time_profile(u):
+    start = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
+    end = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
+    monday = True
+    tuesday = False
+    wednesday = True
+    thursday = True
+    friday = False
+    saturday = False
+    sunday = True
+    segment1start = datetime.datetime.strptime("08:15", '%H:%M').time()
+    segment1end = datetime.datetime.strptime("11:45", '%H:%M').time()
+    segment2start = datetime.datetime.strptime("12:45", '%H:%M').time()
+    segment2end = datetime.datetime.strptime("17:15", '%H:%M').time()
+    segment3start = datetime.datetime.strptime("19:30", '%H:%M').time()
+    segment3end = datetime.datetime.strptime("22:00", '%H:%M').time()
+    linked_profile_ID = 23
+
+    return u.set_time_profile(CONTROLLER, TIME_PROFILE_ID,
+        start, end,
+        monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+        segment1start, segment1end,
+        segment2start, segment2end,
+        segment3start, segment3end,
+        linked_profile_ID)

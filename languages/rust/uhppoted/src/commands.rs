@@ -1,5 +1,6 @@
 use chrono::offset::Local;
 use chrono::NaiveDate;
+use chrono::NaiveTime;
 
 use super::uhppote;
 
@@ -12,7 +13,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 22] = [
+pub const COMMANDS: [&Command; 23] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -100,6 +101,10 @@ pub const COMMANDS: [&Command; 22] = [
     &Command {
         name: "get-time-profile",
         func: get_time_profile,
+    },
+    &Command {
+        name: "set-time-profile",
+        func: set_time_profile,
     },
 ];
 
@@ -280,6 +285,49 @@ fn record_special_events() {
 
 fn get_time_profile() {
     match uhppote::get_time_profile(CONTROLLER, TIME_PROFILE_ID) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn set_time_profile() {
+    let start = NaiveDate::parse_from_str("2022-01-01", "%Y-%m-%d").unwrap();
+    let end = NaiveDate::parse_from_str("2022-12-31", "%Y-%m-%d").unwrap();
+    let monday = true;
+    let tuesday = true;
+    let wednesday = false;
+    let thursday = true;
+    let friday = false;
+    let saturday = false;
+    let sunday = true;
+    let segment_1_start = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
+    let segment_1_end = NaiveTime::parse_from_str("11:45", "%H:%M").unwrap();
+    let segment_2_start = NaiveTime::parse_from_str("12:45", "%H:%M").unwrap();
+    let segment_2_end = NaiveTime::parse_from_str("17:00", "%H:%M").unwrap();
+    let segment_3_start = NaiveTime::parse_from_str("18:30", "%H:%M").unwrap();
+    let segment_3_end = NaiveTime::parse_from_str("20:15", "%H:%M").unwrap();
+    let linked_profile_id: u8 = 37;
+
+    match uhppote::set_time_profile(
+        CONTROLLER,
+        TIME_PROFILE_ID,
+        start,
+        end,
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday,
+        saturday,
+        sunday,
+        segment_1_start,
+        segment_1_end,
+        segment_2_start,
+        segment_2_end,
+        segment_3_start,
+        segment_3_end,
+        linked_profile_id,
+    ) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

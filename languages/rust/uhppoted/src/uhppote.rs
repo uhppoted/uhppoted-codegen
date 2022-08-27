@@ -2,6 +2,7 @@ use std::net::Ipv4Addr;
 
 use chrono::NaiveDateTime;
 use chrono::NaiveDate;
+use chrono::NaiveTime;
 
 use decode::*;
 use encode::*;

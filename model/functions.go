@@ -24,6 +24,7 @@ var Functions = []Function{
 	SetEventIndex,
 	RecordSpecialEvents,
 	GetTimeProfile,
+	SetTimeProfile,
 }
 
 var GetController = Function{
@@ -375,4 +376,84 @@ var GetTimeProfile = Function{
 	},
 	Request:  &GetTimeProfileRequest,
 	Response: &GetTimeProfileResponse,
+}
+
+var SetTimeProfile = Function{
+	Name: "set time profile",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "profile id",
+			Type: "uint8",
+		},
+		Arg{
+			Name: "start date",
+			Type: "date",
+		},
+		Arg{
+			Name: "end date",
+			Type: "date",
+		},
+		Arg{
+			Name: "monday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "tuesday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "wednesday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "thursday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "friday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "saturday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "sunday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "segment 1 start",
+			Type: "HHmm",
+		},
+		Arg{
+			Name: "segment 1 end",
+			Type: "HHmm",
+		},
+		Arg{
+			Name: "segment 2 start",
+			Type: "HHmm",
+		},
+		Arg{
+			Name: "segment 2 end",
+			Type: "HHmm",
+		},
+		Arg{
+			Name: "segment 3 start",
+			Type: "HHmm",
+		},
+		Arg{
+			Name: "segment 3 end",
+			Type: "HHmm",
+		},
+		Arg{
+			Name: "linked profile id",
+			Type: "uint8",
+		},
+	},
+	Request:  &SetTimeProfileRequest,
+	Response: &SetTimeProfileResponse,
 }

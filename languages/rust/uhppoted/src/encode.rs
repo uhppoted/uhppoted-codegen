@@ -2,6 +2,7 @@ use std::net::Ipv4Addr;
 
 use chrono::NaiveDateTime;
 use chrono::NaiveDate;
+use chrono::NaiveTime;
 
 use super::error::Error;
 use super::Msg;
@@ -93,6 +94,14 @@ fn pack_datetime(v: NaiveDateTime, packet: &mut Msg, offset: usize) -> Result<()
     let bcd = string2bcd!(s.to_string(),7);
 
     packet[offset..offset + 7].clone_from_slice(&bcd);
+    Ok(())
+}
+
+fn pack_hhmm(v: NaiveTime, packet: &mut Msg, offset: usize) -> Result<()> {
+    let s = v.format("%H%M");
+    let bcd = string2bcd!(s.to_string(),2);
+
+    packet[offset..offset + 2].clone_from_slice(&bcd);
     Ok(())
 }
 
