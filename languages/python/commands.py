@@ -27,11 +27,11 @@ def commands():
         'set-ip': set_ip,
         'get-time': get_time,
         'set-time': set_time,
-        'get-status': get_status,
-        # 'get-listener': get_listener,
+        'get-listener': get_listener,
         # 'set-listener': set_listener,
         # 'get-door-control': get_door_control,
         # 'set-door-control': set_door_control,
+        'get-status': get_status,
         # 'open-door': open_door,
         # 'get-cards': get_cards,
         # 'get-card': get_card,
@@ -72,6 +72,9 @@ def get_time(u):
 
 def set_time(u):
     return u.set_time(CONTROLLER, datetime.datetime.now())
+
+def get_listener(u):
+    return u.get_listener(CONTROLLER)
 
 def get_status(u):
     return u.get_status(CONTROLLER)

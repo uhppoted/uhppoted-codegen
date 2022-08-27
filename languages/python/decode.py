@@ -33,6 +33,9 @@ class {{CamelCase .name}}:{{range .fields}}
 def unpack_uint8(packet, offset):
     return packet[offset]
 
+def unpack_uint16(packet, offset):
+    return struct.unpack_from('<H', packet, offset)[0]
+
 def unpack_uint32(packet, offset):
     return struct.unpack_from('<L', packet, offset)[0]
 
