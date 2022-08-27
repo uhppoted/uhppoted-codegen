@@ -28,10 +28,13 @@ def pack_uint32(v, packet, offset):
     struct.pack_into('<L', packet, offset, v)
 
 def pack_IPv4(v, packet, offset):
-    packet[offset:offset+3] = v.packed
+    packet[offset] = v.packed[0]
+    packet[offset+1] = v.packed[1]
+    packet[offset+2] = v.packed[2]
+    packet[offset+3] = v.packed[3]
    
 def pack_datetime(v, packet, offset):
-    bcd = v.strftime('%Y%m%d%H%M%S')
+    bcd = f'{v:%Y%m%d%H%M%S}'
     packet[offset:offset+7] = bytes.fromhex(bcd)
 
 def pack_bool(v, packet, offset):

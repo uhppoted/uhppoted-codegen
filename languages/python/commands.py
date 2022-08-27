@@ -18,7 +18,7 @@ TIME_PROFILE_ID = 29
 ADDRESS = ipaddress.IPv4Address('192.168.1.100')
 NETMASK = ipaddress.IPv4Address('255.255.255.0')
 GATEWAY = ipaddress.IPv4Address('192.168.1.1')
-# LISTENER = ipaddress.IPv4Address('192.168.1.100:60001')
+LISTENER = (ipaddress.IPv4Address('192.168.1.100'), 60001)
 
 def commands():
     return {
@@ -28,7 +28,7 @@ def commands():
         'get-time': get_time,
         'set-time': set_time,
         'get-listener': get_listener,
-        # 'set-listener': set_listener,
+        'set-listener': set_listener,
         # 'get-door-control': get_door_control,
         # 'set-door-control': set_door_control,
         'get-status': get_status,
@@ -75,6 +75,10 @@ def set_time(u):
 
 def get_listener(u):
     return u.get_listener(CONTROLLER)
+
+def set_listener(u):
+    (address,port) = LISTENER
+    return u.set_listener(CONTROLLER, address, port)
 
 def get_status(u):
     return u.get_status(CONTROLLER)
