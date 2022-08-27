@@ -125,11 +125,10 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 
 	t, err := template.New("codegen").Funcs(functions).Parse(string(bytes))
 	if err != nil {
-		return err
+		return fmt.Errorf("error parsing %v (%v)", src, err)
 	}
 
 	// ... attach common templates
-
 	if _, err := fs.Stat(fsys, ".templates"); err == nil {
 		if list, err := fs.Glob(fsys, ".templates/**"); err == nil && len(list) > 0 {
 			if t, err = t.ParseFS(fsys, ".templates/**"); err != nil {
@@ -143,7 +142,7 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 	}
 
 	// ... generate to tempfile
-	f, err := os.CreateTemp("", "uhppote-*.go")
+	f, err := os.CreateTemp("", "uhppote-*")
 	if err != nil {
 		return err
 	} else {

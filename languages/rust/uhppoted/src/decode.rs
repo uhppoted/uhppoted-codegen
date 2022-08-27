@@ -7,6 +7,8 @@ use chrono::NaiveDateTime;
 use super::error::Error;
 use super::Msg;
 
+type Result<T> = std::result::Result<T, Error>;
+
 #[macro_export]
 macro_rules! bcd2string {
     ($slice:expr, $size:expr) => { 
@@ -44,7 +46,7 @@ pub struct {{CamelCase .name}} { {{range .fields}}
 {{end}}
 
 {{define "decode"}}
-pub fn {{snakeCase .name}}(packet: &Msg) -> Result<{{CamelCase .name}}, Error> {
+pub fn {{snakeCase .name}}(packet: &Msg) -> Result<{{CamelCase .name}}> {
     if packet.len() != 64 {
         return Err(format!("invalid reply packet length ({})", packet.len()))?;
     }
@@ -61,11 +63,11 @@ pub fn {{snakeCase .name}}(packet: &Msg) -> Result<{{CamelCase .name}}, Error> {
 }
 {{end}}
 
-fn unpack_uint8(packet: &Msg, offset: usize) -> Result<u8, Error> {
+fn unpack_uint8(packet: &Msg, offset: usize) -> Result<u8> {
     return Ok(packet[offset]);
 }
 
-fn unpack_uint16(packet: &Msg, offset: usize) -> Result<u16, Error> {
+fn unpack_uint16(packet: &Msg, offset: usize) -> Result<u16> {
     let mut bytes: [u8; 2] = [0; 2];
 
     bytes.clone_from_slice(&packet[offset..offset + 2]);
@@ -73,7 +75,7 @@ fn unpack_uint16(packet: &Msg, offset: usize) -> Result<u16, Error> {
     return Ok(u16::from_le_bytes(bytes));
 }
 
-fn unpack_uint32(packet: &Msg, offset: usize) -> Result<u32, Error> {
+fn unpack_uint32(packet: &Msg, offset: usize) -> Result<u32> {
     let mut bytes: [u8; 4] = [0; 4];
 
     bytes.clone_from_slice(&packet[offset..offset + 4]);
@@ -81,11 +83,11 @@ fn unpack_uint32(packet: &Msg, offset: usize) -> Result<u32, Error> {
     return Ok(u32::from_le_bytes(bytes));
 }
 
-fn unpack_bool(packet: &Msg, offset: usize) -> Result<bool, Error> {
+fn unpack_bool(packet: &Msg, offset: usize) -> Result<bool> {
     return Ok(packet[offset] != 0x00);
 }
 
-fn unpack_ipv4(packet: &Msg, offset: usize) -> Result<Ipv4Addr, Error> {
+fn unpack_ipv4(packet: &Msg, offset: usize) -> Result<Ipv4Addr> {
     let u0 = packet[offset];
     let u1 = packet[offset + 1];
     let u2 = packet[offset + 2];
@@ -94,7 +96,7 @@ fn unpack_ipv4(packet: &Msg, offset: usize) -> Result<Ipv4Addr, Error> {
     return Ok(Ipv4Addr::new(u0, u1, u2, u3));
 }
 
-fn unpack_mac(packet: &Msg, offset: usize) -> Result<[u8; 6], Error> {
+fn unpack_mac(packet: &Msg, offset: usize) -> Result<[u8; 6]> {
     let mut mac: [u8; 6] = [0; 6];
 
     mac.clone_from_slice(&packet[offset..offset + 6]);
@@ -102,14 +104,14 @@ fn unpack_mac(packet: &Msg, offset: usize) -> Result<[u8; 6], Error> {
     return Ok(mac);
 }
 
-fn unpack_version(packet: &Msg, offset: usize) -> Result<String, Error> {
+fn unpack_version(packet: &Msg, offset: usize) -> Result<String> {
     let major = packet[offset];
     let minor = packet[offset + 1];
 
     return Ok(format!("v{major:x}.{minor:02x}").to_string());
 }
 
-fn unpack_date(packet: &Msg, offset: usize) -> Result<NaiveDate, Error> {
+fn unpack_date(packet: &Msg, offset: usize) -> Result<NaiveDate> {
     let slice: &[u8; 4] = packet[offset..offset + 4].try_into().unwrap();
     let s = bcd2string!(slice, 4);
 
@@ -123,7 +125,7 @@ fn unpack_date(packet: &Msg, offset: usize) -> Result<NaiveDate, Error> {
     }
 }
 
-fn unpack_shortdate(packet: &Msg, offset: usize) -> Result<NaiveDate, Error> {
+fn unpack_shortdate(packet: &Msg, offset: usize) -> Result<NaiveDate> {
     let slice: &[u8; 3] = packet[offset..offset + 3].try_into().unwrap();
     let s = format!("20{}", bcd2string!(slice, 3));
 
@@ -137,7 +139,7 @@ fn unpack_shortdate(packet: &Msg, offset: usize) -> Result<NaiveDate, Error> {
     }
 }
 
-fn unpack_time(packet: &Msg, offset: usize) -> Result<NaiveTime, Error> {
+fn unpack_time(packet: &Msg, offset: usize) -> Result<NaiveTime> {
     let slice: &[u8; 3] = packet[offset..offset + 3].try_into().unwrap();
     let s: String = bcd2string!(slice, 3);
 
@@ -147,7 +149,7 @@ fn unpack_time(packet: &Msg, offset: usize) -> Result<NaiveTime, Error> {
     }
 }
 
-fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime, Error> {
+fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime> {
     let slice: &[u8; 7] = packet[offset..offset + 7].try_into().unwrap();
     let s: String = bcd2string!(slice, 7);
 
@@ -161,7 +163,7 @@ fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime, Error> 
     }
 }
 
-fn unpack_hhmm(packet: &Msg, offset: usize) -> Result<NaiveTime, Error> {
+fn unpack_hhmm(packet: &Msg, offset: usize) -> Result<NaiveTime> {
     let slice: &[u8; 2] = packet[offset..offset + 2].try_into().unwrap();
     let s: String = bcd2string!(slice, 2);
 
@@ -171,7 +173,7 @@ fn unpack_hhmm(packet: &Msg, offset: usize) -> Result<NaiveTime, Error> {
     }
 }
 
-fn bcd(b: u8) -> Result<char, Error> {
+fn bcd(b: u8) -> Result<char> {
     match b {
         0 => Ok('0'),
         1 => Ok('1'),
