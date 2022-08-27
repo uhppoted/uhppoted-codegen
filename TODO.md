@@ -3,9 +3,8 @@
 - [ ] Test data
       - [ ] Export
       - (?) Language test skeletons
+- [ ] Code generation HOWTO
 
-- [x] record-special-events
-- [x] get-time-profile
 - [ ] set-time-profile
 - [ ] clear-time-profiles
 - [ ] add-task
@@ -14,7 +13,6 @@
 - [ ] listen
 
 ## Go
-- [x] bind address should not include port
 - [ ] Make MAC a string
 - [ ] Rework bcd2string to use fmt
 - [ ] Optional time profile dates
@@ -22,14 +20,12 @@
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [x] bind address should not include port
 - [ ] Make MAC a string
 - [ ] Rework decode to use Unpack trait
 - [ ] Rework bcd2string to use format!
 - [ ] Optional time profile dates
 
 ## Python
-- [x] pprint
 - [ ] Optional time profile dates
 - [ ] asyncio
       - https://docs.python.org/3/howto/sockets.html

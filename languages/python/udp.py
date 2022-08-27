@@ -8,6 +8,7 @@ WRITE_TIMEOUT = struct.pack('ll', 1, 0)
 
 
 class UDP:
+
     def __init__(self, bind='0.0.0.0', broadcast='255.255.255.255:60000', debug=False):
         self._bind = (bind, 0)
         self._broadcast = resolve(broadcast)
@@ -24,7 +25,6 @@ class UDP:
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_SNDTIMEO, WRITE_TIMEOUT)
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVTIMEO, READ_TIMEOUT)
-            # socket, err := net.ListenUDP("udp", bindAddr)
 
             sock.sendto(request, self._broadcast)
 
@@ -35,6 +35,7 @@ class UDP:
     def dump(self, packet):
         if self._debug:
             dump(packet)
+
 
 # TODO convert to asyncio
 def read(sock, debug):
@@ -50,6 +51,7 @@ def read(sock, debug):
             break
 
     return replies
+
 
 # TODO convert to asyncio
 def read_all(sock, debug):
@@ -68,8 +70,10 @@ def read_all(sock, debug):
 
     return replies
 
+
 def read_none(sock, debug):
     return None
+
 
 def resolve(addr):
     match = re.match(r'(.*?):([0-9]+)', addr)
@@ -78,6 +82,7 @@ def resolve(addr):
     else:
         address = ipaddress.IPv4Address(addr)
         return (str(address), 60000)
+
 
 def dump(packet):
     for i in range(0, 4):

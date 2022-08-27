@@ -29,6 +29,10 @@ def pack_uint32(v, packet, offset):
 
 def pack_IPv4(v, packet, offset):
     packet[offset:offset+4] = v.packed
+
+def pack_date(v, packet, offset):
+    bcd = f'{v:%Y%m%d}'
+    packet[offset:offset+4] = bytes.fromhex(bcd)
    
 def pack_datetime(v, packet, offset):
     bcd = f'{v:%Y%m%d%H%M%S}'
