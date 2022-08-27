@@ -6,7 +6,7 @@
 - [ ] Code generation HOWTO
 
 - [x] set-time-profile
-- [ ] clear-time-profiles
+- [x] clear-time-profiles
 - [ ] add-task
 - [ ] clear-task-list
 - [ ] refresh-tasklist
@@ -16,6 +16,7 @@
 - [ ] Make MAC a string
 - [ ] Rework bcd2string to use fmt
 - [ ] Optional time profile dates
+- [ ] Handle missing time profile
 - (?) JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
@@ -24,9 +25,11 @@
 - [ ] Rework decode to use Unpack trait
 - [ ] Rework bcd2string to use format!
 - [ ] Optional time profile dates
+- [ ] Handle missing time profile
 
 ## Python
 - [ ] Optional time profile dates
+- [ ] Handle missing time profile
 - [ ] asyncio
       - https://docs.python.org/3/howto/sockets.html
       - https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python

@@ -13,7 +13,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 23] = [
+pub const COMMANDS: [&Command; 24] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -105,6 +105,10 @@ pub const COMMANDS: [&Command; 23] = [
     &Command {
         name: "set-time-profile",
         func: set_time_profile,
+    },
+    &Command {
+        name: "delete-all-time-profiles",
+        func: delete_all_time_profiles,
     },
 ];
 
@@ -328,6 +332,13 @@ fn set_time_profile() {
         segment_3_end,
         linked_profile_id,
     ) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn delete_all_time_profiles() {
+    match uhppote::delete_all_time_profiles(CONTROLLER) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

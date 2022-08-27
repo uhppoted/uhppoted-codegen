@@ -25,6 +25,7 @@ var Functions = []Function{
 	RecordSpecialEvents,
 	GetTimeProfile,
 	SetTimeProfile,
+	DeleteAllTimeProfiles,
 }
 
 var GetController = Function{
@@ -456,4 +457,16 @@ var SetTimeProfile = Function{
 	},
 	Request:  &SetTimeProfileRequest,
 	Response: &SetTimeProfileResponse,
+}
+
+var DeleteAllTimeProfiles = Function{
+	Name: "delete all time profiles",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+	},
+	Request:  &DeleteAllTimeProfilesRequest,
+	Response: &DeleteAllTimeProfilesResponse,
 }

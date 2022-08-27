@@ -55,6 +55,7 @@ var commands = []command{
     command{name: "record-special-events", f: recordSpecialEvents},
     command{name: "get-time-profile", f: getTimeProfile},
     command{name: "set-time-profile", f: setTimeProfile},
+    command{name: "delete-all-time-profiles", f: deleteAllTimeProfiles},
 }
 
 func (c command) exec() {
@@ -196,3 +197,8 @@ func setTimeProfile() (any, error) {
         uhppote.HHmm(segment3start), uhppote.HHmm(segment3end),
         linkedProfileID)
 }
+
+func deleteAllTimeProfiles() (any, error) {
+    return uhppote.DeleteAllTimeProfiles(CONTROLLER)
+}
+

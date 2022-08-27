@@ -1633,6 +1633,53 @@
             "bytes": "F5gAAHg3KhgdICIBASAiEjEBAQABAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
           }
         }
+      },
+      {
+        "name": "delete all time profiles",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "delete all time profiles request",
+          "msgtype": 138,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "",
+              "type": "magic",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "delete all time profiles response",
+          "msgtype": 138,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "deleted",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
       }
     ],
     "requests": [
@@ -2167,6 +2214,25 @@
         ],
         "_": {
           "bytes": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "delete all time profiles request",
+        "msgtype": 138,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "",
+            "type": "magic",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ],
@@ -2903,6 +2969,25 @@
         ],
         "_": {
           "bytes": "F5gAAHg3KhgdICIBASAiEjEBAQABAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "delete all time profiles response",
+        "msgtype": 138,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "deleted",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ]

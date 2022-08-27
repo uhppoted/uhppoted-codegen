@@ -44,7 +44,7 @@ def commands():
         'record-special-events': record_special_events,
         'get-time-profile': get_time_profile,
         'set-time-profile': set_time_profile,
-        # 'clear-time-profiles': clear_time_profiles,
+        'delete-all-time-profiles': delete_all_time_profiles,
         # 'add-task': add_task,
         # 'refresh-tasklist': refresh_tasklist,
         # 'clear-tasklist': clear_tasklist,
@@ -176,3 +176,7 @@ def set_time_profile(u):
         segment2start, segment2end,
         segment3start, segment3end,
         linked_profile_ID)
+
+
+def delete_all_time_profiles(u):
+    return u.delete_all_time_profiles(CONTROLLER)
