@@ -43,33 +43,33 @@ def unpack_IPv4(packet, offset):
     return IPv4Address(packet[offset:offset + 4])
 
 def unpack_MAC(packet, offset):
-    return f'{packet[offset]:02x}:{packet[offset+1]:02x}:{packet[offset+2]:02x}:{packet[offset+3]:02x}::{packet[offset+4]:02x}::{packet[offset+5]:02x}'
+    return '{:02x}:{:02x}:{:02x}:{:02x}::{:02x}:{:02x}'.format(*packet[offset:offset+7])
 
 def unpack_version(packet, offset):
-    return f'v{packet[offset]:x}.{packet[offset+1]:02x}'
+    return 'v{:x}.{:02x}'.format(*packet[offset:offset+2])
 
 def unpack_date(packet, offset):
-    bcd = f'{packet[offset]:02x}{packet[offset+1]:02x}{packet[offset+2]:02x}{packet[offset+3]:02x}'
+    bcd = '{:02x}{:02x}{:02x}{:02x}'.format(*packet[offset:offset+4])
 
     return datetime.datetime.strptime(bcd, '%Y%m%d').date()
 
 def unpack_shortdate(packet, offset):
-    bcd = f'20{packet[offset]:02x}{packet[offset+1]:02x}{packet[offset+2]:02x}'
+    bcd = '20{:02x}{:02x}{:02x}'.format(*packet[offset:offset+3])
 
     return datetime.datetime.strptime(bcd, '%Y%m%d').date()
 
 def unpack_time(packet, offset):
-    bcd = f'{packet[offset]:02x}{packet[offset+1]:02x}{packet[offset+2]:02x}'
+    bcd = '{:02x}{:02x}{:02x}'.format(*packet[offset:offset+3])
 
     return datetime.datetime.strptime(bcd, '%H%M%S').time()
 
 def unpack_datetime(packet, offset):
-    bcd = f'{packet[offset]:02x}{packet[offset+1]:02x}{packet[offset+2]:02x}{packet[offset+3]:02x}{packet[offset+4]:02x}{packet[offset+5]:02x}{packet[offset+6]:02x}'
+    bcd = '{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}'.format(*packet[offset:offset+7])
 
     return datetime.datetime.strptime(bcd, '%Y%m%d%H%M%S')
 
 def unpack_HHmm(packet, offset):
-    bcd = f'{packet[offset]:02x}{packet[offset+1]:02x}'
+    bcd = '{:02x}{:02x}'.format(*packet[offset:offset+2])
 
     return datetime.datetime.strptime(bcd, '%H%M').time()
 
