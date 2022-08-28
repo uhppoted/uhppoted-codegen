@@ -58,12 +58,16 @@ func unpackIPv4(packet []byte, offset uint8) (netip.Addr, error) {
     return addr, nil
 }
 
-func unpackMAC(packet []byte, offset uint8) (MAC, error) {
-    mac := make([]byte,6)
+func unpackMAC(packet []byte, offset uint8) (string, error) {
+    mac := fmt.Sprintf("%02x:%02x:%02x:%02x:%02x:%02x", 
+        packet[offset],
+        packet[offset+1],
+        packet[offset+2],
+        packet[offset+3],
+        packet[offset+4],
+        packet[offset+5])
 
-    copy(mac,packet[offset : offset+6])
-    
-    return MAC(mac), nil
+    return mac, nil
 }
 
 func unpackVersion(packet []byte, offset uint8) (string, error) {

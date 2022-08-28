@@ -96,10 +96,14 @@ fn unpack_ipv4(packet: &Msg, offset: usize) -> Result<Ipv4Addr> {
     return Ok(Ipv4Addr::new(u0, u1, u2, u3));
 }
 
-fn unpack_mac(packet: &Msg, offset: usize) -> Result<[u8; 6]> {
-    let mut mac: [u8; 6] = [0; 6];
-
-    mac.clone_from_slice(&packet[offset..offset + 6]);
+fn unpack_mac(packet: &Msg, offset: usize) -> Result<String> {
+    let mac = format!("{:02x}:{:02x}:{:02x}:{:02x}:{:02x}:{:02x}",
+    packet[offset],
+    packet[offset+1],
+    packet[offset+2],
+    packet[offset+3],
+    packet[offset+4],
+    packet[offset+5]);
 
     return Ok(mac);
 }

@@ -6,7 +6,7 @@
             "uint32": "u32",
             "bool": "bool",
             "IPv4": "Ipv4Addr",
-            "MAC": "[u8; 6]",
+            "MAC": "String",
             "version": "String",
             "date": "NaiveDate",
             "shortdate": "NaiveDate",
