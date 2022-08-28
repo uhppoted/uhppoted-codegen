@@ -4,6 +4,7 @@
       - [ ] Export
       - (?) Language test skeletons
 - [ ] Code generation HOWTO
+- [ ] Package for release
 
 - [x] set-time-profile
 - [x] clear-time-profiles
@@ -41,9 +42,9 @@
       - https://realpython.com/async-io-python/
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
-## Erlang
-
 ## Javascript
+
+## Erlang
 
 ## Elixir
 

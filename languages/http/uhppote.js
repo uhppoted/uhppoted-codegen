@@ -1,92 +1,66 @@
 import * as encode from './encode.js'
 import * as decode from './decode.js'
+import * as udp from './udp.js'
 
-let REQUESTID = 0
+export function GetAllControllers () {
+  const bytes = encode.GetController(0)
 
-export function get_all_controllers () {
-  const request = encode.GetController(0)
-  const replies= post(request, 5000)
+  return udp.post(bytes, '500ms')
+    .then(replies => {
+      const list = []
 
-  const list = []
-  for (const reply of replies) {
-    list.push(decode.GetControllerResponse(reply))
-  }
-
-  return list
-}
-
-function post (bytes, timeout) {
-  const hex = bin2hex(bytes)
-  const debug = document.querySelector('#request textarea')
-
-  debug.value = hex
-
-  const rq = {
-    ID: nextID(),
-    wait: timeout,
-    request: [...bytes]
-  }
-
-  const request = {
-    method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache',
-    credentials: 'same-origin',
-    headers: { 'Content-Type': 'application/json' },
-    redirect: 'follow',
-    referrerPolicy: 'no-referrer',
-    body: JSON.stringify(rq)
-  }
-
-  fetch('/udp', request)
-    .then(response => {
-      switch (response.status) {
-        case 200:
-          return response.json()
-
-        default:
-          response.text().then(w => {
-            warn(new Error(w))
-          })
+      for (const reply of replies) {
+        list.push(decode.GetController(reply))
       }
-    })
-    .then(reply => {
-      return reply.replies
-    })
-    .catch(function (err) {
-      warn(`${err.message.toLowerCase()}`)
-    })
-    .finally(() => {
+
+      return list
     })
 }
 
-function nextID () {
-  REQUESTID++
+export function GetController (deviceID) {
+  const bytes = encode.GetController(deviceID)
 
-  return REQUESTID
+  return udp.post(bytes, '0s')
+    .then(replies => {
+      if (replies.length > 0) {
+        return decode.GetController(replies[0])
+      }
+
+      return null
+    })
 }
 
-function warn (err) {
-  console.error(err)
+export function SetIP (deviceID, address, netmask, gateway) {
+  const bytes = encode.SetIP(deviceID, address, netmask, gateway)
+
+  return udp.post(bytes, '0.1ms')
+    .then(replies => {
+      return true
+    })
 }
 
-function bin2hex (bytes) {
-  const chunks = [...bytes]
-    .map(x => x.toString(16).padStart(2, '0'))
-    .join('')
-    .match(/.{1,16}/g)
-    .map(l => l.match(/.{1,2}/g).join(' '))
+export function GetTime (deviceID) {
+  const bytes = encode.GetTime(deviceID)
 
-  const lines = []
-  while (chunks.length > 0) {
-    lines.push(chunks.splice(0, 2).join('  '))
-  }
+  return udp.post(bytes, '0s')
+    .then(replies => {
+      if (replies.length > 0) {
+        return decode.GetTime(replies[0])
+      }
 
-  return lines.join('\n')
+      return null
+    })
+}
 
-  // const f = function* chunks(array,N) {
-  //    for (let i=0; i < array.length; i += N) {
-  //        yield array.slice(i, i + N);
-  //    }
-  // }
+export function SetTime (deviceID, time) {
+  const bytes = encode.SetTime(deviceID, time)
+
+  return udp.post(bytes, '0s')
+    .then(replies => {
+      if (replies.length > 0) {
+        return decode.GetTime(replies[0])
+      }
+
+      return null
+    })
 }

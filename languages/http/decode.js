@@ -1,9 +1,32 @@
+export function decode (bytes) {
+  const buffer = new Uint8Array(bytes)
+
+  if (buffer.length !== 64) {
+    throw new Error(`Invalid buffer (expected 64 bytes, got ${buffer.length}`)
+  }
+
+  if (buffer[0] !== 0x17) {
+    throw new Error(`Invalid SOM ${buffer[0]}`)
+  }
+
+  switch (buffer[1]) {
+    case 0x30:
+      return SetTime(bytes)
+
+    case 0x32:
+      return GetTime(bytes)
+
+    default:
+      throw new Error(`Unknown function code ${buffer[1]}`)
+  }
+}
+
 export function GetController (bytes) {
   const buffer = new Uint8Array(bytes)
   const view = new DataView(buffer.buffer)
 
   return {
-    device: {
+    controller: {
       id: view.getUint32(4, true),
       address: address(view.getUint32(8)),
       netmask: address(view.getUint32(12)),
@@ -11,6 +34,30 @@ export function GetController (bytes) {
       MAC: MAC(buffer.slice(20, 26)),
       version: bcd(buffer.slice(26, 28)),
       date: yyyymmdd(buffer.slice(28, 32))
+    }
+  }
+}
+
+export function GetTime (bytes) {
+  const buffer = new Uint8Array(bytes)
+  const view = new DataView(buffer.buffer)
+
+  return {
+    time: {
+      id: view.getUint32(4, true),
+      datetime: yyyymmddHHmmss(buffer.slice(8, 15))
+    }
+  }
+}
+
+export function SetTime (bytes) {
+  const buffer = new Uint8Array(bytes)
+  const view = new DataView(buffer.buffer)
+
+  return {
+    time: {
+      id: view.getUint32(4, true),
+      datetime: yyyymmddHHmmss(buffer.slice(8, 15))
     }
   }
 }

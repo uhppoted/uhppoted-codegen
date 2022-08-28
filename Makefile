@@ -41,7 +41,7 @@ format:
 build: format
 	go build -trimpath -o bin/ ./...
 
-debug: go rust python
+debug: go rust python http
 	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
 	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
@@ -133,4 +133,5 @@ python-usage: python
 
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
+	npx eslint --fix generated/http/*.js
 
