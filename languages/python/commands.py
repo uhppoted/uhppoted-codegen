@@ -45,9 +45,9 @@ def commands():
         'get-time-profile': get_time_profile,
         'set-time-profile': set_time_profile,
         'delete-all-time-profiles': delete_all_time_profiles,
-        # 'add-task': add_task,
-        # 'refresh-tasklist': refresh_tasklist,
-        # 'clear-tasklist': clear_tasklist,
+        'add-task': add_task,
+        'refresh-tasklist': refresh_tasklist,
+        'clear-tasklist': clear_tasklist,
     }
 
 
@@ -63,95 +63,154 @@ def get_all_controllers(u):
 
 
 def get_controller(u):
-    return u.get_controller(CONTROLLER)
+    controller = CONTROLLER
+
+    return u.get_controller(controller)
 
 
 def set_ip(u):
-    return u.set_ip(CONTROLLER, ADDRESS, NETMASK, GATEWAY)
+    controller = CONTROLLER
+    address = ADDRESS
+    netmask = NETMASK
+    gateway = GATEWAY
+
+    return u.set_ip(controller, address, netmask, gateway)
 
 
 def get_time(u):
-    return u.get_time(CONTROLLER)
+    controller = CONTROLLER
+
+    return u.get_time(controller)
 
 
 def set_time(u):
-    return u.set_time(CONTROLLER, datetime.datetime.now())
+    controller = CONTROLLER
+    now = datetime.datetime.now()
+
+    return u.set_time(controller, now)
 
 
 def get_listener(u):
-    return u.get_listener(CONTROLLER)
+    controller = CONTROLLER
+
+    return u.get_listener(controller)
 
 
 def set_listener(u):
+    controller = CONTROLLER
     (address, port) = LISTENER
 
-    return u.set_listener(CONTROLLER, address, port)
+    return u.set_listener(controller, address, port)
 
 
 def get_door_control(u):
-    return u.get_door_control(CONTROLLER, DOOR)
+    controller = CONTROLLER
+    door = DOOR
+
+    return u.get_door_control(controller, door)
 
 
 def set_door_control(u):
-    return u.set_door_control(CONTROLLER, DOOR, MODE, DELAY)
+    controller = CONTROLLER
+    door = DOOR
+    mode = MODE
+    delay = DELAY
+
+    return u.set_door_control(controller, door, mode, delay)
 
 
 def get_status(u):
-    return u.get_status(CONTROLLER)
+    controller = CONTROLLER
+
+    return u.get_status(controller)
 
 
 def open_door(u):
-    return u.open_door(CONTROLLER, DOOR)
+    controller = CONTROLLER
+    door = DOOR
+
+    return u.open_door(controller, door)
 
 
 def get_cards(u):
-    return u.get_cards(CONTROLLER)
+    controller = CONTROLLER
+
+    return u.get_cards(controller)
 
 
 def get_card(u):
-    return u.get_card(CONTROLLER, CARD)
+    controller = CONTROLLER
+    card = CARD
+
+    return u.get_card(controller, card)
 
 
 def get_card_by_index(u):
-    return u.get_card_by_index(CONTROLLER, CARD_INDEX)
+    controller = CONTROLLER
+    index = CARD_INDEX
+
+    return u.get_card_by_index(controller, index)
 
 
 def put_card(u):
+    controller = CONTROLLER
+    card = CARD
     start = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
     end = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
 
-    return u.put_card(CONTROLLER, CARD, start, end, 0, 1, 29, 0)
+    return u.put_card(controller, card, start, end, 0, 1, 29, 0)
 
 
 def delete_card(u):
-    return u.delete_card(CONTROLLER, CARD)
+    controller = CONTROLLER
+    card = CARD
+
+    return u.delete_card(controller, card)
 
 
 def delete_all_cards(u):
-    return u.delete_all_cards(CONTROLLER)
+    controller = CONTROLLER
+
+    return u.delete_all_cards(controller)
 
 
 def get_event(u):
-    return u.get_event(CONTROLLER, EVENT_INDEX)
+    controller = CONTROLLER
+    index = EVENT_INDEX
+
+    return u.get_event(controller, index)
 
 
 def get_event_index(u):
-    return u.get_event_index(CONTROLLER)
+    controller = CONTROLLER
+
+    return u.get_event_index(controller)
 
 
 def set_event_index(u):
-    return u.set_event_index(CONTROLLER, EVENT_INDEX)
+    controller = CONTROLLER
+    index = EVENT_INDEX
+
+    return u.set_event_index(controller, index)
 
 
 def record_special_events(u):
-    return u.record_special_events(CONTROLLER, True)
+    controller = CONTROLLER
+    enabled = True
+
+    return u.record_special_events(controller, enabled)
 
 
 def get_time_profile(u):
-    return u.get_time_profile(CONTROLLER, TIME_PROFILE_ID)
+    controller = CONTROLLER
+    profile_id = TIME_PROFILE_ID
+
+    return u.get_time_profile(controller, profile_id)
 
 
 def set_time_profile(u):
+    controller = CONTROLLER
+    profile_id = TIME_PROFILE_ID
     start = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
     end = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
     monday = True
@@ -169,7 +228,9 @@ def set_time_profile(u):
     segment3end = datetime.datetime.strptime("22:00", '%H:%M').time()
     linked_profile_ID = 23
 
-    return u.set_time_profile(CONTROLLER, TIME_PROFILE_ID,
+    return u.set_time_profile(
+        controller, 
+        profile_id,
         start, end,
         monday, tuesday, wednesday, thursday, friday, saturday, sunday,
         segment1start, segment1end,
@@ -180,3 +241,41 @@ def set_time_profile(u):
 
 def delete_all_time_profiles(u):
     return u.delete_all_time_profiles(CONTROLLER)
+
+
+def add_task(u):
+    controller = CONTROLLER
+    start_date = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
+    end_date = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
+    monday = True
+    tuesday = False
+    wednesday = True
+    thursday = True
+    friday = False
+    saturday = False
+    sunday = True
+    start_time = datetime.datetime.strptime("08:15", '%H:%M').time()
+    door = DOOR
+    task_type = 2
+    more_cards = 0
+
+    return u.add_task(
+        controller,
+        start_date, end_date,
+        monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+        start_time,
+        door,
+        task_type,
+        more_cards)
+
+
+def refresh_tasklist(u):
+    controller = CONTROLLER
+
+    return u.refresh_tasklist(controller)
+
+
+def clear_tasklist(u):
+    controller = CONTROLLER
+
+    return u.clear_tasklist(controller)

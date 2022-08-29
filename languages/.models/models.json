@@ -1680,6 +1680,259 @@
             "bytes": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
           }
         }
+      },
+      {
+        "name": "add task",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "start date",
+            "type": "date"
+          },
+          {
+            "name": "end date",
+            "type": "date"
+          },
+          {
+            "name": "monday",
+            "type": "bool"
+          },
+          {
+            "name": "tuesday",
+            "type": "bool"
+          },
+          {
+            "name": "wednesday",
+            "type": "bool"
+          },
+          {
+            "name": "thursday",
+            "type": "bool"
+          },
+          {
+            "name": "friday",
+            "type": "bool"
+          },
+          {
+            "name": "saturday",
+            "type": "bool"
+          },
+          {
+            "name": "sunday",
+            "type": "bool"
+          },
+          {
+            "name": "start time",
+            "type": "HHmm"
+          },
+          {
+            "name": "door",
+            "type": "uint8"
+          },
+          {
+            "name": "task type",
+            "type": "uint8"
+          },
+          {
+            "name": "more cards",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "add task request",
+          "msgtype": 168,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "offset": 8
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "offset": 12
+            },
+            {
+              "name": "monday",
+              "type": "bool",
+              "offset": 16
+            },
+            {
+              "name": "tuesday",
+              "type": "bool",
+              "offset": 17
+            },
+            {
+              "name": "wednesday",
+              "type": "bool",
+              "offset": 18
+            },
+            {
+              "name": "thursday",
+              "type": "bool",
+              "offset": 19
+            },
+            {
+              "name": "friday",
+              "type": "bool",
+              "offset": 20
+            },
+            {
+              "name": "saturday",
+              "type": "bool",
+              "offset": 21
+            },
+            {
+              "name": "sunday",
+              "type": "bool",
+              "offset": 22
+            },
+            {
+              "name": "start time",
+              "type": "HHmm",
+              "offset": 23
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 25
+            },
+            {
+              "name": "task type",
+              "type": "uint8",
+              "offset": 26
+            },
+            {
+              "name": "more cards",
+              "type": "uint8",
+              "offset": 27
+            }
+          ],
+          "_": {
+            "bytes": "F6gAAHg3KhggIgEBICISMQEAAQEAAAEIMAMCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "add task response",
+          "msgtype": 168,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "added",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F6gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
+      },
+      {
+        "name": "refresh tasklist",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "refresh tasklist request",
+          "msgtype": 172,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "",
+              "type": "magic",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "refresh tasklist response",
+          "msgtype": 172,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "refreshed",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F6wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
+      },
+      {
+        "name": "clear tasklist",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "clear tasklist request",
+          "msgtype": 166,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "",
+              "type": "magic",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F6YAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        },
+        "response": {
+          "name": "clear tasklist response",
+          "msgtype": 166,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "cleared",
+              "type": "bool",
+              "offset": 8
+            }
+          ],
+          "_": {
+            "bytes": "F6YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          }
+        }
       }
     ],
     "requests": [
@@ -2233,6 +2486,123 @@
         ],
         "_": {
           "bytes": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "add task request",
+        "msgtype": 168,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "start date",
+            "type": "date",
+            "offset": 8
+          },
+          {
+            "name": "end date",
+            "type": "date",
+            "offset": 12
+          },
+          {
+            "name": "monday",
+            "type": "bool",
+            "offset": 16
+          },
+          {
+            "name": "tuesday",
+            "type": "bool",
+            "offset": 17
+          },
+          {
+            "name": "wednesday",
+            "type": "bool",
+            "offset": 18
+          },
+          {
+            "name": "thursday",
+            "type": "bool",
+            "offset": 19
+          },
+          {
+            "name": "friday",
+            "type": "bool",
+            "offset": 20
+          },
+          {
+            "name": "saturday",
+            "type": "bool",
+            "offset": 21
+          },
+          {
+            "name": "sunday",
+            "type": "bool",
+            "offset": 22
+          },
+          {
+            "name": "start time",
+            "type": "HHmm",
+            "offset": 23
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 25
+          },
+          {
+            "name": "task type",
+            "type": "uint8",
+            "offset": 26
+          },
+          {
+            "name": "more cards",
+            "type": "uint8",
+            "offset": 27
+          }
+        ],
+        "_": {
+          "bytes": "F6gAAHg3KhggIgEBICISMQEAAQEAAAEIMAMCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "refresh tasklist request",
+        "msgtype": 172,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "",
+            "type": "magic",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "clear tasklist request",
+        "msgtype": 166,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "",
+            "type": "magic",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F6YAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ],
@@ -2988,6 +3358,63 @@
         ],
         "_": {
           "bytes": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "add task response",
+        "msgtype": 168,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "added",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F6gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "refresh tasklist response",
+        "msgtype": 172,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "refreshed",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F6wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "clear tasklist response",
+        "msgtype": 166,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "cleared",
+            "type": "bool",
+            "offset": 8
+          }
+        ],
+        "_": {
+          "bytes": "F6YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ]

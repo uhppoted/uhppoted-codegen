@@ -6,15 +6,12 @@
 - [ ] Code generation HOWTO
 - [ ] Package for release
 
-- [x] set-time-profile
-- [x] clear-time-profiles
-- [ ] add-task
-- [ ] clear-task-list
-- [ ] refresh-tasklist
+- [x] add-task
+- [x] refresh-tasklist
+- [x] clear-tasklist
 - [ ] listen
 
 ## Go
-- [x] Make MAC a string
 - [ ] Rework bcd2string to use fmt
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
@@ -23,7 +20,6 @@
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [x] Make MAC a string
 - [ ] Rework bcd2string to use format!
 - [ ] Optional time profile dates
 - [ ] Handle missing time profile
@@ -41,8 +37,9 @@
       - https://realpython.com/async-io-python/
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
-## Javascript
+## HTTP
 - [ ] Templatize
+- [ ] Implement all commands
 
 ## Erlang
 

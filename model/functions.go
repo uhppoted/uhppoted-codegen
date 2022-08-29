@@ -26,6 +26,9 @@ var Functions = []Function{
 	GetTimeProfile,
 	SetTimeProfile,
 	DeleteAllTimeProfiles,
+	AddTask,
+	RefreshTaskList,
+	ClearTaskList,
 }
 
 var GetController = Function{
@@ -469,4 +472,92 @@ var DeleteAllTimeProfiles = Function{
 	},
 	Request:  &DeleteAllTimeProfilesRequest,
 	Response: &DeleteAllTimeProfilesResponse,
+}
+
+var AddTask = Function{
+	Name: "add task",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "start date",
+			Type: "date",
+		},
+		Arg{
+			Name: "end date",
+			Type: "date",
+		},
+		Arg{
+			Name: "monday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "tuesday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "wednesday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "thursday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "friday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "saturday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "sunday",
+			Type: "bool",
+		},
+		Arg{
+			Name: "start time",
+			Type: "HHmm",
+		},
+		Arg{
+			Name: "door",
+			Type: "uint8",
+		},
+		Arg{
+			Name: "task type",
+			Type: "uint8",
+		},
+		Arg{
+			Name: "more cards",
+			Type: "uint8",
+		},
+	},
+	Request:  &AddTaskRequest,
+	Response: &AddTaskResponse,
+}
+
+var RefreshTaskList = Function{
+	Name: "refresh tasklist",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+	},
+	Request:  &RefreshTaskListRequest,
+	Response: &RefreshTaskListResponse,
+}
+
+var ClearTaskList = Function{
+	Name: "clear tasklist",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+	},
+	Request:  &ClearTaskListRequest,
+	Response: &ClearTaskListResponse,
 }

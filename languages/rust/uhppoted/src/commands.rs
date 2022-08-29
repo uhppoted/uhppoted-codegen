@@ -13,7 +13,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 24] = [
+pub const COMMANDS: [&Command; 27] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -110,6 +110,18 @@ pub const COMMANDS: [&Command; 24] = [
         name: "delete-all-time-profiles",
         func: delete_all_time_profiles,
     },
+    &Command {
+        name: "add-task",
+        func: add_task,
+    },
+    &Command {
+        name: "refresh-tasklist",
+        func: refresh_tasklist,
+    },
+    &Command {
+        name: "clear-tasklist",
+        func: clear_tasklist,
+    },
 ];
 
 pub struct Command {
@@ -136,165 +148,218 @@ fn get_all_controllers() {
 }
 
 fn get_controller() {
-    match uhppote::get_controller(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::get_controller(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn set_ip() {
+    let controller = CONTROLLER;
     let address = "192.168.1.100".parse().unwrap();
     let netmask = "255.255.255.0".parse().unwrap();
     let gateway = "192.168.1.1".parse().unwrap();
 
-    match uhppote::set_ip(CONTROLLER, address, netmask, gateway) {
+    match uhppote::set_ip(controller, address, netmask, gateway) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_time() {
-    match uhppote::get_time(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::get_time(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn set_time() {
+    let controller = CONTROLLER;
     let now = Local::now().naive_local();
 
-    match uhppote::set_time(CONTROLLER, now) {
+    match uhppote::set_time(controller, now) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_status() {
-    match uhppote::get_status(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::get_status(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_listener() {
-    match uhppote::get_listener(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::get_listener(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn set_listener() {
+    let controller = CONTROLLER;
     let address = "192.168.1.100".parse().unwrap();
     let port: u16 = 60001;
 
-    match uhppote::set_listener(CONTROLLER, address, port) {
+    match uhppote::set_listener(controller, address, port) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_door_control() {
-    match uhppote::get_door_control(CONTROLLER, DOOR) {
+    let controller = CONTROLLER;
+    let door = DOOR;
+
+    match uhppote::get_door_control(controller, door) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn set_door_control() {
-    match uhppote::set_door_control(CONTROLLER, DOOR, MODE, DELAY) {
+    let controller = CONTROLLER;
+    let door = DOOR;
+    let mode = MODE;
+    let delay = DELAY;
+
+    match uhppote::set_door_control(controller, door, mode, delay) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn open_door() {
-    match uhppote::open_door(CONTROLLER, DOOR) {
+    let controller = CONTROLLER;
+    let door = DOOR;
+
+    match uhppote::open_door(controller, door) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_cards() {
-    match uhppote::get_cards(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::get_cards(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_card() {
-    match uhppote::get_card(CONTROLLER, CARD) {
+    let controller = CONTROLLER;
+    let card = CARD;
+
+    match uhppote::get_card(controller, card) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_card_by_index() {
-    match uhppote::get_card_by_index(CONTROLLER, CARD_INDEX) {
+    let controller = CONTROLLER;
+    let index = CARD_INDEX;
+
+    match uhppote::get_card_by_index(controller, index) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn put_card() {
+    let controller = CONTROLLER;
+    let card = CARD;
     let start = NaiveDate::from_ymd(2022, 1, 1);
     let end = NaiveDate::from_ymd(2022, 12, 31);
 
-    match uhppote::put_card(CONTROLLER, CARD, start, end, 0, 1, 29, 0) {
+    match uhppote::put_card(controller, card, start, end, 0, 1, 29, 0) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn delete_card() {
-    match uhppote::delete_card(CONTROLLER, CARD) {
+    let controller = CONTROLLER;
+    let card = CARD;
+
+    match uhppote::delete_card(controller, card) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn delete_all_cards() {
-    match uhppote::delete_all_cards(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::delete_all_cards(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_event() {
-    match uhppote::get_event(CONTROLLER, EVENT_INDEX) {
+    let controller = CONTROLLER;
+    let index = EVENT_INDEX;
+
+    match uhppote::get_event(controller, index) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_event_index() {
-    match uhppote::get_event_index(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::get_event_index(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn set_event_index() {
-    match uhppote::set_event_index(CONTROLLER, EVENT_INDEX) {
+    let controller = CONTROLLER;
+    let index = EVENT_INDEX;
+
+    match uhppote::set_event_index(controller, index) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn record_special_events() {
-    match uhppote::record_special_events(CONTROLLER, true) {
+    let controller = CONTROLLER;
+    let enabled = true;
+
+    match uhppote::record_special_events(controller, enabled) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn get_time_profile() {
-    match uhppote::get_time_profile(CONTROLLER, TIME_PROFILE_ID) {
+    let controller = CONTROLLER;
+    let profile_id = TIME_PROFILE_ID;
+
+    match uhppote::get_time_profile(controller, profile_id) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
 }
 
 fn set_time_profile() {
+    let controller = CONTROLLER;
+    let profile_id = TIME_PROFILE_ID;
     let start = NaiveDate::parse_from_str("2022-01-01", "%Y-%m-%d").unwrap();
     let end = NaiveDate::parse_from_str("2022-12-31", "%Y-%m-%d").unwrap();
     let monday = true;
@@ -313,8 +378,8 @@ fn set_time_profile() {
     let linked_profile_id: u8 = 37;
 
     match uhppote::set_time_profile(
-        CONTROLLER,
-        TIME_PROFILE_ID,
+        controller,
+        profile_id,
         start,
         end,
         monday,
@@ -338,7 +403,64 @@ fn set_time_profile() {
 }
 
 fn delete_all_time_profiles() {
-    match uhppote::delete_all_time_profiles(CONTROLLER) {
+    let controller = CONTROLLER;
+
+    match uhppote::delete_all_time_profiles(controller) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn add_task() {
+    let controller = CONTROLLER;
+    let startdate = NaiveDate::parse_from_str("2022-01-01", "%Y-%m-%d").unwrap();
+    let enddate = NaiveDate::parse_from_str("2022-12-31", "%Y-%m-%d").unwrap();
+    let monday = true;
+    let tuesday = true;
+    let wednesday = false;
+    let thursday = true;
+    let friday = false;
+    let saturday = false;
+    let sunday = true;
+    let starttime = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
+    let door = DOOR;
+    let task_type: u8 = 2;
+    let more_cards: u8 = 0;
+
+    match uhppote::add_task(
+        controller,
+        startdate,
+        enddate,
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday,
+        saturday,
+        sunday,
+        starttime,
+        door,
+        task_type,
+        more_cards,
+    ) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn refresh_tasklist() {
+    let controller = CONTROLLER;
+
+    match uhppote::refresh_tasklist(controller) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn clear_tasklist() {
+    let controller = CONTROLLER;
+
+    match uhppote::clear_tasklist(controller) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

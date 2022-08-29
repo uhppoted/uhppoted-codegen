@@ -56,6 +56,9 @@ var commands = []command{
     command{name: "get-time-profile", f: getTimeProfile},
     command{name: "set-time-profile", f: setTimeProfile},
     command{name: "delete-all-time-profiles", f: deleteAllTimeProfiles},
+    command{name: "add-task", f: addTask},
+    command{name: "refresh-tasklist", f: refreshTaskList},
+    command{name: "clear-tasklist", f: clearTaskList},
 }
 
 func (c command) exec() {
@@ -81,11 +84,18 @@ func getAllControllers() (any, error) {
 }
 
 func getController() (any, error) {
-    return uhppote.GetController(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.GetController(controller)
 }
 
 func setIP() (any, error) {
-    if err := uhppote.SetIP(CONTROLLER, ADDRESS, NETMASK, GATEWAY); err != nil {
+    controller := CONTROLLER
+    address := ADDRESS
+    netmask := NETMASK
+    gateway := GATEWAY
+
+    if err := uhppote.SetIP(controller, address, netmask, gateway); err != nil {
         return nil, err
     }
 
@@ -93,85 +103,140 @@ func setIP() (any, error) {
 }
 
 func getTime() (any, error) {
-    return uhppote.GetTime(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.GetTime(controller)
 }
 
 func setTime() (any, error) {
-    return uhppote.SetTime(CONTROLLER, uhppote.DateTime(time.Now()))
+    controller := CONTROLLER
+    now := uhppote.DateTime(time.Now())
+
+    return uhppote.SetTime(controller, now)
 }
 
 func getStatus() (any, error) {
-    return uhppote.GetStatus(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.GetStatus(controller)
 }
 
 func getListener() (any, error) {
-    return uhppote.GetListener(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.GetListener(controller)
 }
 
 func setListener() (any, error) {
-    return uhppote.SetListener(CONTROLLER, LISTENER.Addr(), LISTENER.Port())
+    controller := CONTROLLER
+    address := LISTENER.Addr()
+    port := LISTENER.Port()
+
+    return uhppote.SetListener(controller, address, port)
 }
 
 func getDoorControl() (any, error) {
-    return uhppote.GetDoorControl(CONTROLLER, DOOR)
+    controller := CONTROLLER
+    door := DOOR
+
+    return uhppote.GetDoorControl(controller, door)
 }
 
 func setDoorControl() (any, error) {
-    return uhppote.SetDoorControl(CONTROLLER, DOOR, MODE, DELAY)
+    controller := CONTROLLER
+    door := DOOR
+    mode := MODE
+    delay := DELAY
+
+    return uhppote.SetDoorControl(controller, door, mode, delay)
 }
 
 func openDoor() (any, error) {
-    return uhppote.OpenDoor(CONTROLLER, DOOR)
+    controller := CONTROLLER
+    door := DOOR
+
+    return uhppote.OpenDoor(controller, door)
 }
 
 func getCards() (any, error) {
-    return uhppote.GetCards(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.GetCards(controller)
 }
 
 func getCard() (any, error) {
-    return uhppote.GetCard(CONTROLLER, CARD)
+    controller := CONTROLLER
+    card := CARD
+
+    return uhppote.GetCard(controller, card)
 }
 
 func getCardByIndex() (any, error) {
-    return uhppote.GetCardByIndex(CONTROLLER, CARD_INDEX)
+    controller := CONTROLLER
+    index := CARD_INDEX
+
+    return uhppote.GetCardByIndex(controller, index)
 }
 
 func putCard() (any, error) {
+    controller := CONTROLLER
+    card := CARD
     start, _ := time.Parse("2006-01-02", "2022-01-01")
     end, _ := time.Parse("2006-01-02", "2022-12-31")
 
-    return uhppote.PutCard(CONTROLLER, CARD, uhppote.Date(start), uhppote.Date(end), 0, 1, 29, 0)
+    return uhppote.PutCard(controller, card, uhppote.Date(start), uhppote.Date(end), 0, 1, 29, 0)
 }
 
 func deleteCard() (any, error) {
-    return uhppote.DeleteCard(CONTROLLER, CARD)
+    controller := CONTROLLER
+    card := CARD
+
+    return uhppote.DeleteCard(controller, card)
 }
 
 func deleteAllCards() (any, error) {
-    return uhppote.DeleteAllCards(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.DeleteAllCards(controller)
 }
 
 func getEvent() (any, error) {
-    return uhppote.GetEvent(CONTROLLER, EVENT_INDEX)
+    controller := CONTROLLER
+    index := EVENT_INDEX
+
+    return uhppote.GetEvent(controller, index)
 }
 
 func getEventIndex() (any, error) {
-    return uhppote.GetEventIndex(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.GetEventIndex(controller)
 }
 
 func setEventIndex() (any, error) {
-    return uhppote.SetEventIndex(CONTROLLER, EVENT_INDEX)
+    controller := CONTROLLER
+    index := EVENT_INDEX
+
+    return uhppote.SetEventIndex(controller, index)
 }
 
 func recordSpecialEvents() (any, error) {
-    return uhppote.RecordSpecialEvents(CONTROLLER, true)
+    controller := CONTROLLER
+    enabled := true
+
+    return uhppote.RecordSpecialEvents(controller, enabled)
 }
 
 func getTimeProfile() (any, error) {
-    return uhppote.GetTimeProfile(CONTROLLER, TIME_PROFILE_ID)
+    controller := CONTROLLER
+    profileID := TIME_PROFILE_ID
+
+    return uhppote.GetTimeProfile(controller, profileID)
 }
 
 func setTimeProfile() (any, error) {
+    controller := CONTROLLER
+    profileID := TIME_PROFILE_ID
     start, _ := time.Parse("2006-01-02", "2022-01-01")
     end, _ := time.Parse("2006-01-02", "2022-12-31")
     monday := true
@@ -189,7 +254,9 @@ func setTimeProfile() (any, error) {
     segment3end, _ := time.Parse("15:04", "20:55")
     linkedProfileID := uint8(30)
 
-    return uhppote.SetTimeProfile(CONTROLLER, TIME_PROFILE_ID, 
+    return uhppote.SetTimeProfile(
+        controller, 
+        profileID, 
         uhppote.Date(start), uhppote.Date(end), 
         monday, tuesday, wednesday, thursday, friday, saturday, sunday,
         uhppote.HHmm(segment1start), uhppote.HHmm(segment1end),
@@ -199,6 +266,45 @@ func setTimeProfile() (any, error) {
 }
 
 func deleteAllTimeProfiles() (any, error) {
-    return uhppote.DeleteAllTimeProfiles(CONTROLLER)
+    controller := CONTROLLER
+
+    return uhppote.DeleteAllTimeProfiles(controller)
+}
+
+func addTask() (any, error) {
+    controller := CONTROLLER
+    startDate, _ := time.Parse("2006-01-02", "2022-01-01")
+    endDate, _ := time.Parse("2006-01-02", "2022-12-31")
+    monday := true
+    tuesday := false
+    wednesday := true
+    thursday := true
+    friday := false
+    saturday := false
+    sunday := true
+    startTime, _ := time.Parse("15:04", "08:30")
+    door := DOOR
+    taskType := uint8(2)
+    moreCards := uint8(0)
+
+    return uhppote.AddTask(controller, 
+        uhppote.Date(startDate), uhppote.Date(endDate),
+        monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+        uhppote.HHmm(startTime),
+        door,
+        taskType,
+        moreCards)
+}
+
+func refreshTaskList() (any, error) {
+    controller := CONTROLLER
+
+    return uhppote.RefreshTasklist(controller)
+}
+
+func clearTaskList() (any, error) {
+    controller := CONTROLLER
+
+    return uhppote.ClearTasklist(controller)
 }
 

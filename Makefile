@@ -1,7 +1,7 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= delete-all-time-profiles
+COMMAND ?= clear-tasklist
 
 MODELS = languages/.models
 GO     = languages/go
