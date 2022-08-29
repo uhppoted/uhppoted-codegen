@@ -24,7 +24,6 @@
 
 ## Rust
 - [x] Make MAC a string
-- [ ] Rework decode to use Unpack trait
 - [ ] Rework bcd2string to use format!
 - [ ] Optional time profile dates
 - [ ] Handle missing time profile
@@ -43,6 +42,7 @@
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
 ## Javascript
+- [ ] Templatize
 
 ## Erlang
 

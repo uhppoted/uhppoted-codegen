@@ -1,95 +1,98 @@
-export function GetController (deviceID) {
+{{range .model.requests}}{{template "request" .}}
+{{end}}
+
+{{define "request"}}
+export function {{CamelCase .name}}({{template "args" .fields}}) {
   const request = new Uint8Array(64)
   const view = new DataView(request.buffer)
 
   request[0] = 0x17
-  request[1] = 0x94
+  request[1] = {{byte2hex .msgtype}}
 
-  view.setUint32(4, deviceID, true)
+  {{range .fields}}{{if ne .type "magic"}}pack{{CamelCase .type}}({{camelCase .name}}, view, {{.offset}})
+  {{else}}packUint32(0x55aaaa55, view, {{.offset}}){{end}}{{end}}
 
   return request
 }
+{{end}}
 
-export function SetIP (deviceID, address, netmask, gateway) {
-  const request = new Uint8Array(64)
-  const view = new DataView(request.buffer)
-
-  request[0] = 0x17
-  request[1] = 0x96
-
-  view.setUint32(4, deviceID, true)
-  request.set(IPv4(address), 8)
-  request.set(IPv4(netmask), 12)
-  request.set(IPv4(gateway), 16)
-  view.setUint32(20, 0x55aaaa55, true)
-
-  return request
+function packUint8(v, packet, offset) {
+  packet.setUint8(offset, v)
 }
 
-export function GetTime (deviceID) {
-  const request = new Uint8Array(64)
-  const view = new DataView(request.buffer)
-
-  request[0] = 0x17
-  request[1] = 0x32
-
-  view.setUint32(4, deviceID, true)
-
-  return request
+function packUint16(v, packet, offset) {
+  packet.setUint16(offset, v, true)
 }
 
-export function SetTime (deviceID, datetime) {
-  const request = new Uint8Array(64)
-  const view = new DataView(request.buffer)
-  const now = new Date()
+function packUint32(v, packet, offset) {
+  packet.setUint32(offset, v, true)
+}
 
-  request[0] = 0x17
-  request[1] = 0x30
-
-  view.setUint32(4, deviceID, true)
-
-  if (datetime === '') {
-    request.set(datetime2bin(now), 8)
+function packBool(v, packet, offset) {
+  if (v) {
+    packet.setUint8(offset, 0x01)    
   } else {
-    request.set(datetime2bin(new Date(datetime)), 8)
+    packet.setUint8(offset, 0x00)        
   }
-
-  return request
 }
 
-function IPv4 (s) {
+function packIPv4(v, packet, offset) {
   const re = /([0-9]{0,3})\.([0-9]{0,3})\.([0-9]{0,3})\.([0-9]{0,3})/
-  const match = s.match(re)
-  const ip = []
+  const match = v.match(re)
 
   if (!match || match.length !== 5) {
-    throw new Error(`invalid IP address ${s}`)
+    throw new Error(`invalid IP address ${v}`)
   }
 
   for (let i = 0; i < 4; i++) {
     const b = Number(match[i + 1])
     if (Number.isNaN(b) || b > 255) {
-      throw new Error(`invalid IP address ${s}`)
+      throw new Error(`invalid IP address ${v}`)
     } else {
-      ip.push(b)
+      packet.setUint8(offset+i, b)
     }
   }
-
-  return ip
 }
 
-function datetime2bin (datetime) {
-  const year = String(datetime.getFullYear()).padStart(4, '0')
-  const month = String(datetime.getMonth() + 1).padStart(2, '0')
-  const day = String(datetime.getDate()).padStart(2, '0')
-  const hour = String(datetime.getHours()).padStart(2, '0')
-  const minute = String(datetime.getMinutes()).padStart(2, '0')
-  const second = String(datetime.getSeconds()).padStart(2, '0')
+function packDate (v, packet, offset) {
+  const year = String(v.getFullYear()).padStart(4, '0')
+  const month = String(v.getMonth() + 1).padStart(2, '0')
+  const day = String(v.getDate()).padStart(2, '0')
+
+  const date = `${year}${month}${day}`
+  const bytes = bcd2bin(`${date}`)
+
+  for (let i = 0; i < 4; i++) {
+      packet.setUint8(offset+i, bytes[i])
+  }
+}
+
+function packDatetime (v, packet, offset) {
+  const year = String(v.getFullYear()).padStart(4, '0')
+  const month = String(v.getMonth() + 1).padStart(2, '0')
+  const day = String(v.getDate()).padStart(2, '0')
+  const hour = String(v.getHours()).padStart(2, '0')
+  const minute = String(v.getMinutes()).padStart(2, '0')
+  const second = String(v.getSeconds()).padStart(2, '0')
 
   const date = `${year}${month}${day}`
   const time = `${hour}${minute}${second}`
+  const bytes = bcd2bin(`${date}${time}`)
 
-  return bcd2bin(`${date}${time}`)
+  for (let i = 0; i < 7; i++) {
+      packet.setUint8(offset+i, bytes[i])
+  }
+}
+
+function packHHmm (v, packet, offset) {
+  const hour = String(v.getHours()).padStart(2, '0')
+  const minute = String(v.getMinutes()).padStart(2, '0')
+
+  const time = `${hour}${minute}`
+  const bytes = bcd2bin(`${time}`)
+
+  packet.setUint8(offset, bytes[0])
+  packet.setUint8(offset+1, bytes[1])
 }
 
 function bcd2bin (bcd) {
