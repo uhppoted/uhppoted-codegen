@@ -39,7 +39,7 @@
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
 ## HTTP
-- [ ] Templatize
+- [x] Templatize
 - [ ] Implement all commands
 
 ## Erlang

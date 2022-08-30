@@ -3,9 +3,9 @@ import * as decode from './decode.js'
 import * as udp from './udp.js'
 
 export function GetAllControllers () {
-  const bytes = encode.GetControllerRequest(0)
+  const request = encode.GetControllerRequest(0)
 
-  return udp.post(bytes, '500ms')
+  return udp.post(request, '500ms')
     .then(replies => {
       const list = []
 
@@ -17,50 +17,25 @@ export function GetAllControllers () {
     })
 }
 
-export function GetController (deviceID) {
-  const bytes = encode.GetControllerRequest(deviceID)
+{{range .model.functions}}{{template "function" .}}
+{{end}}
 
-  return udp.post(bytes, '0s')
+{{define "function"}}
+export function {{CamelCase .name}}({{template "args" .args}}) { {{if .response}}
+  const request = encode.{{CamelCase .request.name}}({{template "params" .args}})
+
+  return udp.post(request, '0s')
     .then(replies => {
       if (replies.length > 0) {
-        return decode.GetControllerResponse(replies[0])
+        return decode.{{CamelCase .response.name}}(replies[0])
       }
 
       return null
-    })
-}
+    }){{else}}
+  const request = encode.{{CamelCase .request.name}}({{template "params" .args}})
 
-export function SetIP (deviceID, address, netmask, gateway) {
-  const bytes = encode.SetIPRequest(deviceID, address, netmask, gateway)
-
-  return udp.post(bytes, '0.1ms')
+  return udp.post(request, '0.1ms')
     .then(replies => {
       return true
-    })
-}
-
-export function GetTime (deviceID) {
-  const bytes = encode.GetTimeRequest(deviceID)
-
-  return udp.post(bytes, '0s')
-    .then(replies => {
-      if (replies.length > 0) {
-        return decode.GetTimeResponse(replies[0])
-      }
-
-      return null
-    })
-}
-
-export function SetTime (deviceID, time) {
-  const bytes = encode.SetTimeRequest(deviceID, time)
-
-  return udp.post(bytes, '0s')
-    .then(replies => {
-      if (replies.length > 0) {
-        return decode.SetTimeResponse(replies[0])
-      }
-
-      return null
-    })
-}
+    }){{end}}
+}{{end}}
