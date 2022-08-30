@@ -1,7 +1,6 @@
 # TODO
 
 - [x] Test data
-- (?) Language test skeletons
 - [ ] Code generation HOWTO
 - [ ] Package for release
 
@@ -16,6 +15,7 @@
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
+- (?) Test skeletons
 - [x] JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
