@@ -2,37 +2,32 @@ package model
 
 type Model struct {
 	Functions []Function `json:"functions"`
-	Requests  []Request  `json:"requests"`
-	Responses []Response `json:"responses"`
+	Requests  []Message  `json:"requests"`
+	Responses []Message  `json:"responses"`
 	Event     Message    `json:"event"`
 }
 
+type TestData struct {
+	Tests []Test `json:"tests"`
+}
+
 type Function struct {
-	Name     string    `json:"name"`
-	Args     []Arg     `json:"args"`
-	Request  *Request  `json:"request,omitempty"`
-	Response *Response `json:"response,omitempty"`
+	Name     string   `json:"name"`
+	Args     []Arg    `json:"args"`
+	Request  *Message `json:"request,omitempty"`
+	Response *Message `json:"response,omitempty"`
 }
 
 type Message struct {
-	Name     string   `json:"name"`
-	MsgType  uint8    `json:"msgtype"`
-	Fields   []Field  `json:"fields"`
-	TestData TestData `json:"_,omitempty"`
+	Name    string  `json:"name"`
+	MsgType uint8   `json:"msgtype"`
+	Fields  []Field `json:"fields"`
 }
 
-type Request struct {
-	Name     string   `json:"name"`
-	MsgType  uint8    `json:"msgtype"`
-	Fields   []Field  `json:"fields"`
-	TestData TestData `json:"_,omitempty"`
-}
-
-type Response struct {
-	Name     string   `json:"name"`
-	MsgType  uint8    `json:"msgtype"`
-	Fields   []Field  `json:"fields"`
-	TestData TestData `json:"_,omitempty"`
+type Test struct {
+	Name     string  `json:"name"`
+	Request  []uint8 `json:"request,omitempty"`
+	Response []uint8 `json:"response,omitempty"`
 }
 
 type Arg struct {
@@ -44,10 +39,6 @@ type Field struct {
 	Name   string `json:"name"`
 	Type   string `json:"type"`
 	Offset uint8  `json:"offset"`
-}
-
-type TestData struct {
-	Bytes []uint8 `json:"bytes"`
 }
 
 var Event = Message{
@@ -174,9 +165,5 @@ var Event = Message{
 			Type:   "uint32",
 			Offset: 40,
 		},
-	},
-
-	TestData: TestData{
-		Bytes: []uint8{},
 	},
 }

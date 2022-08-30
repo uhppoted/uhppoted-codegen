@@ -1,13 +1,12 @@
 # TODO
 
-- [ ] Test data
-      - [ ] Export
-      - (?) Language test skeletons
+- [x] Test data
+- (?) Language test skeletons
 - [ ] Code generation HOWTO
 - [ ] Package for release
 
 - [ ] listen
-      - [ ] Go
+      - [x] Go
       - [ ] Rust
       - [ ] Python
       - [ ] HTTP

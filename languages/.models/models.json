@@ -18,10 +18,7 @@
               "type": "uint32",
               "offset": 4
             }
-          ],
-          "_": {
-            "bytes": "F5QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get controller response",
@@ -62,10 +59,7 @@
               "type": "date",
               "offset": 28
             }
-          ],
-          "_": {
-            "bytes": "F5QAAHg3KhjAqAFk////AMCoAQEAEiM0RVYIkiAYEQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -117,10 +111,7 @@
               "type": "magic",
               "offset": 20
             }
-          ],
-          "_": {
-            "bytes": "F5QAAHg3KhjAqAFk////AMCoAQFVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -140,10 +131,7 @@
               "type": "uint32",
               "offset": 4
             }
-          ],
-          "_": {
-            "bytes": "FzIAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get time response",
@@ -159,10 +147,7 @@
               "type": "datetime",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "FzIAAHg3KhggIggjCUgJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -191,10 +176,7 @@
               "type": "datetime",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "set time response",
@@ -210,10 +192,7 @@
               "type": "datetime",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -233,10 +212,7 @@
               "type": "uint32",
               "offset": 4
             }
-          ],
-          "_": {
-            "bytes": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get status response",
@@ -362,10 +338,7 @@
               "type": "uint32",
               "offset": 40
             }
-          ],
-          "_": {
-            "bytes": "FyAAAHg3KhhOAAAAAgEDAeqszekgIggjCUcGLAAAAAAAAAAAAAlJOQAAAAAAAAAAAAAAIggjAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -385,10 +358,7 @@
               "type": "uint32",
               "offset": 4
             }
-          ],
-          "_": {
-            "bytes": "F5IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get listener response",
@@ -409,10 +379,7 @@
               "type": "uint16",
               "offset": 12
             }
-          ],
-          "_": {
-            "bytes": "F5IAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -450,10 +417,7 @@
               "type": "uint16",
               "offset": 12
             }
-          ],
-          "_": {
-            "bytes": "F5AAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "set listener response",
@@ -469,10 +433,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F5AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -501,10 +462,7 @@
               "type": "uint8",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F4IAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get door control response",
@@ -530,10 +488,7 @@
               "type": "uint8",
               "offset": 10
             }
-          ],
-          "_": {
-            "bytes": "F4IAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -580,10 +535,7 @@
               "type": "uint8",
               "offset": 10
             }
-          ],
-          "_": {
-            "bytes": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "set door control response",
@@ -609,10 +561,7 @@
               "type": "uint8",
               "offset": 10
             }
-          ],
-          "_": {
-            "bytes": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -641,10 +590,7 @@
               "type": "uint8",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F0AAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "open door response",
@@ -660,10 +606,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F0AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -683,10 +626,7 @@
               "type": "uint32",
               "offset": 4
             }
-          ],
-          "_": {
-            "bytes": "F1gAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get cards response",
@@ -702,10 +642,7 @@
               "type": "uint32",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1gAAHg3KhgLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -734,10 +671,7 @@
               "type": "uint32",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1oAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get card response",
@@ -783,10 +717,7 @@
               "type": "uint8",
               "offset": 23
             }
-          ],
-          "_": {
-            "bytes": "F1oAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -815,10 +746,7 @@
               "type": "uint32",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1wAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get card by index response",
@@ -864,10 +792,7 @@
               "type": "uint8",
               "offset": 23
             }
-          ],
-          "_": {
-            "bytes": "F1wAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -950,10 +875,7 @@
               "type": "uint8",
               "offset": 23
             }
-          ],
-          "_": {
-            "bytes": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "put card response",
@@ -969,10 +891,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1001,10 +920,7 @@
               "type": "uint32",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1IAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "delete card response",
@@ -1020,10 +936,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1048,10 +961,7 @@
               "type": "magic",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1QAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "delete all cards response",
@@ -1067,10 +977,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1099,10 +1006,7 @@
               "type": "uint32",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F7AAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get event response",
@@ -1153,10 +1057,7 @@
               "type": "uint8",
               "offset": 27
             }
-          ],
-          "_": {
-            "bytes": "F7AAAHg3KhglAAAAAgEBAaCYfAAgGQgEIAIHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1176,10 +1077,7 @@
               "type": "uint32",
               "offset": 4
             }
-          ],
-          "_": {
-            "bytes": "F7QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get event index response",
@@ -1195,10 +1093,7 @@
               "type": "uint32",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F7QAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1232,10 +1127,7 @@
               "type": "magic",
               "offset": 12
             }
-          ],
-          "_": {
-            "bytes": "F7IAAHg3KhglAAAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "set event index response",
@@ -1251,10 +1143,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F7IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1283,10 +1172,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "record special events response",
@@ -1302,10 +1188,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1334,10 +1217,7 @@
               "type": "uint8",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "get time profile response",
@@ -1433,10 +1313,7 @@
               "type": "uint8",
               "offset": 36
             }
-          ],
-          "_": {
-            "bytes": "F5gAAHg3KhgdICEBASAhEjEBAAAAAAAACDAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1609,10 +1486,7 @@
               "type": "uint8",
               "offset": 36
             }
-          ],
-          "_": {
-            "bytes": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "set time profile response",
@@ -1628,10 +1502,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F5gAAHg3KhgdICIBASAiEjEBAQABAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1656,10 +1527,7 @@
               "type": "magic",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "delete all time profiles response",
@@ -1675,10 +1543,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1815,10 +1680,7 @@
               "type": "uint8",
               "offset": 27
             }
-          ],
-          "_": {
-            "bytes": "F6gAAHg3KhggIgEBICISMQEAAQEAAAEIMAMCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "add task response",
@@ -1834,10 +1696,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F6gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1862,10 +1721,7 @@
               "type": "magic",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "refresh tasklist response",
@@ -1881,10 +1737,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F6wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       },
       {
@@ -1909,10 +1762,7 @@
               "type": "magic",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F6YAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         },
         "response": {
           "name": "clear tasklist response",
@@ -1928,10 +1778,7 @@
               "type": "bool",
               "offset": 8
             }
-          ],
-          "_": {
-            "bytes": "F6YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-          }
+          ]
         }
       }
     ],
@@ -1945,10 +1792,7 @@
             "type": "uint32",
             "offset": 4
           }
-        ],
-        "_": {
-          "bytes": "F5QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set IP request",
@@ -1979,10 +1823,7 @@
             "type": "magic",
             "offset": 20
           }
-        ],
-        "_": {
-          "bytes": "F5QAAHg3KhjAqAFk////AMCoAQFVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get time request",
@@ -1993,10 +1834,7 @@
             "type": "uint32",
             "offset": 4
           }
-        ],
-        "_": {
-          "bytes": "FzIAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set time request",
@@ -2012,10 +1850,7 @@
             "type": "datetime",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get status request",
@@ -2026,10 +1861,7 @@
             "type": "uint32",
             "offset": 4
           }
-        ],
-        "_": {
-          "bytes": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get listener request",
@@ -2040,10 +1872,7 @@
             "type": "uint32",
             "offset": 4
           }
-        ],
-        "_": {
-          "bytes": "F5IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set listener request",
@@ -2064,10 +1893,7 @@
             "type": "uint16",
             "offset": 12
           }
-        ],
-        "_": {
-          "bytes": "F5AAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get door control request",
@@ -2083,10 +1909,7 @@
             "type": "uint8",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F4IAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set door control request",
@@ -2112,10 +1935,7 @@
             "type": "uint8",
             "offset": 10
           }
-        ],
-        "_": {
-          "bytes": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "open door request",
@@ -2131,10 +1951,7 @@
             "type": "uint8",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F0AAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get cards request",
@@ -2145,10 +1962,7 @@
             "type": "uint32",
             "offset": 4
           }
-        ],
-        "_": {
-          "bytes": "F1gAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get card request",
@@ -2164,10 +1978,7 @@
             "type": "uint32",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1oAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get card by index request",
@@ -2183,10 +1994,7 @@
             "type": "uint32",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1wAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "put card request",
@@ -2232,10 +2040,7 @@
             "type": "uint8",
             "offset": 23
           }
-        ],
-        "_": {
-          "bytes": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "delete card request",
@@ -2251,10 +2056,7 @@
             "type": "uint32",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1IAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "delete cards request",
@@ -2270,10 +2072,7 @@
             "type": "magic",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1QAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get event request",
@@ -2289,10 +2088,7 @@
             "type": "uint32",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F7AAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get event index request",
@@ -2303,10 +2099,7 @@
             "type": "uint32",
             "offset": 4
           }
-        ],
-        "_": {
-          "bytes": "F7QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set event index request",
@@ -2327,10 +2120,7 @@
             "type": "magic",
             "offset": 12
           }
-        ],
-        "_": {
-          "bytes": "F7IAAHg3KhglAAAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "record special events request",
@@ -2346,10 +2136,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get time profile request",
@@ -2365,10 +2152,7 @@
             "type": "uint8",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set time profile request",
@@ -2464,10 +2248,7 @@
             "type": "uint8",
             "offset": 36
           }
-        ],
-        "_": {
-          "bytes": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "delete all time profiles request",
@@ -2483,10 +2264,7 @@
             "type": "magic",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "add task request",
@@ -2562,10 +2340,7 @@
             "type": "uint8",
             "offset": 27
           }
-        ],
-        "_": {
-          "bytes": "F6gAAHg3KhggIgEBICISMQEAAQEAAAEIMAMCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "refresh tasklist request",
@@ -2581,10 +2356,7 @@
             "type": "magic",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "clear tasklist request",
@@ -2600,10 +2372,7 @@
             "type": "magic",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F6YAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       }
     ],
     "responses": [
@@ -2646,10 +2415,7 @@
             "type": "date",
             "offset": 28
           }
-        ],
-        "_": {
-          "bytes": "F5QAAHg3KhjAqAFk////AMCoAQEAEiM0RVYIkiAYEQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get time response",
@@ -2665,10 +2431,7 @@
             "type": "datetime",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "FzIAAHg3KhggIggjCUgJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set time response",
@@ -2684,10 +2447,7 @@
             "type": "datetime",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get status response",
@@ -2813,10 +2573,7 @@
             "type": "uint32",
             "offset": 40
           }
-        ],
-        "_": {
-          "bytes": "FyAAAHg3KhhOAAAAAgEDAeqszekgIggjCUcGLAAAAAAAAAAAAAlJOQAAAAAAAAAAAAAAIggjAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get listener response",
@@ -2837,10 +2594,7 @@
             "type": "uint16",
             "offset": 12
           }
-        ],
-        "_": {
-          "bytes": "F5IAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set listener response",
@@ -2856,10 +2610,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F5AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get door control response",
@@ -2885,10 +2636,7 @@
             "type": "uint8",
             "offset": 10
           }
-        ],
-        "_": {
-          "bytes": "F4IAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set door control response",
@@ -2914,10 +2662,7 @@
             "type": "uint8",
             "offset": 10
           }
-        ],
-        "_": {
-          "bytes": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "open door response",
@@ -2933,10 +2678,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F0AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get cards response",
@@ -2952,10 +2694,7 @@
             "type": "uint32",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1gAAHg3KhgLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get card response",
@@ -3001,10 +2740,7 @@
             "type": "uint8",
             "offset": 23
           }
-        ],
-        "_": {
-          "bytes": "F1oAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get card by index response",
@@ -3050,10 +2786,7 @@
             "type": "uint8",
             "offset": 23
           }
-        ],
-        "_": {
-          "bytes": "F1wAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "put card response",
@@ -3069,10 +2802,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "delete card response",
@@ -3088,10 +2818,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "delete all cards response",
@@ -3107,10 +2834,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get event response",
@@ -3161,10 +2885,7 @@
             "type": "uint8",
             "offset": 27
           }
-        ],
-        "_": {
-          "bytes": "F7AAAHg3KhglAAAAAgEBAaCYfAAgGQgEIAIHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get event index response",
@@ -3180,10 +2901,7 @@
             "type": "uint32",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F7QAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set event index response",
@@ -3199,10 +2917,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F7IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "record special events response",
@@ -3218,10 +2933,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "get time profile response",
@@ -3317,10 +3029,7 @@
             "type": "uint8",
             "offset": 36
           }
-        ],
-        "_": {
-          "bytes": "F5gAAHg3KhgdICEBASAhEjEBAAAAAAAACDAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "set time profile response",
@@ -3336,10 +3045,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F5gAAHg3KhgdICIBASAiEjEBAQABAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "delete all time profiles response",
@@ -3355,10 +3061,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "add task response",
@@ -3374,10 +3077,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F6gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "refresh tasklist response",
@@ -3393,10 +3093,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F6wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       },
       {
         "name": "clear tasklist response",
@@ -3412,10 +3109,7 @@
             "type": "bool",
             "offset": 8
           }
-        ],
-        "_": {
-          "bytes": "F6YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        }
+        ]
       }
     ],
     "event": {
@@ -3542,10 +3236,7 @@
           "type": "uint32",
           "offset": 40
         }
-      ],
-      "_": {
-        "bytes": ""
-      }
+      ]
     }
   }
 }

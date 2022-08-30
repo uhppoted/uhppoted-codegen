@@ -62,7 +62,7 @@ coverage: build
 	go test -cover ./...
 
 regen:
-	$(CMD) export --out languages/.models/models.json
+	$(CMD) export --models languages/.models/models.json --tests languages/.models/test-data.json
 
 build-all: vet
 	mkdir -p dist/$(DIST)/windows
@@ -89,7 +89,7 @@ help: build
 	$(CMD) help help
 
 export: build
-	$(CMD) export --out runtime/models.json
+	$(CMD) export --models runtime/models.json --tests runtime/test-data.json
 
 go: build regen
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
