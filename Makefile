@@ -1,7 +1,7 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= clear-tasklist
+COMMAND ?= listen
 
 MODELS = languages/.models
 GO     = languages/go

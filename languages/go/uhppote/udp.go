@@ -12,6 +12,7 @@ const WRITE_TIMEOUT = 1000 * time.Millisecond
 
 var bindAddr *net.UDPAddr = resolve("0.0.0.0:0")
 var destAddr *net.UDPAddr = resolve("255.255.255.255:60000")
+var listenAddr *net.UDPAddr = resolve("0.0.0.0:60001")
 var debug bool = false
 
 func SetBindAddr(addr string) {
@@ -51,6 +52,45 @@ func send(request []byte, f func(*net.UDPConn) ([][]byte, error)) ([][]byte, err
     }
 
     return f(socket)
+}
+
+func listen(ch chan []byte) error {
+    socket, err := net.ListenUDP("udp", listenAddr)
+    if err != nil {
+        return err
+    }
+
+    defer socket.Close()
+
+    events := make(chan []byte)
+    e := make(chan error)
+
+    go func() {
+        buffer := make([]byte, 1024)
+
+        for {
+            if N, _, err := socket.ReadFromUDP(buffer); err != nil {
+                e <- err
+            } else if N == 64 {
+                m := make([]byte, 64)
+                copy(m, buffer[0:N])
+                events <- m
+            }
+        }
+    }()
+
+    for {
+        select {
+        case m := <-events:
+            dump(m)
+            ch <- m
+
+        case err := <-e:
+            return err
+        }
+    }
+
+    return nil
 }
 
 func readAll(socket *net.UDPConn) ([][]byte, error) {

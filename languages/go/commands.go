@@ -5,6 +5,9 @@ import (
     "fmt"
     "log"
     "net/netip"
+    "os"
+    "os/signal"
+    "syscall"
     "time"
 
     "uhppoted/uhppote"
@@ -59,6 +62,7 @@ var commands = []command{
     command{name: "add-task", f: addTask},
     command{name: "refresh-tasklist", f: refreshTaskList},
     command{name: "clear-tasklist", f: clearTaskList},
+    command{name: "listen", f: listen},
 }
 
 func (c command) exec() {
@@ -255,9 +259,9 @@ func setTimeProfile() (any, error) {
     linkedProfileID := uint8(30)
 
     return uhppote.SetTimeProfile(
-        controller, 
-        profileID, 
-        uhppote.Date(start), uhppote.Date(end), 
+        controller,
+        profileID,
+        uhppote.Date(start), uhppote.Date(end),
         monday, tuesday, wednesday, thursday, friday, saturday, sunday,
         uhppote.HHmm(segment1start), uhppote.HHmm(segment1end),
         uhppote.HHmm(segment2start), uhppote.HHmm(segment2end),
@@ -287,7 +291,7 @@ func addTask() (any, error) {
     taskType := uint8(2)
     moreCards := uint8(0)
 
-    return uhppote.AddTask(controller, 
+    return uhppote.AddTask(controller,
         uhppote.Date(startDate), uhppote.Date(endDate),
         monday, tuesday, wednesday, thursday, friday, saturday, sunday,
         uhppote.HHmm(startTime),
@@ -308,3 +312,32 @@ func clearTaskList() (any, error) {
     return uhppote.ClearTasklist(controller)
 }
 
+func listen() (any, error) {
+    events := make(chan uhppote.Event)
+    errors := make(chan error)
+    interrupt := make(chan os.Signal, 1)
+
+    defer close(events)
+    defer close(errors)
+    defer close(interrupt)
+
+    signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM)
+
+    go func() {
+        for evt := range events {
+            log.Printf("INFO  %+v", pprint(evt))
+        }
+    }()
+
+    go func() {
+        for err := range errors {
+            log.Fatalf("ERROR  %v", err)
+        }
+    }()
+
+    if err := uhppote.Listen(events, errors, interrupt); err != nil {
+        return nil, err
+    }
+
+    return struct{}{}, nil
+}

@@ -10,7 +10,16 @@ import (
 {{range .model.responses}}{{template "decode" .}}
 {{end}}
 
+{{with .model.event}}{{template "decode" .}}
+{{end}}
+
 {{range .model.responses}}{{template "response" .}}
+{{end}}
+
+{{with .model.event}}
+type {{CamelCase .name}} struct { {{range .fields}}
+    {{CamelCase .name}} {{template "type" .type}} `json:"{{kebabCase .name}}"`{{end}}
+}
 {{end}}
 
 {{define "decode"}}
@@ -167,3 +176,4 @@ type {{CamelCase .name}} struct { {{range .fields}}
     {{CamelCase .name}} {{template "type" .type}} `json:"{{kebabCase .name}}"`{{end}}
 }
 {{end}}
+

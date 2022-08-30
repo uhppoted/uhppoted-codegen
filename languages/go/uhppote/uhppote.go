@@ -2,6 +2,7 @@ package uhppote
 
 import (
     "net/netip"
+    "os"
 )
 
 func GetAllControllers() ([]*GetControllerResponse, error) {
@@ -25,6 +26,29 @@ func GetAllControllers() ([]*GetControllerResponse, error) {
     }
 
     return list, nil
+}
+
+func Listen(events chan Event, errors chan error, interrupt chan os.Signal) error {
+    ch := make(chan []uint8)
+
+    go listen(ch)
+
+loop:
+    for {
+        select {
+        case msg := <-ch:
+            if evt, err := event(msg); err != nil {
+                errors <- err
+            } else if evt != nil {
+                events <- *evt
+            }
+
+        case <-interrupt:
+            break loop
+        }
+    }
+
+    return nil
 }
 
 {{range .model.functions}}{{template "function" .}}

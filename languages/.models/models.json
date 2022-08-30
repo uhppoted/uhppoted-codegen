@@ -3417,6 +3417,135 @@
           "bytes": "F6YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
-    ]
+    ],
+    "event": {
+      "name": "event",
+      "msgtype": 32,
+      "fields": [
+        {
+          "name": "device id",
+          "type": "uint32",
+          "offset": 4
+        },
+        {
+          "name": "event index",
+          "type": "uint32",
+          "offset": 8
+        },
+        {
+          "name": "event type",
+          "type": "uint8",
+          "offset": 12
+        },
+        {
+          "name": "event access granted",
+          "type": "bool",
+          "offset": 13
+        },
+        {
+          "name": "event door",
+          "type": "uint8",
+          "offset": 14
+        },
+        {
+          "name": "event direction",
+          "type": "uint8",
+          "offset": 15
+        },
+        {
+          "name": "event card",
+          "type": "uint32",
+          "offset": 16
+        },
+        {
+          "name": "event timestamp",
+          "type": "datetime",
+          "offset": 20
+        },
+        {
+          "name": "event reason",
+          "type": "uint8",
+          "offset": 27
+        },
+        {
+          "name": "system date",
+          "type": "shortdate",
+          "offset": 51
+        },
+        {
+          "name": "system time",
+          "type": "time",
+          "offset": 37
+        },
+        {
+          "name": "system error",
+          "type": "uint8",
+          "offset": 36
+        },
+        {
+          "name": "door 1 open",
+          "type": "bool",
+          "offset": 28
+        },
+        {
+          "name": "door 2 open",
+          "type": "bool",
+          "offset": 29
+        },
+        {
+          "name": "door 3 open",
+          "type": "bool",
+          "offset": 30
+        },
+        {
+          "name": "door 4 open",
+          "type": "bool",
+          "offset": 31
+        },
+        {
+          "name": "door 1 button",
+          "type": "bool",
+          "offset": 32
+        },
+        {
+          "name": "door 2 button",
+          "type": "bool",
+          "offset": 33
+        },
+        {
+          "name": "door 3 button",
+          "type": "bool",
+          "offset": 34
+        },
+        {
+          "name": "door 4 button",
+          "type": "bool",
+          "offset": 35
+        },
+        {
+          "name": "relays",
+          "type": "uint8",
+          "offset": 49
+        },
+        {
+          "name": "inputs",
+          "type": "uint8",
+          "offset": 50
+        },
+        {
+          "name": "special info",
+          "type": "uint8",
+          "offset": 48
+        },
+        {
+          "name": "sequence no",
+          "type": "uint32",
+          "offset": 40
+        }
+      ],
+      "_": {
+        "bytes": ""
+      }
+    }
   }
 }

@@ -71,6 +71,7 @@ func (cmd *Export) Execute(args ...interface{}) error {
 			Functions: model.Functions,
 			Requests:  model.Requests,
 			Responses: model.Responses,
+			Event:     model.Event,
 		},
 	}
 

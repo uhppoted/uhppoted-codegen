@@ -6,17 +6,18 @@
 - [ ] Code generation HOWTO
 - [ ] Package for release
 
-- [x] add-task
-- [x] refresh-tasklist
-- [x] clear-tasklist
 - [ ] listen
+      - [ ] Go
+      - [ ] Rust
+      - [ ] Python
+      - [ ] HTTP
 
 ## Go
 - [ ] Rework bcd2string to use fmt
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
-- (?) JSON tags for requests/responses
+- [x] JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
@@ -24,6 +25,7 @@
 - [ ] Optional time profile dates
 - [ ] Handle missing time profile
 - [ ] Handle missing/deleted card
+- (?) Use `Either` for result of read functions
 
 ## Python
 - [ ] Optional time profile dates
