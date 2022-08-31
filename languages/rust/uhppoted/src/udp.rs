@@ -19,6 +19,7 @@ const TIMEOUT: Duration = Duration::from_millis(2500);
 lazy_static! {
     static ref BIND_ADDR: RwLock<String> = RwLock::new("0.0.0.0:0".to_string());
     static ref BROADCAST_ADDR: RwLock<String> = RwLock::new("255.255.255.255:60000".to_string());
+    static ref LISTEN_ADDR: RwLock<String> = RwLock::new("0.0.0.0:60001".to_string());
     static ref DEBUG: RwLock<bool> = RwLock::new(false);
 }
 
@@ -30,6 +31,12 @@ pub fn set_bind_addr(addr: &str) {
 
 pub fn set_broadcast_addr(addr: &str) {
     if let Ok(mut guard) = BROADCAST_ADDR.write() {
+        *guard = addr.to_string();
+    }
+}
+
+pub fn set_listen_addr(addr: &str) {
+    if let Ok(mut guard) = LISTEN_ADDR.write() {
         *guard = addr.to_string();
     }
 }
@@ -53,6 +60,38 @@ pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>> {
     socket.send_to(packet, broadcast.as_str())?;
 
     return f(socket);
+}
+
+pub fn listen(events: fn(Msg), errors: fn(error::Error)) -> Result<()> {
+    let bind = LISTEN_ADDR.read()?;
+    let socket = UdpSocket::bind(bind.as_str())?;
+
+    socket.set_read_timeout(None)?;
+
+    let f = async {
+        let sock = async_std::net::UdpSocket::from(socket);
+        let mut buffer = [0u8; 1024];
+
+        loop {
+            match sock.recv(&mut buffer).await {
+                Ok(64) => {
+                    dump(buffer[..64].try_into()?);
+                    events(buffer[..64].try_into()?);
+                }
+
+                Err(e) => errors(error::Error::from(e)),
+
+                _ => continue,
+            }
+        };
+
+        return Ok(());
+    };
+
+    match futures::executor::block_on(f) {
+        Ok(_) => return Ok(()),
+        Err(e) => return Err(e),
+    }
 }
 
 pub fn read(socket: UdpSocket) -> Result<Vec<Msg>> {

@@ -10,21 +10,28 @@ import (
 	"uhppoted/uhppote"
 )
 
+const ANY = "0.0.0.0:0"
+const BROADCAST = "255.255.255.255:60000"
+const LISTEN = "0.0.0.0:60001"
+
 func main() {
 	fmt.Printf("uhppoted-codegen: Go sample application\n")
 
 	options := struct {
 		bind      string
 		broadcast string
+		listen string
 		debug     bool
 	}{
 		bind:      ANY,
 		broadcast: BROADCAST,
+		listen: LISTEN,
 		debug:     false,
 	}
 
 	flag.StringVar(&options.bind, "bind", options.bind, "UDP IPv4 bind address. Defaults to 0.0.0.0")
 	flag.StringVar(&options.broadcast, "broadcast", options.broadcast, "UDP IPv4 broadcast address. Defaults to 255.255.255.255:60000")
+	flag.StringVar(&options.listen, "listen", options.listen, "UDP IPv4 listen address. Defaults to 0.0.0.0:60001")
 	flag.BoolVar(&options.debug, "debug", options.debug, "Displays sent and received UDP packets")
 	flag.Parse()
 
@@ -35,6 +42,7 @@ func main() {
 
 	uhppote.SetBindAddr(options.bind)
 	uhppote.SetDestAddr(options.broadcast)
+	uhppote.SetListenAddr(options.listen)
 	uhppote.SetDebug(options.debug)
 
 	list := flag.Args()

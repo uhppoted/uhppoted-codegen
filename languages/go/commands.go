@@ -13,8 +13,6 @@ import (
     "uhppoted/uhppote"
 )
 
-const ANY = "0.0.0.0:0"
-const BROADCAST = "255.255.255.255:60000"
 const CONTROLLER uint32 = 405419896
 const DOOR uint8 = 3
 const MODE uint8 = 2

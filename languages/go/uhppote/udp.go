@@ -25,6 +25,10 @@ func SetDestAddr(addr string) {
     destAddr = resolve(addr)
 }
 
+func SetListenAddr(addr string) {
+    listenAddr = resolve(addr)
+}
+
 func SetDebug(enabled bool) {
     debug = enabled
 }

@@ -13,7 +13,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 27] = [
+pub const COMMANDS: [&Command; 28] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -121,6 +121,10 @@ pub const COMMANDS: [&Command; 27] = [
     &Command {
         name: "clear-tasklist",
         func: clear_tasklist,
+    },
+    &Command {
+        name: "listen",
+        func: listen,
     },
 ];
 
@@ -461,6 +465,21 @@ fn clear_tasklist() {
     let controller = CONTROLLER;
 
     match uhppote::clear_tasklist(controller) {
+        Ok(v) => println!("{:#?}", v),
+        Err(e) => error(e),
+    }
+}
+
+fn listen() {
+    let events = |event: uhppote::Event| {
+        println!("{:?}", println!("{:#?}", event));
+    };
+
+    let errors = |err: uhppote::error::Error| {
+        error(err);
+    };
+
+    match uhppote::listen(events, errors) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

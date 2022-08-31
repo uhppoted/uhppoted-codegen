@@ -9,6 +9,7 @@
       - [ ] Rust
       - [ ] Python
       - [ ] HTTP
+      - [ ] Add listen address to command line parameters
 
 ## Go
 - [ ] Rework bcd2string to use fmt
@@ -16,7 +17,6 @@
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
 - (?) Test skeletons
-- [x] JSON tags for requests/responses
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
@@ -25,6 +25,8 @@
 - [ ] Handle missing time profile
 - [ ] Handle missing/deleted card
 - (?) Use `Either` for result of read functions
+- (?) Replace executor::block with await
+      - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
 
 ## Python
 - [ ] Optional time profile dates
@@ -39,7 +41,6 @@
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
 ## HTTP
-- [x] Templatize
 - [ ] Implement all commands
 
 ## Erlang

@@ -12,7 +12,7 @@ mod uhppote;
 fn main() -> ExitCode {
     println!("uhppoted-codegen: Rust sample application");
 
-    let options = ["--debug", "--bind", "--broadcast"];
+    let options = ["--debug", "--bind", "--broadcast", "--listen"];
     let args: Vec<String> = env::args().collect();
     let mut args = &args[1..];
 
@@ -34,6 +34,13 @@ fn main() -> ExitCode {
             "--broadcast" => {
                 if args.len() > 0 {
                     uhppote::set_broadcast_addr(args[0].as_str());
+                    args = &args[1..];
+                }
+            }
+
+            "--listen" => {
+                if args.len() > 0 {
+                    uhppote::set_listen_addr(args[0].as_str());
                     args = &args[1..];
                 }
             }

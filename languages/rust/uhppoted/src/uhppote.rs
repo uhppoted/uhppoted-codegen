@@ -6,7 +6,6 @@ use chrono::NaiveTime;
 
 use decode::*;
 use encode::*;
-use udp::send;
 use udp::Msg;
 
 use error::Error;
@@ -24,6 +23,7 @@ mod udp;
 #[path = "error.rs"]
 pub mod error;
 
+pub type Event = decode::{{ CamelCase .model.event.name }};
 pub type Result<T> = std::result::Result<T, Error>;
 
 pub fn set_bind_addr(addr: &str) {
@@ -34,13 +34,17 @@ pub fn set_broadcast_addr(addr: &str) {
     udp::set_broadcast_addr(addr)
 }
 
+pub fn set_listen_addr(addr: &str) {
+    udp::set_listen_addr(addr)
+}
+
 pub fn set_debug(enabled: bool) {
     udp::set_debug(enabled)
 }
 
 pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     let request = get_controller_request(0)?;
-    let replies = send(&request, udp::read_all)?;
+    let replies = udp::send(&request, udp::read_all)?;
 
     let mut list: Vec<decode::GetControllerResponse> = vec![];
 
@@ -53,13 +57,24 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     return Ok(list);
 }
 
+pub fn listen(_events: fn(Event), errors: fn(error::Error)) -> Result<()> {
+    let pipe = |msg: Msg| {
+        match decode::event(&msg) {
+            Ok(event) => println!("{:?}", event),
+            Err(e) => println!("{:?}", e),
+        }
+    };
+
+    return udp::listen(pipe, errors);
+}
+
 {{range .model.functions}}{{template "function" .}}
 {{end}}
 
 {{define "function"}}
 pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ {{if .response}}
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    let replies = send(&request, udp::read)?;
+    let replies = udp::send(&request, udp::read)?;
 
     for reply in replies {
         let response = {{snakeCase .response.name}}(&reply)?;
@@ -69,7 +84,7 @@ pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}
 
     return Err(error::Error::from(NoResponse)); {{else}}
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    send(&request, udp::read_none)?;
+    udp::send(&request, udp::read_none)?;
 
     return Ok(true); {{end}}
 }
