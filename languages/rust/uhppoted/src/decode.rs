@@ -3,6 +3,8 @@ use std::net::Ipv4Addr;
 use chrono::NaiveDate;
 use chrono::NaiveTime;
 use chrono::NaiveDateTime;
+use itertools::Itertools;
+use regex::Regex;
 
 use super::error::Error;
 use super::Msg;
@@ -11,23 +13,16 @@ type Result<T> = std::result::Result<T, Error>;
 
 #[macro_export]
 macro_rules! bcd2string {
-    ($slice:expr, $size:expr) => { 
+    ($slice:expr) => { 
         {
-            let mut ix: [u8; 2 * $size] = [0; 2 * $size];
-            let mut index = 0;
+            let s = format!("{:02x}", $slice.iter().format(""));
+            let v = if Regex::new(r"^[0-9]*$").unwrap().is_match(&s) {
+                        Ok(s)    
+                    } else {
+                        Err(Error::from(format!("invalid BCD value {s}")))    
+                    };
 
-            for b in $slice {
-                ix[index] = (b >> 4 & 0x0f).into();
-                ix[index+1] = (b >> 0 & 0x0f).into();
-                index += 2;
-            }
-
-            let mut chars: [char; 2 * $size] = [' '; 2 * $size];
-            for i in 0..2 * $size {
-                chars[i] = bcd(ix[i])?;
-            }
-
-            String::from_iter(chars)
+            v.unwrap()
         } 
     };
 }
@@ -127,7 +122,7 @@ fn unpack_version(packet: &Msg, offset: usize) -> Result<String> {
 
 fn unpack_date(packet: &Msg, offset: usize) -> Result<NaiveDate> {
     let slice: &[u8; 4] = packet[offset..offset + 4].try_into().unwrap();
-    let s = bcd2string!(slice, 4);
+    let s = bcd2string!(slice);
 
     if s == "00000000" {
         return Ok(NaiveDate::default());
@@ -141,7 +136,7 @@ fn unpack_date(packet: &Msg, offset: usize) -> Result<NaiveDate> {
 
 fn unpack_shortdate(packet: &Msg, offset: usize) -> Result<NaiveDate> {
     let slice: &[u8; 3] = packet[offset..offset + 3].try_into().unwrap();
-    let s = format!("20{}", bcd2string!(slice, 3));
+    let s = format!("20{}", bcd2string!(slice));
 
     if s == "20000000" {
         return Ok(NaiveDate::default());
@@ -155,7 +150,7 @@ fn unpack_shortdate(packet: &Msg, offset: usize) -> Result<NaiveDate> {
 
 fn unpack_time(packet: &Msg, offset: usize) -> Result<NaiveTime> {
     let slice: &[u8; 3] = packet[offset..offset + 3].try_into().unwrap();
-    let s: String = bcd2string!(slice, 3);
+    let s: String = bcd2string!(slice);
 
     match NaiveTime::parse_from_str(&s, "%H%M%S") {
         Ok(time) => return Ok(time),
@@ -165,7 +160,7 @@ fn unpack_time(packet: &Msg, offset: usize) -> Result<NaiveTime> {
 
 fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime> {
     let slice: &[u8; 7] = packet[offset..offset + 7].try_into().unwrap();
-    let s: String = bcd2string!(slice, 7);
+    let s: String = bcd2string!(slice);
 
     if s == "00000000000000" {
         return Ok(NaiveDateTime::default());
@@ -179,26 +174,10 @@ fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime> {
 
 fn unpack_hhmm(packet: &Msg, offset: usize) -> Result<NaiveTime> {
     let slice: &[u8; 2] = packet[offset..offset + 2].try_into().unwrap();
-    let s: String = bcd2string!(slice, 2);
+    let s: String = bcd2string!(slice);
 
     match NaiveTime::parse_from_str(&s, "%H%M") {
         Ok(time) => return Ok(time),
         Err(_) => Err(Error::from(format!("invalid HHmm string {}",s))),
-    }
-}
-
-fn bcd(b: u8) -> Result<char> {
-    match b {
-        0 => Ok('0'),
-        1 => Ok('1'),
-        2 => Ok('2'),
-        3 => Ok('3'),
-        4 => Ok('4'),
-        5 => Ok('5'),
-        6 => Ok('6'),
-        7 => Ok('7'),
-        8 => Ok('8'),
-        9 => Ok('9'),
-        _ => Err(Error::from(format!("invalid BCD digit {b}"))),
     }
 }

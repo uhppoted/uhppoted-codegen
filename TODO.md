@@ -9,10 +9,9 @@
       - [ ] Rust
       - [ ] Python
       - [ ] HTTP
-      - [ ] Add listen address to command line parameters
 
 ## Go
-- [ ] Rework bcd2string to use fmt
+- [x] Rework bcd2string to use encoding/hex
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
@@ -20,7 +19,7 @@
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [ ] Rework bcd2string to use format!
+- [x] Rework bcd2string to use format!
 - [ ] Optional time profile dates
 - [ ] Handle missing time profile
 - [ ] Handle missing/deleted card

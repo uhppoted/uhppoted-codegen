@@ -2,6 +2,7 @@ package uhppote
 
 import (
     "encoding/binary"
+    "encoding/hex"
     "fmt"
     "net/netip"
     "time"
@@ -136,40 +137,15 @@ func unpackHHmm(packet []byte, offset uint8) (HHmm, error) {
     }
 }
 
-
 func bcd2string(bytes []byte) string {
-    BCD := map[uint8]rune {
-        0x00: '0',
-        0x01: '1',
-        0x02: '2',
-        0x03: '3',
-        0x04: '4',
-        0x05: '5',
-        0x06: '6',
-        0x07: '7',
-        0x08: '8',
-        0x09: '9',
-    }
+    BCD := hex.EncodeToString(bytes)
 
-    s := []rune{}
+    if matched,err := strings.MatchString(`^[0-9]*$`, BCD); err != nil || !matched {
+            panic(fmt.Sprintf("invalid BCD value (%v)", bytes))        
+    } 
 
-    for _, b := range bytes {
-        if v,ok := BCD[(b >> 4) & 0x0f]; !ok {
-            panic(fmt.Sprintf("invalid BCD digit (%v)", b))
-        } else {
-            s = append(s, v)                
-        }
-
-        if v,ok := BCD[b & 0x0f]; !ok {
-            panic(fmt.Sprintf("invalid BCD digit (%v)", b))
-        } else {
-            s = append(s, v)                
-        }
-    }
-
-    return string(s)
+    return BCD
 }
-
 
 {{define "response"}}
 type {{CamelCase .name}} struct { {{range .fields}}
