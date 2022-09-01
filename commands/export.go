@@ -124,7 +124,7 @@ func (cmd *Export) genModels() error {
 
 func (cmd *Export) genTestData() error {
 	testdata := struct {
-		TestData model.TestData `json:"test-data"`
+		TestData model.TestData `json:"testdata"`
 	}{
 		TestData: model.TestData{
 			Tests: model.Tests,

@@ -5,6 +5,7 @@ import (
     "encoding/hex"
     "fmt"
     "net/netip"
+    "regexp"
     "time"
 )
 
@@ -140,8 +141,8 @@ func unpackHHmm(packet []byte, offset uint8) (HHmm, error) {
 func bcd2string(bytes []byte) string {
     BCD := hex.EncodeToString(bytes)
 
-    if matched,err := strings.MatchString(`^[0-9]*$`, BCD); err != nil || !matched {
-            panic(fmt.Sprintf("invalid BCD value (%v)", bytes))        
+    if matched,err := regexp.MatchString(`^[0-9]*$`, BCD); err != nil || !matched {
+        panic(fmt.Sprintf("invalid BCD value (%v)", bytes))        
     } 
 
     return BCD

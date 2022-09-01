@@ -4,5 +4,7 @@
 
 {{define "type"}}{{lookup "go.types" . "???"}}{{end}}
 
+{{define "values"}}{{ range $index, $param := .}}{{if $index}}, {{end}}{{.value}}{{end}}{{end}}
+
 
 

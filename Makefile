@@ -104,6 +104,9 @@ go-all: go
 go-usage: regen build
 	$(GOBIN)
 
+go-test: go
+	cd generated/go && go test ./uhppote
+
 rust: build regen 
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
 	cd generated/rust/uhppoted && cargo fmt && cargo build

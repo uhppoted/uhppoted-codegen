@@ -1,6 +1,10 @@
 # TODO
 
-- [x] Test data
+- [ ] Test data
+      - [x] messages
+      - [ ] request values
+      - [ ] response values
+
 - [ ] Code generation HOWTO
 - [ ] Package for release
 
@@ -8,7 +12,6 @@
       - [x] Go
       - [ ] Rust
       - [ ] Python
-      - [ ] HTTP
 
 ## Go
 - [ ] Optional time profile dates
@@ -39,6 +42,7 @@
 
 ## HTTP
 - [x] Implement all commands
+- [ ] `listen`
 
 ## Erlang
 

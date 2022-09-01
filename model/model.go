@@ -25,9 +25,9 @@ type Message struct {
 }
 
 type Test struct {
-	Name     string  `json:"name"`
-	Request  []uint8 `json:"request,omitempty"`
-	Response []uint8 `json:"response,omitempty"`
+	Name     string   `json:"name"`
+	Request  Request  `json:"request,omitempty"`
+	Response Response `json:"response,omitempty"`
 }
 
 type Arg struct {
@@ -39,6 +39,22 @@ type Field struct {
 	Name   string `json:"name"`
 	Type   string `json:"type"`
 	Offset uint8  `json:"offset"`
+}
+
+type Request struct {
+	Values  []Value `json:"values"`
+	Message []uint8 `json:"message,omitempty"`
+}
+
+type Response struct {
+	Values  []Value `json:"values"`
+	Message []uint8 `json:"message,omitempty"`
+}
+
+type Value struct {
+	Name  string `json:"name"`
+	Type  string `json:"type"`
+	Value any    `json:"value"`
 }
 
 var Event = Message{

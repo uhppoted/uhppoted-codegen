@@ -1,6 +1,7 @@
 package codegen
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/fs"
@@ -28,6 +29,7 @@ var funcs = template.FuncMap{
 	"kebabCase": kebabCase,
 	"snakeCase": snakeCase,
 	"byte2hex":  byte2hex,
+	"dump":      dump,
 	"lookup": func(path, key, defval string) any {
 		return lookup(map[string]any{}, path, key, defval)
 	},
@@ -236,6 +238,27 @@ func byte2hex(v any) string {
 	}
 
 	return "??"
+}
+
+func dump(v any, prefix string) string {
+	bytes, err := base64.StdEncoding.DecodeString(v.(string))
+	if err != nil {
+		return ""
+	}
+
+	lines := []string{}
+	ix := 0
+	for i := 0; i < 4; i++ {
+		line := []string{}
+		for j := 0; j < 16; j++ {
+			line = append(line, fmt.Sprintf("0x%02x", bytes[ix]))
+			ix = ix + 1
+		}
+
+		lines = append(lines, prefix+strings.Join(line, ", "))
+	}
+
+	return strings.Join(lines, ",\n")
 }
 
 func lookup(data map[string]any, path, key, defval string) any {
