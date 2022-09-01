@@ -11,7 +11,6 @@
       - [ ] HTTP
 
 ## Go
-- [x] Rework bcd2string to use encoding/hex
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
@@ -19,7 +18,6 @@
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [x] Rework bcd2string to use format!
 - [ ] Optional time profile dates
 - [ ] Handle missing time profile
 - [ ] Handle missing/deleted card
@@ -40,7 +38,7 @@
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
 ## HTTP
-- [ ] Implement all commands
+- [x] Implement all commands
 
 ## Erlang
 
