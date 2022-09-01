@@ -1,8 +1,9 @@
-import pprint
 import ipaddress
 import datetime
 
 import uhppote
+
+from pprint import pprint
 
 CONTROLLER = 405419896
 DOOR = 3
@@ -48,14 +49,16 @@ def commands():
         'add-task': add_task,
         'refresh-tasklist': refresh_tasklist,
         'clear-tasklist': clear_tasklist,
+        'listen': listen,
     }
 
 
-def exec(f, bind, broadcast, debug):
-    u = uhppote.Uhppote(bind, broadcast, debug)
+def exec(f, bind, broadcast, listen, debug):
+    u = uhppote.Uhppote(bind, broadcast, listen, debug)
     response = f(u)
 
-    pprint.pprint(response, indent=2, width=-1)
+    if response != None:
+        pprint(response.__dict__, indent=2, width=1)
 
 
 def get_all_controllers(u):
@@ -279,3 +282,10 @@ def clear_tasklist(u):
     controller = CONTROLLER
 
     return u.clear_tasklist(controller)
+
+def listen(u):
+    return u.listen(onEvent)
+
+def onEvent(event):
+    if event != None:
+        pprint(event.__dict__, indent=2, width=1)

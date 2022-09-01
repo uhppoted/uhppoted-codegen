@@ -11,7 +11,8 @@
 - [ ] listen
       - [x] Go
       - [ ] Rust
-      - [ ] Python
+      - [x] Python
+      - [ ] Remove from 'all'
 
 ## Go
 - [ ] Optional time profile dates

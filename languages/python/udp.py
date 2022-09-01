@@ -5,13 +5,15 @@ import time
 
 READ_TIMEOUT = struct.pack('ll', 5, 0)
 WRITE_TIMEOUT = struct.pack('ll', 1, 0)
+NO_TIMEOUT = struct.pack('ll', 0, 0)
 
 
 class UDP:
 
-    def __init__(self, bind='0.0.0.0', broadcast='255.255.255.255:60000', debug=False):
+    def __init__(self, bind='0.0.0.0', broadcast='255.255.255.255:60000', listen="0.0.0.0:60001", debug=False):
         self._bind = (bind, 0)
         self._broadcast = resolve(broadcast)
+        self._listen = resolve(listen)
         self._debug = debug
 
     def send(self, request, fn):
@@ -29,6 +31,22 @@ class UDP:
             sock.sendto(request, self._broadcast)
 
             return fn(sock, self._debug)
+        finally:
+            sock.close()
+
+    def listen(self, events):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
+
+        try:
+            sock.bind(self._listen)
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVTIMEO, NO_TIMEOUT)
+
+            while True:
+                message = sock.recv(1024)
+                if len(message) == 64:
+                    if self._debug:
+                        dump(message)
+                    events(message)
         finally:
             sock.close()
 

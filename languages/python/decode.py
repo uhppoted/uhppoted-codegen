@@ -8,6 +8,9 @@ from dataclasses import dataclass
 {{range .model.responses}}{{template "decode" .}}
 {{end}}
 
+{{with .model.event}}{{template "decode" .}}
+{{end}}
+
 {{range .model.responses}}{{template "response" .}}
 {{end}}
 
@@ -25,6 +28,12 @@ def {{snakeCase .name}}(packet):
 {{end}}
 
 {{define "response"}}
+@dataclass
+class {{CamelCase .name}}:{{range .fields}}
+    {{snakeCase .name}}: {{template "type" .type}}{{end}}
+{{end}}
+
+{{with .model.event}}
 @dataclass
 class {{CamelCase .name}}:{{range .fields}}
     {{snakeCase .name}}: {{template "type" .type}}{{end}}

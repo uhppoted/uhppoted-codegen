@@ -6,7 +6,6 @@ import sys
 from commands import commands
 from commands import exec
 
-
 def main():
     if len(sys.argv) < 2:
         usage()
@@ -26,6 +25,11 @@ def main():
                         default='255.255.255.255:60000',
                         help='UDP IPv4 broadcast address. Defaults to 255.255.255.255:60000')
 
+    parser.add_argument('--listen',
+                        type=str,
+                        default='0.0.0.0:60001',
+                        help='UDP IPv4 event listener bind address. Defaults to 0.0.0.0:60001')
+
     parser.add_argument('--debug',
                         action=argparse.BooleanOptionalAction,
                         default=False,
@@ -35,14 +39,16 @@ def main():
     cmd = args.command
     bind = args.bind
     broadcast = args.broadcast
+    listen = args.listen
     debug = args.debug
 
     try:
         if cmd == 'all':
-            for fn in commands().values():
-                exec(fn, bind, broadcast, debug)
+            for c, fn in enumerate(commands()):
+                if c != 'listen':
+                    exec(fn, bind, broadcast, listen, debug)
         elif cmd in commands():
-            exec(commands()[cmd], bind, broadcast, debug)
+            exec(commands()[cmd], bind, broadcast, listen, debug)
         else:
             print()
             print(f'  ERROR: invalid command ({cmd})')
