@@ -4,6 +4,7 @@ use std::time::Duration;
 
 use async_std::future;
 use futures;
+use futures::future::FutureExt;
 use lazy_static::lazy_static;
 
 use super::error;
@@ -142,7 +143,8 @@ pub fn read_none(_: UdpSocket) -> Result<Vec<Msg>> {
     return Ok(vec![]);
 }
 
-pub fn listen(events: impl Fn(Msg), errors: impl Fn(error::Error)) -> Result<()> {
+//TODO should probably use a stream
+pub fn listen(events: impl Fn(Msg), errors: impl Fn(error::Error), interrupt: impl future::Future) -> Result<()> {
     let bind = LISTEN_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
 
@@ -167,9 +169,20 @@ pub fn listen(events: impl Fn(Msg), errors: impl Fn(error::Error)) -> Result<()>
                 _ => continue,
             }
         }
+    }.fuse();
+
+    let interrupted = interrupt.fuse();
+
+    futures::pin_mut!(f, interrupted);
+
+    let g = async { 
+        futures::select! {
+            _ = f => {}
+            _ = interrupted => {},
+        }
     };
 
-    futures::executor::block_on(f);
+    futures::executor::block_on(g);
 
     return Ok(());
 }

@@ -1,6 +1,7 @@
 use chrono::offset::Local;
 use chrono::NaiveDate;
 use chrono::NaiveTime;
+use async_std::future;
 
 use super::uhppote;
 
@@ -467,7 +468,10 @@ fn listen() {
         println!("   ERROR: {err}");
     };
 
-    match uhppote::listen(events, errors) {
+    let never = future::pending::<()>();
+//  let interrupt = future::timeout(Duration::from_millis(5000), never);
+
+    match uhppote::listen(events, errors, never) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

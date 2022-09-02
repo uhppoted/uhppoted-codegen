@@ -1,4 +1,5 @@
 use std::net::Ipv4Addr;
+use async_std::future;
 
 use chrono::NaiveDateTime;
 use chrono::NaiveDate;
@@ -57,13 +58,13 @@ pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     return Ok(list);
 }
 
-pub fn listen(events: fn(Event), errors: fn(error::Error)) -> Result<()> {
+pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl future::Future) -> Result<()> {
     let pipe = |msg: Msg| match decode::event(&msg) {
         Ok(event) => events(event),
         Err(e) => errors(e),
     };
 
-    return udp::listen(pipe, errors);
+    return udp::listen(pipe, errors, interrupt);
 }
 
 {{range .model.functions}}{{template "function" .}}

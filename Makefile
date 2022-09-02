@@ -43,7 +43,7 @@ build: format
 
 debug: go rust python http
 	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-	$(RUSTBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 test: build

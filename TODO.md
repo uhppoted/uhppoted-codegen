@@ -11,6 +11,8 @@
 - [ ] listen
       - [x] Go
       - [ ] Rust
+            - [ ] CTRL-C
+            - (?) Rework as stream
       - [x] Python
       - [x] Remove from 'all'
 
