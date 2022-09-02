@@ -36,7 +36,7 @@ var Tests = []Test{
 const CONTROLLER = "405419896"
 
 var GetControllerTest = Test{
-	Name: "get controller ",
+	Name: "get controller",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -70,7 +70,7 @@ var GetControllerTest = Test{
 }
 
 var SetIPTest = Test{
-	Name: "set IP ",
+	Name: "set IP",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -95,16 +95,15 @@ var SetIPTest = Test{
 			},
 		},
 		Message: []uint8{
-			0x17, 0x94, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xc0, 0xa8, 0x01, 0x64, 0xff, 0xff, 0xff, 0x00,
+			0x17, 0x96, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xc0, 0xa8, 0x01, 0x64, 0xff, 0xff, 0xff, 0x00,
 			0xc0, 0xa8, 0x01, 0x01, 0x55, 0xaa, 0xaa, 0x55, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-		},
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 	},
 }
 
 var GetTimeTest = Test{
-	Name: "get time ",
+	Name: "get time",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -138,13 +137,18 @@ var GetTimeTest = Test{
 }
 
 var SetTimeTest = Test{
-	Name: "set time ",
+	Name: "set time",
 	Request: Request{
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "datetime",
+				Type:  "datetime",
+				Value: "2022-08-23 09:49:03",
 			},
 		},
 		Message: []uint8{
@@ -172,7 +176,7 @@ var SetTimeTest = Test{
 }
 
 var GetStatusTest = Test{
-	Name: "get status ",
+	Name: "get status",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -206,7 +210,7 @@ var GetStatusTest = Test{
 }
 
 var GetListenerTest = Test{
-	Name: "get listener ",
+	Name: "get listener",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -240,7 +244,7 @@ var GetListenerTest = Test{
 }
 
 var SetListenerTest = Test{
-	Name: "set listener ",
+	Name: "set listener",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -274,7 +278,7 @@ var SetListenerTest = Test{
 }
 
 var GetDoorControlTest = Test{
-	Name: "get door control ",
+	Name: "get door control",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -308,7 +312,7 @@ var GetDoorControlTest = Test{
 }
 
 var SetDoorControlTest = Test{
-	Name: "set door control ",
+	Name: "set door control",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -342,7 +346,7 @@ var SetDoorControlTest = Test{
 }
 
 var OpenDoorTest = Test{
-	Name: "open door ",
+	Name: "open door",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -376,7 +380,7 @@ var OpenDoorTest = Test{
 }
 
 var GetCardsTest = Test{
-	Name: "get cards ",
+	Name: "get cards",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -410,7 +414,7 @@ var GetCardsTest = Test{
 }
 
 var GetCardTest = Test{
-	Name: "get card ",
+	Name: "get card",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -444,7 +448,7 @@ var GetCardTest = Test{
 }
 
 var GetCardByIndexTest = Test{
-	Name: "get card by index ",
+	Name: "get card by index",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -478,7 +482,7 @@ var GetCardByIndexTest = Test{
 }
 
 var PutCardTest = Test{
-	Name: "put card ",
+	Name: "put card",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -512,7 +516,7 @@ var PutCardTest = Test{
 }
 
 var DeleteCardTest = Test{
-	Name: "delete card ",
+	Name: "delete card",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -546,7 +550,7 @@ var DeleteCardTest = Test{
 }
 
 var DeleteAllCardsTest = Test{
-	Name: "delete cards ",
+	Name: "delete cards",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -580,7 +584,7 @@ var DeleteAllCardsTest = Test{
 }
 
 var GetEventTest = Test{
-	Name: "get event ",
+	Name: "get event",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -614,7 +618,7 @@ var GetEventTest = Test{
 }
 
 var GetEventIndexTest = Test{
-	Name: "get event index ",
+	Name: "get event index",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -648,7 +652,7 @@ var GetEventIndexTest = Test{
 }
 
 var SetEventIndexTest = Test{
-	Name: "set event index ",
+	Name: "set event index",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -682,7 +686,7 @@ var SetEventIndexTest = Test{
 }
 
 var RecordSpecialEventsTest = Test{
-	Name: "record special events ",
+	Name: "record special events",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -716,7 +720,7 @@ var RecordSpecialEventsTest = Test{
 }
 
 var GetTimeProfileTest = Test{
-	Name: "get time profile ",
+	Name: "get time profile",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -750,7 +754,7 @@ var GetTimeProfileTest = Test{
 }
 
 var SetTimeProfileTest = Test{
-	Name: "set time profile ",
+	Name: "set time profile",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -784,7 +788,7 @@ var SetTimeProfileTest = Test{
 }
 
 var DeleteAllTimeProfilesTest = Test{
-	Name: "delete all time profiles ",
+	Name: "delete all time profiles",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -811,7 +815,7 @@ var DeleteAllTimeProfilesTest = Test{
 }
 
 var AddTaskTest = Test{
-	Name: "add task ",
+	Name: "add task",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -838,7 +842,7 @@ var AddTaskTest = Test{
 }
 
 var RefreshTaskListTest = Test{
-	Name: "refresh tasklist ",
+	Name: "refresh tasklist",
 	Request: Request{
 		Values: []Value{
 			Value{
@@ -865,7 +869,7 @@ var RefreshTaskListTest = Test{
 }
 
 var ClearTaskListTest = Test{
-	Name: "clear tasklist ",
+	Name: "clear tasklist",
 	Request: Request{
 		Values: []Value{
 			Value{

@@ -2,7 +2,7 @@
   "testdata": {
     "tests": [
       {
-        "name": "get controller ",
+        "name": "get controller",
         "request": {
           "values": [
             {
@@ -25,7 +25,7 @@
         }
       },
       {
-        "name": "set IP ",
+        "name": "set IP",
         "request": {
           "values": [
             {
@@ -49,14 +49,14 @@
               "value": "192.168.1.1"
             }
           ],
-          "message": "F5QAAHg3KhjAqAFk////AMCoAQFVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F5YAAHg3KhjAqAFk////AMCoAQFVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
           "values": null
         }
       },
       {
-        "name": "get time ",
+        "name": "get time",
         "request": {
           "values": [
             {
@@ -79,13 +79,18 @@
         }
       },
       {
-        "name": "set time ",
+        "name": "set time",
         "request": {
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "datetime",
+              "type": "datetime",
+              "value": "2022-08-23 09:49:03"
             }
           ],
           "message": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -102,7 +107,7 @@
         }
       },
       {
-        "name": "get status ",
+        "name": "get status",
         "request": {
           "values": [
             {
@@ -125,7 +130,7 @@
         }
       },
       {
-        "name": "get listener ",
+        "name": "get listener",
         "request": {
           "values": [
             {
@@ -148,7 +153,7 @@
         }
       },
       {
-        "name": "set listener ",
+        "name": "set listener",
         "request": {
           "values": [
             {
@@ -171,7 +176,7 @@
         }
       },
       {
-        "name": "get door control ",
+        "name": "get door control",
         "request": {
           "values": [
             {
@@ -194,7 +199,7 @@
         }
       },
       {
-        "name": "set door control ",
+        "name": "set door control",
         "request": {
           "values": [
             {
@@ -217,7 +222,7 @@
         }
       },
       {
-        "name": "open door ",
+        "name": "open door",
         "request": {
           "values": [
             {
@@ -240,7 +245,7 @@
         }
       },
       {
-        "name": "get cards ",
+        "name": "get cards",
         "request": {
           "values": [
             {
@@ -263,7 +268,7 @@
         }
       },
       {
-        "name": "get card ",
+        "name": "get card",
         "request": {
           "values": [
             {
@@ -286,7 +291,7 @@
         }
       },
       {
-        "name": "get card by index ",
+        "name": "get card by index",
         "request": {
           "values": [
             {
@@ -309,7 +314,7 @@
         }
       },
       {
-        "name": "put card ",
+        "name": "put card",
         "request": {
           "values": [
             {
@@ -332,7 +337,7 @@
         }
       },
       {
-        "name": "delete card ",
+        "name": "delete card",
         "request": {
           "values": [
             {
@@ -355,7 +360,7 @@
         }
       },
       {
-        "name": "delete cards ",
+        "name": "delete cards",
         "request": {
           "values": [
             {
@@ -378,7 +383,7 @@
         }
       },
       {
-        "name": "get event ",
+        "name": "get event",
         "request": {
           "values": [
             {
@@ -401,7 +406,7 @@
         }
       },
       {
-        "name": "get event index ",
+        "name": "get event index",
         "request": {
           "values": [
             {
@@ -424,7 +429,7 @@
         }
       },
       {
-        "name": "set event index ",
+        "name": "set event index",
         "request": {
           "values": [
             {
@@ -447,7 +452,7 @@
         }
       },
       {
-        "name": "record special events ",
+        "name": "record special events",
         "request": {
           "values": [
             {
@@ -470,7 +475,7 @@
         }
       },
       {
-        "name": "get time profile ",
+        "name": "get time profile",
         "request": {
           "values": [
             {
@@ -493,7 +498,7 @@
         }
       },
       {
-        "name": "set time profile ",
+        "name": "set time profile",
         "request": {
           "values": [
             {
@@ -516,7 +521,7 @@
         }
       },
       {
-        "name": "delete all time profiles ",
+        "name": "delete all time profiles",
         "request": {
           "values": [
             {
@@ -533,7 +538,7 @@
         }
       },
       {
-        "name": "add task ",
+        "name": "add task",
         "request": {
           "values": [
             {
@@ -550,7 +555,7 @@
         }
       },
       {
-        "name": "refresh tasklist ",
+        "name": "refresh tasklist",
         "request": {
           "values": [
             {
@@ -567,7 +572,7 @@
         }
       },
       {
-        "name": "clear tasklist ",
+        "name": "clear tasklist",
         "request": {
           "values": [
             {
