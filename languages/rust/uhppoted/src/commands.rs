@@ -432,20 +432,8 @@ fn add_task() {
     let more_cards: u8 = 0;
 
     match uhppote::add_task(
-        controller,
-        startdate,
-        enddate,
-        monday,
-        tuesday,
-        wednesday,
-        thursday,
-        friday,
-        saturday,
-        sunday,
-        starttime,
-        door,
-        task_type,
-        more_cards,
+        controller, startdate, enddate, monday, tuesday, wednesday, thursday, friday, saturday,
+        sunday, starttime, door, task_type, more_cards,
     ) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
@@ -476,7 +464,7 @@ fn listen() {
     };
 
     let errors = |err: uhppote::error::Error| {
-        error(err);
+        println!("   ERROR: {err}");
     };
 
     match uhppote::listen(events, errors) {

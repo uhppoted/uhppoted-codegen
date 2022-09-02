@@ -62,38 +62,6 @@ pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>> {
     return f(socket);
 }
 
-pub fn listen(events: fn(Msg), errors: fn(error::Error)) -> Result<()> {
-    let bind = LISTEN_ADDR.read()?;
-    let socket = UdpSocket::bind(bind.as_str())?;
-
-    socket.set_read_timeout(None)?;
-
-    let f = async {
-        let sock = async_std::net::UdpSocket::from(socket);
-        let mut buffer = [0u8; 1024];
-
-        loop {
-            match sock.recv(&mut buffer).await {
-                Ok(64) => {
-                    dump(buffer[..64].try_into()?);
-                    events(buffer[..64].try_into()?);
-                }
-
-                Err(e) => errors(error::Error::from(e)),
-
-                _ => continue,
-            }
-        };
-
-        return Ok(());
-    };
-
-    match futures::executor::block_on(f) {
-        Ok(_) => return Ok(()),
-        Err(e) => return Err(e),
-    }
-}
-
 pub fn read(socket: UdpSocket) -> Result<Vec<Msg>> {
     let f = future::timeout(TIMEOUT, async {
         let sock = async_std::net::UdpSocket::from(socket);
@@ -172,6 +140,38 @@ pub fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
 
 pub fn read_none(_: UdpSocket) -> Result<Vec<Msg>> {
     return Ok(vec![]);
+}
+
+pub fn listen(events: impl Fn(Msg), errors: impl Fn(error::Error)) -> Result<()> {
+    let bind = LISTEN_ADDR.read()?;
+    let socket = UdpSocket::bind(bind.as_str())?;
+
+    socket.set_read_timeout(None)?;
+
+    let f = async {
+        let sock = async_std::net::UdpSocket::from(socket);
+        let mut buffer = [0u8; 1024];
+
+        loop {
+            match sock.recv(&mut buffer).await {
+                Ok(64) => {
+                    let mut packet = [0u8; 64];
+
+                    packet.clone_from_slice(&buffer[..64]);
+                    dump(&packet);
+                    events(packet);
+                }
+
+                Err(e) => errors(error::Error::from(e)),
+
+                _ => continue,
+            }
+        }
+    };
+
+    futures::executor::block_on(f);
+
+    return Ok(());
 }
 
 fn dump(packet: &Msg) {
