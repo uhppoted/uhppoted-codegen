@@ -12,7 +12,7 @@
       - [x] Go
       - [ ] Rust
       - [x] Python
-      - [ ] Remove from 'all'
+      - [x] Remove from 'all'
 
 ## Go
 - [ ] Optional time profile dates
@@ -42,7 +42,7 @@
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
 ## HTTP
-- [x] Implement all commands
+- [x] Implement remaining commands
 - [ ] `listen`
 
 ## Erlang

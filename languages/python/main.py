@@ -2,7 +2,9 @@
 
 import argparse
 import sys
+import traceback
 
+from trace import Trace
 from commands import commands
 from commands import exec
 
@@ -44,7 +46,7 @@ def main():
 
     try:
         if cmd == 'all':
-            for c, fn in enumerate(commands()):
+            for c,fn in commands().items():
                 if c != 'listen':
                     exec(fn, bind, broadcast, listen, debug)
         elif cmd in commands():
@@ -58,6 +60,9 @@ def main():
         print()
         print(f'*** ERROR  {cmd}: {x}')
         print()
+
+        if debug:
+            print(traceback.format_exc())
 
         sys.exit(1)
 

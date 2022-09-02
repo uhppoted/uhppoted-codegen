@@ -49,9 +49,11 @@ func main() {
 
 	if len(list) == 1 && list[0] == "all" {
 		for _, c := range commands {
-			c.exec()
+			if c.name != "listen" {
+				c.exec()
+			}
 		}
-	} else {
+	}else {
 		for _, cmd := range list {
 			ix := slices.IndexFunc[command](commands, func(c command) bool { return c.name == cmd })
 			if ix != -1 {

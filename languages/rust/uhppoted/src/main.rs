@@ -56,8 +56,10 @@ fn main() -> ExitCode {
 
     if args.len() == 1 && args[0] == "all" {
         for c in COMMANDS {
-            c.exec();
-            println!();
+            if c.name != "listen" {
+                c.exec();
+                println!();            
+            }
         }
 
         return ExitCode::SUCCESS;

@@ -2,6 +2,7 @@ import socket
 import struct
 import re
 import time
+import ipaddress
 
 READ_TIMEOUT = struct.pack('ll', 5, 0)
 WRITE_TIMEOUT = struct.pack('ll', 1, 0)

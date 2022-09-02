@@ -60,12 +60,18 @@ def unpack_version(packet, offset):
 def unpack_date(packet, offset):
     bcd = '{:02x}{:02x}{:02x}{:02x}'.format(*packet[offset:offset+4])
 
-    return datetime.datetime.strptime(bcd, '%Y%m%d').date()
+    if bcd == '00000000':
+        return datetime.date.min
+    else:
+        return datetime.datetime.strptime(bcd, '%Y%m%d').date()
 
 def unpack_shortdate(packet, offset):
     bcd = '20{:02x}{:02x}{:02x}'.format(*packet[offset:offset+3])
 
-    return datetime.datetime.strptime(bcd, '%Y%m%d').date()
+    if bcd == '20000000':
+        return datetime.date.min
+    else:
+        return datetime.datetime.strptime(bcd, '%Y%m%d').date()
 
 def unpack_time(packet, offset):
     bcd = '{:02x}{:02x}{:02x}'.format(*packet[offset:offset+3])
@@ -75,7 +81,10 @@ def unpack_time(packet, offset):
 def unpack_datetime(packet, offset):
     bcd = '{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}'.format(*packet[offset:offset+7])
 
-    return datetime.datetime.strptime(bcd, '%Y%m%d%H%M%S')
+    if bcd == '00000000000000':
+        return datetime.datetime.min
+    else:
+        return datetime.datetime.strptime(bcd, '%Y%m%d%H%M%S')
 
 def unpack_HHmm(packet, offset):
     bcd = '{:02x}{:02x}'.format(*packet[offset:offset+2])

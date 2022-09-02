@@ -22,8 +22,8 @@ class Uhppote:
         return None
 
 
-def events(packet, onEvent):
-    onEvent(decode.event(packet))
+    def events(packet, onEvent):
+        onEvent(decode.event(packet))
     
 {{range .model.functions}}{{template "function" .}}
 {{end}}

@@ -58,7 +58,11 @@ def exec(f, bind, broadcast, listen, debug):
     response = f(u)
 
     if response != None:
-        pprint(response.__dict__, indent=2, width=1)
+        if type(response).__name__ == 'list':
+            for v in response:
+                pprint(v.__dict__, indent=2, width=1, sort_dicts=False)
+        else:
+            pprint(response.__dict__, indent=2, width=1, sort_dicts=False)
 
 
 def get_all_controllers(u):
