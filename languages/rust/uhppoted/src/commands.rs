@@ -1,7 +1,7 @@
 use chrono::offset::Local;
 use chrono::NaiveDate;
 use chrono::NaiveTime;
-use async_std::future;
+use async_ctrlc::CtrlC;
 
 use super::uhppote;
 
@@ -468,10 +468,9 @@ fn listen() {
         println!("   ERROR: {err}");
     };
 
-    let never = future::pending::<()>();
-//  let interrupt = future::timeout(Duration::from_millis(5000), never);
-
-    match uhppote::listen(events, errors, never) {
+    let interrupt = CtrlC::new().expect("cannot create Ctrl+C handler?");
+    
+    match uhppote::listen(events, errors, interrupt) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

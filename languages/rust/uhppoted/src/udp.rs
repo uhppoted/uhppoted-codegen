@@ -143,7 +143,7 @@ pub fn read_none(_: UdpSocket) -> Result<Vec<Msg>> {
     return Ok(vec![]);
 }
 
-//TODO should probably use a stream
+//TODO should probably use a stream/channel
 pub fn listen(events: impl Fn(Msg), errors: impl Fn(error::Error), interrupt: impl future::Future) -> Result<()> {
     let bind = LISTEN_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -178,7 +178,8 @@ pub fn listen(events: impl Fn(Msg), errors: impl Fn(error::Error), interrupt: im
     let g = async { 
         futures::select! {
             _ = f => {}
-            _ = interrupted => {},
+            _ = interrupted => {
+            },
         }
     };
 

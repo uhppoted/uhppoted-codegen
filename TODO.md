@@ -15,13 +15,9 @@
 - [ ] Package for release
 - [ ] Add code generation to github workflow
 
-- [ ] listen
+- [x] listen
       - [x] Go
-      - [ ] Rust
-            - [ ] CTRL-C
-            - (?) Rework as stream
-            - https://stackoverflow.com/questions/71524673/how-to-stop-retry-loop-with-async
-            - https://docs.rs/futures/0.1.2/futures/fn.oneshot.html
+      - [x] Rust
       - [x] Python
       - [x] Remove from 'all'
 
