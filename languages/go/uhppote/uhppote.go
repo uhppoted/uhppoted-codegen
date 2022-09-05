@@ -50,13 +50,14 @@ loop:
 
     return nil
 }
-
-{{range .model.functions}}{{template "function" .}}
+{{- range .model.functions }}
+{{ template "function" . -}}
 {{end}}
 
 {{define "function"}}
 func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCase .response.name}},error){{else}}error{{end}} {
-    {{if .response}}request,err := {{CamelCase .request.name}}({{template "params" .args}})
+    {{- if .response -}}
+    request,err := {{CamelCase .request.name}}({{template "params" .args}})
     if err != nil {
         return nil,err
     }
@@ -74,12 +75,14 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
         }
     }
 
-    return nil, nil{{else}}
+    return nil, nil
+    {{- else }}
     if request, err := {{CamelCase .request.name}}({{template "params" .args}}); err != nil {
         return err
     } else if _, err = send(request, readNone); err != nil {
         return err
     }
     
-    return nil{{end}}
+    return nil
+    {{- end}}
 }{{end}}

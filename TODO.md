@@ -1,5 +1,11 @@
 # TODO
 
+- [ ] Rework templates with {{- and -}}
+      - [x] Go
+      - [ ] Rust
+      - [ ] Python
+      - [ ] HTTP
+
 - [ ] Test data
       - [x] messages
       - [ ] request values
@@ -7,12 +13,15 @@
 
 - [ ] Code generation HOWTO
 - [ ] Package for release
+- [ ] Add code generation to github workflow
 
 - [ ] listen
       - [x] Go
       - [ ] Rust
             - [ ] CTRL-C
             - (?) Rework as stream
+            - https://stackoverflow.com/questions/71524673/how-to-stop-retry-loop-with-async
+            - https://docs.rs/futures/0.1.2/futures/fn.oneshot.html
       - [x] Python
       - [x] Remove from 'all'
 
@@ -20,7 +29,7 @@
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
-- (?) Test skeletons
+- [ ] Unit tests
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust

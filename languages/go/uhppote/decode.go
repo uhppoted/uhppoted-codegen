@@ -9,7 +9,8 @@ import (
     "time"
 )
 
-{{range .model.responses}}{{template "decode" .}}
+{{range .model.responses}}
+{{- template "decode" . -}}
 {{end}}
 
 {{with .model.event}}{{template "decode" .}}
@@ -25,25 +26,26 @@ type {{CamelCase .name}} struct { {{range .fields}}
 {{end}}
 
 {{define "decode"}}
-func {{camelCase .name}}(packet []byte) (*{{CamelCase .name}}, error) {
+func {{camelCase .name}}(packet []byte) (response *{{CamelCase .name}}, err error) {
     if len(packet) != 64 {
-        return nil, fmt.Errorf("invalid reply packet length (%v)", len(packet))
+        err = fmt.Errorf("invalid reply packet length (%v)", len(packet))
+        return
     }
 
     if packet[1] != {{byte2hex .msgtype}} {
-        return nil, fmt.Errorf("invalid reply function code (%02x)", packet[1])
+        err = fmt.Errorf("invalid reply function code (%02x)", packet[1])
+        return
     }
 
-    response := {{CamelCase .name}}{}
+    v := {{CamelCase .name}}{}
     {{range .fields}}
-    if v,err := unpack{{CamelCase .type}}(packet, {{.offset}}); err != nil {
-        return nil, err
-    } else {
-        response.{{CamelCase .name}} = v
+    if v.{{CamelCase .name}},err = unpack{{CamelCase .type}}(packet, {{.offset}}); err != nil {
+        return
     }
     {{end}}
+    response = &v
 
-    return &response, nil
+    return
 }
 {{end}}
 
