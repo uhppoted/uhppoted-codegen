@@ -9,7 +9,9 @@
 - [ ] Test data
       - [x] messages
       - [x] request values
+            - [ ] add name/initialised struct
       - [ ] response values
+            - [ ] add name/initialised struct
 
 - [ ] Code generation HOWTO
 - [ ] Package for release

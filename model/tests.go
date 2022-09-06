@@ -59,9 +59,39 @@ var GetControllerTest = Test{
 	Response: Response{
 		Values: []Value{
 			Value{
-				Name:  "controller",
+				Name:  "device id",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "ip address",
+				Type:  "IPv4",
+				Value: "192.168.1.100",
+			},
+			Value{
+				Name:  "subnet mask",
+				Type:  "IPv4",
+				Value: "255.255.255.0",
+			},
+			Value{
+				Name:  "gateway",
+				Type:  "IPv4",
+				Value: "192.168.1.1",
+			},
+			Value{
+				Name:  "MAC address",
+				Type:  "string",
+				Value: "00:12:23:34:45:56",
+			},
+			Value{
+				Name:  "version",
+				Type:  "string",
+				Value: "v8.92",
+			},
+			Value{
+				Name:  "date",
+				Type:  "date",
+				Value: "2018-11-05",
 			},
 		},
 		Message: []uint8{

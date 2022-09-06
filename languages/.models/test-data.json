@@ -16,9 +16,39 @@
         "response": {
           "values": [
             {
-              "name": "controller",
+              "name": "device id",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "ip address",
+              "type": "IPv4",
+              "value": "192.168.1.100"
+            },
+            {
+              "name": "subnet mask",
+              "type": "IPv4",
+              "value": "255.255.255.0"
+            },
+            {
+              "name": "gateway",
+              "type": "IPv4",
+              "value": "192.168.1.1"
+            },
+            {
+              "name": "MAC address",
+              "type": "string",
+              "value": "00:12:23:34:45:56"
+            },
+            {
+              "name": "version",
+              "type": "string",
+              "value": "v8.92"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "value": "2018-11-05"
             }
           ],
           "message": "F5QAAHg3KhjAqAFk////AMCoAQEAEiM0RVYIkiAYEQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
