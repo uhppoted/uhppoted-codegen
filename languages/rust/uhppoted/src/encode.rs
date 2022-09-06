@@ -36,8 +36,8 @@ macro_rules! string2bcd {
         } 
     };
 }
-
-{{range .model.requests}}{{template "request" .}}
+{{range .model.requests}}
+{{- template "request" . -}}
 {{end}}
 
 {{define "request"}}
@@ -46,11 +46,13 @@ pub fn {{snakeCase .name}}({{template "args" .fields}}) -> Result<Msg> {
 
     packet[0] = 0x17;
     packet[1] = {{byte2hex .msgtype}};
-
-    {{range .fields}}
-    {{if ne .type "magic"}}pack_{{snakeCase .type}}({{snakeCase .name}}, &mut packet, {{.offset}})?;
-    {{else}}pack_uint32(MAGIC, &mut packet, {{.offset}})?;{{end}}{{end}}
-
+    {{range .fields -}}
+    {{if ne .type "magic"}}
+    pack_{{snakeCase .type}}({{snakeCase .name}}, &mut packet, {{.offset}})?;
+    {{- else -}}
+    pack_uint32(MAGIC, &mut packet, {{.offset}})?;
+    {{- end}}{{end}}
+    
     return Ok(packet)
 }
 {{end}}

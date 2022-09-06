@@ -2,7 +2,7 @@
 
 - [ ] Rework templates with {{- and -}}
       - [x] Go
-      - [ ] Rust
+      - [x] Rust
       - [ ] Python
       - [ ] HTTP
 
@@ -14,12 +14,6 @@
 - [ ] Code generation HOWTO
 - [ ] Package for release
 - [ ] Add code generation to github workflow
-
-- [x] listen
-      - [x] Go
-      - [x] Rust
-      - [x] Python
-      - [x] Remove from 'all'
 
 ## Go
 - [ ] Optional time profile dates

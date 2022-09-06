@@ -26,22 +26,24 @@ macro_rules! bcd2string {
         } 
     };
 }
-
-{{range .model.responses}}{{template "response" .}}
+{{range .model.responses}}
+{{- template "response" . -}}
 {{end}}
 
-{{with .model.event}}
+{{- with .model.event}}
 #[derive(Clone, Debug)]
 pub struct {{CamelCase .name}} { {{range .fields}}
     pub {{snakeCase .name}}: {{template "type" .type}},{{end}}
 }
 {{end}}
 
-{{range .model.responses}}{{template "decode" .}}
+{{- range .model.responses}}
+{{- template "decode" . -}}
 {{end}}
 
-{{with .model.event}}{{template "decode" .}}
-{{end}}
+{{- with .model.event -}}
+{{- template "decode" . -}}
+{{end -}}
 
 {{define "response"}}
 #[derive(Clone, Debug)]
@@ -66,7 +68,7 @@ pub fn {{snakeCase .name}}(packet: &Msg) -> Result<{{CamelCase .name}}> {
 
     return Ok(response);
 }
-{{end}}
+{{end -}}
 
 fn unpack_uint8(packet: &Msg, offset: usize) -> Result<u8> {
     return Ok(packet[offset]);

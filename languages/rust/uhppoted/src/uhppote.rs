@@ -67,8 +67,9 @@ pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl futur
     return udp::listen(pipe, errors, interrupt);
 }
 
-{{range .model.functions}}{{template "function" .}}
-{{end}}
+{{range .model.functions}}
+{{- template "function" . -}}
+{{end -}}
 
 {{define "function"}}
 pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ {{if .response}}
