@@ -8,7 +8,7 @@
 
 - [ ] Test data
       - [x] messages
-      - [ ] request values
+      - [x] request values
       - [ ] response values
 
 - [ ] Code generation HOWTO

@@ -160,6 +160,16 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "address",
+              "type": "IPv4",
+              "value": "192.168.1.100"
+            },
+            {
+              "name": "port",
+              "type": "uint16",
+              "value": "60001"
             }
           ],
           "message": "F5AAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -170,6 +180,16 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "address",
+              "type": "IPv4",
+              "value": "192.168.1.100"
+            },
+            {
+              "name": "port",
+              "type": "uint16",
+              "value": 60001
             }
           ],
           "message": "F5AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -183,6 +203,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": "3"
             }
           ],
           "message": "F4IAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -206,6 +231,21 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": "3"
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "value": "2"
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "value": "10"
             }
           ],
           "message": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -229,6 +269,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": "3"
             }
           ],
           "message": "F0AAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -275,6 +320,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "card",
+              "type": "uint32",
+              "value": "8165538"
             }
           ],
           "message": "F1oAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -298,6 +348,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "index",
+              "type": "uint32",
+              "value": "3"
             }
           ],
           "message": "F1wAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -321,6 +376,41 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "card",
+              "type": "uint32",
+              "value": "8165538"
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "value": "2022-01-01"
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "value": "2022-12-31"
+            },
+            {
+              "name": "door1",
+              "type": "uint8",
+              "value": "0"
+            },
+            {
+              "name": "door2",
+              "type": "uint8",
+              "value": "1"
+            },
+            {
+              "name": "door3",
+              "type": "uint8",
+              "value": "29"
+            },
+            {
+              "name": "door4",
+              "type": "uint8",
+              "value": "0"
             }
           ],
           "message": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -344,6 +434,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "card",
+              "type": "uint32",
+              "value": "8165538"
             }
           ],
           "message": "F1IAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -390,6 +485,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "index",
+              "type": "uint32",
+              "value": "37"
             }
           ],
           "message": "F7AAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -436,6 +536,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "index",
+              "type": "uint32",
+              "value": "37"
             }
           ],
           "message": "F7IAAHg3KhglAAAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -459,6 +564,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "enabled",
+              "type": "bool",
+              "value": "true"
             }
           ],
           "message": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -482,6 +592,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "profile id",
+              "type": "uint8",
+              "value": "29"
             }
           ],
           "message": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -505,9 +620,94 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "profile id",
+              "type": "uint8",
+              "value": "29"
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "value": "2022-01-01"
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "value": "2022-12-31"
+            },
+            {
+              "name": "monday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "tuesday",
+              "type": "bool",
+              "value": "false"
+            },
+            {
+              "name": "wednesday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "thursday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "friday",
+              "type": "bool",
+              "value": "false"
+            },
+            {
+              "name": "saturday",
+              "type": "bool",
+              "value": "false"
+            },
+            {
+              "name": "sunday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "segment 1 start",
+              "type": "HHmm",
+              "value": "08:30"
+            },
+            {
+              "name": "segment 1 end",
+              "type": "HHmm",
+              "value": "11:45"
+            },
+            {
+              "name": "segment 2 start",
+              "type": "HHmm",
+              "value": "13:15"
+            },
+            {
+              "name": "segment 2 end",
+              "type": "HHmm",
+              "value": "16:30"
+            },
+            {
+              "name": "segment 3 start",
+              "type": "HHmm",
+              "value": "19:30"
+            },
+            {
+              "name": "segment 3 end",
+              "type": "HHmm",
+              "value": "20:55"
+            },
+            {
+              "name": "linked profile id",
+              "type": "uint8",
+              "value": "30"
             }
           ],
-          "message": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F4gAAHg3KhgdICIBASAiEjEBAAEBAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
           "values": [
@@ -545,9 +745,74 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "value": "2022-01-01"
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "value": "2022-12-31"
+            },
+            {
+              "name": "monday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "tuesday",
+              "type": "bool",
+              "value": "false"
+            },
+            {
+              "name": "wednesday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "thursday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "friday",
+              "type": "bool",
+              "value": "false"
+            },
+            {
+              "name": "saturday",
+              "type": "bool",
+              "value": "false"
+            },
+            {
+              "name": "sunday",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "start time",
+              "type": "HHmm",
+              "value": "08:30"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": "3"
+            },
+            {
+              "name": "task type",
+              "type": "uint8",
+              "value": "2"
+            },
+            {
+              "name": "more cards",
+              "type": "uint8",
+              "value": "17"
             }
           ],
-          "message": "F6gAAHg3KhggIgEBICISMQEAAQEAAAEIMAMCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F6gAAHg3KhggIgEBICISMQEAAQEAAAEIMAMCEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
           "values": null,

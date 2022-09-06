@@ -34,6 +34,10 @@ var Tests = []Test{
 }
 
 const CONTROLLER = "405419896"
+const CARD = "8165538"
+const CARD_INDEX = "3"
+const EVENT_INDEX = "37"
+const TIME_PROFILE_ID = "29"
 
 var GetControllerTest = Test{
 	Name: "get controller",
@@ -252,6 +256,16 @@ var SetListenerTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "address",
+				Type:  "IPv4",
+				Value: netip.MustParseAddr("192.168.1.100"),
+			},
+			Value{
+				Name:  "port",
+				Type:  "uint16",
+				Value: "60001",
+			},
 		},
 		Message: []uint8{
 			0x17, 0x90, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xc0, 0xa8, 0x01, 0x64, 0x61, 0xea, 0x00, 0x00,
@@ -266,6 +280,16 @@ var SetListenerTest = Test{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "address",
+				Type:  "IPv4",
+				Value: netip.MustParseAddr("192.168.1.100"),
+			},
+			Value{
+				Name:  "port",
+				Type:  "uint16",
+				Value: 60001,
 			},
 		},
 		Message: []uint8{
@@ -285,6 +309,11 @@ var GetDoorControlTest = Test{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "door",
+				Type:  "uint8",
+				Value: "3",
 			},
 		},
 		Message: []uint8{
@@ -320,6 +349,21 @@ var SetDoorControlTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "door",
+				Type:  "uint8",
+				Value: "3",
+			},
+			Value{
+				Name:  "mode",
+				Type:  "uint8",
+				Value: "2",
+			},
+			Value{
+				Name:  "delay",
+				Type:  "uint8",
+				Value: "10",
+			},
 		},
 		Message: []uint8{
 			0x17, 0x80, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x03, 0x02, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -353,6 +397,11 @@ var OpenDoorTest = Test{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "door",
+				Type:  "uint8",
+				Value: "3",
 			},
 		},
 		Message: []uint8{
@@ -422,6 +471,11 @@ var GetCardTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "card",
+				Type:  "uint32",
+				Value: CARD,
+			},
 		},
 		Message: []uint8{
 			0x17, 0x5a, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xa2, 0x98, 0x7c, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -455,6 +509,11 @@ var GetCardByIndexTest = Test{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "index",
+				Type:  "uint32",
+				Value: CARD_INDEX,
 			},
 		},
 		Message: []uint8{
@@ -490,6 +549,41 @@ var PutCardTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "card",
+				Type:  "uint32",
+				Value: CARD,
+			},
+			Value{
+				Name:  "start date",
+				Type:  "date",
+				Value: "2022-01-01",
+			},
+			Value{
+				Name:  "end date",
+				Type:  "date",
+				Value: "2022-12-31",
+			},
+			Value{
+				Name:  "door1",
+				Type:  "uint8",
+				Value: "0",
+			},
+			Value{
+				Name:  "door2",
+				Type:  "uint8",
+				Value: "1",
+			},
+			Value{
+				Name:  "door3",
+				Type:  "uint8",
+				Value: "29",
+			},
+			Value{
+				Name:  "door4",
+				Type:  "uint8",
+				Value: "0",
+			},
 		},
 		Message: []uint8{
 			0x17, 0x50, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xa2, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x01, 0x01,
@@ -523,6 +617,11 @@ var DeleteCardTest = Test{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "card",
+				Type:  "uint32",
+				Value: CARD,
 			},
 		},
 		Message: []uint8{
@@ -592,6 +691,11 @@ var GetEventTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "index",
+				Type:  "uint32",
+				Value: EVENT_INDEX,
+			},
 		},
 		Message: []uint8{
 			0x17, 0xb0, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x25, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -660,6 +764,11 @@ var SetEventIndexTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "index",
+				Type:  "uint32",
+				Value: EVENT_INDEX,
+			},
 		},
 		Message: []uint8{
 			0x17, 0xb2, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x25, 0x00, 0x00, 0x00, 0x55, 0xaa, 0xaa, 0x55,
@@ -693,6 +802,11 @@ var RecordSpecialEventsTest = Test{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "enabled",
+				Type:  "bool",
+				Value: "true",
 			},
 		},
 		Message: []uint8{
@@ -728,6 +842,11 @@ var GetTimeProfileTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "profile id",
+				Type:  "uint8",
+				Value: TIME_PROFILE_ID,
+			},
 		},
 		Message: []uint8{
 			0x17, 0x98, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -762,11 +881,96 @@ var SetTimeProfileTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "profile id",
+				Type:  "uint8",
+				Value: TIME_PROFILE_ID,
+			},
+			Value{
+				Name:  "start date",
+				Type:  "date",
+				Value: "2022-01-01",
+			},
+			Value{
+				Name:  "end date",
+				Type:  "date",
+				Value: "2022-12-31",
+			},
+			Value{
+				Name:  "monday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "tuesday",
+				Type:  "bool",
+				Value: "false",
+			},
+			Value{
+				Name:  "wednesday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "thursday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "friday",
+				Type:  "bool",
+				Value: "false",
+			},
+			Value{
+				Name:  "saturday",
+				Type:  "bool",
+				Value: "false",
+			},
+			Value{
+				Name:  "sunday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "segment 1 start",
+				Type:  "HHmm",
+				Value: "08:30",
+			},
+			Value{
+				Name:  "segment 1 end",
+				Type:  "HHmm",
+				Value: "11:45",
+			},
+			Value{
+				Name:  "segment 2 start",
+				Type:  "HHmm",
+				Value: "13:15",
+			},
+			Value{
+				Name:  "segment 2 end",
+				Type:  "HHmm",
+				Value: "16:30",
+			},
+			Value{
+				Name:  "segment 3 start",
+				Type:  "HHmm",
+				Value: "19:30",
+			},
+			Value{
+				Name:  "segment 3 end",
+				Type:  "HHmm",
+				Value: "20:55",
+			},
+			Value{
+				Name:  "linked profile id",
+				Type:  "uint8",
+				Value: "30",
+			},
 		},
 		Message: []uint8{
-			0x17, 0x98, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x17, 0x88, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x1d, 0x20, 0x22, 0x01, 0x01, 0x20, 0x22, 0x12,
+			0x31, 0x01, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01, 0x08, 0x30, 0x11, 0x45, 0x13, 0x15, 0x16, 0x30,
+			0x19, 0x30, 0x20, 0x55, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
@@ -823,10 +1027,75 @@ var AddTaskTest = Test{
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "start date",
+				Type:  "date",
+				Value: "2022-01-01",
+			},
+			Value{
+				Name:  "end date",
+				Type:  "date",
+				Value: "2022-12-31",
+			},
+			Value{
+				Name:  "monday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "tuesday",
+				Type:  "bool",
+				Value: "false",
+			},
+			Value{
+				Name:  "wednesday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "thursday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "friday",
+				Type:  "bool",
+				Value: "false",
+			},
+			Value{
+				Name:  "saturday",
+				Type:  "bool",
+				Value: "false",
+			},
+			Value{
+				Name:  "sunday",
+				Type:  "bool",
+				Value: "true",
+			},
+			Value{
+				Name:  "start time",
+				Type:  "HHmm",
+				Value: "08:30",
+			},
+			Value{
+				Name:  "door",
+				Type:  "uint8",
+				Value: "3",
+			},
+			Value{
+				Name:  "task type",
+				Type:  "uint8",
+				Value: "2",
+			},
+			Value{
+				Name:  "more cards",
+				Type:  "uint8",
+				Value: "17",
+			},
 		},
 		Message: []uint8{
 			0x17, 0xa8, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x20, 0x22, 0x01, 0x01, 0x20, 0x22, 0x12, 0x31,
-			0x01, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01, 0x08, 0x30, 0x03, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x01, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01, 0x08, 0x30, 0x03, 0x02, 0x11, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
