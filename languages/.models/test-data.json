@@ -4,6 +4,7 @@
       {
         "name": "get controller",
         "request": {
+          "name": "get controller request",
           "values": [
             {
               "name": "controller",
@@ -14,9 +15,10 @@
           "message": "F5QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get controller response",
           "values": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
               "value": "405419896"
             },
@@ -57,6 +59,7 @@
       {
         "name": "set IP",
         "request": {
+          "name": "set IP request",
           "values": [
             {
               "name": "controller",
@@ -80,14 +83,12 @@
             }
           ],
           "message": "F5YAAHg3KhjAqAFk////AMCoAQFVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
-        },
-        "response": {
-          "values": null
         }
       },
       {
         "name": "get time",
         "request": {
+          "name": "get time request",
           "values": [
             {
               "name": "controller",
@@ -98,11 +99,17 @@
           "message": "FzIAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get time response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "datetime",
+              "type": "datetime",
+              "value": "2022-08-23 09:48:09"
             }
           ],
           "message": "FzIAAHg3KhggIggjCUgJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -111,6 +118,7 @@
       {
         "name": "set time",
         "request": {
+          "name": "set time request",
           "values": [
             {
               "name": "controller",
@@ -126,11 +134,17 @@
           "message": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "set time response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "datetime",
+              "type": "datetime",
+              "value": "2022-08-23 09:49:03"
             }
           ],
           "message": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -139,6 +153,7 @@
       {
         "name": "get status",
         "request": {
+          "name": "get status request",
           "values": [
             {
               "name": "controller",
@@ -149,19 +164,136 @@
           "message": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get status response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "system date",
+              "type": "short date",
+              "value": "2022-08-23"
+            },
+            {
+              "name": "system time",
+              "type": "time",
+              "value": "09:49:39"
+            },
+            {
+              "name": "door 1 open",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 2 open",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "door 3 open",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 4 open",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 1 button",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 2 button",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 3 button",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 4 button",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "relays",
+              "type": "uint8",
+              "value": "7"
+            },
+            {
+              "name": "inputs",
+              "type": "uint8",
+              "value": "9"
+            },
+            {
+              "name": "system error",
+              "type": "uint8",
+              "value": 3
+            },
+            {
+              "name": "special info",
+              "type": "uint8",
+              "value": 39
+            },
+            {
+              "name": "event index",
+              "type": "uint32",
+              "value": 78
+            },
+            {
+              "name": "event type",
+              "type": "uint8",
+              "value": 2
+            },
+            {
+              "name": "event access granted",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "event door",
+              "type": "uint8",
+              "value": 3
+            },
+            {
+              "name": "event direction",
+              "type": "uint8",
+              "value": 1
+            },
+            {
+              "name": "event card",
+              "type": "uint32",
+              "value": "8165537"
+            },
+            {
+              "name": "event timestamp",
+              "type": "datetime",
+              "value": "2022-08-23 09:47:06"
+            },
+            {
+              "name": "event reason",
+              "type": "uint8",
+              "value": 44
+            },
+            {
+              "name": "sequence no",
+              "type": "uint32",
+              "value": 0
             }
           ],
-          "message": "FyAAAHg3KhhOAAAAAgEDAeqszekgIggjCUcGLAAAAAAAAAAAAAlJOQAAAAAAAAAAAAAAIggjAAAAAAAAAAAAAA=="
+          "message": "FyAAAHg3KhhOAAAAAgEDAaGYfAAgIggjCUcGLAABAAAAAAABAwlJOQAAAAAAAAAAJwcJIggjAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "get listener",
         "request": {
+          "name": "get listener request",
           "values": [
             {
               "name": "controller",
@@ -172,11 +304,22 @@
           "message": "F5IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get listener response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "address",
+              "type": "IPv4",
+              "value": "192.168.1.100"
+            },
+            {
+              "name": "port",
+              "type": "uint16",
+              "value": "60001"
             }
           ],
           "message": "F5IAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -185,6 +328,7 @@
       {
         "name": "set listener",
         "request": {
+          "name": "set listener request",
           "values": [
             {
               "name": "controller",
@@ -205,6 +349,7 @@
           "message": "F5AAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "set listener response",
           "values": [
             {
               "name": "controller",
@@ -212,14 +357,9 @@
               "value": "405419896"
             },
             {
-              "name": "address",
-              "type": "IPv4",
-              "value": "192.168.1.100"
-            },
-            {
-              "name": "port",
-              "type": "uint16",
-              "value": 60001
+              "name": "ok",
+              "type": "bool",
+              "value": true
             }
           ],
           "message": "F5AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -228,6 +368,7 @@
       {
         "name": "get door control",
         "request": {
+          "name": "get door control request",
           "values": [
             {
               "name": "controller",
@@ -237,17 +378,33 @@
             {
               "name": "door",
               "type": "uint8",
-              "value": "3"
+              "value": 3
             }
           ],
           "message": "F4IAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get door control response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": 3
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "value": 2
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "value": 10
             }
           ],
           "message": "F4IAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -256,6 +413,7 @@
       {
         "name": "set door control",
         "request": {
+          "name": "set door control request",
           "values": [
             {
               "name": "controller",
@@ -265,27 +423,43 @@
             {
               "name": "door",
               "type": "uint8",
-              "value": "3"
+              "value": 3
             },
             {
               "name": "mode",
               "type": "uint8",
-              "value": "2"
+              "value": 2
             },
             {
               "name": "delay",
               "type": "uint8",
-              "value": "10"
+              "value": 10
             }
           ],
           "message": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "set door control response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": 3
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "value": 2
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "value": 10
             }
           ],
           "message": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -294,6 +468,7 @@
       {
         "name": "open door",
         "request": {
+          "name": "open door request",
           "values": [
             {
               "name": "controller",
@@ -309,11 +484,17 @@
           "message": "F0AAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "open door response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "opened",
+              "type": "bool",
+              "value": true
             }
           ],
           "message": "F0AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -322,6 +503,7 @@
       {
         "name": "get cards",
         "request": {
+          "name": "get cards request",
           "values": [
             {
               "name": "controller",
@@ -332,11 +514,17 @@
           "message": "F1gAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get cards response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "cards",
+              "type": "uint32",
+              "value": 11
             }
           ],
           "message": "F1gAAHg3KhgLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -345,6 +533,7 @@
       {
         "name": "get card",
         "request": {
+          "name": "get card request",
           "values": [
             {
               "name": "controller",
@@ -360,19 +549,56 @@
           "message": "F1oAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get card response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "card number",
+              "type": "uint32",
+              "value": "8165538"
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "value": "2022-01-01"
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "value": "2022-12-31"
+            },
+            {
+              "name": "door 1",
+              "type": "uint8",
+              "value": 0
+            },
+            {
+              "name": "door 2",
+              "type": "uint8",
+              "value": 1
+            },
+            {
+              "name": "door 3",
+              "type": "uint8",
+              "value": 29
+            },
+            {
+              "name": "door 4",
+              "type": "uint8",
+              "value": 0
             }
           ],
-          "message": "F1oAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F1oAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "get card by index",
         "request": {
+          "name": "get card by index request",
           "values": [
             {
               "name": "controller",
@@ -388,19 +614,56 @@
           "message": "F1wAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get card by index response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "card number",
+              "type": "uint32",
+              "value": "8165538"
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "value": "2022-01-01"
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "value": "2022-12-31"
+            },
+            {
+              "name": "door 1",
+              "type": "uint8",
+              "value": 0
+            },
+            {
+              "name": "door 2",
+              "type": "uint8",
+              "value": 1
+            },
+            {
+              "name": "door 3",
+              "type": "uint8",
+              "value": 29
+            },
+            {
+              "name": "door 4",
+              "type": "uint8",
+              "value": 0
             }
           ],
-          "message": "F1wAAHg3KhiimHwAICEBASAhEjEBAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F1wAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "put card",
         "request": {
+          "name": "put card request",
           "values": [
             {
               "name": "controller",
@@ -446,11 +709,17 @@
           "message": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "put card response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "stored",
+              "type": "bool",
+              "value": true
             }
           ],
           "message": "F1AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -459,6 +728,7 @@
       {
         "name": "delete card",
         "request": {
+          "name": "delete card request",
           "values": [
             {
               "name": "controller",
@@ -474,11 +744,17 @@
           "message": "F1IAAHg3KhiimHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "delete card response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "deleted",
+              "type": "bool",
+              "value": true
             }
           ],
           "message": "F1IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -487,6 +763,7 @@
       {
         "name": "delete cards",
         "request": {
+          "name": "delete cards request",
           "values": [
             {
               "name": "controller",
@@ -497,11 +774,17 @@
           "message": "F1QAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "delete all cards response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "deleted",
+              "type": "bool",
+              "value": true
             }
           ],
           "message": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -510,6 +793,7 @@
       {
         "name": "get event",
         "request": {
+          "name": "get event request",
           "values": [
             {
               "name": "controller",
@@ -525,19 +809,61 @@
           "message": "F7AAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get event response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "index",
+              "type": "uint32",
+              "value": "37"
+            },
+            {
+              "name": "event type",
+              "type": "uint8",
+              "value": 2
+            },
+            {
+              "name": "access granted",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": 4
+            },
+            {
+              "name": "direction",
+              "type": "uint8",
+              "value": 1
+            },
+            {
+              "name": "card",
+              "type": "uint32",
+              "value": "8165536"
+            },
+            {
+              "name": "timestamp",
+              "type": "datetime",
+              "value": "2019-08-04 20:02:07"
+            },
+            {
+              "name": "reason",
+              "type": "uint8",
+              "value": 6
             }
           ],
-          "message": "F7AAAHg3KhglAAAAAgEBAaCYfAAgGQgEIAIHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F7AAAHg3KhglAAAAAgEEAaCYfAAgGQgEIAIHBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "get event index",
         "request": {
+          "name": "get event index request",
           "values": [
             {
               "name": "controller",
@@ -548,11 +874,17 @@
           "message": "F7QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get event index response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "event index",
+              "type": "uint32",
+              "value": "37"
             }
           ],
           "message": "F7QAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -561,6 +893,7 @@
       {
         "name": "set event index",
         "request": {
+          "name": "set event index request",
           "values": [
             {
               "name": "controller",
@@ -576,19 +909,26 @@
           "message": "F7IAAHg3KhglAAAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "set event index response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "updated",
+              "type": "bool",
+              "value": true
             }
           ],
-          "message": "F7IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F7IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "record special events",
         "request": {
+          "name": "record special events request",
           "values": [
             {
               "name": "controller",
@@ -604,11 +944,17 @@
           "message": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "record special events response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "enabled",
+              "type": "bool",
+              "value": true
             }
           ],
           "message": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
@@ -617,6 +963,7 @@
       {
         "name": "get time profile",
         "request": {
+          "name": "get time profile request",
           "values": [
             {
               "name": "controller",
@@ -632,19 +979,106 @@
           "message": "F5gAAHg3KhgdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "get time profile response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "profile id",
+              "type": "uint8",
+              "value": 29
+            },
+            {
+              "name": "start date",
+              "type": "date",
+              "value": "2022-01-01"
+            },
+            {
+              "name": "end date",
+              "type": "date",
+              "value": "2022-12-31"
+            },
+            {
+              "name": "monday",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "tuesday",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "wednesday",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "thursday",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "friday",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "saturday",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "sunday",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "segment 1 start",
+              "type": "HHmm",
+              "value": "08:30"
+            },
+            {
+              "name": "segment 1 end",
+              "type": "HHmm",
+              "value": "11:45"
+            },
+            {
+              "name": "segment 2 start",
+              "type": "HHmm",
+              "value": "13:00"
+            },
+            {
+              "name": "segment 2 end",
+              "type": "HHmm",
+              "value": "17:15"
+            },
+            {
+              "name": "segment 3 start",
+              "type": "HHmm",
+              "value": "19:15"
+            },
+            {
+              "name": "segment 3 end",
+              "type": "HHmm",
+              "value": "21:05"
+            },
+            {
+              "name": "linked profile id",
+              "type": "uint8",
+              "value": 31
             }
           ],
-          "message": "F5gAAHg3KhgdICEBASAhEjEBAAAAAAAACDAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F5gAAHg3KhgdICIBASAiEjEBAAEBAAABCDARRRMAFxUZFSEFHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "set time profile",
         "request": {
+          "name": "set time profile request",
           "values": [
             {
               "name": "controller",
@@ -740,19 +1174,26 @@
           "message": "F4gAAHg3KhgdICIBASAiEjEBAAEBAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
+          "name": "set time profile response",
           "values": [
             {
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "stored",
+              "type": "bool",
+              "value": true
             }
           ],
-          "message": "F5gAAHg3KhgdICIBASAiEjEBAQABAAABCDARRRMVFjAZMCBVHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F4gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "delete all time profiles",
         "request": {
+          "name": "delete all time profiles request",
           "values": [
             {
               "name": "controller",
@@ -763,13 +1204,26 @@
           "message": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "values": null,
+          "name": "delete all time profiles response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "deleted",
+              "type": "bool",
+              "value": true
+            }
+          ],
           "message": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "add task",
         "request": {
+          "name": "add task request",
           "values": [
             {
               "name": "controller",
@@ -845,13 +1299,26 @@
           "message": "F6gAAHg3KhggIgEBICISMQEAAQEAAAEIMAMCEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "values": null,
+          "name": "add task response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "added",
+              "type": "bool",
+              "value": true
+            }
+          ],
           "message": "F6gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "refresh tasklist",
         "request": {
+          "name": "refresh tasklist request",
           "values": [
             {
               "name": "controller",
@@ -862,13 +1329,26 @@
           "message": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "values": null,
+          "name": "refresh tasklist response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "refreshed",
+              "type": "bool",
+              "value": true
+            }
+          ],
           "message": "F6wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
         "name": "clear tasklist",
         "request": {
+          "name": "clear tasklist request",
           "values": [
             {
               "name": "controller",
@@ -879,7 +1359,19 @@
           "message": "F6YAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "values": null,
+          "name": "clear tasklist response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "cleared",
+              "type": "bool",
+              "value": true
+            }
+          ],
           "message": "F6YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }

@@ -25,9 +25,9 @@ type Message struct {
 }
 
 type Test struct {
-	Name     string   `json:"name"`
-	Request  Request  `json:"request,omitempty"`
-	Response Response `json:"response,omitempty"`
+	Name     string    `json:"name"`
+	Request  *Request  `json:"request,omitempty"`
+	Response *Response `json:"response,omitempty"`
 }
 
 type Arg struct {
@@ -42,11 +42,13 @@ type Field struct {
 }
 
 type Request struct {
+	Name    string  `json:"name"`
 	Values  []Value `json:"values"`
 	Message []uint8 `json:"message,omitempty"`
 }
 
 type Response struct {
+	Name    string  `json:"name"`
 	Values  []Value `json:"values"`
 	Message []uint8 `json:"message,omitempty"`
 }

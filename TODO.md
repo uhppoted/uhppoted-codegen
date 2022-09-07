@@ -6,12 +6,10 @@
       - [x] Python
       - [ ] HTTP
 
-- [ ] Test data
+- [x] Test data
       - [x] messages
       - [x] request values
-            - [ ] add name/initialised struct
-      - [ ] response values
-            - [ ] add name/initialised struct
+      - [x] response values
 
 - [ ] Code generation HOWTO
 - [ ] Package for release
@@ -21,7 +19,7 @@
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
-- [ ] Unit tests
+- [x] Unit tests
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust

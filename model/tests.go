@@ -41,7 +41,8 @@ const TIME_PROFILE_ID = "29"
 
 var GetControllerTest = Test{
 	Name: "get controller",
-	Request: Request{
+	Request: &Request{
+		Name: GetControllerRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -56,10 +57,11 @@ var GetControllerTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetControllerResponse.Name,
 		Values: []Value{
 			Value{
-				Name:  "device id",
+				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
@@ -105,7 +107,8 @@ var GetControllerTest = Test{
 
 var SetIPTest = Test{
 	Name: "set IP",
-	Request: Request{
+	Request: &Request{
+		Name: SetIPRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -138,7 +141,8 @@ var SetIPTest = Test{
 
 var GetTimeTest = Test{
 	Name: "get time",
-	Request: Request{
+	Request: &Request{
+		Name: GetTimeRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -153,12 +157,18 @@ var GetTimeTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetTimeResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "datetime",
+				Type:  "datetime",
+				Value: "2022-08-23 09:48:09",
 			},
 		},
 		Message: []uint8{
@@ -172,7 +182,8 @@ var GetTimeTest = Test{
 
 var SetTimeTest = Test{
 	Name: "set time",
-	Request: Request{
+	Request: &Request{
+		Name: SetTimeRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -192,12 +203,18 @@ var SetTimeTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: SetTimeResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "datetime",
+				Type:  "datetime",
+				Value: "2022-08-23 09:49:03",
 			},
 		},
 		Message: []uint8{
@@ -211,7 +228,8 @@ var SetTimeTest = Test{
 
 var GetStatusTest = Test{
 	Name: "get status",
-	Request: Request{
+	Request: &Request{
+		Name: GetStatusRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -226,26 +244,143 @@ var GetStatusTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetStatusResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "system date",
+				Type:  "short date",
+				Value: "2022-08-23",
+			},
+			Value{
+				Name:  "system time",
+				Type:  "time",
+				Value: "09:49:39",
+			},
+			Value{
+				Name:  "door 1 open",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 2 open",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "door 3 open",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 4 open",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 1 button",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 2 button",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 3 button",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 4 button",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "relays",
+				Type:  "uint8",
+				Value: "7",
+			},
+			Value{
+				Name:  "inputs",
+				Type:  "uint8",
+				Value: "9",
+			},
+			Value{
+				Name:  "system error",
+				Type:  "uint8",
+				Value: 3,
+			},
+			Value{
+				Name:  "special info",
+				Type:  "uint8",
+				Value: 39,
+			},
+			Value{
+				Name:  "event index",
+				Type:  "uint32",
+				Value: 78,
+			},
+			Value{
+				Name:  "event type",
+				Type:  "uint8",
+				Value: 2,
+			},
+			Value{
+				Name:  "event access granted",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "event door",
+				Type:  "uint8",
+				Value: 3,
+			},
+			Value{
+				Name:  "event direction",
+				Type:  "uint8",
+				Value: 1,
+			},
+			Value{
+				Name:  "event card",
+				Type:  "uint32",
+				Value: "8165537",
+			},
+			Value{
+				Name:  "event timestamp",
+				Type:  "datetime",
+				Value: "2022-08-23 09:47:06",
+			},
+			Value{
+				Name:  "event reason",
+				Type:  "uint8",
+				Value: 44,
+			},
+			Value{
+				Name:  "sequence no",
+				Type:  "uint32",
+				Value: 0,
+			},
 		},
 		Message: []uint8{
 			0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
-			0xea, 0xac, 0xcd, 0xe9, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x00, 0x00, 0x00,
-			0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-			0x00, 0x00, 0x00, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
 }
 
 var GetListenerTest = Test{
 	Name: "get listener",
-	Request: Request{
+	Request: &Request{
+		Name: GetListenerRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -260,12 +395,23 @@ var GetListenerTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetListenerResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "address",
+				Type:  "IPv4",
+				Value: "192.168.1.100",
+			},
+			Value{
+				Name:  "port",
+				Type:  "uint16",
+				Value: "60001",
 			},
 		},
 		Message: []uint8{
@@ -279,7 +425,8 @@ var GetListenerTest = Test{
 
 var SetListenerTest = Test{
 	Name: "set listener",
-	Request: Request{
+	Request: &Request{
+		Name: SetListenerRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -304,7 +451,8 @@ var SetListenerTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: SetListenerResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -312,14 +460,9 @@ var SetListenerTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "address",
-				Type:  "IPv4",
-				Value: netip.MustParseAddr("192.168.1.100"),
-			},
-			Value{
-				Name:  "port",
-				Type:  "uint16",
-				Value: 60001,
+				Name:  "ok",
+				Type:  "bool",
+				Value: true,
 			},
 		},
 		Message: []uint8{
@@ -333,7 +476,8 @@ var SetListenerTest = Test{
 
 var GetDoorControlTest = Test{
 	Name: "get door control",
-	Request: Request{
+	Request: &Request{
+		Name: GetDoorControlRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -343,7 +487,7 @@ var GetDoorControlTest = Test{
 			Value{
 				Name:  "door",
 				Type:  "uint8",
-				Value: "3",
+				Value: 3,
 			},
 		},
 		Message: []uint8{
@@ -353,12 +497,28 @@ var GetDoorControlTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetDoorControlResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "door",
+				Type:  "uint8",
+				Value: 3,
+			},
+			Value{
+				Name:  "mode",
+				Type:  "uint8",
+				Value: 2,
+			},
+			Value{
+				Name:  "delay",
+				Type:  "uint8",
+				Value: 10,
 			},
 		},
 		Message: []uint8{
@@ -372,7 +532,8 @@ var GetDoorControlTest = Test{
 
 var SetDoorControlTest = Test{
 	Name: "set door control",
-	Request: Request{
+	Request: &Request{
+		Name: SetDoorControlRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -382,17 +543,17 @@ var SetDoorControlTest = Test{
 			Value{
 				Name:  "door",
 				Type:  "uint8",
-				Value: "3",
+				Value: 3,
 			},
 			Value{
 				Name:  "mode",
 				Type:  "uint8",
-				Value: "2",
+				Value: 2,
 			},
 			Value{
 				Name:  "delay",
 				Type:  "uint8",
-				Value: "10",
+				Value: 10,
 			},
 		},
 		Message: []uint8{
@@ -402,12 +563,28 @@ var SetDoorControlTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: SetDoorControlResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "door",
+				Type:  "uint8",
+				Value: 3,
+			},
+			Value{
+				Name:  "mode",
+				Type:  "uint8",
+				Value: 2,
+			},
+			Value{
+				Name:  "delay",
+				Type:  "uint8",
+				Value: 10,
 			},
 		},
 		Message: []uint8{
@@ -421,7 +598,8 @@ var SetDoorControlTest = Test{
 
 var OpenDoorTest = Test{
 	Name: "open door",
-	Request: Request{
+	Request: &Request{
+		Name: OpenDoorRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -441,12 +619,18 @@ var OpenDoorTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: OpenDoorResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "opened",
+				Type:  "bool",
+				Value: true,
 			},
 		},
 		Message: []uint8{
@@ -460,7 +644,8 @@ var OpenDoorTest = Test{
 
 var GetCardsTest = Test{
 	Name: "get cards",
-	Request: Request{
+	Request: &Request{
+		Name: GetCardsRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -475,12 +660,18 @@ var GetCardsTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetCardsResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "cards",
+				Type:  "uint32",
+				Value: 11,
 			},
 		},
 		Message: []uint8{
@@ -494,7 +685,8 @@ var GetCardsTest = Test{
 
 var GetCardTest = Test{
 	Name: "get card",
-	Request: Request{
+	Request: &Request{
+		Name: GetCardRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -514,17 +706,53 @@ var GetCardTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetCardResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "card number",
+				Type:  "uint32",
+				Value: CARD,
+			},
+			Value{
+				Name:  "start date",
+				Type:  "date",
+				Value: "2022-01-01",
+			},
+			Value{
+				Name:  "end date",
+				Type:  "date",
+				Value: "2022-12-31",
+			},
+			Value{
+				Name:  "door 1",
+				Type:  "uint8",
+				Value: 0,
+			},
+			Value{
+				Name:  "door 2",
+				Type:  "uint8",
+				Value: 1,
+			},
+			Value{
+				Name:  "door 3",
+				Type:  "uint8",
+				Value: 29,
+			},
+			Value{
+				Name:  "door 4",
+				Type:  "uint8",
+				Value: 0,
+			},
 		},
 		Message: []uint8{
-			0x17, 0x5a, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xa2, 0x98, 0x7c, 0x00, 0x20, 0x21, 0x01, 0x01,
-			0x20, 0x21, 0x12, 0x31, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x17, 0x5a, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xa2, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x01, 0x01,
+			0x20, 0x22, 0x12, 0x31, 0x00, 0x01, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
@@ -533,7 +761,8 @@ var GetCardTest = Test{
 
 var GetCardByIndexTest = Test{
 	Name: "get card by index",
-	Request: Request{
+	Request: &Request{
+		Name: GetCardByIndexRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -553,17 +782,53 @@ var GetCardByIndexTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetCardByIndexResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "card number",
+				Type:  "uint32",
+				Value: CARD,
+			},
+			Value{
+				Name:  "start date",
+				Type:  "date",
+				Value: "2022-01-01",
+			},
+			Value{
+				Name:  "end date",
+				Type:  "date",
+				Value: "2022-12-31",
+			},
+			Value{
+				Name:  "door 1",
+				Type:  "uint8",
+				Value: 0,
+			},
+			Value{
+				Name:  "door 2",
+				Type:  "uint8",
+				Value: 1,
+			},
+			Value{
+				Name:  "door 3",
+				Type:  "uint8",
+				Value: 29,
+			},
+			Value{
+				Name:  "door 4",
+				Type:  "uint8",
+				Value: 0,
+			},
 		},
 		Message: []uint8{
-			0x17, 0x5c, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xa2, 0x98, 0x7c, 0x00, 0x20, 0x21, 0x01, 0x01,
-			0x20, 0x21, 0x12, 0x31, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x17, 0x5c, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xa2, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x01, 0x01,
+			0x20, 0x22, 0x12, 0x31, 0x00, 0x01, 0x1d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
@@ -572,7 +837,8 @@ var GetCardByIndexTest = Test{
 
 var PutCardTest = Test{
 	Name: "put card",
-	Request: Request{
+	Request: &Request{
+		Name: PutCardRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -622,12 +888,18 @@ var PutCardTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: PutCardResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "stored",
+				Type:  "bool",
+				Value: true,
 			},
 		},
 		Message: []uint8{
@@ -641,7 +913,8 @@ var PutCardTest = Test{
 
 var DeleteCardTest = Test{
 	Name: "delete card",
-	Request: Request{
+	Request: &Request{
+		Name: DeleteCardRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -661,12 +934,18 @@ var DeleteCardTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: DeleteCardResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "deleted",
+				Type:  "bool",
+				Value: true,
 			},
 		},
 		Message: []uint8{
@@ -680,7 +959,8 @@ var DeleteCardTest = Test{
 
 var DeleteAllCardsTest = Test{
 	Name: "delete cards",
-	Request: Request{
+	Request: &Request{
+		Name: DeleteAllCardsRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -695,12 +975,18 @@ var DeleteAllCardsTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: DeleteAllCardsResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "deleted",
+				Type:  "bool",
+				Value: true,
 			},
 		},
 		Message: []uint8{
@@ -714,7 +1000,8 @@ var DeleteAllCardsTest = Test{
 
 var GetEventTest = Test{
 	Name: "get event",
-	Request: Request{
+	Request: &Request{
+		Name: GetEventRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -734,17 +1021,58 @@ var GetEventTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetEventResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "index",
+				Type:  "uint32",
+				Value: EVENT_INDEX,
+			},
+			Value{
+				Name:  "event type",
+				Type:  "uint8",
+				Value: 2,
+			},
+			Value{
+				Name:  "access granted",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "door",
+				Type:  "uint8",
+				Value: 4,
+			},
+			Value{
+				Name:  "direction",
+				Type:  "uint8",
+				Value: 1,
+			},
+			Value{
+				Name:  "card",
+				Type:  "uint32",
+				Value: "8165536",
+			},
+			Value{
+				Name:  "timestamp",
+				Type:  "datetime",
+				Value: "2019-08-04 20:02:07",
+			},
+			Value{
+				Name:  "reason",
+				Type:  "uint8",
+				Value: 6,
+			},
 		},
 		Message: []uint8{
-			0x17, 0xb0, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x25, 0x00, 0x00, 0x00, 0x02, 0x01, 0x01, 0x01,
-			0xa0, 0x98, 0x7c, 0x00, 0x20, 0x19, 0x08, 0x04, 0x20, 0x02, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x17, 0xb0, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x25, 0x00, 0x00, 0x00, 0x02, 0x01, 0x04, 0x01,
+			0xa0, 0x98, 0x7c, 0x00, 0x20, 0x19, 0x08, 0x04, 0x20, 0x02, 0x07, 0x06, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
@@ -753,7 +1081,8 @@ var GetEventTest = Test{
 
 var GetEventIndexTest = Test{
 	Name: "get event index",
-	Request: Request{
+	Request: &Request{
+		Name: GetEventIndexRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -768,12 +1097,18 @@ var GetEventIndexTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetEventIndexResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "event index",
+				Type:  "uint32",
+				Value: "37",
 			},
 		},
 		Message: []uint8{
@@ -787,7 +1122,8 @@ var GetEventIndexTest = Test{
 
 var SetEventIndexTest = Test{
 	Name: "set event index",
-	Request: Request{
+	Request: &Request{
+		Name: SetEventIndexRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -807,16 +1143,22 @@ var SetEventIndexTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: SetEventIndexResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "updated",
+				Type:  "bool",
+				Value: true,
+			},
 		},
 		Message: []uint8{
-			0x17, 0xb2, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x17, 0xb2, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -826,7 +1168,8 @@ var SetEventIndexTest = Test{
 
 var RecordSpecialEventsTest = Test{
 	Name: "record special events",
-	Request: Request{
+	Request: &Request{
+		Name: RecordSpecialEventsRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -846,12 +1189,18 @@ var RecordSpecialEventsTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: RecordSpecialEventsResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "enabled",
+				Type:  "bool",
+				Value: true,
 			},
 		},
 		Message: []uint8{
@@ -865,7 +1214,8 @@ var RecordSpecialEventsTest = Test{
 
 var GetTimeProfileTest = Test{
 	Name: "get time profile",
-	Request: Request{
+	Request: &Request{
+		Name: GetTimeProfileRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -885,18 +1235,104 @@ var GetTimeProfileTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: GetTimeProfileResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "profile id",
+				Type:  "uint8",
+				Value: 29,
+			},
+			Value{
+				Name:  "start date",
+				Type:  "date",
+				Value: "2022-01-01",
+			},
+			Value{
+				Name:  "end date",
+				Type:  "date",
+				Value: "2022-12-31",
+			},
+			Value{
+				Name:  "monday",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "tuesday",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "wednesday",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "thursday",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "friday",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "saturday",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "sunday",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "segment 1 start",
+				Type:  "HHmm",
+				Value: "08:30",
+			},
+			Value{
+				Name:  "segment 1 end",
+				Type:  "HHmm",
+				Value: "11:45",
+			},
+			Value{
+				Name:  "segment 2 start",
+				Type:  "HHmm",
+				Value: "13:00",
+			},
+			Value{
+				Name:  "segment 2 end",
+				Type:  "HHmm",
+				Value: "17:15",
+			},
+			Value{
+				Name:  "segment 3 start",
+				Type:  "HHmm",
+				Value: "19:15",
+			},
+			Value{
+				Name:  "segment 3 end",
+				Type:  "HHmm",
+				Value: "21:05",
+			},
+			Value{
+				Name:  "linked profile id",
+				Type:  "uint8",
+				Value: 31,
+			},
 		},
 		Message: []uint8{
-			0x17, 0x98, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x1d, 0x20, 0x21, 0x01, 0x01, 0x20, 0x21, 0x12,
-			0x31, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x30, 0x17, 0x00, 0x00, 0x00, 0x00, 0x00,
-			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x17, 0x98, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x1d, 0x20, 0x22, 0x01, 0x01, 0x20, 0x22, 0x12,
+			0x31, 0x01, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01, 0x08, 0x30, 0x11, 0x45, 0x13, 0x00, 0x17, 0x15,
+			0x19, 0x15, 0x21, 0x05, 0x1f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
@@ -904,7 +1340,8 @@ var GetTimeProfileTest = Test{
 
 var SetTimeProfileTest = Test{
 	Name: "set time profile",
-	Request: Request{
+	Request: &Request{
+		Name: SetTimeProfileRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -1004,18 +1441,24 @@ var SetTimeProfileTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: SetTimeProfileResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
 				Type:  "uint32",
 				Value: CONTROLLER,
 			},
+			Value{
+				Name:  "stored",
+				Type:  "bool",
+				Value: true,
+			},
 		},
 		Message: []uint8{
-			0x17, 0x98, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x1d, 0x20, 0x22, 0x01, 0x01, 0x20, 0x22, 0x12,
-			0x31, 0x01, 0x01, 0x00, 0x01, 0x00, 0x00, 0x01, 0x08, 0x30, 0x11, 0x45, 0x13, 0x15, 0x16, 0x30,
-			0x19, 0x30, 0x20, 0x55, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x17, 0x88, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
@@ -1023,7 +1466,8 @@ var SetTimeProfileTest = Test{
 
 var DeleteAllTimeProfilesTest = Test{
 	Name: "delete all time profiles",
-	Request: Request{
+	Request: &Request{
+		Name: DeleteAllTimeProfilesRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -1038,7 +1482,20 @@ var DeleteAllTimeProfilesTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: DeleteAllTimeProfilesResponse.Name,
+		Values: []Value{
+			Value{
+				Name:  "controller",
+				Type:  "uint32",
+				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "deleted",
+				Type:  "bool",
+				Value: true,
+			},
+		},
 		Message: []uint8{
 			0x17, 0x8a, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1050,7 +1507,8 @@ var DeleteAllTimeProfilesTest = Test{
 
 var AddTaskTest = Test{
 	Name: "add task",
-	Request: Request{
+	Request: &Request{
+		Name: AddTaskRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -1130,7 +1588,20 @@ var AddTaskTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: AddTaskResponse.Name,
+		Values: []Value{
+			Value{
+				Name:  "controller",
+				Type:  "uint32",
+				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "added",
+				Type:  "bool",
+				Value: true,
+			},
+		},
 		Message: []uint8{
 			0x17, 0xa8, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1142,7 +1613,8 @@ var AddTaskTest = Test{
 
 var RefreshTaskListTest = Test{
 	Name: "refresh tasklist",
-	Request: Request{
+	Request: &Request{
+		Name: RefreshTaskListRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -1157,7 +1629,20 @@ var RefreshTaskListTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: RefreshTaskListResponse.Name,
+		Values: []Value{
+			Value{
+				Name:  "controller",
+				Type:  "uint32",
+				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "refreshed",
+				Type:  "bool",
+				Value: true,
+			},
+		},
 		Message: []uint8{
 			0x17, 0xac, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1169,7 +1654,8 @@ var RefreshTaskListTest = Test{
 
 var ClearTaskListTest = Test{
 	Name: "clear tasklist",
-	Request: Request{
+	Request: &Request{
+		Name: ClearTaskListRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -1184,7 +1670,20 @@ var ClearTaskListTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: Response{
+	Response: &Response{
+		Name: ClearTaskListResponse.Name,
+		Values: []Value{
+			Value{
+				Name:  "controller",
+				Type:  "uint32",
+				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "cleared",
+				Type:  "bool",
+				Value: true,
+			},
+		},
 		Message: []uint8{
 			0x17, 0xa6, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

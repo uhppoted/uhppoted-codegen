@@ -20,7 +20,7 @@ func Test{{CamelCase .name}}Request(t *testing.T) {
     {{ dump .request.message "        "}},
    }
 
-   request,err := {{CamelCase .name}}Request({{template "values" .request.values}})
+   request,err := {{CamelCase .request.name}}({{template "values" .request.values}})
    if err != nil {
        t.Fatalf("unexpected error (%v)", err)
    }
@@ -69,10 +69,22 @@ func toDate(s string) Date {
   return Date(v)
 }
 
+func toShortDate(s string) Date {
+  v,_ := time.ParseInLocation("2006-01-02", s, time.Local)
+
+  return Date(v)
+}
+
 func toDatetime(s string) DateTime {
   v,_ := time.ParseInLocation("2006-01-02 15:04:05", s, time.Local)
 
   return DateTime(v)
+}
+
+func toTime(s string) Time {
+  v,_ := time.ParseInLocation("15:04:05", s, time.Local)
+
+  return Time(v)
 }
 
 func toHHmm(s string) HHmm {

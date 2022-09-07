@@ -33,7 +33,7 @@ var GetControllerResponse = Message{
 	MsgType: 0x94,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -75,7 +75,7 @@ var GetTimeResponse = Message{
 	MsgType: 0x32,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -92,7 +92,7 @@ var SetTimeResponse = Message{
 	MsgType: 0x30,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -109,7 +109,7 @@ var GetStatusResponse = Message{
 	MsgType: 0x20,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -236,7 +236,7 @@ var GetListenerResponse = Message{
 	MsgType: 0x92,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -258,7 +258,7 @@ var SetListenerResponse = Message{
 	MsgType: 0x90,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -275,7 +275,7 @@ var GetDoorControlResponse = Message{
 	MsgType: 0x82,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -302,7 +302,7 @@ var SetDoorControlResponse = Message{
 	MsgType: 0x80,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -329,7 +329,7 @@ var OpenDoorResponse = Message{
 	MsgType: 0x40,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -346,7 +346,7 @@ var GetCardsResponse = Message{
 	MsgType: 0x58,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -363,7 +363,7 @@ var GetCardResponse = Message{
 	MsgType: 0x5a,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -410,7 +410,7 @@ var GetCardByIndexResponse = Message{
 	MsgType: 0x5c,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -457,7 +457,7 @@ var PutCardResponse = Message{
 	MsgType: 0x50,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -474,7 +474,7 @@ var DeleteCardResponse = Message{
 	MsgType: 0x52,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -491,7 +491,7 @@ var DeleteAllCardsResponse = Message{
 	MsgType: 0x54,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -508,7 +508,7 @@ var GetEventResponse = Message{
 	MsgType: 0xb0,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -560,7 +560,7 @@ var GetEventIndexResponse = Message{
 	MsgType: 0xb4,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -577,7 +577,7 @@ var SetEventIndexResponse = Message{
 	MsgType: 0xb2,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -594,7 +594,7 @@ var RecordSpecialEventsResponse = Message{
 	MsgType: 0x8e,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -611,7 +611,7 @@ var GetTimeProfileResponse = Message{
 	MsgType: 0x98,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -708,7 +708,7 @@ var SetTimeProfileResponse = Message{
 	MsgType: 0x88,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -725,7 +725,7 @@ var DeleteAllTimeProfilesResponse = Message{
 	MsgType: 0x8a,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -742,7 +742,7 @@ var AddTaskResponse = Message{
 	MsgType: 0xa8,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -759,7 +759,7 @@ var RefreshTaskListResponse = Message{
 	MsgType: 0xac,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
@@ -776,7 +776,7 @@ var ClearTaskListResponse = Message{
 	MsgType: 0xa6,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
+			Name:   "controller",
 			Type:   "uint32",
 			Offset: 4,
 		},
