@@ -1,6 +1,7 @@
 import struct
 
-{{range .model.requests}}{{template "request" .}}
+{{range .model.requests}}
+{{- template "request" . -}}
 {{end}}
 
 {{define "request"}}
@@ -10,10 +11,11 @@ def {{snakeCase .name}}({{template "args" .fields}}):
     packet[0] = 0x17
     packet[1] = {{byte2hex .msgtype}}
     
-    {{range .fields}}{{if ne .type "magic"}}pack_{{.type}}({{snakeCase .name}}, packet, {{.offset}})
-    {{else}}pack_uint32(0x55aaaa55, packet, {{.offset}})
+    {{range .fields }}
+    {{- if ne .type "magic"}}pack_{{.type}}({{snakeCase .name}}, packet, {{.offset}})
+    {{ else -}}
+    pack_uint32(0x55aaaa55, packet, {{.offset}})
     {{end}}{{end}}
-
     return packet
 {{end}}
 

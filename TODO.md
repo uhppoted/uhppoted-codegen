@@ -3,7 +3,7 @@
 - [ ] Rework templates with {{- and -}}
       - [x] Go
       - [x] Rust
-      - [ ] Python
+      - [x] Python
       - [ ] HTTP
 
 - [ ] Test data

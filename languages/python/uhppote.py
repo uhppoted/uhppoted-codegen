@@ -25,7 +25,8 @@ class Uhppote:
     def events(packet, onEvent):
         onEvent(decode.event(packet))
     
-{{range .model.functions}}{{template "function" .}}
+{{range .model.functions}}
+{{- template "function" . -}}
 {{end}}
 
 {{define "function"}}

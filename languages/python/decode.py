@@ -4,14 +4,16 @@ import struct
 from ipaddress import IPv4Address
 from dataclasses import dataclass
 
-
-{{range .model.responses}}{{template "decode" .}}
+{{range .model.responses}}
+{{- template "decode" . -}}
 {{end}}
 
-{{with .model.event}}{{template "decode" .}}
+{{- with .model.event}}
+{{- template "decode" . -}}
 {{end}}
 
-{{range .model.responses}}{{template "response" .}}
+{{- range .model.responses}}
+{{- template "response" . -}}
 {{end}}
 
 {{define "decode"}}
@@ -27,13 +29,13 @@ def {{snakeCase .name}}(packet):
     )
 {{end}}
 
-{{define "response"}}
+{{- define "response"}}
 @dataclass
 class {{CamelCase .name}}:{{range .fields}}
     {{snakeCase .name}}: {{template "type" .type}}{{end}}
 {{end}}
 
-{{with .model.event}}
+{{- with .model.event -}}
 @dataclass
 class {{CamelCase .name}}:{{range .fields}}
     {{snakeCase .name}}: {{template "type" .type}}{{end}}
