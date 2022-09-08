@@ -12,13 +12,14 @@
       [x] Python
       [x] HTTP
 
+- [x] Package for release
+
 - [ ] Add code generation to github workflow
       - [ ] Go
       - [ ] Rust
       - [ ] Python
       - [ ] HTTP
 
-- [ ] Package for release
 - [ ] Code generation HOWTO
 
 ## Go

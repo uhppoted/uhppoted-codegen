@@ -3,11 +3,11 @@ DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
 COMMAND ?= listen
 
-MODELS = languages/.models
-GO     = languages/go
-RUST   = languages/rust
-PYTHON = languages/python
-HTTP   = languages/http
+MODELS = bindings/.models
+GO     = bindings/go
+RUST   = bindings/rust
+PYTHON = bindings/python
+HTTP   = bindings/http
 
 GOBIN   = ./generated/go/bin/uhppoted
 RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
@@ -62,7 +62,7 @@ coverage: build
 	go test -cover ./...
 
 regen:
-	$(CMD) export --models languages/.models/models.json --tests languages/.models/test-data.json
+	$(CMD) export --models bindings/.models/models.json --tests bindings/.models/test-data.json
 
 build-all: vet
 	mkdir -p dist/$(DIST)/windows
@@ -75,9 +75,11 @@ build-all: vet
 	env GOOS=windows GOARCH=amd64       GOWORK=off go build -trimpath -o dist/$(DIST)/windows ./...
 
 release: update-release build-all regen
-	find . -name ".DS_Store" -delete
-	tar --directory=dist --exclude=".DS_Store" -cvzf dist/$(DIST).tar.gz $(DIST)
-	cd dist;  zip --recurse-paths $(DIST).zip $(DIST)
+	tar --directory=dist      --exclude=".DS_Store" -cvzf dist/$(DIST).tar.gz $(DIST)
+	tar --directory=.         --exclude=".DS_Store" -cvzf dist/$(DIST)-bindings.tar.gz ./bindings
+	tar --directory=generated --exclude=".DS_Store" --exclude="go/bin"               -cvzf dist/$(DIST)-go.tar.gz       go
+	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target" -cvzf dist/$(DIST)-rust.tar.gz     rust
+	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"   -cvzf dist/$(DIST)-python.tar.gz   python
 
 version: build
 	$(CMD) version
