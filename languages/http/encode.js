@@ -1,4 +1,5 @@
-{{range .model.requests}}{{template "request" .}}
+{{range .model.requests}}
+{{- template "request" . -}}
 {{end}}
 
 {{define "request"}}
@@ -8,9 +9,12 @@ export function {{CamelCase .name}}({{template "args" .fields}}) {
 
   request[0] = 0x17
   request[1] = {{byte2hex .msgtype}}
-
-  {{range .fields}}{{if ne .type "magic"}}pack{{CamelCase .type}}({{camelCase .name}}, view, {{.offset}})
-  {{else}}packUint32(0x55aaaa55, view, {{.offset}}){{end}}{{end}}
+  {{range .fields -}}
+  {{- if ne .type "magic"}}
+  pack{{CamelCase .type}}({{camelCase .name}}, view, {{.offset}})
+  {{- else}}
+  packUint32(0x55aaaa55, view, {{.offset}})
+  {{- end}}{{end}}
 
   return request
 }

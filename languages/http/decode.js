@@ -1,5 +1,6 @@
-{{range .model.responses}}{{template "decode" .}}
-{{end}}
+{{- range .model.responses}}
+{{- template "decode" . -}}
+{{end -}}
 
 {{define "decode"}}
 export function {{CamelCase .name}}(packet) {

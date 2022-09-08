@@ -16,8 +16,8 @@ export function GetAllControllers () {
       return list
     })
 }
-
-{{range .model.functions}}{{template "function" .}}
+{{range .model.functions}}
+{{- template "function" . -}}
 {{end}}
 
 {{define "function"}}
@@ -38,4 +38,5 @@ export function {{CamelCase .name}}({{template "args" .args}}) { {{if .response}
     .then(replies => {
       return true
     }){{end}}
-}{{end}}
+}
+{{end}}

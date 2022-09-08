@@ -1,15 +1,10 @@
 # TODO
 
-- [ ] Rework templates with {{- and -}}
+- [x] Rework templates with {{- and -}}
       - [x] Go
       - [x] Rust
       - [x] Python
-      - [ ] HTTP
-
-- [x] Test data
-      - [x] messages
-      - [x] request values
-      - [x] response values
+      - [x] HTTP
 
 - [ ] Code generation HOWTO
 - [ ] Package for release
@@ -19,13 +14,13 @@
 - [ ] Optional time profile dates
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
-- [x] Unit tests
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
 - [ ] Optional time profile dates
 - [ ] Handle missing time profile
 - [ ] Handle missing/deleted card
+- (?) Unit tests
 - (?) Use `Either` for result of read functions
 - (?) Replace executor::block with await
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
