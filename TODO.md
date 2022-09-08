@@ -6,9 +6,14 @@
       - [x] Python
       - [x] HTTP
 
-- [ ] Code generation HOWTO
-- [ ] Package for release
 - [ ] Add code generation to github workflow
+      - [ ] Go
+      - [ ] Rust
+      - [ ] Python
+      - [ ] HTTP
+
+- [ ] Package for release
+- [ ] Code generation HOWTO
 
 ## Go
 - [ ] Optional time profile dates
