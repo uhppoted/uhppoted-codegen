@@ -215,7 +215,7 @@ var GetStatusResponse = Message{
 		},
 		Field{
 			Name:   "event timestamp",
-			Type:   "datetime",
+			Type:   "optional datetime",
 			Offset: 20,
 		},
 		Field{
@@ -374,12 +374,12 @@ var GetCardResponse = Message{
 		},
 		Field{
 			Name:   "start date",
-			Type:   "date",
+			Type:   "optional date",
 			Offset: 12,
 		},
 		Field{
 			Name:   "end date",
-			Type:   "date",
+			Type:   "optional date",
 			Offset: 16,
 		},
 		Field{
@@ -421,12 +421,12 @@ var GetCardByIndexResponse = Message{
 		},
 		Field{
 			Name:   "start date",
-			Type:   "date",
+			Type:   "optional date",
 			Offset: 12,
 		},
 		Field{
 			Name:   "end date",
-			Type:   "date",
+			Type:   "optional date",
 			Offset: 16,
 		},
 		Field{
@@ -544,7 +544,7 @@ var GetEventResponse = Message{
 		},
 		Field{
 			Name:   "timestamp",
-			Type:   "datetime",
+			Type:   "optional datetime",
 			Offset: 20,
 		},
 		Field{
@@ -622,12 +622,12 @@ var GetTimeProfileResponse = Message{
 		},
 		Field{
 			Name:   "start date",
-			Type:   "date",
+			Type:   "optional date",
 			Offset: 9,
 		},
 		Field{
 			Name:   "end date",
-			Type:   "date",
+			Type:   "optional date",
 			Offset: 13,
 		},
 		Field{

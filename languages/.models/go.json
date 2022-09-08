@@ -12,7 +12,10 @@
             "shortdate": "Date",
             "time": "Time",
             "datetime": "DateTime",
-            "HHmm": "HHmm"
+            "HHmm": "HHmm",
+
+            "optional date": "*Date",
+            "optional datetime": "*DateTime"
         }
     }
 }

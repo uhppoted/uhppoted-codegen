@@ -354,7 +354,7 @@ var GetStatusTest = Test{
 			},
 			Value{
 				Name:  "event timestamp",
-				Type:  "datetime",
+				Type:  "optional datetime",
 				Value: "2022-08-23 09:47:06",
 			},
 			Value{
@@ -721,12 +721,12 @@ var GetCardTest = Test{
 			},
 			Value{
 				Name:  "start date",
-				Type:  "date",
+				Type:  "optional date",
 				Value: "2022-01-01",
 			},
 			Value{
 				Name:  "end date",
-				Type:  "date",
+				Type:  "optional date",
 				Value: "2022-12-31",
 			},
 			Value{
@@ -797,12 +797,12 @@ var GetCardByIndexTest = Test{
 			},
 			Value{
 				Name:  "start date",
-				Type:  "date",
+				Type:  "optional date",
 				Value: "2022-01-01",
 			},
 			Value{
 				Name:  "end date",
-				Type:  "date",
+				Type:  "optional date",
 				Value: "2022-12-31",
 			},
 			Value{
@@ -1061,7 +1061,7 @@ var GetEventTest = Test{
 			},
 			Value{
 				Name:  "timestamp",
-				Type:  "datetime",
+				Type:  "optional datetime",
 				Value: "2019-08-04 20:02:07",
 			},
 			Value{
@@ -1250,12 +1250,12 @@ var GetTimeProfileTest = Test{
 			},
 			Value{
 				Name:  "start date",
-				Type:  "date",
+				Type:  "optional date",
 				Value: "2022-01-01",
 			},
 			Value{
 				Name:  "end date",
-				Type:  "date",
+				Type:  "optional date",
 				Value: "2022-12-31",
 			},
 			Value{

@@ -95,7 +95,7 @@ func unpackDate(packet []byte, offset uint8) (Date, error) {
     bcd := bcd2string(packet[offset:offset+4])
 
     if date, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
-        return Date(time.Time{}), nil
+        return Date(time.Time{}), err
     } else {
         return Date(date), nil
     }
@@ -105,19 +105,21 @@ func unpackShortdate(packet []byte, offset uint8) (Date, error) {
     bcd := "20" + bcd2string(packet[offset:offset+3])
 
     if date, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
-        return Date(time.Time{}), nil
+        return Date(time.Time{}), err
     } else {
         return Date(date), nil
     }
 }
 
-func unpackTime(packet []byte, offset uint8) (Time, error) {
-    bcd := bcd2string(packet[offset:offset+3])
+func unpackOptionalDate(packet []byte, offset uint8) (*Date, error) {
+    bcd := bcd2string(packet[offset:offset+4])
 
-    if t, err := time.ParseInLocation("150405", bcd, time.Local); err != nil {
-        return Time(time.Time{}), nil
+    if d, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
+        return nil, nil
     } else {
-        return Time(t), nil
+        date := Date(d)
+
+        return &date, nil
     }
 }
 
@@ -125,9 +127,31 @@ func unpackDatetime(packet []byte, offset uint8) (DateTime, error) {
     bcd := bcd2string(packet[offset:offset+7])
 
     if date, err := time.ParseInLocation("20060102150405", bcd, time.Local); err != nil {
-        return DateTime(time.Time{}), nil
+        return DateTime(time.Time{}), err
     } else {
         return DateTime(date), nil
+    }
+}
+
+func unpackOptionalDatetime(packet []byte, offset uint8) (*DateTime, error) {
+    bcd := bcd2string(packet[offset:offset+7])
+
+    if date, err := time.ParseInLocation("20060102150405", bcd, time.Local); err != nil {
+        return nil, nil
+    } else {
+        datetime := DateTime(date)
+
+        return &datetime, nil
+    }
+}
+
+func unpackTime(packet []byte, offset uint8) (Time, error) {
+    bcd := bcd2string(packet[offset:offset+3])
+
+    if t, err := time.ParseInLocation("150405", bcd, time.Local); err != nil {
+        return Time(time.Time{}), err
+    } else {
+        return Time(t), nil
     }
 }
 

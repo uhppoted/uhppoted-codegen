@@ -325,7 +325,7 @@
             },
             {
               "name": "event timestamp",
-              "type": "datetime",
+              "type": "optional datetime",
               "offset": 20
             },
             {
@@ -689,12 +689,12 @@
             },
             {
               "name": "start date",
-              "type": "date",
+              "type": "optional date",
               "offset": 12
             },
             {
               "name": "end date",
-              "type": "date",
+              "type": "optional date",
               "offset": 16
             },
             {
@@ -764,12 +764,12 @@
             },
             {
               "name": "start date",
-              "type": "date",
+              "type": "optional date",
               "offset": 12
             },
             {
               "name": "end date",
-              "type": "date",
+              "type": "optional date",
               "offset": 16
             },
             {
@@ -1049,7 +1049,7 @@
             },
             {
               "name": "timestamp",
-              "type": "datetime",
+              "type": "optional datetime",
               "offset": 20
             },
             {
@@ -1235,12 +1235,12 @@
             },
             {
               "name": "start date",
-              "type": "date",
+              "type": "optional date",
               "offset": 9
             },
             {
               "name": "end date",
-              "type": "date",
+              "type": "optional date",
               "offset": 13
             },
             {
@@ -2560,7 +2560,7 @@
           },
           {
             "name": "event timestamp",
-            "type": "datetime",
+            "type": "optional datetime",
             "offset": 20
           },
           {
@@ -2712,12 +2712,12 @@
           },
           {
             "name": "start date",
-            "type": "date",
+            "type": "optional date",
             "offset": 12
           },
           {
             "name": "end date",
-            "type": "date",
+            "type": "optional date",
             "offset": 16
           },
           {
@@ -2758,12 +2758,12 @@
           },
           {
             "name": "start date",
-            "type": "date",
+            "type": "optional date",
             "offset": 12
           },
           {
             "name": "end date",
-            "type": "date",
+            "type": "optional date",
             "offset": 16
           },
           {
@@ -2877,7 +2877,7 @@
           },
           {
             "name": "timestamp",
-            "type": "datetime",
+            "type": "optional datetime",
             "offset": 20
           },
           {
@@ -2951,12 +2951,12 @@
           },
           {
             "name": "start date",
-            "type": "date",
+            "type": "optional date",
             "offset": 9
           },
           {
             "name": "end date",
-            "type": "date",
+            "type": "optional date",
             "offset": 13
           },
           {

@@ -60,40 +60,43 @@ function unpackDate(packet, offset) {
   const bytes = new Uint8Array(packet.buffer.slice(offset, offset + 4))
   const datetime = bcd(bytes)
 
-  if (datetime === '00000000') {
-    return ''
-  }
-
-  const date = `${datetime.substr(0, 4)}-${datetime.substr(4, 2)}-${datetime.substr(6, 2)}`
-
-  return `${date}`
+  return parseYYYYMMDD(datetime)
 }
 
 function unpackShortdate(packet, offset) {
   const bytes = new Uint8Array(packet.buffer.slice(offset, offset + 3))
   const datetime = bcd('20' + bytes)
 
-  if (datetime === '20000000') {
-    return ''
+  return parseYYYYMMDD(datetime)
+}
+
+function unpackOptionalDate(packet, offset) {
+  const bytes = new Uint8Array(packet.buffer.slice(offset, offset + 4))
+  const datetime = bcd(bytes)
+
+  try {
+    return parseYYYYMMDD(datetime)
+  } catch {
+    return null
   }
-
-  const date = `${datetime.substr(0, 4)}-${datetime.substr(4, 2)}-${datetime.substr(6, 2)}`
-
-  return `${date}`
 }
 
 function unpackDatetime(packet, offset) {
   const bytes = new Uint8Array(packet.buffer.slice(offset, offset + 7))
   const datetime = bcd(bytes)
 
-  if (datetime === '00000000000000') {
-    return ''
+  return parseYYYYMMDDHHmmss(datetime)
+}
+
+function unpackOptionalDatetime(packet, offset) {
+  const bytes = new Uint8Array(packet.buffer.slice(offset, offset + 7))
+  const datetime = bcd(bytes)
+
+  try {
+    return parseYYYYMMDDHHmmss(datetime)
+  } catch {
+    return null
   }
-
-  const date = `${datetime.substr(0, 4)}-${datetime.substr(4, 2)}-${datetime.substr(6, 2)}`
-  const time = `${datetime.substr(8, 2)}:${datetime.substr(10, 2)}:${datetime.substr(12, 2)}`
-
-  return `${date} ${time}`
 }
 
 function unpackTime(packet, offset) {
@@ -124,4 +127,61 @@ function unpackHHmm(packet, offset) {
 
 function bcd (bytes) {
   return [...bytes].map(x => [(x >>> 4) & 0x0f, (x >>> 0) & 0x0f]).flat().join('')
+}
+
+function parseYYYYMMDD(s) {
+  if (!/[0-9]{8}/.test(s)) {
+    throw new Error(`invalid date value ${s}`)
+  }
+
+  const year = parseInt(s.substr(0,4))
+  const month = parseInt(s.substr(4,2))
+  const day = parseInt(s.substr(6,2))
+
+  if ((year < 2000 || year > 3000) || (month < 1 || month > 12) || (day < 1 || day > 31)) {
+    throw new Error(`invalid date value ${s}`)   
+  }
+
+  const date = new Date()
+  date.setFullYear(year)
+  date.setMonth(month - 1)
+  date.setDate(day)
+  date.setHours(0)
+  date.setMinutes(0)
+  date.setSeconds(0)
+  date.setMilliseconds(0)
+
+  return date
+}
+
+function parseYYYYMMDDHHmmss(s) {
+  if (!/[0-9]{14}/.test(s)) {
+    throw new Error(`invalid datetime value ${s}`)
+  }
+
+  const year = parseInt(s.substr(0,4))
+  const month = parseInt(s.substr(4,2))
+  const day = parseInt(s.substr(6,2))
+  const hours = parseInt(s.substr(8,2))
+  const minutes = parseInt(s.substr(10,2))
+  const seconds = parseInt(s.substr(12,2))
+
+  if ((year < 2000 || year > 3000) || (month < 1 || month > 12) || (day < 1 || day > 31)) {
+    throw new Error(`invalid datetime value ${s}`)   
+  }
+
+  if (hours > 24 || minutes > 60 || seconds > 60) {
+    throw new Error(`invalid datetime value ${s}`)
+  }
+
+  const date = new Date()
+  date.setFullYear(year)
+  date.setMonth(month - 1)
+  date.setDate(day)
+  date.setHours(hours)
+  date.setMinutes(minutes)
+  date.setSeconds(seconds)
+  date.setMilliseconds(0)
+
+  return date
 }

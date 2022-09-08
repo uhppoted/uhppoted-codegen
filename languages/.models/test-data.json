@@ -273,7 +273,7 @@
             },
             {
               "name": "event timestamp",
-              "type": "datetime",
+              "type": "optional datetime",
               "value": "2022-08-23 09:47:06"
             },
             {
@@ -563,12 +563,12 @@
             },
             {
               "name": "start date",
-              "type": "date",
+              "type": "optional date",
               "value": "2022-01-01"
             },
             {
               "name": "end date",
-              "type": "date",
+              "type": "optional date",
               "value": "2022-12-31"
             },
             {
@@ -628,12 +628,12 @@
             },
             {
               "name": "start date",
-              "type": "date",
+              "type": "optional date",
               "value": "2022-01-01"
             },
             {
               "name": "end date",
-              "type": "date",
+              "type": "optional date",
               "value": "2022-12-31"
             },
             {
@@ -848,7 +848,7 @@
             },
             {
               "name": "timestamp",
-              "type": "datetime",
+              "type": "optional datetime",
               "value": "2019-08-04 20:02:07"
             },
             {
@@ -993,12 +993,12 @@
             },
             {
               "name": "start date",
-              "type": "date",
+              "type": "optional date",
               "value": "2022-01-01"
             },
             {
               "name": "end date",
-              "type": "date",
+              "type": "optional date",
               "value": "2022-12-31"
             },
             {

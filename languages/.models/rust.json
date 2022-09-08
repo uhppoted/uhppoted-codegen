@@ -12,7 +12,10 @@
             "shortdate": "NaiveDate",
             "time": "NaiveTime",
             "datetime": "NaiveDateTime",
-            "HHmm": "NaiveTime"
+            "HHmm": "NaiveTime",
+
+            "optional date": "Option<NaiveDate>",
+            "optional datetime": "Option<NaiveDateTime>"
         }
     }
 }

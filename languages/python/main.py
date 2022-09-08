@@ -56,7 +56,7 @@ def main():
             print(f'  ERROR: invalid command ({cmd})')
             print()
 
-    except BaseException as x:
+    except Exception as x:
         print()
         print(f'*** ERROR  {cmd}: {x}')
         print()

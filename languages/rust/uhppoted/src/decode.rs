@@ -126,10 +126,6 @@ fn unpack_date(packet: &Msg, offset: usize) -> Result<NaiveDate> {
     let slice: &[u8; 4] = packet[offset..offset + 4].try_into().unwrap();
     let s = bcd2string!(slice);
 
-    if s == "00000000" {
-        return Ok(NaiveDate::default());
-    }
-
     match NaiveDate::parse_from_str(&s, "%Y%m%d") {
         Ok(date) => return Ok(date),
         Err(_) => Err(Error::from(format!("invalid date string {}",s))),
@@ -140,13 +136,39 @@ fn unpack_shortdate(packet: &Msg, offset: usize) -> Result<NaiveDate> {
     let slice: &[u8; 3] = packet[offset..offset + 3].try_into().unwrap();
     let s = format!("20{}", bcd2string!(slice));
 
-    if s == "20000000" {
-        return Ok(NaiveDate::default());
-    }
-
     match NaiveDate::parse_from_str(&s, "%Y%m%d") {
         Ok(date) => return Ok(date),
         Err(_) => Err(Error::from(format!("invalid date string {}",s))),
+    }
+}
+
+fn unpack_optional_date(packet: &Msg, offset: usize) -> Result<Option<NaiveDate>> {
+    let slice: &[u8; 4] = packet[offset..offset + 4].try_into().unwrap();
+    let s = bcd2string!(slice);
+
+    match NaiveDate::parse_from_str(&s, "%Y%m%d") {
+        Ok(date) => return Ok(Some(date)),
+        Err(_) => return Ok(None),
+    }
+}
+
+fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime> {
+    let slice: &[u8; 7] = packet[offset..offset + 7].try_into().unwrap();
+    let s: String = bcd2string!(slice);
+
+    match NaiveDateTime::parse_from_str(&s, "%Y%m%d%H%M%S") {
+        Ok(datetime) => return Ok(datetime),
+        Err(_) => Err(Error::from(format!("invalid date/time string {}",s))),
+    }
+}
+
+fn unpack_optional_datetime(packet: &Msg, offset: usize) -> Result<Option<NaiveDateTime>> {
+    let slice: &[u8; 7] = packet[offset..offset + 7].try_into().unwrap();
+    let s: String = bcd2string!(slice);
+
+    match NaiveDateTime::parse_from_str(&s, "%Y%m%d%H%M%S") {
+        Ok(datetime) => return Ok(Some(datetime)),
+        Err(_) => Ok(None),
     }
 }
 
@@ -157,20 +179,6 @@ fn unpack_time(packet: &Msg, offset: usize) -> Result<NaiveTime> {
     match NaiveTime::parse_from_str(&s, "%H%M%S") {
         Ok(time) => return Ok(time),
         Err(_) => Err(Error::from(format!("invalid time string {}",s))),
-    }
-}
-
-fn unpack_datetime(packet: &Msg, offset: usize) -> Result<NaiveDateTime> {
-    let slice: &[u8; 7] = packet[offset..offset + 7].try_into().unwrap();
-    let s: String = bcd2string!(slice);
-
-    if s == "00000000000000" {
-        return Ok(NaiveDateTime::default());
-    }
-
-    match NaiveDateTime::parse_from_str(&s, "%Y%m%d%H%M%S") {
-        Ok(datetime) => return Ok(datetime),
-        Err(_) => Err(Error::from(format!("invalid date/time string {}",s))),
     }
 }
 
