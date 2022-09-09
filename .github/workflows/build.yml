@@ -38,6 +38,7 @@ jobs:
 
     - name: Build
       run: |
+        pip install yapf
         make build-all
         make go
         make rust
