@@ -59,7 +59,7 @@ func broadcast(request []byte) ([][]byte, error) {
 }
 
 
-func send(request []byte, wait bool) ([]byte, error) {
+func send(request []byte) ([]byte, error) {
     dump(request)
 
     socket, err := net.ListenUDP("udp", bindAddr)
@@ -81,11 +81,12 @@ func send(request []byte, wait bool) ([]byte, error) {
         return nil, err
     }
 
-    if wait {
-        return read(socket)
+    // set-ip doesn't return a reply
+    if request[1] ==  0x96 {
+    return []byte{}, nil
     }
 
-    return []byte{}, nil
+    return read(socket)
 }
 
 func listen(ch chan []byte) error {

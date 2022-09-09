@@ -62,7 +62,7 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
         return nil,err
     }
 
-    if reply,err := send(request, true); err != nil {
+    if reply,err := send(request); err != nil {
         return nil,err
     } else if response,err := {{camelCase .response.name}}(reply); err != nil {
         return nil, err
@@ -72,9 +72,12 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
 
     return nil, nil
     {{- else }}
-    if request, err := {{CamelCase .request.name}}({{template "params" .args}}); err != nil {
+    request, err := {{CamelCase .request.name}}({{template "params" .args}})
+    if err != nil {
         return err
-    } else if _, err = send(request, false); err != nil {
+    } 
+
+    if _, err = send(request); err != nil {
         return err
     }
     
