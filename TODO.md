@@ -1,40 +1,30 @@
 # TODO
 
-- [ ] Add code generation to github workflow
+- [x] Add code generation to github workflow
       - [x] Go
       - [x] Rust
       - [x] Python
-      - [ ] HTTP
+      - [x] HTTP
 
 - [ ] Code generation HOWTO
 
 ## Go
-- [x] Restructure to use broadcast/send/send-no-wait
-- [x] Handle missing/deleted card
-- [x] Handle missing time profile
-- [x] Handle missing event
 
 ## Rust
-- [x] Restructure to use broadcast/send/send-no-wait
-- [x] Handle missing/deleted card
-- [x] Handle missing time profile
-- [x] Handle missing event
 - (?) Unit tests
 - (?) Replace executor::block with await
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
 
 ## Python
-- [x] Restructure to use broadcast/send/send-no-wait
-- [x] Handle missing/deleted card
-- [x] Handle missing time profile
-- [x] Handle missing event
+- (?) Unit tests
 - (?) asyncio
 
 ## HTTP
 - [ ] Restructure to use broadcast/send/send-no-wait
-- [x] Handle missing/deleted card
-- [x] Handle missing time profile
-- [x] Handle missing event
+- [ ] Error handling in fetch(...)
+      - https://stackoverflow.com/questions/50330795/fetch-api-error-handling
+      - https://stackoverflow.com/questions/45228556/js-fetch-typeerror-failed-to-fetch
+      - https://stackoverflow.com/questions/38235715/fetch-reject-promise-and-catch-the-error-if-status-is-not-ok
 - [ ] `listen`
 
 ## Erlang

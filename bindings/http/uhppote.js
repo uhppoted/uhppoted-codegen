@@ -5,7 +5,7 @@ import * as udp from './udp.js'
 export function GetAllControllers () {
   const request = encode.GetControllerRequest(0)
 
-  return udp.post(request, '500ms')
+  return udp.broadcast(request)
     .then(replies => {
       const list = []
 
@@ -24,7 +24,7 @@ export function GetAllControllers () {
 export function {{CamelCase .name}}({{template "args" .args}}) { {{if .response}}
   const request = encode.{{CamelCase .request.name}}({{template "params" .args}})
 
-  return udp.post(request, '0s')
+  return udp.send(request, '0s')
     .then(replies => {
       if (replies.length > 0) {
         return decode.{{CamelCase .response.name}}(replies[0])
@@ -34,7 +34,7 @@ export function {{CamelCase .name}}({{template "args" .args}}) { {{if .response}
     }){{else}}
   const request = encode.{{CamelCase .request.name}}({{template "params" .args}})
 
-  return udp.post(request, '0.1ms')
+  return udp.send(request, '0.1ms')
     .then(replies => {
       return true
     }){{end}}

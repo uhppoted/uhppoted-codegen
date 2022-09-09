@@ -32,6 +32,7 @@ jobs:
       with:
         python-version: ^3.10
       id: python
+      run: pip install yapf
 
     - name: Set up NodeJS 16.13.2
       uses: actions/setup-node@v3
@@ -46,7 +47,4 @@ jobs:
       run: npm install eslint eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node --save-dev
 
     - name: Build
-      run: |
-        pip install yapf
-        make build-all
-        make http
+      run: make build-all
