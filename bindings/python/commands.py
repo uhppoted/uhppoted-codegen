@@ -197,7 +197,13 @@ def get_event(u):
     controller = CONTROLLER
     index = EVENT_INDEX
 
-    return u.get_event(controller, index)
+    response = u.get_event(controller, index)
+    if response.event_type == 0xff:
+        raise ValueError(f'event @ index {index} overwritten')
+    elif response.index == 0:
+        raise ValueError(f'event @ index {index} not found')
+
+    return response
 
 
 def get_event_index(u):

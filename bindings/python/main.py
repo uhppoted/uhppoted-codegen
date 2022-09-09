@@ -44,27 +44,30 @@ def main():
     listen = args.listen
     debug = args.debug
 
-    try:
-        if cmd == 'all':
-            for c,fn in commands().items():
-                if c != 'listen':
+    if cmd == 'all':
+        for c,fn in commands().items():
+            if c != 'listen':
+                try:
                     exec(fn, bind, broadcast, listen, debug)
-        elif cmd in commands():
+                except Exception as x:
+                    print()
+                    print(f'*** ERROR  {cmd}: {x}')
+                    print()
+    elif cmd in commands():
+        try:
             exec(commands()[cmd], bind, broadcast, listen, debug)
-        else:
+        except Exception as x:
             print()
-            print(f'  ERROR: invalid command ({cmd})')
+            print(f'*** ERROR  {cmd}: {x}')
             print()
+            if debug:
+                print(traceback.format_exc())
 
-    except Exception as x:
+            sys.exit(1)
+    else:
         print()
-        print(f'*** ERROR  {cmd}: {x}')
+        print(f'  ERROR: invalid command ({cmd})')
         print()
-
-        if debug:
-            print(traceback.format_exc())
-
-        sys.exit(1)
 
 
 def usage():

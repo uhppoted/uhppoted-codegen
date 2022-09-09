@@ -220,7 +220,15 @@ func getEvent() (any, error) {
     controller := CONTROLLER
     index := EVENT_INDEX
 
-    return uhppote.GetEvent(controller, index)
+    if response, err := uhppote.GetEvent(controller, index); err != nil {
+        return nil, err
+    } else if response.EventType == 0xff {
+        return nil, fmt.Errorf("event @ index %v overwritten", index)
+    } else if response.Index == 0 {
+        return nil, fmt.Errorf("event @ index %v not found", index)
+    } else {
+        return response, nil
+    }
 }
 
 func getEventIndex() (any, error) {

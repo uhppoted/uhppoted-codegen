@@ -332,7 +332,15 @@ fn get_event() {
     let index = EVENT_INDEX;
 
     match uhppote::get_event(controller, index) {
-        Ok(v) => println!("{:#?}", v),
+        Ok(v) => {
+            if v.event_type == 0xff {
+                error(uhppote::error::Error::from(format!("event @ index {index} overwritten")))
+            } else if v.index == 0 {
+                error(uhppote::error::Error::from(format!("event @ index {index} not found")))
+            } else {
+                println!("{:#?}", v)
+            }
+        },
         Err(e) => error(e),
     }
 }

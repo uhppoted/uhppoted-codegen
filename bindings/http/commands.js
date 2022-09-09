@@ -147,7 +147,14 @@ export function setTime (controller, datetime) {
 //  controller = document.querySelector(`input#${controller}`).value
 //  index = document.querySelector(`input#${index}`).value
 //
-//  return uhppote.GetEvent(controller,index)
+//  response = uhppote.GetEvent(controller,index)
+//  if (response.eventType === 0xff) {
+//      throw new Error(`event @ index ${index} overwritten`)
+//  } else if (response.index === 0) {
+//      throw new Error(`event @ index ${index} not found`)
+//  }
+//
+//  return response
 // }
 //
 // export function getEventIndex(controller) {
