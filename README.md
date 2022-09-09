@@ -84,8 +84,9 @@ Command line:
 ` uhppoted-codegen generate [--debug] [--clean] --templates <folder> --out <folder>`
 
 ```
-  --templates <folder>  The folder containing the code generation templates for the target language.
-  --out <folder>        The folder for the generated code.
+  --models <folder>     Folder with JSON model data.
+  --templates <folder>  Folder containing the code generation templates for the target language.
+  --out <folder>        Destination folder for the generated code.
 
   Options:
 
@@ -94,7 +95,7 @@ Command line:
 
   Example:
 
-  uhppoted-codegen generate --models languages/.models --templates languages/rust --out generated/rust
+  uhppoted-codegen generate --models bindings/.models --templates bindings/rust --out generated/rust
 ```
 
 ### `export`

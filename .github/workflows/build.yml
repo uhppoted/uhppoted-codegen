@@ -33,13 +33,20 @@ jobs:
         python-version: ^3.10
       id: python
 
+    - name: Set up NodeJS 16.13.2
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+      id: python
+
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
+
+    - name: Install eslint
+      run: npm install eslint eslint-config-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node --save-dev
 
     - name: Build
       run: |
         pip install yapf
         make build-all
-        make go
-        make rust
-        make python
+        make http
