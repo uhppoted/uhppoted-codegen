@@ -61,6 +61,8 @@ def exec(f, bind, broadcast, listen, debug):
         if type(response).__name__ == 'list':
             for v in response:
                 pprint(v.__dict__, indent=2, width=1, sort_dicts=False)
+        elif type(response).__name__ == 'bool':
+            pprint(response, indent=2, width=1, sort_dicts=False)
         else:
             pprint(response.__dict__, indent=2, width=1, sort_dicts=False)
 

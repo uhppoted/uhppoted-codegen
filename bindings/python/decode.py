@@ -50,10 +50,10 @@ def unpack_uint16(packet, offset):
 def unpack_uint32(packet, offset):
     return struct.unpack_from('<L', packet, offset)[0]
 
-def unpack_IPv4(packet, offset):
+def unpack_ipv4(packet, offset):
     return IPv4Address(packet[offset:offset + 4])
 
-def unpack_MAC(packet, offset):
+def unpack_mac(packet, offset):
     return '{:02x}:{:02x}:{:02x}:{:02x}::{:02x}:{:02x}'.format(*packet[offset:offset+7])
 
 def unpack_version(packet, offset):
@@ -95,7 +95,7 @@ def unpack_time(packet, offset):
 
     return datetime.datetime.strptime(bcd, '%H%M%S').time()
 
-def unpack_HHmm(packet, offset):
+def unpack_hhmm(packet, offset):
     bcd = '{:02x}{:02x}'.format(*packet[offset:offset+2])
 
     return datetime.datetime.strptime(bcd, '%H%M').time()

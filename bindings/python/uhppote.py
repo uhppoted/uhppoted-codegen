@@ -9,7 +9,7 @@ class Uhppote:
 
     def get_all_controllers(self):
         request = encode.get_controller_request(0)
-        replies = self._udp.send(request, udp.read_all)
+        replies = self._udp.broadcast(request)
 
         list = []
         for reply in replies:
@@ -32,14 +32,15 @@ class Uhppote:
 {{define "function"}}
     def {{snakeCase .name}}(self, {{template "args" .args}}):
         {{if .response}}request = encode.{{snakeCase .request.name}}({{template "params" .args}})
-        replies = self._udp.send(request, udp.read)
+        reply = self._udp.send(request)
 
-        for reply in replies:
+        if reply != None:
             return decode.{{snakeCase .response.name}}(reply)
-
+            
         return None
-        {{else}}request = encode.{{snakeCase .request.name}}({{template "params" .args}})
-        self._udp.send(request, udp.read_none)
+        {{- else}}
+        request = encode.{{snakeCase .request.name}}({{template "params" .args}})
+        self._udp.send(request)
 
         return True
         {{end}}
