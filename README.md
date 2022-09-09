@@ -73,7 +73,7 @@ Supported commands:
 - `generate`
 - `export`
 
-Defaults to `generate` if the command it not provided.
+Defaults to `generate` if the command is not provided.
 
 ### `generate`
 
@@ -107,7 +107,7 @@ Command line:
 ` uhppoted-codegen export [--out <file>]`
 
 ```
-  --out <file> File for _models_ JSON. Defaults fot _models.json_.
+  --out <file> File for models JSON. Defaults to models.json.
 
   Example:
   
