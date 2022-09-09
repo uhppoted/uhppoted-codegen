@@ -371,7 +371,13 @@ fn get_time_profile() {
     let profile_id = TIME_PROFILE_ID;
 
     match uhppote::get_time_profile(controller, profile_id) {
-        Ok(v) => println!("{:#?}", v),
+        Ok(v) => {
+            if v.profile_id == 0 {
+                error(uhppote::error::Error::from(format!("time profile {profile_id} not defined")))
+            } else {
+                println!("{:#?}", v)
+            }
+        },
         Err(e) => error(e),
     }
 }

@@ -11,13 +11,13 @@
 ## Go
 - [x] Restructure to use broadcast/send/send-no-wait
 - [x] Handle missing/deleted card
-- [ ] Handle missing time profile
+- [x] Handle missing time profile
 - [ ] Handle missing event
 
 ## Rust
 - [x] Restructure to use broadcast/send/send-no-wait
 - [x] Handle missing/deleted card
-- [ ] Handle missing time profile
+- [x] Handle missing time profile
 - [ ] Handle missing event
 - (?) Unit tests
 - (?) Replace executor::block with await
@@ -26,7 +26,7 @@
 ## Python
 - [x] Restructure to use broadcast/send/send-no-wait
 - [x] Handle missing/deleted card
-- [ ] Handle missing time profile
+- [x] Handle missing time profile
 - [ ] Handle missing event
 - (?) asyncio
       - https://docs.python.org/3/howto/sockets.html
@@ -39,7 +39,7 @@
 ## HTTP
 - [ ] Restructure to use broadcast/send/send-no-wait
 - [x] Handle missing/deleted card
-- [ ] Handle missing time profile
+- [x] Handle missing time profile
 - [ ] Handle missing event
 - [ ] `listen`
 

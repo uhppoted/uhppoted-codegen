@@ -174,7 +174,12 @@ export function setTime (controller, datetime) {
 //  controller = document.querySelector(`input#${controller}`).value
 //  profileID = document.querySelector(`input#${profileID}`).value
 //
-//  return uhppote.GetTimeProfile(controller, profileID)
+//  response = uhppote.GetTimeProfile(controller, profileID)
+//  if (response.profileId === 0) {
+//      throw new Error(`time profile ${profileID} not defined`)
+//  }
+//
+//  return response
 // }
 //
 /// / export function setTimeProfile(controller,

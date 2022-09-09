@@ -224,7 +224,11 @@ def get_time_profile(u):
     controller = CONTROLLER
     profile_id = TIME_PROFILE_ID
 
-    return u.get_time_profile(controller, profile_id)
+    response = u.get_time_profile(controller, profile_id)
+    if response.profile_id == 0:
+        raise ValueError(f'time profile {profile_id} not defined')
+
+    return response
 
 
 def set_time_profile(u):

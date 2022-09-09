@@ -247,7 +247,13 @@ func getTimeProfile() (any, error) {
     controller := CONTROLLER
     profileID := TIME_PROFILE_ID
 
-    return uhppote.GetTimeProfile(controller, profileID)
+    if response,err := uhppote.GetTimeProfile(controller, profileID); err != nil {
+        return nil, err
+    } else if response.ProfileId == 0 {
+        return nil, fmt.Errorf("time profile %v not defined", profileID)
+    } else {
+        return response, nil
+    }
 }
 
 func setTimeProfile() (any, error) {
