@@ -37,7 +37,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
-      id: python
+      id: nodejs
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
