@@ -64,7 +64,7 @@ coverage: build
 regen:
 	$(CMD) export --models bindings/.models/models.json --tests bindings/.models/test-data.json
 
-build-all: vet
+build-all: vet go
 	mkdir -p dist/$(DIST)/windows
 	mkdir -p dist/$(DIST)/darwin
 	mkdir -p dist/$(DIST)/linux

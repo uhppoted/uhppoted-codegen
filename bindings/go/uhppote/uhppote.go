@@ -11,7 +11,7 @@ func GetAllControllers() ([]*GetControllerResponse, error) {
         return nil, err
     }
 
-    replies, err := send(request, readAll)
+    replies, err := broadcast(request)
     if err != nil {
         return nil, err
     }
@@ -62,24 +62,19 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
         return nil,err
     }
 
-    replies,err := send(request, read)
-    if err != nil {
+    if reply,err := send(request, true); err != nil {
         return nil,err
-    }
-
-    for _,reply := range replies {
-        if response,err := {{camelCase .response.name}}(reply); err != nil {
-            return nil, err
-        } else if response != nil {
-            return response, nil
-        }
+    } else if response,err := {{camelCase .response.name}}(reply); err != nil {
+        return nil, err
+    } else if response != nil {
+        return response, nil
     }
 
     return nil, nil
     {{- else }}
     if request, err := {{CamelCase .request.name}}({{template "params" .args}}); err != nil {
         return err
-    } else if _, err = send(request, readNone); err != nil {
+    } else if _, err = send(request, false); err != nil {
         return err
     }
     

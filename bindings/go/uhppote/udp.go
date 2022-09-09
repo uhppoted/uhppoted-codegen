@@ -33,7 +33,7 @@ func SetDebug(enabled bool) {
     debug = enabled
 }
 
-func send(request []byte, f func(*net.UDPConn) ([][]byte, error)) ([][]byte, error) {
+func broadcast(request []byte) ([][]byte, error) {
     dump(request)
 
     socket, err := net.ListenUDP("udp", bindAddr)
@@ -55,7 +55,37 @@ func send(request []byte, f func(*net.UDPConn) ([][]byte, error)) ([][]byte, err
         return nil, err
     }
 
-    return f(socket)
+    return readAll(socket)
+}
+
+
+func send(request []byte, wait bool) ([]byte, error) {
+    dump(request)
+
+    socket, err := net.ListenUDP("udp", bindAddr)
+    if err != nil {
+        return nil, err
+    }
+
+    defer socket.Close()
+
+    if err := socket.SetWriteDeadline(time.Now().Add(WRITE_TIMEOUT)); err != nil {
+        return nil, err
+    }
+
+    if err := socket.SetReadDeadline(time.Now().Add(READ_TIMEOUT)); err != nil {
+        return nil, fmt.Errorf("Failed to set UDP read timeout [%v]", err)
+    }
+
+    if _, err := socket.WriteToUDP(request, destAddr); err != nil {
+        return nil, err
+    }
+
+    if wait {
+        return read(socket)
+    }
+
+    return []byte{}, nil
 }
 
 func listen(ch chan []byte) error {
@@ -133,11 +163,7 @@ func readAll(socket *net.UDPConn) ([][]byte, error) {
     }
 }
 
-func readNone(socket *net.UDPConn) ([][]byte, error) {
-    return [][]byte{}, nil
-}
-
-func read(socket *net.UDPConn) ([][]byte, error) {
+func read(socket *net.UDPConn) ([]byte, error) {
     reply := make(chan []byte)
     e := make(chan error)
 
@@ -159,7 +185,7 @@ func read(socket *net.UDPConn) ([][]byte, error) {
         select {
         case m := <-reply:
             dump(m)
-            return [][]byte{m}, nil
+            return m, nil
 
         case <-timeout:
             return nil, fmt.Errorf("timeout")

@@ -9,12 +9,14 @@
 - [ ] Code generation HOWTO
 
 ## Go
+- [x] Restructure to use broadcast/send/send-no-wait
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
+- [ ] Restructure to use broadcast/send/send-no-wait
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event
@@ -24,6 +26,7 @@
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
 
 ## Python
+- [ ] Restructure to use broadcast/send/send-no-wait
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event
