@@ -3,7 +3,7 @@
 - [ ] Add code generation to github workflow
       - [x] Go
       - [x] Rust
-      - [ ] Python
+      - [x] Python
       - [ ] HTTP
 
 - [ ] Code generation HOWTO
