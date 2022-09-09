@@ -1,21 +1,7 @@
 # TODO
 
-- [x] Rework templates with {{- and -}}
-      - [x] Go
-      - [x] Rust
-      - [x] Python
-      - [x] HTTP
-
-- [x] Optional dates
-      [x] Go
-      [x] Rust
-      [x] Python
-      [x] HTTP
-
-- [x] Package for release
-
 - [ ] Add code generation to github workflow
-      - [ ] Go
+      - [x] Go
       - [ ] Rust
       - [ ] Python
       - [ ] HTTP

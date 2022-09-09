@@ -27,3 +27,4 @@ jobs:
       run: |
         make build-all
         make go
+        make rust
