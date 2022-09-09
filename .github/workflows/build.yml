@@ -32,6 +32,8 @@ jobs:
       with:
         python-version: ^3.10
       id: python
+
+    - name: Install Python packages
       run: pip install yapf
 
     - name: Set up NodeJS 16.13.2
