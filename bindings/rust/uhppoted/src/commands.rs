@@ -267,7 +267,13 @@ fn get_card() {
     let card = CARD;
 
     match uhppote::get_card(controller, card) {
-        Ok(v) => println!("{:#?}", v),
+        Ok(v) => {
+            if v.card_number == 0 {
+                error(uhppote::error::Error::from(format!("card {card} not found")))
+            } else {
+                println!("{:#?}", v)
+            }
+        },
         Err(e) => error(e),
     }
 }
@@ -277,7 +283,15 @@ fn get_card_by_index() {
     let index = CARD_INDEX;
 
     match uhppote::get_card_by_index(controller, index) {
-        Ok(v) => println!("{:#?}", v),
+        Ok(v) => {
+            if v.card_number == 0 {
+                error(uhppote::error::Error::from(format!("card @ index {index} not found")))
+            } else if v.card_number == 0xffffffff {
+                error(uhppote::error::Error::from(format!("card @ index {index} deleted")))
+            } else {
+                println!("{:#?}", v)
+            }
+        },
         Err(e) => error(e),
     }
 }

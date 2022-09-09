@@ -10,24 +10,22 @@
 
 ## Go
 - [x] Restructure to use broadcast/send/send-no-wait
-- [ ] Handle missing/deleted card
+- [x] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event
-- (?) Type constraint/generic/variant for send() return value
 
 ## Rust
 - [x] Restructure to use broadcast/send/send-no-wait
-- [ ] Handle missing/deleted card
+- [x] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event
 - (?) Unit tests
-- (?) Use `Either` for result of read functions
 - (?) Replace executor::block with await
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
 
 ## Python
 - [x] Restructure to use broadcast/send/send-no-wait
-- [ ] Handle missing/deleted card
+- [x] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event
 - (?) asyncio
@@ -39,8 +37,8 @@
       - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
 
 ## HTTP
-- [x] Implement remaining commands
-- [ ] Handle missing/deleted card
+- [ ] Restructure to use broadcast/send/send-no-wait
+- [x] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event
 - [ ] `listen`

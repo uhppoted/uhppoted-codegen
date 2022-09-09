@@ -151,14 +151,24 @@ def get_card(u):
     controller = CONTROLLER
     card = CARD
 
-    return u.get_card(controller, card)
+    response = u.get_card(controller, card)
+    if response.card_number == 0:
+        raise ValueError(f'card {card} not found')
+
+    return response
 
 
 def get_card_by_index(u):
     controller = CONTROLLER
     index = CARD_INDEX
 
-    return u.get_card_by_index(controller, index)
+    response = u.get_card_by_index(controller, index)
+    if response.card_number == 0:
+        raise ValueError(f'card @ index {index} not found')
+    elif response.card_number == 0xffffffff:
+        raise ValueError(f'card @ index {index} deleted')
+
+    return response
 
 
 def put_card(u):

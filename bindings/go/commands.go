@@ -170,14 +170,28 @@ func getCard() (any, error) {
     controller := CONTROLLER
     card := CARD
 
-    return uhppote.GetCard(controller, card)
+    if response,err := uhppote.GetCard(controller, card); err != nil {
+        return nil, err
+    } else if response.CardNumber == 0 {
+        return nil, fmt.Errorf("card %v not found", card)
+    } else {
+        return response, nil
+    }
 }
 
 func getCardByIndex() (any, error) {
     controller := CONTROLLER
     index := CARD_INDEX
 
-    return uhppote.GetCardByIndex(controller, index)
+    if response,err := uhppote.GetCardByIndex(controller, index); err != nil {
+        return nil, err
+    } else if response.CardNumber == 0 {
+        return nil, fmt.Errorf("card @ index %v not found", index)
+    } else if response.CardNumber == 0xffffffff {
+        return nil, fmt.Errorf("card @ index %v deleted", index)
+    } else {
+        return response, nil
+    }
 }
 
 func putCard() (any, error) {
