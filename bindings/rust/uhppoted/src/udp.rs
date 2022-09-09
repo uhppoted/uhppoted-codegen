@@ -10,7 +10,6 @@ use lazy_static::lazy_static;
 use super::error;
 
 pub type Msg = [u8; 64];
-pub type ReadFn = fn(socket: UdpSocket) -> Result<Vec<Msg>>;
 pub type Result<T> = std::result::Result<T, error::Error>;
 
 const READ_TIMEOUT: Duration = Duration::from_millis(5000);
@@ -48,7 +47,7 @@ pub fn set_debug(enabled: bool) {
     }
 }
 
-pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>> {
+pub fn broadcast(packet: &Msg) -> Result<Vec<Msg>> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -60,10 +59,31 @@ pub fn send(packet: &Msg, f: ReadFn) -> Result<Vec<Msg>> {
     socket.set_broadcast(true)?;
     socket.send_to(packet, broadcast.as_str())?;
 
-    return f(socket);
+    return read_all(socket);
 }
 
-pub fn read(socket: UdpSocket) -> Result<Vec<Msg>> {
+pub fn send(packet: &Msg) -> Result<Option<Msg>> {
+    let bind = BIND_ADDR.read()?;
+    let broadcast = BROADCAST_ADDR.read()?;
+    let socket = UdpSocket::bind(bind.as_str())?;
+
+    dump(&packet);
+
+    socket.set_write_timeout(Some(WRITE_TIMEOUT))?;
+    socket.set_read_timeout(Some(READ_TIMEOUT))?;
+    socket.set_broadcast(true)?;
+    socket.send_to(packet, broadcast.as_str())?;
+
+    if packet[1] == 0x96 {
+        return Ok(None);
+    }
+
+    let reply = read(socket)?;
+
+    return Ok(Some(reply))
+}
+
+fn read(socket: UdpSocket) -> Result<Msg> {
     let f = future::timeout(TIMEOUT, async {
         let sock = async_std::net::UdpSocket::from(socket);
         let mut buffer = [0u8; 1024];
@@ -86,7 +106,7 @@ pub fn read(socket: UdpSocket) -> Result<Vec<Msg>> {
     let g = async {
         match f.await {
             Ok(v) => match v {
-                Ok(reply) => return Ok(vec![reply]),
+                Ok(reply) => return Ok(reply),
                 Err(e) => return Err(e),
             },
 
@@ -95,12 +115,12 @@ pub fn read(socket: UdpSocket) -> Result<Vec<Msg>> {
     };
 
     match futures::executor::block_on(g) {
-        Ok(replies) => return Ok(replies),
+        Ok(reply) => return Ok(reply),
         Err(e) => return Err(e),
     }
 }
 
-pub fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
+fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
     let replies = RwLock::<Vec<Msg>>::new(vec![]);
 
     let f = future::timeout(Duration::from_millis(2500), async {
@@ -137,10 +157,6 @@ pub fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
         Ok(replies) => return Ok(replies),
         Err(e) => return Err(e),
     }
-}
-
-pub fn read_none(_: UdpSocket) -> Result<Vec<Msg>> {
-    return Ok(vec![]);
 }
 
 //TODO should probably use a stream/channel

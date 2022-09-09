@@ -16,7 +16,7 @@
 - (?) Type constraint/generic/variant for send() return value
 
 ## Rust
-- [ ] Restructure to use broadcast/send/send-no-wait
+- [x] Restructure to use broadcast/send/send-no-wait
 - [ ] Handle missing/deleted card
 - [ ] Handle missing time profile
 - [ ] Handle missing event

@@ -45,7 +45,7 @@ pub fn set_debug(enabled: bool) {
 
 pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     let request = get_controller_request(0)?;
-    let replies = udp::send(&request, udp::read_all)?;
+    let replies = udp::broadcast(&request)?;
 
     let mut list: Vec<decode::GetControllerResponse> = vec![];
 
@@ -74,17 +74,15 @@ pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl futur
 {{define "function"}}
 pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ {{if .response}}
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    let replies = udp::send(&request, udp::read)?;
+    let reply = udp::send(&request)?;
 
-    for reply in replies {
-        let response = {{snakeCase .response.name}}(&reply)?;
-
-        return Ok(response);
+    match reply {
+        Some(reply) => Ok({{snakeCase .response.name}}(&reply)?),
+        None => return Err(error::Error::from(NoResponse))
     }
-
-    return Err(error::Error::from(NoResponse)); {{else}}
+    {{- else}}
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    udp::send(&request, udp::read_none)?;
+    udp::send(&request)?;
 
     return Ok(true); {{end}}
 }
