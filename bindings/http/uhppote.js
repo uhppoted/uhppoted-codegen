@@ -24,18 +24,14 @@ export function GetAllControllers () {
 export function {{CamelCase .name}}({{template "args" .args}}) { {{if .response}}
   const request = encode.{{CamelCase .request.name}}({{template "params" .args}})
 
-  return udp.send(request, '0s')
-    .then(replies => {
-      if (replies.length > 0) {
-        return decode.{{CamelCase .response.name}}(replies[0])
-      }
-
-      return null
+  return udp.send(request)
+    .then(reply => {
+      return reply ? decode.{{CamelCase .response.name}}(reply) : null        
     }){{else}}
   const request = encode.{{CamelCase .request.name}}({{template "params" .args}})
 
-  return udp.send(request, '0.1ms')
-    .then(replies => {
+  return udp.send(request, true)
+    .then(() => {
       return true
     }){{end}}
 }

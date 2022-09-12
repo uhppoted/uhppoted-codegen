@@ -1,11 +1,5 @@
 # TODO
 
-- [x] Add code generation to github workflow
-      - [x] Go
-      - [x] Rust
-      - [x] Python
-      - [x] HTTP
-
 - [ ] Code generation HOWTO
 
 ## Go
@@ -20,11 +14,12 @@
 - (?) asyncio
 
 ## HTTP
-- [ ] Restructure to use broadcast/send/send-no-wait
+- [x] Restructure to use broadcast/send/send-no-wait
 - [ ] Error handling in fetch(...)
       - https://stackoverflow.com/questions/50330795/fetch-api-error-handling
       - https://stackoverflow.com/questions/45228556/js-fetch-typeerror-failed-to-fetch
       - https://stackoverflow.com/questions/38235715/fetch-reject-promise-and-catch-the-error-if-status-is-not-ok
+- [ ] Clean up bin2hex
 - [ ] `listen`
 
 ## Erlang
