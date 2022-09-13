@@ -1,7 +1,7 @@
 let REQUESTID = 0
 
 export function broadcast (bytes) {
-  debug(bytes)
+  debug([bytes], '#request textarea')
 
   const rq = {
     ID: nextID(),
@@ -27,19 +27,20 @@ export function broadcast (bytes) {
           return response.json()
 
         default:
-          response.text().then(w => {
-            throw new Error(w)
-          })
+          return Promise.reject(response.statusText)
       }
     })
     .then(reply => {
-      debug2(reply.replies)
+      debug(reply.replies, '#reply textarea')
       return reply.replies
+    })
+    .catch(err => {
+      throw new Error(err)
     })
 }
 
 export function send (bytes, nowait) {
-  debug(bytes)
+  debug([bytes], '#request textarea')
 
   const rq = {
     ID: nextID(),
@@ -65,18 +66,19 @@ export function send (bytes, nowait) {
           return response.json()
 
         default:
-          response.text().then(w => {
-            throw new Error(w)
-          })
+          return Promise.reject(response.statusText)
       }
     })
     .then(reply => {
       if (reply.reply) {
-        debug2([reply.reply])
+        debug([reply.reply], '#reply textarea')
         return reply.reply
-      } 
+      }
 
-        return null
+      return null
+    })
+    .catch(err => {
+      throw new Error(err)
     })
 }
 
@@ -86,16 +88,10 @@ function nextID () {
   return REQUESTID
 }
 
-function debug (request) {
-  const textarea = document.querySelector('#request textarea')
-  if (textarea) {
-    textarea.value = bin2hex(request)
-  }
-}
+function debug (messages, selector) {
+  const hex = messages.map(m => bin2hex(m)).join('\n\n')
 
-function debug2 (replies) {
-  const hex = replies.map(r => bin2hex(r)).join('\n\n')
-  const textarea = document.querySelector('#reply textarea')
+  const textarea = document.querySelector(selector)
   if (textarea) {
     textarea.value = hex
   }
@@ -114,10 +110,4 @@ function bin2hex (bytes) {
   }
 
   return lines.join('\n')
-
-  // const f = function* chunks(array,N) {
-  //    for (let i=0; i < array.length; i += N) {
-  //        yield array.slice(i, i + N);
-  //    }
-  // }
 }
