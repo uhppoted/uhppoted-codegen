@@ -14,7 +14,24 @@
 - (?) asyncio
 
 ## HTTP
-- [ ] `listen`
+- [ ] open-door
+- [ ] get-cards
+- [ ] get-card
+- [ ] get-cardbyindex
+- [ ] put-card
+- [ ] delete-card
+- [ ] delete-all-cards
+- [ ] get-event
+- [ ] get-event-index
+- [ ] set-event-index
+- [ ] record-special-events
+- [ ] get-timeprofile
+- [ ] set-timeprofile
+- [ ] delete-all-time-profiles
+- [ ] add-task
+- [ ] refresh-tasklist
+- [ ] clear-tasklist
+- [ ] listen
 
 ## Erlang
 
