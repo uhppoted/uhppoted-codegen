@@ -40,12 +40,12 @@ export function setTime (controller, datetime) {
   }
 }
 
-// export function getStatus(controller) {
-//  controller = document.querySelector(`input#${controller}`).value
-//
-//  return uhppote.GetStatus(controller)
-// }
-//
+export function getStatus(controller) {
+ controller = document.querySelector(`input#${controller}`).value
+
+ return uhppote.GetStatus(controller)
+}
+
 // export function getListener(controller) {
 //  controller = document.querySelector(`input#${controller}`).value
 //

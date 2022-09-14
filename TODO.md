@@ -14,7 +14,6 @@
 - (?) asyncio
 
 ## HTTP
-- [x] Error handling in fetch(...)
 - [ ] `listen`
 
 ## Erlang
