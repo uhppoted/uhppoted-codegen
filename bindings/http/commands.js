@@ -56,28 +56,28 @@ export function setListener(controller, listener) {
  return uhppote.SetListener(controller, address, port)
 }
 
+export function getDoorControl(controller, door) {
+ controller = document.querySelector(`input#${controller}`).value
+ door = document.querySelector(`input#${door}`).value
+
+ return uhppote.GetDoorControl(controller,door)
+}
+
+export function setDoorControl(controller, door, mode, delay) {
+ controller = document.querySelector(`input#${controller}`).value
+ door = document.querySelector(`input#${door}`).value
+ mode = document.querySelector(`input#${mode}`).value
+ delay = document.querySelector(`input#${delay}`).value
+
+ return uhppote.SetDoorControl(controller, door, mode, delay)
+}
+
 export function getStatus(controller) {
  controller = document.querySelector(`input#${controller}`).value
 
  return uhppote.GetStatus(controller)
 }
 
-// export function getDoorControl(controller, door) {
-//  controller = document.querySelector(`input#${controller}`).value
-//  door = document.querySelector(`input#${door}`).value
-//
-//  return uhppote.GetDoorControl(controller,door)
-// }
-//
-// export function setDoorControl(controller, door, mode, delay) {
-//  controller = document.querySelector(`input#${controller}`).value
-//  door = document.querySelector(`input#${door}`).value
-//  mode = document.querySelector(`input#${mode}`).value
-//  delay = document.querySelector(`input#${delay}`).value
-//
-//  return uhppote.SetDoorControl(controller, door, mode, delay)
-// }
-//
 // export function openDoor(controller, door) {
 //  controller = document.querySelector(`input#${controller}`).value
 //  door = document.querySelector(`input#${door}`).value
