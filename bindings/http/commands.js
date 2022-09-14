@@ -40,28 +40,28 @@ export function setTime (controller, datetime) {
   }
 }
 
+export function getListener(controller) {
+ controller = document.querySelector(`input#${controller}`).value
+
+ return uhppote.GetListener(controller)
+}
+
+export function setListener(controller, listener) {
+ controller = document.querySelector(`input#${controller}`).value
+ listener = document.querySelector(`input#${listener}`).value
+
+ const address = listener.match(/^(.*?):([0-9]+)$/)[1]
+ const port = listener.match(/^(.*?):([0-9]+)$/)[2]
+
+ return uhppote.SetListener(controller, address, port)
+}
+
 export function getStatus(controller) {
  controller = document.querySelector(`input#${controller}`).value
 
  return uhppote.GetStatus(controller)
 }
 
-// export function getListener(controller) {
-//  controller = document.querySelector(`input#${controller}`).value
-//
-//  return uhppote.GetListener(controller)
-// }
-//
-// export function setListener(controller, addr) {
-//  controller = document.querySelector(`input#${controller}`).value
-//  addr = document.querySelector(`input#${addr}`).value
-//
-//  const address = addr.match(/^(.*?):([0-9])+$/)[1]
-//  const port = addr.match(/^(.*?):([0-9])+$/)[2]
-//
-//  return uhppote.SetListener(controller, address, port)
-// }
-//
 // export function getDoorControl(controller, door) {
 //  controller = document.querySelector(`input#${controller}`).value
 //  door = document.querySelector(`input#${door}`).value
