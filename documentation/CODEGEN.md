@@ -1,4 +1,4 @@
-# Guide to using uhppoted-codegen
+# Guide to using _uhppoted-codegen_
 
 At its core, _uhppoted-codegen_ is just a templating engine that translates templatized documents into language specific
 code - nothing special and there are dozens of similar implementations out there. However, it does ship with a set of 
@@ -17,31 +17,33 @@ specific UHPPOTE binding.
 
 ## Outline
 
-tl;dr: to generate a language specific binding:
+_tl;dr_: to generate a language specific binding:
 
 1. Create a set of six components
-   - API
-   - commands
-   - UHPPOTE
-   - encoder
-   - decoder
-   - UDP
+   - [_API_](#api)
+   - [_commands_](#commands)
+   - [_UHPPOTE_](#uhppote)
+   - [_encoder_](#encoder)
+   - [_decoder_](#decoder)
+   - [_UDP_](#udp)
 
 2. Hand code the _API_, _commands_ and _UDP_ implementations, borrowing heavily from one of the example bindings.
 
 3. Generate the _UHPPOTE_, _encoder_ and _decoder_ implementation from the models.json as described below (or again just
 borrowing heavily from the examples).
 
-## Preliminary Notes
+## Details
 
-### Go template language
+### Preliminary Notes
+
+#### Go template language
 
 The Go template language reference is [here](https://pkg.go.dev/text/template). 
 
 Be warned, it's fairly dense and bits of it are arcane enough that you will probably need to consult one of the many,
 many, many blog posts, articles and Stackoverflow questions out there. 
 
-### Utility functions
+#### Utility functions
 
 - `CamelCase`
 - `camelCase`
@@ -55,7 +57,7 @@ many, many blog posts, articles and Stackoverflow questions out there.
 - `dump`
 - `lookup`
 
-## Models
+### Models
 
 The [models](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/.models) shipped with the example bindings
 include:
@@ -68,17 +70,17 @@ as well as the models for language specific support:
 - [Rust](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
 - [Python](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/python.json)
 
-### _models.json_
+#### _models.json_
 
-### _test-data.json_
+#### _test-data.json_
 
-### _go.json_
+#### _go.json_
 
-### _rust.json_
+#### _rust.json_
 
-### _python.json_
+#### _python.json_
 
-## Interface structure
+### Interface structure
 
 The suggested structure for a language binding comprises the following components:
 
@@ -92,7 +94,7 @@ The suggested structure for a language binding comprises the following component
 | UDP driver          | _udp.go_      | _udp.rs_      | _udp.py_      | _udp.js_      |
 
 
-### API
+#### API
 
 The API component provides the externally visible programming interface for the rest of the application or library. In the
 Go, Rust and Python examples the API implements a CLI application, while the Javascript example implements an API for [_uhppoted-tunnel::http_](https://github.com/uhppoted/uhppoted-tunnel/tree/master/examples/html).
@@ -107,7 +109,7 @@ Functionally, the API component is responsible for:
 In all the examples, the API component is language and application specific and is hand-coded, with the common functionality
 delegated to the _commands_ component.
 
-### Commands
+#### Commands
 
 The _commands_ component is functionally responsible for dispatching an API request to the UHPPOTE driver and returning the
 result or error. 
@@ -146,7 +148,7 @@ the specific details of translating the API function to a UHPPOTE function call.
 
 As with the API component, the _commands_ component is typically language and application specific and is probably easiest to code by hand.
 
-### UHPPOTE
+#### UHPPOTE
 
 Finally we get to code that can actually be generated ... the _UHPPOTE_ component is functionally responsible for:
 
@@ -196,19 +198,19 @@ func {{CamelCase .name}}({{template "args" .args}}) (*{{CamelCase .response.name
 }
 ```
 
-### Request encoder
+#### Request encoder
 
-### Response decoder
+#### Response decoder
 
-### UDP driver
+#### UDP driver
 
 
-## Implementation
+### Implementation
 
-### UHPPOTE driver
+#### UHPPOTE driver
 
-### Request encoder
+#### Request encoder
 
-### Response decoder
+#### Response decoder
 
-### UDP driver
+#### UDP driver
