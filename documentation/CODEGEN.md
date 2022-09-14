@@ -6,10 +6,10 @@ code - nothing special and there are dozens of similar implementations out there
 a set of [example templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings) for generating a UHPPOTE
 controller interface in:
 
-- Go
-- Rust
-- Python
-- Javascript
+- [Go](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go)
+- [Rust](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
+- [Python](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python)
+- [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
 
 The models are provided as JSON files so it's entirely possible to use an alternative templating engine. However, assuming
 you've decided on using _uhppoted-codegen_, the remainder of this document outlines the process of creating a language
@@ -27,9 +27,9 @@ _tl;dr_: to generate a language specific binding:
    - [_decoder_](#decoder)
    - [_UDP_](#udp)
 
-2. Hand code the _API_, _commands_ and _UDP_ implementations, borrowing heavily from one of the example bindings.
+2. Hand code the [_API_](#api), [_commands_](#commands) and [_UDP_](#udp) implementations, borrowing heavily from one of the example bindings.
 
-3. Generate the _UHPPOTE_, _encoder_ and _decoder_ implementation from the models.json as described below (or again just
+3. Generate the [_UHPPOTE_](#uhppote), [_encoder_](#encoder) and [_decoder_](#decoder) implementation from the models.json as described below (or again just
 borrowing heavily from the examples).
 
 ## Details
@@ -38,10 +38,9 @@ borrowing heavily from the examples).
 
 #### Go template language
 
-The Go template language reference is [here](https://pkg.go.dev/text/template). 
-
-Be warned, it's fairly dense and bits of it are arcane enough that you will probably need to consult one of the many,
-many, many blog posts, articles and Stackoverflow questions out there. 
+The Go template language reference is [here](https://pkg.go.dev/text/template). Be warned, it's fairly dense and bits of
+it are arcane enough that you will probably need to consult one of the many, many, many blog posts, articles and Stack
+Overflow questions out there. 
 
 #### Utility functions
 
@@ -65,7 +64,7 @@ include:
 - [models.json](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
 - [test-data.json](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
 
-as well as the models for language specific support:
+as well as the language specific support for:
 - [Go](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/go.json)
 - [Rust](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
 - [Python](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/python.json)
