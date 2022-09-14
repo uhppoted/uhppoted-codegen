@@ -1,9 +1,9 @@
-# Basic Guide to Using uhppoted-codegen
+# Guide to using uhppoted-codegen
 
-At it's core, _uhppoted-codegen_ is just a templating engine that translates templatized documents into language specific
+At its core, _uhppoted-codegen_ is just a templating engine that translates templatized documents into language specific
 code - nothing special and there are dozens of similar implementations out there. However, it does ship with a set of 
 [models](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/.models) for the UHPPOTE Wiegand controller and
-a set of [example templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings for generating a UHPPOTE
+a set of [example templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings) for generating a UHPPOTE
 controller interface in:
 
 - Go
@@ -11,28 +11,49 @@ controller interface in:
 - Python
 - Javascript
 
-The models are provided as JSON files so it's entirely possible to use an alternative templating engine. 
+The models are provided as JSON files so it's entirely possible to use an alternative templating engine. However, assuming
+you've decided on using _uhppoted-codegen_, the remainder of this document outlines the process of creating a language
+specific UHPPOTE binding.
 
-Assuming you've decided on using _uhppoted-codegen_, the remainder of this document outlines the process of
-creating a language specific UHPPOTE binding.
+## Outline
+
+tl;dr: to generate a language specific binding:
+
+1. Create a set of six components
+   - API
+   - commands
+   - UHPPOTE
+   - encoder
+   - decoder
+   - UDP
+
+2. Hand code the _API_, _commands_ and _UDP_ implementations, borrowing heavily from one of the example bindings.
+
+3. Generate the _UHPPOTE_, _encoder_ and _decoder_ implementation from the models.json as described below (or again just
+borrowing heavily from the examples).
 
 ## Preliminary Notes
 
 ### Go template language
 
-### Template functions
+The Go template language reference is [here](https://pkg.go.dev/text/template). 
 
-- CamelCase
-- camelCase
-- SnakeCase
-- snakeCase
-- kebabCase
-- lowercase
-- uppercase
-- trim
-- byte2hex
-- dump
-- lookup
+Be warned, it's fairly dense and bits of it are arcane enough that you will probably need to consult one of the many,
+many, many blog posts, articles and Stackoverflow questions out there. 
+
+### Utility functions
+
+- `CamelCase`
+- `camelCase`
+- `SnakeCase`
+- `snakeCase`
+- `kebabCase`
+- `lowercase`
+- `uppercase`
+- `trim`
+- `byte2hex`
+- `dump`
+- `lookup`
 
 ## Models
 
@@ -79,17 +100,17 @@ Go, Rust and Python examples the API implements a CLI application, while the Jav
 Functionally, the API component is responsible for:
 
 - getting the parameters for each command
-- submitting the command + parameters to the command executor
+- submitting the command and parameters to the command executor
 - processing the response (e.g. displaying the result)
 - error handling
 
 In all the examples, the API component is language and application specific and is hand-coded, with the common functionality
-delegated to the command component.
+delegated to the _commands_ component.
 
 ### Commands
 
-The _commands_ component functionally responsible for dispatching an API request to the UHPPOTE driver and returning the
-result (or error). 
+The _commands_ component is functionally responsible for dispatching an API request to the UHPPOTE driver and returning the
+result or error. 
 
 In all the examples, the _commands_ component is implemented as a map of commands to the associated function that implements
 the specific details of translating the API function to a UHPPOTE function call. The supported functions include:
@@ -127,9 +148,7 @@ As with the API component, the _commands_ component is typically language and ap
 
 ### UHPPOTE
 
-Finally we get to code that can actually be generated ...
-
-The _UHPPOTE_ component is functionally responsible for:
+Finally we get to code that can actually be generated ... the _UHPPOTE_ component is functionally responsible for:
 
 - encoding the command values into a UHPPOTE command message
 - dispatching the command to the controller
