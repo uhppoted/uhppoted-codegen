@@ -1,7 +1,7 @@
 # TODO
 
 - [ ] Code generation HOWTO
-      - (?) Quickstart
+      - [ ] Quickstart
 
 ## Go
 
