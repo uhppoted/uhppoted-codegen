@@ -4,6 +4,7 @@ CMD      = ./bin/uhppoted-codegen
 COMMAND ?= listen
 
 MODELS = bindings/.models
+QUICKSTART = bindings/quickstart
 GO     = bindings/go
 RUST   = bindings/rust
 PYTHON = bindings/python
@@ -92,6 +93,9 @@ help: build
 
 export: build
 	$(CMD) export --models runtime/models.json --tests runtime/test-data.json
+
+quickstart: build
+	$(CMD) --models $(MODELS) --templates $(QUICKSTART) --out generated/quickstart --clean
 
 go: build regen
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean

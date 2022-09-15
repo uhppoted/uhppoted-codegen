@@ -1,0 +1,21 @@
+{
+    "x": {
+        "types": {
+            "uint8": "uint8",
+            "uint16": "uint16",
+            "uint32": "uint32",
+            "bool": "bool",
+            "IPv4": "address",
+            "MAC": "string",
+            "version": "string",
+            "date": "date",
+            "shortdate": "date",
+            "time": "time",
+            "datetime": "dateTime",
+            "HHmm": "time",
+
+            "optional date": "*date",
+            "optional datetime": "*dateTime"
+        }
+    }
+}

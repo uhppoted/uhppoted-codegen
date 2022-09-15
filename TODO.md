@@ -15,13 +15,13 @@
 - (?) asyncio
 
 ## HTTP
-- [ ] open-door
-- [ ] get-cards
-- [ ] get-card
-- [ ] get-cardbyindex
-- [ ] put-card
-- [ ] delete-card
-- [ ] delete-all-cards
+- [x] open-door
+- [x] get-cards
+- [x] get-card
+- [x] get-cardbyindex
+- [x] put-card
+- [x] delete-card
+- [x] delete-all-cards
 - [ ] get-event
 - [ ] get-event-index
 - [ ] set-event-index
