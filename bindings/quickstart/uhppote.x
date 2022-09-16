@@ -25,6 +25,9 @@ function listen(events function, errors function, interrupt signal) error {
 func {{snakeCase .name}}({{template "args" .args}}) {
     request  = encoder::{{snakeCase .request.name}}({{template "params" .args}})
     reply    = udp::send(request)
-
+    {{if .response}}
     return decoder::{{snakeCase .response.name}}(reply)
+    {{- else}}
+    return None
+    {{- end}}
 }{{end}}

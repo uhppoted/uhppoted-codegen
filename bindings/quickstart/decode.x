@@ -2,20 +2,25 @@
 {{- template "response" . -}}
 {{end}}
 
-{{with .model.event}}
-type {{snakeCase .name}} struct { {{range .fields}}
-    {{snakeCase .name}} {{template "type" .type}} {{end}}
-}
+{{- with .model.event}}
+{{- template "response" . -}}
 {{end}}
 
-{{range .model.responses}}
+{{- range .model.responses}}
 {{- template "decode" . -}}
 {{end}}
 
-{{with .model.event}}{{template "decode" .}}
+{{- with .model.event}}
+{{- template "decode" .}}
 {{end}}
 
-{{define "decode"}}
+{{define "response"}}
+type {{snakeCase .name}} { {{range .fields}}
+    {{snakeCase .name | printf "%-20v"}} {{template "type" .type}}{{end}}
+}
+{{end}}
+
+{{- define "decode" -}}
 func {{snakeCase .name}}(packet []byte) {
     if len(packet) != 64 {
         return error('invalid reply packet length')
@@ -26,13 +31,11 @@ func {{snakeCase .name}}(packet []byte) {
     }
 
     return {{snakeCase .name}}{ {{range .fields}}
-        v.{{snakeCase .name}} = unpack{{CamelCase .type}}(packet, {{.offset}}),
-    }
-    {{end}}
-
+        {{snakeCase .name | printf "%v:" | printf "%-21v" }} unpack{{CamelCase .type}}(packet, {{.offset}}),
+    {{- end}}
     }
 }
-{{end}}
+{{- end -}}
 
 func unpackUint8(packet, offset) {
     return packet[offset]
@@ -110,10 +113,4 @@ func unpackHHmm(packet, offset) {
 func bcd2string(bytes) {
     return hex::encode(bytes)
 }
-
-{{define "response"}}
-type {{snakeCase .name}} struct { {{range .fields}}
-    {{snakeCase .name}} {{template "type" .type}}{{end}}
-}
-{{end}}
 

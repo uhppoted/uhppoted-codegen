@@ -1,7 +1,7 @@
 # TODO
 
 - [ ] Code generation HOWTO
-      - [ ] Quickstart
+      - [x] Quickstart
 
 ## Go
 
@@ -22,11 +22,11 @@
 - [x] put-card
 - [x] delete-card
 - [x] delete-all-cards
-- [ ] get-event
-- [ ] get-event-index
-- [ ] set-event-index
-- [ ] record-special-events
-- [ ] get-timeprofile
+- [x] get-event
+- [x] get-event-index
+- [x] set-event-index
+- [x] record-special-events
+- [x] get-timeprofile
 - [ ] set-timeprofile
 - [ ] delete-all-time-profiles
 - [ ] add-task

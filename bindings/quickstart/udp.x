@@ -37,7 +37,7 @@ function send(request) {
 
     ## set-ip doesn't return a reply
     if request[1] ==  0x96 {
-        return nil, nil
+        return None, None
     }
 
     return read(socket)

@@ -1,4 +1,4 @@
-const commands = {
+commands = {
     'get_all-controllers':      get_all_controllers,
     'get_controller':           get_controller,
     'set_ip':                   set_ip,
@@ -31,81 +31,76 @@ const commands = {
 
 function execute(cmd) {
     fn = commands[cmd]
+    response = fn()
 
-    try {
-        response = fn()
-
-        if response != null {
-            println('no response')
-        } else {
-            println(response)
-        }
-    } catch(error) {
-        println(error)
+    if response {
+        println(response)
+    } else {
+        println('no response')
     }
 }
 
-func get_all_controllers()  {
+function get_all_controllers()  {
     return uhppote::get_all_controllers()
 }
 
-func get_controller()  {
-    controller = args('controller')
+function get_controller()  {
+    controller = arg('controller')
 
     return uhppote::get_controller(controller)
 }
 
-func set_ip() {
-    controller = args('controller')
-    address    = args('address')
-    netmask    = args('netmask')
-    gateway    = args('gateway')
+function set_ip() {
+    controller = arg('controller')
+    address    = arg('address')
+    netmask    = arg('netmask')
+    gateway    = arg('gateway')
 
     return uhppote::set_ip(controller, address, netmask, gateway)
 }
 
-func get_time() {
-    controller = args('controller')
+function get_time() {
+    controller = arg('controller')
 
     return uhppote::get_time(controller)
 }
 
-func set_time() {
-    controller = args('controller')
-    datetime   = args('time')
+function set_time() {
+    controller = arg('controller')
+    datetime   = arg('time')
 
     return uhppote::set_time(controller, datetime)
 }
 
-func get_status() {
-    controller = args('controller')
+function get_status() {
+    controller = arg('controller')
 
     return uhppote::get_status(controller)
 }
 
-func get_listener() {
-    controller = args('controller')
+function get_listener() {
+    controller = arg('controller')
 
     return uhppote::get_listener(controller)
 }
 
-func set_listener() {
-    controller = args('controller')
-    address    = args('address')
-    port       = args('port')
+function set_listener() {
+    controller = arg('controller')
+    address    = arg('address')
+    port       = arg('port')
 
     return uhppote::set_listener(controller, address, port)
 }
 
-func get_door_control() {
-    controller = args('controller')
-    door       = args('door')
+function get_door_control() {
+    controller = arg('controller')
+    door       = arg('door')
 
     return uhppote::get_door_control(controller, door)
 }
 
-func set_door_control() {
-    controller = args('controller')
+function set_door_control() {
+    controller = arg('controller')
     door := door
     mode := mode
     delay := delay
@@ -113,22 +108,22 @@ func set_door_control() {
     return uhppote::set_door_control(controller, door, mode, delay)
 }
 
-func open_door() {
-    controller = args('controller')
+function open_door() {
+    controller = arg('controller')
     door := door
 
     return uhppote::open_door(controller, door)
 }
 
-func get_ards() {
-    controller = args('controller')
+function get_ards() {
+    controller = arg('controller')
 
     return uhppote::get_cards(controller)
 }
 
-func get_card() {
-    controller = args('controller')
-    card_number = args('card')
+function get_card() {
+    controller = arg('controller')
+    card_number = arg('card')
 
     card = uhppote::get_card(controller, card_number)
 
@@ -139,9 +134,9 @@ func get_card() {
     }
 }
 
-func get_card_by_index() {
-    controller = args('controller')
-    index      = args('card-index')
+function get_card_by_index() {
+    controller = arg('controller')
+    index      = arg('card-index')
 
     card = uhppote::get_card_by_index(controller, index)
 
@@ -154,32 +149,32 @@ func get_card_by_index() {
     }
 }
 
-func put_card() {
-    controller  = args('controller')
-    card_number = args('card')
-    start_date  = args('start-date')
-    end_date    = args('end-date')
-    doors       = args('permissions')
+function put_card() {
+    controller  = arg('controller')
+    card_number = arg('card')
+    start_date  = arg('start-date')
+    end_date    = arg('end-date')
+    doors       = arg('permissions')
 
     return uhppote::put_card(controller, card_number, start_date, end_date, doors.1, doors.2, doors.3, doors.4)
 }
 
-func delete_card() {
-    controller = args('controller')
-    card_number = args('card')
+function delete_card() {
+    controller = arg('controller')
+    card_number = arg('card')
 
     return uhppote::delete_card(controller, card_number)
 }
 
-func delete_all_cards() {
-    controller = args('controller')
+function delete_all_cards() {
+    controller = arg('controller')
 
     return uhppote::delete_all_cards(controller)
 }
 
-func get_event() {
-    controller = args('controller')
-    index      = args('event-index')
+function get_event() {
+    controller = arg('controller')
+    index      = arg('event-index')
 
     event = uhppote::get_event(controller, index)
 
@@ -192,29 +187,29 @@ func get_event() {
     }
 }
 
-func get_event_index() {
-    controller = args('controller')
+function get_event_index() {
+    controller = arg('controller')
 
     return uhppote::get_event_index(controller)
 }
 
-func set_event_index() {
-    controller = args('controller')
-    index      = args('event_index')
+function set_event_index() {
+    controller = arg('controller')
+    index      = arg('event_index')
 
     return uhppote::set_event_index(controller, index)
 }
 
-func record_special_events() {
-    controller = args('controller')
-    enabled    = args('record-special-events)
+function record_special_events() {
+    controller = arg('controller')
+    enabled    = arg('record-special-events)
 
     return uhppote::record_special_events(controller, enabled)
 }
 
-func get_time_profile() {
-    controller = args('controller')
-    id         = args('time-profile-id')
+function get_time_profile() {
+    controller = arg('controller')
+    id         = arg('time-profile-id')
 
     profile = uhppote::get_time_profile(controller, id)
 
@@ -225,16 +220,16 @@ func get_time_profile() {
     }
 }
 
-func set_time_profile() {
-    controller = args('controller')
-    id         = args('time-profile-id')
-    start_date = args('start-date')
-    end_date   = args('end-date')
-    weekdays   = args('weekdays')
-    segment.1  = args('segment-1')
-    segment.2  = args('segment-2')
-    segment.3  = args('segment-3')
-    linked_profile = args('linked-profile')
+function set_time_profile() {
+    controller = arg('controller')
+    id         = arg('time-profile-id')
+    start_date = arg('start-date')
+    end_date   = arg('end-date')
+    weekdays   = arg('weekdays')
+    segment.1  = arg('segment-1')
+    segment.2  = arg('segment-2')
+    segment.3  = arg('segment-3')
+    linked_profile = arg('linked-profile')
 
     return uhppote::set_time_profile(
         controller,
@@ -253,25 +248,25 @@ func set_time_profile() {
         linked_profile)
 }
 
-func delete_all_time_profiles() {
-    controller = args('controller')
+function delete_all_time_profiles() {
+    controller = arg('controller')
 
     return uhppote::delete_all_time_profiles(controller)
 }
 
-func add_task() {
-    controller = args('controller')
-    id         = args('time-profile-id')
-    start_date = args('start-date')
-    end_date   = args('end-date')
-    weekdays   = args('weekdays')
-    segment.1  = args('segment-1')
-    segment.2  = args('segment-2')
-    segment.3  = args('segment-3')
-    start_time = args('start-time')
-    door       = args('door')
-    task_type  = args('task-type')
-    more_cards = args('more-cards')
+function add_task() {
+    controller = arg('controller')
+    id         = arg('time-profile-id')
+    start_date = arg('start-date')
+    end_date   = arg('end-date')
+    weekdays   = arg('weekdays')
+    segment.1  = arg('segment-1')
+    segment.2  = arg('segment-2')
+    segment.3  = arg('segment-3')
+    start_time = arg('start-time')
+    door       = arg('door')
+    task_type  = arg('task-type')
+    more_cards = arg('more-cards')
 
     return uhppote::add_task(
         controller,
@@ -289,19 +284,19 @@ func add_task() {
         more_cards)
 }
 
-func refresh_task_list() {
-    controller = args('controller')
+function refresh_task_list() {
+    controller = arg('controller')
 
     return uhppote::refresh_task_list(controller)
 }
 
-func clear_task_list() {
-    controller = args('controller')
+function clear_task_list() {
+    controller = arg('controller')
 
     return uhppote::clear_task_list(controller)
 }
 
-func listen() {
+function listen() {
     events = function(event) {
         println(event)
     }

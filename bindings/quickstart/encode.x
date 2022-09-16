@@ -2,7 +2,7 @@
 {{- template "request" . -}}
 {{end}}
 
-{{define "request"}}
+{{- define "request"}}
 function {{snakeCase .name}}({{template "args" .fields}}) {
     packet = byte[64]
 
@@ -11,10 +11,11 @@ function {{snakeCase .name}}({{template "args" .fields}}) {
     {{range .fields -}}
     {{if ne .type "magic"}}
     pack{{CamelCase .type}}({{camelCase .name}}, packet, {{.offset}})
-    {{else}}
+    {{- else}}
     packUint32(0x55aaaa55, packet, {{.offset}})
-    {{end}}{{end}}
-    return packet, nil
+    {{- end}}{{end}}
+
+    return packet, None
 }
 {{end}}
 

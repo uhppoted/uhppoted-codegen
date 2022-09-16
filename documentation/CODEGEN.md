@@ -15,22 +15,33 @@ The models are provided as JSON files so it's entirely possible to use an altern
 you've decided on using _uhppoted-codegen_, the remainder of this document outlines the process of creating a language
 specific UHPPOTE binding.
 
-## Outline
+## Quickstart
 
-_tl;dr_: to generate a language specific binding:
+The distribution includes a _quickstart_ example which generates a (very) rough approximation to a real binding. To use
+the _quickstart_:
 
-1. Create a set of six components
-   - [_API_](#api)
-   - [_commands_](#commands)
-   - [_UHPPOTE_](#uhppote)
-   - [_encoder_](#encoder)
-   - [_decoder_](#decoder)
-   - [_UDP_](#udp)
+1. Clone the [quickstart]() folder to a language specific folder under the bindings folder:
+```
+cp -r ./bindings/quickstart ./bindings/intercal
+```
 
-2. Hand code the [_API_](#api), [_commands_](#commands) and [_UDP_](#udp) implementations, borrowing heavily from one of the example bindings.
+2. Create the language specific extensions in the _bindings/.models_ folder:
+```
+cp ./bindings/.models/quickstart.json ./bindings/.models/intercal.json
+```
 
-3. Generate the [_UHPPOTE_](#uhppote), [_encoder_](#encoder) and [_decoder_](#decoder) implementation from the models.json as described below (or again just
-borrowing heavily from the examples).
+3. Run _uhppoted-codegen_ against the new binding:
+```
+uhppoted-codegen --models ./bindings/.models --templates ./bindings/intercal --out generated/intercal --clean
+```
+
+4. Adjust the code in the source templates to match the target language and rerun _uhppoted-codegen_ against the
+updated templates until the generated code compiles and runs.
+```
+uhppoted-codegen --models ./bindings/.models --templates ./bindings/intercal --out generated/intercal --clean
+intercal -c generated/intercal/*
+./generated/intercal/cli get-all-controllers
+```
 
 ## Details
 
