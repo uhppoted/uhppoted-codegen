@@ -599,7 +599,7 @@ var RecordSpecialEventsResponse = Message{
 			Offset: 4,
 		},
 		Field{
-			Name:   "enabled",
+			Name:   "updated",
 			Type:   "bool",
 			Offset: 8,
 		},

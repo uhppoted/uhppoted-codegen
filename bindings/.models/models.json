@@ -1184,7 +1184,7 @@
               "offset": 4
             },
             {
-              "name": "enabled",
+              "name": "updated",
               "type": "bool",
               "offset": 8
             }
@@ -2929,7 +2929,7 @@
             "offset": 4
           },
           {
-            "name": "enabled",
+            "name": "updated",
             "type": "bool",
             "offset": 8
           }
