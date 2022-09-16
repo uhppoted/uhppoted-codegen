@@ -17,35 +17,65 @@ specific UHPPOTE binding.
 
 ## Quickstart
 
-The distribution includes a _quickstart_ example which generates a (very) rough approximation to a real binding. To use
-the _quickstart_:
+The distribution includes a _quickstart_ example which generates a (very) rough approximation to a real binding. It should
+(hopefully) be reasonably obvious how everything fits together but for the curious there is more detail below and the Go,
+Rust and Python bindings may also provide some insights.
 
-1. Clone the [quickstart]() folder to a language specific folder under the bindings folder:
+To use the _quickstart_:
+
+1. Clone the [quickstart]() folder to a language specific folder (e.g. intercal) under the bindings folder:
 ```
 cp -r ./bindings/quickstart ./bindings/intercal
+```
+
+2. Rename the source files:
+```
+mv ./bindings/intercal/main.x                  ./bindings/intercal/main.i
+mv ./bindings/intercal/commands.x              ./bindings/intercal/commands.i
+mv ./bindings/intercal/uhppote.x               ./bindings/intercal/uhppote.i
+mv ./bindings/intercal/encode.x                ./bindings/intercal/encode.i
+mv ./bindings/intercal/decode.x                ./bindings/intercal/decode.i
+mv ./bindings/intercal/udp.x                   ./bindings/intercal/udp.i
+mv ./bindings/intercal/.templates/templates.x  ./bindings/intercal/.templates/templates.i
+
 ```
 
 2. Create the language specific extensions in the _bindings/.models_ folder:
 ```
 cp ./bindings/.models/quickstart.json ./bindings/.models/intercal.json
+
+vim ./bindings/.models/intercal.json
+...
+{
+    "intercal": {
+        "types": {
+            "uint8": "STRING",
+            "uint16": "STRING",
+...
 ```
 
-3. Run _uhppoted-codegen_ against the new binding:
+3. Edit the language specific templates to reference the language specific model extensions:
+```
+vim ./bindings/intercal/.templates/templates.i
+...
+{{define "type"}}{{lookup "intercal.types" . "???"}}{{end}}
+...
+```
+
+4. Run _uhppoted-codegen_ against the new binding:
 ```
 uhppoted-codegen --models ./bindings/.models --templates ./bindings/intercal --out generated/intercal --clean
 ```
 
-4. Adjust the code in the source templates to match the target language and rerun _uhppoted-codegen_ against the
+5. Adjust the code in the source templates to match the target language and rerun _uhppoted-codegen_ against the
 updated templates until the generated code compiles and runs.
 ```
 uhppoted-codegen --models ./bindings/.models --templates ./bindings/intercal --out generated/intercal --clean
-intercal -c generated/intercal/*
-./generated/intercal/cli get-all-controllers
+intercal compile ./generated/intercal/*.i
+interval run     ./generated/intercal/main.i get-all-controllers
 ```
 
 ## Details
-
-### Preliminary Notes
 
 #### Go template language
 
@@ -75,7 +105,7 @@ include:
 - [models.json](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
 - [test-data.json](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
 
-as well as the language specific support for:
+as well as language specific support for:
 - [Go](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/go.json)
 - [Rust](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
 - [Python](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/python.json)
@@ -107,7 +137,8 @@ The suggested structure for a language binding comprises the following component
 #### API
 
 The API component provides the externally visible programming interface for the rest of the application or library. In the
-Go, Rust and Python examples the API implements a CLI application, while the Javascript example implements an API for [_uhppoted-tunnel::http_](https://github.com/uhppoted/uhppoted-tunnel/tree/master/examples/html).
+Go, Rust and Python examples the API implements a CLI application, while the Javascript example implements an API for
+[_uhppoted-tunnel::http_](https://github.com/uhppoted/uhppoted-tunnel/tree/master/examples/html).
 
 Functionally, the API component is responsible for:
 
@@ -177,7 +208,6 @@ looks something like:
 ```
 function  <name> (<list of arguments>) {
     request = encode<name>(<list of argmuments>)
-    
     reply,error = UDP.send(request)
     
     if error {
@@ -214,8 +244,7 @@ func {{CamelCase .name}}({{template "args" .args}}) (*{{CamelCase .response.name
 
 #### UDP driver
 
-
-### Implementation
+### Implementation Notes
 
 #### UHPPOTE driver
 
