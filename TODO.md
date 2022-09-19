@@ -15,6 +15,14 @@
 - (?) asyncio
 
 ## HTTP
+- [x] Fix put-card start/end dates
+- [ ] Fix timezone in response from get-time, get-card and get-time-profile
+- [ ] Fix invalid time profile handling in get-time-profile response
+- [ ] Fix empty segment start/end in get-time-profile response
+```
+"segment1Start": ":}",
+"segment1End": ":}",
+```
 - [x] open-door
 - [x] get-cards
 - [x] get-card
@@ -27,8 +35,8 @@
 - [x] set-event-index
 - [x] record-special-events
 - [x] get-timeprofile
-- [ ] set-timeprofile
-- [ ] delete-all-time-profiles
+- [x] set-timeprofile
+- [x] delete-all-time-profiles
 - [ ] add-task
 - [ ] refresh-tasklist
 - [ ] clear-tasklist
@@ -45,6 +53,8 @@
 ## Latex
 
 ## ASN.1
+
+## [Janet](https://janet-lang.org)
 
 ## Notes
 
