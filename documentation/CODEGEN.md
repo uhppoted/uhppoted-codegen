@@ -110,7 +110,86 @@ as well as language specific support for:
 - [Rust](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
 - [Python](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/python.json)
 
-#### _models.json_
+#### [_models.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
+
+_models.json_ provides a list of supported UHPPOTED functions, each function comprising:
+- the function name
+- the arguments to the function
+- the request and request values required to encode the request
+- the response and response fields required to decode the response
+
+Technically, the arguments to the function match the values required to encode a request but are provided
+separately to simplify the code generation templates.
+
+e.g.:
+```
+{
+  "model": {
+    "functions": [
+      {
+        "name": "get controller",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "get controller request",
+          "msgtype": 148,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            }
+          ]
+        },
+        "response": {
+          "name": "get controller response",
+          "msgtype": 148,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "ip address",
+              "type": "IPv4",
+              "offset": 8
+            },
+            {
+              "name": "subnet mask",
+              "type": "IPv4",
+              "offset": 12
+            },
+            {
+              "name": "gateway",
+              "type": "IPv4",
+              "offset": 16
+            },
+            {
+              "name": "MAC address",
+              "type": "MAC",
+              "offset": 20
+            },
+            {
+              "name": "version",
+              "type": "version",
+              "offset": 26
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "offset": 28
+            }
+          ]
+        }
+      },
+...
+...
+```
 
 #### _test-data.json_
 
@@ -187,7 +266,8 @@ the specific details of translating the API function to a UHPPOTE function call.
 - `clear-tasklist`
 - `listen`
 
-As with the API component, the _commands_ component is typically language and application specific and is probably easiest to code by hand.
+As with the API component, the _commands_ component is typically language and application specific and is probably
+easiest to code by hand.
 
 #### UHPPOTE
 
