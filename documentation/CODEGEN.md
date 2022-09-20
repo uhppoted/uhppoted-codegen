@@ -174,8 +174,8 @@ e.g.:
 
 #### _test-data.json_
 
-_test-data.json_ is a set of functions with known values and the corresponding encoded request and response messages,
-intended for generating unit test cases.
+_test-data.json_ is a set of test cases intended for generating unit tests to verify a language binding. Each test case
+includes known request/response values and the corresponding encoded request and response messages, 
 
 e.g.
 ```
@@ -220,6 +220,9 @@ e.g.
       },
       ...
 ```
+
+The _Go_ language binding includes generated unit tests for encoding requests and decoding responses as an example
+of using _test-data.json_.
 
 #### _go.json_
 
@@ -326,7 +329,7 @@ function  <name> (<list of arguments>) {
 } 
 ```
 
-In the Go template language, that gets encoded as (for example):
+In the template language, that gets encoded as (for example):
 ```
 func {{CamelCase .name}}({{template "args" .args}}) (*{{CamelCase .response.name}},error) {
     request,err := {{CamelCase .request.name}}({{template "params" .args}})
