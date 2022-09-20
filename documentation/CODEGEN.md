@@ -85,17 +85,17 @@ Overflow questions out there.
 
 #### Utility functions
 
-- `CamelCase`
-- `camelCase`
-- `SnakeCase`
-- `snakeCase`
-- `kebabCase`
-- `lowercase`
-- `uppercase`
-- `trim`
-- `byte2hex`
-- `dump`
-- `lookup`
+- `CamelCase`: formats a space delimited string as camel case, starting with an upper case letter
+- `camelCase`: formats a space delimited string as camel case, starting with a lower case letter
+- `SnakeCase`: formats a space delimited string as snake case, starting with an upper case letter
+- `snakeCase`: formats a space delimited string as camel case, starting with a lower case letter
+- `kebabCase`: formats a space delimited string as kebab case, starting with a lower case letter
+- `lowercase`: converts a string to all lowercase
+- `uppercase`: converts a string to all uppercase
+- `trim`: removes leading and trailing whitespace from a string
+- `byte2hex`: converts a byte array to the equivelent hexadecimal string
+- `dump`: converts a 64 byte message to a block of hexadecimal
+- `lookup`: gets a value from the model using a 'dotted' key (e.g. go.types.uint32)
 
 ### Models
 
@@ -159,26 +159,7 @@ e.g.:
               "type": "IPv4",
               "offset": 8
             },
-            {
-              "name": "subnet mask",
-              "type": "IPv4",
-              "offset": 12
-            },
-            {
-              "name": "gateway",
-              "type": "IPv4",
-              "offset": 16
-            },
-            {
-              "name": "MAC address",
-              "type": "MAC",
-              "offset": 20
-            },
-            {
-              "name": "version",
-              "type": "version",
-              "offset": 26
-            },
+            ...
             {
               "name": "date",
               "type": "date",
@@ -192,6 +173,53 @@ e.g.:
 ```
 
 #### _test-data.json_
+
+_test-data.json_ is a set of functions with known values and the corresponding encoded request and response messages,
+intended for generating unit test cases.
+
+e.g.
+```
+{
+  "testdata": {
+    "tests": [
+      ...
+      {
+        "name": "set time",
+        "request": {
+          "name": "set time request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "datetime",
+              "type": "datetime",
+              "value": "2022-08-23 09:49:03"
+            }
+          ],
+          "message": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "set time response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "datetime",
+              "type": "datetime",
+              "value": "2022-08-23 09:49:03"
+            }
+          ],
+          "message": "FzAAAHg3KhggIggjCUkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      ...
+```
 
 #### _go.json_
 
