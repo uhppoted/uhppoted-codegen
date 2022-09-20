@@ -39,9 +39,9 @@
 - [x] get-timeprofile
 - [x] set-timeprofile
 - [x] delete-all-time-profiles
-- [ ] add-task
-- [ ] refresh-tasklist
-- [ ] clear-tasklist
+- [x] add-task
+- [x] refresh-tasklist
+- [x] clear-tasklist
 - [ ] listen
 
 ## Erlang
