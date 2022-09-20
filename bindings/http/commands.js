@@ -27,7 +27,7 @@ export function getTime (controller) {
   controller = arg(controller)
 
   return uhppote.GetTime(controller)
-}
+} 
 
 export function setTime (controller, datetime) {
   controller = arg(controller)
