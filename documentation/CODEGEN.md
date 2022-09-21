@@ -85,17 +85,17 @@ Overflow questions out there.
 
 #### Utility functions
 
-- `CamelCase`: formats a space delimited string as camel case, starting with an upper case letter
-- `camelCase`: formats a space delimited string as camel case, starting with a lower case letter
-- `SnakeCase`: formats a space delimited string as snake case, starting with an upper case letter
-- `snakeCase`: formats a space delimited string as camel case, starting with a lower case letter
-- `kebabCase`: formats a space delimited string as kebab case, starting with a lower case letter
-- `lowercase`: converts a string to all lowercase
-- `uppercase`: converts a string to all uppercase
-- `trim`: removes leading and trailing whitespace from a string
-- `byte2hex`: converts a byte array to the equivelent hexadecimal string
-- `dump`: converts a 64 byte message to a block of hexadecimal
-- `lookup`: gets a value from the model using a 'dotted' key (e.g. go.types.uint32)
+- `CamelCase` formats a space delimited string as camel case, starting with an upper case letter
+- `camelCase` formats a space delimited string as camel case, starting with a lower case letter
+- `SnakeCase` formats a space delimited string as snake case, starting with an upper case letter
+- `snakeCase` formats a space delimited string as camel case, starting with a lower case letter
+- `kebabCase` formats a space delimited string as kebab case, starting with a lower case letter
+- `lowercase` converts a string to all lowercase
+- `uppercase` converts a string to all uppercase
+- `trim` removes leading and trailing whitespace from a string
+- `byte2hex` converts a byte array to the equivelent hexadecimal string
+- `dump` converts a 64 byte message to a block of hexadecimal
+- `lookup` gets a value from the model using a 'dotted' key (e.g. go.types.uint32)
 
 ### Models
 
@@ -172,7 +172,7 @@ e.g.:
 ...
 ```
 
-#### _test-data.json_
+#### [_test-data.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
 
 _test-data.json_ is a set of test cases intended for generating unit tests to verify a language binding. Each test case
 includes known request/response values and the corresponding encoded request and response messages, 
@@ -221,14 +221,70 @@ e.g.
       ...
 ```
 
-The _Go_ language binding includes generated unit tests for encoding requests and decoding responses as an example
-of using _test-data.json_.
+For an example of using _test-data.json_ look at t=he _Go_ language binding which includes generated unit tests for encoding requests and decoding responses.
 
-#### _go.json_
+#### [_go.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/go.json)
 
-#### _rust.json_
+The _go.json_ models include any _Go_ specific information - specifically the type conversions from the _models_ types to
+valid _Go_ types:
+```
+{
+    "go": {
+        "types": {
+            "uint8": "uint8",
+            "uint16": "uint16",
+            "uint32": "uint32",
+            "bool": "bool",
+            "IPv4": "netip.Addr",
+            ...
+```
 
-#### _python.json_
+The _Go_ types are used in the _Go_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go/.templates):
+```
+{{define "type"}}{{lookup "go.types" . "???"}}{{end}}
+```
+
+#### [_rust.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
+
+The _rust.json_ models include any _Rust_ specific information - specifically the type conversions from the _models_ types to
+valid _Rust_ types:
+```
+{
+    "rust": {
+        "types": {
+            "uint8": "u8",
+            "uint16": "u16",
+            "uint32": "u32",
+            "bool": "bool",
+            "IPv4": "Ipv4Addr",
+            ...
+```
+
+The _Rust_ types are used in the _Rust_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust/.templates):
+```
+{{define "type"}}{{lookup "rust.types" . "???"}}{{end}}
+```
+
+#### [_python.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
+
+The _python.json_ models include any _Python_ specific information - specifically the type conversions from the _models_ types to
+valid _Python_ types:
+```
+    "python": {
+        "types": {
+            "uint8": "int",
+            "uint16": "int",
+            "uint32": "int",
+            "bool": "bool",
+            "IPv4": "IPv4Address",
+            "MAC": "str",
+            ...
+```
+
+The _Python_ types are used in the _Python_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python/.templates):
+```
+{{define "type"}}{{lookup "python.types" . "???"}}{{end}}
+```
 
 ### Interface structure
 
@@ -350,6 +406,47 @@ func {{CamelCase .name}}({{template "args" .args}}) (*{{CamelCase .response.name
 ```
 
 #### Request encoder
+
+The request encoder comprises:
+
+- a set of generated functions to encode requests 
+- a set of hand coded language specific routines to pack the language specific types into a byte array
+
+The automatically generated functions are generated from the _models_ requests list and encode each request
+into a 64 byte array, e.g.:
+```
+{{range .model.requests}}
+{{- template "request" . -}}
+{{end}}
+
+{{define "request"}}
+function {{.name}}({{template "args" .fields}}) []byte {
+    packet = byte[64]
+
+    packet[0] = 0x17
+    packet[1] = {{byte2hex .msgtype}}
+    {{range .fields -}}
+    pack{{CamelCase .type}}({{.name}}, packet, {{.offset}})
+    {{end}}
+    
+    return packet, nil
+}
+{{end}}
+...
+```
+
+The _request_ function template references a set of hand coded routines to encode each data type into the 
+byte array, e.g.:
+```
+function packUint8(v uint8, packet []byte, offset uint8) {
+    packet[offset] = v
+}
+
+function packUint16(v uint16, packet []byte, offset uint8) {
+    binary.LittleEndian.PutUint16(packet[offset:offset+2], v)
+}
+...
+```
 
 #### Response decoder
 
