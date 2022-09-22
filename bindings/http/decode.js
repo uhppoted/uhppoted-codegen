@@ -110,13 +110,7 @@ function unpackHHmm(packet, offset) {
   const bytes = new Uint8Array(packet.buffer.slice(offset, offset + 2))
   const datetime = bcd(bytes)
 
-  if (datetime === '0000') {
-    return ''
-  }
-
-  const time = `${datetime.substr(8, 2)}:${datetime.substr(10, 2)}}`
-
-  return `${time}`
+  return  `${datetime.substr(0, 2)}:${datetime.substr(2, 2)}}`
 }
 
 function bcd (bytes) {
