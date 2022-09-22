@@ -15,7 +15,7 @@
 - (?) asyncio
 
 ## HTTP
-- [ ] Fix timezone in response from get-time, get-card and get-time-profile
+- [x] Fix timezone in response from get-time, get-card and get-time-profile
 - [x] Fix invalid time profile handling in get-time-profile response
 - [x] Fix empty segment start/end in get-time-profile response
 
