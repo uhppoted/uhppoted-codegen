@@ -16,11 +16,14 @@
 
 ## HTTP
 - [ ] Fix timezone in response from get-time, get-card and get-time-profile
-- [ ] Fix invalid time profile handling in get-time-profile response
+- [x] Fix invalid time profile handling in get-time-profile response
 - [x] Fix empty segment start/end in get-time-profile response
 
 - [ ] Fix unstash for time profile segment start/end
+      - (?) Move to tunnel
 - [ ] Fix unstash for task dates and times
+      - (?) Move to tunnel
+
 - [ ] listen
 
 ## Erlang
