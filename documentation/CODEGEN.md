@@ -443,12 +443,100 @@ function packUint8(v uint8, packet []byte, offset uint8) {
 }
 
 function packUint16(v uint16, packet []byte, offset uint8) {
-    binary.LittleEndian.PutUint16(packet[offset:offset+2], v)
+    Uint16.LittleEndian(packet[offset:offset+2], v)
 }
 ...
 ```
 
+The example templates expect the following _pack_ functions to be supplied:
+
+- _packUint8(v, packet, offset)_
+- _packUint16(v, packet, offset)_
+- _packUint32(v, packet, offset)_
+- _packIPv4(v, packet, offset)_
+- _packDate(v, packet, offset)_
+- _packDatetime(v, packet, offset)_
+- _packHHmm(v, packet, offset)_
+- _packBool(v, packet, offset)_
+
 #### Response decoder
+
+The response decoder comprises:
+
+- a generated _container_ for each response
+- a set of generated functions to decode response
+- a set of hand coded language specific routines to unpack the byte array into language specific types
+
+The automatically generated functions are generated from the _models_ responses list and decode each response
+from a 64 byte array into whatever representation makes sense in the language/application (typically a `struct`
+or an `object`), e.g.:
+```
+{{range .model.response}}
+{{- template "responses" . -}}
+{{end}}
+
+{{range .model.response}}
+{{- template "decode" . -}}
+{{end}}
+
+{{define "response"}}
+struct {{.name}} { {{range .fields}}
+    {{.name}} {{template "type" .type}}
+}
+{{end}}
+
+{{define "decode"}}
+function {{.name}}(packet []byte) {
+    if len(packet) != 64 {
+        throw error("invalid reply packet length (%v)", len(packet))
+    }
+
+    if packet[1] != {{byte2hex .msgtype}} {
+        throw error("invalid reply function code (%02x)", packet[1])
+    }
+
+    response = {{.name}}{
+    {{range .fields}}
+      v.{{.name}} = unpack{{CamelCase .type}}(packet, {{.offset}}),
+    {{end}}
+    }
+    
+    return response
+}
+{{end}}
+...
+```
+
+The _response_ function template references a set of hand coded routines to decode each data type from the
+byte array, e.g.:
+```
+function unpackUint8(packet []byte, offset uint8) {
+    return packet[offset]
+}
+
+function unpackUint16(packet []byte, offset uint8) {
+    return Uint16.LittleEndian(packet[offset:offset+2])
+}
+
+...
+```
+
+The example templates expect the following _unpack_ functions to be supplied:
+
+- _unpackUint8(packet, offset)_
+- _unpackUint16(packet, offset)_
+- _unpackUint32(packet, offset)_
+- _unpackBool(packet, offset)_
+- _unpackIPv4(packet, offset)_
+- _unpackMAC(packet, offset)_
+- _unpackVersion(packet, offset)_
+- _unpackDate(packet, offset)_
+- _unpackShortDate(packet, offset)_
+- _unpackOptionalDate(packet, offset)_
+- _unpackDatetime(packet, offset)_
+- _unpackOptionalDatetime(packet, offset)_
+- _unpackTime(packet, offset)_
+- _unpackHHmm(packet, offset)_
 
 #### UDP driver
 

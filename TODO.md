@@ -1,7 +1,14 @@
 # TODO
 
 - [ ] Code generation HOWTO
-      - [x] Quickstart
+      - [x] decode
+            - [ ] events
+      - [ ] UDP
+      - [ ] Notes
+            - [ ] UHPPOTE driver
+            - [ ] Request encoder
+            - [ ] Response decoder
+            - [ ] UDP driver
 
 ## Go
 
