@@ -23,24 +23,7 @@
 "segment1End": ":}",
 ```
 - [ ] Fix unstash for time profile segment start/end
-
-- [x] open-door
-- [x] get-cards
-- [x] get-card
-- [x] get-cardbyindex
-- [x] put-card
-- [x] delete-card
-- [x] delete-all-cards
-- [x] get-event
-- [x] get-event-index
-- [x] set-event-index
-- [x] record-special-events
-- [x] get-timeprofile
-- [x] set-timeprofile
-- [x] delete-all-time-profiles
-- [x] add-task
-- [x] refresh-tasklist
-- [x] clear-tasklist
+- [ ] Fix unstash for task dates and times
 - [ ] listen
 
 ## Erlang
