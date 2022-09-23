@@ -464,7 +464,9 @@ The example templates expect the following _pack_ functions to be supplied:
 The response decoder comprises:
 
 - a generated _container_ for each response
-- a set of generated functions to decode response
+- a generated _container_ for an event 
+- a set of generated functions to decode each response
+- a generated function to decode an event message
 - a set of hand coded language specific routines to unpack the byte array into language specific types
 
 The automatically generated functions are generated from the _models_ responses list and decode each response
@@ -472,14 +474,28 @@ from a 64 byte array into whatever representation makes sense in the language/ap
 or an `object`), e.g.:
 ```
 {{range .model.response}}
-{{- template "responses" . -}}
+{{- template "response" . -}}
+{{end}}
+
+{{with .model.event}}
+{{- template "event" . -}}
 {{end}}
 
 {{range .model.response}}
 {{- template "decode" . -}}
 {{end}}
 
+{{with .model.event}}
+{{- template "decode" . -}}
+{{end}}
+
 {{define "response"}}
+struct {{.name}} { {{range .fields}}
+    {{.name}} {{template "type" .type}}
+}
+{{end}}
+
+{{define "event"}}
 struct {{.name}} { {{range .fields}}
     {{.name}} {{template "type" .type}}
 }
