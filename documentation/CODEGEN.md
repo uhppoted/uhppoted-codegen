@@ -556,6 +556,35 @@ The example templates expect the following _unpack_ functions to be supplied:
 
 #### UDP driver
 
+The UDP component is a hand-coded language specific implementation of the network functions required to send and receive
+the 64 byte request/response message to/from the controller. Typically the UDP component implements the following
+functions:
+
+- _broadcast_
+- _send_
+- _listen_
+
+In most implementations, UDP will bind to the `ALL` address 0.0.0.0:0 and send packets to port 60000 on the broadcast
+address (255.255.255.255:60000). The examples provide functions to set the bind, broadcast and listen addresses.
+
+##### _broadcast_
+
+_broadcast_ sends a request to all controllers (i.e. controller 0) and collects the responses. It is typically only 
+used for the _get-all-controllers- command but it is possible to use it for other commands e.g. _get-time_.
+
+In the examples _broadcast_ simply waits a hard-coded 5 seconds for all responses, but alternative implemenations
+are possible.
+
+##### _send_
+
+_sends_ sends a request directed to a single controller and waits for the response, returning a timeout error
+if no response is received within e.g. 5 seconds.
+
+##### _listen_
+
+_listen_ binds to a local address and port and receives real-time'ish events from a controller, dispatching them to
+a handler function for decoding and processing.
+
 ### Implementation Notes
 
 #### UHPPOTE driver

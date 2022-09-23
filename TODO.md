@@ -3,7 +3,7 @@
 - [ ] Code generation HOWTO
       - [x] decode
             - [x] events
-      - [ ] UDP
+      - [x] UDP
       - [ ] Notes
             - [ ] UHPPOTE driver
             - [ ] Request encoder
