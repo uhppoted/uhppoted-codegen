@@ -23,7 +23,7 @@ Rust and Python bindings may also provide some insights.
 
 To use the _quickstart_:
 
-1. Clone the [quickstart]() folder to a language specific folder (e.g. intercal) under the bindings folder:
+1. Clone the [quickstart]() folder to a language specific folder (e.g. _intercal_) under the bindings folder:
 ```
 cp -r ./bindings/quickstart ./bindings/intercal
 ```
@@ -72,7 +72,7 @@ updated templates until the generated code compiles and runs.
 ```
 uhppoted-codegen --models ./bindings/.models --templates ./bindings/intercal --out generated/intercal --clean
 intercal compile ./generated/intercal/*.i
-interval run     ./generated/intercal/main.i get-all-controllers
+intercal run     ./generated/intercal/main.i get-all-controllers
 ```
 
 ## Details
@@ -450,14 +450,14 @@ function packUint16(v uint16, packet []byte, offset uint8) {
 
 The example templates expect the following _pack_ functions to be supplied:
 
-- _packUint8(v, packet, offset)_
-- _packUint16(v, packet, offset)_
-- _packUint32(v, packet, offset)_
-- _packIPv4(v, packet, offset)_
-- _packDate(v, packet, offset)_
-- _packDatetime(v, packet, offset)_
-- _packHHmm(v, packet, offset)_
-- _packBool(v, packet, offset)_
+- `packUint8`
+- `packUint16`
+- `packUint32`
+- `packIPv4`
+- `packDate`
+- `packDatetime`
+- `packHHmm`
+- `packBool`
 
 #### Response decoder
 
@@ -496,8 +496,10 @@ struct {{.name}} { {{range .fields}}
 {{end}}
 
 {{define "event"}}
-struct {{.name}} { {{range .fields}}
+struct {{.name}} { 
+    {{range .fields}}
     {{.name}} {{template "type" .type}}
+    {{end}}
 }
 {{end}}
 
@@ -539,20 +541,20 @@ function unpackUint16(packet []byte, offset uint8) {
 
 The example templates expect the following _unpack_ functions to be supplied:
 
-- _unpackUint8(packet, offset)_
-- _unpackUint16(packet, offset)_
-- _unpackUint32(packet, offset)_
-- _unpackBool(packet, offset)_
-- _unpackIPv4(packet, offset)_
-- _unpackMAC(packet, offset)_
-- _unpackVersion(packet, offset)_
-- _unpackDate(packet, offset)_
-- _unpackShortDate(packet, offset)_
-- _unpackOptionalDate(packet, offset)_
-- _unpackDatetime(packet, offset)_
-- _unpackOptionalDatetime(packet, offset)_
-- _unpackTime(packet, offset)_
-- _unpackHHmm(packet, offset)_
+- `unpackUint8`
+- `unpackUint16`
+- `unpackUint32`
+- `unpackBool`
+- `unpackIPv4`
+- `unpackMAC`
+- `unpackVersion`
+- `unpackDate`
+- `unpackShortDate`
+- `unpackOptionalDate`
+- `unpackDatetime`
+- `unpackOptionalDatetime`
+- `unpackTime`
+- `unpackHHmm`
 
 #### UDP driver
 
