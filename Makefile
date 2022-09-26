@@ -1,7 +1,7 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= listen
+COMMAND ?= get-controller
 
 MODELS = bindings/.models
 QUICKSTART = bindings/quickstart
@@ -101,17 +101,20 @@ go: build regen
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
+go-test: go
+	cd generated/go && go test ./uhppote
+
 go-debug: go
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
-
-go-all: go
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
 
 go-usage: regen build
 	$(GOBIN)
 
-go-test: go
-	cd generated/go && go test ./uhppote
+go-all: go
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
+
+go-listen: go
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 listen
 
 rust: build regen 
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
@@ -120,11 +123,14 @@ rust: build regen
 rust-debug: rust
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
 
+rust-usage: rust
+	$(RUSTBIN)
+
 rust-all: rust
 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
 
-rust-usage: rust
-	$(RUSTBIN)
+rust-listen: rust
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen"
 
 python: build regen 
 	$(CMD) --models $(MODELS) --templates $(PYTHON) --out generated/python
@@ -134,11 +140,14 @@ python: build regen
 python-debug: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
 
+python-usage: python
+	$(PYBIN)
+
 python-all: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255 --listen 192.168.1.100:60001 all
 
-python-usage: python
-	$(PYBIN)
+python-listen: python
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 listen
 
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean

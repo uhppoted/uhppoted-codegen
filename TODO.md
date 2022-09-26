@@ -8,7 +8,7 @@
 
 ## Rust
 - (?) Unit tests
-- (?) Replace executor::block with await
+- (?) Alternatives to executor::block_on
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
 
 ## Python
@@ -16,7 +16,6 @@
 - (?) asyncio
 
 ## HTTP
-- [x] Seperate out tunnel specific functionality
 - [ ] listen
 
 ## Erlang
