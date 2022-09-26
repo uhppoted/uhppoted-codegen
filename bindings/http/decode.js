@@ -11,6 +11,11 @@ export function {{CamelCase .name}}(packet) {
     throw new Error(`invalid reply packet length (${buffer.length})`)
   }
 
+  // Ref. v6.62 firmware event
+  if (packet[0] !== 0x17 && (packet[0] !== 0x19 || packet[1] !== 0x20)) {
+    throw new Error(`invalid reply start of message byte (${buffer[10].toString(16).padStart(2,'0')})`)
+  }
+
   if (buffer[1] !== {{byte2hex .msgtype}}) {
     throw new Error(`invalid reply function code (${buffer[1].toString(16).padStart(2,'0')})`)
   }

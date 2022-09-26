@@ -26,6 +26,11 @@ func {{snakeCase .name}}(packet []byte) {
         return error('invalid reply packet length')
     }
 
+    // Ref. v6.62 firmware event
+    if packet[0] != 0x17 && (packet[0] != 0x19 || packet[1] != 0x20) {
+        return error('invalid reply start of message byte')    
+    }
+
     if packet[1] != {{byte2hex .msgtype}} {
         return error('invalid reply function code')
     }

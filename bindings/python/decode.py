@@ -21,6 +21,10 @@ def {{snakeCase .name}}(packet):
     if len(packet) != 64:
         raise ValueError(f'invalid reply packet length ({len(packet)})')
 
+    # Ref. v6.62 firmware event
+    if packet[0] != 0x17 and (packet[0] != 0x19 or packet[1] != 0x20):
+        raise ValueError(f'invalid reply start of message byte ({packet[0]:02x})')
+
     if packet[1] != {{byte2hex .msgtype}}:
         raise ValueError(f'invalid reply function code ({packet[1]:02x})')
 

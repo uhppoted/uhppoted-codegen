@@ -589,10 +589,13 @@ a handler function for decoding and processing.
 
 ### Implementation Notes
 
-#### UHPPOTE driver
-
-#### Request encoder
-
 #### Response decoder
 
+1. UHPPOTE controllers with firmware version v6.62 or earlier send events with a start-of-message code 0x019 
+   instead of the 0x17 used in other messages and subsequent firmware version. The examples all treat this
+   as a special case in the decoder.
+
 #### UDP driver
+
+1. The only request for which a controller does not return a response is `set-ip` (function code 0x96). Rather than 
+   code up a general solution, the examples all treat this as a special case in the UDP driver.

@@ -1,14 +1,10 @@
 # TODO
 
-- [ ] Code generation HOWTO
-      - [x] decode
-            - [x] events
-      - [x] UDP
-      - [ ] Notes
-            - [ ] UHPPOTE driver
-            - [ ] Request encoder
-            - [ ] Response decoder
-            - [ ] UDP driver
+- [x] Code generation HOWTO
+      - [x] Notes
+            - [x] Response decoder
+            - [x] UDP driver
+- [x] Handling for v6.62 events
 
 ## Rust
 - (?) Unit tests

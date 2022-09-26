@@ -33,6 +33,12 @@ func {{camelCase .name}}(packet []byte) (response *{{CamelCase .name}}, err erro
         return
     }
 
+    // Ref. v6.62 firmware event
+    if packet[0] != 0x17 && (packet[0] != 0x19 || packet[1] != 0x20) {
+        err = fmt.Errorf("invalid reply start of message byte (%02x)", packet[0])
+        return
+    }
+
     if packet[1] != {{byte2hex .msgtype}} {
         err = fmt.Errorf("invalid reply function code (%02x)", packet[1])
         return

@@ -58,6 +58,11 @@ pub fn {{snakeCase .name}}(packet: &Msg) -> Result<{{CamelCase .name}}> {
         return Err(format!("invalid reply packet length ({})", packet.len()))?;
     }
  
+    // Ref. v6.62 firmware event
+    if packet[0] != 0x17 && (packet[0] != 0x19 || packet[1] != 0x20) {
+        return Err(format!("invalid reply start of message byte ({:02x})", packet[0]))?;
+    }
+
     if packet[1] != {{byte2hex .msgtype}} {
         return Err(format!("invalid reply function code ({:02x})", packet[1]))?;
     }
