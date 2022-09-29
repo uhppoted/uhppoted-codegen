@@ -1,7 +1,7 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= get-controller
+COMMAND ?= get-all-controllers
 
 MODELS = bindings/.models
 QUICKSTART = bindings/quickstart

@@ -59,7 +59,12 @@ pub fn broadcast(packet: &Msg) -> Result<Vec<Msg>> {
     socket.set_broadcast(true)?;
     socket.send_to(packet, broadcast.as_str())?;
 
-    return read_all(socket);
+    let g = read_all(socket);
+
+    match futures::executor::block_on(g) {
+        Ok(replies) => return Ok(replies),
+        Err(e) => return Err(e),
+    }
 }
 
 pub fn send(packet: &Msg) -> Result<Option<Msg>> {
@@ -78,12 +83,15 @@ pub fn send(packet: &Msg) -> Result<Option<Msg>> {
         return Ok(None);
     }
 
-    let reply = read(socket)?;
+    let g = read(socket);
 
-    return Ok(Some(reply))
+    match futures::executor::block_on(g) {
+        Ok(reply) => Ok(Some(reply)),
+        Err(e) => return Err(e),
+    }
 }
 
-fn read(socket: UdpSocket) -> Result<Msg> {
+async fn read(socket: UdpSocket) -> Result<Msg> {
     let f = future::timeout(TIMEOUT, async {
         let sock = async_std::net::UdpSocket::from(socket);
         let mut buffer = [0u8; 1024];
@@ -103,7 +111,7 @@ fn read(socket: UdpSocket) -> Result<Msg> {
         return result;
     });
 
-    let g = async {
+    return async {
         match f.await {
             Ok(v) => match v {
                 Ok(reply) => return Ok(reply),
@@ -112,15 +120,10 @@ fn read(socket: UdpSocket) -> Result<Msg> {
 
             Err(e) => return Err(error::Error::from(e)),
         }
-    };
-
-    match futures::executor::block_on(g) {
-        Ok(reply) => return Ok(reply),
-        Err(e) => return Err(e),
-    }
+    }.await;
 }
 
-fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
+async fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
     let replies = RwLock::<Vec<Msg>>::new(vec![]);
 
     let f = future::timeout(Duration::from_millis(2500), async {
@@ -142,7 +145,7 @@ fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
         return result;
     });
 
-    let g = async {
+    return async {
         match f.await {
             Ok(v) => match v {
                 Ok(_) => return Ok(replies.read().unwrap().to_vec()),
@@ -151,12 +154,7 @@ fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
 
             Err(_) => return Ok(replies.read().unwrap().to_vec()),
         }
-    };
-
-    match futures::executor::block_on(g) {
-        Ok(replies) => return Ok(replies),
-        Err(e) => return Err(e),
-    }
+    }.await;
 }
 
 //TODO should probably use a stream/channel

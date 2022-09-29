@@ -1,15 +1,12 @@
 # TODO
 
-- [x] Code generation HOWTO
-      - [x] Notes
-            - [x] Response decoder
-            - [x] UDP driver
-- [x] Handling for v6.62 events
+- [ ] Release
 
 ## Rust
-- (?) Unit tests
-- (?) Alternatives to executor::block_on
+- [ ] Move executor::block_on to higher level in protocol stack
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
+
+- (?) Unit tests
 
 ## Python
 - (?) Unit tests
