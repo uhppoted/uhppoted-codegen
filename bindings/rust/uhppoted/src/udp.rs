@@ -147,7 +147,6 @@ async fn read_all(socket: UdpSocket) -> Result<Vec<Msg>> {
     }.await;
 }
 
-//TODO should probably use a stream/channel
 pub fn listen(events: impl Fn(Msg), errors: impl Fn(error::Error), interrupt: impl future::Future) -> Result<()> {
     let bind = LISTEN_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;

@@ -12,10 +12,10 @@ use udp::Msg;
 use error::Error;
 
 #[path = "encode.rs"]
-mod encode;
+pub mod encode;
 
 #[path = "decode.rs"]
-mod decode;
+pub mod decode;
 
 #[path = "udp.rs"]
 mod udp;
@@ -42,20 +42,18 @@ pub fn set_debug(enabled: bool) {
     udp::set_debug(enabled)
 }
 
-pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
+pub async fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     let request = get_controller_request(0)?;
+    let response = udp::broadcast(&request).await;
 
-    match futures::executor::block_on(udp::broadcast(&request)) {
+    match response {
         Ok(replies) => {
-            let list = replies
+            return Ok(replies
                 .iter()
                 .map(|reply| get_controller_response(&reply))
                 .filter_map(|reply| reply.ok())
-                .collect::<Vec<_>>();
-
-            return Ok(list);
-        }
-
+                .collect::<Vec<_>>());
+        },
         Err(e) => return Err(e),
     }
 }
@@ -74,16 +72,17 @@ pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl futur
 {{end -}}
 
 {{define "function"}}
-pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ 
+pub async fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ 
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
+    let response = udp::send(&request).await;
 
     {{if .response -}}
-    match futures::executor::block_on(udp::send(&request)) {
+    match response {
         Ok(reply) =>  return Ok({{snakeCase .response.name}}(&reply)?),
-        Err(e) => return Err(e),
+        Err(e) => return Err(e),    
     }
     {{- else -}}
-    match futures::executor::block_on(udp::send(&request)) {
+    match response {
         Ok(_) =>  return Ok(true),
         Err(e) => return Err(e),
     }

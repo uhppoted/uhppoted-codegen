@@ -42,11 +42,6 @@ format:
 build: format
 	go build -trimpath -o bin/ ./...
 
-debug: go rust python http
-	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-
 test: build
 	go test ./...
 
@@ -81,6 +76,11 @@ release: update-release build-all regen
 	tar --directory=generated --exclude=".DS_Store" --exclude="go/bin"               -cvzf dist/$(DIST)-go.tar.gz       go
 	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target" -cvzf dist/$(DIST)-rust.tar.gz     rust
 	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"   -cvzf dist/$(DIST)-python.tar.gz   python
+
+debug: go rust python http
+	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
+	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 version: build
 	$(CMD) version

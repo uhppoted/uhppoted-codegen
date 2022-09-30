@@ -142,7 +142,7 @@ impl Command {
 }
 
 fn get_all_controllers() {
-    match uhppote::get_all_controllers() {
+    match futures::executor::block_on(uhppote::get_all_controllers()) {
         Ok(list) => {
             for response in list {
                 println!("{:#?}", response)
@@ -155,7 +155,7 @@ fn get_all_controllers() {
 fn get_controller() {
     let controller = CONTROLLER;
 
-    match uhppote::get_controller(controller) {
+    match futures::executor::block_on(uhppote::get_controller(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -167,7 +167,7 @@ fn set_ip() {
     let netmask = "255.255.255.0".parse().unwrap();
     let gateway = "192.168.1.1".parse().unwrap();
 
-    match uhppote::set_ip(controller, address, netmask, gateway) {
+    match futures::executor::block_on(uhppote::set_ip(controller, address, netmask, gateway)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -176,7 +176,7 @@ fn set_ip() {
 fn get_time() {
     let controller = CONTROLLER;
 
-    match uhppote::get_time(controller) {
+    match futures::executor::block_on(uhppote::get_time(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -186,7 +186,7 @@ fn set_time() {
     let controller = CONTROLLER;
     let now = Local::now().naive_local();
 
-    match uhppote::set_time(controller, now) {
+    match futures::executor::block_on(uhppote::set_time(controller, now)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -195,7 +195,7 @@ fn set_time() {
 fn get_status() {
     let controller = CONTROLLER;
 
-    match uhppote::get_status(controller) {
+    match futures::executor::block_on(uhppote::get_status(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -204,7 +204,7 @@ fn get_status() {
 fn get_listener() {
     let controller = CONTROLLER;
 
-    match uhppote::get_listener(controller) {
+    match futures::executor::block_on(uhppote::get_listener(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -215,7 +215,7 @@ fn set_listener() {
     let address = "192.168.1.100".parse().unwrap();
     let port: u16 = 60001;
 
-    match uhppote::set_listener(controller, address, port) {
+    match futures::executor::block_on(uhppote::set_listener(controller, address, port)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -225,7 +225,7 @@ fn get_door_control() {
     let controller = CONTROLLER;
     let door = DOOR;
 
-    match uhppote::get_door_control(controller, door) {
+    match futures::executor::block_on(uhppote::get_door_control(controller, door)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -237,7 +237,7 @@ fn set_door_control() {
     let mode = MODE;
     let delay = DELAY;
 
-    match uhppote::set_door_control(controller, door, mode, delay) {
+    match futures::executor::block_on(uhppote::set_door_control(controller, door, mode, delay)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -247,7 +247,7 @@ fn open_door() {
     let controller = CONTROLLER;
     let door = DOOR;
 
-    match uhppote::open_door(controller, door) {
+    match futures::executor::block_on(uhppote::open_door(controller, door)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -256,7 +256,7 @@ fn open_door() {
 fn get_cards() {
     let controller = CONTROLLER;
 
-    match uhppote::get_cards(controller) {
+    match futures::executor::block_on(uhppote::get_cards(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -266,7 +266,7 @@ fn get_card() {
     let controller = CONTROLLER;
     let card = CARD;
 
-    match uhppote::get_card(controller, card) {
+    match futures::executor::block_on(uhppote::get_card(controller, card)) {
         Ok(v) => {
             if v.card_number == 0 {
                 error(uhppote::error::Error::from(format!("card {card} not found")))
@@ -282,7 +282,7 @@ fn get_card_by_index() {
     let controller = CONTROLLER;
     let index = CARD_INDEX;
 
-    match uhppote::get_card_by_index(controller, index) {
+    match futures::executor::block_on(uhppote::get_card_by_index(controller, index)) {
         Ok(v) => {
             if v.card_number == 0 {
                 error(uhppote::error::Error::from(format!("card @ index {index} not found")))
@@ -302,7 +302,7 @@ fn put_card() {
     let start = NaiveDate::from_ymd(2022, 1, 1);
     let end = NaiveDate::from_ymd(2022, 12, 31);
 
-    match uhppote::put_card(controller, card, start, end, 0, 1, 29, 0) {
+    match futures::executor::block_on(uhppote::put_card(controller, card, start, end, 0, 1, 29, 0)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -312,7 +312,7 @@ fn delete_card() {
     let controller = CONTROLLER;
     let card = CARD;
 
-    match uhppote::delete_card(controller, card) {
+    match futures::executor::block_on(uhppote::delete_card(controller, card)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -321,7 +321,7 @@ fn delete_card() {
 fn delete_all_cards() {
     let controller = CONTROLLER;
 
-    match uhppote::delete_all_cards(controller) {
+    match futures::executor::block_on(uhppote::delete_all_cards(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -331,7 +331,7 @@ fn get_event() {
     let controller = CONTROLLER;
     let index = EVENT_INDEX;
 
-    match uhppote::get_event(controller, index) {
+    match futures::executor::block_on(uhppote::get_event(controller, index)) {
         Ok(v) => {
             if v.event_type == 0xff {
                 error(uhppote::error::Error::from(format!("event @ index {index} overwritten")))
@@ -348,7 +348,7 @@ fn get_event() {
 fn get_event_index() {
     let controller = CONTROLLER;
 
-    match uhppote::get_event_index(controller) {
+    match futures::executor::block_on(uhppote::get_event_index(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -358,7 +358,7 @@ fn set_event_index() {
     let controller = CONTROLLER;
     let index = EVENT_INDEX;
 
-    match uhppote::set_event_index(controller, index) {
+    match futures::executor::block_on(uhppote::set_event_index(controller, index)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -368,7 +368,7 @@ fn record_special_events() {
     let controller = CONTROLLER;
     let enabled = true;
 
-    match uhppote::record_special_events(controller, enabled) {
+    match futures::executor::block_on(uhppote::record_special_events(controller, enabled)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -378,7 +378,7 @@ fn get_time_profile() {
     let controller = CONTROLLER;
     let profile_id = TIME_PROFILE_ID;
 
-    match uhppote::get_time_profile(controller, profile_id) {
+    match futures::executor::block_on(uhppote::get_time_profile(controller, profile_id)) {
         Ok(v) => {
             if v.profile_id == 0 {
                 error(uhppote::error::Error::from(format!("time profile {profile_id} not defined")))
@@ -410,7 +410,7 @@ fn set_time_profile() {
     let segment_3_end = NaiveTime::parse_from_str("20:15", "%H:%M").unwrap();
     let linked_profile_id: u8 = 37;
 
-    match uhppote::set_time_profile(
+    match futures::executor::block_on(uhppote::set_time_profile(
         controller,
         profile_id,
         start,
@@ -429,7 +429,7 @@ fn set_time_profile() {
         segment_3_start,
         segment_3_end,
         linked_profile_id,
-    ) {
+    )) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -438,7 +438,7 @@ fn set_time_profile() {
 fn delete_all_time_profiles() {
     let controller = CONTROLLER;
 
-    match uhppote::delete_all_time_profiles(controller) {
+    match futures::executor::block_on(uhppote::delete_all_time_profiles(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -460,10 +460,10 @@ fn add_task() {
     let task_type: u8 = 2;
     let more_cards: u8 = 0;
 
-    match uhppote::add_task(
+    match futures::executor::block_on(uhppote::add_task(
         controller, startdate, enddate, monday, tuesday, wednesday, thursday, friday, saturday,
         sunday, starttime, door, task_type, more_cards,
-    ) {
+    )) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -472,7 +472,7 @@ fn add_task() {
 fn refresh_tasklist() {
     let controller = CONTROLLER;
 
-    match uhppote::refresh_tasklist(controller) {
+    match futures::executor::block_on(uhppote::refresh_tasklist(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
@@ -481,7 +481,7 @@ fn refresh_tasklist() {
 fn clear_tasklist() {
     let controller = CONTROLLER;
 
-    match uhppote::clear_tasklist(controller) {
+    match futures::executor::block_on(uhppote::clear_tasklist(controller)) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }

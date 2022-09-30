@@ -1,6 +1,5 @@
 # TODO
 
-- [ ] build-all
 - [ ] Release
 
 ## Rust
