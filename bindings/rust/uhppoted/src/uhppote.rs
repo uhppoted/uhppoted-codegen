@@ -10,7 +10,6 @@ use encode::*;
 use udp::Msg;
 
 use error::Error;
-use error::ErrorKind::NoResponse;
 
 #[path = "encode.rs"]
 mod encode;
@@ -45,17 +44,20 @@ pub fn set_debug(enabled: bool) {
 
 pub fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     let request = get_controller_request(0)?;
-    let replies = udp::broadcast(&request)?;
 
-    let mut list: Vec<decode::GetControllerResponse> = vec![];
+    match futures::executor::block_on(udp::broadcast(&request)) {
+        Ok(replies) => {
+            let list = replies
+                .iter()
+                .map(|reply| get_controller_response(&reply))
+                .filter_map(|reply| reply.ok())
+                .collect::<Vec<_>>();
 
-    for reply in replies {
-        let response = get_controller_response(&reply)?;
+            return Ok(list);
+        }
 
-        list.push(response);
+        Err(e) => return Err(e),
     }
-
-    return Ok(list);
 }
 
 pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl future::Future) -> Result<()> {
@@ -72,18 +74,19 @@ pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl futur
 {{end -}}
 
 {{define "function"}}
-pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ {{if .response}}
+pub fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ 
     let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    let reply = udp::send(&request)?;
 
-    match reply {
-        Some(reply) => Ok({{snakeCase .response.name}}(&reply)?),
-        None => return Err(error::Error::from(NoResponse))
+    {{if .response -}}
+    match futures::executor::block_on(udp::send(&request)) {
+        Ok(reply) =>  return Ok({{snakeCase .response.name}}(&reply)?),
+        Err(e) => return Err(e),
     }
-    {{- else}}
-    let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    udp::send(&request)?;
-
-    return Ok(true); {{end}}
+    {{- else -}}
+    match futures::executor::block_on(udp::send(&request)) {
+        Ok(_) =>  return Ok(true),
+        Err(e) => return Err(e),
+    }
+    {{end}}
 }
 {{end}}

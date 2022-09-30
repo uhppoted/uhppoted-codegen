@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] build-all
 - [ ] Release
 
 ## Rust
@@ -28,6 +29,8 @@
 ## ASN.1
 
 ## [Janet](https://janet-lang.org)
+
+## Zig
 
 ## Notes
 

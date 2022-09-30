@@ -47,7 +47,7 @@ pub fn set_debug(enabled: bool) {
     }
 }
 
-pub fn broadcast(packet: &Msg) -> Result<Vec<Msg>> {
+pub async fn broadcast(packet: &Msg) -> Result<Vec<Msg>> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -59,15 +59,10 @@ pub fn broadcast(packet: &Msg) -> Result<Vec<Msg>> {
     socket.set_broadcast(true)?;
     socket.send_to(packet, broadcast.as_str())?;
 
-    let g = read_all(socket);
-
-    match futures::executor::block_on(g) {
-        Ok(replies) => return Ok(replies),
-        Err(e) => return Err(e),
-    }
+    return read_all(socket).await;
 }
 
-pub fn send(packet: &Msg) -> Result<Option<Msg>> {
+pub async fn send(packet: &Msg) -> Result<Msg> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -80,15 +75,10 @@ pub fn send(packet: &Msg) -> Result<Option<Msg>> {
     socket.send_to(packet, broadcast.as_str())?;
 
     if packet[1] == 0x96 {
-        return Ok(None);
+        return Ok([0x00; 64]);
     }
 
-    let g = read(socket);
-
-    match futures::executor::block_on(g) {
-        Ok(reply) => Ok(Some(reply)),
-        Err(e) => return Err(e),
-    }
+    return read(socket).await;
 }
 
 async fn read(socket: UdpSocket) -> Result<Msg> {

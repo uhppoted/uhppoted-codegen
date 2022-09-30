@@ -10,7 +10,7 @@ pub struct Error {
 
 #[derive(Clone, Copy, Debug)]
 pub enum ErrorKind {
-    NoResponse,
+    _NoResponse,
     Timeout,
     IO,
     Other,
@@ -94,7 +94,7 @@ impl ErrorKind {
     pub(crate) fn as_str(&self) -> &'static str {
         use ErrorKind::*;
         match *self {
-            NoResponse => "no response to request",
+            _NoResponse => "no response to request",
             Timeout => "timeout waiting for response from controller",
             IO => "I/O",
             Other => "Other",
