@@ -3,7 +3,11 @@ use chrono::NaiveDate;
 use chrono::NaiveTime;
 use async_ctrlc::CtrlC;
 
+use std::fmt::Debug;
+
 use super::uhppote;
+use uhppote::error;
+use uhppote::decode::GetControllerResponse;
 
 const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
@@ -152,13 +156,31 @@ fn get_all_controllers() {
     }
 }
 
-fn get_controller() {
-    let controller = CONTROLLER;
+// fn get_controller() {
+//     let controller = CONTROLLER;
+// 
+//     match futures::executor::block_on(uhppote::get_controller(controller)) {
+//         Ok(v) => println!("{:#?}", v),
+//         Err(e) => error(e),
+//     }
+// }
 
-    match futures::executor::block_on(uhppote::get_controller(controller)) {
+fn exec<T: Debug, F>(f: F)
+where
+    F: Fn() -> Result<T, error::Error>,
+{
+    match f() {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
     }
+}
+
+fn get_controller() {
+    let controller = CONTROLLER;
+
+    exec(|| -> Result<GetControllerResponse, error::Error> {
+        futures::executor::block_on(uhppote::get_controller(controller))
+    })
 }
 
 fn set_ip() {

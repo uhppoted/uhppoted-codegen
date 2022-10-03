@@ -77,7 +77,7 @@ Defaults to `generate` if the command is not provided.
 
 ### `generate`
 
-Generates a native UHPPOTE interface from the languages templates.. 
+Generates a native UHPPOTE interface from the languages templates.
 
 Command line:
 

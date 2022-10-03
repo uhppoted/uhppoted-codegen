@@ -4,7 +4,9 @@
 
 ## Rust
 - [ ] Move executor::block_on to higher level in protocol stack
+      - https://stackoverflow.com/questions/67414951/rust-define-function-that-invokes-async-closure
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
+      - https://medium.com/swlh/demystifying-closures-futures-and-async-await-in-rust-part-1-closures-97e531e4dc50
 
 - (?) Unit tests
 

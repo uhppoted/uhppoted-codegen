@@ -1,7 +1,7 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= get-controller
+COMMAND ?= get-all-controllers
 
 MODELS = bindings/.models
 QUICKSTART = bindings/quickstart
@@ -77,10 +77,13 @@ release: update-release build-all regen
 	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target" -cvzf dist/$(DIST)-rust.tar.gz     rust
 	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"   -cvzf dist/$(DIST)-python.tar.gz   python
 
-debug: go rust python http
-	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
+# debug: go rust python http
+# 	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
+# 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
+# 	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
+
+debug: rust
+	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-controller
 
 version: build
 	$(CMD) version
