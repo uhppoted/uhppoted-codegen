@@ -26,6 +26,10 @@ pub mod error;
 pub type Event = decode::{{ CamelCase .model.event.name }};
 pub type Result<T> = std::result::Result<T, Error>;
 
+{{range .model.responses}}
+pub type {{CamelCase .name}} = decode::{{CamelCase .name}};
+{{- end}}
+
 pub fn set_bind_addr(addr: &str) {
     udp::set_bind_addr(addr)
 }

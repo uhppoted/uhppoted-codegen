@@ -7,6 +7,9 @@
       - https://stackoverflow.com/questions/67414951/rust-define-function-that-invokes-async-closure
       - https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=d93c28509a1c67661f31ff820281d434
       - https://medium.com/swlh/demystifying-closures-futures-and-async-await-in-rust-part-1-closures-97e531e4dc50
+      - https://users.rust-lang.org/t/how-can-i-return-a-generic-type/40536/5
+      - https://blog.jcoglan.com/2019/04/22/generic-returns-in-rust/
+      - https://blog.yoshuawuyts.com/why-async-rust/
 
 - (?) Unit tests
 

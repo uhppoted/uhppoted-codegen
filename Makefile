@@ -84,6 +84,8 @@ release: update-release build-all regen
 
 debug: rust
 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-controller
+	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 set-ip
+	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-time
 
 version: build
 	$(CMD) version

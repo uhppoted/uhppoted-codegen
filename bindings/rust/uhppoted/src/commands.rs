@@ -7,7 +7,6 @@ use std::fmt::Debug;
 
 use super::uhppote;
 use uhppote::error;
-use uhppote::decode::GetControllerResponse;
 
 const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
@@ -156,15 +155,6 @@ fn get_all_controllers() {
     }
 }
 
-// fn get_controller() {
-//     let controller = CONTROLLER;
-// 
-//     match futures::executor::block_on(uhppote::get_controller(controller)) {
-//         Ok(v) => println!("{:#?}", v),
-//         Err(e) => error(e),
-//     }
-// }
-
 fn exec<T: Debug, F>(f: F)
 where
     F: Fn() -> Result<T, error::Error>,
@@ -178,7 +168,7 @@ where
 fn get_controller() {
     let controller = CONTROLLER;
 
-    exec(|| -> Result<GetControllerResponse, error::Error> {
+    exec(|| -> Result<uhppote::GetControllerResponse, error::Error> {
         futures::executor::block_on(uhppote::get_controller(controller))
     })
 }
@@ -189,19 +179,17 @@ fn set_ip() {
     let netmask = "255.255.255.0".parse().unwrap();
     let gateway = "192.168.1.1".parse().unwrap();
 
-    match futures::executor::block_on(uhppote::set_ip(controller, address, netmask, gateway)) {
-        Ok(v) => println!("{:#?}", v),
-        Err(e) => error(e),
-    }
+    exec(|| -> Result<bool, error::Error> {
+        futures::executor::block_on(uhppote::set_ip(controller, address, netmask, gateway))
+    })
 }
 
 fn get_time() {
     let controller = CONTROLLER;
 
-    match futures::executor::block_on(uhppote::get_time(controller)) {
-        Ok(v) => println!("{:#?}", v),
-        Err(e) => error(e),
-    }
+    exec(|| -> Result<uhppote::GetTimeResponse, error::Error> {
+        futures::executor::block_on(uhppote::get_time(controller))
+    })
 }
 
 fn set_time() {
