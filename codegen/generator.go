@@ -29,6 +29,7 @@ var funcs = template.FuncMap{
 	"kebabCase": kebabCase,
 	"snakeCase": snakeCase,
 	"byte2hex":  byte2hex,
+	"constant":  constant,
 	"dump":      dump,
 	"lookup": func(path, key, defval string) any {
 		return lookup(map[string]any{}, path, key, defval)
@@ -240,6 +241,12 @@ func byte2hex(v any) string {
 	return "??"
 }
 
+func constant(s string) string {
+	tokens := regexp.MustCompile("[\\- ]+").Split(uppercase(clean(s)), -1)
+
+	return strings.Join(tokens, "_")
+}
+
 func dump(v any, prefix string) string {
 	bytes, err := base64.StdEncoding.DecodeString(v.(string))
 	if err != nil {
@@ -280,4 +287,8 @@ func lookup(data map[string]any, path, key, defval string) any {
 	}
 
 	return defval
+}
+
+func clean(s string) string {
+	return strings.ToUpper(strings.TrimSpace(s))
 }
