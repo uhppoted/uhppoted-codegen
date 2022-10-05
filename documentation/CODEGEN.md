@@ -94,6 +94,8 @@ Overflow questions out there.
 - `uppercase` converts a string to all uppercase
 - `trim` removes leading and trailing whitespace from a string
 - `byte2hex` converts a byte array to the equivelent hexadecimal string
+- `constant` converts a space/hyphen delimited string to uppercase + underscores e.g. " the constant-is one-" 
+   is converted becomes "THE_CONSTANT_IS_ONE_". Leading and trailing whitespace is ignored.
 - `dump` converts a 64 byte message to a block of hexadecimal
 - `lookup` gets a value from the model using a 'dotted' key (e.g. go.types.uint32)
 
