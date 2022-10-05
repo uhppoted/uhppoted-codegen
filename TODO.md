@@ -10,6 +10,7 @@
       - https://users.rust-lang.org/t/how-can-i-return-a-generic-type/40536/5
       - https://blog.jcoglan.com/2019/04/22/generic-returns-in-rust/
       - https://blog.yoshuawuyts.com/why-async-rust/
+      - https://stackoverflow.com/questions/67686409/how-to-pass-an-async-function-as-a-parameter-in-rust-pyo3
 
 - (?) Unit tests
 
@@ -38,7 +39,10 @@
 
 ## Notes
 
-1. Python UDP + asyncio
+1. (?) UDL
+   - https://github.com/mozilla/uniffi-rs/blob/main/docs/diplomat-and-macros.md
+
+2. Python UDP + asyncio
    - https://docs.python.org/3/howto/sockets.html
    - https://realpython.com/async-io-python/
    - https://stackoverflow.com/questions/24048126/timing-out-udp-socket-in-python
