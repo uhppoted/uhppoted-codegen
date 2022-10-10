@@ -24,6 +24,8 @@ var funcs = template.FuncMap{
 	"lowercase": lowercase,
 	"uppercase": uppercase,
 	"trim":      trim,
+	"pad":       pad,
+	"hyphenate": hyphenate,
 	"CamelCase": CamelCase,
 	"camelCase": camelCase,
 	"kebabCase": kebabCase,
@@ -242,9 +244,18 @@ func byte2hex(v any) string {
 }
 
 func constant(s string) string {
-	tokens := regexp.MustCompile("[\\- ]+").Split(uppercase(clean(s)), -1)
+	tokens := regexp.MustCompile("[\\- ]+").Split(uppercase(strings.TrimSpace(s)), -1)
 
 	return strings.Join(tokens, "_")
+}
+
+func pad(width int, v any) string {
+	s := fmt.Sprintf("%v", v)
+	if width < len([]rune(s)) {
+		return s
+	}
+
+	return s + strings.Repeat(" ", width-len([]rune(s)))
 }
 
 func dump(v any, prefix string) string {
@@ -287,8 +298,4 @@ func lookup(data map[string]any, path, key, defval string) any {
 	}
 
 	return defval
-}
-
-func clean(s string) string {
-	return strings.ToUpper(strings.TrimSpace(s))
 }
