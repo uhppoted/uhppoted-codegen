@@ -27,10 +27,12 @@ clean:
 
 update:
 	go get -u github.com/uhppoted/uhppote-core@master
+	go get -u github.com/uhppoted/uhppoted-lib@master
 	go mod tidy
 
 update-release:
 	go get -u github.com/uhppoted/uhppote-core
+	go get -u github.com/uhppoted/uhppoted-lib
 	go mod tidy
 
 format: 

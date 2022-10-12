@@ -4,6 +4,12 @@
 
 Code generation tool for creating native UHPPOTE controller interfaces in languages other than _Go_.
 
+The initial release includes generated UHPPOTE bindings for:
+- Go
+- Rust
+- Python
+- HTTP
+
 ## Raison d'être
 
 Because not everybody uses _Go_ and although there is the [DLL](https://github.com/uhppoted/uhppoted-dll) for those
@@ -18,7 +24,7 @@ language binding that you can customize to your heart's content is what you real
 
 | *Version* | *Description*                                                                             |
 | --------- | ----------------------------------------------------------------------------------------- |
-|           |                                                                                           |
+| v0.8.2    | Initial release                                                                           |
 
 ## Installation
 
