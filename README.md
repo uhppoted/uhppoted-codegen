@@ -4,7 +4,7 @@
 
 Code generation tool for creating native UHPPOTE controller interfaces in languages other than _Go_.
 
-The initial release includes generated UHPPOTE [bindings](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.2) for:
+The initial [release](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.2) includes generated UHPPOTE bindings for:
 - [Go](https://github.com/uhppoted/uhppoted-codegen/releases/download/v0.8.2/uhppoted-codegen_v0.8.2-go.tar.gz)
 - [Rust](https://github.com/uhppoted/uhppoted-codegen/releases/download/v0.8.2/uhppoted-codegen_v0.8.2-rust.tar.gz)
 - [Python](https://github.com/uhppoted/uhppoted-codegen/releases/download/v0.8.2/uhppoted-codegen_v0.8.2-python.tar.gz)
