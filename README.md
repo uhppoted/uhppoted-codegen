@@ -24,6 +24,7 @@ language binding that you can customize to your heart's content is what you real
 
 | *Version* | *Description*                                                                             |
 | --------- | ----------------------------------------------------------------------------------------- |
+| v0.8.3    | Added ARM64 to release builds                                                             |
 | v0.8.2    | Initial release                                                                           |
 
 ## Installation

@@ -4,3 +4,4 @@ node_modules
 runtime
 dist
 generated
+release-notes.md
