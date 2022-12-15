@@ -81,6 +81,11 @@ release: update-release build-all regen
 	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target" -cvzf dist/$(DIST)-rust.tar.gz     rust
 	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"   -cvzf dist/$(DIST)-python.tar.gz   python
 
+publish: release
+	echo "Releasing version $(VERSION)"
+	rm -f dist/development.tar.gz
+	gh release create "$(VERSION)" ./dist/*.tar.gz --draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
+
 # debug: go rust python http
 # 	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 # 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
