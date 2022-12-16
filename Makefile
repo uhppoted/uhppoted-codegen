@@ -83,7 +83,10 @@ release: update-release build-all regen
 
 publish: release
 	echo "Releasing version $(VERSION)"
-	rm -f dist/development.tar.gz
+	rm -f dist/development-bindings.tar.gz
+	rm -f dist/development-go.tar.gz
+	rm -f dist/development-python.tar.gz
+	rm -f dist/development-rust.tar.gz
 	gh release create "$(VERSION)" ./dist/*.tar.gz --draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 # debug: go rust python http
