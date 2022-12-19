@@ -9,6 +9,7 @@ GO     = bindings/go
 RUST   = bindings/rust
 PYTHON = bindings/python
 HTTP   = bindings/http
+ZIG    = bindings/zig
 
 GOBIN   = ./generated/go/bin/uhppoted
 RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
@@ -169,4 +170,8 @@ python-listen: python
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
 	npx eslint --fix generated/http/*.js
+
+zig: build regen
+	$(CMD) --models $(MODELS) --templates $(ZIG) --out generated/zig --clean
+	cd generated/zig && zig fmt src/* && zig build run
 
