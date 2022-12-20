@@ -72,13 +72,13 @@ func main() {
 }
 
 func usage() {
-	fmt.Println()
 	fmt.Println("  Usage: go run main.go [--debug] [--bind <address>] [--broadcast <address>] [commands]")
 	fmt.Println()
 	fmt.Println("    Options:")
 	fmt.Println("    --debug                Displays sent and received UDP packets")
 	fmt.Println("    --bind <address>       IPv4 address to which to bind. Defaults to 0.0.0.0")
 	fmt.Println("    --broadcast <address>  IPv4 address to which for UDP broadcast. Defaults to 255.255.255.255:60000")
+	fmt.Println("    --listen <address>     IPv4 address on which to listen for controller events. Defaults to 0.0.0.0:60001")
 	fmt.Println()
 	fmt.Println("    Commands:")
 
@@ -86,5 +86,6 @@ func usage() {
 		fmt.Printf("      %v\n", c.name)
 	}
 
-	fmt.Println()
+	fmt.Println()	fmt.Println()
+
 }
