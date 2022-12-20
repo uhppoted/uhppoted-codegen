@@ -2,7 +2,7 @@ const std = @import("std");
 const commands = @import("commands.zig");
 
 pub fn main() !void {
-    // ... start message
+    // ... initialisation
     const w = std.io.getStdOut().writer();
     var bw = std.io.bufferedWriter(w);
     const stdout = bw.writer();
@@ -10,15 +10,18 @@ pub fn main() !void {
     try stdout.print("uhppoted-codegen: Zig sample application\n", .{});
     try bw.flush();
 
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+    const allocator = gpa.allocator();
+
     // ... command line args
     var bind = @as([*:0]const u8, "0.0.0.0:0");
     var broadcast = @as([*:0]const u8, "255.255.255.255.60000");
     var listen = @as([*:0]const u8, "0.0.0.0:60001");
     var debug = false;
 
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+    var list = std.ArrayList([]const u8).init(allocator);
+    defer list.deinit();
 
     var args = try std.process.argsWithAllocator(allocator);
     defer args.deinit();
@@ -40,7 +43,10 @@ pub fn main() !void {
             } else if (std.mem.eql(u8, arg, "--debug")) {
                 debug = true;
             } else {
-                break;
+                try list.append(arg);
+                while (args.next()) |a| {
+                    try list.append(a);
+                }
             }
         }
     }
@@ -50,12 +56,27 @@ pub fn main() !void {
     std.debug.print("LISTEN:    {s}\n", .{listen});
     std.debug.print("DEBUG:     {any}\n", .{debug});
 
-    // ... execute command
-
-    if (args.next()) |cmd| {
-        std.debug.print("CMD: {s}\n", .{cmd});
-    } else {
+    // ... execute commands
+    if (list.items.len == 0) {
         try usage();
+    } else if (list.items.len == 1 and std.mem.eql(u8, list.items[0], "all")) {
+        for (commands.commands) |v| {
+            try commands.exec(v);
+        }
+    } else {
+        for (list.items) |item| {
+            for (commands.commands) |v| {
+                if (std.mem.eql(u8, item, v.name)) {
+                    try commands.exec(v);
+                    break;
+                }
+            } else {
+                std.debug.print("\n", .{});
+                std.debug.print("   *** Invalid command: '{s}'\n", .{item});
+                std.debug.print("\n", .{});
+                break;
+            }
+        }
     }
 }
 
@@ -65,7 +86,7 @@ fn usage() !void {
     const stdout = bw.writer();
 
     try stdout.print("\n", .{});
-    try stdout.print("  Usage: zig build run [--debug] [--bind <address>] [--broadcast <address>] [--listen <address>] [command]\n", .{});
+    try stdout.print("  Usage: zig build run [--debug] [--bind <address>] [--broadcast <address>] [--listen <address>] [commands]\n", .{});
     try stdout.print("\n", .{});
     try stdout.print("    Options:\n", .{});
     try stdout.print("    --debug                Displays sent and received UDP packets\n", .{});

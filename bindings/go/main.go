@@ -53,7 +53,7 @@ func main() {
 				c.exec()
 			}
 		}
-	}else {
+	} else {
 		for _, cmd := range list {
 			ix := slices.IndexFunc[command](commands, func(c command) bool { return c.name == cmd })
 			if ix != -1 {
