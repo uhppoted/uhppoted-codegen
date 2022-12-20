@@ -86,6 +86,5 @@ func usage() {
 		fmt.Printf("      %v\n", c.name)
 	}
 
-	fmt.Println()	fmt.Println()
-
+	fmt.Println()
 }

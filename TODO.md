@@ -2,6 +2,10 @@
 
 - [ ] https://github.com/dolmen-go/goproc
 
+## zig
+- [ ] Add to top level Makefile
+- [ ] Include in github workflow
+
 ## Rust
 - [ ] Move executor::block_on to higher level in protocol stack
       - https://stackoverflow.com/questions/67414951/rust-define-function-that-invokes-async-closure
@@ -21,21 +25,16 @@
 ## HTTP
 - [ ] listen
 
-## Erlang
-
-## Elixir
-
-## Lua
-
-## Markdown
-
-## Latex
-
-## ASN.1
-
-## [Janet](https://janet-lang.org)
-
-## Zig
+## Other
+   - Erlang
+   - Elixir
+   - Lua
+   - Markdown
+   - Latex
+   - ASN.1
+   - [Janet](https://janet-lang.org)
+   - Haskell
+   - q
 
 ## Notes
 
