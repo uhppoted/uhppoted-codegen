@@ -5,6 +5,8 @@
 ## zig
 - [ ] Add to top level Makefile
 - [ ] Include in github workflow
+- [ ] Rework command lookup
+      - https://andrewkelley.me/post/string-matching-comptime-perfect-hashing-zig.html
 
 ## Rust
 - [ ] Move executor::block_on to higher level in protocol stack

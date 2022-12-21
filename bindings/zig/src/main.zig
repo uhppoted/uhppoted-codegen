@@ -59,23 +59,27 @@ pub fn main() !void {
     // ... execute commands
     if (list.items.len == 0) {
         try usage();
-    } else if (list.items.len == 1 and std.mem.eql(u8, list.items[0], "all")) {
+        return;
+    }
+
+    if (list.items.len == 1 and std.mem.eql(u8, list.items[0], "all")) {
         for (commands.commands) |v| {
             try commands.exec(v);
         }
-    } else {
-        for (list.items) |item| {
-            for (commands.commands) |v| {
-                if (std.mem.eql(u8, item, v.name)) {
-                    try commands.exec(v);
-                    break;
-                }
-            } else {
-                std.debug.print("\n", .{});
-                std.debug.print("   *** Invalid command: '{s}'\n", .{item});
-                std.debug.print("\n", .{});
+        return;
+    }
+
+    for (list.items) |item| {
+        for (commands.commands) |v| {
+            if (std.mem.eql(u8, item, v.name)) {
+                try commands.exec(v);
                 break;
             }
+        } else {
+            std.debug.print("\n", .{});
+            std.debug.print("   *** Invalid command: '{s}'\n", .{item});
+            std.debug.print("\n", .{});
+            break;
         }
     }
 }
