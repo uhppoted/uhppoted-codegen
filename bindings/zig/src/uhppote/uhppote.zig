@@ -1,5 +1,10 @@
 const std = @import("std");
 const encode = @import("encode.zig");
+const udp = @import("udp.zig");
+
+pub fn set_debug(v: bool) void {
+    udp.set_debug(v);
+}
 
 pub const GetControllerResponse = struct {
     controller: u32,
@@ -12,9 +17,9 @@ pub const GetControllerResponse = struct {
 };
 
 pub fn get_all_controllers() ![]GetControllerResponse {
-    const request = try encode.get_controller_request(0);
+    const request = try encode.get_controller_request(405419896);
 
-    broadcast(request);
+    try udp.broadcast(request);
     //    replies, err := broadcast(request)
     //    if err != nil {
     //        return nil, err
@@ -41,5 +46,3 @@ pub fn get_all_controllers() ![]GetControllerResponse {
 
     return &list;
 }
-
-fn broadcast(_: [64]u8) void {}

@@ -3,6 +3,7 @@
 - [ ] https://github.com/dolmen-go/goproc
 
 ## zig
+- [ ] setsockopt(SO_BROADCAST)
 - [ ] Add to top level Makefile
 - [ ] Include in github workflow
 - [ ] Rework command lookup

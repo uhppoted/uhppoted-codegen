@@ -1,5 +1,6 @@
 const std = @import("std");
 const commands = @import("commands.zig");
+const uhppote = @import("uhppote/uhppote.zig");
 
 pub fn main() !void {
     // ... initialisation
@@ -55,6 +56,8 @@ pub fn main() !void {
     std.debug.print("BROADCAST: {s}\n", .{broadcast});
     std.debug.print("LISTEN:    {s}\n", .{listen});
     std.debug.print("DEBUG:     {any}\n", .{debug});
+
+    uhppote.set_debug(debug);
 
     // ... execute commands
     if (list.items.len == 0) {
