@@ -1,4 +1,6 @@
 const std = @import("std");
+const network = @import("zig-network");
+
 const commands = @import("commands.zig");
 const uhppote = @import("uhppote/uhppote.zig");
 
@@ -60,6 +62,9 @@ pub fn main() !void {
     uhppote.set_debug(debug);
 
     // ... execute commands
+    try network.init();
+    defer network.deinit();
+
     if (list.items.len == 0) {
         try usage();
         return;

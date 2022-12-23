@@ -17,7 +17,7 @@ pub const GetControllerResponse = struct {
 };
 
 pub fn get_all_controllers() ![]GetControllerResponse {
-    const request = try encode.get_controller_request(405419896);
+    const request = try encode.get_controller_request(0);
 
     try udp.broadcast(request);
     //    replies, err := broadcast(request)

@@ -3,7 +3,12 @@
 - [ ] https://github.com/dolmen-go/goproc
 
 ## zig
-- [ ] setsockopt(SO_BROADCAST)
+- [x] setsockopt(SO_BROADCAST)
+- [ ] `get-all-controllers`
+       - [x] UDP `recvfrom` for broadcast reply
+       - [ ] Return list of received packets
+       - [ ] Timeout on receive
+
 - [ ] Add to top level Makefile
 - [ ] Include in github workflow
 - [ ] Rework command lookup
