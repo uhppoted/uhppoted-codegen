@@ -3,7 +3,7 @@ const std = @import("std");
 pub fn build(b: *std.build.Builder) void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardReleaseOptions();
-    const exe = b.addExecutable("zig", "src/main.zig");
+    const exe = b.addExecutable("uhppoted", "src/main.zig");
 
     exe.addPackagePath("zig-network", "lib/zig-network/network.zig");
     exe.setTarget(target);

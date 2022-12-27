@@ -16,5 +16,6 @@ pub fn get_controller_request(device_id: u32) ![64]u8 {
 }
 
 fn pack_uint32(v: u32, packet: *[64]u8, offset: u8) void {
-    std.mem.writeIntLittle(u32, &packet[offset], v);
+    // nightlies:   std.mem.writeIntLittle(u32, &packet[offset], v);
+    std.mem.writeIntLittle(u32, packet[offset..][0..4], v);
 }

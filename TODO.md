@@ -8,6 +8,7 @@
        - [x] UDP `recvfrom` for broadcast reply
        - [ ] Return list of received packets
        - [ ] Timeout on receive
+       - https://github.com/MasterQ32/zig-network/issues/30
 
 - [ ] Add to top level Makefile
 - [ ] Include in github workflow
@@ -29,6 +30,7 @@
 ## Python
 - (?) Unit tests
 - (?) asyncio
+      - https://kristoff.it/blog/zig-colorblind-async-await/
 
 ## HTTP
 - [ ] listen

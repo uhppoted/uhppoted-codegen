@@ -57,7 +57,6 @@ pub fn main() !void {
     std.debug.print("BIND:      {s}\n", .{bind});
     std.debug.print("BROADCAST: {s}\n", .{broadcast});
     std.debug.print("LISTEN:    {s}\n", .{listen});
-    std.debug.print("DEBUG:     {any}\n", .{debug});
 
     uhppote.set_debug(debug);
 
