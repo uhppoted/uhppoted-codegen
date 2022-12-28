@@ -1,48 +1,34 @@
 const std = @import("std");
 const encode = @import("encode.zig");
+const decode = @import("decode.zig");
 const udp = @import("udp.zig");
 
 pub fn set_debug(v: bool) void {
     udp.set_debug(v);
 }
 
-pub const GetControllerResponse = struct {
-    controller: u32,
-    //    pub ip_address: Ipv4Addr,
-    //    pub subnet_mask: Ipv4Addr,
-    //    pub gateway: Ipv4Addr,
-    //    pub mac_address: String,
-    //    pub version: String,
-    //    pub date: NaiveDate,
-};
-
-pub fn get_all_controllers() ![]GetControllerResponse {
+pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetControllerResponse {
     const request = try encode.get_controller_request(0);
+    const replies = try udp.broadcast(request, allocator);
 
-    try udp.broadcast(request);
-    //    replies, err := broadcast(request)
-    //    if err != nil {
-    //        return nil, err
-    //    }
+    defer allocator.free(replies);
+
+    var list = std.ArrayList(decode.GetControllerResponse).init(allocator);
+    defer list.deinit();
+
+    for (replies) |reply| {
+        const response = try decode.get_controller_response(reply);
+
+        try list.append(response);
+    }
+
+    //    const controller = decode.GetControllerResponse{
+    //        .controller = 405419896,
+    //    };
     //
-    //    list := []*GetControllerResponse{}
-    //    for _, reply := range replies {
-    //        if response, err := getControllerResponse(reply); err != nil {
-    //            return nil, err
-    //        } else if response != nil {
-    //            list = append(list, response)
-    //        }
-    //    }
-    //
-    //    return list, nil
+    //    var list = [_]decode.GetControllerResponse{
+    //        controller,
+    //    };
 
-    const controller = GetControllerResponse{
-        .controller = 405419896,
-    };
-
-    var list = [_]GetControllerResponse{
-        controller,
-    };
-
-    return &list;
+    return list.toOwnedSlice();
 }

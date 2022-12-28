@@ -23,12 +23,18 @@ pub fn exec(cmd: Command) !void {
 }
 
 fn get_all_controllers() void {
-    var list = uhppote.get_all_controllers();
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
 
+    const allocator = gpa.allocator();
+
+    var list = uhppote.get_all_controllers(allocator);
     if (list) |l| {
         for (l) |item| {
             std.debug.print("{any}\n", .{item});
         }
+
+        allocator.free(l);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }

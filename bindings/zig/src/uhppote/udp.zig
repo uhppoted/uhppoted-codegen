@@ -7,26 +7,19 @@ const BUFFER_SIZE = 1024;
 
 var debug: bool = false;
 
-var queue: std.PriorityQueue(Delay, void, cmp) = undefined;
-fn cmp(context: void, a: Delay, b: Delay) std.math.Order {
-    _ = context;
-    return std.math.order(a.expires, b.expires);
-}
-
 pub fn set_debug(v: bool) void {
     debug = v;
 }
 
-pub fn broadcast(packet: [64]u8) !void {
+pub fn broadcast(packet: [64]u8, allocator: std.mem.Allocator) ![][64]u8 {
     // let bind = BIND_ADDR.read()?;
     // let broadcast = BROADCAST_ADDR.read()?;
 
     var socket = try network.Socket.create(.ipv4, .udp);
-
     defer socket.close();
 
     try socket.setBroadcast(true);
-    // try socket.setTimeouts(READ_TIMEOUT, WRITE_TIMEOUT);
+    try socket.setWriteTimeout(WRITE_TIMEOUT);
 
     const bindAddr = network.EndPoint{
         .address = network.Address{ .ipv4 = network.Address.IPv4.any },
@@ -43,60 +36,46 @@ pub fn broadcast(packet: [64]u8) !void {
     const N = try socket.sendTo(destAddr, &packet);
 
     if (debug) {
-        std.debug.print("  ... sent {any} bytes\n", .{N});
+        std.debug.print("   ... sent {any} bytes\n", .{N});
     }
 
     dump(packet);
 
-    queue = std.PriorityQueue(Delay, void, cmp).init(std.heap.page_allocator, undefined);
-    defer queue.deinit();
-
-    _ = async read_all(&socket);
-    _ = async wait(&socket);
-
-    while (queue.removeOrNull()) |delay| {
-        const now = nanotime();
-        if (now < delay.expires) {
-            std.time.sleep(delay.expires - now);
-        }
-
-        resume delay.frame;
-    }
+    return try read_all(&socket, allocator);
 }
 
-fn wait(socket: *network.Socket) void {
-    var tasks = [_]@Frame(close){
-        async close(2500, socket),
-    };
+fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
+    const start = std.time.milliTimestamp();
 
-    for (tasks) |*t| await t;
-}
+    var replies = std.ArrayList([64]u8).init(allocator);
+    defer replies.deinit();
 
-fn close(
-    time: u64,
-    socket: *network.Socket,
-) void {
-    waitForTime(time);
-    std.debug.print("CLOSING {any}\n", .{socket});
-    socket.close();
-}
-
-fn read_all(socket: *network.Socket) void {
-    var msg: [BUFFER_SIZE]u8 = undefined;
-
-    if (socket.setReadTimeout(10 * std.time.us_per_ms)) {
+    if (socket.setReadTimeout(100 * std.time.us_per_ms)) {
         while (true) {
+            var msg: [BUFFER_SIZE]u8 = undefined;
             if (socket.receiveFrom(&msg)) |reply| {
                 if (debug) {
-                    std.debug.print("... received {any} bytes\n", .{reply.numberOfBytes});
+                    std.debug.print("   ... received {any} bytes\n", .{reply.numberOfBytes});
                 }
 
                 if (reply.numberOfBytes == 64) {
-                    dump(msg[0..64].*);
+                    const slice: [64]u8 = msg[0..64].*;
+                    if (replies.append(slice)) {
+                        dump(msg[0..64].*);
+                    } else |err| {
+                        std.debug.print("{any}\n", .{err});
+                    }
                 }
             } else |err| switch (err) {
                 error.WouldBlock => {
-                    waitForTime(250);
+                    const dt = std.time.milliTimestamp() - start;
+
+                    if (dt < 2500) {
+                        // std.time.sleep(100 * std.time.ns_per_ms);
+                        //                      waitForTime(100);
+                    } else {
+                        break;
+                    }
                 },
                 else => {
                     std.debug.print("{any}\n", .{err});
@@ -107,13 +86,15 @@ fn read_all(socket: *network.Socket) void {
     } else |err| {
         std.debug.print("{any}\n", .{err});
     }
+
+    return replies.toOwnedSlice();
 }
 
 fn dump(packet: [64]u8) void {
     if (debug) {
         const offsets = [_]usize{ 0, 16, 32, 48 };
         for (offsets) |ix| {
-            const f = "{x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2}";
+            const f = "   {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2}";
             const u = packet[ix .. ix + 8];
             const v = packet[ix + 8 .. ix + 16];
             std.debug.print(f, .{ u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7] });
@@ -126,22 +107,60 @@ fn dump(packet: [64]u8) void {
     }
 }
 
-var timer: ?std.time.Timer = null;
-fn nanotime() u64 {
-    if (timer == null) {
-        timer = std.time.Timer.start() catch unreachable;
-    }
-    return timer.?.read();
-}
-
-const Delay = struct {
-    frame: anyframe,
-    expires: u64,
-};
-
-fn waitForTime(time_ms: u64) void {
-    suspend queue.add(Delay{
-        .frame = @frame(),
-        .expires = nanotime() + (time_ms * std.time.ns_per_ms),
-    }) catch unreachable;
-}
+// queue = std.PriorityQueue(Delay, void, cmp).init(std.heap.page_allocator, undefined);
+// defer queue.deinit();
+//
+// _ = async read_all(&socket);
+// _ = async wait(&socket);
+//
+// while (queue.removeOrNull()) |delay| {
+//     const now = nanotime();
+//     if (now < delay.expires) {
+//         std.time.sleep(delay.expires - now);
+//     }
+//
+//     resume delay.frame;
+// }
+//
+// var timer: ?std.time.Timer = null;
+// fn nanotime() u64 {
+//     if (timer == null) {
+//         timer = std.time.Timer.start() catch unreachable;
+//     }
+//     return timer.?.read();
+// }
+//
+// fn wait(socket: *network.Socket) void {
+//     var tasks = [_]@Frame(close){
+//         async close(2500, socket),
+//     };
+//
+//     for (tasks) |*t| await t;
+// }
+//
+// fn close(
+//     time: u64,
+//     socket: *network.Socket,
+// ) void {
+//     waitForTime(time);
+//     std.debug.print("CLOSING {any}\n", .{socket});
+//     socket.close();
+// }
+//
+// const Delay = struct {
+//     frame: anyframe,
+//     expires: u64,
+// };
+//
+// var queue: std.PriorityQueue(Delay, void, cmp) = undefined;
+// fn cmp(context: void, a: Delay, b: Delay) std.math.Order {
+//     _ = context;
+//     return std.math.order(a.expires, b.expires);
+// }
+//
+// fn waitForTime(time_ms: u64) void {
+//     suspend queue.add(Delay{
+//         .frame = @frame(),
+//         .expires = nanotime() + (time_ms * std.time.ns_per_ms),
+//     }) catch unreachable;
+// }
