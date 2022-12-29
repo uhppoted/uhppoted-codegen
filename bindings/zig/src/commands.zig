@@ -3,7 +3,7 @@ const uhppote = @import("uhppote/uhppote.zig");
 
 pub const Command = struct {
     name: []const u8,
-    function: fn () void,
+    function: *const fn () void,
 };
 
 pub const commands: [2]Command = [_]Command{

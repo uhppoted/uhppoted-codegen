@@ -22,13 +22,5 @@ pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetController
         try list.append(response);
     }
 
-    //    const controller = decode.GetControllerResponse{
-    //        .controller = 405419896,
-    //    };
-    //
-    //    var list = [_]decode.GetControllerResponse{
-    //        controller,
-    //    };
-
     return list.toOwnedSlice();
 }

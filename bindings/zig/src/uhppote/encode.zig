@@ -3,12 +3,10 @@ const std = @import("std");
 pub fn get_controller_request(device_id: u32) ![64]u8 {
     std.debug.print("get-controller-request {any}\n", .{device_id});
 
-    var packet = [64]u8{
-        0x17, 0x94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0,    0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0,    0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0,    0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    };
+    var packet = [_]u8{0} ** 64;
+
+    packet[0] = 0x17;
+    packet[1] = 0x94;
 
     pack_uint32(device_id, &packet, 4);
 

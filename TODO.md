@@ -1,13 +1,16 @@
 # TODO
 
 - [ ] https://github.com/dolmen-go/goproc
+- [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
 
 ## zig
 - [x] setsockopt(SO_BROADCAST)
 - [ ] `get-all-controllers`
        - [x] UDP `recvfrom` for broadcast reply
-       - [ ] Return list of received packets
-       - [ ] Timeout on receive
+       - [x] Return list of received packets
+       - [x] Timeout on receive
+       - [ ] Decode rest of controller struct
+       - [ ] Test/use generated code
        - https://github.com/MasterQ32/zig-network/issues/30
 
 - [ ] Add to top level Makefile
