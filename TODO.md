@@ -4,19 +4,24 @@
 - [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
 
 ## zig
-- [x] setsockopt(SO_BROADCAST)
-- [ ] `get-all-controllers`
+- [x] `get-all-controllers`
        - [x] UDP `recvfrom` for broadcast reply
        - [x] Return list of received packets
        - [x] Timeout on receive
-       - [ ] Decode rest of controller struct
-       - [ ] Test/use generated code
-       - https://github.com/MasterQ32/zig-network/issues/30
+       - [x] Decode rest of controller struct
+- [x] `get-controller`
 
+- [ ] Test/use generated code
+- [ ] Set bind address
+- [ ] Set broadcast address
+- [ ] Set listen address
 - [ ] Add to top level Makefile
 - [ ] Include in github workflow
 - [ ] Rework command lookup
       - https://andrewkelley.me/post/string-matching-comptime-perfect-hashing-zig.html
+- (?) async/await timeouts
+      - https://dev.to/hnakamur/experimenting-timeout-and-cancellation-with-zig-asyncawait-and-tigerbeetle-io-53o5
+      - https://github.com/MasterQ32/zig-network/issues/30
 
 ## Rust
 - [ ] Move executor::block_on to higher level in protocol stack

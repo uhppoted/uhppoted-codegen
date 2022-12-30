@@ -24,3 +24,10 @@ pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetController
 
     return list.toOwnedSlice();
 }
+
+pub fn get_controller(device_id: u32, allocator: std.mem.Allocator) !decode.GetControllerResponse {
+    const request = try encode.get_controller_request(device_id);
+    const reply = try udp.send(request, allocator);
+
+    return try decode.get_controller_response(reply);
+}

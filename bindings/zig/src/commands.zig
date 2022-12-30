@@ -3,7 +3,7 @@ const uhppote = @import("uhppote/uhppote.zig");
 
 pub const Command = struct {
     name: []const u8,
-    function: *const fn () void,
+    function: *const fn (std.mem.Allocator) void,
 };
 
 pub const commands: [2]Command = [_]Command{
@@ -19,15 +19,15 @@ pub const commands: [2]Command = [_]Command{
 };
 
 pub fn exec(cmd: Command) !void {
-    cmd.function();
-}
-
-fn get_all_controllers() void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
 
     const allocator = gpa.allocator();
 
+    cmd.function(allocator);
+}
+
+fn get_all_controllers(allocator: std.mem.Allocator) void {
     var list = uhppote.get_all_controllers(allocator);
     if (list) |l| {
         for (l) |item| {
@@ -40,6 +40,8 @@ fn get_all_controllers() void {
     }
 }
 
-fn get_controller() void {
-    std.debug.print("get-controller\n", .{});
+fn get_controller(allocator: std.mem.Allocator) void {
+    var response = uhppote.get_controller(405419896, allocator);
+
+    std.debug.print("{any}\n", .{response});
 }

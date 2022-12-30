@@ -59,13 +59,8 @@ fn unpack_date(packet: [64]u8, offset: u8) datetime.Date {
     if (bcd) |string| {
         var buffer = std.io.fixedBufferStream(string);
         var reader = buffer.reader();
-        const d = datetime.Date.parseFmt("YMD", reader);
 
-        if (d) |dt| {
-            return dt;
-        } else |_| {
-            return datetime.Date.init(1900, 1, 1);
-        }
+        return datetime.Date.parseFmt("YMD", reader) catch return datetime.Date.init(1900, 1, 1);
     } else |_| {
         return datetime.Date.init(1900, 1, 1);
     }
