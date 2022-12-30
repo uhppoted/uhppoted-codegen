@@ -10,7 +10,10 @@
        - [x] Timeout on receive
        - [x] Decode rest of controller struct
 - [x] `get-controller`
+- [ ] `listen`
 
+- [ ] Pretty print
+- [ ] Used wrapped error to commonalise error handling
 - [ ] Test/use generated code
 - [ ] Set bind address
 - [ ] Set broadcast address

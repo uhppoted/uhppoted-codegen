@@ -6,7 +6,7 @@ pub const Command = struct {
     function: *const fn (std.mem.Allocator) void,
 };
 
-pub const commands: [2]Command = [_]Command{
+pub const commands = [_]Command{
     Command{
         .name = "get-all-controllers",
         .function = get_all_controllers,
@@ -15,6 +15,11 @@ pub const commands: [2]Command = [_]Command{
     Command{
         .name = "get-controller",
         .function = get_controller,
+    },
+
+    Command{
+        .name = "listen",
+        .function = listen,
     },
 };
 
@@ -41,7 +46,15 @@ fn get_all_controllers(allocator: std.mem.Allocator) void {
 }
 
 fn get_controller(allocator: std.mem.Allocator) void {
-    var response = uhppote.get_controller(405419896, allocator);
+    if (uhppote.get_controller(405419896, allocator)) |response| {
+        std.debug.print("{any}\n", .{response});
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
 
-    std.debug.print("{any}\n", .{response});
+fn listen(allocator: std.mem.Allocator) void {
+    if (uhppote.listen(allocator)) {} else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
 }

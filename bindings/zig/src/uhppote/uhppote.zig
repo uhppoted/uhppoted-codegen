@@ -31,3 +31,7 @@ pub fn get_controller(device_id: u32, allocator: std.mem.Allocator) !decode.GetC
 
     return try decode.get_controller_response(reply);
 }
+
+pub fn listen(allocator: std.mem.Allocator) !void {
+    try udp.listen(allocator);
+}

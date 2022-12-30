@@ -78,44 +78,71 @@ pub fn send(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
     return try read(&socket, allocator);
 }
 
-fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
-    const start = std.time.microTimestamp();
+pub fn listen(_: std.mem.Allocator) !void {
+    // let addr = LISTEN_ADDR.read()?;
 
+    var socket = try network.Socket.create(.ipv4, .udp);
+    defer socket.close();
+
+    const listenAddr = network.EndPoint{
+        .address = network.Address{ .ipv4 = network.Address.IPv4.any },
+        .port = 60001,
+    };
+
+    try socket.bind(listenAddr);
+
+    while (true) {
+        var msg: [BUFFER_SIZE]u8 = undefined;
+        if (socket.receiveFrom(&msg)) |reply| {
+            if (debug) {
+                std.debug.print("   ... received {any} bytes\n", .{reply.numberOfBytes});
+            }
+
+            if (reply.numberOfBytes == 64) {
+                dump(msg[0..64].*);
+            }
+        } else |err| {
+            std.debug.print("{any}\n", .{err});
+            break;
+        }
+    }
+}
+
+fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
+    try socket.setReadTimeout(100 * std.time.us_per_ms);
+
+    const start = std.time.microTimestamp();
     var replies = std.ArrayList([64]u8).init(allocator);
     defer replies.deinit();
 
-    if (socket.setReadTimeout(100 * std.time.us_per_ms)) {
-        while (true) {
-            var msg: [BUFFER_SIZE]u8 = undefined;
-            if (socket.receiveFrom(&msg)) |reply| {
-                if (debug) {
-                    std.debug.print("   ... received {any} bytes\n", .{reply.numberOfBytes});
-                }
-
-                if (reply.numberOfBytes == 64) {
-                    const slice: [64]u8 = msg[0..64].*;
-                    if (replies.append(slice)) {
-                        dump(msg[0..64].*);
-                    } else |err| {
-                        std.debug.print("{any}\n", .{err});
-                    }
-                }
-            } else |err| switch (err) {
-                error.WouldBlock => {
-                    const dt = std.time.microTimestamp() - start;
-
-                    if (dt >= READ_TIMEOUT) {
-                        break;
-                    }
-                },
-                else => {
-                    std.debug.print("{any}\n", .{err});
-                    break;
-                },
+    while (true) {
+        var msg: [BUFFER_SIZE]u8 = undefined;
+        if (socket.receiveFrom(&msg)) |reply| {
+            if (debug) {
+                std.debug.print("   ... received {any} bytes\n", .{reply.numberOfBytes});
             }
+
+            if (reply.numberOfBytes == 64) {
+                const slice: [64]u8 = msg[0..64].*;
+                if (replies.append(slice)) {
+                    dump(msg[0..64].*);
+                } else |err| {
+                    std.debug.print("{any}\n", .{err});
+                }
+            }
+        } else |err| switch (err) {
+            error.WouldBlock => {
+                const dt = std.time.microTimestamp() - start;
+
+                if (dt >= READ_TIMEOUT) {
+                    break;
+                }
+            },
+            else => {
+                std.debug.print("{any}\n", .{err});
+                break;
+            },
         }
-    } else |err| {
-        std.debug.print("{any}\n", .{err});
     }
 
     return replies.toOwnedSlice();
