@@ -57,27 +57,21 @@ fn unpack_date(packet: [64]u8, offset: u8) datetime.Date {
     const bcd = bcd2string(packet[offset..][0..4]);
 
     if (bcd) |string| {
-        const s = "20190815";
-
-        std.debug.print("{any} {any}\n", .{ string, s });
-
-        var buffer = std.io.fixedBufferStream(s);
+        var buffer = std.io.fixedBufferStream(string);
         var reader = buffer.reader();
         const d = datetime.Date.parseFmt("YMD", reader);
 
         if (d) |dt| {
-            std.debug.print("{any}\n", .{dt});
-        } else |err| {
-            std.debug.print("{any}\n", .{err});
+            return dt;
+        } else |_| {
+            return datetime.Date.init(1900, 1, 1);
         }
-    } else |err| {
-        std.debug.print("{any}\n", .{err});
+    } else |_| {
+        return datetime.Date.init(1900, 1, 1);
     }
-
-    return datetime.Date.init(2022, 12, 29);
 }
 
-fn bcd2string(slice: []const u8) ![:0]u8 {
+fn bcd2string(slice: []const u8) ![]u8 {
     var buffer: [64:0]u8 = undefined;
 
     return try std.fmt.bufPrintZ(&buffer, "{s}", .{std.fmt.fmtSliceHexLower(slice)});
