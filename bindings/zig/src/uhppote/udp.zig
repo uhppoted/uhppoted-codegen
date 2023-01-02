@@ -78,7 +78,9 @@ pub fn send(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
     return try read(&socket, allocator);
 }
 
-pub fn listen(_: std.mem.Allocator) !void {
+const PacketQueueNode = std.atomic.Queue([64]u8).Node;
+
+pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !void {
     // let addr = LISTEN_ADDR.read()?;
 
     var socket = try network.Socket.create(.ipv4, .udp);
@@ -100,7 +102,24 @@ pub fn listen(_: std.mem.Allocator) !void {
 
             if (reply.numberOfBytes == 64) {
                 dump(msg[0..64].*);
+
+                const node = allocator.create(PacketQueueNode);
+
+                if (node) |n| {
+                    n.* = .{
+                        .prev = undefined,
+                        .next = undefined,
+                        .data = msg[0..64].*,
+                    };
+
+                    queue.put(n);
+                } else |err| {
+                    std.debug.print("\n   *** WARN   {any}\n", .{err});
+                }
             }
+
+            // handler(msg[0..64].*);
+
         } else |err| {
             std.debug.print("{any}\n", .{err});
             break;
@@ -166,7 +185,7 @@ fn read(socket: *network.Socket, _: std.mem.Allocator) ![64]u8 {
             }
         } else |err| switch (err) {
             error.WouldBlock => {
-                return errors.UhppoteError.NoReply;
+                return errors.UhppotedError.NoReply;
             },
             else => {
                 return err;

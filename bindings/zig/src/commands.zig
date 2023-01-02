@@ -1,5 +1,6 @@
 const std = @import("std");
 const uhppote = @import("uhppote/uhppote.zig");
+const decode = @import("uhppote/decode.zig");
 
 pub const Command = struct {
     name: []const u8,
@@ -54,7 +55,11 @@ fn get_controller(allocator: std.mem.Allocator) void {
 }
 
 fn listen(allocator: std.mem.Allocator) void {
-    if (uhppote.listen(allocator)) {} else |err| {
+    if (uhppote.listen(on_event, allocator)) {} else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }
+}
+
+fn on_event(event: decode.Event) void {
+    std.debug.print("{any}\n", .{event});
 }

@@ -32,6 +32,43 @@ pub fn get_controller(device_id: u32, allocator: std.mem.Allocator) !decode.GetC
     return try decode.get_controller_response(reply);
 }
 
-pub fn listen(allocator: std.mem.Allocator) !void {
-    try udp.listen(allocator);
+// FIXME: using threads in lieu of async because async is currently broken in the nightlies
+pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocator) !void {
+    var queue = std.atomic.Queue([64]u8).init();
+
+    const ctx = context{
+        .q = &queue,
+        .allocator = allocator,
+    };
+
+    var thread = try std.Thread.spawn(.{}, on_event, .{@as(context, ctx)});
+
+    while (true) {
+        while (queue.get()) |node| {
+            const packet = node.data;
+            const event = decode.get_event(packet);
+
+            if (event) |e| {
+                handler(e);
+            } else |err| {
+                std.debug.print("\n   *** ERROR  {any}\n", .{err});
+            }
+        }
+
+        // Ewwww :-( .. must be some way to block/wait on a queue?
+        std.time.sleep(1000 * std.time.ns_per_ms);
+    }
+
+    thread.join();
+}
+
+const context = struct {
+    q: *std.atomic.Queue([64]u8),
+    allocator: std.mem.Allocator,
+};
+
+fn on_event(ctx: context) void {
+    if (udp.listen(ctx.q, ctx.allocator)) {} else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
 }

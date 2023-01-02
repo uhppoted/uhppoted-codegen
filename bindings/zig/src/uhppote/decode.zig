@@ -1,8 +1,7 @@
 const std = @import("std");
 const network = @import("zig-network");
 const datetime = @import("zig-date");
-
-const UhppotedError = error{ InvalidReplyStartOfMessage, InvalidReplyFunctionCode };
+const errors = @import("errors.zig");
 
 pub const GetControllerResponse = struct {
     controller: u32,
@@ -14,14 +13,16 @@ pub const GetControllerResponse = struct {
     date: datetime.Date,
 };
 
+pub const Event = struct {};
+
 pub fn get_controller_response(packet: [64]u8) !GetControllerResponse {
     // Ref. v6.62 firmware event
     if ((packet[0] != 0x17) and (packet[0] != 0x19 or packet[1] != 0x20)) {
-        return UhppotedError.InvalidReplyStartOfMessage;
+        return errors.UhppotedError.InvalidReplyStartOfMessage;
     }
 
     if (packet[1] != 0x94) {
-        return UhppotedError.InvalidReplyFunctionCode;
+        return errors.UhppotedError.InvalidReplyFunctionCode;
     }
 
     const controller = GetControllerResponse{
@@ -35,6 +36,21 @@ pub fn get_controller_response(packet: [64]u8) !GetControllerResponse {
     };
 
     return controller;
+}
+
+pub fn get_event(packet: [64]u8) !Event {
+    // Ref. v6.62 firmware event
+    if ((packet[0] != 0x17) and (packet[0] != 0x19 or packet[1] != 0x20)) {
+        return errors.UhppotedError.InvalidReplyStartOfMessage;
+    }
+
+    if (packet[1] != 0x20) {
+        return errors.UhppotedError.InvalidEventFunctionCode;
+    }
+
+    const event = Event{};
+
+    return event;
 }
 
 fn unpack_uint32(packet: [64]u8, offset: u8) u32 {

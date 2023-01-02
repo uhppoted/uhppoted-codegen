@@ -1,1 +1,6 @@
-pub const UhppoteError = error{NoReply};
+pub const UhppotedError = error{
+    NoReply,
+    InvalidReplyStartOfMessage,
+    InvalidReplyFunctionCode,
+    InvalidEventFunctionCode,
+};
