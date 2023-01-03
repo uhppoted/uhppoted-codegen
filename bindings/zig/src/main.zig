@@ -18,9 +18,9 @@ pub fn main() !void {
     const allocator = gpa.allocator();
 
     // ... command line args
-    var bind = @as([*:0]const u8, "0.0.0.0:0");
-    var broadcast = @as([*:0]const u8, "255.255.255.255.60000");
-    var listen = @as([*:0]const u8, "0.0.0.0:60001");
+    var bind: [:0]const u8 = "0.0.0.0:0";
+    var broadcast: [:0]const u8 = "255.255.255.255.60000";
+    var listen: [:0]const u8 = "0.0.0.0:60001";
     var debug = false;
 
     var list = std.ArrayList([]const u8).init(allocator);
@@ -54,11 +54,10 @@ pub fn main() !void {
         }
     }
 
-    std.debug.print("BIND:      {s}\n", .{bind});
-    std.debug.print("BROADCAST: {s}\n", .{broadcast});
-    std.debug.print("LISTEN:    {s}\n", .{listen});
-
-    uhppote.set_debug(debug);
+    try uhppote.set_bind_address(bind);
+    try uhppote.set_broadcast_address(broadcast);
+    try uhppote.set_listen_address(listen);
+    try uhppote.set_debug(debug);
 
     // ... execute commands
     try network.init();

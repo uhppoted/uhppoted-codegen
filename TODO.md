@@ -4,21 +4,13 @@
 - [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
 
 ## zig
-- [x] `get-all-controllers`
-       - [x] UDP `recvfrom` for broadcast reply
-       - [x] Return list of received packets
-       - [x] Timeout on receive
-       - [x] Decode rest of controller struct
-- [x] `get-controller`
-- [ ] `listen`
-
-- [ ] Pretty print
-- [ ] Used wrapped error to commonalise error handling
-- [ ] Test/use generated code
-- [ ] Set bind address
-- [ ] Set broadcast address
-- [ ] Set listen address
+- [x] Set bind address
+- [x] Set broadcast address
+- [x] Set listen address
 - [ ] Add to top level Makefile
+- [ ] Test/use generated code
+- [ ] Pretty print
+- (?) Used wrapped error to commonalise error handling
 - [ ] Include in github workflow
 - [ ] Rework command lookup
       - https://andrewkelley.me/post/string-matching-comptime-perfect-hashing-zig.html

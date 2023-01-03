@@ -6,36 +6,93 @@ const READ_TIMEOUT = 2500 * std.time.us_per_ms;
 const WRITE_TIMEOUT = 1000 * std.time.us_per_ms;
 const BUFFER_SIZE = 1024;
 
+var bindAddr = network.EndPoint{
+    .address = network.Address{ .ipv4 = network.Address.IPv4.any },
+    .port = 0,
+};
+
+var broadcastAddr = network.EndPoint{
+    .address = network.Address{ .ipv4 = network.Address.IPv4.broadcast },
+    .port = 60000,
+};
+
+var listenAddr = network.EndPoint{
+    .address = network.Address{ .ipv4 = network.Address.IPv4.any },
+    .port = 60001,
+};
+
 var debug: bool = false;
 
-pub fn set_debug(v: bool) void {
+pub fn set_bind_address(addr: [:0]const u8) !void {
+    var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.any };
+    var port: u16 = 0;
+    var it = std.mem.split(u8, addr, ":");
+
+    if (it.next()) |v| {
+        address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };
+    }
+
+    if (it.next()) |v| {
+        port = try std.fmt.parseUnsigned(u16, v, 10);
+    }
+
+    bindAddr = network.EndPoint{
+        .address = address,
+        .port = port,
+    };
+}
+
+pub fn set_broadcast_address(addr: [:0]const u8) !void {
+    var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.broadcast };
+    var port: u16 = 60000;
+    var it = std.mem.split(u8, addr, ":");
+
+    if (it.next()) |v| {
+        address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };
+    }
+
+    if (it.next()) |v| {
+        port = try std.fmt.parseUnsigned(u16, v, 10);
+    }
+
+    broadcastAddr = network.EndPoint{
+        .address = address,
+        .port = port,
+    };
+}
+
+pub fn set_listen_address(addr: [:0]const u8) !void {
+    var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.any };
+    var port: u16 = 60001;
+    var it = std.mem.split(u8, addr, ":");
+
+    if (it.next()) |v| {
+        address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };
+    }
+
+    if (it.next()) |v| {
+        port = try std.fmt.parseUnsigned(u16, v, 10);
+    }
+
+    listenAddr = network.EndPoint{
+        .address = address,
+        .port = port,
+    };
+}
+
+pub fn set_debug(v: bool) !void {
     debug = v;
 }
 
 pub fn broadcast(packet: [64]u8, allocator: std.mem.Allocator) ![][64]u8 {
-    // let bind = BIND_ADDR.read()?;
-    // let broadcast = BROADCAST_ADDR.read()?;
-
     var socket = try network.Socket.create(.ipv4, .udp);
     defer socket.close();
 
     try socket.setBroadcast(true);
     try socket.setWriteTimeout(WRITE_TIMEOUT);
-
-    const bindAddr = network.EndPoint{
-        .address = network.Address{ .ipv4 = network.Address.IPv4.any },
-        .port = 3000,
-    };
-
-    const destAddr = network.EndPoint{
-        .address = network.Address{ .ipv4 = network.Address.IPv4.broadcast },
-        .port = 60000,
-    };
-
     try socket.bind(bindAddr);
 
-    const N = try socket.sendTo(destAddr, &packet);
-
+    const N = try socket.sendTo(broadcastAddr, &packet);
     if (debug) {
         std.debug.print("   ... sent {any} bytes\n", .{N});
     }
@@ -46,29 +103,14 @@ pub fn broadcast(packet: [64]u8, allocator: std.mem.Allocator) ![][64]u8 {
 }
 
 pub fn send(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
-    // let bind = BIND_ADDR.read()?;
-    // let broadcast = BROADCAST_ADDR.read()?;
-
     var socket = try network.Socket.create(.ipv4, .udp);
     defer socket.close();
 
     try socket.setBroadcast(true);
     try socket.setWriteTimeout(WRITE_TIMEOUT);
-
-    const bindAddr = network.EndPoint{
-        .address = network.Address{ .ipv4 = network.Address.IPv4.any },
-        .port = 3000,
-    };
-
-    const destAddr = network.EndPoint{
-        .address = network.Address{ .ipv4 = network.Address.IPv4.broadcast },
-        .port = 60000,
-    };
-
     try socket.bind(bindAddr);
 
-    const N = try socket.sendTo(destAddr, &packet);
-
+    const N = try socket.sendTo(broadcastAddr, &packet);
     if (debug) {
         std.debug.print("   ... sent {any} bytes\n", .{N});
     }
@@ -78,18 +120,9 @@ pub fn send(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
     return try read(&socket, allocator);
 }
 
-const PacketQueueNode = std.atomic.Queue([64]u8).Node;
-
 pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !void {
-    // let addr = LISTEN_ADDR.read()?;
-
     var socket = try network.Socket.create(.ipv4, .udp);
     defer socket.close();
-
-    const listenAddr = network.EndPoint{
-        .address = network.Address{ .ipv4 = network.Address.IPv4.any },
-        .port = 60001,
-    };
 
     try socket.bind(listenAddr);
 
@@ -103,7 +136,7 @@ pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !v
             if (reply.numberOfBytes == 64) {
                 dump(msg[0..64].*);
 
-                const node = allocator.create(PacketQueueNode);
+                const node = allocator.create(std.atomic.Queue([64]u8).Node);
 
                 if (node) |n| {
                     n.* = .{
@@ -117,9 +150,6 @@ pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !v
                     std.debug.print("\n   *** WARN   {any}\n", .{err});
                 }
             }
-
-            // handler(msg[0..64].*);
-
         } else |err| {
             std.debug.print("{any}\n", .{err});
             break;

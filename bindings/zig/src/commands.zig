@@ -36,8 +36,8 @@ pub fn exec(cmd: Command) !void {
 fn get_all_controllers(allocator: std.mem.Allocator) void {
     var list = uhppote.get_all_controllers(allocator);
     if (list) |l| {
-        for (l) |item| {
-            std.debug.print("{any}\n", .{item});
+        for (l) |controller| {
+            pprint(controller);
         }
 
         allocator.free(l);
@@ -47,8 +47,8 @@ fn get_all_controllers(allocator: std.mem.Allocator) void {
 }
 
 fn get_controller(allocator: std.mem.Allocator) void {
-    if (uhppote.get_controller(405419896, allocator)) |response| {
-        std.debug.print("{any}\n", .{response});
+    if (uhppote.get_controller(405419896, allocator)) |controller| {
+        pprint(controller);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }
@@ -61,5 +61,9 @@ fn listen(allocator: std.mem.Allocator) void {
 }
 
 fn on_event(event: decode.Event) void {
-    std.debug.print("{any}\n", .{event});
+    pprint(event);
+}
+
+fn pprint(v: anytype) void {
+    std.debug.print("{any}\n", .{v});
 }

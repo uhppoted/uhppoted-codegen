@@ -3,8 +3,20 @@ const encode = @import("encode.zig");
 const decode = @import("decode.zig");
 const udp = @import("udp.zig");
 
-pub fn set_debug(v: bool) void {
-    udp.set_debug(v);
+pub fn set_bind_address(addr: [:0]const u8) !void {
+    try udp.set_bind_address(addr);
+}
+
+pub fn set_broadcast_address(addr: [:0]const u8) !void {
+    try udp.set_broadcast_address(addr);
+}
+
+pub fn set_listen_address(addr: [:0]const u8) !void {
+    try udp.set_listen_address(addr);
+}
+
+pub fn set_debug(v: bool) !void {
+    try udp.set_debug(v);
 }
 
 pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetControllerResponse {
