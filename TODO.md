@@ -7,7 +7,7 @@
 - [x] Set bind address
 - [x] Set broadcast address
 - [x] Set listen address
-- [ ] Add to top level Makefile
+- [x] Add to top level Makefile
 - [ ] Test/use generated code
 - [ ] Pretty print
 - (?) Used wrapped error to commonalise error handling
@@ -17,6 +17,7 @@
 - (?) async/await timeouts
       - https://dev.to/hnakamur/experimenting-timeout-and-cancellation-with-zig-asyncawait-and-tigerbeetle-io-53o5
       - https://github.com/MasterQ32/zig-network/issues/30
+      - https://kristoff.it/blog/zig-colorblind-async-await/
 
 ## Rust
 - [ ] Move executor::block_on to higher level in protocol stack
@@ -33,8 +34,7 @@
 ## Python
 - (?) Unit tests
 - (?) asyncio
-      - https://kristoff.it/blog/zig-colorblind-async-await/
-
+      
 ## HTTP
 - [ ] listen
 

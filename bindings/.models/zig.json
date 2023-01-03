@@ -1,0 +1,21 @@
+{
+    "zig": {
+        "types": {
+            "uint8": "u8",
+            "uint16": "u16",
+            "uint32": "u32",
+            "bool": "bool",
+            "IPv4": "network.Address",
+            "MAC": "[:0] const u8",
+            "version": "[:0] const u8",
+            "date": "datetime.Date",
+            "shortdate": "datetime.Date",
+            "time": "datetime.Time",
+            "datetime": "datetime.DateTime",
+            "HHmm": "datetime.HHmm",
+
+            "optional date": "*datetime.Date",
+            "optional datetime": "*datetime.DateTime"
+        }
+    }
+}
