@@ -70,7 +70,9 @@ pub fn main() !void {
 
     if (list.items.len == 1 and std.mem.eql(u8, list.items[0], "all")) {
         for (commands.commands) |v| {
-            try commands.exec(v);
+            if (!std.mem.eql(u8, "listen", v.name)) {
+                try commands.exec(v);            
+            }
         }
         return;
     }
