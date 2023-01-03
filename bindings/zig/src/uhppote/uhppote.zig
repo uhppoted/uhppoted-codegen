@@ -20,7 +20,7 @@ pub fn set_debug(v: bool) !void {
 }
 
 pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetControllerResponse {
-    const request = try encode.get_controller_request(0);
+    const request = try encode.get_controller_request_x(0);
     const replies = try udp.broadcast(request, allocator);
 
     defer allocator.free(replies);
@@ -38,7 +38,7 @@ pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetController
 }
 
 pub fn get_controller(device_id: u32, allocator: std.mem.Allocator) !decode.GetControllerResponse {
-    const request = try encode.get_controller_request(device_id);
+    const request = try encode.get_controller_request_x(device_id);
     const reply = try udp.send(request, allocator);
 
     return try decode.get_controller_response(reply);

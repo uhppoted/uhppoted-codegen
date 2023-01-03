@@ -9,6 +9,12 @@
 - [x] Set listen address
 - [x] Add to top level Makefile
 - [ ] Test/use generated code
+      - [x] encode
+      - [ ] decode
+      - [ ] uhppote
+      - [ ] packXXX
+      - [ ] unpackXXX
+
 - [ ] Pretty print
 - (?) Used wrapped error to commonalise error handling
 - [ ] Include in github workflow

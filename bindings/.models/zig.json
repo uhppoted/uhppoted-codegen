@@ -8,14 +8,14 @@
             "IPv4": "network.Address",
             "MAC": "[:0] const u8",
             "version": "[:0] const u8",
-            "date": "datetime.Date",
-            "shortdate": "datetime.Date",
-            "time": "datetime.Time",
-            "datetime": "datetime.DateTime",
-            "HHmm": "datetime.HHmm",
+            "date": "datelib.Date",
+            "shortdate": "datelib.Date",
+            "time": "datelib.Time",
+            "datetime": "datelib.DateTime",
+            "HHmm": "datelib.HHmm",
 
-            "optional date": "*datetime.Date",
-            "optional datetime": "*datetime.DateTime"
+            "optional date": "*datelib.Date",
+            "optional datetime": "*datelib.DateTime"
         }
     }
 }
