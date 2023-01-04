@@ -6,7 +6,6 @@ pub fn build(b: *std.build.Builder) void {
     const exe = b.addExecutable("uhppoted", "src/main.zig");
 
     exe.addPackagePath("zig-network", "lib/zig-network/network.zig");
-    exe.addPackagePath("zig-date", "lib/zig-date/date.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
     exe.install();

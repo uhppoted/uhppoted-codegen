@@ -10,13 +10,12 @@
 - [x] Add to top level Makefile
 - [ ] Test/use generated code
       - [x] encode
-      - [ ] decode
+      - [x] decode
+      - [x] packXXX
       - [ ] uhppote
-      - [ ] packXXX
-      - [ ] unpackXXX
+      - [x] unpackXXX
 
 - [ ] Pretty print
-- (?) Used wrapped error to commonalise error handling
 - [ ] Include in github workflow
 - [ ] Rework command lookup
       - https://andrewkelley.me/post/string-matching-comptime-perfect-hashing-zig.html
@@ -54,6 +53,7 @@
    - [Janet](https://janet-lang.org)
    - Haskell
    - q
+   - [Austral](https://borretti.me/article/introducing-austral#status)
 
 ## Notes
 

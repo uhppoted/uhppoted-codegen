@@ -1,6 +1,6 @@
 const std = @import("std");
 const network = @import("zig-network");
-const datelib = @import("zig-date");
+const datelib = @import("datetime.zig");
 
 const MAGIC: u32 = 0x55aaaa55;
 
