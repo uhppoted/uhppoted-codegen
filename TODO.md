@@ -4,6 +4,7 @@
 - [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
 
 ## zig
+- [x] Include in github workflow
 - [x] Set bind address
 - [x] Set broadcast address
 - [x] Set listen address
@@ -16,7 +17,6 @@
       - [x] unpackXXX
 
 - [ ] Pretty print
-- [ ] Include in github workflow
 - [ ] Rework command lookup
       - https://andrewkelley.me/post/string-matching-comptime-perfect-hashing-zig.html
 - (?) async/await timeouts
@@ -34,6 +34,23 @@
       - https://blog.yoshuawuyts.com/why-async-rust/
       - https://stackoverflow.com/questions/67686409/how-to-pass-an-async-function-as-a-parameter-in-rust-pyo3
 
+- github workflow
+```
+ Compiling uhppoted v0.1.0 (/home/runner/work/uhppoted-codegen/uhppoted-codegen/generated/rust/uhppoted)
+warning: use of deprecated associated function `chrono::NaiveDate::from_ymd`: use `from_ymd_opt()` instead
+   --> src/commands.rs:304:28
+    |
+304 |     let start = NaiveDate::from_ymd(2022, 1, 1);
+    |                            ^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated associated function `chrono::NaiveDate::from_ymd`: use `from_ymd_opt()` instead
+   --> src/commands.rs:305:26
+    |
+305 |     let end = NaiveDate::from_ymd(2022, 12, 31);
+    |
+```
 - (?) Unit tests
 
 ## Python
