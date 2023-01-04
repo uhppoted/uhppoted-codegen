@@ -13,8 +13,8 @@
       - [x] encode
       - [x] decode
       - [x] packXXX
-      - [ ] uhppote
       - [x] unpackXXX
+      - [ ] uhppote
 
 - [ ] Pretty print
 - [ ] Rework command lookup
