@@ -42,6 +42,11 @@ jobs:
         node-version: 16
       id: nodejs
 
+    - name: Install zig
+      uses: goto-bus-stop/setup-zig@v1
+      with:
+        version: master
+
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
 
