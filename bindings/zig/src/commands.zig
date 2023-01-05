@@ -3,6 +3,7 @@ const network = @import("zig-network");
 
 const uhppote = @import("uhppote/uhppote.zig");
 const decode = @import("uhppote/decode.zig");
+const datelib = @import("uhppote/datetime.zig");
 
 const CONTROLLER: u32 = 405419896;
 
@@ -27,14 +28,16 @@ pub const commands = [_]Command{
         .function = set_ip,
     },
 
-//   Command {
-//       .name = "get-time",
-//       .function = get_time,
-//   },
-//   Command {
-//       .name = "set-time",
-//       .function = set_time,
-//   },
+    Command {
+        .name = "get-time",
+        .function = get_time,
+    },
+
+    Command {
+        .name = "set-time",
+        .function = set_time,
+    },
+
 //   Command {
 //       .name = "get-status",
 //       .function = get_status,
@@ -168,6 +171,34 @@ fn set_ip(allocator: std.mem.Allocator) void {
 
     if (uhppote.set_ip(controller, address, netmask, gateway, allocator)) |ok| {
         pprint(ok);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_time(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.get_time(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_time(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const now = datelib.DateTime{
+        .year = 2023,
+        .month = 1,
+        .day = 5,
+        .hour = 11,
+        .minute = 23,
+        .second = 15,
+    };
+
+    if (uhppote.set_time(controller, now, allocator)) |response| {
+        pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }

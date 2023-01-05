@@ -14,7 +14,30 @@
       - [x] decode
       - [x] pack
       - [x] unpack
-      - [ ] uhppote
+      - [x] uhppote
+      - [ ] set-time
+      - [ ] get-status
+      - [ ] get-listener
+      - [ ] set-listener
+      - [ ] get-door-control
+      - [ ] set-door-control
+      - [ ] open-door
+      - [ ] get-cards
+      - [ ] get-card
+      - [ ] get-card-by-index
+      - [ ] put-card
+      - [ ] delete-card
+      - [ ] delete-all-cards
+      - [ ] get-event
+      - [ ] get-event-index
+      - [ ] set-event-index
+      - [ ] record-special-events
+      - [ ] get-time-profile
+      - [ ] set-time-profile
+      - [ ] delete-all-time-profiles
+      - [ ] add-task
+      - [ ] refresh-tasklist
+      - [ ] clear-tasklist
 
 - [ ] Pretty print
 - [ ] Rework command lookup

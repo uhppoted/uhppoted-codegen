@@ -52,7 +52,22 @@ fn pack_ipv4(v: network.Address.IPv4, packet: *[64]u8, offset: u8) !void {
     packet[offset+3] = v.value[3];
 }
 
-fn pack_datetime(_: datelib.DateTime, _: *[64]u8, _: u8) !void {
+fn pack_datetime(v: datelib.DateTime, packet: *[64]u8, offset: u8) !void {
+    var buffer: [64:0]u8 = undefined;
+    const s = try std.fmt.bufPrintZ(&buffer, 
+                                    "{d:0>4}{d:0>2}{d:0>2}{d:0>2}{d:0>2}{d:0>2}", 
+                                    .{v.year,v.month,v.day,v.hour,v.minute,v.second});
+
+    var bcd = [_]u8{0} ** 7;
+    _ = try string2bcd(s,&bcd);
+
+    packet[offset] = bcd[0];
+    packet[offset+1] = bcd[1];
+    packet[offset+2] = bcd[2];
+    packet[offset+3] = bcd[3];
+    packet[offset+4] = bcd[4];
+    packet[offset+5] = bcd[5];
+    packet[offset+6] = bcd[6];
 }
 
 fn pack_date(_: datelib.Date, _: *[64]u8, _: u8) !void {
@@ -61,3 +76,14 @@ fn pack_date(_: datelib.Date, _: *[64]u8, _: u8) !void {
 fn pack_hhmm(_: datelib.Time, _: *[64]u8, _: u8) !void {
 }
 
+fn string2bcd(v: []const u8, bcd: []u8) !void {
+    var offset:u8 = 0;
+    var index:u8 = 0;
+
+    while (offset < v.len) {
+        const byte = try std.fmt.parseUnsigned(u8, v[offset..][0..2], 16);
+        bcd[index] = byte;
+        offset += 2;
+        index += 1;
+    }
+}

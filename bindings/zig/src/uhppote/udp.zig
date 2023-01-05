@@ -233,7 +233,7 @@ fn dump(packet: [64]u8) void {
     if (debug) {
         const offsets = [_]usize{ 0, 16, 32, 48 };
         for (offsets) |ix| {
-            const f = "   {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2} {x:0<2}";
+            const f = "   {x:0>2} {x:0>2} {x:0>2} {x:0>2} {x:0>2} {x:0>2} {x:0>2} {x:0>2}";
             const u = packet[ix .. ix + 8];
             const v = packet[ix + 8 .. ix + 16];
             std.debug.print(f, .{ u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7] });

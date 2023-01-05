@@ -19,21 +19,6 @@ pub const {{CamelCase .name}} = struct { {{range .fields}}
 };
 {{end}}
 
-// pub fn get_event(packet: [64]u8) !Event {
-//     // Ref. v6.62 firmware event
-//     if ((packet[0] != 0x17) and (packet[0] != 0x19 or packet[1] != 0x20)) {
-//         return errors.UhppotedError.InvalidReplyStartOfMessage;
-//     }
-// 
-//     if (packet[1] != 0x20) {
-//         return errors.UhppotedError.InvalidEventFunctionCode;
-//     }
-// 
-//     const event = Event{};
-// 
-//     return event;
-// }
-
 {{- range .model.responses}}
 {{- template "decode" . -}}
 {{end}}
