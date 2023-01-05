@@ -117,7 +117,12 @@ pub fn send(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
 
     dump(packet);
 
-    return try read(&socket, allocator);
+    // set-ip does not return a response
+    if (packet[1] == 0x96) { 
+        return [_]u8{0} ** 64;
+    } 
+
+    return try read(&socket, allocator);    
 }
 
 pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !void {

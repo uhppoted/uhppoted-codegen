@@ -45,7 +45,11 @@ fn pack_uint32(v: u32, packet: *[64]u8, offset: u8) !void {
     std.mem.writeIntLittle(u32, &packet[offset], v);
 }
 
-fn pack_ipv4(_: network.Address, _: *[64]u8, _: u8) !void {
+fn pack_ipv4(v: network.Address.IPv4, packet: *[64]u8, offset: u8) !void {
+    packet[offset] = v.value[0];
+    packet[offset+1] = v.value[1];
+    packet[offset+2] = v.value[2];
+    packet[offset+3] = v.value[3];
 }
 
 fn pack_datetime(_: datelib.DateTime, _: *[64]u8, _: u8) !void {

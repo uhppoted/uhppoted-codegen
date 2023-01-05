@@ -1,4 +1,7 @@
 const std = @import("std");
+const network = @import("zig-network");
+const datelib = @import("datetime.zig");
+
 const encode = @import("encode.zig");
 const decode = @import("decode.zig");
 const udp = @import("udp.zig");
@@ -17,31 +20,6 @@ pub fn set_listen_address(addr: [:0]const u8) !void {
 
 pub fn set_debug(v: bool) !void {
     try udp.set_debug(v);
-}
-
-pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetControllerResponse {
-    const request = try encode.get_controller_request(0);
-    const replies = try udp.broadcast(request, allocator);
-
-    defer allocator.free(replies);
-
-    var list = std.ArrayList(decode.GetControllerResponse).init(allocator);
-    defer list.deinit();
-
-    for (replies) |reply| {
-        const response = try decode.get_controller_response(reply);
-
-        try list.append(response);
-    }
-
-    return list.toOwnedSlice();
-}
-
-pub fn get_controller(device_id: u32, allocator: std.mem.Allocator) !decode.GetControllerResponse {
-    const request = try encode.get_controller_request(device_id);
-    const reply = try udp.send(request, allocator);
-
-    return try decode.get_controller_response(reply);
 }
 
 // FIXME: using threads in lieu of async because async is currently broken in the nightlies
@@ -84,3 +62,40 @@ fn on_event(ctx: context) void {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }
 }
+
+pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetControllerResponse {
+    const request = try encode.get_controller_request(0);
+    const replies = try udp.broadcast(request, allocator);
+
+    defer allocator.free(replies);
+
+    var list = std.ArrayList(decode.GetControllerResponse).init(allocator);
+    defer list.deinit();
+
+    for (replies) |reply| {
+        const response = try decode.get_controller_response(reply);
+
+        try list.append(response);
+    }
+
+    return list.toOwnedSlice();
+}
+
+{{range .model.functions}}
+{{- template "function" . -}}
+{{end -}}
+
+{{define "function"}}
+pub fn {{snakeCase .name}}({{template "args" .args}}, allocator: std.mem.Allocator) {{if .response -}}!decode.{{template "result" .}}{{else}}!bool{{end}} { 
+    const request = try encode.{{snakeCase .request.name}}({{template "params" .args}});
+    {{if .response -}}
+    const reply = try udp.send(request, allocator);
+
+    return try decode.{{snakeCase .response.name}}(reply);
+    {{else}}
+    _ = try udp.send(request, allocator);
+
+    return true;
+    {{end}}
+}
+{{end}}

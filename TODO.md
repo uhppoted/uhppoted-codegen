@@ -12,8 +12,8 @@
 - [ ] Test/use generated code
       - [x] encode
       - [x] decode
-      - [x] packXXX
-      - [x] unpackXXX
+      - [x] pack
+      - [x] unpack
       - [ ] uhppote
 
 - [ ] Pretty print
