@@ -6,6 +6,9 @@ const decode = @import("uhppote/decode.zig");
 const datelib = @import("uhppote/datetime.zig");
 
 const CONTROLLER: u32 = 405419896;
+const DOOR: u8 = 3;
+const MODE: u8 = 2;
+const DELAY: u8 = 10;
 
 pub const Command = struct {
     name: []const u8,
@@ -38,30 +41,36 @@ pub const commands = [_]Command{
         .function = set_time,
     },
 
-//   Command {
-//       .name = "get-status",
-//       .function = get_status,
-//   },
-//   Command {
-//       .name = "get-listener",
-//       .function = get_listener,
-//   },
-//   Command {
-//       .name = "set-listener",
-//       .function = set_listener,
-//   },
-//   Command {
-//       .name = "get-door-control",
-//       .function = get_door_control,
-//   },
-//   Command {
-//       .name = "set-door-control",
-//       .function = set_door_control,
-//   },
-//   Command {
-//       .name = "open-door",
-//       .function = open_door,
-//   },
+   Command {
+       .name = "get-status",
+       .function = get_status,
+   },
+
+   Command {
+       .name = "get-listener",
+       .function = get_listener,
+   },
+
+   Command {
+       .name = "set-listener",
+       .function = set_listener,
+   },
+
+   Command {
+       .name = "get-door-control",
+       .function = get_door_control,
+   },
+
+   Command {
+       .name = "set-door-control",
+       .function = set_door_control,
+   },
+
+   Command {
+       .name = "open-door",
+       .function = open_door,
+   },
+
 //   Command {
 //       .name = "get-cards",
 //       .function = get_cards,
@@ -191,6 +200,73 @@ fn set_time(allocator: std.mem.Allocator) void {
     const now = datelib.now();
 
     if (uhppote.set_time(controller, now, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_status(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.get_status(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_listener(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.get_listener(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_listener(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const address = network.Address.IPv4.init(192,168,1,100);
+    const port = 60002;
+
+    if (uhppote.set_listener(controller, address, port, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_door_control(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const door = DOOR;
+
+    if (uhppote.get_door_control(controller, door, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_door_control(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const door = DOOR;
+    const mode = MODE;
+    const delay = DELAY;
+
+    if (uhppote.set_door_control(controller, door, mode, delay, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn open_door(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const door = DOOR;
+
+    if (uhppote.open_door(controller, door, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

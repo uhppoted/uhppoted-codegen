@@ -250,6 +250,8 @@ fn unpack_optional_datetime(packet: [64]u8, offset: u8) ?datelib.DateTime {
             .minute = minute,
             .second = second,
         };
+    } else |_| {
+        return null;
     }
 }
 
