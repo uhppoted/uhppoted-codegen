@@ -429,8 +429,8 @@ fn delete_all_time_profiles() {
 
 fn add_task() {
     let controller = CONTROLLER;
-    let startdate = NaiveDate::parse_from_str("2022-01-01", "%Y-%m-%d").unwrap();
-    let enddate = NaiveDate::parse_from_str("2022-12-31", "%Y-%m-%d").unwrap();
+    let start_date = NaiveDate::parse_from_str("2023-01-01", "%Y-%m-%d").unwrap();
+    let end_date = NaiveDate::parse_from_str("2023-12-31", "%Y-%m-%d").unwrap();
     let monday = true;
     let tuesday = true;
     let wednesday = false;
@@ -438,15 +438,15 @@ fn add_task() {
     let friday = false;
     let saturday = false;
     let sunday = true;
-    let starttime = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
+    let start_time = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
     let door = DOOR;
     let task_type: u8 = 2;
     let more_cards: u8 = 0;
 
     print(|| -> Result<uhppote::AddTaskResponse, error::Error> {
         futures::executor::block_on(uhppote::add_task(
-        controller, startdate, enddate, monday, tuesday, wednesday, thursday, friday, saturday,
-        sunday, starttime, door, task_type, more_cards))
+        controller, start_date, end_date, monday, tuesday, wednesday, thursday, friday, saturday,
+        sunday, start_time, door, task_type, more_cards))
     })
 }
 

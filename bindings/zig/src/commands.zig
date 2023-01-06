@@ -140,23 +140,25 @@ pub const commands = [_]Command{
        .function = delete_all_time_profiles,
    },
 
-//   Command {
-//       .name = "add-task",
-//       .function = add_task,
-//   },
-//   Command {
-//       .name = "refresh-tasklist",
-//       .function = refresh_tasklist,
-//   },
-//   Command {
-//       .name = "clear-tasklist",
-//       .function = clear_tasklist,
-//   },
+   Command {
+       .name = "add-task",
+       .function = add_task,
+   },
 
-    Command{
-        .name = "listen",
-        .function = listen,
-    },
+   Command {
+       .name = "refresh-tasklist",
+       .function = refresh_tasklist,
+   },
+
+   Command {
+       .name = "clear-tasklist",
+       .function = clear_tasklist,
+   },
+
+   Command{
+       .name = "listen",
+       .function = listen,
+   },
 };
 
 pub fn exec(cmd: Command) !void {
@@ -469,6 +471,63 @@ fn delete_all_time_profiles(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
 
     if (uhppote.delete_all_time_profiles(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn add_task(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const start_date = datelib.Date{ .year=2023, .month=1, .day=1 };
+    const end_date = datelib.Date{ .year=2023, .month=12, .day=31 };
+    const monday = true;
+    const tuesday = true;
+    const wednesday = false;
+    const thursday = true;
+    const friday = false;
+    const saturday = false;
+    const sunday = true;
+    const start_time = datelib.Time{ .hour=8, .minute=30, .second=0 };
+    const door = DOOR;
+    const task_type = 2;
+    const more_cards = 0;
+
+    if (uhppote.add_task(controller, 
+                         start_date,
+                         end_date,
+                         monday,
+                         tuesday,
+                         wednesday,
+                         thursday,
+                         friday,
+                         saturday,
+                         sunday,
+                         start_time,
+                         door,
+                         task_type,
+                         more_cards,
+                         allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn refresh_tasklist(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.refresh_tasklist(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn clear_tasklist(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.clear_tasklist(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
