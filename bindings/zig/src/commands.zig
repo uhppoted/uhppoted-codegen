@@ -11,7 +11,7 @@ const MODE: u8 = 2;
 const DELAY: u8 = 10;
 const CARD: u32 = 8165538;
 const CARD_INDEX: u32 = 3;
-// const EVENT_INDEX: u32 = 37;
+const EVENT_INDEX: u32 = 37;
 // const TIME_PROFILE_ID: u8 = 29;
 
 pub const Command = struct {
@@ -105,22 +105,26 @@ pub const commands = [_]Command{
        .function = delete_all_cards,
    },
 
-//   Command {
-//       .name = "get-event",
-//       .function = get_event,
-//   },
-//   Command {
-//       .name = "get-event-index",
-//       .function = get_event_index,
-//   },
-//   Command {
-//       .name = "set-event-index",
-//       .function = set_event_index,
-//   },
-//   Command {
-//       .name = "record-special-events",
-//       .function = record_special_events,
-//   },
+   Command {
+       .name = "get-event",
+       .function = get_event,
+   },
+
+   Command {
+       .name = "get-event-index",
+       .function = get_event_index,
+   },
+
+   Command {
+       .name = "set-event-index",
+       .function = set_event_index,
+   },
+
+   Command {
+       .name = "record-special-events",
+       .function = record_special_events,
+   },
+
 //   Command {
 //       .name = "get-time-profile",
 //       .function = get_time_profile,
@@ -347,6 +351,55 @@ fn delete_all_cards(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
 
     if (uhppote.delete_all_cards(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_event(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const index = EVENT_INDEX;
+
+    if (uhppote.get_event(controller, index, allocator)) |response| {
+        if (response.event_type == 0xff) {
+            std.debug.print("\n   *** ERROR  event @ index {any} overwritten\n", .{index});
+        } else if (response.index == 0) {
+            std.debug.print("\n   *** ERROR  event @ index {any} not found\n", .{index});
+        } else {
+            pprint(response);
+        }
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_event_index(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.get_event_index(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_event_index(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const index = EVENT_INDEX;
+
+    if (uhppote.set_event_index(controller, index, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn record_special_events(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const enabled = true;
+
+    if (uhppote.record_special_events(controller, enabled, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

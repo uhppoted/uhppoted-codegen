@@ -25,7 +25,7 @@ pub fn {{snakeCase .name}}({{template "args" .fields}}) ![64]u8 {
 }
 {{end}}
 
-fn pack_bool(v: bool, packet: *[64]u8, offset: u8) void {
+fn pack_bool(v: bool, packet: *[64]u8, offset: u8) !void {
     if (v) {
         packet[offset] = 1;
     } else {
