@@ -188,14 +188,7 @@ fn get_time(allocator: std.mem.Allocator) void {
 
 fn set_time(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
-    const now = datelib.DateTime{
-        .year = 2023,
-        .month = 1,
-        .day = 5,
-        .hour = 11,
-        .minute = 23,
-        .second = 15,
-    };
+    const now = datelib.now();
 
     if (uhppote.set_time(controller, now, allocator)) |response| {
         pprint(response);

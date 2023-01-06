@@ -4,17 +4,7 @@
 - [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
 
 ## zig
-- [x] Include in github workflow
-- [x] Set bind address
-- [x] Set broadcast address
-- [x] Set listen address
-- [x] Add to top level Makefile
 - [ ] Test/use generated code
-      - [x] encode
-      - [x] decode
-      - [x] pack
-      - [x] unpack
-      - [x] uhppote
       - [ ] set-time
       - [ ] get-status
       - [ ] get-listener
