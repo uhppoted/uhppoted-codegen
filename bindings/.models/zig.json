@@ -12,7 +12,7 @@
             "shortdate": "datelib.Date",
             "time": "datelib.Time",
             "datetime": "datelib.DateTime",
-            "HHmm": "datelib.HHmm",
+            "HHmm": "datelib.Time",
 
             "optional date": "?datelib.Date",
             "optional datetime": "?datelib.DateTime"

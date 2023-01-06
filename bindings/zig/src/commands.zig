@@ -12,7 +12,7 @@ const DELAY: u8 = 10;
 const CARD: u32 = 8165538;
 const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
-// const TIME_PROFILE_ID: u8 = 29;
+const TIME_PROFILE_ID: u8 = 29;
 
 pub const Command = struct {
     name: []const u8,
@@ -125,18 +125,21 @@ pub const commands = [_]Command{
        .function = record_special_events,
    },
 
-//   Command {
-//       .name = "get-time-profile",
-//       .function = get_time_profile,
-//   },
-//   Command {
-//       .name = "set-time-profile",
-//       .function = set_time_profile,
-//   },
-//   Command {
-//       .name = "delete-all-time-profiles",
-//       .function = delete_all_time_profiles,
-//   },
+   Command {
+       .name = "get-time-profile",
+       .function = get_time_profile,
+   },
+
+   Command {
+       .name = "set-time-profile",
+       .function = set_time_profile,
+   },
+
+   Command {
+       .name = "delete-all-time-profiles",
+       .function = delete_all_time_profiles,
+   },
+
 //   Command {
 //       .name = "add-task",
 //       .function = add_task,
@@ -400,6 +403,72 @@ fn record_special_events(allocator: std.mem.Allocator) void {
     const enabled = true;
 
     if (uhppote.record_special_events(controller, enabled, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_time_profile(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const profile_id = TIME_PROFILE_ID;
+
+    if (uhppote.get_time_profile(controller, profile_id, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_time_profile(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const profile_id = TIME_PROFILE_ID;
+    const start = datelib.Date{ .year=2023, .month=1, .day=1 };
+    const end = datelib.Date{ .year=2023, .month=12, .day=31 };
+    const monday = true;
+    const tuesday = true;
+    const wednesday = false;
+    const thursday = true;
+    const friday = false;
+    const saturday = false;
+    const sunday = true;
+    const segment_1_start = datelib.Time{ .hour=8, .minute=30, .second=0 };
+    const segment_1_end = datelib.Time{ .hour=11, .minute=45, .second=0 };
+    const segment_2_start = datelib.Time{ .hour=12, .minute=45, .second=0 };
+    const segment_2_end = datelib.Time{ .hour=17, .minute=0, .second=0 };
+    const segment_3_start = datelib.Time{ .hour=18, .minute=30, .second=0 };
+    const segment_3_end = datelib.Time{ .hour=20, .minute=15, .second=0 };
+    const linked_profile_id = 37;
+
+    if (uhppote.set_time_profile(controller, 
+                                 profile_id, 
+                                 start,
+                                 end,
+                                 monday,
+                                 tuesday,
+                                 wednesday,
+                                 thursday,
+                                 friday,
+                                 saturday,
+                                 sunday,
+                                 segment_1_start,
+                                 segment_1_end,
+                                 segment_2_start,
+                                 segment_2_end,
+                                 segment_3_start,
+                                 segment_3_end,
+                                 linked_profile_id,
+                                 allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn delete_all_time_profiles(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.delete_all_time_profiles(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
