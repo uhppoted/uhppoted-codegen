@@ -9,6 +9,10 @@ const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
 const MODE: u8 = 2;
 const DELAY: u8 = 10;
+const CARD: u32 = 8165538;
+const CARD_INDEX: u32 = 3;
+// const EVENT_INDEX: u32 = 37;
+// const TIME_PROFILE_ID: u8 = 29;
 
 pub const Command = struct {
     name: []const u8,
@@ -71,30 +75,36 @@ pub const commands = [_]Command{
        .function = open_door,
    },
 
-//   Command {
-//       .name = "get-cards",
-//       .function = get_cards,
-//   },
-//   Command {
-//       .name = "get-card",
-//       .function = get_card,
-//   },
-//   Command {
-//       .name = "get-card-by-index",
-//       .function = get_card_by_index,
-//   },
-//   Command {
-//       .name = "put-card",
-//       .function = put_card,
-//   },
-//   Command {
-//       .name = "delete-card",
-//       .function = delete_card,
-//   },
-//   Command {
-//       .name = "delete-all-cards",
-//       .function = delete_all_cards,
-//   },
+   Command {
+       .name = "get-cards",
+       .function = get_cards,
+   },
+
+   Command {
+       .name = "get-card",
+       .function = get_card,
+   },
+
+   Command {
+       .name = "get-card-by-index",
+       .function = get_card_by_index,
+   },
+
+   Command {
+       .name = "put-card",
+       .function = put_card,
+   },
+
+   Command {
+       .name = "delete-card",
+       .function = delete_card,
+   },
+
+   Command {
+       .name = "delete-all-cards",
+       .function = delete_all_cards,
+   },
+
 //   Command {
 //       .name = "get-event",
 //       .function = get_event,
@@ -267,6 +277,76 @@ fn open_door(allocator: std.mem.Allocator) void {
     const door = DOOR;
 
     if (uhppote.open_door(controller, door, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_cards(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.get_cards(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_card(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const card = CARD;
+
+    if (uhppote.get_card(controller, card, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_card_by_index(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const index = CARD_INDEX;
+
+    if (uhppote.get_card_by_index(controller, index, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn put_card(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const card = CARD;
+    const start = datelib.Date{.year=2023, .month=1, .day=1};
+    const end = datelib.Date{.year=2023, .month=12, .day=31};
+    const door1 = 0;
+    const door2 = 1;
+    const door3 = 29;
+    const door4 = 0;
+
+    if (uhppote.put_card(controller, card, start, end, door1, door2, door3, door4, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn delete_card(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const card = CARD;
+
+    if (uhppote.delete_card(controller, card, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn delete_all_cards(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.delete_all_cards(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

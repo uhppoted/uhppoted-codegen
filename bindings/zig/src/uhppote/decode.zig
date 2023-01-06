@@ -149,11 +149,13 @@ fn unpack_optional_date(packet: [64]u8, offset: u8) ?datelib.Date {
         const month = std.fmt.parseUnsigned(u8, string[4..6], 10) catch 1;
         const day = std.fmt.parseUnsigned(u8, string[6..8], 10) catch 1;
 
-        return &datelib.Date{
+        return datelib.Date{
             .year = year,
             .month = month,
             .day = day,
         };
+    } else |_| {
+        return null;
     }
 }
 

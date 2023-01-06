@@ -70,7 +70,19 @@ fn pack_datetime(v: datelib.DateTime, packet: *[64]u8, offset: u8) !void {
     packet[offset+6] = bcd[6];
 }
 
-fn pack_date(_: datelib.Date, _: *[64]u8, _: u8) !void {
+fn pack_date(v: datelib.Date, packet: *[64]u8, offset: u8) !void {
+    var buffer: [64:0]u8 = undefined;
+    const s = try std.fmt.bufPrintZ(&buffer, 
+                                    "{d:0>4}{d:0>2}{d:0>2}", 
+                                    .{v.year,v.month,v.day});
+
+    var bcd = [_]u8{0} ** 4;
+    _ = try string2bcd(s,&bcd);
+
+    packet[offset] = bcd[0];
+    packet[offset+1] = bcd[1];
+    packet[offset+2] = bcd[2];
+    packet[offset+3] = bcd[3];
 }
 
 fn pack_hhmm(_: datelib.Time, _: *[64]u8, _: u8) !void {
