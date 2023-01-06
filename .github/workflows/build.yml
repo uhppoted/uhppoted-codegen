@@ -47,9 +47,6 @@ jobs:
       with:
         version: master
 
-    - name: install C headers
-      run: sudo apt install -y libc6-dev
-    
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
 
