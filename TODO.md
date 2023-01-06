@@ -4,32 +4,32 @@
 - [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
 
 ## zig
-- [ ] Test/use generated code
-      - [ ] set-time
-      - [ ] get-status
-      - [ ] get-listener
-      - [ ] set-listener
-      - [ ] get-door-control
-      - [ ] set-door-control
-      - [ ] open-door
-      - [ ] get-cards
-      - [ ] get-card
-      - [ ] get-card-by-index
-      - [ ] put-card
-      - [ ] delete-card
-      - [ ] delete-all-cards
-      - [ ] get-event
-      - [ ] get-event-index
-      - [ ] set-event-index
-      - [ ] record-special-events
-      - [ ] get-time-profile
-      - [ ] set-time-profile
-      - [ ] delete-all-time-profiles
-      - [ ] add-task
-      - [ ] refresh-tasklist
-      - [ ] clear-tasklist
+- [x] Test/use generated code
+      - [x] set-time
+      - [x] get-status
+      - [x] get-listener
+      - [x] set-listener
+      - [x] get-door-control
+      - [x] set-door-control
+      - [x] open-door
+      - [x] get-cards
+      - [x] get-card
+      - [x] get-card-by-index
+      - [x] put-card
+      - [x] delete-card
+      - [x] delete-all-cards
+      - [x] get-event
+      - [x] get-event-index
+      - [x] set-event-index
+      - [x] record-special-events
+      - [x] get-time-profile
+      - [x] set-time-profile
+      - [x] delete-all-time-profiles
+      - [x] add-task
+      - [x] refresh-tasklist
+      - [x] clear-tasklist
 
-- [ ] Pretty print
+- (?) Pretty print
 - [ ] Rework command lookup
       - https://andrewkelley.me/post/string-matching-comptime-perfect-hashing-zig.html
 - (?) async/await timeouts

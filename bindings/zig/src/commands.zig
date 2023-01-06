@@ -30,135 +30,135 @@ pub const commands = [_]Command{
         .function = get_controller,
     },
 
-    Command {
+    Command{
         .name = "set-ip",
         .function = set_ip,
     },
 
-    Command {
+    Command{
         .name = "get-time",
         .function = get_time,
     },
 
-    Command {
+    Command{
         .name = "set-time",
         .function = set_time,
     },
 
-   Command {
-       .name = "get-status",
-       .function = get_status,
-   },
+    Command{
+        .name = "get-status",
+        .function = get_status,
+    },
 
-   Command {
-       .name = "get-listener",
-       .function = get_listener,
-   },
+    Command{
+        .name = "get-listener",
+        .function = get_listener,
+    },
 
-   Command {
-       .name = "set-listener",
-       .function = set_listener,
-   },
+    Command{
+        .name = "set-listener",
+        .function = set_listener,
+    },
 
-   Command {
-       .name = "get-door-control",
-       .function = get_door_control,
-   },
+    Command{
+        .name = "get-door-control",
+        .function = get_door_control,
+    },
 
-   Command {
-       .name = "set-door-control",
-       .function = set_door_control,
-   },
+    Command{
+        .name = "set-door-control",
+        .function = set_door_control,
+    },
 
-   Command {
-       .name = "open-door",
-       .function = open_door,
-   },
+    Command{
+        .name = "open-door",
+        .function = open_door,
+    },
 
-   Command {
-       .name = "get-cards",
-       .function = get_cards,
-   },
+    Command{
+        .name = "get-cards",
+        .function = get_cards,
+    },
 
-   Command {
-       .name = "get-card",
-       .function = get_card,
-   },
+    Command{
+        .name = "get-card",
+        .function = get_card,
+    },
 
-   Command {
-       .name = "get-card-by-index",
-       .function = get_card_by_index,
-   },
+    Command{
+        .name = "get-card-by-index",
+        .function = get_card_by_index,
+    },
 
-   Command {
-       .name = "put-card",
-       .function = put_card,
-   },
+    Command{
+        .name = "put-card",
+        .function = put_card,
+    },
 
-   Command {
-       .name = "delete-card",
-       .function = delete_card,
-   },
+    Command{
+        .name = "delete-card",
+        .function = delete_card,
+    },
 
-   Command {
-       .name = "delete-all-cards",
-       .function = delete_all_cards,
-   },
+    Command{
+        .name = "delete-all-cards",
+        .function = delete_all_cards,
+    },
 
-   Command {
-       .name = "get-event",
-       .function = get_event,
-   },
+    Command{
+        .name = "get-event",
+        .function = get_event,
+    },
 
-   Command {
-       .name = "get-event-index",
-       .function = get_event_index,
-   },
+    Command{
+        .name = "get-event-index",
+        .function = get_event_index,
+    },
 
-   Command {
-       .name = "set-event-index",
-       .function = set_event_index,
-   },
+    Command{
+        .name = "set-event-index",
+        .function = set_event_index,
+    },
 
-   Command {
-       .name = "record-special-events",
-       .function = record_special_events,
-   },
+    Command{
+        .name = "record-special-events",
+        .function = record_special_events,
+    },
 
-   Command {
-       .name = "get-time-profile",
-       .function = get_time_profile,
-   },
+    Command{
+        .name = "get-time-profile",
+        .function = get_time_profile,
+    },
 
-   Command {
-       .name = "set-time-profile",
-       .function = set_time_profile,
-   },
+    Command{
+        .name = "set-time-profile",
+        .function = set_time_profile,
+    },
 
-   Command {
-       .name = "delete-all-time-profiles",
-       .function = delete_all_time_profiles,
-   },
+    Command{
+        .name = "delete-all-time-profiles",
+        .function = delete_all_time_profiles,
+    },
 
-   Command {
-       .name = "add-task",
-       .function = add_task,
-   },
+    Command{
+        .name = "add-task",
+        .function = add_task,
+    },
 
-   Command {
-       .name = "refresh-tasklist",
-       .function = refresh_tasklist,
-   },
+    Command{
+        .name = "refresh-tasklist",
+        .function = refresh_tasklist,
+    },
 
-   Command {
-       .name = "clear-tasklist",
-       .function = clear_tasklist,
-   },
+    Command{
+        .name = "clear-tasklist",
+        .function = clear_tasklist,
+    },
 
-   Command{
-       .name = "listen",
-       .function = listen,
-   },
+    Command{
+        .name = "listen",
+        .function = listen,
+    },
 };
 
 pub fn exec(cmd: Command) !void {
@@ -193,9 +193,9 @@ fn get_controller(allocator: std.mem.Allocator) void {
 
 fn set_ip(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
-    const address = network.Address.IPv4.init(192,168,1,100);
-    const netmask = network.Address.IPv4.init(255,255,255,0);
-    const gateway = network.Address.IPv4.init(192,168,1,1);
+    const address = network.Address.IPv4.init(192, 168, 1, 100);
+    const netmask = network.Address.IPv4.init(255, 255, 255, 0);
+    const gateway = network.Address.IPv4.init(192, 168, 1, 1);
 
     if (uhppote.set_ip(controller, address, netmask, gateway, allocator)) |ok| {
         pprint(ok);
@@ -247,7 +247,7 @@ fn get_listener(allocator: std.mem.Allocator) void {
 
 fn set_listener(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
-    const address = network.Address.IPv4.init(192,168,1,100);
+    const address = network.Address.IPv4.init(192, 168, 1, 100);
     const port = 60002;
 
     if (uhppote.set_listener(controller, address, port, allocator)) |response| {
@@ -327,8 +327,8 @@ fn get_card_by_index(allocator: std.mem.Allocator) void {
 fn put_card(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
     const card = CARD;
-    const start = datelib.Date{.year=2023, .month=1, .day=1};
-    const end = datelib.Date{.year=2023, .month=12, .day=31};
+    const start = datelib.Date{ .year = 2023, .month = 1, .day = 1 };
+    const end = datelib.Date{ .year = 2023, .month = 12, .day = 31 };
     const door1 = 0;
     const door2 = 1;
     const door3 = 29;
@@ -425,8 +425,8 @@ fn get_time_profile(allocator: std.mem.Allocator) void {
 fn set_time_profile(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
     const profile_id = TIME_PROFILE_ID;
-    const start = datelib.Date{ .year=2023, .month=1, .day=1 };
-    const end = datelib.Date{ .year=2023, .month=12, .day=31 };
+    const start = datelib.Date{ .year = 2023, .month = 1, .day = 1 };
+    const end = datelib.Date{ .year = 2023, .month = 12, .day = 31 };
     const monday = true;
     const tuesday = true;
     const wednesday = false;
@@ -434,33 +434,15 @@ fn set_time_profile(allocator: std.mem.Allocator) void {
     const friday = false;
     const saturday = false;
     const sunday = true;
-    const segment_1_start = datelib.Time{ .hour=8, .minute=30, .second=0 };
-    const segment_1_end = datelib.Time{ .hour=11, .minute=45, .second=0 };
-    const segment_2_start = datelib.Time{ .hour=12, .minute=45, .second=0 };
-    const segment_2_end = datelib.Time{ .hour=17, .minute=0, .second=0 };
-    const segment_3_start = datelib.Time{ .hour=18, .minute=30, .second=0 };
-    const segment_3_end = datelib.Time{ .hour=20, .minute=15, .second=0 };
+    const segment_1_start = datelib.Time{ .hour = 8, .minute = 30, .second = 0 };
+    const segment_1_end = datelib.Time{ .hour = 11, .minute = 45, .second = 0 };
+    const segment_2_start = datelib.Time{ .hour = 12, .minute = 45, .second = 0 };
+    const segment_2_end = datelib.Time{ .hour = 17, .minute = 0, .second = 0 };
+    const segment_3_start = datelib.Time{ .hour = 18, .minute = 30, .second = 0 };
+    const segment_3_end = datelib.Time{ .hour = 20, .minute = 15, .second = 0 };
     const linked_profile_id = 37;
 
-    if (uhppote.set_time_profile(controller, 
-                                 profile_id, 
-                                 start,
-                                 end,
-                                 monday,
-                                 tuesday,
-                                 wednesday,
-                                 thursday,
-                                 friday,
-                                 saturday,
-                                 sunday,
-                                 segment_1_start,
-                                 segment_1_end,
-                                 segment_2_start,
-                                 segment_2_end,
-                                 segment_3_start,
-                                 segment_3_end,
-                                 linked_profile_id,
-                                 allocator)) |response| {
+    if (uhppote.set_time_profile(controller, profile_id, start, end, monday, tuesday, wednesday, thursday, friday, saturday, sunday, segment_1_start, segment_1_end, segment_2_start, segment_2_end, segment_3_start, segment_3_end, linked_profile_id, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
@@ -479,8 +461,8 @@ fn delete_all_time_profiles(allocator: std.mem.Allocator) void {
 
 fn add_task(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
-    const start_date = datelib.Date{ .year=2023, .month=1, .day=1 };
-    const end_date = datelib.Date{ .year=2023, .month=12, .day=31 };
+    const start_date = datelib.Date{ .year = 2023, .month = 1, .day = 1 };
+    const end_date = datelib.Date{ .year = 2023, .month = 12, .day = 31 };
     const monday = true;
     const tuesday = true;
     const wednesday = false;
@@ -488,26 +470,12 @@ fn add_task(allocator: std.mem.Allocator) void {
     const friday = false;
     const saturday = false;
     const sunday = true;
-    const start_time = datelib.Time{ .hour=8, .minute=30, .second=0 };
+    const start_time = datelib.Time{ .hour = 8, .minute = 30, .second = 0 };
     const door = DOOR;
     const task_type = 2;
     const more_cards = 0;
 
-    if (uhppote.add_task(controller, 
-                         start_date,
-                         end_date,
-                         monday,
-                         tuesday,
-                         wednesday,
-                         thursday,
-                         friday,
-                         saturday,
-                         sunday,
-                         start_time,
-                         door,
-                         task_type,
-                         more_cards,
-                         allocator)) |response| {
+    if (uhppote.add_task(controller, start_date, end_date, monday, tuesday, wednesday, thursday, friday, saturday, sunday, start_time, door, task_type, more_cards, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
