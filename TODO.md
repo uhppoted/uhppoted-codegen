@@ -4,34 +4,6 @@
 - [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
 
 ## zig
-- [x] Test/use generated code
-      - [x] set-time
-      - [x] get-status
-      - [x] get-listener
-      - [x] set-listener
-      - [x] get-door-control
-      - [x] set-door-control
-      - [x] open-door
-      - [x] get-cards
-      - [x] get-card
-      - [x] get-card-by-index
-      - [x] put-card
-      - [x] delete-card
-      - [x] delete-all-cards
-      - [x] get-event
-      - [x] get-event-index
-      - [x] set-event-index
-      - [x] record-special-events
-      - [x] get-time-profile
-      - [x] set-time-profile
-      - [x] delete-all-time-profiles
-      - [x] add-task
-      - [x] refresh-tasklist
-      - [x] clear-tasklist
-
-- (?) Pretty print
-- [ ] Rework command lookup
-      - https://andrewkelley.me/post/string-matching-comptime-perfect-hashing-zig.html
 - (?) async/await timeouts
       - https://dev.to/hnakamur/experimenting-timeout-and-cancellation-with-zig-asyncawait-and-tigerbeetle-io-53o5
       - https://github.com/MasterQ32/zig-network/issues/30
@@ -47,7 +19,7 @@
       - https://blog.yoshuawuyts.com/why-async-rust/
       - https://stackoverflow.com/questions/67686409/how-to-pass-an-async-function-as-a-parameter-in-rust-pyo3
 
-- github workflow
+- [x] github workflow
 ```
  Compiling uhppoted v0.1.0 (/home/runner/work/uhppoted-codegen/uhppoted-codegen/generated/rust/uhppoted)
 warning: use of deprecated associated function `chrono::NaiveDate::from_ymd`: use `from_ymd_opt()` instead
@@ -64,6 +36,7 @@ warning: use of deprecated associated function `chrono::NaiveDate::from_ymd`: us
 305 |     let end = NaiveDate::from_ymd(2022, 12, 31);
     |
 ```
+
 - (?) Unit tests
 
 ## Python
@@ -84,6 +57,7 @@ warning: use of deprecated associated function `chrono::NaiveDate::from_ymd`: us
    - Haskell
    - q
    - [Austral](https://borretti.me/article/introducing-austral#status)
+   - [Pony](https://www.ponylang.io/discover/#why-pony)
 
 ## Notes
 
