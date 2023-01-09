@@ -19,24 +19,6 @@
       - https://blog.yoshuawuyts.com/why-async-rust/
       - https://stackoverflow.com/questions/67686409/how-to-pass-an-async-function-as-a-parameter-in-rust-pyo3
 
-- [x] github workflow
-```
- Compiling uhppoted v0.1.0 (/home/runner/work/uhppoted-codegen/uhppoted-codegen/generated/rust/uhppoted)
-warning: use of deprecated associated function `chrono::NaiveDate::from_ymd`: use `from_ymd_opt()` instead
-   --> src/commands.rs:304:28
-    |
-304 |     let start = NaiveDate::from_ymd(2022, 1, 1);
-    |                            ^^^^^^^^
-    |
-    = note: `#[warn(deprecated)]` on by default
-
-warning: use of deprecated associated function `chrono::NaiveDate::from_ymd`: use `from_ymd_opt()` instead
-   --> src/commands.rs:305:26
-    |
-305 |     let end = NaiveDate::from_ymd(2022, 12, 31);
-    |
-```
-
 - (?) Unit tests
 
 ## Python
