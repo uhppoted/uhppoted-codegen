@@ -101,6 +101,9 @@ debug: rust
 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 set-ip
 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-time
 
+godoc:
+	godoc -http=:80	-index_interval=60s
+
 version: build
 	$(CMD) version
 
