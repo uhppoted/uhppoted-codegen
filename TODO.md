@@ -1,7 +1,6 @@
 # TODO
 
-- [ ] https://github.com/dolmen-go/goproc
-- [ ] https://en.wikipedia.org/wiki/M4_(computer_language)
+- [x] set-pc-control
 
 ## zig
 - (?) async/await timeouts
@@ -40,6 +39,9 @@
    - q
    - [Austral](https://borretti.me/article/introducing-austral#status)
    - [Pony](https://www.ponylang.io/discover/#why-pony)
+   - https://github.com/dolmen-go/goproc
+   - https://en.wikipedia.org/wiki/M4_(computer_language)
+
 
 ## Notes
 

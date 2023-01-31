@@ -156,6 +156,11 @@ pub const commands = [_]Command{
     },
 
     Command{
+        .name = "set-pc-control",
+        .function = set_pc_control,
+    },
+
+    Command{
         .name = "listen",
         .function = listen,
     },
@@ -496,6 +501,17 @@ fn clear_tasklist(allocator: std.mem.Allocator) void {
     const controller = CONTROLLER;
 
     if (uhppote.clear_tasklist(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_pc_control(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const enabled = true;
+
+    if (uhppote.set_pc_control(controller, enabled, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

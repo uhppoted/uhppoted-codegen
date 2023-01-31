@@ -26,6 +26,7 @@ var Responses = []Message{
 	AddTaskResponse,
 	RefreshTaskListResponse,
 	ClearTaskListResponse,
+	SetPCControlResponse,
 }
 
 var GetControllerResponse = Message{
@@ -782,6 +783,23 @@ var ClearTaskListResponse = Message{
 		},
 		Field{
 			Name:   "cleared",
+			Type:   "bool",
+			Offset: 8,
+		},
+	},
+}
+
+var SetPCControlResponse = Message{
+	Name:    "set pc control response",
+	MsgType: 0xa0,
+	Fields: []Field{
+		Field{
+			Name:   "controller",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "ok",
 			Type:   "bool",
 			Offset: 8,
 		},

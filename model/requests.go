@@ -27,6 +27,7 @@ var Requests = []Message{
 	AddTaskRequest,
 	RefreshTaskListRequest,
 	ClearTaskListRequest,
+	SetPCControlRequest,
 }
 
 var GetControllerRequest = Message{
@@ -642,6 +643,28 @@ var ClearTaskListRequest = Message{
 			Name:   "",
 			Type:   "magic",
 			Offset: 8,
+		},
+	},
+}
+
+var SetPCControlRequest = Message{
+	Name:    "set pc control request",
+	MsgType: 0xa0,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "",
+			Type:   "magic",
+			Offset: 8,
+		},
+		Field{
+			Name:   "enable",
+			Type:   "bool",
+			Offset: 12,
 		},
 	},
 }

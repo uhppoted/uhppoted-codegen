@@ -1780,6 +1780,56 @@
             }
           ]
         }
+      },
+      {
+        "name": "set pc control",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "enable",
+            "type": "bool"
+          }
+        ],
+        "request": {
+          "name": "set pc control request",
+          "msgtype": 160,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "",
+              "type": "magic",
+              "offset": 8
+            },
+            {
+              "name": "enable",
+              "type": "bool",
+              "offset": 12
+            }
+          ]
+        },
+        "response": {
+          "name": "set pc control response",
+          "msgtype": 160,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        }
       }
     ],
     "requests": [
@@ -2371,6 +2421,27 @@
             "name": "",
             "type": "magic",
             "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "set pc control request",
+        "msgtype": 160,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "",
+            "type": "magic",
+            "offset": 8
+          },
+          {
+            "name": "enable",
+            "type": "bool",
+            "offset": 12
           }
         ]
       }
@@ -3106,6 +3177,22 @@
           },
           {
             "name": "cleared",
+            "type": "bool",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "set pc control response",
+        "msgtype": 160,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }

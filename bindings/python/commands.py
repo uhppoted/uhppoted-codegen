@@ -49,6 +49,7 @@ def commands():
         'add-task': add_task,
         'refresh-tasklist': refresh_tasklist,
         'clear-tasklist': clear_tasklist,
+        'set-pc-control': set_pc_control,
         'listen': listen,
     }
 
@@ -309,8 +310,17 @@ def clear_tasklist(u):
 
     return u.clear_tasklist(controller)
 
+
+def set_pc_control(u):
+    controller = CONTROLLER
+    enabled = True
+
+    return u.set_pc_control(controller, enabled)
+
+
 def listen(u):
     return u.listen(onEvent)
+
 
 def onEvent(event):
     if event != None:

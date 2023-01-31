@@ -29,6 +29,7 @@ var Functions = []Function{
 	AddTask,
 	RefreshTaskList,
 	ClearTaskList,
+	SetPCControl,
 }
 
 var GetController = Function{
@@ -560,4 +561,20 @@ var ClearTaskList = Function{
 	},
 	Request:  &ClearTaskListRequest,
 	Response: &ClearTaskListResponse,
+}
+
+var SetPCControl = Function{
+	Name: "set pc control",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "enable",
+			Type: "bool",
+		},
+	},
+	Request:  &SetPCControlRequest,
+	Response: &SetPCControlResponse,
 }

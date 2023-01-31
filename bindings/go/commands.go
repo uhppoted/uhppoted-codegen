@@ -60,6 +60,7 @@ var commands = []command{
     command{name: "add-task", f: addTask},
     command{name: "refresh-tasklist", f: refreshTaskList},
     command{name: "clear-tasklist", f: clearTaskList},
+    command{name: "set-pc-control", f: setPCControl},
     command{name: "listen", f: listen},
 }
 
@@ -336,6 +337,13 @@ func clearTaskList() (any, error) {
     controller := CONTROLLER
 
     return uhppote.ClearTasklist(controller)
+}
+
+func setPCControl() (any, error) {
+    controller := CONTROLLER
+    enabled := true
+
+    return uhppote.SetPcControl(controller, enabled)
 }
 
 func listen() (any, error) {

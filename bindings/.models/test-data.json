@@ -952,7 +952,7 @@
               "value": "405419896"
             },
             {
-              "name": "enabled",
+              "name": "updated",
               "type": "bool",
               "value": true
             }
@@ -1373,6 +1373,41 @@
             }
           ],
           "message": "F6YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "set pc control",
+        "request": {
+          "name": "set pc control request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "enabled",
+              "type": "bool",
+              "value": "true"
+            }
+          ],
+          "message": "F6AAAHg3KhhVqqpVAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "set pc control response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "message": "F6AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       }
     ]

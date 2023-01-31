@@ -17,7 +17,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 28] = [
+pub const COMMANDS: [&Command; 29] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -125,6 +125,10 @@ pub const COMMANDS: [&Command; 28] = [
     &Command {
         name: "clear-tasklist",
         func: clear_tasklist,
+    },
+    &Command {
+        name: "set-pc-control",
+        func: set_pc_control,
     },
     &Command {
         name: "listen",
@@ -463,6 +467,15 @@ fn clear_tasklist() {
 
     print(|| -> Result<uhppote::ClearTasklistResponse, error::Error> {
         futures::executor::block_on(uhppote::clear_tasklist(controller))
+    })
+}
+
+fn set_pc_control() {
+    let controller = CONTROLLER;
+    let enabled = true;
+
+    print(|| -> Result<uhppote::SetPcControlResponse, error::Error> {
+        futures::executor::block_on(uhppote::set_pc_control(controller, enabled))
     })
 }
 

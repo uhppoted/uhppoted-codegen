@@ -128,6 +128,7 @@ go-test: go
 
 go-debug: go
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-pc-control
 
 go-usage: regen build
 	$(GOBIN)
@@ -144,6 +145,7 @@ rust: build regen
 
 rust-debug: rust
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-pc-control"
 
 rust-usage: rust
 	$(RUSTBIN)
@@ -161,6 +163,7 @@ python: build regen
 
 python-debug: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-pc-control
 
 python-usage: python
 	$(PYBIN)
@@ -171,22 +174,23 @@ python-all: python
 python-listen: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 listen
 
-http: build
-	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
-	npx eslint --fix generated/http/*.js
-
 zig: build regen
 	$(CMD) --models $(MODELS) --templates $(ZIG) --out generated/zig --clean
 	cd generated/zig && zig fmt src/* && zig build
 
 zig-debug: zig
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 clear-tasklist
+	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)
+	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-pc-control
 
 zig-usage: zig
 	$(ZIGBIN) 
 
-zig-run: zig
+zig-all: zig
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
 
 zig-listen: zig
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen
+
+http: build
+	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
+	npx eslint --fix generated/http/*.js
