@@ -61,7 +61,7 @@ benchmark: build
 coverage: build
 	go test -cover ./...
 
-regen:
+regen: 
 	$(CMD) export --models bindings/.models/models.json --tests bindings/.models/test-data.json
 
 build-all: vet go rust python http zig
@@ -76,12 +76,13 @@ build-all: vet go rust python http zig
 	env GOOS=darwin  GOARCH=amd64         GOWORK=off go build -trimpath -o dist/$(DIST)/darwin  ./...
 	env GOOS=windows GOARCH=amd64         GOWORK=off go build -trimpath -o dist/$(DIST)/windows ./...
 
-release: update-release build-all regen
+release: update-release build regen build-all 
 	tar --directory=dist      --exclude=".DS_Store" -cvzf dist/$(DIST).tar.gz $(DIST)
 	tar --directory=.         --exclude=".DS_Store" -cvzf dist/$(DIST)-bindings.tar.gz ./bindings
-	tar --directory=generated --exclude=".DS_Store" --exclude="go/bin"               -cvzf dist/$(DIST)-go.tar.gz       go
-	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target" -cvzf dist/$(DIST)-rust.tar.gz     rust
-	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"   -cvzf dist/$(DIST)-python.tar.gz   python
+	tar --directory=generated --exclude=".DS_Store" --exclude="go/bin"                                -cvzf dist/$(DIST)-go.tar.gz       go
+	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target"                  -cvzf dist/$(DIST)-rust.tar.gz     rust
+	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"                    -cvzf dist/$(DIST)-python.tar.gz   python
+	tar --directory=generated --exclude=".DS_Store" --exclude="zig/zig-cache" --exclude="zig/zig-out" -cvzf dist/$(DIST)-zig.tar.gz      zig
 
 publish: release
 	echo "Releasing version $(VERSION)"
@@ -89,12 +90,8 @@ publish: release
 	rm -f dist/development-go.tar.gz
 	rm -f dist/development-python.tar.gz
 	rm -f dist/development-rust.tar.gz
+	rm -f dist/development-zig.tar.gz
 	gh release create "$(VERSION)" ./dist/*.tar.gz --draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
-
-# debug: go rust python http
-# 	$(GOBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-# 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
-# 	$(PYBIN)   --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 $(COMMAND)
 
 debug: rust
 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-controller
@@ -147,7 +144,6 @@ rust: build regen
 
 rust-debug: rust
 	# bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
-	# bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-pc-control"
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 put-card"
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-card"
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-card-by-index"
@@ -168,7 +164,6 @@ python: build regen
 
 python-debug: python
 	# $(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
-	# $(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-pc-control
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 put-card
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-card
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-card-by-index
@@ -188,7 +183,6 @@ zig: build regen
 
 zig-debug: zig
 	# $(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)
-	# $(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-pc-control
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 put-card
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-card
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-card-by-index

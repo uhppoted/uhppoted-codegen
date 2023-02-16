@@ -2,23 +2,22 @@
 
 # uhppoted-codegen
 
-Code generation tool for creating native UHPPOTE controller interfaces in languages other than _Go_.
-
-The initial [release](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.2) includes generated UHPPOTE bindings for:
-- [Go](https://github.com/uhppoted/uhppoted-codegen/releases/download/v0.8.2/uhppoted-codegen_v0.8.2-go.tar.gz)
-- [Rust](https://github.com/uhppoted/uhppoted-codegen/releases/download/v0.8.2/uhppoted-codegen_v0.8.2-rust.tar.gz)
-- [Python](https://github.com/uhppoted/uhppoted-codegen/releases/download/v0.8.2/uhppoted-codegen_v0.8.2-python.tar.gz)
-- [HTTP]()
+Code generation tool for creating native UHPPOTE controller interfaces in multiple languages:
+- Go
+- Rust
+- Python
+- Zig
+- HTML + Javascript
 
 ## Raison d'être
 
-Because not everybody uses _Go_ and although there is the [DLL](https://github.com/uhppoted/uhppoted-dll) for those
-use cases it does require a DLL built for the target machine. And of course, sometimes a basic, uncomplicated
-language binding that you can customize to your heart's content is what you really want anyway.
+Because not everybody uses _Go_ and a sometimes a basic, uncomplicated language binding as a place to start and
+that you can customize to your heart's content is what you really want.
 
-## Status
-
-**IN DEVELOPMENT**
+The codegen'd bindings are an alternative to the [DLL](https://github.com/uhppoted/uhppoted-dll) which also supports
+development in languages other than Go. However, because of the way the cgo compiler compiles shared libraries it does
+require that a DLL built specifically for the target machine which can make application distribution more complicated
+than it should be.
 
 ## Releases
 
@@ -40,7 +39,7 @@ Installation is straightforward - download the archive and extract it to a direc
 ### Building from source
 
 Required tools:
-- [Go 1.19+](https://go.dev)
+- [Go 1.20+](https://go.dev)
 - make (optional but recommended)
 
 To build using the included Makefile:
@@ -65,8 +64,7 @@ The above commands build the `uhppoted-codegen` executable to the `bin` director
 
 | *Dependency*                                                            | *Description*                        |
 | ----------------------------------------------------------------------- | -------------------------------------|
-| [uhppote-core](https://github.com/uhppoted/uhppote-core)                | Device level API implementation      |
-| [uhppoted-lib](https://github.com/uhppoted/uhppoted-lib)                | Common function library              |
+|                                                                         |                                      |
 
 
 ## uhppoted-codegen
