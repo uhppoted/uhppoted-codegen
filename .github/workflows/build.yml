@@ -45,7 +45,7 @@ jobs:
     - name: Install zig
       uses: goto-bus-stop/setup-zig@v1
       with:
-        version: master
+        version: 0.10.1
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
