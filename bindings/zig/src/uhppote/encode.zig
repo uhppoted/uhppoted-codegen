@@ -98,6 +98,10 @@ fn pack_hhmm(v: datelib.Time, packet: *[64]u8, offset: u8) !void {
     packet[offset+1] = bcd[1];
 }
 
+fn pack_pin(v: u24, packet: *[64]u8, offset: u8) !void {
+    std.mem.writeIntLittle(u24, &packet[offset], v);
+}
+
 fn string2bcd(v: []const u8, bcd: []u8) !void {
     var offset:u8 = 0;
     var index:u8 = 0;

@@ -295,11 +295,12 @@ fn get_card_by_index() {
 fn put_card() {
     let controller = CONTROLLER;
     let card = CARD;
-    let start = NaiveDate::from_ymd_opt(2022, 1, 1).unwrap();
-    let end = NaiveDate::from_ymd_opt(2022, 12, 31).unwrap();
+    let start = NaiveDate::from_ymd_opt(2023, 1, 1).unwrap();
+    let end = NaiveDate::from_ymd_opt(2023, 12, 31).unwrap();
+    let pin = 7531;
 
     print(|| -> Result<uhppote::PutCardResponse, error::Error> {
-        futures::executor::block_on(uhppote::put_card(controller, card, start, end, 0, 1, 29, 0))
+        futures::executor::block_on(uhppote::put_card(controller, card, start, end, 0, 1, 29, 0, pin))
     })
 }
 

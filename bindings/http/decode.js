@@ -118,6 +118,18 @@ function unpackHHmm(packet, offset) {
   return parseHHmm(time)
 }
 
+function unpackPin(packet, offset) {
+  let v = 0
+
+  v |= packet.getUint8(offset + 2) & 0x00ff
+  v <<= 8
+  v |= packet.getUint8(offset + 1) & 0x00ff
+  v <<= 8
+  v |= packet.getUint8(offset + 0) & 0x00ff
+  
+  return v
+}
+
 function bcd (bytes) {
   return [...bytes].map(x => [(x >>> 4) & 0x0f, (x >>> 0) & 0x0f]).flat().join('')
 }

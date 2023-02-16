@@ -165,7 +165,7 @@ pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !v
 fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
     try socket.setReadTimeout(100 * std.time.us_per_ms);
 
-    const start = std.time.microTimestamp();
+    const start = std.time.milliTimestamp() * std.time.us_per_ms;
     var replies = std.ArrayList([64]u8).init(allocator);
     defer replies.deinit();
 
@@ -186,7 +186,7 @@ fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
             }
         } else |err| switch (err) {
             error.WouldBlock => {
-                const dt = std.time.microTimestamp() - start;
+                const dt = std.time.milliTimestamp()*std.time.us_per_ms - start;
 
                 if (dt >= READ_TIMEOUT) {
                     break;

@@ -200,8 +200,9 @@ func putCard() (any, error) {
     card := CARD
     start, _ := time.Parse("2006-01-02", "2022-01-01")
     end, _ := time.Parse("2006-01-02", "2022-12-31")
+    pin := uhppote.PIN(7531)
 
-    return uhppote.PutCard(controller, card, uhppote.Date(start), uhppote.Date(end), 0, 1, 29, 0)
+    return uhppote.PutCard(controller, card, uhppote.Date(start), uhppote.Date(end), 0, 1, 29, 0,pin)
 }
 
 func deleteCard() (any, error) {

@@ -101,6 +101,17 @@ func packBool(v bool, packet []byte, offset uint8) error {
     return nil
 }
 
+func packPin(v PIN, packet []byte, offset uint8) error {
+    bytes := make([]byte, 4)
+    binary.LittleEndian.PutUint32(bytes, uint32(v))
+
+    packet[offset] = bytes[0]
+    packet[offset+1] = bytes[1]
+    packet[offset+2] = bytes[2]
+
+    return nil
+}
+
 func string2bcd(s string) ([]byte, error) {
     BCD := map[rune]uint8 {
         '0': 0x00,

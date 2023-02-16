@@ -84,6 +84,12 @@ func toHHmm(s string) HHmm {
   return HHmm(v)
 }
 
+func toPin(s string) PIN {
+  v, _ := strconv.ParseUint(s, 10, 32)
+
+  return PIN(v)
+}
+
 func format(packet []byte) string {
     var s strings.Builder
     

@@ -590,9 +590,14 @@
               "name": "door 4",
               "type": "uint8",
               "value": 0
+            },
+            {
+              "name": "PIN",
+              "type": "pin",
+              "value": 7531
             }
           ],
-          "message": "F1oAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F1oAAHg3KhiimHwAICIBASAiEjEAAR0Aax0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
@@ -655,9 +660,14 @@
               "name": "door 4",
               "type": "uint8",
               "value": 0
+            },
+            {
+              "name": "PIN",
+              "type": "pin",
+              "value": 7531
             }
           ],
-          "message": "F1wAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F1wAAHg3KhiimHwAICIBASAiEjEAAR0Aax0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
@@ -704,9 +714,14 @@
               "name": "door4",
               "type": "uint8",
               "value": "0"
+            },
+            {
+              "name": "PIN",
+              "type": "pin",
+              "value": "7531"
             }
           ],
-          "message": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F1AAAHg3KhiimHwAICIBASAiEjEAAR0Aax0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
           "name": "put card response",

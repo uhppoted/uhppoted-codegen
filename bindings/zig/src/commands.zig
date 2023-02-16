@@ -338,8 +338,9 @@ fn put_card(allocator: std.mem.Allocator) void {
     const door2 = 1;
     const door3 = 29;
     const door4 = 0;
+    const pin = 7531;
 
-    if (uhppote.put_card(controller, card, start, end, door1, door2, door3, door4, allocator)) |response| {
+    if (uhppote.put_card(controller, card, start, end, door1, door2, door3, door4, pin, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

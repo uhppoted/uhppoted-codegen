@@ -178,7 +178,7 @@ def put_card(u):
     start = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
     end = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
 
-    return u.put_card(controller, card, start, end, 0, 1, 29, 0)
+    return u.put_card(controller, card, start, end, 0, 1, 29, 0, 7531)
 
 
 def delete_card(u):

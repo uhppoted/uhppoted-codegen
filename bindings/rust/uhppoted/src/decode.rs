@@ -8,6 +8,7 @@ use regex::Regex;
 
 use super::error::Error;
 use super::Msg;
+use super::PIN;
 
 type Result<T> = std::result::Result<T, Error>;
 
@@ -195,4 +196,15 @@ fn unpack_hhmm(packet: &Msg, offset: usize) -> Result<NaiveTime> {
         Ok(time) => return Ok(time),
         Err(_) => Err(Error::from(format!("invalid HHmm string {}",s))),
     }
+}
+
+fn unpack_pin(packet: &Msg, offset: usize) -> Result<PIN> {
+    let mut bytes: [u8; 4] = [0; 4];
+
+    bytes[0] = packet[offset];
+    bytes[1] = packet[offset+1];
+    bytes[2] = packet[offset+2];
+    bytes[3] = 0;
+
+    return Ok(u32::from_le_bytes(bytes));
 }

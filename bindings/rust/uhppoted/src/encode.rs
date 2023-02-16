@@ -6,6 +6,7 @@ use chrono::NaiveTime;
 
 use super::error::Error;
 use super::Msg;
+use super::PIN;
 
 type Result<T> = std::result::Result<T, Error>;
 
@@ -113,6 +114,16 @@ fn pack_bool(v: bool, packet: &mut Msg, offset: usize) -> Result<()> {
     } else {
         packet[offset] = 0x00;         
     }
+
+    Ok(())
+}
+
+fn pack_pin(v: PIN, packet: &mut Msg, offset: usize) -> Result<()> {
+    let bytes = v.to_le_bytes();
+
+    packet[offset+0] = bytes[0];
+    packet[offset+1] = bytes[1];
+    packet[offset+2] = bytes[2];
 
     Ok(())
 }

@@ -403,6 +403,11 @@ var GetCardResponse = Message{
 			Type:   "uint8",
 			Offset: 23,
 		},
+		Field{
+			Name:   "PIN",
+			Type:   "pin",
+			Offset: 24,
+		},
 	},
 }
 
@@ -449,6 +454,11 @@ var GetCardByIndexResponse = Message{
 			Name:   "door 4",
 			Type:   "uint8",
 			Offset: 23,
+		},
+		Field{
+			Name:   "PIN",
+			Type:   "pin",
+			Offset: 24,
 		},
 	},
 }

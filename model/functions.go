@@ -274,6 +274,10 @@ var PutCard = Function{
 			Name: "door 4",
 			Type: "uint8",
 		},
+		Arg{
+			Name: "PIN",
+			Type: "pin",
+		},
 	},
 	Request:  &PutCardRequest,
 	Response: &PutCardResponse,

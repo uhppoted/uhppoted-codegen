@@ -67,3 +67,17 @@ func (t HHmm) MarshalJSON() ([]byte, error) {
     
     return json.Marshal(s)
 }
+
+type PIN uint32
+
+// func (p PIN) String() string {
+//     return fmt.Sprintf("%v",p)
+// }
+
+// func (p PIN) Format(format string) string {
+//     return fmt.Sprintf("%v",p)
+// }
+
+// func (p PIN) MarshalJSON() ([]byte, error) {
+//     return json.Marshal(p)
+// }

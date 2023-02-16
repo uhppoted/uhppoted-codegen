@@ -23,6 +23,7 @@ mod udp;
 #[path = "error.rs"]
 pub mod error;
 
+pub type PIN = u32;
 pub type Event = decode::{{ CamelCase .model.event.name }};
 pub type Result<T> = std::result::Result<T, Error>;
 

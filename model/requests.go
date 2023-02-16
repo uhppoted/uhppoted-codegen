@@ -300,6 +300,11 @@ var PutCardRequest = Message{
 			Type:   "uint8",
 			Offset: 23,
 		},
+		Field{
+			Name:   "PIN",
+			Type:   "pin",
+			Offset: 24,
+		},
 	},
 }
 

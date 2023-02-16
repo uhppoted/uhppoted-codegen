@@ -13,6 +13,7 @@
             "time": "datetime.time",
             "datetime": "datetime.datetime",
             "HHmm": "datetime.time",
+            "pin" : "PIN",
 
             "optional date": "datetime.date",
             "optional datetime": "datetime.datetime"

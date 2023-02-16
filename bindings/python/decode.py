@@ -3,6 +3,10 @@ import struct
 
 from ipaddress import IPv4Address
 from dataclasses import dataclass
+from typing import NewType
+
+PIN = NewType('PIN', int)
+
 
 {{range .model.responses}}
 {{- template "decode" . -}}
@@ -107,3 +111,11 @@ def unpack_hhmm(packet, offset):
 def unpack_bool(packet, offset):
     return packet[offset] != 0x00
 
+def unpack_pin(packet, offset):
+    v = packet[offset+2] & 0x0ff
+    v <<= 8
+    v |= packet[offset+1] & 0x0ff
+    v <<= 8
+    v |= packet[offset] & 0x00ff
+
+    return v

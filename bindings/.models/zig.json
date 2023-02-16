@@ -13,6 +13,7 @@
             "time": "datelib.Time",
             "datetime": "datelib.DateTime",
             "HHmm": "datelib.Time",
+            "pin": "u24",
 
             "optional date": "?datelib.Date",
             "optional datetime": "?datelib.DateTime"

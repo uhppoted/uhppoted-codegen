@@ -171,6 +171,14 @@ func unpackHHmm(packet []byte, offset uint8) (HHmm, error) {
     }
 }
 
+func unpackPin(packet []byte, offset uint8) (PIN, error) {
+    b := []byte { packet[offset+0], packet[offset+1], packet[offset+2], 0x00 }
+    v := binary.LittleEndian.Uint32(b)
+
+    return PIN(v), nil
+}
+
+
 func bcd2string(bytes []byte) string {
     BCD := hex.EncodeToString(bytes)
 

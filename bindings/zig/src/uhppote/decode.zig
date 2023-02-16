@@ -257,6 +257,10 @@ fn unpack_optional_datetime(packet: [64]u8, offset: u8) ?datelib.DateTime {
     }
 }
 
+fn unpack_pin(packet: [64]u8, offset: u8) u24 {
+    return std.mem.readIntLittle(u24, &packet[offset]);
+}
+
 fn bcd2string(slice: []const u8) ![]u8 {
     var buffer: [64:0]u8 = undefined;
 

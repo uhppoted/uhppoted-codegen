@@ -13,6 +13,7 @@
             "time": "NaiveTime",
             "datetime": "NaiveDateTime",
             "HHmm": "NaiveTime",
+            "pin": "PIN",
 
             "optional date": "Option<NaiveDate>",
             "optional datetime": "Option<NaiveDateTime>"

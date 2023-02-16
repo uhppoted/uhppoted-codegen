@@ -716,6 +716,11 @@
               "name": "door 4",
               "type": "uint8",
               "offset": 23
+            },
+            {
+              "name": "PIN",
+              "type": "pin",
+              "offset": 24
             }
           ]
         }
@@ -791,6 +796,11 @@
               "name": "door 4",
               "type": "uint8",
               "offset": 23
+            },
+            {
+              "name": "PIN",
+              "type": "pin",
+              "offset": 24
             }
           ]
         }
@@ -829,6 +839,10 @@
           {
             "name": "door 4",
             "type": "uint8"
+          },
+          {
+            "name": "PIN",
+            "type": "pin"
           }
         ],
         "request": {
@@ -874,6 +888,11 @@
               "name": "door 4",
               "type": "uint8",
               "offset": 23
+            },
+            {
+              "name": "PIN",
+              "type": "pin",
+              "offset": 24
             }
           ]
         },
@@ -2089,6 +2108,11 @@
             "name": "door 4",
             "type": "uint8",
             "offset": 23
+          },
+          {
+            "name": "PIN",
+            "type": "pin",
+            "offset": 24
           }
         ]
       },
@@ -2810,6 +2834,11 @@
             "name": "door 4",
             "type": "uint8",
             "offset": 23
+          },
+          {
+            "name": "PIN",
+            "type": "pin",
+            "offset": 24
           }
         ]
       },
@@ -2856,6 +2885,11 @@
             "name": "door 4",
             "type": "uint8",
             "offset": 23
+          },
+          {
+            "name": "PIN",
+            "type": "pin",
+            "offset": 24
           }
         ]
       },

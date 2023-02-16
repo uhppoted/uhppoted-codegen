@@ -108,6 +108,12 @@ function packHHmm (v, packet, offset) {
   }
 }
 
+function packPin(v, packet, offset) {
+  packet.setUint8(offset+0, (v >> 0) & 0x00ff)
+  packet.setUint8(offset+1, (v >> 8) & 0x00ff)
+  packet.setUint8(offset+2, (v >> 16) & 0x00ff)
+}
+
 function bcd2bin (bcd) {
   const bytes = []
   const matches = [...bcd.matchAll(/([0-9]{2})/g)]
