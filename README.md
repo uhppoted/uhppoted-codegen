@@ -120,3 +120,26 @@ Command line:
   uhppoted-codegen export --out my-models.json
 ```
 
+## Notes
+
+### `put-card`
+
+The UHPPOTE access controller has a weird behaviour around the PIN field. According to the SDK 
+documentation, valid PINs are in the range 0 to 999999. However the controller will accept a 
+PIN number out of that range and only keep the lower 7 nibbles of the 32-bit unsigned value.
+e.g:
+
+| PIN     | Hex value | Stored as (hex) | Retrieved as (hex) | Retrieved as (decimal) |
+|---------|-----------|-----------------|--------------------|------------------------|
+| 0       | 0x000000  | 0x000000        | 0x000000           | 0                      |
+| 999999  | 0x0f423f  | 0x0f423f        | 0x0f423f           | 999999                 |
+| 1000000 | 0x0f4240  | 0x000000        | 0x000000           | 0                      |
+| 1000001 | 0x0f4241  | 0x000000        | 0x000000           | 0                      |
+| 1048576 | 0x100000  | 0x000000        | 0x000000           | 0                      |
+| 1048577 | 0x100001  | 0x000000        | 0x000001           | 1                      |
+| 1999999 | 0x1E847F  | 0x0E847F        | 0x000001           | 951423                 |
+
+Please be aware that (unlike the _uhppote-core_ `put-card` implementation) the codegen bindings
+do allow out of range PINs.
+
+
