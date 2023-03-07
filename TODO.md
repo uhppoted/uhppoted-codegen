@@ -38,6 +38,7 @@
    - Haskell
    - q
    - [Austral](https://borretti.me/article/introducing-austral#status)
+      - https://animaomnium.github.io/what-austral-proves/
    - [Pony](https://www.ponylang.io/discover/#why-pony)
    - https://github.com/dolmen-go/goproc
    - https://en.wikipedia.org/wiki/M4_(computer_language)
