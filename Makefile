@@ -86,12 +86,14 @@ release: update-release build regen build-all
 
 publish: release
 	echo "Releasing version $(VERSION)"
-	rm -f dist/development-bindings.tar.gz
-	rm -f dist/development-go.tar.gz
-	rm -f dist/development-python.tar.gz
-	rm -f dist/development-rust.tar.gz
-	rm -f dist/development-zig.tar.gz
-	gh release create "$(VERSION)" ./dist/*.tar.gz --draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
+	gh release create "$(VERSION)" \
+	"./dist/uhppoted-codegen_$(VERSION).tar.gz" \
+	"./dist/uhppoted-codegen_$(VERSION)-bindings.tar.gz" \
+	"./dist/uhppoted-codegen_$(VERSION)-go.tar.gz" \
+	"./dist/uhppoted-codegen_$(VERSION)-python.tar.gz" \
+	"./dist/uhppoted-codegen_$(VERSION)-rust.tar.gz" \
+	"./dist/uhppoted-codegen_$(VERSION)-zig.tar.gz" \
+	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: rust
 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-controller
