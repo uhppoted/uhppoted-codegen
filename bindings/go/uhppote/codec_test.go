@@ -52,11 +52,10 @@ func toShortDate(s string) Date {
   return Date(v)
 }
 
-func toOptionalDate(s string) *Date {
+func toOptionalDate(s string) Date {
   v, _ := time.ParseInLocation("2006-01-02", s, time.Local)
-  date := Date(v)
-
-  return &date
+  
+  return Date(v)
 }
 
 func toDatetime(s string) DateTime {
@@ -65,11 +64,10 @@ func toDatetime(s string) DateTime {
   return DateTime(v)
 }
 
-func toOptionalDatetime(s string) *DateTime {
+func toOptionalDatetime(s string) DateTime {
   v,_ := time.ParseInLocation("2006-01-02 15:04:05", s, time.Local)
-  datetime :=  DateTime(v)
 
-  return &datetime
+  return DateTime(v)
 }
 
 func toTime(s string) Time {

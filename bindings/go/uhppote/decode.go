@@ -117,15 +117,13 @@ func unpackShortdate(packet []byte, offset uint8) (Date, error) {
     }
 }
 
-func unpackOptionalDate(packet []byte, offset uint8) (*Date, error) {
+func unpackOptionalDate(packet []byte, offset uint8) (Date, error) {
     bcd := bcd2string(packet[offset:offset+4])
 
     if d, err := time.ParseInLocation("20060102", bcd, time.Local); err != nil {
-        return nil, nil
+        return Date{}, nil
     } else {
-        date := Date(d)
-
-        return &date, nil
+        return  Date(d), nil
     }
 }
 
@@ -139,15 +137,13 @@ func unpackDatetime(packet []byte, offset uint8) (DateTime, error) {
     }
 }
 
-func unpackOptionalDatetime(packet []byte, offset uint8) (*DateTime, error) {
+func unpackOptionalDatetime(packet []byte, offset uint8) (DateTime, error) {
     bcd := bcd2string(packet[offset:offset+7])
 
     if date, err := time.ParseInLocation("20060102150405", bcd, time.Local); err != nil {
-        return nil, nil
+        return DateTime{}, err
     } else {
-        datetime := DateTime(date)
-
-        return &datetime, nil
+        return DateTime(date), nil
     }
 }
 

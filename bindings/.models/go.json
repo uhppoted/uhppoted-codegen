@@ -15,8 +15,8 @@
             "HHmm": "HHmm",
             "pin": "PIN",
 
-            "optional date": "*Date",
-            "optional datetime": "*DateTime"
+            "optional date": "Date",
+            "optional datetime": "DateTime"
         }
     }
 }
