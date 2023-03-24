@@ -16,6 +16,7 @@ RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
 PYBIN   = python3 ./generated/python/main.py
 ZIGBIN  = ./generated/zig/zig-out/bin/uhppoted
 
+.DEFAULT_GOAL := test
 .PHONY: update
 .PHONY: update-release
 
@@ -49,11 +50,16 @@ build: format
 test: build
 	go test ./...
 
-vet: test
+vet: 
 	go vet ./...
 
-lint: vet
-	golint ./...
+lint: 
+	env GOOS=darwin  GOARCH=amd64 staticcheck ./...
+	env GOOS=linux   GOARCH=amd64 staticcheck ./...
+	env GOOS=windows GOARCH=amd64 staticcheck ./...
+
+vuln:
+	govulncheck ./...
 
 benchmark: build
 	go test -count 5 -bench=.  ./system/events
@@ -64,7 +70,7 @@ coverage: build
 regen: 
 	$(CMD) export --models bindings/.models/models.json --tests bindings/.models/test-data.json
 
-build-all: vet go rust python http zig
+build-all: test vet lint go rust python http zig
 	mkdir -p dist/$(DIST)/windows
 	mkdir -p dist/$(DIST)/darwin
 	mkdir -p dist/$(DIST)/linux

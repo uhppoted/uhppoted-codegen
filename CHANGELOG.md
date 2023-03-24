@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Updated
+1. Reworked Go language bindings to use zero value rather than pointer for optional Date 
+   and DateTime fields.
+2. Added static-check linting to CI build.
 
 ## [0.8.4](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.3) - 2023-03-17
 

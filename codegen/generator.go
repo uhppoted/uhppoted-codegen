@@ -244,7 +244,7 @@ func byte2hex(v any) string {
 }
 
 func constant(s string) string {
-	tokens := regexp.MustCompile("[\\- ]+").Split(uppercase(strings.TrimSpace(s)), -1)
+	tokens := regexp.MustCompile(`[\- ]+`).Split(uppercase(strings.TrimSpace(s)), -1)
 
 	return strings.Join(tokens, "_")
 }
