@@ -10,6 +10,7 @@ RUST   = bindings/rust
 PYTHON = bindings/python
 HTTP   = bindings/http
 ZIG    = bindings/zig
+PHP    = bindings/php
 
 GOBIN   = ./generated/go/bin/uhppoted
 RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
