@@ -1,6 +1,10 @@
 # TODO
 
-- [x] set-pc-control
+## PHP
+
+- [ ] help commands
+- [ ] get-all-devices
+
 
 ## zig
 - (?) async/await timeouts

@@ -1,5 +1,7 @@
 <?php
 
+include "commands.php";
+
 print "uhppoted-codegen: PHP sample application\n";
 
 $options = array(
@@ -30,7 +32,14 @@ if (isset($args['debug'])) {
 }
 
 if ($cmd) {
-    execute($cmd);
+    $commands = commands();
+    $key = $cmd[0];
+
+    if (isset($commands[$key])) {
+        execute($commands[$key]);
+    } else {
+        usage();
+    }
 } else {
     usage();
 }
@@ -39,10 +48,8 @@ function usage() {
     print "\n   Usage: php uhppoted.php [--debug] [--bind <address>] [--broadcast <address>] [--listen <address>] <command>\n\n";
 }
 
-function execute($cmd) {
-    print "\n   *** EXEC ";
-    var_dump($cmd);
-    print "\n\n";
+function execute($fn) {
+    $fn();
 }
 
 ?>
