@@ -48,12 +48,4 @@ function usage() {
     print "\n   Usage: php uhppoted.php [--debug] [--bind <address>] [--broadcast <address>] [--listen <address>] <command>\n\n";
 }
 
-function execute($fn) {
-    try {
-        $fn();        
-    } catch (Exception $e) {
-        echo "\n   *** ERROR:  ",  $e->getMessage(), "\n\n";
-    }
-}
-
 ?>
