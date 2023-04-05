@@ -4,7 +4,7 @@
 
 - [ ] help commands
 - [ ] get-all-devices
-
+- [ ] lint: https://cs.symfony.com
 
 ## zig
 - (?) async/await timeouts

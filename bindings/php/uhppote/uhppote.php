@@ -1,18 +1,17 @@
 <?php
 
 include "encode.php";
+include "decode.php";
 include "udp.php";
 
 function uhppote_get_all_controllers() {
     $request = get_controller_request(0);
     $replies = broadcast($request);
 
-    // var_dump($replies);
-
-    print("\n\n");
-    print(">>>>>>> REPLIES:");
-    print(count($replies));
-    print("\n\n");
+    foreach ($replies as $reply) {
+        $response = get_controller_response($reply);
+        var_dump($response);
+    }
 
     // list := []*GetControllerResponse{}
     // for _, reply := range replies {

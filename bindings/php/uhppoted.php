@@ -49,7 +49,11 @@ function usage() {
 }
 
 function execute($fn) {
-    $fn();
+    try {
+        $fn();        
+    } catch (Exception $e) {
+        echo "\n   *** ERROR:  ",  $e->getMessage(), "\n\n";
+    }
 }
 
 ?>

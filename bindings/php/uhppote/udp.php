@@ -26,7 +26,7 @@ function broadcast($request) {
             $response = unpack("C*", $reply);
 
             if ($N == 64) {
-                array_push($replies,$response);                
+                array_push($replies, array_values($response));                
             }
         } while ($N !== false);
   
@@ -36,6 +36,5 @@ function broadcast($request) {
         throw new Exception('Error creating UDP socket');
     }
 }
-
 
 ?>
