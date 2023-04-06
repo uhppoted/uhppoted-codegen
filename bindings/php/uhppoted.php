@@ -45,7 +45,18 @@ if ($cmd) {
 }
 
 function usage() {
-    print "\n   Usage: php uhppoted.php [--debug] [--bind <address>] [--broadcast <address>] [--listen <address>] <command>\n\n";
+    $commands = commands();
+
+    print "\n";
+    print "   Usage: php uhppoted.php [--debug] [--bind <address>] [--broadcast <address>] [--listen <address>] <command> <options>\n";
+    print "\n";
+    print "   Commands\n";
+
+    foreach ($commands as $cmd) {
+        print "      $cmd\n";
+    }
+
+    print "\n";
 }
 
 ?>

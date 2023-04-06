@@ -18,9 +18,16 @@ function get_all_controllers() {
     return uhppote_get_all_controllers();
 }
 
+function listen() {
+    uhppote_listen(function ($event) {
+        pprint($event);
+    });
+}
+
 function commands() {
     return  [
-        'get-all-controllers' => 'get_all_controllers'
+        'get-all-controllers' => 'get_all_controllers',
+        'listen' => 'listen'
     ];
 }
 ?>

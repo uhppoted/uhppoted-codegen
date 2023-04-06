@@ -2,9 +2,13 @@
 
 ## PHP
 
+- [x] get-all-devices
+- [ ] listen
+- [ ] help
 - [ ] help commands
-- [ ] get-all-devices
+- [ ] codegen from models
 - [ ] lint: https://cs.symfony.com
+
 
 ## zig
 - (?) async/await timeouts
@@ -41,6 +45,8 @@
    - [Janet](https://janet-lang.org)
    - Haskell
    - q
+   - F#
+   - Clojure
    - [Austral](https://borretti.me/article/introducing-austral#status)
       - https://animaomnium.github.io/what-austral-proves/
    - [Pony](https://www.ponylang.io/discover/#why-pony)
