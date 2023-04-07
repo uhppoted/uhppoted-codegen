@@ -3,10 +3,13 @@
 ## PHP
 
 - [x] get-all-devices
-- [ ] listen
-- [ ] help
-- [ ] help commands
+- [x] listen
+- [x] all
+- [ ] use bind,broadcast and listen from args
+- [ ] --debug
 - [ ] codegen from models
+- [ ] pprint
+- [ ] namespaces (https://www.php.net/manual/en/language.namespaces.importing.php)
 - [ ] lint: https://cs.symfony.com
 
 

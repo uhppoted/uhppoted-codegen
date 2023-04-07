@@ -37,11 +37,23 @@ if ($cmd) {
 
     if (isset($commands[$key])) {
         execute($commands[$key]);
+    } else if ($key == 'all') {
+        all();
     } else {
         usage();
     }
 } else {
     usage();
+}
+
+function all() {
+    $commands = commands();
+
+    foreach ($commands as $cmd) {
+        if ($cmd != 'listen') {
+            execute($cmd);
+        }
+    }
 }
 
 function usage() {
