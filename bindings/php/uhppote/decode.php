@@ -30,7 +30,7 @@ class Event {
     public $door1_button;
     public $door2_button;
     public $door3_button;
-    public $door_button;
+    public $door4_button;
     public $relays;
     public $inputs;
     public $special_info;
