@@ -4,9 +4,23 @@ include "encode.php";
 include "decode.php";
 include "udp.php";
 
-function uhppote_get_all_controllers() {
+class UHPPOTE {
+    public $bind;
+    public $broadcast;
+    public $listen;
+    public $debug;
+
+    public function __construct(string $bind='0.0.0.0:0', string $broadcast='255.255.255.255:60000', string $listen='0.0.0.0:60001', bool $debug=false) {
+        $this->bind = $bind;
+        $this->broadcast = $broadcast;
+        $this->listen = $listen;
+        $this->debug = $debug;
+    }
+}
+
+function uhppote_get_all_controllers($uhppote) {
     $request = get_controller_request(0);
-    $replies = udp_broadcast($request);
+    $replies = udp_broadcast($uhppote, $request);
 
     $list = array();
     foreach ($replies as $reply) {
@@ -17,10 +31,9 @@ function uhppote_get_all_controllers() {
     return $list;
 }
 
-function uhppote_listen($handlerfn) {
+function uhppote_listen($uhppote,$handlerfn) {
     $fn = function($packet) use ($handlerfn) {
         try {
-            print "wooot\n";
             $event = event($packet);
 
             $handlerfn($event);
@@ -29,7 +42,7 @@ function uhppote_listen($handlerfn) {
         }
     };
 
-    udp_listen($fn);
+    udp_listen($uhppote, $fn);
 }
 
 ?>

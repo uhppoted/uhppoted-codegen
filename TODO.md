@@ -5,11 +5,13 @@
 - [x] get-all-devices
 - [x] listen
 - [x] all
-- [ ] use bind,broadcast and listen from args
-- [ ] --debug
+- [x] use bind,broadcast and listen from args
+- [ ] debug/dump
+- [ ] udp_send
 - [ ] codegen from models
 - [ ] pprint
 - [ ] namespaces (https://www.php.net/manual/en/language.namespaces.importing.php)
+- [ ] FIXME udp_broadcast: loop until total timeout
 - [ ] lint: https://cs.symfony.com
 
 
