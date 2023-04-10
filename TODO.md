@@ -7,7 +7,7 @@
 - [x] all
 - [x] use bind,broadcast and listen from args
 - [x] debug/dump
-- [ ] udp_send
+- [ ] `set-ip`/udp_send
 - [ ] pprint
 - [ ] FIXME udp_broadcast: loop until total timeout
 - [ ] codegen from models

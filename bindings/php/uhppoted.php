@@ -14,6 +14,7 @@ $options = array(
 $rest_index = null;
 $args = getopt('', array( "bind::", "broadcast::", "listen::", "debug"), $rest_index);
 $cmd = array_slice($argv, $rest_index);
+$rest = array_slice($argv, $rest_index+1);
 
 if (isset($args['bind'])) {
     $options['bind'] = $args['bind'];
@@ -36,9 +37,9 @@ if ($cmd) {
     $key = $cmd[0];
 
     if (isset($commands[$key])) {
-        execute($commands[$key], $options);
+        execute($commands[$key], $options, $rest);
     } else if ($key == 'all') {
-        all($options);
+        all($options, $rest);
     } else {
         usage();
     }
@@ -46,12 +47,12 @@ if ($cmd) {
     usage();
 }
 
-function all($options) {
+function all($options, $args) {
     $commands = commands();
 
     foreach ($commands as $cmd) {
         if ($cmd != 'listen') {
-            execute($cmd, $options);
+            execute($cmd, $options, $args);
         }
     }
 }
@@ -64,8 +65,8 @@ function usage() {
     print "\n";
     print "   Commands\n";
 
-    foreach ($commands as $cmd) {
-        print "      $cmd\n";
+    foreach ($commands as $key => $cmd) {
+        print "      $key\n";
     }
 
     print "\n";
