@@ -6,12 +6,12 @@
 - [x] listen
 - [x] all
 - [x] use bind,broadcast and listen from args
-- [ ] debug/dump
+- [x] debug/dump
 - [ ] udp_send
-- [ ] codegen from models
 - [ ] pprint
-- [ ] namespaces (https://www.php.net/manual/en/language.namespaces.importing.php)
 - [ ] FIXME udp_broadcast: loop until total timeout
+- [ ] codegen from models
+- [ ] namespaces (https://www.php.net/manual/en/language.namespaces.importing.php)
 - [ ] lint: https://cs.symfony.com
 
 

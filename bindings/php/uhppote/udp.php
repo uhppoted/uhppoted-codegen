@@ -21,6 +21,8 @@ function udp_broadcast($uhppote, $request) {
             throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
         }
 
+        dump($request,$uhppote->debug);
+
         socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
 
         // FIXME loop until total timeout
@@ -31,10 +33,10 @@ function udp_broadcast($uhppote, $request) {
             $address = '';
             $port = 0;
             $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
-
             $reply = unpack("C*", $buffer);
 
             if ($N == 64) {
+                dump(array_values($reply),$uhppote->debug);
                 array_push($replies, array_values($reply));                
             }
         } while ($N !== false);
@@ -94,4 +96,39 @@ function IPv4($address) {
     );
 }
 
+function dump($packet, $debug) {
+    if ($debug) {
+        $offset = 0;
+
+        for ($i = 0; $i < 4; $i++) {
+            $p = sprintf('%02x %02x %02x %02x %02x %02x %02x %02x', 
+                         $packet[$offset+0],
+                         $packet[$offset+1],
+                         $packet[$offset+2],
+                         $packet[$offset+3],
+                         $packet[$offset+4],
+                         $packet[$offset+5],
+                         $packet[$offset+6],
+                         $packet[$offset+7]);
+
+            $q = sprintf('%02x %02x %02x %02x %02x %02x %02x %02x', 
+                         $packet[$offset+8],
+                         $packet[$offset+9],
+                         $packet[$offset+10],
+                         $packet[$offset+11],
+                         $packet[$offset+12],
+                         $packet[$offset+13],
+                         $packet[$offset+14],
+                         $packet[$offset+15]);
+
+            printf ("   %08x  %s  %s\n", $offset,$p,$q);
+
+            $offset += 16;
+        }
+    
+        print("\n");        
+    }
+}
 ?>
+
+
