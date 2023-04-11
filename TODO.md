@@ -2,12 +2,13 @@
 
 ## PHP
 
-- [x] get-all-devices
+- [x] `get-all-controllers`
 - [x] listen
 - [x] all
 - [x] use bind,broadcast and listen from args
 - [x] debug/dump
-- [ ] `set-ip`/udp_send
+- [x] `get-controller`
+- [ ] `set-ip`
 - [ ] pprint
 - [ ] FIXME udp_broadcast: loop until total timeout
 - [ ] codegen from models

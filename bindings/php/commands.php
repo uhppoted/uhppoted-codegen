@@ -38,6 +38,12 @@ function get_all_controllers($u, $args) {
     return uhppote_get_all_controllers($u);
 }
 
+function get_controller($u, $args) {
+    $controller = CONTROLLER;
+
+    return uhppote_get_controller($u, $controller);
+}
+
 function set_ip($u, $args) {
     $controller = CONTROLLER;
     $address = ADDRESS;
@@ -56,6 +62,7 @@ function listen($u, $args) {
 function commands() {
     return  [
         'get-all-controllers' => 'get_all_controllers',
+        'get-controller' => 'get_controller',
         'set-ip' => 'set_ip',
         'listen' => 'listen'
     ];

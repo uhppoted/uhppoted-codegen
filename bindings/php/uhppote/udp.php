@@ -51,6 +51,50 @@ function udp_broadcast($uhppote, $request) {
     }
 }
 
+function udp_send($uhppote, $request) {
+    $packet = pack('C*', ...$request);
+    $bind = IPv4($uhppote->bind);
+    $dest = IPv4($uhppote->broadcast);
+
+    if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {
+        socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array("sec"=>5, "usec"=>0));
+        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>2, "usec"=>0));
+
+        if (!socket_bind($socket, $bind['address'], $bind['port'])) {
+            $errorcode = socket_last_error();
+            $errormsg = socket_strerror($errorcode);
+        
+            throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
+        }
+
+        dump($request,$uhppote->debug);
+
+        socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
+
+        // FIXME loop timeout 
+        do {
+            $address = '';
+            $port = 0;
+            $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
+            $reply = unpack("C*", $buffer);
+
+            if ($N == 64) {
+                dump(array_values($reply),$uhppote->debug);
+                return array_values($reply);
+            }
+        } while ($N !== false);
+  
+        throw new Exception('no response from controller');                    
+
+    } else {
+        $errorcode = socket_last_error();
+        $errormsg = socket_strerror($errorcode);
+        
+        throw new Exception("failed to create UDP socket ($errormsg)");                    
+    }
+}
+
 function udp_listen($uhppote, $handlerfn) {
     $bind = IPv4($uhppote->listen);
 

@@ -31,6 +31,15 @@ function uhppote_get_all_controllers($uhppote) {
     return $list;
 }
 
+function uhppote_get_controller($uhppote, $controller) {
+    $request = get_controller_request($controller);
+    $reply = udp_send($uhppote, $request);
+    $response = get_controller_response($reply);
+
+    return $response;
+}
+
+
 function uhppote_set_ip($uhppote, $controller, $address, $netmask, $gateway) {
     $request = set_ip_request($controller, $address, $netmask, $gateway);
 
