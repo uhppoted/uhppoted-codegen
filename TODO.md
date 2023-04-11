@@ -9,13 +9,12 @@
 - [x] debug/dump
 - [x] `get-controller`
 - [x] `set-ip`
-- [ ] FIXME udp_broadcast: loop until timeout
-- [ ] FIXME udp_send: loop until timeout
+- [x] udp_broadcast: request timeout
+- [x] udp_send: request timeout
 - [ ] pprint
-- [ ] codegen from models
 - [ ] namespaces (https://www.php.net/manual/en/language.namespaces.importing.php)
+- [ ] codegen from models
 - [ ] lint: https://cs.symfony.com
-
 
 ## zig
 - (?) async/await timeouts

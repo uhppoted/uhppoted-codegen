@@ -1,102 +1,138 @@
 <?php
 
-// Maybe use select rather
-// https://www.php.net/manual/en/function.socket-select.php
-// https://stackoverflow.com/questions/389645/set-a-timeout-on-socket-read
-
 function udp_broadcast($uhppote, $request) {
-    $packet = pack('C*', ...$request);
-    $bind = IPv4($uhppote->bind);
-    $dest = IPv4($uhppote->broadcast);
+    // set total timeout
+    $timeout = false;
 
-    if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {
-        socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array("sec"=>5, "usec"=>0));
-        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>2, "usec"=>0));
+    set_error_handler(function($errno, $errmsg) use (&$timeout) {
+        if (!$timeout) {
+            throw new Exception("$errmsg");                    
+        }
+    }, E_WARNING);
 
-        if (!socket_bind($socket, $bind['address'], $bind['port'])) {
+    pcntl_async_signals(true);
+    pcntl_signal(SIGALRM, function($signal) use (&$timeout) {
+        $timeout = true;
+    });
+
+    pcntl_alarm($uhppote->timeout);
+
+    // broadcast request
+    try {
+        $packet = pack('C*', ...$request);
+        $bind = IPv4($uhppote->bind);
+        $dest = IPv4($uhppote->broadcast);
+        $replies = array();
+            
+        if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {
+            socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
+            socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array("sec"=>5, "usec"=>0));
+            socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>7, "usec"=>500000));
+
+            if (!socket_bind($socket, $bind['address'], $bind['port'])) {
+                $errorcode = socket_last_error();
+                $errormsg = socket_strerror($errorcode);
+        
+                throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
+            }
+
+            dump($request,$uhppote->debug);
+
+            socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
+
+            do {
+                $address = '';
+                $port = 0;
+                $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
+
+                if ($N == 64) {
+                    $reply = unpack("C*", $buffer);
+                    dump(array_values($reply),$uhppote->debug);
+                    array_push($replies, array_values($reply));                
+                }
+            } while ($N !== false);
+  
+            return $replies;
+
+        } else {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
         
-            throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
+            throw new Exception("failed to create UDP socket ($errormsg)");                    
         }
-
-        dump($request,$uhppote->debug);
-
-        socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
-
-        // FIXME loop until total timeout
-        //       https://www.php.net/manual/en/function.socket-select.php
-        $replies = array();
-
-        do {
-            $address = '';
-            $port = 0;
-            $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
-
-            if ($N == 64) {
-                $reply = unpack("C*", $buffer);
-                dump(array_values($reply),$uhppote->debug);
-                array_push($replies, array_values($reply));                
-            }
-        } while ($N !== false);
-  
-        return $replies;
-
-    } else {
-        $errorcode = socket_last_error();
-        $errormsg = socket_strerror($errorcode);
-        
-        throw new Exception("failed to create UDP socket ($errormsg)");                    
+    } finally {
+        pcntl_alarm(0);
+        restore_error_handler();
     }
 }
 
 function udp_send($uhppote, $request) {
+    // setup async timeout
+    $timeout = false;
+
+    set_error_handler(function($errno, $errmsg) use (&$timeout) {
+        if (!$timeout) {
+            throw new Exception("$errmsg");                    
+        }
+    }, E_WARNING);
+
+    pcntl_async_signals(true);
+    pcntl_signal(SIGALRM, function($signal) use (&$timeout) {
+        $timeout = true;
+    });
+
+    pcntl_alarm($uhppote->timeout);
+
+    // send request
     $packet = pack('C*', ...$request);
     $bind = IPv4($uhppote->bind);
     $dest = IPv4($uhppote->broadcast);
 
-    if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {
-        socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array("sec"=>5, "usec"=>0));
-        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>2, "usec"=>0));
+    try {
+        if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {
+            socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
+            socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array("sec"=>5, "usec"=>0));
+            socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>5, "usec"=>0));
 
-        if (!socket_bind($socket, $bind['address'], $bind['port'])) {
+            if (!socket_bind($socket, $bind['address'], $bind['port'])) {
+                $errorcode = socket_last_error();
+                $errormsg = socket_strerror($errorcode);
+        
+                throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
+            }
+
+            dump($request,$uhppote->debug);
+
+            socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
+
+            // set-ip doesn't return a reply
+            if ($request[1] ==  0x96) {
+                return [];
+            }
+
+            do {
+                $address = '';
+                $port = 0;
+                $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
+
+                if ($N == 64) {
+                    $reply = unpack("C*", $buffer);
+                    dump(array_values($reply),$uhppote->debug);
+                    return array_values($reply);
+                }
+            } while ($N !== false);
+
+            throw new Exception('no response from controller');                    
+
+        } else {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
         
-            throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
+            throw new Exception("failed to create UDP socket ($errormsg)");                    
         }
-
-        dump($request,$uhppote->debug);
-
-        socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
-
-        // set-ip doesn't return a reply
-        if ($request[1] ==  0x96) {
-            return [];
-        }
-
-        // FIXME loop timeout 
-        do {
-            $address = '';
-            $port = 0;
-            $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
-
-            if ($N == 64) {
-                $reply = unpack("C*", $buffer);
-                dump(array_values($reply),$uhppote->debug);
-                return array_values($reply);
-            }
-        } while ($N !== false);
-  
-        throw new Exception('no response from controller');                    
-
-    } else {
-        $errorcode = socket_last_error();
-        $errormsg = socket_strerror($errorcode);
-        
-        throw new Exception("failed to create UDP socket ($errormsg)");                    
+    } finally {
+        pcntl_alarm(0);
+        restore_error_handler();
     }
 }
 

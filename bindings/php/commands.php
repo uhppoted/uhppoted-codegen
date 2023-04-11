@@ -21,6 +21,7 @@ function execute($fn, $options, $args) {
         $options['bind'],
         $options['broadcast'],
         $options['listen'],
+        $options['timeout'],
         $options['debug']);
 
     try {

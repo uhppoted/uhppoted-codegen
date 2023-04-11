@@ -8,12 +8,18 @@ class UHPPOTE {
     public $bind;
     public $broadcast;
     public $listen;
+    public $timeout;
     public $debug;
 
-    public function __construct(string $bind='0.0.0.0:0', string $broadcast='255.255.255.255:60000', string $listen='0.0.0.0:60001', bool $debug=false) {
+    public function __construct(string $bind='0.0.0.0:0', 
+                                string $broadcast='255.255.255.255:60000', 
+                                string $listen='0.0.0.0:60001', 
+                                int    $timeout=5,
+                                bool   $debug=false) {
         $this->bind = $bind;
         $this->broadcast = $broadcast;
         $this->listen = $listen;
+        $this->timeout = $timeout;
         $this->debug = $debug;
     }
 }

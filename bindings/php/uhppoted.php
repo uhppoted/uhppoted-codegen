@@ -8,11 +8,12 @@ $options = array(
     'bind' => '0.0.0.0:0',
     'broadcast' => '255.255.255.255:60000',
     'listen' => '0.0.0.0:60001',
+    'timeout' => 5,
     'debug' => false,
 );
 
 $rest_index = null;
-$args = getopt('', array( "bind::", "broadcast::", "listen::", "debug"), $rest_index);
+$args = getopt('', array( "bind::", "broadcast::", "listen::", "timeout::", "debug"), $rest_index);
 $cmd = array_slice($argv, $rest_index);
 $rest = array_slice($argv, $rest_index+1);
 
@@ -26,6 +27,10 @@ if (isset($args['broadcast'])) {
 
 if (isset($args['listen'])) {
     $options['listen'] = $args['listen'];
+}
+
+if (isset($args['timeout'])) {
+    $options['timeout'] = $args['timeout'];
 }
 
 if (isset($args['debug'])) {
