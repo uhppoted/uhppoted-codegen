@@ -8,9 +8,10 @@
 - [x] use bind,broadcast and listen from args
 - [x] debug/dump
 - [x] `get-controller`
-- [ ] `set-ip`
+- [x] `set-ip`
+- [ ] FIXME udp_broadcast: loop until timeout
+- [ ] FIXME udp_send: loop until timeout
 - [ ] pprint
-- [ ] FIXME udp_broadcast: loop until total timeout
 - [ ] codegen from models
 - [ ] namespaces (https://www.php.net/manual/en/language.namespaces.importing.php)
 - [ ] lint: https://cs.symfony.com

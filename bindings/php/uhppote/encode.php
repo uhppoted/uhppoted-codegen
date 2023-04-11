@@ -15,7 +15,7 @@ function set_ip_request($deviceID,$address,$netmask,$gateway) {
     $packet = array_fill(0, 64, 0x00);
 
     $packet[0] = 0x17;
-    $packet[1] = 0x94;
+    $packet[1] = 0x96;
 
     $packet = pack_uint32($deviceID, $packet, 4);
     $packet = pack_IPv4($address, $packet, 8);

@@ -33,9 +33,9 @@ function udp_broadcast($uhppote, $request) {
             $address = '';
             $port = 0;
             $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
-            $reply = unpack("C*", $buffer);
 
             if ($N == 64) {
+                $reply = unpack("C*", $buffer);
                 dump(array_values($reply),$uhppote->debug);
                 array_push($replies, array_values($reply));                
             }
@@ -72,14 +72,19 @@ function udp_send($uhppote, $request) {
 
         socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
 
+        // set-ip doesn't return a reply
+        if ($request[1] ==  0x96) {
+            return [];
+        }
+
         // FIXME loop timeout 
         do {
             $address = '';
             $port = 0;
             $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
-            $reply = unpack("C*", $buffer);
 
             if ($N == 64) {
+                $reply = unpack("C*", $buffer);
                 dump(array_values($reply),$uhppote->debug);
                 return array_values($reply);
             }
@@ -111,9 +116,8 @@ function udp_listen($uhppote, $handlerfn) {
             $port = 0;
             $N = socket_recvfrom($socket, $buffer, 64, 0, $address, $port);
 
-            $packet = unpack("C*", $buffer);
-
             if ($N == 64) {
+                $packet = unpack("C*", $buffer);
                 $handlerfn(array_values($packet));
             }
 

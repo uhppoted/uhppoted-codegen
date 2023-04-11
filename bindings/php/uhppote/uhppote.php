@@ -42,19 +42,9 @@ function uhppote_get_controller($uhppote, $controller) {
 
 function uhppote_set_ip($uhppote, $controller, $address, $netmask, $gateway) {
     $request = set_ip_request($controller, $address, $netmask, $gateway);
+    $reply = udp_send($uhppote, $request);
 
-    dump($request, true);
-    // $repy = udp_send($uhppote, $request);
-    // 
-    // $list = array();
-    // foreach ($replies as $reply) {
-    //     $response = get_controller_response($reply);
-    //     array_push($list, $response);
-    // }
-    // 
-    // return $list;
-
-    return false;
+    return true;
 }
 
 function uhppote_listen($uhppote,$handlerfn) {
