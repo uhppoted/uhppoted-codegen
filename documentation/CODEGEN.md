@@ -9,6 +9,7 @@ controller interface in:
 - [Go](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go)
 - [Rust](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
 - [Python](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python)
+- [Zig](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
 - [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
 
 The models are provided as JSON files so it's entirely possible to use an alternative templating engine. However, assuming

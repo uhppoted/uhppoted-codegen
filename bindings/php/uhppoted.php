@@ -42,7 +42,7 @@ if ($cmd) {
     $key = $cmd[0];
 
     if (isset($commands[$key])) {
-        execute($commands[$key], $options, $rest);
+        execute($key, $commands[$key], $options, $rest);
     } else if ($key == 'all') {
         all($options, $rest);
     } else {
@@ -55,9 +55,9 @@ if ($cmd) {
 function all($options, $args) {
     $commands = commands();
 
-    foreach ($commands as $cmd) {
+    foreach ($commands as $key => $cmd) {
         if ($cmd != 'listen') {
-            execute($cmd, $options, $args);
+            execute($key, $cmd, $options, $args);
         }
     }
 }

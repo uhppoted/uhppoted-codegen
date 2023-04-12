@@ -16,7 +16,7 @@ define('NETMASK',  '255.255.255.0');
 define('GATEWAY',  '192.168.1.1');
 define('LISTENER', '192.168.1.100:60001');
 
-function execute($fn, $options, $args) {
+function execute($cmd, $fn, $options, $args) {
     $uhppote = new UHPPOTE(
         $options['bind'],
         $options['broadcast'],
@@ -25,14 +25,27 @@ function execute($fn, $options, $args) {
         $options['debug']);
 
     try {
-        pprint($fn($uhppote, $args));
+        pprint($cmd, $fn($uhppote, $args));
     } catch (Exception $e) {
         echo "\n   *** ERROR:  ",  $e->getMessage(), "\n\n";
     }
 }
 
-function pprint($result) {
-    var_dump($result);
+function pprint($cmd, $result) {
+    $width = 0;
+    foreach ($result as $key => $value) {
+        if (strlen($key) > $width) {
+            $width = strlen($key);
+        }
+    }
+
+    $format = sprintf("   %%-%ds  %%s\n",$width);
+
+    print("$cmd\n");
+    foreach ($result as $key => $value) {
+        printf($format,$key,$value);
+    }
+    print("\n");
 }
 
 function get_all_controllers($u, $args) {
@@ -56,7 +69,7 @@ function set_ip($u, $args) {
 
 function listen($u, $args) {
     uhppote_listen($u, function ($event) {
-        pprint($event);
+        pprint('event', $event);
     });
 }
 
