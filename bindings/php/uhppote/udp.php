@@ -2,18 +2,19 @@
 
 namespace uhppote\udp;
 
-function broadcast($uhppote, $request) {
+function broadcast($uhppote, $request)
+{
     // set total timeout
     $timeout = false;
 
-    set_error_handler(function($errno, $errmsg) use (&$timeout) {
+    set_error_handler(function ($errno, $errmsg) use (&$timeout) {
         if (!$timeout) {
-            throw new Exception("$errmsg");                    
+            throw new Exception("$errmsg");
         }
     }, E_WARNING);
 
     pcntl_async_signals(true);
-    pcntl_signal(SIGALRM, function($signal) use (&$timeout) {
+    pcntl_signal(SIGALRM, function ($signal) use (&$timeout) {
         $timeout = true;
     });
 
@@ -25,7 +26,7 @@ function broadcast($uhppote, $request) {
         $bind = IPv4($uhppote->bind);
         $dest = IPv4($uhppote->broadcast);
         $replies = array();
-            
+
         if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {
             socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
             socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, array("sec"=>5, "usec"=>0));
@@ -34,11 +35,11 @@ function broadcast($uhppote, $request) {
             if (!socket_bind($socket, $bind['address'], $bind['port'])) {
                 $errorcode = socket_last_error();
                 $errormsg = socket_strerror($errorcode);
-        
-                throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
+
+                throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");
             }
 
-            dump($request,$uhppote->debug);
+            dump($request, $uhppote->debug);
 
             socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
 
@@ -49,18 +50,18 @@ function broadcast($uhppote, $request) {
 
                 if ($N == 64) {
                     $reply = unpack("C*", $buffer);
-                    dump(array_values($reply),$uhppote->debug);
-                    array_push($replies, array_values($reply));                
+                    dump(array_values($reply), $uhppote->debug);
+                    array_push($replies, array_values($reply));
                 }
             } while ($N !== false);
-  
+
             return $replies;
 
         } else {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
-        
-            throw new Exception("failed to create UDP socket ($errormsg)");                    
+
+            throw new Exception("failed to create UDP socket ($errormsg)");
         }
     } finally {
         pcntl_alarm(0);
@@ -68,18 +69,19 @@ function broadcast($uhppote, $request) {
     }
 }
 
-function send($uhppote, $request) {
+function send($uhppote, $request)
+{
     // setup async timeout
     $timeout = false;
 
-    set_error_handler(function($errno, $errmsg) use (&$timeout) {
+    set_error_handler(function ($errno, $errmsg) use (&$timeout) {
         if (!$timeout) {
-            throw new Exception("$errmsg");                    
+            throw new Exception("$errmsg");
         }
     }, E_WARNING);
 
     pcntl_async_signals(true);
-    pcntl_signal(SIGALRM, function($signal) use (&$timeout) {
+    pcntl_signal(SIGALRM, function ($signal) use (&$timeout) {
         $timeout = true;
     });
 
@@ -99,11 +101,11 @@ function send($uhppote, $request) {
             if (!socket_bind($socket, $bind['address'], $bind['port'])) {
                 $errorcode = socket_last_error();
                 $errormsg = socket_strerror($errorcode);
-        
-                throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");                    
+
+                throw new Exception("failed to bind UDP socket to $uhppote->bind ($errormsg)");
             }
 
-            dump($request,$uhppote->debug);
+            dump($request, $uhppote->debug);
 
             socket_sendto($socket, $packet, 64, 0, $dest['address'], $dest['port']);
 
@@ -119,18 +121,18 @@ function send($uhppote, $request) {
 
                 if ($N == 64) {
                     $reply = unpack("C*", $buffer);
-                    dump(array_values($reply),$uhppote->debug);
+                    dump(array_values($reply), $uhppote->debug);
                     return array_values($reply);
                 }
             } while ($N !== false);
 
-            throw new Exception('no response from controller');                    
+            throw new Exception('no response from controller');
 
         } else {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
-        
-            throw new Exception("failed to create UDP socket ($errormsg)");                    
+
+            throw new Exception("failed to create UDP socket ($errormsg)");
         }
     } finally {
         pcntl_alarm(0);
@@ -138,14 +140,15 @@ function send($uhppote, $request) {
     }
 }
 
-function listen($uhppote, $handlerfn) {
+function listen($uhppote, $handlerfn)
+{
     $bind = IPv4($uhppote->listen);
 
-    if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {        
+    if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {
         if (!socket_bind($socket, $bind['address'], $bind['port'])) {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
-        
+
             throw new Exception("failed to bind to 0.0.0.0:60001 ($errormsg)");
         }
 
@@ -163,13 +166,14 @@ function listen($uhppote, $handlerfn) {
     } else {
         $errorcode = socket_last_error();
         $errormsg = socket_strerror($errorcode);
-        
-        throw new Exception("failed to create UDP socket ($errormsg)");                    
+
+        throw new Exception("failed to create UDP socket ($errormsg)");
     }
 }
 
-function IPv4($address) {
-    $addr = explode(':',$address);
+function IPv4($address)
+{
+    $addr = explode(':', $address);
     $port = 0;
 
     if (isset($addr[1])) {
@@ -182,37 +186,42 @@ function IPv4($address) {
     );
 }
 
-function dump($packet, $debug) {
+function dump($packet, $debug)
+{
     if ($debug) {
         $offset = 0;
 
         for ($i = 0; $i < 4; $i++) {
-            $p = sprintf('%02x %02x %02x %02x %02x %02x %02x %02x', 
-                         $packet[$offset+0],
-                         $packet[$offset+1],
-                         $packet[$offset+2],
-                         $packet[$offset+3],
-                         $packet[$offset+4],
-                         $packet[$offset+5],
-                         $packet[$offset+6],
-                         $packet[$offset+7]);
+            $p = sprintf(
+                '%02x %02x %02x %02x %02x %02x %02x %02x',
+                $packet[$offset+0],
+                $packet[$offset+1],
+                $packet[$offset+2],
+                $packet[$offset+3],
+                $packet[$offset+4],
+                $packet[$offset+5],
+                $packet[$offset+6],
+                $packet[$offset+7]
+            );
 
-            $q = sprintf('%02x %02x %02x %02x %02x %02x %02x %02x', 
-                         $packet[$offset+8],
-                         $packet[$offset+9],
-                         $packet[$offset+10],
-                         $packet[$offset+11],
-                         $packet[$offset+12],
-                         $packet[$offset+13],
-                         $packet[$offset+14],
-                         $packet[$offset+15]);
+            $q = sprintf(
+                '%02x %02x %02x %02x %02x %02x %02x %02x',
+                $packet[$offset+8],
+                $packet[$offset+9],
+                $packet[$offset+10],
+                $packet[$offset+11],
+                $packet[$offset+12],
+                $packet[$offset+13],
+                $packet[$offset+14],
+                $packet[$offset+15]
+            );
 
-            printf ("   %08x  %s  %s\n", $offset,$p,$q);
+            printf("   %08x  %s  %s\n", $offset, $p, $q);
 
             $offset += 16;
         }
-    
-        print("\n");        
+
+        print("\n");
     }
 }
 ?>

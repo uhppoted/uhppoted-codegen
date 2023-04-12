@@ -1,6 +1,7 @@
 <?php
 
-function get_controller_request($deviceID) {
+function get_controller_request($deviceID)
+{
     $packet = array_fill(0, 64, 0x00);
 
     $packet[0] = 0x17;
@@ -11,7 +12,8 @@ function get_controller_request($deviceID) {
     return $packet;
 }
 
-function set_ip_request($deviceID,$address,$netmask,$gateway) {
+function set_ip_request($deviceID, $address, $netmask, $gateway)
+{
     $packet = array_fill(0, 64, 0x00);
 
     $packet[0] = 0x17;
@@ -26,7 +28,8 @@ function set_ip_request($deviceID,$address,$netmask,$gateway) {
 }
 
 
-function pack_uint32($v,$packet,$offset) {
+function pack_uint32($v, $packet, $offset)
+{
     $packet[$offset]   = ($v >> 0)  & 0x00ff;
     $packet[$offset+1] = ($v >> 8)  & 0x00ff;
     $packet[$offset+2] = ($v >> 16) & 0x00ff;
@@ -35,12 +38,13 @@ function pack_uint32($v,$packet,$offset) {
     return $packet;
 }
 
-function pack_IPv4($address, $packet, $offset) {
+function pack_IPv4($address, $packet, $offset)
+{
     $addr = ip2long($address);
 
-     if (!$addr) {
-        throw new Exception(sprintf('invalid IPv4 address (%)', $address));        
-     }
+    if (!$addr) {
+        throw new Exception(sprintf('invalid IPv4 address (%)', $address));
+    }
 
     $packet[$offset]   = ($addr >> 24) & 0x00ff;
     $packet[$offset+1] = ($addr >> 16) & 0x00ff;
@@ -49,5 +53,3 @@ function pack_IPv4($address, $packet, $offset) {
 
     return $packet;
 }
-
-?>

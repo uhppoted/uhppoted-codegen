@@ -6,18 +6,21 @@ include "encode.php";
 include "decode.php";
 include "udp.php";
 
-class UHPPOTE {
+class UHPPOTE
+{
     public $bind;
     public $broadcast;
     public $listen;
     public $timeout;
     public $debug;
 
-    public function __construct(string $bind='0.0.0.0:0', 
-                                string $broadcast='255.255.255.255:60000', 
-                                string $listen='0.0.0.0:60001', 
-                                int    $timeout=5,
-                                bool   $debug=false) {
+    public function __construct(
+        string $bind='0.0.0.0:0',
+        string $broadcast='255.255.255.255:60000',
+        string $listen='0.0.0.0:60001',
+        int    $timeout=5,
+        bool   $debug=false
+    ) {
         $this->bind = $bind;
         $this->broadcast = $broadcast;
         $this->listen = $listen;
@@ -26,7 +29,8 @@ class UHPPOTE {
     }
 }
 
-function get_all_controllers($uhppote) {
+function get_all_controllers($uhppote)
+{
     $request = get_controller_request(0);
     $replies = udp\broadcast($uhppote, $request);
 
@@ -39,7 +43,8 @@ function get_all_controllers($uhppote) {
     return $list;
 }
 
-function get_controller($uhppote, $controller) {
+function get_controller($uhppote, $controller)
+{
     $request = get_controller_request($controller);
     $reply = udp\send($uhppote, $request);
     $response = get_controller_response($reply);
@@ -48,15 +53,17 @@ function get_controller($uhppote, $controller) {
 }
 
 
-function set_ip($uhppote, $controller, $address, $netmask, $gateway) {
+function set_ip($uhppote, $controller, $address, $netmask, $gateway)
+{
     $request = set_ip_request($controller, $address, $netmask, $gateway);
     $reply = udp\send($uhppote, $request);
 
     return array('' => 'ok');
 }
 
-function listen($uhppote,$handlerfn) {
-    $fn = function($packet) use ($handlerfn) {
+function listen($uhppote, $handlerfn)
+{
+    $fn = function ($packet) use ($handlerfn) {
         try {
             $event = event($packet);
 
@@ -68,5 +75,3 @@ function listen($uhppote,$handlerfn) {
 
     udp\listen($uhppote, $fn);
 }
-
-?>

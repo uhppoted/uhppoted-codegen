@@ -43,7 +43,7 @@ if ($cmd) {
 
     if (isset($commands[$key])) {
         execute($key, $commands[$key], $options, $rest);
-    } else if ($key == 'all') {
+    } elseif ($key == 'all') {
         all($options, $rest);
     } else {
         usage();
@@ -52,7 +52,8 @@ if ($cmd) {
     usage();
 }
 
-function all($options, $args) {
+function all($options, $args)
+{
     $commands = commands();
 
     foreach ($commands as $key => $cmd) {
@@ -62,7 +63,8 @@ function all($options, $args) {
     }
 }
 
-function usage() {
+function usage()
+{
     $commands = commands();
 
     print "\n";
@@ -76,5 +78,3 @@ function usage() {
 
     print "\n";
 }
-
-?>
