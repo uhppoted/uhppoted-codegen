@@ -13,10 +13,11 @@
 - [x] udp_send: request  timeout
 - [x] pprint
 - [x] namespaces
-- [ ] lint: https://cs.symfony.com
-- [ ] codegen from models
+- [x] lint: chmod a+x php-cs-fixer
 - [x] README
 - [x] CHANGELOG
+- [ ] code generation
+- [ ] github workflow
 
 ## zig
 - (?) async/await timeouts

@@ -53,6 +53,11 @@ jobs:
       with:
         version: 0.10.1
 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
 
