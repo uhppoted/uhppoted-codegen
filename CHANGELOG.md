@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Added
+1. PHP bindings
+
 ### Updated
 1. Reworked Go language bindings to use zero value rather than pointer for optional Date 
    and DateTime fields.

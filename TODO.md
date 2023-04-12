@@ -13,10 +13,10 @@
 - [x] udp_send: request  timeout
 - [x] pprint
 - [x] namespaces
-- [ ] codegen from models
 - [ ] lint: https://cs.symfony.com
-- [ ] README
-- [ ] CHANGELOG
+- [ ] codegen from models
+- [x] README
+- [x] CHANGELOG
 
 ## zig
 - (?) async/await timeouts

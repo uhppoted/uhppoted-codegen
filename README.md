@@ -7,6 +7,7 @@ Code generation tool for creating native UHPPOTE controller interfaces in multip
 - Rust
 - Python
 - Zig
+- PHP
 - HTML + Javascript
 
 ## Raison d'être
@@ -16,7 +17,7 @@ that you can customize to your heart's content is what you really want.
 
 The codegen'd bindings are an alternative to the [DLL](https://github.com/uhppoted/uhppoted-dll) which also supports
 development in languages other than Go. However, because of the way the cgo compiler compiles shared libraries it does
-require that a DLL built specifically for the target machine which can make application distribution more complicated
+require that a DLL be built specifically for the target machine which can make application distribution more complicated
 than it should be.
 
 ## Releases

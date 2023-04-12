@@ -10,6 +10,7 @@ controller interface in:
 - [Rust](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
 - [Python](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python)
 - [Zig](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
+- [PHP](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/php)
 - [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
 
 The models are provided as JSON files so it's entirely possible to use an alternative templating engine. However, assuming
@@ -354,6 +355,7 @@ the specific details of translating the API function to a UHPPOTE function call.
 - `add-task`
 - `refresh-tasklist`
 - `clear-tasklist`
+- `set-pc-control`
 - `listen`
 
 As with the API component, the _commands_ component is typically language and application specific and is probably
