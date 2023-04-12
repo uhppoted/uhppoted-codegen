@@ -32,19 +32,33 @@ function execute($cmd, $fn, $options, $args) {
 }
 
 function pprint($cmd, $result) {
-    $width = 0;
-    foreach ($result as $key => $value) {
-        if (strlen($key) > $width) {
-            $width = strlen($key);
+    if ($cmd != '') {
+        print("   $cmd\n");        
+    }
+
+    if (is_array($result)) {
+        foreach ($result as $response) {
+            pprint('',$response);
+        }
+    } else {        
+        $width = 0;
+        foreach ($result as $key => $value) {
+            if (strlen($key) > $width) {
+                $width = strlen($key);
+            }
+        }
+
+        $format = sprintf("      %%-%ds  %%s\n",$width);
+
+        foreach ($result as $key => $value) {
+            if (is_bool($value)) {
+                printf($format,$key,$value ? 'Y' : 'N');                
+            } else {
+                printf($format,$key,$value);                
+            }
         }
     }
 
-    $format = sprintf("      %%-%ds  %%s\n",$width);
-
-    print("   $cmd\n");
-    foreach ($result as $key => $value) {
-        printf($format,$key,$value);
-    }
     print("\n");
 }
 
@@ -64,12 +78,14 @@ function set_ip($u, $args) {
     $netmask = NETMASK;
     $gateway = GATEWAY;
 
-    return uhppote\set_ip($u, $controller, $address, $netmask, $gateway);
+    uhppote\set_ip($u, $controller, $address, $netmask, $gateway);
+
+    return (object) array('set' => 'ok');
 }
 
 function listen($u, $args) {
     uhppote\listen($u, function ($event) {
-        pprint('event', $event);
+        pprint('event',$event);
     });
 }
 
