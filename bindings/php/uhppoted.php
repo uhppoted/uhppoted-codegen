@@ -2,7 +2,7 @@
 
 include "commands.php";
 
-print "uhppoted-codegen: PHP sample application\n";
+print "uhppoted-codegen: PHP sample application\n\n";
 
 $options = array(
     'bind' => '0.0.0.0:0',

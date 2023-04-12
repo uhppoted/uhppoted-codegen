@@ -17,7 +17,7 @@ define('GATEWAY',  '192.168.1.1');
 define('LISTENER', '192.168.1.100:60001');
 
 function execute($cmd, $fn, $options, $args) {
-    $uhppote = new UHPPOTE(
+    $uhppote = new \uhppote\UHPPOTE(
         $options['bind'],
         $options['broadcast'],
         $options['listen'],
@@ -39,9 +39,9 @@ function pprint($cmd, $result) {
         }
     }
 
-    $format = sprintf("   %%-%ds  %%s\n",$width);
+    $format = sprintf("      %%-%ds  %%s\n",$width);
 
-    print("$cmd\n");
+    print("   $cmd\n");
     foreach ($result as $key => $value) {
         printf($format,$key,$value);
     }
@@ -49,13 +49,13 @@ function pprint($cmd, $result) {
 }
 
 function get_all_controllers($u, $args) {
-    return uhppote_get_all_controllers($u);
+    return uhppote\get_all_controllers($u);
 }
 
 function get_controller($u, $args) {
     $controller = CONTROLLER;
 
-    return uhppote_get_controller($u, $controller);
+    return uhppote\get_controller($u, $controller);
 }
 
 function set_ip($u, $args) {
@@ -64,11 +64,11 @@ function set_ip($u, $args) {
     $netmask = NETMASK;
     $gateway = GATEWAY;
 
-    return uhppote_set_ip($u, $controller, $address, $netmask, $gateway);
+    return uhppote\set_ip($u, $controller, $address, $netmask, $gateway);
 }
 
 function listen($u, $args) {
-    uhppote_listen($u, function ($event) {
+    uhppote\listen($u, function ($event) {
         pprint('event', $event);
     });
 }

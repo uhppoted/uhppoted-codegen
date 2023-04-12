@@ -12,7 +12,7 @@
 - [x] udp_broadcast: request timeout
 - [x] udp_send: request  timeout
 - [x] pprint
-- [ ] namespaces (https://www.php.net/manual/en/language.namespaces.importing.php)
+- [x] namespaces
 - [ ] codegen from models
 - [ ] lint: https://cs.symfony.com
 - [ ] README

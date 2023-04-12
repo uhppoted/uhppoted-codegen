@@ -1,6 +1,8 @@
 <?php
 
-function udp_broadcast($uhppote, $request) {
+namespace uhppote\udp;
+
+function broadcast($uhppote, $request) {
     // set total timeout
     $timeout = false;
 
@@ -66,7 +68,7 @@ function udp_broadcast($uhppote, $request) {
     }
 }
 
-function udp_send($uhppote, $request) {
+function send($uhppote, $request) {
     // setup async timeout
     $timeout = false;
 
@@ -136,7 +138,7 @@ function udp_send($uhppote, $request) {
     }
 }
 
-function udp_listen($uhppote, $handlerfn) {
+function listen($uhppote, $handlerfn) {
     $bind = IPv4($uhppote->listen);
 
     if ($socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP)) {        

@@ -1,5 +1,7 @@
 <?php
 
+namespace uhppote;
+
 include "encode.php";
 include "decode.php";
 include "udp.php";
@@ -24,9 +26,9 @@ class UHPPOTE {
     }
 }
 
-function uhppote_get_all_controllers($uhppote) {
+function get_all_controllers($uhppote) {
     $request = get_controller_request(0);
-    $replies = udp_broadcast($uhppote, $request);
+    $replies = udp\broadcast($uhppote, $request);
 
     $list = array();
     foreach ($replies as $reply) {
@@ -37,23 +39,23 @@ function uhppote_get_all_controllers($uhppote) {
     return $list;
 }
 
-function uhppote_get_controller($uhppote, $controller) {
+function get_controller($uhppote, $controller) {
     $request = get_controller_request($controller);
-    $reply = udp_send($uhppote, $request);
+    $reply = udp\send($uhppote, $request);
     $response = get_controller_response($reply);
 
     return $response;
 }
 
 
-function uhppote_set_ip($uhppote, $controller, $address, $netmask, $gateway) {
+function set_ip($uhppote, $controller, $address, $netmask, $gateway) {
     $request = set_ip_request($controller, $address, $netmask, $gateway);
-    $reply = udp_send($uhppote, $request);
+    $reply = udp\send($uhppote, $request);
 
-    return true;
+    return array('' => 'ok');
 }
 
-function uhppote_listen($uhppote,$handlerfn) {
+function listen($uhppote,$handlerfn) {
     $fn = function($packet) use ($handlerfn) {
         try {
             $event = event($packet);
@@ -64,7 +66,7 @@ function uhppote_listen($uhppote,$handlerfn) {
         }
     };
 
-    udp_listen($uhppote, $fn);
+    udp\listen($uhppote, $fn);
 }
 
 ?>
