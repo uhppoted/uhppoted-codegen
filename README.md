@@ -1,5 +1,6 @@
 ![build](https://github.com/uhppoted/uhppoted-codegen/workflows/build/badge.svg)
 ![Go](https://github.com/uhppoted/uhppoted-codegen/workflows/go/badge.svg)
+![Rust](https://github.com/uhppoted/uhppoted-codegen/workflows/rust/badge.svg)
 
 # uhppoted-codegen
 
