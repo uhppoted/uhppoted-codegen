@@ -72,7 +72,7 @@ coverage: build
 regen: 
 	$(CMD) export --models bindings/.models/models.json --tests bindings/.models/test-data.json
 
-build-all: test vet lint go rust python http zig
+build-all: test vet lint go rust python zig php http
 	mkdir -p dist/$(DIST)/windows
 	mkdir -p dist/$(DIST)/darwin
 	mkdir -p dist/$(DIST)/linux
@@ -208,7 +208,7 @@ zig-listen: zig
 
 php: build regen
 	$(CMD) --models $(MODELS) --templates $(PHP) --out generated/php --clean
-	cd generated/php && ../../php-cs-fixer fix .
+	cd generated/php && php-cs-fixer fix .
 
 php-debug: php
 #	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 get-all-controllers
