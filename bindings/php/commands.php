@@ -89,6 +89,61 @@ function set_ip($u, $args)
     return (object) array('set' => 'ok');
 }
 
+function get_time($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\get_time($u, $controller);
+}
+
+function set_time($u, $args)
+{
+    $controller = CONTROLLER;
+    $now = new DateTimeImmutable('now', new DateTimeZone('PDT'));
+
+    return uhppote\set_time($u, $controller, $now);
+}
+
+function get_listener($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\get_listener($u, $controller);
+}
+
+function set_listener($u, $args)
+{
+    $controller = CONTROLLER;
+    list($address, $port) = explode(':', LISTENER);
+
+    return uhppote\set_listener($u, $controller, $address, (int)$port);
+}
+
+function get_door_control($u, $args)
+{
+    $controller = CONTROLLER;
+    $door = DOOR;
+
+    return uhppote\get_door_control($u, $controller, $door);
+}
+
+function set_door_control($u, $args)
+{
+    $controller = CONTROLLER;
+    $door = DOOR;
+    $mode = MODE;
+    $delay = DELAY;
+
+    return uhppote\set_door_control($u, $controller, $door, $mode, $delay);
+}
+
+function get_status($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\get_status($u, $controller);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -102,6 +157,13 @@ function commands()
         'get-all-controllers' => 'get_all_controllers',
         'get-controller' => 'get_controller',
         'set-ip' => 'set_ip',
+        'get-time' => 'get_time',
+        'set-time' => 'set_time',
+        'get-listener' => 'get_listener',
+        'set-listener' => 'set_listener',
+        'get-door-control' => 'get_door_control',
+        'set-door-control' => 'set_door_control',
+        'get-status' => 'get_status',
         'listen' => 'listen'
     ];
 }

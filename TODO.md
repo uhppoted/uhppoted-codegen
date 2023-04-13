@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] .ignore file
+
 ## PHP
 
 - [x] `get-all-controllers`
@@ -17,6 +19,35 @@
 - [x] README
 - [x] CHANGELOG
 - [ ] code generation
+      - [x] get-all-controllers
+      - [x] get-controller
+      - [x] set-ip
+      - [x] get-time
+      - [x] set-time
+      - [x] get-listener
+      - [x] set-listener
+      - [x] get-door-control
+      - [x] set-door-control
+      - [x] get-status
+      - [ ] open-door
+      - [ ] get-cards
+      - [ ] get-card
+      - [ ] get-card-by-index
+      - [ ] put-card
+      - [ ] delete-card
+      - [ ] delete-all-cards
+      - [ ] get-event
+      - [ ] get-event-index
+      - [ ] set-event-index
+      - [ ] record-special-events
+      - [ ] get-time-profile
+      - [ ] set-time-profile
+      - [ ] delete-all-time-profiles
+      - [ ] add-task
+      - [ ] refresh-tasklist
+      - [ ] clear-tasklist
+      - [ ] set-pc-control
+      - [x] listen
 - [ ] github workflow
 
 ## zig

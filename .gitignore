@@ -7,3 +7,4 @@ generated
 release-notes.md
 zig-cache
 zig-out
+php-cs-fixer

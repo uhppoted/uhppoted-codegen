@@ -16,6 +16,7 @@ GOBIN   = ./generated/go/bin/uhppoted
 RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
 PYBIN   = python3 ./generated/python/main.py
 ZIGBIN  = ./generated/zig/zig-out/bin/uhppoted
+PHPBIN  = php ./generated/php/uhppoted.php
 
 .DEFAULT_GOAL := test
 .PHONY: update
@@ -205,6 +206,24 @@ zig-all: zig
 zig-listen: zig
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen
 
+php: build regen
+	$(CMD) --models $(MODELS) --templates $(PHP) --out generated/php --clean
+	cd generated/php && ../../php-cs-fixer fix .
+
+php-debug: php
+#	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 get-all-controllers
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 $(COMMAND)
+#	cat generated/php/uhppote/uhppote.php
+
+php-usage: php
+	$(PHPBIN) 
+
+php-all: php
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 all
+
+php-listen: php
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 listen
+
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
-	npx eslint --fix generated/http/*.js
+	npx eslint --fix generated/http/*.js 

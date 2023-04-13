@@ -43,24 +43,6 @@ function get_all_controllers($uhppote)
     return $list;
 }
 
-function get_controller($uhppote, $controller)
-{
-    $request = get_controller_request($controller);
-    $reply = udp\send($uhppote, $request);
-    $response = get_controller_response($reply);
-
-    return $response;
-}
-
-
-function set_ip($uhppote, $controller, $address, $netmask, $gateway)
-{
-    $request = set_ip_request($controller, $address, $netmask, $gateway);
-    $reply = udp\send($uhppote, $request);
-
-    return array('' => 'ok');
-}
-
 function listen($uhppote, $handlerfn)
 {
     $fn = function ($packet) use ($handlerfn) {
@@ -75,3 +57,21 @@ function listen($uhppote, $handlerfn)
 
     udp\listen($uhppote, $fn);
 }
+
+{{range $ix,$fn := .model.functions}}
+{{- template "function" . -}}
+{{end}}
+
+{{define "function"}}
+function {{snakeCase .name}}($uhppote, {{template "args" .args}})
+{
+    $request = {{snakeCase .request.name}}({{template "params" .args}});
+    $reply = udp\send($uhppote, $request);
+    {{if .response}}$response = {{snakeCase .response.name}}($reply);
+
+    return $response;
+    {{else}}
+    return array('' => 'ok');
+    {{end}}
+}
+{{end}}

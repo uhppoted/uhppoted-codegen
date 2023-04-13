@@ -1,0 +1,22 @@
+{
+    "php": {
+        "types": {
+            "uint8": "int",
+            "uint16": "int",
+            "uint32": "int",
+            "bool": "bool",
+            "IPv4": "IPv4Address",
+            "MAC": "str",
+            "version": "str",
+            "date": "datetime.date",
+            "shortdate": "datetime.date",
+            "time": "datetime.time",
+            "datetime": "datetime.datetime",
+            "HHmm": "datetime.time",
+            "pin" : "PIN",
+
+            "optional date": "datetime.date",
+            "optional datetime": "datetime.datetime"
+        }
+    }
+}
