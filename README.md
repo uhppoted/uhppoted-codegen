@@ -1,4 +1,5 @@
 ![build](https://github.com/uhppoted/uhppoted-codegen/workflows/build/badge.svg)
+![build](https://github.com/uhppoted/uhppoted-codegen/workflows/go/badge.svg)
 
 # uhppoted-codegen
 
