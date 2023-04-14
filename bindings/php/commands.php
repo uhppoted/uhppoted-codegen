@@ -144,6 +144,67 @@ function get_status($u, $args)
     return uhppote\get_status($u, $controller);
 }
 
+function open_door($u, $args)
+{
+    $controller = CONTROLLER;
+    $door = DOOR;
+ 
+    return uhppote\open_door($u, $controller, $door);
+}
+
+function get_cards($u, $args)
+{
+    $controller = CONTROLLER;
+ 
+    return uhppote\get_cards($u, $controller);
+}
+
+function get_card($u, $args)
+{
+    $controller = CONTROLLER;
+    $card = CARD;
+ 
+    return uhppote\get_card($u, $controller, $card);
+}
+
+function get_card_by_index($u, $args)
+{
+    $controller = CONTROLLER;
+    $index = CARD_INDEX;
+ 
+    return uhppote\get_card_by_index($u, $controller, $index);
+}
+
+function put_card($u, $args)
+{
+    $controller = CONTROLLER;
+    $card = CARD;
+    $start = new DateTimeImmutable('2023-01 -01', new DateTimeZone('PDT'));
+    $end = new DateTimeImmutable('2023-12-31', new DateTimeZone('PDT'));
+    $door1 = 0;
+    $door2 = 1;
+    $door3 = 29;
+    $door4 = 0;
+    $pin = 7531;
+
+    return uhppote\put_card($u, $controller, $card, $start, $end, $door1, $door2, $door3, $door4, $pin);
+}
+
+function delete_card($u, $args)
+{
+    $controller = CONTROLLER;
+    $card = CARD;
+
+    return uhppote\delete_card($u, $controller, $card);
+}
+
+function delete_all_cards($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\delete_all_cards($u, $controller);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -164,6 +225,13 @@ function commands()
         'get-door-control' => 'get_door_control',
         'set-door-control' => 'set_door_control',
         'get-status' => 'get_status',
+        'open-door' => 'open_door',
+        'get-cards' => 'get_cards',
+        'get-card' => 'get_card',
+        'get-card-by-index' => 'get_card_by_index',
+        'put-card' => 'put_card',
+        'delete-card' => 'delete_card',
+        'delete-all-cards' => 'delete_all_cards',
         'listen' => 'listen'
     ];
 }

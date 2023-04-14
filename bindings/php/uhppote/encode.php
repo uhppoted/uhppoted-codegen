@@ -62,12 +62,23 @@ function pack_IPv4($address, $packet, $offset)
     return $packet;
 }
 
+function pack_date($v, $packet, $offset)
+{
+    $date = date_format($v,'Ymd');
+    $bcd = string2bcd($date);
+
+    $packet[$offset]   = $bcd[0];
+    $packet[$offset+1] = $bcd[1];
+    $packet[$offset+2] = $bcd[2];
+    $packet[$offset+3] = $bcd[3];
+
+    return $packet;
+}
+
 function pack_datetime($v, $packet, $offset)
 {
     $datetime = date_format($v,'YmdHis');
     $bcd = string2bcd($datetime);
-
-    var_dump($bcd);
 
     $packet[$offset]   = $bcd[0];
     $packet[$offset+1] = $bcd[1];
@@ -76,6 +87,15 @@ function pack_datetime($v, $packet, $offset)
     $packet[$offset+4] = $bcd[4];
     $packet[$offset+5] = $bcd[5];
     $packet[$offset+6] = $bcd[6];
+
+    return $packet;
+}
+
+function pack_pin($v, $packet, $offset)
+{
+    $packet[$offset]   = ($v >> 0)  & 0x00ff;
+    $packet[$offset+1] = ($v >> 8)  & 0x00ff;
+    $packet[$offset+2] = ($v >> 16) & 0x00ff;
 
     return $packet;
 }

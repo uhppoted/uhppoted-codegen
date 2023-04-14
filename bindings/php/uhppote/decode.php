@@ -110,14 +110,6 @@ function {{snakeCase .name}}($packet)
 
     $response = new {{CamelCase .name}}();
  
-//     $response->controller = unpack_uint32($packet, 4);
-//     $response->ip_address = unpack_IPv4($packet, 8);
-//     $response->subnet_mask = unpack_IPv4($packet, 12);
-//     $response->gateway = unpack_IPv4($packet, 16);
-//     $response->MAC_address = unpack_MAC($packet, 20);
-//     $response->version = unpack_version($packet, 26);
-//     $response->date = unpack_date($packet, 28);
-
     {{range .fields}}
     $response->{{snakeCase .name}} = unpack_{{snakeCase .type}}($packet, {{.offset}});
     {{- end}}
@@ -125,9 +117,6 @@ function {{snakeCase .name}}($packet)
     return $response;
 }
 {{end}}
-
-
-
 
 function unpack_uint8($packet, $offset)
 {
@@ -219,6 +208,20 @@ function unpack_shortdate($packet, $offset)
     return sprintf('20%s-%s-%s', $year, $month, $day);
 }
 
+function unpack_optional_date($packet, $offset)
+{
+    $bcd = bcd2string(array_slice($packet, $offset, 4));
+    $year = substr($bcd, 0, 4);
+    $month = substr($bcd, 4, 2);
+    $day = substr($bcd, 6, 2);
+
+    if ($bcd == '00000000000000') {
+        return '';
+    } else {
+        return sprintf('%s-%s-%s', $year, $month, $day);
+    }
+}
+
 function unpack_time($packet, $offset)
 {
     $bcd = bcd2string(array_slice($packet, $offset, 3));
@@ -257,6 +260,18 @@ function unpack_optional_datetime($packet, $offset)
     } else {
         return sprintf('%s-%s-%s %s:%s:%s', $year, $month, $day, $hour, $minute, $second);        
     }
+}
+
+function unpack_pin($packet, $offset) 
+{
+    $v = 0;
+    $v |= $packet[$offset+2] & 0x00ff;
+    $v <<= 8;
+    $v |= $packet[$offset+1] & 0x00ff;
+    $v <<= 8;
+    $v |= $packet[$offset] & 0x00ff;
+
+    return $v;
 }
 
 function bcd2string($bytes)

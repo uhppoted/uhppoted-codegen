@@ -29,13 +29,13 @@
       - [x] get-door-control
       - [x] set-door-control
       - [x] get-status
-      - [ ] open-door
-      - [ ] get-cards
-      - [ ] get-card
-      - [ ] get-card-by-index
-      - [ ] put-card
-      - [ ] delete-card
-      - [ ] delete-all-cards
+      - [x] open-door
+      - [x] get-cards
+      - [x] get-card
+      - [x] get-card-by-index
+      - [x] put-card
+      - [x] delete-card
+      - [x] delete-all-cards
       - [ ] get-event
       - [ ] get-event-index
       - [ ] set-event-index
@@ -47,7 +47,7 @@
       - [ ] refresh-tasklist
       - [ ] clear-tasklist
       - [ ] set-pc-control
-      - [x] listen
+      - [ ] listen
 - [ ] github workflow
 
 ## zig
