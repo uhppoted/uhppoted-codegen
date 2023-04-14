@@ -283,6 +283,46 @@ function delete_all_time_profiles($u, $args)
     return uhppote\delete_all_time_profiles($u, $controller);
 }
 
+function add_task($u, $args)
+{
+    $controller = CONTROLLER;
+    $start_date = new DateTimeImmutable('2023-01 -01', new DateTimeZone('PDT'));
+    $end_date = new DateTimeImmutable('2023-12-31', new DateTimeZone('PDT'));
+    $monday = true;
+    $tuesday = true;
+    $wednesday = false;
+    $thursday = true;
+    $friday = false;
+    $saturday = false;
+    $sunday = true;
+    $start_time = new DateTimeImmutable('08:30', new DateTimeZone('PDT'));
+    $door = DOOR;
+    $task_type = 2;
+    $more_cards = 0;
+
+    return uhppote\add_task($u, $controller,
+                            $start_date, $end_date,
+                            $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday,
+                            $start_time,
+                            $door,
+                            $task_type,
+                            $more_cards);
+}
+
+function refresh_tasklist($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\refresh_tasklist($u, $controller);
+}
+
+function clear_tasklist($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\clear_tasklist($u, $controller);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -317,6 +357,9 @@ function commands()
         'get-time-profile' => 'get_time_profile',
         'set-time-profile' => 'set_time_profile',
         'delete-all-time-profiles' => 'delete_all_time_profiles',
+        'add-task' => 'add_task',
+        'refresh-tasklist' => 'refresh_tasklist',
+        'clear-tasklist' => 'clear_tasklist',
         'listen' => 'listen'
     ];
 }

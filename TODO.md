@@ -43,9 +43,9 @@
       - [x] get-time-profile
       - [x] set-time-profile
       - [x] delete-all-time-profiles
-      - [ ] add-task
-      - [ ] refresh-tasklist
-      - [ ] clear-tasklist
+      - [x] add-task
+      - [x] refresh-tasklist
+      - [x] clear-tasklist
       - [ ] set-pc-control
       - [x] listen
 - [ ] github workflow
