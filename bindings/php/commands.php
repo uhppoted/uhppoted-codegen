@@ -237,6 +237,52 @@ function record_special_events($u, $args)
     return uhppote\record_special_events($u, $controller, $enabled);
 }
 
+function get_time_profile($u, $args)
+{
+    $controller = CONTROLLER;
+    $profile_id = TIME_PROFILE_ID;
+
+    return uhppote\get_time_profile($u, $controller, $profile_id);
+}
+
+function set_time_profile($u, $args)
+{
+    $controller = CONTROLLER;
+    $profile_id = TIME_PROFILE_ID;
+    $start = new DateTimeImmutable('2023-01 -01', new DateTimeZone('PDT'));
+    $end = new DateTimeImmutable('2023-12-31', new DateTimeZone('PDT'));
+    $monday = true;
+    $tuesday = true;
+    $wednesday = false;
+    $thursday = true;
+    $friday = false;
+    $saturday = false;
+    $sunday = true;
+    $segment1_start = new DateTimeImmutable('08:30', new DateTimeZone('PDT'));
+    $segment1_end = new DateTimeImmutable('11:45', new DateTimeZone('PDT'));
+    $segment2_start = new DateTimeImmutable('13:15', new DateTimeZone('PDT'));
+    $segment2_end = new DateTimeImmutable('16:30', new DateTimeZone('PDT'));
+    $segment3_start = new DateTimeImmutable('19:30', new DateTimeZone('PDT'));
+    $segment3_end = new DateTimeImmutable('20:55', new DateTimeZone('PDT'));
+    $linked_profile_id = 30;
+
+
+    return uhppote\set_time_profile($u, $controller, $profile_id,
+                                    $start, $end,
+                                    $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday,
+                                    $segment1_start, $segment1_end,
+                                    $segment2_start, $segment2_end,
+                                    $segment3_start, $segment3_end,
+                                    $linked_profile_id);
+}
+
+function delete_all_time_profiles($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\delete_all_time_profiles($u, $controller);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -268,6 +314,9 @@ function commands()
         'get-event-index' => 'get_event_index',
         'set-event-index' => 'set_event_index',
         'record-special-events' => 'record_special_events',
+        'get-time-profile' => 'get_time_profile',
+        'set-time-profile' => 'set_time_profile',
+        'delete-all-time-profiles' => 'delete_all_time_profiles',
         'listen' => 'listen'
     ];
 }

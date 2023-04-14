@@ -239,6 +239,15 @@ function unpack_time($packet, $offset)
     return sprintf('%s:%s:%s', $hour, $minute, $second);
 }
 
+function unpack_hhmm($packet, $offset)
+{
+    $bcd = bcd2string(array_slice($packet, $offset, 2));
+    $hour = substr($bcd, 0, 2);
+    $minute = substr($bcd, 2, 2);
+
+    return sprintf('%s:%s', $hour, $minute);
+}
+
 function unpack_datetime($packet, $offset)
 {
     $bcd = bcd2string(array_slice($packet, $offset, 7));

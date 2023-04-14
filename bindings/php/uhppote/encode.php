@@ -82,6 +82,17 @@ function pack_date($v, $packet, $offset)
     return $packet;
 }
 
+function pack_HHmm($v, $packet, $offset)
+{
+    $time = date_format($v,'Hi');
+    $bcd = string2bcd($time);
+
+    $packet[$offset]   = $bcd[0];
+    $packet[$offset+1] = $bcd[1];
+
+    return $packet;
+}
+
 function pack_datetime($v, $packet, $offset)
 {
     $datetime = date_format($v,'YmdHis');
