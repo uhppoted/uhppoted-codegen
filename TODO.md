@@ -36,10 +36,10 @@
       - [x] put-card
       - [x] delete-card
       - [x] delete-all-cards
-      - [ ] get-event
-      - [ ] get-event-index
-      - [ ] set-event-index
-      - [ ] record-special-events
+      - [x] get-event
+      - [x] get-event-index
+      - [x] set-event-index
+      - [x] record-special-events
       - [ ] get-time-profile
       - [ ] set-time-profile
       - [ ] delete-all-time-profiles
@@ -47,7 +47,7 @@
       - [ ] refresh-tasklist
       - [ ] clear-tasklist
       - [ ] set-pc-control
-      - [ ] listen
+      - [x] listen
 - [ ] github workflow
 
 ## zig

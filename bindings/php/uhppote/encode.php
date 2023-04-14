@@ -46,6 +46,13 @@ function pack_uint32($v, $packet, $offset)
     return $packet;
 }
 
+function pack_bool($v, $packet, $offset)
+{
+    $packet[$offset] = $v ? 0x01 : 0x00;
+
+    return $packet;
+}
+
 function pack_IPv4($address, $packet, $offset)
 {
     $addr = ip2long($address);

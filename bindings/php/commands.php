@@ -205,6 +205,38 @@ function delete_all_cards($u, $args)
     return uhppote\delete_all_cards($u, $controller);
 }
 
+function get_event($u, $args)
+{
+    $controller = CONTROLLER;
+    $index = EVENT_INDEX;
+
+    return uhppote\get_event($u, $controller, $index);
+}
+
+function get_event_index($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\get_event_index($u, $controller);
+}
+
+function set_event_index($u, $args)
+{
+    $controller = CONTROLLER;
+    $index = EVENT_INDEX;
+
+    return uhppote\set_event_index($u, $controller, $index);
+}
+
+
+function record_special_events($u, $args)
+{
+    $controller = CONTROLLER;
+    $enabled = true;
+
+    return uhppote\record_special_events($u, $controller, $enabled);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -232,6 +264,10 @@ function commands()
         'put-card' => 'put_card',
         'delete-card' => 'delete_card',
         'delete-all-cards' => 'delete_all_cards',
+        'get-event' => 'get_event',
+        'get-event-index' => 'get_event_index',
+        'set-event-index' => 'set_event_index',
+        'record-special-events' => 'record_special_events',
         'listen' => 'listen'
     ];
 }

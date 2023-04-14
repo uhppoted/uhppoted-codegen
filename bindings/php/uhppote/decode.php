@@ -92,6 +92,13 @@ class {{CamelCase .name}}
 }
 {{end}}
 
+{{- with .model.event -}}
+class {{CamelCase .name}}
+{   {{range .fields}}
+    public ${{snakeCase .name}};{{end}}
+}
+{{end}}
+
 {{define "decode"}}
 function {{snakeCase .name}}($packet)
 {
