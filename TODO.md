@@ -18,7 +18,7 @@
 - [x] lint: chmod a+x php-cs-fixer
 - [x] README
 - [x] CHANGELOG
-- [ ] code generation
+- [x] code generation
       - [x] get-all-controllers
       - [x] get-controller
       - [x] set-ip
@@ -46,7 +46,7 @@
       - [x] add-task
       - [x] refresh-tasklist
       - [x] clear-tasklist
-      - [ ] set-pc-control
+      - [x] set-pc-control
       - [x] listen
 - [ ] github workflow
 

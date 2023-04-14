@@ -148,14 +148,14 @@ function open_door($u, $args)
 {
     $controller = CONTROLLER;
     $door = DOOR;
- 
+
     return uhppote\open_door($u, $controller, $door);
 }
 
 function get_cards($u, $args)
 {
     $controller = CONTROLLER;
- 
+
     return uhppote\get_cards($u, $controller);
 }
 
@@ -163,7 +163,7 @@ function get_card($u, $args)
 {
     $controller = CONTROLLER;
     $card = CARD;
- 
+
     return uhppote\get_card($u, $controller, $card);
 }
 
@@ -171,7 +171,7 @@ function get_card_by_index($u, $args)
 {
     $controller = CONTROLLER;
     $index = CARD_INDEX;
- 
+
     return uhppote\get_card_by_index($u, $controller, $index);
 }
 
@@ -267,13 +267,27 @@ function set_time_profile($u, $args)
     $linked_profile_id = 30;
 
 
-    return uhppote\set_time_profile($u, $controller, $profile_id,
-                                    $start, $end,
-                                    $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday,
-                                    $segment1_start, $segment1_end,
-                                    $segment2_start, $segment2_end,
-                                    $segment3_start, $segment3_end,
-                                    $linked_profile_id);
+    return uhppote\set_time_profile(
+        $u,
+        $controller,
+        $profile_id,
+        $start,
+        $end,
+        $monday,
+        $tuesday,
+        $wednesday,
+        $thursday,
+        $friday,
+        $saturday,
+        $sunday,
+        $segment1_start,
+        $segment1_end,
+        $segment2_start,
+        $segment2_end,
+        $segment3_start,
+        $segment3_end,
+        $linked_profile_id
+    );
 }
 
 function delete_all_time_profiles($u, $args)
@@ -300,13 +314,23 @@ function add_task($u, $args)
     $task_type = 2;
     $more_cards = 0;
 
-    return uhppote\add_task($u, $controller,
-                            $start_date, $end_date,
-                            $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday,
-                            $start_time,
-                            $door,
-                            $task_type,
-                            $more_cards);
+    return uhppote\add_task(
+        $u,
+        $controller,
+        $start_date,
+        $end_date,
+        $monday,
+        $tuesday,
+        $wednesday,
+        $thursday,
+        $friday,
+        $saturday,
+        $sunday,
+        $start_time,
+        $door,
+        $task_type,
+        $more_cards
+    );
 }
 
 function refresh_tasklist($u, $args)
@@ -321,6 +345,14 @@ function clear_tasklist($u, $args)
     $controller = CONTROLLER;
 
     return uhppote\clear_tasklist($u, $controller);
+}
+
+function set_pc_control($u, $args)
+{
+    $controller = CONTROLLER;
+    $enabled = true;
+
+    return uhppote\set_pc_control($u, $controller, $enabled);
 }
 
 function listen($u, $args)
@@ -360,6 +392,7 @@ function commands()
         'add-task' => 'add_task',
         'refresh-tasklist' => 'refresh_tasklist',
         'clear-tasklist' => 'clear_tasklist',
+        'set-pc-control' => 'set_pc_control',
         'listen' => 'listen'
     ];
 }
