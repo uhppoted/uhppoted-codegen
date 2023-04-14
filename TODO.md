@@ -48,7 +48,7 @@
       - [x] clear-tasklist
       - [x] set-pc-control
       - [x] listen
-- [ ] github workflow
+- [x] Individual language github workflows
 
 ## zig
 - (?) async/await timeouts

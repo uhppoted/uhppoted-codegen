@@ -2,6 +2,9 @@
 ![Go](https://github.com/uhppoted/uhppoted-codegen/workflows/go/badge.svg)
 ![Rust](https://github.com/uhppoted/uhppoted-codegen/workflows/rust/badge.svg)
 ![Python](https://github.com/uhppoted/uhppoted-codegen/workflows/python/badge.svg)
+![Zig](https://github.com/uhppoted/uhppoted-codegen/workflows/zig/badge.svg)
+![Javascript](https://github.com/uhppoted/uhppoted-codegen/workflows/javascript/badge.svg)
+![PHP](https://github.com/uhppoted/uhppoted-codegen/workflows/php/badge.svg)
 
 # uhppoted-codegen
 
