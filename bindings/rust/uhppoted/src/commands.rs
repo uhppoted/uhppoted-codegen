@@ -17,7 +17,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 29] = [
+pub const COMMANDS: [&Command; 30] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -129,6 +129,10 @@ pub const COMMANDS: [&Command; 29] = [
     &Command {
         name: "set-pc-control",
         func: set_pc_control,
+    },
+    &Command {
+        name: "set-interlock",
+        func: set_interlock,
     },
     &Command {
         name: "listen",
@@ -477,6 +481,15 @@ fn set_pc_control() {
 
     print(|| -> Result<uhppote::SetPcControlResponse, error::Error> {
         futures::executor::block_on(uhppote::set_pc_control(controller, enabled))
+    })
+}
+
+fn set_interlock() {
+    let controller = CONTROLLER;
+    let interlock = 3;
+
+    print(|| -> Result<uhppote::SetInterlockResponse, error::Error> {
+        futures::executor::block_on(uhppote::set_interlock(controller, interlock))
     })
 }
 

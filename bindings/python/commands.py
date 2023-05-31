@@ -50,6 +50,7 @@ def commands():
         'refresh-tasklist': refresh_tasklist,
         'clear-tasklist': clear_tasklist,
         'set-pc-control': set_pc_control,
+        'set-interlock': set_interlock,
         'listen': listen,
     }
 
@@ -316,6 +317,13 @@ def set_pc_control(u):
     enabled = True
 
     return u.set_pc_control(controller, enabled)
+
+
+def set_interlock(u):
+    controller = CONTROLLER
+    interlock = 3
+
+    return u.set_interlock(controller, interlock)
 
 
 def listen(u):

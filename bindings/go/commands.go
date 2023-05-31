@@ -61,6 +61,7 @@ var commands = []command{
     command{name: "refresh-tasklist", f: refreshTaskList},
     command{name: "clear-tasklist", f: clearTaskList},
     command{name: "set-pc-control", f: setPCControl},
+    command{name: "set-interlock", f: setInterlock},
     command{name: "listen", f: listen},
 }
 
@@ -345,6 +346,13 @@ func setPCControl() (any, error) {
     enabled := true
 
     return uhppote.SetPcControl(controller, enabled)
+}
+
+func setInterlock() (any, error) {
+    controller := CONTROLLER
+    interlock := uint8(3)
+
+    return uhppote.SetInterlock(controller, interlock)
 }
 
 func listen() (any, error) {

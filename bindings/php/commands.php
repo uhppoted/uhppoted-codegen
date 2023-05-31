@@ -355,6 +355,14 @@ function set_pc_control($u, $args)
     return uhppote\set_pc_control($u, $controller, $enabled);
 }
 
+function set_interlock($u, $args)
+{
+    $controller = CONTROLLER;
+    $interlock = 3;
+
+    return uhppote\set_interlock($u, $controller, $interlock);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -393,6 +401,7 @@ function commands()
         'refresh-tasklist' => 'refresh_tasklist',
         'clear-tasklist' => 'clear_tasklist',
         'set-pc-control' => 'set_pc_control',
+        'set-interlock' => 'set_interlock',
         'listen' => 'listen'
     ];
 }

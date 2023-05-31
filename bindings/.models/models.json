@@ -1849,6 +1849,51 @@
             }
           ]
         }
+      },
+      {
+        "name": "set interlock",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "interlock",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "set interlock request",
+          "msgtype": 162,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "interlock",
+              "type": "uint8",
+              "offset": 8
+            }
+          ]
+        },
+        "response": {
+          "name": "set interlock response",
+          "msgtype": 162,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        }
       }
     ],
     "requests": [
@@ -2466,6 +2511,22 @@
             "name": "enable",
             "type": "bool",
             "offset": 12
+          }
+        ]
+      },
+      {
+        "name": "set interlock request",
+        "msgtype": 162,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "interlock",
+            "type": "uint8",
+            "offset": 8
           }
         ]
       }
@@ -3219,6 +3280,22 @@
       {
         "name": "set pc control response",
         "msgtype": 160,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "ok",
+            "type": "bool",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "set interlock response",
+        "msgtype": 162,
         "fields": [
           {
             "name": "controller",

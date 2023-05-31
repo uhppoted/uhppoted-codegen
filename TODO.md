@@ -2,6 +2,20 @@
 
 - [ ] .ignore file
 
+- [x] `set-interlock`
+      - [x] models
+      - [x] Go
+      - [x] Rust
+      - [x] Python
+      - [x] Zig
+      - [x] PHP
+      - [x] HTTP
+      - [x] HTTP example
+      - [x] quickstart
+      - [x] CHANGELOG
+      - [x] README
+      - [x] CODEGEN.md
+
 ## PHP
 
 - [x] `get-all-controllers`
@@ -48,6 +62,7 @@
 
 ## Other
    - Erlang
+   - [Odin](https://odin-lang.org)
    - Elixir
    - Lua
    - Markdown
@@ -57,6 +72,7 @@
    - Haskell
    - q
    - F#
+   - [V](https://vlang.io)
    - Clojure
    - [Austral](https://borretti.me/article/introducing-austral#status)
       - https://animaomnium.github.io/what-austral-proves/

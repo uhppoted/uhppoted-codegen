@@ -26,6 +26,8 @@ commands = {
     'add-task':                 add_task,
     'refresh-tasklist':         refresh_tasklist,
     'clear-tasklist':           clear_tasklist,
+    'set-pc-control':           set_pc_control,
+    'set-interlock':            set_interlock,
     'listen':                   listen,
 }
 
@@ -294,6 +296,20 @@ function clear_task_list() {
     controller = arg('controller')
 
     return uhppote::clear_task_list(controller)
+}
+
+function set_pc_control() {
+    controller = arg('controller')
+    enabled = arg('enabled')
+
+    return uhppote::set_pc_control(controller, enabled)
+}
+
+function set_interlock() {
+    controller = arg('controller')
+    interlock = arg('interlock')
+
+    return uhppote::set_interlock(controller, interlock)
 }
 
 function listen() {

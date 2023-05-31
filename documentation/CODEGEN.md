@@ -356,6 +356,7 @@ the specific details of translating the API function to a UHPPOTE function call.
 - `refresh-tasklist`
 - `clear-tasklist`
 - `set-pc-control`
+- `set-interlock`
 - `listen`
 
 As with the API component, the _commands_ component is typically language and application specific and is probably

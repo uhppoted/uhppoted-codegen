@@ -1424,6 +1424,41 @@
           ],
           "message": "F6AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
+      },
+      {
+        "name": "set interlock",
+        "request": {
+          "name": "set interlock request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "interlock",
+              "type": "uint8",
+              "value": "4"
+            }
+          ],
+          "message": "F6IAAHg3KhgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "set interlock response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "message": "F6IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
       }
     ]
   }

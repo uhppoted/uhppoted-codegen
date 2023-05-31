@@ -135,6 +135,7 @@ go-test: go
 
 go-debug: go
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-interlock
 
 go-usage: regen build
 	$(GOBIN)
@@ -151,6 +152,7 @@ rust: build regen
 
 rust-debug: rust
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-interlock"
 
 rust-usage: rust
 	$(RUSTBIN)
@@ -168,6 +170,7 @@ python: build regen
 
 python-debug: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-interlock
 
 python-usage: python
 	$(PYBIN)
@@ -184,6 +187,7 @@ zig: build regen
 
 zig-debug: zig
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)
+	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-interlock
 
 zig-usage: zig
 	$(ZIGBIN) 
@@ -200,6 +204,7 @@ php: build regen
 
 php-debug: php
 	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 $(COMMAND)
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 set-interlock
 
 php-usage: php
 	$(PHPBIN) 

@@ -161,6 +161,11 @@ pub const commands = [_]Command{
     },
 
     Command{
+        .name = "set-interlock",
+        .function = set_interlock,
+    },
+
+    Command{
         .name = "listen",
         .function = listen,
     },
@@ -513,6 +518,17 @@ fn set_pc_control(allocator: std.mem.Allocator) void {
     const enabled = true;
 
     if (uhppote.set_pc_control(controller, enabled, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_interlock(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const interlock = 3;
+
+    if (uhppote.set_interlock(controller, interlock, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

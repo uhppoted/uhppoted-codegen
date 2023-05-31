@@ -28,6 +28,7 @@ var Requests = []Message{
 	RefreshTaskListRequest,
 	ClearTaskListRequest,
 	SetPCControlRequest,
+	SetInterlockRequest,
 }
 
 var GetControllerRequest = Message{
@@ -670,6 +671,23 @@ var SetPCControlRequest = Message{
 			Name:   "enable",
 			Type:   "bool",
 			Offset: 12,
+		},
+	},
+}
+
+var SetInterlockRequest = Message{
+	Name:    "set interlock request",
+	MsgType: 0xa2,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "interlock",
+			Type:   "uint8",
+			Offset: 8,
 		},
 	},
 }

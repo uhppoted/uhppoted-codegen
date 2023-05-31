@@ -4,6 +4,7 @@
 
 ### Added
 1. PHP bindings
+2. `set-interlock` function
 
 ### Updated
 1. Reworked Go language bindings to use zero value rather than pointer for optional Date 

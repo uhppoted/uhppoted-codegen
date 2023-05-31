@@ -30,6 +30,7 @@ var Functions = []Function{
 	RefreshTaskList,
 	ClearTaskList,
 	SetPCControl,
+	SetInterlock,
 }
 
 var GetController = Function{
@@ -581,4 +582,20 @@ var SetPCControl = Function{
 	},
 	Request:  &SetPCControlRequest,
 	Response: &SetPCControlResponse,
+}
+
+var SetInterlock = Function{
+	Name: "set interlock",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "interlock",
+			Type: "uint8",
+		},
+	},
+	Request:  &SetInterlockRequest,
+	Response: &SetInterlockResponse,
 }
