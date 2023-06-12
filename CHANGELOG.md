@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## [0.8.5](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.5) - 2023-06-14
 
 ### Added
 1. PHP bindings
@@ -12,7 +12,7 @@
 2. Added static-check linting to CI build.
 
 
-## [0.8.4](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.3) - 2023-03-17
+## [0.8.4](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.4) - 2023-03-17
 
 ### Added
 1. Added Zig to bindings.

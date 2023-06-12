@@ -1,6 +1,6 @@
 {
   "name": "uhppoted-codegen",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "Code generation tool for generating UHPPOTE native language bindings",
 
   "dependencies": {

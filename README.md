@@ -30,6 +30,7 @@ than it should be.
 
 | *Version* | *Description*                                                                             |
 | --------- | ----------------------------------------------------------------------------------------- |
+| v0.8.5    | Added PHP to included language bindings and added `set-interlock` to generated functions  |
 | v0.8.4    | Added Zig to included language bindings and added `set-pc-control` to generated functions |
 | v0.8.3    | Added ARM64 to release builds                                                             |
 | v0.8.2    | Initial release                                                                           |
