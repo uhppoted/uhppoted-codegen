@@ -91,6 +91,7 @@ release: update-release build regen build-all
 	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target"                  -cvzf dist/$(DIST)-rust.tar.gz     rust
 	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"                    -cvzf dist/$(DIST)-python.tar.gz   python
 	tar --directory=generated --exclude=".DS_Store" --exclude="zig/zig-cache" --exclude="zig/zig-out" -cvzf dist/$(DIST)-zig.tar.gz      zig
+	tar --directory=generated --exclude=".DS_Store" --exclude="php/.php-cs-fixer.cache"               -cvzf dist/$(DIST)-php.tar.gz      php
 
 publish: release
 	echo "Releasing version $(VERSION)"
@@ -101,6 +102,7 @@ publish: release
 	"./dist/uhppoted-codegen_$(VERSION)-python.tar.gz" \
 	"./dist/uhppoted-codegen_$(VERSION)-rust.tar.gz" \
 	"./dist/uhppoted-codegen_$(VERSION)-zig.tar.gz" \
+	"./dist/uhppoted-codegen_$(VERSION)-php.tar.gz" \
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: rust
