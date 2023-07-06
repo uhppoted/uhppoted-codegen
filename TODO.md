@@ -1,39 +1,26 @@
 # TODO
 
 - [ ] .ignore file
+- [ ] Individual language github workflows
 
-- [x] `set-interlock`
-      - [x] models
-      - [x] Go
-      - [x] Rust
-      - [x] Python
-      - [x] Zig
-      - [x] PHP
-      - [x] HTTP
-      - [x] HTTP example
-      - [x] quickstart
-      - [x] CHANGELOG
-      - [x] README
-      - [x] CODEGEN.md
+## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
 
-## PHP
-
-- [x] `get-all-controllers`
-- [x] listen
-- [x] all
-- [x] use bind,broadcast and listen from args
-- [x] debug/dump
-- [x] `get-controller`
-- [x] `set-ip`
-- [x] udp_broadcast: request timeout
-- [x] udp_send: request  timeout
-- [x] pprint
-- [x] namespaces
-- [x] lint: chmod a+x php-cs-fixer
-- [x] README
-- [x] CHANGELOG
-- [x] code generation
-- [x] Individual language github workflows
+- [ ] _usage_
+- [ ] `get-all-controllers`
+- [ ] listen
+- [ ] all
+- [ ] use bind,broadcast and listen from args
+- [ ] debug/dump
+- [ ] `get-controller`
+- [ ] `set-ip`
+- [ ] udp_broadcast: request timeout
+- [ ] udp_send: request  timeout
+- [ ] pprint
+- [ ] lint
+- [ ] formatter
+- [ ] README
+- [ ] CHANGELOG
+- [ ] code generation
 
 ## zig
 - (?) async/await timeouts

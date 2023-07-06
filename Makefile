@@ -11,6 +11,7 @@ PYTHON = bindings/python
 HTTP   = bindings/http
 ZIG    = bindings/zig
 PHP    = bindings/php
+ERLANG = bindings/erlang
 
 GOBIN   = ./generated/go/bin/uhppoted
 RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
@@ -217,6 +218,17 @@ php-all: php
 php-listen: php
 	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 listen
 
+erlang: build regen
+	$(CMD) --models $(MODELS) --templates $(ERLANG) --out generated/erlang --clean
+	cd generated/erlang && dialyzer --src *.erl
+	cd generated/erlang && erl -compile main commands
+
+erlang-debug: erlang
+	cd generated/erlang && erl -noshell -run main uhppoted get-all-controllers -s init stop
+
+erlang-usage: erlang
+	cd generated/erlang && erl -noshell -run main uhppoted -s init stop
+	
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
 	npx eslint --fix generated/http/*.js 
