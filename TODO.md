@@ -2,39 +2,6 @@
 
 - [ ] .ignore file
 
-- [x] `set-interlock`
-      - [x] models
-      - [x] Go
-      - [x] Rust
-      - [x] Python
-      - [x] Zig
-      - [x] PHP
-      - [x] HTTP
-      - [x] HTTP example
-      - [x] quickstart
-      - [x] CHANGELOG
-      - [x] README
-      - [x] CODEGEN.md
-
-## PHP
-
-- [x] `get-all-controllers`
-- [x] listen
-- [x] all
-- [x] use bind,broadcast and listen from args
-- [x] debug/dump
-- [x] `get-controller`
-- [x] `set-ip`
-- [x] udp_broadcast: request timeout
-- [x] udp_send: request  timeout
-- [x] pprint
-- [x] namespaces
-- [x] lint: chmod a+x php-cs-fixer
-- [x] README
-- [x] CHANGELOG
-- [x] code generation
-- [x] Individual language github workflows
-
 ## zig
 - (?) async/await timeouts
       - https://dev.to/hnakamur/experimenting-timeout-and-cancellation-with-zig-asyncawait-and-tigerbeetle-io-53o5
