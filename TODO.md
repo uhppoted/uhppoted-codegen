@@ -4,7 +4,6 @@
 - [ ] Individual language github workflows
 
 ## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
-
 - [ ] _usage_
 - [ ] `get-all-controllers`
 - [ ] listen
@@ -21,7 +20,6 @@
 - [ ] README
 - [ ] CHANGELOG
 - [ ] code generation
-
 ## zig
 - (?) async/await timeouts
       - https://dev.to/hnakamur/experimenting-timeout-and-cancellation-with-zig-asyncawait-and-tigerbeetle-io-53o5
