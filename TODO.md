@@ -4,10 +4,10 @@
 - [ ] Individual language github workflows
 
 ## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
-- [ ] _usage_
+- [x] _usage_
 - [ ] `get-all-controllers`
 - [ ] listen
-- [ ] all
+- [x] all
 - [ ] use bind,broadcast and listen from args
 - [ ] debug/dump
 - [ ] `get-controller`

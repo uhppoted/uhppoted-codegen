@@ -8,7 +8,23 @@ uhppoted() ->
 
 uhppoted(Args) ->
     io:fwrite("uhppoted-codegen: Erlang sample application~n"),
-    io:format("Args:~p~n", [Args]).
+    Commands = Args,
+    exec(Commands).
+
+exec(["all"]) ->
+    exec([C || {C} <- commands:commands(), C /= "listen"]);
+
+exec(Commands) ->
+    lists:foreach(fun(C) -> execute(C, commands:find(C)) end, Commands).
+
+execute(Cmd, false) ->
+    io:fwrite("~n"),
+    io:fwrite("   *** ERROR: invalid command ~s~n",[Cmd]),
+    io:fwrite("~n"),
+    erlang:error({invalid_command, Cmd});
+
+execute(_Cmd, C) ->
+    commands:exec(C).
 
 usage() ->
     io:fwrite("  Usage: go run main.go [--debug] [--bind <address>] [--broadcast <address>] [commands]~n"),
@@ -21,7 +37,7 @@ usage() ->
     io:fwrite("~n"),
     io:fwrite("    Commands:~n"),
 
-    lists:foreach(fun({Cmd}) -> io:fwrite("      ~s\~n", [Cmd]) end, commands:commands()),
+    lists:foreach(fun({C}) -> io:fwrite("      ~s\~n", [C]) end, commands:commands()),
 
     io:fwrite("~n").
 
