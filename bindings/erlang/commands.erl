@@ -4,13 +4,19 @@
 
 commands() ->
     [ 
-      { "get-all-controllers" },
-      { "get-controller" },
-      { "listen" }
+      { "get-all-controllers", get_all_controllers },
+      { "get-controller", get_controller },
+      { "listen", listen }
     ].
 
 find(Cmd) ->
     lists:keyfind(Cmd,1,commands()).
 
-exec(Cmd, Config) ->
-    io:fwrite("exec::~p ~p~n", [ Cmd, Config ]).
+exec({_, Cmd}, Config) ->
+    execute(Cmd, Config).
+
+execute(get_all_controllers, Config) ->
+    uhppoted:get_all_controllers(Config);
+
+execute(C, _) ->
+    erlang:error({not_implemented, C}).

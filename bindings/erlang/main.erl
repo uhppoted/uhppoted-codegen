@@ -18,7 +18,7 @@ uhppoted(Args) ->
     exec(Commands, Config).
 
 exec(["all"], Config) ->
-    exec([C || {C} <- commands:commands(), C /= "listen"], Config);
+    exec([C || {C,_} <- commands:commands(), C /= "listen"], Config);
 
 exec(Commands, Config) ->
     lists:foreach(fun(C) -> execute(C, commands:find(C), Config) end, Commands).
@@ -53,7 +53,7 @@ usage() ->
     io:fwrite("~n"),
     io:fwrite("    Commands:~n"),
 
-    lists:foreach(fun({C}) -> io:fwrite("      ~s\~n", [C]) end, commands:commands()),
+    lists:foreach(fun({C,_}) -> io:fwrite("      ~s\~n", [C]) end, commands:commands()),
 
     io:fwrite("~n").
 
