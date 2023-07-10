@@ -20,6 +20,8 @@
 - [ ] README
 - [ ] CHANGELOG
 - [ ] code generation
+
+
 ## zig
 - (?) async/await timeouts
       - https://dev.to/hnakamur/experimenting-timeout-and-cancellation-with-zig-asyncawait-and-tigerbeetle-io-53o5
@@ -46,7 +48,6 @@
 - [ ] listen
 
 ## Other
-   - Erlang
    - [Odin](https://odin-lang.org)
    - Elixir
    - Lua
@@ -65,6 +66,7 @@
    - https://github.com/dolmen-go/goproc
    - https://en.wikipedia.org/wiki/M4_(computer_language)
    - https://www.scryer.pl/
+   - Verse
 
 
 ## Notes

@@ -2,29 +2,45 @@
 
 -export([uhppoted/0, uhppoted/1]).
 
+-define(ANY, "0.0.0.0:0").
+-define(BROADCAST, "255.255.255.255:60000").
+-define(LISTEN, "0.0.0.0:60001").
+
+-record(config, { bind, broadcast, listen, debug }).
+
 uhppoted() ->
     io:fwrite("uhppoted-codegen: Erlang sample application~n"),
     usage().
 
 uhppoted(Args) ->
     io:fwrite("uhppoted-codegen: Erlang sample application~n"),
-    Commands = Args,
-    exec(Commands).
+    { Config, Commands } = parse(Args),
+    exec(Commands, Config).
 
-exec(["all"]) ->
-    exec([C || {C} <- commands:commands(), C /= "listen"]);
+exec(["all"], Config) ->
+    exec([C || {C} <- commands:commands(), C /= "listen"], Config);
 
-exec(Commands) ->
-    lists:foreach(fun(C) -> execute(C, commands:find(C)) end, Commands).
+exec(Commands, Config) ->
+    lists:foreach(fun(C) -> execute(C, commands:find(C), Config) end, Commands).
 
-execute(Cmd, false) ->
+execute(Cmd, false, _) ->
     io:fwrite("~n"),
     io:fwrite("   *** ERROR: invalid command ~s~n",[Cmd]),
     io:fwrite("~n"),
     erlang:error({invalid_command, Cmd});
 
-execute(_Cmd, C) ->
-    commands:exec(C).
+execute(_, C, Config) ->
+    commands:exec(C, Config).
+
+parse(Args) ->
+    { #config{ 
+         bind = ?ANY,
+         broadcast = ?BROADCAST,
+         listen = ?LISTEN,
+         debug = false
+      }, 
+      Args 
+    }.
 
 usage() ->
     io:fwrite("  Usage: go run main.go [--debug] [--bind <address>] [--broadcast <address>] [commands]~n"),

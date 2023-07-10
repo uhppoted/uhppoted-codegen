@@ -106,10 +106,8 @@ publish: release
 	"./dist/uhppoted-codegen_$(VERSION)-php.tar.gz" \
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
-debug: rust
-	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-controller
-	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 set-ip
-	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 get-time
+debug: erlang
+	cd generated/erlang && erl -noshell -run main uhppoted get-all-controllers -s init stop
 
 godoc:
 	godoc -http=:80	-index_interval=60s
