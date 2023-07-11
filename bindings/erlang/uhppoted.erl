@@ -2,21 +2,11 @@
 
 -export([ get_all_controllers/1 ]).
 
-get_all_controllers (_Config) ->
-    Request = encoder:get_controller_request(405419896),
-    Bytes = byte_size(Request),
-    io:fwrite("exec::~p ~p~n~p~n", [ get_all_controllers, Bytes, Request ]),
-    [].
+get_all_controllers (Config) ->
+    Request = encoder:get_controller_request(0),
+    Replies = udp:broadcast(Config, Request),
 
-   % request, err := GetControllerRequest(0)
-   %  if err != nil {
-   %      return nil, err
-   %  }
-
-   %  replies, err := broadcast(request)
-   %  if err != nil {
-   %      return nil, err
-   %  }
+    io:fwrite("exec::~p~n~p~n", [ get_all_controllers, Replies ]),
 
    %  list := []*GetControllerResponse{}
    %  for _, reply := range replies {
@@ -27,4 +17,4 @@ get_all_controllers (_Config) ->
    %      }
    %  }
 
-   %  return list, nil
+    [].

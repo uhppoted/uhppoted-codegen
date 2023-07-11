@@ -9,7 +9,8 @@
 - [ ] listen
 - [x] all
 - [ ] use bind,broadcast and listen from args
-- [ ] debug/dump
+- [ ] debug
+- [x] dump
 - [ ] `get-controller`
 - [ ] `set-ip`
 - [ ] udp_broadcast: request timeout
@@ -17,6 +18,7 @@
 - [ ] pprint
 - [ ] lint
 - [ ] formatter
+      - https://github.com/WhatsApp/erlfmt
 - [ ] README
 - [ ] CHANGELOG
 - [ ] code generation
