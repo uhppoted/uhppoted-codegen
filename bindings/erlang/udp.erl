@@ -2,9 +2,29 @@
 
 -export([ broadcast/2 ]).
 
-broadcast (_Config, Request) ->
-    dump(Request),
-    ok.
+-record(config, { bind, broadcast, listen, debug }).
+
+broadcast (Config, Request) ->
+    dump(Request, Config#config.debug),
+
+    broadcast(gen_udp:open(0, [binary, {active,false}]),
+         Config#config.broadcast,  
+         Request).
+
+broadcast ({ok, Socket}, DestAddr, Request) ->
+    P = inet:setopts(Socket, [{broadcast, true}]),
+    io:format(">>>>>>> ~p~n",[P]),
+
+    Q = inet:setopts(Socket, [{send_timeout, 1000}]),
+    io:format(">>>>>>> ~p~n",[Q]),
+
+    X = gen_udp:send(Socket, DestAddr, Request),
+    io:format(">>>>>>> ~p~n",[X]),
+
+    {ok,[]};
+
+broadcast ({error, Reason},_,_s) ->
+    {error, Reason}.
 
 
 % func broadcast(request []byte) ([][]byte, error) {
@@ -32,10 +52,13 @@ broadcast (_Config, Request) ->
 %     return readAll(socket)
 % }
 
-dump(Request) ->
-    dump(Request,0).
+dump(Request, true) ->
+    bin2hex(Request,0);
 
-dump(<<P:8/binary, Q:8/binary, Rest/binary>>, Offset) ->
+dump(_, _) ->
+    ok.
+
+bin2hex(<<P:8/binary, Q:8/binary, Rest/binary>>, Offset) ->
     <<P1:8, P2:8, P3:8, P4:8, P5:8, P6:8, P7:8, P8:8>> = P,
     <<Q1:8, Q2:8, Q3:8, Q4:8, Q5:8, Q6:8, Q7:8, Q8:8>> = Q,
 
@@ -47,8 +70,8 @@ dump(<<P:8/binary, Q:8/binary, Rest/binary>>, Offset) ->
         io_lib:format(F,[ Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8 ])
     ]),
 
-    dump(Rest,Offset+16);
+    bin2hex(Rest,Offset+16);
 
-dump(_, _) ->
+bin2hex(_, _) ->
     ok.
 

@@ -5,11 +5,11 @@
 
 ## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
 - [x] _usage_
+- [ ] --debug
 - [ ] `get-all-controllers`
 - [ ] listen
 - [x] all
 - [ ] use bind,broadcast and listen from args
-- [ ] debug
 - [x] dump
 - [ ] `get-controller`
 - [ ] `set-ip`

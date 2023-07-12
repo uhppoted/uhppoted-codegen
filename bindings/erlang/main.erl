@@ -3,7 +3,7 @@
 -export([uhppoted/0, uhppoted/1]).
 
 -define(ANY, "0.0.0.0:0").
--define(BROADCAST, "255.255.255.255:60000").
+-define(BROADCAST, { {255,255,255,255}, 60000 }).
 -define(LISTEN, "0.0.0.0:60001").
 
 -record(config, { bind, broadcast, listen, debug }).
@@ -37,13 +37,13 @@ parse(Args) ->
          bind = ?ANY,
          broadcast = ?BROADCAST,
          listen = ?LISTEN,
-         debug = false
+         debug = true
       }, 
       Args 
     }.
 
 usage() ->
-    io:fwrite("  Usage: go run main.go [--debug] [--bind <address>] [--broadcast <address>] [commands]~n"),
+    io:fwrite("  Usage: go run main uhppoted [--debug] [--bind <address>] [--broadcast <address>] [commands]~n"),
     io:fwrite("~n"),
     io:fwrite("    Options:~n"),
     io:fwrite("    --debug                Displays sent and received UDP packets~n"),
