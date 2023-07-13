@@ -7,6 +7,7 @@
 - [x] _usage_
 - [ ] --debug
 - [ ] `get-all-controllers`
+       - https://learnyousomeerlang.com/buckets-of-sockets
 - [ ] listen
 - [x] all
 - [ ] use bind,broadcast and listen from args
