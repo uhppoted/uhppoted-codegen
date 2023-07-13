@@ -9,11 +9,11 @@
 -record(config, { bind, broadcast, listen, debug }).
 
 uhppoted() ->
-    io:fwrite("uhppoted-codegen: Erlang sample application~n"),
+    io:fwrite("uhppoted-codegen: Erlang sample application~n~n"),
     usage().
 
 uhppoted(Args) ->
-    io:fwrite("uhppoted-codegen: Erlang sample application~n"),
+    io:fwrite("uhppoted-codegen: Erlang sample application~n~n"),
     { Config, Commands } = parse(Args),
     exec(Commands, Config).
 

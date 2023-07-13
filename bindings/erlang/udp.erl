@@ -7,53 +7,76 @@
 broadcast (Config, Request) ->
     dump(Request, Config#config.debug),
 
-    broadcast(gen_udp:open(0, [binary, {active,false}]),
-         Config#config.broadcast,  
-         Request).
+    Addr = Config#config.broadcast,
+    Opts = [ {broadcast, true}, {send_timeout, 1000} ],
 
-broadcast ({ok, Socket}, DestAddr, Request) ->
-    P = inet:setopts(Socket, [{broadcast, true}]),
-    io:format(">>>>>>> ~p~n",[P]),
+    case gen_udp:open(0, [binary, {active,false}]) of
+        {ok, Socket} -> 
+            Result = broadcast(Socket, Addr, Opts, Request),
+            dump_all(Result, Config#config.debug),
+            gen_udp:close(Socket),
+            Result;
 
-    Q = inet:setopts(Socket, [{send_timeout, 1000}]),
-    io:format(">>>>>>> ~p~n",[Q]),
+        {error, Reason} ->
+            {error, Reason}
+    end.
 
-    X = gen_udp:send(Socket, DestAddr, Request),
-    io:format(">>>>>>> ~p~n",[X]),
-
-    {ok,[]};
-
-broadcast ({error, Reason},_,_s) ->
-    {error, Reason}.
-
-
-% func broadcast(request []byte) ([][]byte, error) {
-%     dump(request)
+broadcast(Socket, DestAddr, Opts, Request) ->
+    send(Socket,DestAddr,Opts,Request).
+%   Self = self(),
+%   _Pid = spawn(fun()-> Self ! send(Socket,DestAddr,Opts,Request) end),
 % 
-%     socket, err := net.ListenUDP("udp", bindAddr)
-%     if err != nil {
-%         return nil, err
-%     }
-% 
-%     defer socket.Close()
-% 
-%     if err := socket.SetWriteDeadline(time.Now().Add(WRITE_TIMEOUT)); err != nil {
-%         return nil, err
-%     }
-% 
-%     if err := socket.SetReadDeadline(time.Now().Add(READ_TIMEOUT)); err != nil {
-%         return nil, fmt.Errorf("Failed to set UDP read timeout [%v]", err)
-%     }
-% 
-%     if _, err := socket.WriteToUDP(request, destAddr); err != nil {
-%         return nil, err
-%     }
-% 
-%     return readAll(socket)
-% }
+%   receive
+%       {ok, X} -> 
+%           io:format("wooooot ~p~n",[X]),
+%           ok
+%   after
+%        10000 -> 
+%           io:format("eeek~n"),
+%           timeout
+%   end,
+% {ok,[]}.
 
-dump(Request, true) ->
-    bin2hex(Request,0);
+send (Socket, DestAddr, [H | Opts], Request) ->
+    case inet:setopts(Socket, [H]) of
+        ok -> 
+            send(Socket, DestAddr, Opts, Request);
+
+        {error, Reason} -> 
+            {error, Reason}
+    end;
+
+
+send (Socket, DestAddr, [], Request) ->
+    case gen_udp:send(Socket, DestAddr, Request) of
+        ok -> read_all(Socket, []);
+
+        {error, Reason} -> 
+            {error, Reason}
+    end.
+
+
+read_all (Socket, Received) ->
+    case gen_udp:recv(Socket,64,2500) of
+        {ok, {_,_,Packet}} ->
+            read_all(Socket, [Packet | Received]);
+
+        {error, timeout} -> 
+            {ok, Received};
+
+        {error, Reason} -> 
+            {error, Reason}
+    end.
+
+dump_all({ok, [Packet | T]}, true) ->
+    bin2hex(Packet,0),
+    dump_all({ok, T}, true);
+
+dump_all(_, _) ->
+    ok.
+
+dump(Packet, true) ->
+    bin2hex(Packet,0);
 
 dump(_, _) ->
     ok.
@@ -73,5 +96,6 @@ bin2hex(<<P:8/binary, Q:8/binary, Rest/binary>>, Offset) ->
     bin2hex(Rest,Offset+16);
 
 bin2hex(_, _) ->
+    io:fwrite("~n"),
     ok.
 

@@ -1,18 +1,6 @@
 # TODO
 
 - [x] activate-keypads (cf. https://github.com/uhppoted/uhppoted/issues/35)
-      - [x] models
-      - [x] Go
-      - [x] Python
-      - [x] Rust
-      - [x] Zig
-      - [x] PHP
-      - [x] HTTP
-      - [x] uhppoted-tunnel:http
-      - [x] CHANGELOG
-      - [x] README
-
-
 - [ ] .ignore file
 - [ ] Individual language github workflows
 
@@ -21,6 +9,8 @@
 - [ ] --debug
 - [ ] `get-all-controllers`
        - https://learnyousomeerlang.com/buckets-of-sockets
+       - https://stackoverflow.com/questions/44629823/how-to-apply-timeout-on-method-in-erlang
+       - https://stackoverflow.com/questions/22571741/how-to-write-a-simple-while-true-loop-in-erlang-for-a-receive-call
 - [ ] listen
 - [x] all
 - [ ] use bind,broadcast and listen from args
