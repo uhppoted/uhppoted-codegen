@@ -1,5 +1,18 @@
 # TODO
 
+- [x] activate-keypads (cf. https://github.com/uhppoted/uhppoted/issues/35)
+      - [x] models
+      - [x] Go
+      - [x] Python
+      - [x] Rust
+      - [x] Zig
+      - [x] PHP
+      - [x] HTTP
+      - [x] uhppoted-tunnel:http
+      - [x] CHANGELOG
+      - [x] README
+
+
 - [ ] .ignore file
 - [ ] Individual language github workflows
 
@@ -61,16 +74,16 @@
    - Haskell
    - q
    - F#
-   - [V](https://vlang.io)
    - Clojure
    - [Austral](https://borretti.me/article/introducing-austral#status)
       - https://animaomnium.github.io/what-austral-proves/
    - [Pony](https://www.ponylang.io/discover/#why-pony)
    - https://github.com/dolmen-go/goproc
    - https://en.wikipedia.org/wiki/M4_(computer_language)
-   - https://www.scryer.pl/
+   - https://www.scryer.pl
    - Verse
-
+   - [V](https://vlang.io)
+   - [Mojo](https://www.modular.com/mojo)
 
 ## Notes
 

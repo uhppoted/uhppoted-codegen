@@ -363,6 +363,17 @@ function set_interlock($u, $args)
     return uhppote\set_interlock($u, $controller, $interlock);
 }
 
+function activate_keypads($u, $args)
+{
+    $controller = CONTROLLER;
+    $reader1 = true;
+    $reader2 = true;
+    $reader3 = false;
+    $reader4 = true;
+
+    return uhppote\activate_keypads($u, $controller, $reader1, $reader2, $reader3, $reader4);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -402,6 +413,7 @@ function commands()
         'clear-tasklist' => 'clear_tasklist',
         'set-pc-control' => 'set_pc_control',
         'set-interlock' => 'set_interlock',
+        'activate-keypads' => 'activate_keypads',
         'listen' => 'listen'
     ];
 }

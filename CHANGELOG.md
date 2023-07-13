@@ -2,12 +2,15 @@
 
 ## Unreleased
 
+### Added
+1. `activate-keypads` function.
+
 
 ## [0.8.5](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.5) - 2023-06-13
 
 ### Added
-1. PHP bindings
-2. `set-interlock` function
+1. PHP bindings.
+2. `set-interlock` function.
 
 ### Updated
 1. Reworked Go language bindings to use zero value rather than pointer for optional Date 

@@ -17,7 +17,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 30] = [
+pub const COMMANDS: [&Command; 31] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -133,6 +133,10 @@ pub const COMMANDS: [&Command; 30] = [
     &Command {
         name: "set-interlock",
         func: set_interlock,
+    },
+    &Command {
+        name: "activate-keypads",
+        func: activate_keypads,
     },
     &Command {
         name: "listen",
@@ -490,6 +494,18 @@ fn set_interlock() {
 
     print(|| -> Result<uhppote::SetInterlockResponse, error::Error> {
         futures::executor::block_on(uhppote::set_interlock(controller, interlock))
+    })
+}
+
+fn activate_keypads() {
+    let controller = CONTROLLER;
+    let reader1 = true;
+    let reader2 = true;
+    let reader3 = true;
+    let reader4 = true;
+
+    print(|| -> Result<uhppote::ActivateKeypadsResponse, error::Error> {
+        futures::executor::block_on(uhppote::activate_keypads(controller, reader1, reader2, reader3, reader4))
     })
 }
 

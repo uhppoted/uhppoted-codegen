@@ -132,14 +132,16 @@ go: build regen
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
 go-test: go
-	cd generated/go && go test ./uhppote
+	cd generated/go && go test -v ./uhppote
 
 go-debug: go
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-interlock
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 activate-keypads
 
 go-usage: regen build
 	$(GOBIN)
+
+go-cmd: go
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
 
 go-all: go
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
@@ -152,11 +154,13 @@ rust: build regen
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-interlock"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 activate-keypads"
 
 rust-usage: rust
 	$(RUSTBIN)
+
+rust-cmd: rust
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
 
 rust-all: rust
 	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
@@ -170,11 +174,13 @@ python: build regen
 	chmod +x generated/python/main.py
 
 python-debug: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-interlock
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 activate-keypads
 
 python-usage: python
 	$(PYBIN)
+
+python-cmd: python
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
 
 python-all: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255 --listen 192.168.1.100:60001 all
@@ -187,11 +193,13 @@ zig: build regen
 	cd generated/zig && zig fmt src/* && zig build
 
 zig-debug: zig
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-interlock
+	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 activate-keypads
 
 zig-usage: zig
 	$(ZIGBIN) 
+
+zig-cmd: zig
+	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)
 
 zig-all: zig
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
@@ -204,11 +212,13 @@ php: build regen
 	cd generated/php && php-cs-fixer fix .
 
 php-debug: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 $(COMMAND)
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 set-interlock
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 activate-keypads
 
 php-usage: php
 	$(PHPBIN) 
+
+php-cmd: php
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 $(COMMAND)
 
 php-all: php
 	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 all

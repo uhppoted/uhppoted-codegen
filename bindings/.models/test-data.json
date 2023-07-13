@@ -1459,6 +1459,56 @@
           ],
           "message": "F6IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
+      },
+      {
+        "name": "activate keypads",
+        "request": {
+          "name": "activate keypads request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "reader 1",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "reader 2",
+              "type": "bool",
+              "value": "true"
+            },
+            {
+              "name": "reader 3",
+              "type": "bool",
+              "value": "false"
+            },
+            {
+              "name": "reader 4",
+              "type": "bool",
+              "value": "true"
+            }
+          ],
+          "message": "F6QAAHg3KhgBAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "activate keypads response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "message": "F6QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
       }
     ]
   }

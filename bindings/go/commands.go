@@ -62,6 +62,7 @@ var commands = []command{
     command{name: "clear-tasklist", f: clearTaskList},
     command{name: "set-pc-control", f: setPCControl},
     command{name: "set-interlock", f: setInterlock},
+    command{name: "activate-keypads", f: activateKeypads},
     command{name: "listen", f: listen},
 }
 
@@ -353,6 +354,16 @@ func setInterlock() (any, error) {
     interlock := uint8(3)
 
     return uhppote.SetInterlock(controller, interlock)
+}
+
+func activateKeypads() (any, error) {
+    controller := CONTROLLER
+    reader1 := true
+    reader2 := true
+    reader3 := false
+    reader4 := true
+
+    return uhppote.ActivateKeypads(controller, reader1, reader2, reader3, reader4)
 }
 
 func listen() (any, error) {

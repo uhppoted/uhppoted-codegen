@@ -29,6 +29,7 @@ var Requests = []Message{
 	ClearTaskListRequest,
 	SetPCControlRequest,
 	SetInterlockRequest,
+	ActivateKeypadsRequest,
 }
 
 var GetControllerRequest = Message{
@@ -688,6 +689,38 @@ var SetInterlockRequest = Message{
 			Name:   "interlock",
 			Type:   "uint8",
 			Offset: 8,
+		},
+	},
+}
+
+var ActivateKeypadsRequest = Message{
+	Name:    "activate keypads request",
+	MsgType: 0xa4,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "reader 1",
+			Type:   "bool",
+			Offset: 8,
+		},
+		Field{
+			Name:   "reader 2",
+			Type:   "bool",
+			Offset: 9,
+		},
+		Field{
+			Name:   "reader 3",
+			Type:   "bool",
+			Offset: 10,
+		},
+		Field{
+			Name:   "reader 4",
+			Type:   "bool",
+			Offset: 11,
 		},
 	},
 }
