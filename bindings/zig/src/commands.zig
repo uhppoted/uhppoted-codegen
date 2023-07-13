@@ -166,6 +166,11 @@ pub const commands = [_]Command{
     },
 
     Command{
+        .name = "activate-keypads",
+        .function = activate_keypads,
+    },
+
+    Command{
         .name = "listen",
         .function = listen,
     },
@@ -529,6 +534,20 @@ fn set_interlock(allocator: std.mem.Allocator) void {
     const interlock = 3;
 
     if (uhppote.set_interlock(controller, interlock, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn activate_keypads(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const reader1 = true;
+    const reader2 = true;
+    const reader3 = false;
+    const reader4 = true;
+
+    if (uhppote.activate_keypads(controller, reader1, reader2, reader3, reader4, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

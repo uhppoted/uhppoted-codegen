@@ -31,6 +31,7 @@ var Functions = []Function{
 	ClearTaskList,
 	SetPCControl,
 	SetInterlock,
+	ActivateKeypads,
 }
 
 var GetController = Function{
@@ -598,4 +599,32 @@ var SetInterlock = Function{
 	},
 	Request:  &SetInterlockRequest,
 	Response: &SetInterlockResponse,
+}
+
+var ActivateKeypads = Function{
+	Name: "activate keypads",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "reader 1",
+			Type: "bool",
+		},
+		Arg{
+			Name: "reader 2",
+			Type: "bool",
+		},
+		Arg{
+			Name: "reader 3",
+			Type: "bool",
+		},
+		Arg{
+			Name: "reader 4",
+			Type: "bool",
+		},
+	},
+	Request:  &ActivateKeypadsRequest,
+	Response: &ActivateKeypadsResponse,
 }

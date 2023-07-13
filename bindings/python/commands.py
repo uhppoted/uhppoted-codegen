@@ -51,6 +51,7 @@ def commands():
         'clear-tasklist': clear_tasklist,
         'set-pc-control': set_pc_control,
         'set-interlock': set_interlock,
+        'activate-keypads': activate_keypads,
         'listen': listen,
     }
 
@@ -324,6 +325,16 @@ def set_interlock(u):
     interlock = 3
 
     return u.set_interlock(controller, interlock)
+
+
+def activate_keypads(u):
+    controller = CONTROLLER
+    reader1 = True
+    reader2 = True
+    reader3 = False
+    reader4 = True
+
+    return u.activate_keypads(controller, reader1, reader2, reader3, reader4)
 
 
 def listen(u):
