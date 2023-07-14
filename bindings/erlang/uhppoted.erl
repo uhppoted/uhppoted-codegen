@@ -4,17 +4,11 @@
 
 get_all_controllers (Config) ->
     Request = encoder:get_controller_request(0),
-    Replies = udp:broadcast(Config, Request),
+    
+    case udp:broadcast(Config, Request) of
+      {ok, Received} ->
+        [ decoder:get_controller_response(P) || P <- Received ];
 
-    io:fwrite("exec::~p~n~p~n", [ get_all_controllers, Replies ]),
-
-   %  list := []*GetControllerResponse{}
-   %  for _, reply := range replies {
-   %      if response, err := getControllerResponse(reply); err != nil {
-   %          return nil, err
-   %      } else if response != nil {
-   %          list = append(list, response)
-   %      }
-   %  }
-
-    [].
+      {error, Reason} ->
+        {error, Reason}
+    end.

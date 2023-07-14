@@ -13,7 +13,7 @@ find(Cmd) ->
     lists:keyfind(Cmd,1,commands()).
 
 exec({_, Cmd}, Config) ->
-    execute(Cmd, Config).
+    io:format(">> ~p~n", [ execute(Cmd, Config) ]).
 
 execute(get_all_controllers, Config) ->
     uhppoted:get_all_controllers(Config);

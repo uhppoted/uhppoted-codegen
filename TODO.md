@@ -10,7 +10,7 @@
 - [x] dump
 - [x] udp_broadcast: read timeout
 - [x] udp_send: SO_SNDTIMEOUT
-- [ ] `get-all-controllers`
+- [x] `get-all-controllers`
        
 - [ ] --debug
 - [ ] listen

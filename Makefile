@@ -229,7 +229,7 @@ php-listen: php
 erlang: build regen
 	$(CMD) --models $(MODELS) --templates $(ERLANG) --out generated/erlang --clean
 	cd generated/erlang && dialyzer --src *.erl
-	cd generated/erlang && erl -compile main commands uhppoted udp encoder 
+	cd generated/erlang && erl -compile main commands uhppoted udp encoder decoder
 
 erlang-debug: erlang
 	cd generated/erlang && erl -noshell -run main uhppoted get-all-controllers -s init stop

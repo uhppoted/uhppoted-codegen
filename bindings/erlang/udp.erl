@@ -14,9 +14,7 @@ broadcast (Config, Request) ->
 
     case gen_udp:open(0, [binary, {active,true}]) of
         {ok, Socket} -> 
-            Result = broadcast(Socket, Addr, Opts, Request,Config#config.debug),
-            gen_udp:close(Socket),
-            Result;
+            broadcast(Socket, Addr, Opts, Request,Config#config.debug);
 
         {error, Reason} ->
             {error, Reason}
@@ -27,10 +25,12 @@ broadcast(Socket, DestAddr, Opts, Request, Debug) ->
         ok ->
             erlang:send_after(?READ_TIMEOUT, self(), timeout),
             {ok, Received} = read_all(),
+            gen_udp:close(Socket),
             dump_all(Received, Debug),
-            {ok,[]};
+            {ok, Received};
 
         {error, Reason} ->
+            gen_udp:close(Socket),
             {error, Reason}
     end.    
 
