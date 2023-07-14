@@ -6,19 +6,17 @@
 
 ## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
 - [x] _usage_
-- [ ] --debug
-- [ ] `get-all-controllers`
-       - https://learnyousomeerlang.com/buckets-of-sockets
-       - https://stackoverflow.com/questions/44629823/how-to-apply-timeout-on-method-in-erlang
-       - https://stackoverflow.com/questions/22571741/how-to-write-a-simple-while-true-loop-in-erlang-for-a-receive-call
-- [ ] listen
 - [x] all
-- [ ] use bind,broadcast and listen from args
 - [x] dump
+- [x] udp_broadcast: read timeout
+- [x] udp_send: SO_SNDTIMEOUT
+- [ ] `get-all-controllers`
+       
+- [ ] --debug
+- [ ] listen
+- [ ] use bind,broadcast and listen from args
 - [ ] `get-controller`
 - [ ] `set-ip`
-- [ ] udp_broadcast: request timeout
-- [ ] udp_send: request  timeout
 - [ ] pprint
 - [ ] lint
 - [ ] formatter
@@ -26,7 +24,7 @@
 - [ ] README
 - [ ] CHANGELOG
 - [ ] code generation
-
+- https://learnyousomeerlang.com/buckets-of-sockets
 
 ## zig
 - (?) async/await timeouts
@@ -74,6 +72,7 @@
    - Verse
    - [V](https://vlang.io)
    - [Mojo](https://www.modular.com/mojo)
+   - [Factor](https://factorcode.orgs)
 
 ## Notes
 
