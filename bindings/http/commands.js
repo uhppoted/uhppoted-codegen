@@ -27,7 +27,7 @@ export function getTime (controller) {
   controller = arg(controller)
 
   return uhppote.GetTime(controller)
-} 
+}
 
 export function setTime (controller, datetime) {
   controller = arg(controller)
@@ -100,7 +100,7 @@ export function getCard (controller, card) {
       throw new Error(`card ${card} not found`)
     }
 
-    return response    
+    return response
   })
 }
 
@@ -115,7 +115,7 @@ export function getCardByIndex (controller, index) {
       throw new Error(`card @ index ${index} deleted`)
     }
 
-    return response    
+    return response
   })
 }
 
@@ -157,44 +157,44 @@ export function getEvent (controller, index) {
       throw new Error(`event @ index ${index} not found`)
     }
 
-    return response    
+    return response
   })
 }
 
-export function getEventIndex(controller) {
+export function getEventIndex (controller) {
   controller = arg(controller)
 
   return uhppote.GetEventIndex(controller)
 }
 
-export function setEventIndex(controller, index) {
+export function setEventIndex (controller, index) {
   controller = arg(controller)
   index = arg(index)
 
   return uhppote.SetEventIndex(controller, index)
 }
 
-export function recordSpecialEvents(controller, enabled) {
+export function recordSpecialEvents (controller, enabled) {
   controller = arg(controller)
   enabled = arg(enabled)
 
   return uhppote.RecordSpecialEvents(controller, enabled)
 }
 
-export function getTimeProfile(controller, profileID) {
+export function getTimeProfile (controller, profileID) {
   controller = arg(controller)
   profileID = arg(profileID)
 
   return uhppote.GetTimeProfile(controller, profileID).then(response => {
     if (response.profileId === 0) {
-       throw new Error(`time profile ${profileID} not defined`)
+      throw new Error(`time profile ${profileID} not defined`)
     }
 
     return response
   })
 }
 
-export function setTimeProfile(controller,
+export function setTimeProfile (controller,
   profileID,
   start, end,
   monday, tuesday, wednesday, thursday, friday, saturday, sunday,
@@ -225,26 +225,27 @@ export function setTimeProfile(controller,
   linkedProfileID = arg(linkedProfileID)
 
   return uhppote.SetTimeProfile(controller,
-        profileID,
-        start, end,
-        monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-        segment1start, segment1end,
-        segment2start, segment2end,
-        segment3start, segment3end,
-        linkedProfileID)
+    profileID,
+    start, end,
+    monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+    segment1start, segment1end,
+    segment2start, segment2end,
+    segment3start, segment3end,
+    linkedProfileID)
 }
 
-export function deleteAllTimeProfiles(controller) {
+export function deleteAllTimeProfiles (controller) {
   controller = arg(controller)
 
   return uhppote.DeleteAllTimeProfiles(controller)
 }
 
-export function addTask(controller,
-                        startdate, enddate,
-                        monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-                        starttime,
-                        door, taskType, moreCards) {
+export function addTask (controller,
+  startdate, enddate,
+  monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+  starttime,
+  door, taskType, moreCards) {
+
   controller = arg(controller)
   startdate = arg(startdate)
   enddate = arg(enddate)
@@ -263,41 +264,41 @@ export function addTask(controller,
   moreCards = arg(moreCards)
 
   return uhppote.AddTask(controller,
-                         startdate, enddate,
-                         monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-                         starttime,
-                         door,
-                         taskType,
-                         moreCards)
+    startdate, enddate,
+    monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+    starttime,
+    door,
+    taskType,
+    moreCards)
 }
 
-export function refreshTaskList(controller) {
+export function refreshTaskList (controller) {
   controller = arg(controller)
 
   return uhppote.RefreshTasklist(controller)
 }
 
-export function clearTaskList(controller) {
+export function clearTaskList (controller) {
   controller = arg(controller)
 
   return uhppote.ClearTasklist(controller)
 }
 
-export function setPCControl(controller, enabled) {
+export function setPCControl (controller, enabled) {
   controller = arg(controller)
   enabled = arg(enabled)
 
   return uhppote.SetPCControl(controller, enabled)
 }
 
-export function setInterlock(controller, interlock) {
+export function setInterlock (controller, interlock) {
   controller = arg(controller)
   interlock = arg(interlock)
 
   return uhppote.SetInterlock(controller, interlock)
 }
 
-export function activateKeypads(controller, reader1, reader2, reader3, reader4) {
+export function activateKeypads (controller, reader1, reader2, reader3, reader4) {
   controller = arg(controller)
   reader1 = arg(reader1)
   reader2 = arg(reader2)
@@ -307,25 +308,24 @@ export function activateKeypads(controller, reader1, reader2, reader3, reader4) 
   return uhppote.ActivateKeypads(controller, reader1, reader2, reader3, reader4)
 }
 
-function arg(tag) {
-  let e = document.querySelector(`input[data-tag="${tag}"]`)
+function arg (tag) {
+  let e = document.querySelector(`[data-tag="${tag}"]`)
 
   if (e) {
     if (e.type === 'checkbox') {
       return e.checked
     } else {
       return e.value
-    }    
+    }
   }
 
-  e = document.querySelector(`input#${tag}`)
+  e = document.querySelector(`#${tag}`)
 
   if (e) {
     if (e.type === 'checkbox') {
       return e.checked
     } else {
       return e.value
-    }    
+    }
   }
-
 }
