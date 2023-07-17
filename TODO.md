@@ -11,11 +11,12 @@
 - [x] udp_broadcast: read timeout
 - [x] udp_send: SO_SNDTIMEOUT
 - [x] `get-all-controllers`
-       
+- [x] `get-controller`
+
 - [ ] --debug
 - [ ] listen
 - [ ] use bind,broadcast and listen from args
-- [ ] `get-controller`
+- [ ] Pass args to command
 - [ ] `set-ip`
 - [ ] pprint
 - [ ] lint

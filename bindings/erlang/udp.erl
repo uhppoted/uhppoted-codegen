@@ -1,6 +1,6 @@
 -module(udp).
 
--export([ broadcast/2 ]).
+-export([ broadcast/2, send/2 ]).
 
 -record(config, { bind, broadcast, listen, debug }).
 
@@ -14,38 +14,73 @@ broadcast (Config, Request) ->
 
     case gen_udp:open(0, [binary, {active,true}]) of
         {ok, Socket} -> 
-            broadcast(Socket, Addr, Opts, Request,Config#config.debug);
+            Result = broadcast(Socket, Addr, Opts, Request,Config#config.debug),
+            gen_udp:close(Socket),
+            Result;
 
         {error, Reason} ->
             {error, Reason}
     end.
 
 broadcast(Socket, DestAddr, Opts, Request, Debug) ->
-    case send(Socket,DestAddr,Opts,Request) of 
+    case sendto(Socket,DestAddr,Opts,Request) of 
         ok ->
             erlang:send_after(?READ_TIMEOUT, self(), timeout),
             {ok, Received} = read_all(),
-            gen_udp:close(Socket),
             dump_all(Received, Debug),
             {ok, Received};
 
         {error, Reason} ->
-            gen_udp:close(Socket),
             {error, Reason}
     end.    
 
 
-send (Socket, DestAddr, [H | Opts], Request) ->
+send (Config, Request) ->
+    dump(Request, Config#config.debug),
+
+    Addr = Config#config.broadcast,
+    Opts = [ {broadcast, true}, {send_timeout, 1000} ],
+
+    case gen_udp:open(0, [binary, {active,true}]) of
+        {ok, Socket} -> 
+            Result = send(Socket, Addr, Opts, Request,Config#config.debug),
+            gen_udp:close(Socket),
+            Result;
+
+        {error, Reason} ->
+            {error, Reason}
+    end.
+
+send(Socket, DestAddr, Opts, Request, Debug) ->
+    case sendto(Socket,DestAddr,Opts,Request) of 
+        ok ->
+            erlang:send_after(?READ_TIMEOUT, self(), timeout),
+            
+            case read() of
+                {ok, Received} -> 
+                    dump(Received, Debug),
+                    {ok, Received};
+
+                {error, Reason} ->
+                    {error, Reason}
+            end;
+
+        {error, Reason} ->
+            {error, Reason}
+    end.    
+
+
+sendto (Socket, DestAddr, [H | Opts], Request) ->
     case inet:setopts(Socket, [H]) of
         ok -> 
-            send(Socket, DestAddr, Opts, Request);
+            sendto(Socket, DestAddr, Opts, Request);
 
         {error, Reason} -> 
             {error, Reason}
     end;
 
 
-send (Socket, DestAddr, [], Request) ->
+sendto (Socket, DestAddr, [], Request) ->
     gen_udp:send(Socket, DestAddr, Request).
 
 
@@ -59,6 +94,16 @@ read_all (Received) ->
 
         timeout ->
           { ok, Received }
+    end.
+
+
+read() ->
+    receive
+        { udp,_,_,_,Packet } -> 
+          {ok, Packet };
+
+        timeout ->
+          { error, timeout }
     end.
 
 

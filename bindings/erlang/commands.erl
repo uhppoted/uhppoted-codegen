@@ -2,6 +2,8 @@
 
 -export([commands/0, find/1, exec/2]).
 
+-define(CONTROLLER, 405419896).
+
 commands() ->
     [ 
       { "get-all-controllers", get_all_controllers },
@@ -17,6 +19,10 @@ exec({_, Cmd}, Config) ->
 
 execute(get_all_controllers, Config) ->
     uhppoted:get_all_controllers(Config);
+
+execute(get_controller, Config) ->
+    Controller = ?CONTROLLER,
+    uhppoted:get_controller(Config, Controller);
 
 execute(C, _) ->
     erlang:error({not_implemented, C}).

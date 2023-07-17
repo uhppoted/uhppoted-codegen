@@ -107,7 +107,7 @@ publish: release
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted get-all-controllers -s init stop
+	cd generated/erlang && erl -noshell -run main uhppoted get-controller -s init stop
 
 godoc:
 	godoc -http=:80	-index_interval=60s
