@@ -2,7 +2,8 @@
 
 -export([ 
     get_all_controllers/1, 
-    get_controller/2 
+    get_controller/2,
+    listen/1
     ]).
 
 get_all_controllers (Config) ->
@@ -22,6 +23,16 @@ get_controller (Config, Controller) ->
     case udp:send(Config, Request) of
       {ok, Received} ->
         decoder:get_controller_response(Received);
+
+      {error, Reason} ->
+        {error, Reason}
+    end.
+
+listen(Config) ->
+    case udp:listen(Config) of
+      % {ok, Received} ->
+      % %   % decoder:get_controller_response(Received);
+      %   {ok, Received};
 
       {error, Reason} ->
         {error, Reason}

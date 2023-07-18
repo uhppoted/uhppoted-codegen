@@ -2,9 +2,9 @@
 
 -export([uhppoted/0, uhppoted/1]).
 
--define(ANY, "0.0.0.0:0").
+-define(ANY, { { 0,0,0,0 }, 0 }).
 -define(BROADCAST, { {255,255,255,255}, 60000 }).
--define(LISTEN, "0.0.0.0:60001").
+-define(LISTEN, { { 0,0,0,0 }, 60001 }).
 
 -record(config, { bind, broadcast, listen, debug }).
 

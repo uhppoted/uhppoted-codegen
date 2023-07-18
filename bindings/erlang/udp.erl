@@ -1,6 +1,6 @@
 -module(udp).
 
--export([ broadcast/2, send/2 ]).
+-export([ broadcast/2, send/2, listen/1 ]).
 
 -record(config, { bind, broadcast, listen, debug }).
 
@@ -12,7 +12,7 @@ broadcast (Config, Request) ->
     Addr = Config#config.broadcast,
     Opts = [ {broadcast, true}, {send_timeout, 1000} ],
 
-    case gen_udp:open(0, [binary, {active,true}]) of
+    case gen_udp:open(0, [inet, binary, {active,true}]) of
         {ok, Socket} -> 
             Result = broadcast(Socket, Addr, Opts, Request,Config#config.debug),
             gen_udp:close(Socket),
@@ -41,7 +41,7 @@ send (Config, Request) ->
     Addr = Config#config.broadcast,
     Opts = [ {broadcast, true}, {send_timeout, 1000} ],
 
-    case gen_udp:open(0, [binary, {active,true}]) of
+    case gen_udp:open(0, [inet, binary, {active,true}]) of
         {ok, Socket} -> 
             Result = send(Socket, Addr, Opts, Request,Config#config.debug),
             gen_udp:close(Socket),
@@ -68,6 +68,26 @@ send(Socket, DestAddr, Opts, Request, Debug) ->
         {error, Reason} ->
             {error, Reason}
     end.    
+
+listen (Config) ->
+    _ = Config#config.listen,
+
+    case gen_udp:open(60001, [inet, binary, {active,true}, {ip, {0,0,0,0}} ]) of
+        {ok, Socket} -> 
+            listen(Socket, Config#config.debug),
+            gen_udp:close(Socket),
+            { ok, woot };
+
+        {error, Reason} ->
+            {error, Reason}
+    end.
+
+listen (_Socket, Debug) ->
+    receive
+        { udp,_,_,_,Packet } -> 
+          dump(Packet, Debug),
+          listen(socket, Debug)
+    end.
 
 
 sendto (Socket, DestAddr, [H | Opts], Request) ->

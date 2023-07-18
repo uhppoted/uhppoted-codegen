@@ -12,9 +12,15 @@
 - [x] udp_send: SO_SNDTIMEOUT
 - [x] `get-all-controllers`
 - [x] `get-controller`
+- [ ] listen
+      - [ ] spawn listening process
+      - [ ] forward decoded events to parent
+      - [ ] ctrl-C
+
+- [ ] Replace `setopt` with `Opt` open option
+      - https://www.erlang.org/doc/man/gen_udp.html#open-1
 
 - [ ] --debug
-- [ ] listen
 - [ ] use bind,broadcast and listen from args
 - [ ] Pass args to command
 - [ ] `set-ip`

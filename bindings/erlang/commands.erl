@@ -24,5 +24,8 @@ execute(get_controller, Config) ->
     Controller = ?CONTROLLER,
     uhppoted:get_controller(Config, Controller);
 
+execute(listen, Config) ->
+    uhppoted:listen(Config);
+
 execute(C, _) ->
     erlang:error({not_implemented, C}).
