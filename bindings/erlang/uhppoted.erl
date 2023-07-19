@@ -29,11 +29,26 @@ get_controller (Config, Controller) ->
     end.
 
 listen(Config) ->
-    case udp:listen(Config) of
-      % {ok, Received} ->
-      % %   % decoder:get_controller_response(Received);
-      %   {ok, Received};
+    case udp:listen(Config, self()) of
+      {ok, woot} ->
+        listen();
 
       {error, Reason} ->
         {error, Reason}
     end.
+
+listen() ->
+    receive 
+      {ok, Packet} ->
+          case decoder:event(Packet) of 
+            {ok, Event} ->
+              io:format(">>>>>>> EVENT ~p~n", [Event]);
+
+            Oops ->
+              io:format(">>>>>>> OOOPS ~p~n", [Oops])
+          end,
+          listen();
+
+      Any ->
+        Any
+    end.    

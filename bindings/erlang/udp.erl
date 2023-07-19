@@ -1,6 +1,6 @@
 -module(udp).
 
--export([ broadcast/2, send/2, listen/1 ]).
+-export([ broadcast/2, send/2, listen/2 ]).
 
 -record(config, { bind, broadcast, listen, debug }).
 
@@ -69,24 +69,31 @@ send(Socket, DestAddr, Opts, Request, Debug) ->
             {error, Reason}
     end.    
 
-listen (Config) ->
+
+listen (Config, Handler) ->
     _ = Config#config.listen,
 
-    case gen_udp:open(60001, [inet, binary, {active,true}, {ip, {0,0,0,0}} ]) of
+    case gen_udp:open(60001, [inet, binary, {active,false}, {ip, {0,0,0,0}} ]) of
         {ok, Socket} -> 
-            listen(Socket, Config#config.debug),
-            gen_udp:close(Socket),
+            spawn(fun() -> 
+                listen(Socket, Handler, Config#config.debug),
+                gen_udp:close(Socket)
+                end),
             { ok, woot };
 
         {error, Reason} ->
             {error, Reason}
     end.
 
-listen (_Socket, Debug) ->
-    receive
-        { udp,_,_,_,Packet } -> 
-          dump(Packet, Debug),
-          listen(socket, Debug)
+listen (Socket, Handler, Debug) ->
+    case gen_udp:recv(Socket,64) of
+        {ok, { _, _, Packet}} ->
+            dump(Packet, Debug),
+            Handler ! {ok, Packet},
+            listen(Socket, Handler, Debug);
+
+        {error, Reason} ->
+            {error, Reason}
     end.
 
 

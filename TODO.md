@@ -13,10 +13,11 @@
 - [x] `get-all-controllers`
 - [x] `get-controller`
 - [ ] listen
-      - [ ] spawn listening process
+      - [x] spawn listening process
       - [ ] forward decoded events to parent
       - [ ] ctrl-C
 
+- [ ] Rework decoder to match other implementations i.e. using (packet, offset)s
 - [ ] Replace `setopt` with `Opt` open option
       - https://www.erlang.org/doc/man/gen_udp.html#open-1
 
@@ -31,7 +32,6 @@
 - [ ] README
 - [ ] CHANGELOG
 - [ ] code generation
-- https://learnyousomeerlang.com/buckets-of-sockets
 
 ## zig
 - (?) async/await timeouts
