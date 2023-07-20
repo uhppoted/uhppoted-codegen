@@ -3,6 +3,7 @@
 -export([commands/0, find/1, exec/2]).
 
 -define(CONTROLLER, 405419896).
+-define (LOG_TAG, "commands").
 
 commands() ->
     [ 
@@ -25,7 +26,35 @@ execute(get_controller, Config) ->
     uhppoted:get_controller(Config, Controller);
 
 execute(listen, Config) ->
-    uhppoted:listen(Config);
+    case uhppoted:listen(Config, self()) of 
+      {ok, PID} ->
+        spawn(fun() -> timer:sleep(10000), PID ! close end),
+        listen(PID);
+
+      {error, Reason} ->
+        {error, Reason}
+    end;
 
 execute(C, _) ->
     erlang:error({not_implemented, C}).
+
+listen(PID) ->
+    receive
+      { event,Event } ->
+        pprint({ event, Event }),
+        listen(PID);
+
+      { error,Reason } ->
+        log:errorf(?LOG_TAG, Reason),
+        listen(PID);
+
+      closed ->
+        log:infof(?LOG_TAG, "closed")
+    end.
+
+% pprint({ok, Any}) ->
+%     io:format("RESPONSE  ~p~n", [ Any ]);
+
+pprint({event, Event}) ->
+    io:format("EVENT: ~p~n", [ Event ]).
+

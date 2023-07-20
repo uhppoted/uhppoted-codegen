@@ -3,8 +3,10 @@
 -export([ 
     get_all_controllers/1, 
     get_controller/2,
-    listen/1
+    listen/2
     ]).
+
+-define (LOG_TAG, "uhppoted").
 
 get_all_controllers (Config) ->
     Request = encoder:get_controller_request(0),
@@ -28,27 +30,37 @@ get_controller (Config, Controller) ->
         {error, Reason}
     end.
 
-listen(Config) ->
-    case udp:listen(Config, self()) of
-      {ok, woot} ->
-        listen();
+
+listen(Config, Handler) ->
+    PID = spawn(fun() -> listen(Handler) end),
+
+    case udp:listen(Config, PID) of
+      {ok, _} ->
+        {ok, PID};
 
       {error, Reason} ->
+        PID ! cancel,
         {error, Reason}
     end.
 
-listen() ->
+listen(Handler) ->
     receive 
       {ok, Packet} ->
           case decoder:event(Packet) of 
             {ok, Event} ->
-              io:format(">>>>>>> EVENT ~p~n", [Event]);
+              Handler ! {event, Event};
 
             Oops ->
-              io:format(">>>>>>> OOOPS ~p~n", [Oops])
+              Handler ! {error, Oops}
           end,
-          listen();
+          listen(Handler);
+
+      close ->
+          log:infof(?LOG_TAG,"closed"),
+          Handler ! closed;
 
       Any ->
-        Any
+          log:debugf(?LOG_TAG,Any),
+          Handler ! closed
     end.    
+

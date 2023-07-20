@@ -14,17 +14,19 @@
 - [x] `get-controller`
 - [ ] listen
       - [x] spawn listening process
-      - [ ] forward decoded events to parent
+      - [x] forward decoded events to parent
       - [ ] ctrl-C
+      - [ ] Close socket gracefully
 
-- [ ] Rework decoder to match other implementations i.e. using (packet, offset)s
+- [ ] Rework decoder to match other implementations i.e. using (packet, offset)
+- [ ] Rework encoder to match other implementations i.e. using (packet, offset)
 - [ ] Replace `setopt` with `Opt` open option
       - https://www.erlang.org/doc/man/gen_udp.html#open-1
 
+- [ ] `set-ip`
 - [ ] --debug
 - [ ] use bind,broadcast and listen from args
 - [ ] Pass args to command
-- [ ] `set-ip`
 - [ ] pprint
 - [ ] lint
 - [ ] formatter

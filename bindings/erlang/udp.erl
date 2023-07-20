@@ -5,6 +5,7 @@
 -record(config, { bind, broadcast, listen, debug }).
 
 -define(READ_TIMEOUT, 2500).
+-define(LOG_TAG, "udp").
 
 broadcast (Config, Request) ->
     dump(Request, Config#config.debug),
@@ -71,15 +72,16 @@ send(Socket, DestAddr, Opts, Request, Debug) ->
 
 
 listen (Config, Handler) ->
-    _ = Config#config.listen,
+    { Addr,Port} = Config#config.listen,
 
-    case gen_udp:open(60001, [inet, binary, {active,false}, {ip, {0,0,0,0}} ]) of
+    case gen_udp:open(Port, [inet, binary, {active,false}, {ip, Addr} ]) of
         {ok, Socket} -> 
             spawn(fun() -> 
                 listen(Socket, Handler, Config#config.debug),
-                gen_udp:close(Socket)
+                gen_udp:close(Socket),
+                Handler ! closed
                 end),
-            { ok, woot };
+            { ok, none };
 
         {error, Reason} ->
             {error, Reason}
@@ -91,6 +93,10 @@ listen (Socket, Handler, Debug) ->
             dump(Packet, Debug),
             Handler ! {ok, Packet},
             listen(Socket, Handler, Debug);
+
+        % close ->
+        %   log:infof(?LOG_TAG,"close"),
+        %   closed;
 
         {error, Reason} ->
             {error, Reason}
