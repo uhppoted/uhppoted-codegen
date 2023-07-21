@@ -233,6 +233,7 @@ erlang: build regen
 
 erlang-debug: erlang
 	cd generated/erlang && erl -noshell -run main uhppoted get-all-controllers -s init stop
+	cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
 
 erlang-usage: erlang
 	cd generated/erlang && erl -noshell -run main uhppoted -s init stop

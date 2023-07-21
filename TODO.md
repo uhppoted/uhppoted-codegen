@@ -21,11 +21,10 @@
             - https://www.erlang.org/doc/man/kernel_app.html#erl_signal_server
             - https://stackoverflow.com/questions/50109119/how-to-accept-input-from-user-console-in-erlang
       - [x] Close socket gracefully
+- [x] Replace `setopt` with `Opt` open option
 
 - [ ] Rework decoder to match other implementations i.e. using (packet, offset)
 - [ ] Rework encoder to match other implementations i.e. using (packet, offset)
-- [ ] Replace `setopt` with `Opt` open option
-      - https://www.erlang.org/doc/man/gen_udp.html#open-1
 
 - [ ] `set-ip`
 - [ ] --debug
