@@ -98,6 +98,9 @@ listen (Socket, Handler, Debug) ->
         %   log:infof(?LOG_TAG,"close"),
         %   closed;
 
+        {error, closed} ->
+            {error, closed};
+
         {error, Reason} ->
             {error, Reason}
     end.

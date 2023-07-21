@@ -28,7 +28,12 @@ execute(get_controller, Config) ->
 execute(listen, Config) ->
     case uhppoted:listen(Config, self()) of 
       {ok, PID} ->
-        spawn(fun() -> timer:sleep(10000), PID ! close end),
+        spawn(fun() ->
+          io:fread("(type Q to quit)  ","c"),
+          PID ! close
+        end),
+
+        spawn(fun() -> timer:sleep(30000), PID ! close end),
         listen(PID);
 
       {error, Reason} ->

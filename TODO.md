@@ -15,7 +15,12 @@
 - [ ] listen
       - [x] spawn listening process
       - [x] forward decoded events to parent
-      - [ ] ctrl-C
+      - [x] ctrl-C
+            - https://erlang.org/pipermail/erlang-questions/2012-April/065623.html
+            - https://stackoverflow.com/questions/2459672/erlang-linux-signal-handling
+            - https://www.erlang.org/doc/man/kernel_app.html#erl_signal_server
+            - https://stackoverflow.com/questions/50109119/how-to-accept-input-from-user-console-in-erlang
+
       - [ ] Close socket gracefully
 
 - [ ] Rework decoder to match other implementations i.e. using (packet, offset)
