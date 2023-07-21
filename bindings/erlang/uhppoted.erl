@@ -35,8 +35,8 @@ listen(Config, Handler) ->
     PID = spawn(fun() -> listen(Handler) end),
 
     case udp:listen(Config, PID) of
-      {ok, _} ->
-        {ok, PID};
+      {ok, F} ->
+        {ok, F};
 
       {error, Reason} ->
         PID ! cancel,
@@ -54,6 +54,10 @@ listen(Handler) ->
               Handler ! {error, Oops}
           end,
           listen(Handler);
+
+      cancel ->
+          log:infof(?LOG_TAG,"cancelled"),
+          Handler ! closed;
 
       close ->
           log:infof(?LOG_TAG,"closed"),

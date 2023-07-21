@@ -12,7 +12,7 @@
 - [x] udp_send: SO_SNDTIMEOUT
 - [x] `get-all-controllers`
 - [x] `get-controller`
-- [ ] listen
+- [x] listen
       - [x] spawn listening process
       - [x] forward decoded events to parent
       - [x] ctrl-C
@@ -20,8 +20,7 @@
             - https://stackoverflow.com/questions/2459672/erlang-linux-signal-handling
             - https://www.erlang.org/doc/man/kernel_app.html#erl_signal_server
             - https://stackoverflow.com/questions/50109119/how-to-accept-input-from-user-console-in-erlang
-
-      - [ ] Close socket gracefully
+      - [x] Close socket gracefully
 
 - [ ] Rework decoder to match other implementations i.e. using (packet, offset)
 - [ ] Rework encoder to match other implementations i.e. using (packet, offset)

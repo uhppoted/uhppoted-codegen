@@ -81,7 +81,7 @@ listen (Config, Handler) ->
                 gen_udp:close(Socket),
                 Handler ! closed
                 end),
-            { ok, none };
+            { ok, fun() -> gen_udp:close(Socket) end };
 
         {error, Reason} ->
             {error, Reason}
@@ -94,14 +94,12 @@ listen (Socket, Handler, Debug) ->
             Handler ! {ok, Packet},
             listen(Socket, Handler, Debug);
 
-        % close ->
-        %   log:infof(?LOG_TAG,"close"),
-        %   closed;
-
         {error, closed} ->
+            log:infof(?LOG_TAG,closed),
             {error, closed};
 
         {error, Reason} ->
+            log:infof(?LOG_TAG,io_lib:format("error ~p",[Reason])),
             {error, Reason}
     end.
 

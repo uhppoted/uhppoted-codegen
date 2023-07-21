@@ -27,14 +27,9 @@ execute(get_controller, Config) ->
 
 execute(listen, Config) ->
     case uhppoted:listen(Config, self()) of 
-      {ok, PID} ->
-        spawn(fun() ->
-          io:fread("(type Q to quit)  ","c"),
-          PID ! close
-        end),
-
-        spawn(fun() -> timer:sleep(30000), PID ! close end),
-        listen(PID);
+      {ok, F} ->
+        spawn(fun() -> io:fread("(type Q to quit)  ","c"), F() end), % in lieu of a CTRL-C handler (or more properly an OTP supervision tree)
+        listen();
 
       {error, Reason} ->
         {error, Reason}
@@ -43,18 +38,18 @@ execute(listen, Config) ->
 execute(C, _) ->
     erlang:error({not_implemented, C}).
 
-listen(PID) ->
+listen() ->
     receive
       { event,Event } ->
         pprint({ event, Event }),
-        listen(PID);
+        listen();
 
       { error,Reason } ->
         log:errorf(?LOG_TAG, Reason),
-        listen(PID);
+        listen();
 
       closed ->
-        log:infof(?LOG_TAG, "closed")
+        log:infof(?LOG_TAG, closed)
     end.
 
 % pprint({ok, Any}) ->
