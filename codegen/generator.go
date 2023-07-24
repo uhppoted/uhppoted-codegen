@@ -31,6 +31,8 @@ var funcs = template.FuncMap{
 	"kebabCase": kebabCase,
 	"snakeCase": snakeCase,
 	"byte2hex":  byte2hex,
+	"subslice":  subslice,
+	"last":      last,
 	"constant":  constant,
 	"dump":      dump,
 	"lookup": func(path, key, defval string) any {
@@ -256,6 +258,24 @@ func pad(width int, v any) string {
 	}
 
 	return s + strings.Repeat(" ", width-len([]rune(s)))
+}
+
+func subslice(v any) any {
+	if slice, ok := v.([]any); ok && len(slice) > 0 {
+		ix := len(slice) - 1
+		return slice[0:ix]
+	}
+
+	return nil
+}
+
+func last(v any) any {
+	if slice, ok := v.([]any); ok && len(slice) > 0 {
+		ix := len(slice) - 1
+		return slice[ix:]
+	}
+
+	return nil
 }
 
 func dump(v any, prefix string) string {

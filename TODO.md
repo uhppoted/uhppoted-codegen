@@ -15,10 +15,10 @@
 - [x] listen
 - [x] Replace `setopt` with `Opt` open option
 - [x] Pass args to command
+- [x] Rework encoder to match other implementations i.e. using (packet, offset)
+- [x] Rework decoder to match other implementations i.e. using (packet, offset)
 
 - [ ] code generation
-- [ ] Rework decoder to match other implementations i.e. using (packet, offset)
-- [ ] Rework encoder to match other implementations i.e. using (packet, offset)
 
 - [ ] `set-ip`
 - [ ] --debug

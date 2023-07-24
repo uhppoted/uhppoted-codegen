@@ -1,19 +1,23 @@
 -module(decoder).
 
 -export([ 
-    get_controller_response/1,
+    {{- template "export" (index .model.responses 0) }}
     event/1
 ]).
 
--record(uhppote_controller, { 
-    controller,
-    address,
-    netmask,
-    gateway,
-    mac,
-    version,
-    date
- }).
+{{define "export"}}
+    {{snakeCase .name}}/1,
+{{end -}}
+
+{{ template "response" (index .model.responses 0) -}}
+
+{{define "response"}}
+-record({{snakeCase .name}}, {
+    {{- range (subslice .fields)}}
+    {{snakeCase .name}},{{end}}
+    {{range (last .fields)}}{{snakeCase .name}}{{end}}
+}).
+{{end}}
 
 -record(uhppote_event, { 
     controller,
@@ -42,28 +46,36 @@
     sequence_number
  }).
 
-get_controller_response (<< 16#17, 16#94, 16#00, 16#00, 
-                            Controller:4/little-unsigned-integer-unit:8,
-                            Address:4/binary,
-                            Netmask:4/binary,
-                            Gateway:4/binary,
-                            MAC:6/binary,
-                            Version:2/binary,
-                            Date:4/binary,
-                            _/binary>>) ->
-    { ok, #uhppote_controller{
-            controller = Controller,
-            address = unpack_IPv4(Address),
-            netmask = unpack_IPv4(Netmask),
-            gateway = unpack_IPv4(Gateway),
-            mac = unpack_MAC(MAC),
-            version = unpack_version(Version),
-            date = unpack_date(Date)
-          }
-    };
+{{ template "decode" (index .model.responses 0) -}}
 
-get_controller_response (_) ->
-    { error, invalid_packet }.
+{{define "decode"}}
+{{snakeCase .name}}(Packet) ->
+    % if len(packet) != 64 {
+    %     err = fmt.Errorf("invalid reply packet length (%v)", len(packet))
+    %     return
+    % }
+
+    % // Ref. v6.62 firmware event
+    % if packet[0] != 0x17 && (packet[0] != 0x19 || packet[1] != 0x20) {
+    %     err = fmt.Errorf("invalid reply start of message byte (%02x)", packet[0])
+    %     return
+    % }
+
+    % if packet[1] != {{byte2hex .msgtype}} {
+    %     err = fmt.Errorf("invalid reply function code (%02x)", packet[1])
+    %     return
+    % }
+
+    { ok, #{{snakeCase .name}}{
+             {{- range $ix,$field := (subslice .fields)}}
+             {{snakeCase $field.name}} = unpack_{{snakeCase $field.type}}(Packet, {{$field.offset}}),
+             {{- end}}
+             {{- range $ix,$field := (last .fields)}}
+             {{snakeCase $field.name}} = unpack_{{snakeCase $field.type}}(Packet, {{$field.offset}})
+             {{- end}}
+          }
+    }.
+{{end}}
 
 event (<< 16#17, 16#20, 16#00, 16#00, 
           Controller:4/binary,
@@ -144,16 +156,28 @@ unpack_uint8(B) ->
 unpack_uint32(B) ->
     binary:decode_unsigned(B, little).
 
-unpack_IPv4(<<B1,B2,B3,B4>>) ->
+unpack_uint32(Packet, Offset) ->
+    <<_:Offset/binary,B:4/binary,_/binary>> = Packet,
+    binary:decode_unsigned(B, little).
+
+unpack_ipv4(Packet, Offset) ->
+    <<_:Offset/binary,B:4/binary,_/binary>> = Packet,
+    << B1,B2,B3,B4>> = B,
     { B1,B2,B3,B4 }.
 
-unpack_MAC(<<B1,B2,B3,B4,B5,B6>>) ->
+unpack_mac(Packet, Offset) ->
+    <<_:Offset/binary,B:6/binary,_/binary>> = Packet,
+    <<B1,B2,B3,B4,B5,B6>> = B,
     io_lib:format("~2.16.0B:~2.16.0B:~2.16.0B:~2.16.0B:~2.16.0B:~2.16.0B", [ B1,B2,B3,B4,B5,B6 ]).
 
-unpack_version(<<Major,Minor>>) -> 
+unpack_version(Packet, Offset) -> 
+    <<_:Offset/binary,B:2/binary,_/binary>> = Packet,
+    <<Major,Minor>> = B,
     io_lib:format("~2.16.0B~2.16.0B", [ Major, Minor ]).
 
-unpack_date(<<YYYY:2/binary,MM:1/binary,DD:1/binary>>) ->
+unpack_date(Packet, Offset) ->
+    <<_:Offset/binary,B:4/binary,_/binary>> = Packet,
+    <<YYYY:2/binary,MM:1/binary,DD:1/binary>> = B,
     Year  = bcd_to_integer(YYYY),
     Month = bcd_to_integer(MM),
     Day = bcd_to_integer(DD),

@@ -19,18 +19,6 @@ get_all_controllers (Config) ->
         {error, Reason}
     end.
 
-get_controller (Config, Controller) ->
-    Request = encoder:get_controller_request(Controller),
-    
-    case udp:send(Config, Request) of
-      {ok, Received} ->
-        decoder:get_controller_response(Received);
-
-      {error, Reason} ->
-        {error, Reason}
-    end.
-
-
 listen(Config, Handler) ->
     PID = spawn(fun() -> listen(Handler) end),
 
@@ -68,3 +56,17 @@ listen(Handler) ->
           Handler ! closed
     end.    
 
+{{ template "function" (index .model.functions 0) -}}
+
+{{define "function"}}
+{{snakeCase .name}}(Config, {{template "args" .args}}) ->
+    Request = encoder:{{snakeCase .request.name}}({{template "params" .args}}),
+
+    case udp:send(Config, Request) of
+      {ok, Received} ->
+          decoder:{{snakeCase .response.name}}(Received);
+
+      {error, Reason} ->
+        {error, Reason}
+    end.
+{{end}}
