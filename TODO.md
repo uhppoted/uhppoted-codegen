@@ -13,30 +13,22 @@
 - [x] `get-all-controllers`
 - [x] `get-controller`
 - [x] listen
-      - [x] spawn listening process
-      - [x] forward decoded events to parent
-      - [x] ctrl-C
-            - https://erlang.org/pipermail/erlang-questions/2012-April/065623.html
-            - https://stackoverflow.com/questions/2459672/erlang-linux-signal-handling
-            - https://www.erlang.org/doc/man/kernel_app.html#erl_signal_server
-            - https://stackoverflow.com/questions/50109119/how-to-accept-input-from-user-console-in-erlang
-      - [x] Close socket gracefully
 - [x] Replace `setopt` with `Opt` open option
+- [x] Pass args to command
 
+- [ ] code generation
 - [ ] Rework decoder to match other implementations i.e. using (packet, offset)
 - [ ] Rework encoder to match other implementations i.e. using (packet, offset)
 
 - [ ] `set-ip`
 - [ ] --debug
 - [ ] use bind,broadcast and listen from args
-- [ ] Pass args to command
 - [ ] pprint
 - [ ] lint
 - [ ] formatter
       - https://github.com/WhatsApp/erlfmt
 - [ ] README
 - [ ] CHANGELOG
-- [ ] code generation
 
 ## zig
 - (?) async/await timeouts

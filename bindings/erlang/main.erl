@@ -14,32 +14,34 @@ uhppoted() ->
 
 uhppoted(Args) ->
     io:fwrite("uhppoted-codegen: Erlang sample application~n~n"),
-    { Config, Commands } = parse(Args),
-    exec(Commands, Config).
+    { Config, Command, Options } = parse(Args),
+    exec(Command, Options, Config).
 
-exec(["all"], Config) ->
-    exec([C || {C,_} <- commands:commands(), C /= "listen"], Config);
+exec(["all"], Options, Config) ->
+    exec([C || {C,_} <- commands:commands(), C /= "listen"], Options, Config);
 
-exec(Commands, Config) ->
-    lists:foreach(fun(C) -> execute(C, commands:find(C), Config) end, Commands).
+exec(Cmd, Options, Config) ->
+    execute(Cmd, commands:find(Cmd), Options, Config).
 
-execute(Cmd, false, _) ->
+execute(Cmd, false, _, _) ->
     io:fwrite("~n"),
     io:fwrite("   *** ERROR: invalid command ~s~n",[Cmd]),
     io:fwrite("~n"),
     erlang:error({invalid_command, Cmd});
 
-execute(_, C, Config) ->
-    commands:exec(C, Config).
+execute(_, Command, Options, Config) ->
+    commands:exec(Command, Options, Config).
 
 parse(Args) ->
+    [ Cmd | Options] = Args,
     { #config{ 
          bind = ?ANY,
          broadcast = ?BROADCAST,
          listen = ?LISTEN,
          debug = true
       }, 
-      Args 
+      Cmd,
+      Options
     }.
 
 usage() ->

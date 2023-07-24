@@ -1,6 +1,6 @@
 -module(commands).
 
--export([commands/0, find/1, exec/2]).
+-export([commands/0, find/1, exec/3]).
 
 -define(CONTROLLER, 405419896).
 -define (LOG_TAG, "commands").
@@ -15,17 +15,17 @@ commands() ->
 find(Cmd) ->
     lists:keyfind(Cmd,1,commands()).
 
-exec({_, Cmd}, Config) ->
-    io:format(">> ~p~n", [ execute(Cmd, Config) ]).
+exec({_, Cmd}, Options, Config) ->
+    io:format(">> ~p~n", [ execute(Cmd, Options, Config) ]).
 
-execute(get_all_controllers, Config) ->
+execute(get_all_controllers, _Options, Config) ->
     uhppoted:get_all_controllers(Config);
 
-execute(get_controller, Config) ->
+execute(get_controller, _Options, Config) ->
     Controller = ?CONTROLLER,
     uhppoted:get_controller(Config, Controller);
 
-execute(listen, Config) ->
+execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of 
       {ok, F} ->
         spawn(fun() -> io:fread("(type Q to quit)  ","c"), F() end), % in lieu of a CTRL-C handler (or more properly an OTP supervision tree)
@@ -35,7 +35,7 @@ execute(listen, Config) ->
         {error, Reason}
     end;
 
-execute(C, _) ->
+execute(C, _, _) ->
     erlang:error({not_implemented, C}).
 
 listen() ->
