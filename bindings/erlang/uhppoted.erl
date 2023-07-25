@@ -2,9 +2,15 @@
 
 -export([ 
     get_all_controllers/1, 
-    get_controller/2,
+    {{- template "export" (index .model.functions 0) -}},
+    {{- template "export" (index .model.functions 1) -}},
     listen/2
-    ]).
+]).
+
+{{- define "export"}}
+    {{snakeCase .name}}/{{ add (len .args) 1 -}}
+{{end}}
+
 
 -define (LOG_TAG, "uhppoted").
 
@@ -57,14 +63,20 @@ listen(Handler) ->
     end.    
 
 {{ template "function" (index .model.functions 0) -}}
+{{ template "function" (index .model.functions 1) -}}
 
 {{define "function"}}
 {{snakeCase .name}}(Config, {{template "args" .args}}) ->
     Request = encoder:{{snakeCase .request.name}}({{template "params" .args}}),
 
     case udp:send(Config, Request) of
+      {ok, none} ->
+          {ok, none};
+
+      {{if .response -}}
       {ok, Received} ->
           decoder:{{snakeCase .response.name}}(Received);
+      {{- end}}
 
       {error, Reason} ->
         {error, Reason}

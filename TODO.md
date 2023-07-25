@@ -23,7 +23,39 @@
       - [ ] encoder.erl
       - [ ] decoder.erl
 
-- [ ] `set-ip`
+- [ ] commands
+      - [x] get-all-controllers
+      - [x] get-controller
+      - [x] set-ip
+      - [ ] get-time
+      - [ ] set-time
+      - [ ] get-listener
+      - [ ] set-listener
+      - [ ] get-door-control
+      - [ ] set-door-control
+      - [ ] get-status
+      - [ ] open-door
+      - [ ] get-cards
+      - [ ] get-card
+      - [ ] get-card-by-index
+      - [ ] put-card
+      - [ ] delete-card
+      - [ ] delete-all-cards
+      - [ ] get-event
+      - [ ] get-event-index
+      - [ ] set-event-index
+      - [ ] record-special-events
+      - [ ] get-time-profile
+      - [ ] set-time-profile
+      - [ ] delete-all-time-profiles
+      - [ ] add-task
+      - [ ] refresh-tasklist
+      - [ ] clear-tasklist
+      - [ ] set-pc-control
+      - [ ] set-interlock
+      - [ ] activate-keypads
+      - [x] listen
+
 - [ ] --debug
 - [ ] use bind,broadcast and listen from args
 - [ ] pprint

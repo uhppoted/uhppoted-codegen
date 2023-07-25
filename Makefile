@@ -107,7 +107,7 @@ publish: release
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted listen -s init stop
+	cd generated/erlang && erl -noshell -run main uhppoted set-ip -s init stop
 
 godoc:
 	godoc -http=:80	-index_interval=60s

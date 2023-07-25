@@ -48,6 +48,17 @@ send (Config, Request) ->
             {error, Reason}
     end.
 
+% set-ip doesn't return a reply
+send(Socket, DestAddr, <<16#17, 16#96,R/binary>>, _Debug) ->
+    case sendto(Socket, DestAddr, <<16#17, 16#96,R/binary>>) of 
+        ok ->
+            erlang:send_after(?READ_TIMEOUT, self(), timeout),
+            {ok, none };
+
+        {error, Reason} ->
+            {error, Reason}
+    end;
+
 send(Socket, DestAddr, Request, Debug) ->
     case sendto(Socket, DestAddr, Request) of 
         ok ->
