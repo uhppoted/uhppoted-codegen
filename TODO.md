@@ -19,6 +19,9 @@
 - [x] Rework decoder to match other implementations i.e. using (packet, offset)
 
 - [ ] code generation
+      - [ ] uhppoted.erl
+      - [ ] encoder.erl
+      - [ ] decoder.erl
 
 - [ ] `set-ip`
 - [ ] --debug

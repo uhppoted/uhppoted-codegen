@@ -36,10 +36,10 @@ listen(Handler) ->
       {ok, Packet} ->
           case decoder:event(Packet) of 
             {ok, Event} ->
-              Handler ! {event, Event};
+              Handler ! {event, Event}
 
-            Oops ->
-              Handler ! {error, Oops}
+            % Oops ->
+            %   Handler ! {error, Oops}
           end,
           listen(Handler);
 
