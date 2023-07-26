@@ -1,18 +1,15 @@
 -module(encoder).
 
 -export([ 
-    {{- template "export" (index .model.requests 0) -}},
-    {{- template "export" (index .model.requests 1) -}},
-    {{- template "export" (index .model.requests 2) -}},
-    {{- template "export" (index .model.requests 3) -}},
-    {{- template "export" (index .model.requests 5)}}
+    {{- range (subslice .model.requests)}}
+    {{- template "export" . -}},{{end}}
+    {{- range (last .model.requests)}}
+    {{- template "export" . -}}{{end}}
 ]).
 
-{{ template "request" (index .model.requests 0)}}
-{{ template "request" (index .model.requests 1)}}
-{{ template "request" (index .model.requests 2)}}
-{{ template "request" (index .model.requests 3)}}
-{{ template "request" (index .model.requests 5)}}
+{{- range .model.requests}}
+{{ template "request" .}}
+{{- end}}
 
 {{- define "export"}}
     {{snakeCase .name}}/{{count .fields -}}
@@ -59,7 +56,10 @@ pack(datetime, { {Year, Month, Day}, {Hour, Minute, Second} }, Packet, Offset) -
     <<P/binary,B/binary,R/binary>>;
 
 pack(eof,_,Packet,_) ->
-    Packet.
+    Packet;
+
+pack(T,_,_,_) ->
+    {error, { unsupported_type, T}}.
 
 pad(B, N) ->
     Padding = 8*(N - byte_size(B)),
