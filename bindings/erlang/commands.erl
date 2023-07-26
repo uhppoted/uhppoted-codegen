@@ -23,6 +23,7 @@ commands() ->
       { "get-all-controllers", get_all_controllers },
       { "get-controller", get_controller },
       { "set-ip", set_ip },
+      { "get-time", get_time },
       { "listen", listen }
     ].
 
@@ -47,6 +48,9 @@ execute(set_ip, _Options, Config) ->
 
     uhppoted:set_ip(Config, Controller, Address, Netmask, Gateway);
 
+execute(get_time, _Options, Config) ->
+    Controller = ?CONTROLLER,
+    uhppoted:get_time(Config, Controller);
 
 execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of 

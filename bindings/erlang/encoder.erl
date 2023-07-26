@@ -2,11 +2,13 @@
 
 -export([ 
     {{- template "export" (index .model.requests 0) -}},
-    {{- template "export" (index .model.requests 1)}}
+    {{- template "export" (index .model.requests 1) -}},
+    {{- template "export" (index .model.requests 2)}}
 ]).
 
 {{ template "request" (index .model.requests 0)}}
 {{ template "request" (index .model.requests 1)}}
+{{ template "request" (index .model.requests 2)}}
 
 {{- define "export"}}
     {{snakeCase .name}}/{{count .fields -}}

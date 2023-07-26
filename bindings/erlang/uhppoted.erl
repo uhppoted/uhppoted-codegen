@@ -4,6 +4,7 @@
     get_all_controllers/1, 
     {{- template "export" (index .model.functions 0) -}},
     {{- template "export" (index .model.functions 1) -}},
+    {{- template "export" (index .model.functions 2) -}},
     listen/2
 ]).
 
@@ -64,6 +65,7 @@ listen(Handler) ->
 
 {{ template "function" (index .model.functions 0) -}}
 {{ template "function" (index .model.functions 1) -}}
+{{ template "function" (index .model.functions 2) -}}
 
 {{define "function"}}
 {{snakeCase .name}}(Config, {{template "args" .args}}) ->

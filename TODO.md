@@ -5,29 +5,16 @@
 - [ ] Individual language github workflows
 
 ## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
-- [x] _usage_
-- [x] all
-- [x] dump
-- [x] udp_broadcast: read timeout
-- [x] udp_send: SO_SNDTIMEOUT
-- [x] `get-all-controllers`
-- [x] `get-controller`
-- [x] listen
-- [x] Replace `setopt` with `Opt` open option
-- [x] Pass args to command
-- [x] Rework encoder to match other implementations i.e. using (packet, offset)
-- [x] Rework decoder to match other implementations i.e. using (packet, offset)
-
 - [ ] code generation
       - [ ] uhppoted.erl
       - [ ] encoder.erl
-      - [ ] decoder.erl
+      - [x] decoder.erl
 
 - [ ] commands
       - [x] get-all-controllers
       - [x] get-controller
       - [x] set-ip
-      - [ ] get-time
+      - [x] get-time
       - [ ] set-time
       - [ ] get-listener
       - [ ] set-listener

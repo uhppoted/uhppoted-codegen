@@ -1,14 +1,13 @@
 -module(decoder).
 
 -export([ 
-    {{- template "export" (index .model.responses 0) }},
+    {{- range .model.responses}}{{template "export" .}},{{end}}
     {{- template "export" .model.event }}
 ]).
 
-{{define "export"}}
-    {{snakeCase .name}}/1{{end -}}
-
-{{ template "response" (index .model.responses 0) -}}
+{{range .model.responses}}
+{{ template "response" . -}}
+{{end}}
 
 {{with .model.event}}
 -record({{snakeCase .name}}, {
@@ -18,37 +17,36 @@
 }).
 {{end}}
 
+{{range .model.responses}}
+{{ template "decode" . -}}
+{{end}}
+
+{{with .model.event}}{{template "decode" .}}
+{{end}}
+
+{{define "export"}}
+    {{snakeCase .name}}/1{{end -}}
+
 {{define "response"}}
 -record({{snakeCase .name}}, {
     {{- range (subslice .fields)}}
     {{snakeCase .name}},{{end}}
     {{range (last .fields)}}{{snakeCase .name}}{{end}}
 }).
-{{end}}
-
-{{ template "decode" (index .model.responses 0) -}}
-
-{{with .model.event}}{{template "decode" .}}
-{{end}}
+{{- end}}
 
 {{define "decode"}}
+{{snakeCase .name}}(Packet) when byte_size(Packet) /= 64 ->
+    {error,{bad_reply_packet_length, byte_size(Packet)}};
+
+{{snakeCase .name}}(<<_:8,F:8,_/binary>>) when F /= {{.msgtype}} ->
+     {error,{bad_reply_function_code, io_lib:format("~2.16.0B",[F])}};
+
+% Ref. v6.62 firmware event
+{{snakeCase .name}}(<<SOM:8,F:8,_/binary>>) when (SOM /= 16#17 andalso ((SOM /= 16#19) or (F /= 16#20))) ->
+     {error,{bad_reply_start_of_message, io_lib:format("~2.16.0B",[SOM])}};
+
 {{snakeCase .name}}(Packet) ->
-    % if len(packet) != 64 {
-    %     err = fmt.Errorf("invalid reply packet length (%v)", len(packet))
-    %     return
-    % }
-
-    % // Ref. v6.62 firmware event
-    % if packet[0] != 0x17 && (packet[0] != 0x19 || packet[1] != 0x20) {
-    %     err = fmt.Errorf("invalid reply start of message byte (%02x)", packet[0])
-    %     return
-    % }
-
-    % if packet[1] != {{byte2hex .msgtype}} {
-    %     err = fmt.Errorf("invalid reply function code (%02x)", packet[1])
-    %     return
-    % }
-
     { ok, #{{snakeCase .name}}{
              {{- range $ix,$field := (subslice .fields)}}
              {{snakeCase $field.name}} = unpack({{snakeCase $field.type}}, Packet, {{$field.offset}}),
@@ -73,6 +71,10 @@ unpack(uint8, Packet, Offset) ->
     <<_:Offset/binary,B:1/binary,_/binary>> = Packet,
     binary:decode_unsigned(B, little);
 
+unpack(uint16, Packet, Offset) ->
+    <<_:Offset/binary,B:2/binary,_/binary>> = Packet,
+    binary:decode_unsigned(B, little);
+
 unpack(uint32, Packet, Offset) ->
     <<_:Offset/binary,B:4/binary,_/binary>> = Packet,
     binary:decode_unsigned(B, little);
@@ -93,6 +95,14 @@ unpack(version, Packet, Offset) ->
     io_lib:format("~2.16.0B~2.16.0B", [ Major, Minor ]);
 
 unpack(date, Packet, Offset) ->
+    <<_:Offset/binary,B:4/binary,_/binary>> = Packet,
+    <<YYYY:2/binary,MM:1/binary,DD:1/binary>> = B,
+    Year  = bcd_to_integer(YYYY),
+    Month = bcd_to_integer(MM),
+    Day = bcd_to_integer(DD),
+    { Year, Month, Day };
+
+unpack(optional_date, Packet, Offset) ->
     <<_:Offset/binary,B:4/binary,_/binary>> = Packet,
     <<YYYY:2/binary,MM:1/binary,DD:1/binary>> = B,
     Year  = bcd_to_integer(YYYY),
@@ -131,7 +141,24 @@ unpack(datetime, Packet, Offset) ->
     Minute = bcd_to_integer(Mm),
     Second = bcd_to_integer(SS),
 
-    { {Year, Month, Day}, {Hour, Minute, Second}}.
+    { {Year, Month, Day}, {Hour, Minute, Second}};
+
+unpack(optional_datetime, Packet, Offset) ->
+    <<_:Offset/binary,B:7/binary,_/binary>> = Packet,
+    <<YYYY:2/binary,MM:1/binary,DD:1/binary,HH:1/binary,Mm:1/binary,SS:1/binary>> = B,
+
+    Year = bcd_to_integer(YYYY),
+    Month = bcd_to_integer(MM),
+    Day = bcd_to_integer(DD),
+    Hour = bcd_to_integer(HH),
+    Minute = bcd_to_integer(Mm),
+    Second = bcd_to_integer(SS),
+
+    { {Year, Month, Day}, {Hour, Minute, Second}};
+
+unpack(pin, Packet, Offset) ->
+    <<_:Offset/binary,B:3/binary,_/binary>> = Packet,
+    binary:decode_unsigned(B, little).
 
 bcd_to_integer(BCD) ->
     Bytes = [ <<B>> || B <- binary_to_list(BCD) ],
