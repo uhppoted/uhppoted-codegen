@@ -5,6 +5,8 @@
     {{- template "export" (index .model.functions 0) -}},
     {{- template "export" (index .model.functions 1) -}},
     {{- template "export" (index .model.functions 2) -}},
+    {{- template "export" (index .model.functions 3) -}},
+    {{- template "export" (index .model.functions 5) -}},
     listen/2
 ]).
 
@@ -66,6 +68,8 @@ listen(Handler) ->
 {{ template "function" (index .model.functions 0) -}}
 {{ template "function" (index .model.functions 1) -}}
 {{ template "function" (index .model.functions 2) -}}
+{{ template "function" (index .model.functions 3) -}}
+{{ template "function" (index .model.functions 5) -}}
 
 {{define "function"}}
 {{snakeCase .name}}(Config, {{template "args" .args}}) ->

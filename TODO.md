@@ -15,8 +15,8 @@
       - [x] get-controller
       - [x] set-ip
       - [x] get-time
-      - [ ] set-time
-      - [ ] get-listener
+      - [x] set-time
+      - [x] get-listener
       - [ ] set-listener
       - [ ] get-door-control
       - [ ] set-door-control

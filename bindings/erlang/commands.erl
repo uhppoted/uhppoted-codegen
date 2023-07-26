@@ -24,6 +24,8 @@ commands() ->
       { "get-controller", get_controller },
       { "set-ip", set_ip },
       { "get-time", get_time },
+      { "set-time", set_time },
+      { "get-listener", get_listener },
       { "listen", listen }
     ].
 
@@ -51,6 +53,16 @@ execute(set_ip, _Options, Config) ->
 execute(get_time, _Options, Config) ->
     Controller = ?CONTROLLER,
     uhppoted:get_time(Config, Controller);
+
+execute(set_time, _Options, Config) ->
+    Controller = ?CONTROLLER,
+    Now = erlang:localtime(),
+
+    uhppoted:set_time(Config, Controller, Now);
+
+execute(get_listener, _Options, Config) ->
+    Controller = ?CONTROLLER,
+    uhppoted:get_listener(Config, Controller);
 
 execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of 
