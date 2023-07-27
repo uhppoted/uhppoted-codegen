@@ -34,6 +34,9 @@ jobs:
       with:
         otp-version: ${{matrix.otp}}
 
+    - name: Build Dialyzer PLT
+      run: dialyzer --build_plt --apps erts kernel stdlib mnesia
+      
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
 
