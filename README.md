@@ -5,6 +5,7 @@
 ![Zig](https://github.com/uhppoted/uhppoted-codegen/workflows/zig/badge.svg)
 ![Javascript](https://github.com/uhppoted/uhppoted-codegen/workflows/javascript/badge.svg)
 ![PHP](https://github.com/uhppoted/uhppoted-codegen/workflows/php/badge.svg)
+![Erlang](https://github.com/uhppoted/uhppoted-codegen/workflows/erlang/badge.svg)
 
 # uhppoted-codegen
 
@@ -14,6 +15,7 @@ Code generation tool for creating native UHPPOTE controller interfaces in multip
 - Python
 - Zig
 - PHP
+- Erlang
 - HTML + Javascript
 
 ## Raison d'être
