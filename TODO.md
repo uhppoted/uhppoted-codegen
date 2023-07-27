@@ -6,8 +6,8 @@
 
 ## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
 - [ ] code generation
-      - [ ] uhppoted.erl
-      - [ ] encoder.erl
+      - [x] uhppoted.erl
+      - [x] encoder.erl
       - [x] decoder.erl
 
 - [ ] commands
@@ -17,7 +17,7 @@
       - [x] get-time
       - [x] set-time
       - [x] get-listener
-      - [ ] set-listener
+      - [x] set-listener
       - [ ] get-door-control
       - [ ] set-door-control
       - [ ] get-status

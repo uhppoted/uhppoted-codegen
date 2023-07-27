@@ -36,6 +36,11 @@
 pack(Packet, Fields) ->
     lists:foldl(fun({T, V, Offset},P) -> pack(T, V, P, Offset) end, Packet, Fields).
 
+pack(uint16, V, Packet, Offset) ->
+    B = pad(binary:encode_unsigned(V,little), 2),
+    <<P:Offset/binary,_:16,R/binary>> = Packet,
+    <<P/binary,B/binary,R/binary>>;
+
 pack(uint32, V, Packet, Offset) ->
     B = pad(binary:encode_unsigned(V,little), 4),
     <<P:Offset/binary,_:32,R/binary>> = Packet,

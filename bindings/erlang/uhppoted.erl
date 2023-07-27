@@ -2,11 +2,7 @@
 
 -export([ 
     get_all_controllers/1, 
-    {{- template "export" (index .model.functions 0) -}},
-    {{- template "export" (index .model.functions 1) -}},
-    {{- template "export" (index .model.functions 2) -}},
-    {{- template "export" (index .model.functions 3) -}},
-    {{- template "export" (index .model.functions 5) -}},
+    {{- range .model.functions }}{{- template "export" . }},{{end}}
     listen/2
 ]).
 
@@ -46,9 +42,6 @@ listen(Handler) ->
           case decoder:event(Packet) of 
             {ok, Event} ->
               Handler ! {event, Event}
-
-            % Oops ->
-            %   Handler ! {error, Oops}
           end,
           listen(Handler);
 
@@ -65,11 +58,9 @@ listen(Handler) ->
           Handler ! closed
     end.    
 
-{{ template "function" (index .model.functions 0) -}}
-{{ template "function" (index .model.functions 1) -}}
-{{ template "function" (index .model.functions 2) -}}
-{{ template "function" (index .model.functions 3) -}}
-{{ template "function" (index .model.functions 5) -}}
+{{- range .model.functions }}
+{{ template "function" . -}}
+{{end}}
 
 {{define "function"}}
 {{snakeCase .name}}(Config, {{template "args" .args}}) ->

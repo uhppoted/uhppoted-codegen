@@ -14,7 +14,7 @@
 -define(ADDRESS,  "192.168.1.100" ).
 -define(NETMASK,  "255.255.255.0" ).
 -define(GATEWAY,  "192.168.1.1" ).
--define(LISTENER, "192.168.1.100:6001" ).
+-define(LISTENER, "192.168.1.100:60001" ).
 
 -define (LOG_TAG, "commands").
 
@@ -26,6 +26,7 @@ commands() ->
       { "get-time", get_time },
       { "set-time", set_time },
       { "get-listener", get_listener },
+      { "set-listener", set_listener },
       { "listen", listen }
     ].
 
@@ -64,6 +65,11 @@ execute(get_listener, _Options, Config) ->
     Controller = ?CONTROLLER,
     uhppoted:get_listener(Config, Controller);
 
+execute(set_listener, _Options, Config) ->
+    Controller = ?CONTROLLER,
+    {Addr,Port} = parse_addr(?LISTENER),
+    uhppoted:set_listener(Config, Controller, Addr, Port);
+
 execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of 
       {ok, F} ->
@@ -96,4 +102,11 @@ listen() ->
 
 pprint({event, Event}) ->
     io:format("EVENT: ~p~n", [ Event ]).
+
+parse_addr(S) ->
+    [A, P] = string:tokens(S, ":"),
+    {ok, Addr} = inet:parse_address(A),
+    {Port,_} = string:to_integer(P),
+    {Addr,Port}.
+
 
