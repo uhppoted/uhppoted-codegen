@@ -5,42 +5,43 @@
 - [ ] Individual language github workflows
 
 ## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
-- [ ] code generation
+- [x] code generation
       - [x] uhppoted.erl
       - [x] encoder.erl
       - [x] decoder.erl
 
-- [ ] commands
+- [x] commands
+      - [ ] all
       - [x] get-all-controllers
       - [x] get-controller
       - [x] set-ip
       - [x] get-time
       - [x] set-time
+      - [x] get-status
       - [x] get-listener
       - [x] set-listener
-      - [ ] get-door-control
-      - [ ] set-door-control
-      - [ ] get-status
-      - [ ] open-door
-      - [ ] get-cards
-      - [ ] get-card
-      - [ ] get-card-by-index
-      - [ ] put-card
-      - [ ] delete-card
-      - [ ] delete-all-cards
-      - [ ] get-event
-      - [ ] get-event-index
-      - [ ] set-event-index
-      - [ ] record-special-events
-      - [ ] get-time-profile
-      - [ ] set-time-profile
-      - [ ] delete-all-time-profiles
-      - [ ] add-task
-      - [ ] refresh-tasklist
-      - [ ] clear-tasklist
-      - [ ] set-pc-control
-      - [ ] set-interlock
-      - [ ] activate-keypads
+      - [x] get-door-control
+      - [x] set-door-control
+      - [x] open-door
+      - [x] get-cards
+      - [x] get-card
+      - [x] get-card-by-index
+      - [x] put-card
+      - [x] delete-card
+      - [x] delete-all-cards
+      - [x] get-event
+      - [x] get-event-index
+      - [x] set-event-index
+      - [x] record-special-events
+      - [x] get-time-profile
+      - [x] set-time-profile
+      - [x] delete-all-time-profiles
+      - [x] add-task
+      - [x] refresh-tasklist
+      - [x] clear-tasklist
+      - [x] set-pc-control
+      - [x] set-interlock
+      - [x] activate-keypads
       - [x] listen
 
 - [ ] --debug
@@ -50,7 +51,7 @@
 - [ ] formatter
       - https://github.com/WhatsApp/erlfmt
 - [ ] README
-- [ ] CHANGELOG
+- [x] CHANGELOG
 
 ## zig
 - (?) async/await timeouts

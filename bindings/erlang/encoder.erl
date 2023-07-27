@@ -36,6 +36,21 @@
 pack(Packet, Fields) ->
     lists:foldl(fun({T, V, Offset},P) -> pack(T, V, P, Offset) end, Packet, Fields).
 
+pack(bool, true, Packet, Offset) ->
+    B = binary:encode_unsigned(1,little),
+    <<P:Offset/binary,_:8,R/binary>> = Packet,
+    <<P/binary,B/binary,R/binary>>;
+
+pack(bool, _, Packet, Offset) ->
+    B = binary:encode_unsigned(0,little),
+    <<P:Offset/binary,_:8,R/binary>> = Packet,
+    <<P/binary,B/binary,R/binary>>;
+
+pack(uint8, V, Packet, Offset) ->
+    B = binary:encode_unsigned(V,little),
+    <<P:Offset/binary,_:8,R/binary>> = Packet,
+    <<P/binary,B/binary,R/binary>>;
+
 pack(uint16, V, Packet, Offset) ->
     B = pad(binary:encode_unsigned(V,little), 2),
     <<P:Offset/binary,_:16,R/binary>> = Packet,
@@ -60,6 +75,23 @@ pack(datetime, { {Year, Month, Day}, {Hour, Minute, Second} }, Packet, Offset) -
     <<P:Offset/binary,_:7/binary,R/binary>> = Packet,
     <<P/binary,B/binary,R/binary>>;
 
+pack(date, {Year, Month, Day}, Packet, Offset) ->
+    YYYYMMDD = io_lib:format("~4..0B~2..0B~2..0B",[Year, Month, Day]),
+    B = string2bcd(YYYYMMDD),
+    <<P:Offset/binary,_:4/binary,R/binary>> = Packet,
+    <<P/binary,B/binary,R/binary>>;
+
+pack(pin, V, Packet, Offset) ->
+    B = pad(binary:encode_unsigned(V,little), 3),
+    <<P:Offset/binary,_:24,R/binary>> = Packet,
+    <<P/binary,B/binary,R/binary>>;
+
+pack(hhmm, {Hour, Minute}, Packet, Offset) ->
+    HHmm = io_lib:format("~2..0B~2..0B",[Hour, Minute]),
+    B = string2bcd(HHmm),
+    <<P:Offset/binary,_:2/binary,R/binary>> = Packet,
+    <<P/binary,B/binary,R/binary>>;
+
 pack(eof,_,Packet,_) ->
     Packet;
 
@@ -68,7 +100,7 @@ pack(T,_,_,_) ->
 
 pad(B, N) ->
     Padding = 8*(N - byte_size(B)),
-    << <<0:Padding>>/binary, B/binary>>.
+    <<B/binary, <<0:Padding>>/binary>>.
 
 string2bcd(S) ->
     V = lists:foldl(fun(D,A) -> [bcd(D) | A] end, [], S),

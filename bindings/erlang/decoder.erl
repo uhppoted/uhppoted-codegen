@@ -156,6 +156,15 @@ unpack(optional_datetime, Packet, Offset) ->
 
     { {Year, Month, Day}, {Hour, Minute, Second}};
 
+unpack(hhmm, Packet, Offset) ->
+    <<_:Offset/binary,B:2/binary,_/binary>> = Packet,
+    <<HH:1/binary,MM:1/binary>> = B,
+
+    Hour = bcd_to_integer(HH),
+    Minute = bcd_to_integer(MM),
+
+    { Hour, Minute, 0 };
+
 unpack(pin, Packet, Offset) ->
     <<_:Offset/binary,B:3/binary,_/binary>> = Packet,
     binary:decode_unsigned(B, little).

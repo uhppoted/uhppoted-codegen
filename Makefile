@@ -107,7 +107,7 @@ publish: release
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted set-listener -s init stop
+	cd generated/erlang && erl -noshell -run main uhppoted activate-keypads -s init stop
 
 godoc:
 	godoc -http=:80	-index_interval=60s
@@ -237,6 +237,12 @@ erlang-debug: erlang
 
 erlang-usage: erlang
 	cd generated/erlang && erl -noshell -run main uhppoted -s init stop
+
+erlang-all: erlang
+	cd generated/erlang && erl -noshell -run main uhppoted all -s init stop
+
+erlang-listen: erlang
+	cd generated/erlang && erl -noshell -run main uhppoted listen -s init stop
 	
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
