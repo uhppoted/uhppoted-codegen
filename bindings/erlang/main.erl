@@ -15,13 +15,23 @@ uhppoted() ->
 uhppoted(Args) ->
     io:fwrite("uhppoted-codegen: Erlang sample application~n~n"),
     { Config, Command, Options } = parse(Args),
-    exec(Command, Options, Config).
+    case Command of 
+      "all" ->
+        all(Options, Config);
 
-exec(["all"], Options, Config) ->
-    exec([C || {C,_} <- commands:commands(), C /= "listen"], Options, Config);
+      Cmd ->
+        execute(Cmd, commands:find(Cmd), Options, Config)
+      end.
 
-exec(Cmd, Options, Config) ->
-    execute(Cmd, commands:find(Cmd), Options, Config).
+all(Options, Config) ->
+    all([C || {C,_} <- commands:commands(), C /= "listen"], Options, Config).
+
+all([], _, _) ->
+    ok;
+
+all([Cmd | T], Options, Config) ->
+    execute(Cmd, commands:find(Cmd), Options, Config),
+    all(T, Options, Config).
 
 execute(Cmd, false, _, _) ->
     io:fwrite("~n"),

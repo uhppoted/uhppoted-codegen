@@ -11,7 +11,7 @@
       - [x] decoder.erl
 
 - [x] commands
-      - [ ] all
+      - [x] all
       - [x] get-all-controllers
       - [x] get-controller
       - [x] set-ip
