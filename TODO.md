@@ -4,19 +4,19 @@
 - [ ] .ignore file
 - [ ] Individual language github workflows
 
-## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
-- [x] code generation
-- [x] commands
-- [x] github workflow
-- [x] Dialyzer
-- [x] README
-- [x] CHANGELOG
-- [ ] --debug
-- [ ] use bind,broadcast and listen from args
-- [ ] pprint
-      - https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
-- [ ] formatter
-      - https://github.com/WhatsApp/erlfmt
+- [ ] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
+      - [x] code generation
+      - [x] commands
+      - [x] github workflow
+      - [x] Dialyzer
+      - [x] README
+      - [x] CHANGELOG
+      - [ ] --debug
+      - [ ] use bind,broadcast and listen from args
+      - [ ] pprint
+            - https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
+      - [ ] formatter
+            - https://github.com/WhatsApp/erlfmt
 
 ## zig
 - (?) async/await timeouts
