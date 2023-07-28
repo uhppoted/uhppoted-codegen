@@ -11,6 +11,7 @@
       - [x] Dialyzer
       - [x] README
       - [x] CHANGELOG
+      - [ ] Restructure as rebar3 escript/lib
       - [ ] --debug
       - [ ] use bind,broadcast and listen from args
       - [ ] pprint
@@ -45,6 +46,7 @@
 
 ## Other
    - Lua
+   - [Val](https://github.com/val-lang/val-lang.github.io)
    - [Odin](https://odin-lang.org)
    - Elixir
    - Markdown
