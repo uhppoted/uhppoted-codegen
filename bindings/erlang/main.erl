@@ -6,32 +6,54 @@
 -define(BROADCAST, { { 255,255,255,255 }, 60000 }).
 -define(LISTEN, { any, 60001 }).
 
+-record(opts,    { bind, broadcast, listen, debug, args }).
 -record(config,  { bind, broadcast, listen, debug }).
 
 uhppoted() ->
     io:fwrite("uhppoted-codegen: Erlang sample application~n~n"),
-    usage().
+
+    Opts = getopts(args()),
+    
+    uhppoted(#config{ bind = Opts#opts.bind,
+                      broadcast = Opts#opts.broadcast,
+                      listen = Opts#opts.listen,
+                      debug = Opts#opts.debug
+                    }, Opts#opts.args).
+
 
 uhppoted(Args) ->
     io:fwrite("uhppoted-codegen: Erlang sample application~n~n"),
-    { Config, Command, Options } = parse(Args),
+
+    Opts = getopts(Args),
+    
+    uhppoted(#config{ bind = Opts#opts.bind,
+                      broadcast = Opts#opts.broadcast,
+                      listen = Opts#opts.listen,
+                      debug = Opts#opts.debug
+                    }, Opts#opts.args).
+
+
+uhppoted(_, []) ->
+    usage();
+
+uhppoted(Config, [Command | Args]) ->
     case Command of 
       "all" ->
-        all(Options, Config);
+        all(Config, Args);
 
       Cmd ->
-        execute(Cmd, commands:find(Cmd), Options, Config)
+        execute(Cmd, commands:find(Cmd), Args, Config)
       end.
 
-all(Options, Config) ->
-    all([C || {C,_} <- commands:commands(), C /= "listen"], Options, Config).
+all(Config, Args) ->
+    all(Config, [C || {C,_} <- commands:commands(), C /= "listen"], Args).
 
-all([], _, _) ->
+all(_,[], _) ->
     ok;
 
-all([Cmd | T], Options, Config) ->
-    execute(Cmd, commands:find(Cmd), Options, Config),
-    all(T, Options, Config).
+all(Config, [Cmd | T], Args) ->
+    execute(Cmd, commands:find(Cmd), Args, Config),
+    all(Config, T, Args).
 
 execute(Cmd, false, _, _) ->
     io:fwrite("~n"),
@@ -42,20 +64,9 @@ execute(Cmd, false, _, _) ->
 execute(_, Command, Options, Config) ->
     commands:exec(Command, Options, Config).
 
-parse(Args) ->
-    [ Cmd | Options] = Args,
-    { #config{ 
-         bind = ?ANY,
-         broadcast = ?BROADCAST,
-         listen = ?LISTEN,
-         debug = true
-      }, 
-      Cmd,
-      Options
-    }.
 
 usage() ->
-    io:fwrite("  Usage: go run main uhppoted [--debug] [--bind <address>] [--broadcast <address>] [commands]~n"),
+    io:fwrite("  Usage: go run main uhppoted [--debug] [--bind <address>] [--broadcast <address>] [command]~n"),
     io:fwrite("~n"),
     io:fwrite("    Options:~n"),
     io:fwrite("    --debug                Displays sent and received UDP packets~n"),
@@ -67,5 +78,72 @@ usage() ->
 
     lists:foreach(fun({C,_}) -> io:fwrite("      ~s\~n", [C]) end, commands:commands()),
 
+    io:fwrite("      ~s\~n", ["all"]),
     io:fwrite("~n").
+
+
+args() ->
+  args(init:get_arguments(),[]).
+
+args([], Args) ->
+  Args;
+
+args([{root, _} | T], Args)  ->
+  args(T, Args);
+
+args([{bindir, _} | T], Args)  ->
+  args(T, Args);
+
+args([{progname, _} | T], Args)  ->
+  args(T, Args);
+
+args([{home, _} | T], Args)  ->
+  args(T, Args);
+
+args([{noshell, _} | T], Args)  ->
+  args(T, Args);
+
+args([{K, V} | T], Args)  ->
+  args(T, lists:append([Args,[K],V])).
+
+getopts(Args) ->
+  getopts(Args,#opts{ bind = ?ANY,
+                      broadcast = ?BROADCAST,
+                      listen = ?LISTEN,
+                      debug = false,
+                      args = []
+                    }).
+
+getopts([], Opts) ->
+  Opts;
+
+getopts(['-debug' | T], Opts) ->
+  getopts(T, Opts#opts{ debug = true });
+
+getopts(['-bind', Addr | T], Opts) ->
+  getopts(T, Opts#opts{ bind = address(Addr) });
+
+getopts(['-broadcast', Addr | T], Opts) ->
+  getopts(T, Opts#opts{ broadcast = address(Addr) });
+
+getopts(['-listen', Addr | T], Opts) ->
+  getopts(T, Opts#opts{ listen = address(Addr) });
+
+getopts([H|T], Opts) ->
+  Args = lists:append([Opts#opts.args,[H]]),
+  getopts(T,Opts#opts{ args = Args}).
+
+address(S) ->
+  case re:run(S, "([0-9.]+)(?::([0-9]+))?", [{capture, all_but_first, list}]) of
+    { match, [Address] } ->
+      {ok, Addr } = inet:parse_address(Address), 
+      { Addr, 0};
+
+    { match, [Address, Port] } ->
+      {ok, Addr } = inet:parse_address(Address), 
+      { Addr, list_to_integer(Port)};
+
+    _ ->
+      S
+  end.
 

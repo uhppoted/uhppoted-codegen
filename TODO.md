@@ -1,8 +1,8 @@
 # TODO
 
 - [x] activate-keypads (cf. https://github.com/uhppoted/uhppoted/issues/35)
+- [x] Individual language github workflows
 - [ ] .ignore file
-- [ ] Individual language github workflows
 
 - [ ] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
       - [x] code generation
@@ -11,9 +11,10 @@
       - [x] Dialyzer
       - [x] README
       - [x] CHANGELOG
+      - [x] --debug
+      - [x] use bind,broadcast and listen from args
       - [ ] Restructure as rebar3 escript/lib
-      - [ ] --debug
-      - [ ] use bind,broadcast and listen from args
+            - https://github.com/jcomellas/getopt
       - [ ] pprint
             - https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
       - [ ] formatter

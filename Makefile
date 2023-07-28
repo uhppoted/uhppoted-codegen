@@ -109,7 +109,20 @@ publish: release
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted activate-keypads -s init stop
+	# cd generated/erlang && erl -noshell -run main uhppoted gets-controller -s init stop
+	# cd generated/erlang && erl -noshell -run main uhppoted all -s init stop
+	# cd generated/erlang && erl -noshell -run main uhppoted --debug get-controller -s init stop
+	# cd generated/erlang && erl -noshell -run main uhppoted --debug --bind 192.168.1.100:12345 get-controller -s init stop
+	# cd generated/erlang && erl -noshell -run main uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.100:60000 get-controller -s init stop
+
+	cd generated/erlang && \
+	erl -noshell -run \
+	              main uhppoted --debug \
+	                            --bind 192.168.1.100:0 \
+	                            --broadcast 192.168.1.255:60000 \
+	                            --listen 0.0.0.0:60001 \
+	                            get-controller yadda yadda2 yadda3\
+	                            -s init stop
 
 godoc:
 	godoc -http=:80	-index_interval=60s
