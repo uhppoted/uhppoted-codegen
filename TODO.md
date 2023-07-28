@@ -4,18 +4,20 @@
 - [ ] .ignore file
 - [ ] Individual language github workflows
 
-## erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
-- [x] code generation
-- [x] commands
-- [ ] github workflow
-- [ ] --debug
-- [ ] use bind,broadcast and listen from args
-- [ ] pprint
-- [ ] lint
-- [ ] formatter
-      - https://github.com/WhatsApp/erlfmt
-- [ ] README
-- [x] CHANGELOG
+- [ ] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
+      - [x] code generation
+      - [x] commands
+      - [x] github workflow
+      - [x] Dialyzer
+      - [x] README
+      - [x] CHANGELOG
+      - [ ] Restructure as rebar3 escript/lib
+      - [ ] --debug
+      - [ ] use bind,broadcast and listen from args
+      - [ ] pprint
+            - https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
+      - [ ] formatter
+            - https://github.com/WhatsApp/erlfmt
 
 ## zig
 - (?) async/await timeouts
@@ -43,9 +45,10 @@
 - [ ] listen
 
 ## Other
+   - Lua
+   - [Val](https://github.com/val-lang/val-lang.github.io)
    - [Odin](https://odin-lang.org)
    - Elixir
-   - Lua
    - Markdown
    - Latex
    - ASN.1
@@ -64,6 +67,7 @@
    - [V](https://vlang.io)
    - [Mojo](https://www.modular.com/mojo)
    - [Factor](https://factorcode.orgs)
+   - C#
 
 ## Notes
 
