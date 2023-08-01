@@ -5,17 +5,7 @@
     {{- template "export" .model.event }}
 ]).
 
-{{range .model.responses}}
-{{ template "response" . -}}
-{{end}}
-
-{{with .model.event}}
--record({{snakeCase .name}}, {
-    {{- range (subslice .fields)}}
-    {{snakeCase .name}},{{end}}
-    {{range (last .fields)}}{{snakeCase .name}}{{end}}
-}).
-{{end}}
+-include("records.hrl").
 
 {{range .model.responses}}
 {{ template "decode" . -}}
@@ -26,14 +16,6 @@
 
 {{define "export"}}
     {{snakeCase .name}}/1{{end -}}
-
-{{define "response"}}
--record({{snakeCase .name}}, {
-    {{- range (subslice .fields)}}
-    {{snakeCase .name}},{{end}}
-    {{range (last .fields)}}{{snakeCase .name}}{{end}}
-}).
-{{- end}}
 
 {{define "decode"}}
 {{snakeCase .name}}(Packet) when byte_size(Packet) /= 64 ->

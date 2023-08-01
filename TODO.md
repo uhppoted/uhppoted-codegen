@@ -17,6 +17,9 @@
             - https://github.com/jcomellas/getopt
       - [ ] pprint
             - https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
+            - https://stackoverflow.com/questions/51519900/erlang-getting-record-field-values
+            - https://www.erlang.org/docs/21/reference_manual/records.html
+
       - [ ] formatter
             - https://github.com/WhatsApp/erlfmt
 

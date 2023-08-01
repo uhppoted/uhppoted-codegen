@@ -18,6 +18,8 @@
 
 -define (LOG_TAG, "commands").
 
+-include("records.hrl").
+
 commands() ->
     [ 
       { "get-all-controllers", get_all_controllers },
@@ -57,7 +59,13 @@ find(Cmd) ->
     lists:keyfind(Cmd,1,commands()).
 
 exec({_, Cmd}, Options, Config) ->
-    io:format(">> ~p~n", [ execute(Cmd, Options, Config) ]).
+    case execute(Cmd, Options, Config) of 
+      { ok, Any } ->
+        pprint({ok,Any});
+
+      Other ->
+        io:format(">> ~p~n", [ Other ])
+      end.
 
 execute(get_all_controllers, _Options, Config) ->
     uhppoted:get_all_controllers(Config);
@@ -258,6 +266,7 @@ execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of 
       {ok, F} ->
         spawn(fun() -> io:fread("(type Q to quit)  ","c"), F() end), % in lieu of a CTRL-C handler (or more properly an OTP supervision tree)
+        io:format("~n"),
         listen();
 
       {error, Reason} ->
@@ -281,16 +290,34 @@ listen() ->
         log:infof(?LOG_TAG, closed)
     end.
 
-% pprint({ok, Any}) ->
-%     io:format("RESPONSE  ~p~n", [ Any ]);
-
-pprint({event, Event}) ->
-    io:format("EVENT: ~p~n", [ Event ]).
-
 parse_addr(S) ->
     [A, P] = string:tokens(S, ":"),
     {ok, Addr} = inet:parse_address(A),
     {Port,_} = string:to_integer(P),
     {Addr,Port}.
+
+% Ref. https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
+pprint({ok, Response}) ->
+    io:format("   ~s~n", [ pretty_print(Response) ]);
+
+pprint({event, Event}) ->
+    io:format("   ~s~n", [ pretty_print(Event) ]).
+
+pretty_print(Record) ->
+    io_lib_pretty:print(Record, fun pretty_print/2).
+     
+{{range .model.responses}}
+pretty_print({{snakeCase .name}}, _N) ->
+    record_info(fields, {{snakeCase .name}});
+{{end}}
+
+{{with .model.event}}
+pretty_print({{snakeCase .name}}, _N) ->
+    record_info(fields, {{snakeCase .name}});
+{{end}}
+
+pretty_print(_, _) ->
+  no.
+
 
 
