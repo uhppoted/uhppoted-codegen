@@ -11,6 +11,8 @@ import (
 	"strings"
 	"text/template"
 	"unicode"
+
+	lib "github.com/uhppoted/uhppoted-lib/os"
 )
 
 type Generator struct {
@@ -169,7 +171,7 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 		return err
 	}
 
-	if err := os.Rename(f.Name(), dest); err != nil {
+	if err := lib.Rename(f.Name(), dest); err != nil {
 		return err
 	}
 

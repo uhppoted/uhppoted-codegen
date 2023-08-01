@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 
 	core "github.com/uhppoted/uhppote-core/uhppote"
-
 	"github.com/uhppoted/uhppoted-codegen/model"
+	lib "github.com/uhppoted/uhppoted-lib/os"
 )
 
 type Export struct {
@@ -113,7 +113,7 @@ func (cmd *Export) genModels() error {
 	dest := cmd.models
 	if err := os.MkdirAll(filepath.Dir(dest), 0777); err != nil {
 		return err
-	} else if err := os.Rename(f.Name(), dest); err != nil {
+	} else if err := lib.Rename(f.Name(), dest); err != nil {
 		return err
 	}
 
@@ -152,7 +152,7 @@ func (cmd *Export) genTestData() error {
 	dest := cmd.testdata
 	if err := os.MkdirAll(filepath.Dir(dest), 0777); err != nil {
 		return err
-	} else if err := os.Rename(f.Name(), dest); err != nil {
+	} else if err := lib.Rename(f.Name(), dest); err != nil {
 		return err
 	}
 

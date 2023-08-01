@@ -2,7 +2,7 @@
 
 - [x] activate-keypads (cf. https://github.com/uhppoted/uhppoted/issues/35)
 - [x] Individual language github workflows
-- [ ] .ignore file
+- [x] Replace os.Rename with lib implementation for tmpfs support (cf. https://github.com/uhppoted/uhppoted-httpd/issues/20)
 
 - [ ] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
       - [x] code generation
@@ -19,6 +19,8 @@
             - https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
       - [ ] formatter
             - https://github.com/WhatsApp/erlfmt
+
+- [ ] .ignore file
 
 ## zig
 - (?) async/await timeouts
