@@ -304,20 +304,42 @@ pprint({event, Event}) ->
     io:format("   ~s~n", [ pretty_print(Event) ]).
 
 pretty_print(Record) ->
-    io_lib_pretty:print(Record, fun pretty_print/2).
-     
+    [ Name | Values ] = tuple_to_list(Record),
+    Fields = fields(Name),
+    W = io_lib:format("       ~~-~Bs  ~~p~~n",[width(Fields)]),
+    io:format("   ~s~n",[Name]),
+    lists:foreach(fun({F,V}) -> io:format(W,[F,V]) end, zip(Fields,Values)),
+    io:format("~n").
+
+width(Fields) ->
+    B = [ atom_to_binary(X) || X <- Fields ],
+    N = [ byte_size(X) || X <- B ],
+    lists:foldl(fun(X,W) -> max(X, W) end, 0, N).
+
+zip(Fields, Values) ->
+  zip(Fields, Values, []).
+
+zip([], _, L) ->
+  lists:reverse(L);
+
+zip(_,[],L) ->
+  lists:reverse(L);
+
+zip([F | Fields], [V | Values], L) ->
+  zip(Fields, Values, [ {F,V} | L ]).
+
 {{range .model.responses}}
-pretty_print({{snakeCase .name}}, _N) ->
+fields({{snakeCase .name}}) ->
     record_info(fields, {{snakeCase .name}});
 {{end}}
 
 {{with .model.event}}
-pretty_print({{snakeCase .name}}, _N) ->
+fields({{snakeCase .name}}) ->
     record_info(fields, {{snakeCase .name}});
 {{end}}
 
-pretty_print(_, _) ->
-  no.
+fields(_) ->
+  [].
 
 
 
