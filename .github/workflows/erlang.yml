@@ -34,6 +34,9 @@ jobs:
       with:
         otp-version: ${{matrix.otp}}
 
+    - name: (hopefully rebar3 is installed)
+      run: rebar3 version
+
     - name: Build Dialyzer PLT
       run: dialyzer --build_plt --apps erts kernel stdlib mnesia
       
