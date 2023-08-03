@@ -132,6 +132,20 @@ getopts(Args) ->
 getopts([], Opts) ->
     Opts;
 
+% escript command line arguments from main(Args)
+getopts(["--debug" | T], Opts) ->
+    getopts(T, Opts#opts{debug = true});
+
+getopts(["--bind", Addr | T], Opts) ->
+    getopts(T, Opts#opts{bind = address(Addr)});
+
+getopts(["--broadcast", Addr | T], Opts) ->
+    getopts(T, Opts#opts{broadcast = address(Addr)});
+
+getopts(["--listen", Addr | T], Opts) ->
+    getopts(T, Opts#opts{listen = address(Addr)});
+
+% shell command line arguments from init:get_arguments
 getopts(['-debug' | T], Opts) ->
     getopts(T, Opts#opts{debug = true});
 
