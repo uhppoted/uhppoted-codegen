@@ -2,7 +2,7 @@
 {{ template "response" . -}}
 {{end}}
 
-{{define "response"}}
+{{- define "response"}}
 -record({{snakeCase .name}}, {
     {{- range (subslice .fields)}}
     {{snakeCase .name}},{{end}}

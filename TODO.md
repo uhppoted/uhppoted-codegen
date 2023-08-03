@@ -13,17 +13,14 @@
       - [x] CHANGELOG
       - [x] --debug
       - [x] use bind,broadcast and listen from args
-      - [ ] Restructure as rebar3 escript/lib
-            - https://github.com/jcomellas/getopt
       - [x] pprint
-            - https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
-            - https://stackoverflow.com/questions/51519900/erlang-getting-record-field-values
-            - https://www.erlang.org/docs/21/reference_manual/records.html
-
-      - [ ] formatter
+      - [x] format
             - https://github.com/WhatsApp/erlfmt
+      - [ ] Restructure as rebar3 + escript
+            - https://github.com/jcomellas/getopt
 
 - [ ] .ignore file
+
 
 ## zig
 - (?) async/await timeouts
