@@ -1,6 +1,7 @@
 package codegen
 
 import (
+	"bufio"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -58,6 +59,11 @@ func New(models string, templates string, out string, debug bool) Generator {
 }
 
 func (g Generator) Generate() error {
+	ignore, err := g.ignoreable()
+	if err != nil {
+		return err
+	}
+
 	data, err := g.initialise()
 	if err != nil {
 		return err
@@ -79,6 +85,8 @@ func (g Generator) Generate() error {
 		} else if d.IsDir() {
 			return nil
 		} else if strings.HasPrefix(path, ".templates") {
+			return nil
+		} else if _, ok := ignore[path]; ok {
 			return nil
 		}
 
@@ -128,6 +136,26 @@ func (g Generator) initialise() (map[string]any, error) {
 	}
 
 	return data, nil
+}
+
+func (g Generator) ignoreable() (map[string]struct{}, error) {
+	file := filepath.Join(g.templates, ".ignore")
+	ignore := map[string]struct{}{}
+
+	if f, err := os.Open(file); err != nil && os.IsNotExist(err) {
+		return ignore, nil
+	} else if err != nil {
+		return ignore, err
+	} else {
+		defer f.Close()
+
+		scanner := bufio.NewScanner(f)
+		for scanner.Scan() {
+			ignore[scanner.Text()] = struct{}{}
+		}
+
+		return ignore, nil
+	}
 }
 
 func (g Generator) generate(fsys fs.FS, src string, data any, functions template.FuncMap) error {

@@ -20,6 +20,7 @@
             - https://github.com/jcomellas/getopt
 
 - [ ] .ignore file
+- [ ] --delimiters
 
 
 ## zig

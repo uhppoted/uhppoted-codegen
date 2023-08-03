@@ -4,7 +4,7 @@
 
 {{define "values"}}{{ range $index, $param := .}}{{if $index}}, {{end}}{{template "var" .}}{{end}}{{end}}
 
-{{define "type"}}{{lookup "go.types" . "???"}}{{end}}
+{{define "type"}}{{lookup "erlang.types" . "???"}}{{end}}
 
 {{define "var"}}to{{CamelCase .type}}("{{ .value }}"){{end}}
 
