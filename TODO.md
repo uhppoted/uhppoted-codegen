@@ -3,6 +3,7 @@
 - [x] activate-keypads (cf. https://github.com/uhppoted/uhppoted/issues/35)
 - [x] Individual language github workflows
 - [x] Replace os.Rename with lib implementation for tmpfs support (cf. https://github.com/uhppoted/uhppoted-httpd/issues/20)
+- [x] .ignore file
 
 - [ ] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
       - [x] code generation
@@ -15,11 +16,8 @@
       - [x] use bind,broadcast and listen from args
       - [x] pprint
       - [x] format
-            - https://github.com/WhatsApp/erlfmt
-      - [ ] Restructure as rebar3 + escript
-            - https://github.com/jcomellas/getopt
+      - [x] Restructure as rebar3 + escript
 
-- [ ] .ignore file
 - [ ] --delimiters
 
 

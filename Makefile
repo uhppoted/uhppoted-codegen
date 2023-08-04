@@ -18,6 +18,7 @@ RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
 PYBIN   = python3 ./generated/python/main.py
 ZIGBIN  = ./generated/zig/zig-out/bin/uhppoted
 PHPBIN  = php ./generated/php/uhppoted.php
+ERLBIN  = ./generated/erlang/_build/default/bin/cli
 
 .DEFAULT_GOAL := test
 .PHONY: update
@@ -115,14 +116,20 @@ debug: erlang
 	# cd generated/erlang && erl -noshell -run main uhppoted --debug --bind 192.168.1.100:12345 get-controller -s init stop
 	# cd generated/erlang && erl -noshell -run main uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.100:60000 get-controller -s init stop
 
-	cd generated/erlang && \
-	erl -noshell -run \
-	              main uhppoted --debug \
-	                            --bind 192.168.1.100:0 \
-	                            --broadcast 192.168.1.255:60000 \
-	                            --listen 0.0.0.0:60001 \
-	                            get-controller yadda yadda2 yadda3\
-	                            -s init stop
+	# cd generated/erlang && \
+	# erl -noshell -run \
+	#               main uhppoted --debug \
+	#                             --bind 192.168.1.100:0 \
+	#                             --broadcast 192.168.1.255:60000 \
+	#                             --listen 0.0.0.0:60001 \
+	#                             get-controller yadda yadda2 yadda3\
+	#                             -s init stop
+
+	cd generated/erlang && ./_build/default/bin/cli --debug \
+	                                                --bind 192.168.1.100:0 \
+	                                                --broadcast 192.168.1.255:60000 \
+	                                                --listen 0.0.0.0:60001 \
+	                                                get-all-controllers yadda yadda2 yadda3
 
 godoc:
 	godoc -http=:80	-index_interval=60s
@@ -242,22 +249,27 @@ php-listen: php
 	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 listen
 
 erlang: build regen
+	# cd generated/erlang && dialyzer --src *.erl
+	# cd generated/erlang && erl -compile main commands uhppoted udp encoder decoder log
 	$(CMD) --models $(MODELS) --templates $(ERLANG) --out generated/erlang --clean
-	cd generated/erlang && dialyzer --src *.erl
-	cd generated/erlang && erl -compile main commands uhppoted udp encoder decoder log
+	cd generated/erlang && rebar3 fmt      && \
+	                       rebar3 clean    && \
+	                       rebar3 compile  && \
+	                       rebar3 dialyzer && \
+	                       rebar3 escriptize
 
 erlang-debug: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted get-all-controllers -s init stop
-	cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
+	# cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
+	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller
 
 erlang-usage: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted -s init stop
+	$(ERLBIN) 
 
 erlang-all: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted all -s init stop
+	$(ERLBIN) all
 
 erlang-listen: erlang
-	cd generated/erlang && erl -noshell -run main uhppoted listen -s init stop
+	$(ERLBIN) listen
 	
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
