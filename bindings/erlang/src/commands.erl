@@ -60,8 +60,15 @@ find(Cmd) ->
 
 exec({_, Cmd}, Options, Config) ->
     case execute(Cmd, Options, Config) of
+        {ok, none} ->
+            io:format("   ok~n");
+
         {ok, Any} ->
             pprint({ok, Any});
+
+        Controllers when is_list(Controllers) ->
+            lists:foreach(fun(X) -> pprint(X) end, Controllers);
+
         Other ->
             io:format(">> ~p~n", [Other])
     end.
@@ -286,11 +293,11 @@ execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of
         {ok, F} ->
             % in lieu of a CTRL-C handler (or more properly an OTP supervision tree)
+            io:format("(type Q to quit)~n~n"),
             spawn(fun() ->
-                io:fread("(type Q to quit)  ", "c"),
+                io:fread("", "c"),
                 F()
             end),
-            io:format("~n"),
             listen();
         {error, Reason} ->
             {error, Reason}
@@ -319,10 +326,10 @@ parse_addr(S) ->
 
 % Ref. https://erlang.org/pipermail/erlang-questions/2008-November/040029.html
 pprint({ok, Response}) ->
-    io:format("   ~s~n", [pretty_print(Response)]);
+    pretty_print(Response);
 
 pprint({event, Event}) ->
-    io:format("   ~s~n", [pretty_print(Event)]).
+    pretty_print(Event).
 
 pretty_print(Record) ->
     [Name | Values] = tuple_to_list(Record),

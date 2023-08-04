@@ -110,12 +110,6 @@ publish: release
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: erlang
-	# cd generated/erlang && erl -noshell -run main uhppoted gets-controller -s init stop
-	# cd generated/erlang && erl -noshell -run main uhppoted all -s init stop
-	# cd generated/erlang && erl -noshell -run main uhppoted --debug get-controller -s init stop
-	# cd generated/erlang && erl -noshell -run main uhppoted --debug --bind 192.168.1.100:12345 get-controller -s init stop
-	# cd generated/erlang && erl -noshell -run main uhppoted --debug --bind 192.168.1.100:0 --broadcast 192.168.1.100:60000 get-controller -s init stop
-
 	# cd generated/erlang && \
 	# erl -noshell -run \
 	#               main uhppoted --debug \
@@ -129,7 +123,7 @@ debug: erlang
 	                                                --bind 192.168.1.100:0 \
 	                                                --broadcast 192.168.1.255:60000 \
 	                                                --listen 0.0.0.0:60001 \
-	                                                get-all-controllers yadda yadda2 yadda3
+	                                                set-ip
 
 godoc:
 	godoc -http=:80	-index_interval=60s
@@ -253,10 +247,10 @@ erlang: build regen
 	# cd generated/erlang && erl -compile main commands uhppoted udp encoder decoder log
 	$(CMD) --models $(MODELS) --templates $(ERLANG) --out generated/erlang --clean
 	cd generated/erlang && rebar3 fmt      && \
-	                       rebar3 clean    && \
-	                       rebar3 compile  && \
-	                       rebar3 dialyzer && \
-	                       rebar3 escriptize
+	               rebar3 clean    && \
+	               rebar3 compile  && \
+	               rebar3 dialyzer && \
+	               rebar3 escriptize
 
 erlang-debug: erlang
 	# cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop

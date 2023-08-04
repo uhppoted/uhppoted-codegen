@@ -4,19 +4,7 @@
 - [x] Individual language github workflows
 - [x] Replace os.Rename with lib implementation for tmpfs support (cf. https://github.com/uhppoted/uhppoted-httpd/issues/20)
 - [x] .ignore file
-
-- [ ] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
-      - [x] code generation
-      - [x] commands
-      - [x] github workflow
-      - [x] Dialyzer
-      - [x] README
-      - [x] CHANGELOG
-      - [x] --debug
-      - [x] use bind,broadcast and listen from args
-      - [x] pprint
-      - [x] format
-      - [x] Restructure as rebar3 + escript
+- [x] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
 
 - [ ] --delimiters
 
