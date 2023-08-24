@@ -7,6 +7,7 @@
 - [x] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
 
 - [ ] --delimiters
+- [ ] clang-tidy
 
 
 ## zig
@@ -58,6 +59,7 @@
    - [Mojo](https://www.modular.com/mojo)
    - [Factor](https://factorcode.orgs)
    - C#
+   - [Fennel](https://fennel-lang.org)
 
 ## Notes
 
