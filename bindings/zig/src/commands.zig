@@ -171,6 +171,11 @@ pub const commands = [_]Command{
     },
 
     Command{
+        .name = "set-door-passcodes",
+        .function = set_door_passcodes,
+    },
+
+    Command{
         .name = "listen",
         .function = listen,
     },
@@ -548,6 +553,21 @@ fn activate_keypads(allocator: std.mem.Allocator) void {
     const reader4 = true;
 
     if (uhppote.activate_keypads(controller, reader1, reader2, reader3, reader4, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_door_passcodes(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+    const door = DOOR;
+    const passcode1 = 12345;
+    const passcode2 = 0;
+    const passcode3 = 999999;
+    const passcode4 = 54321;
+
+    if (uhppote.set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

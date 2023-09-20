@@ -32,6 +32,7 @@ var Functions = []Function{
 	SetPCControl,
 	SetInterlock,
 	ActivateKeypads,
+	SetDoorPasscodes,
 }
 
 var GetController = Function{
@@ -627,4 +628,36 @@ var ActivateKeypads = Function{
 	},
 	Request:  &ActivateKeypadsRequest,
 	Response: &ActivateKeypadsResponse,
+}
+
+var SetDoorPasscodes = Function{
+	Name: "set door passcodes",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "door",
+			Type: "uint8",
+		},
+		Arg{
+			Name: "passcode 1",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "passcode 2",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "passcode 3",
+			Type: "uint32",
+		},
+		Arg{
+			Name: "passcode 4",
+			Type: "uint32",
+		},
+	},
+	Request:  &SetDoorPasscodesRequest,
+	Response: &SetDoorPasscodesResponse,
 }

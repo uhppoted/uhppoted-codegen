@@ -1,10 +1,16 @@
 # TODO
 
-- [x] activate-keypads (cf. https://github.com/uhppoted/uhppoted/issues/35)
-- [x] Individual language github workflows
-- [x] Replace os.Rename with lib implementation for tmpfs support (cf. https://github.com/uhppoted/uhppoted-httpd/issues/20)
-- [x] .ignore file
-- [x] erlang (cf. https://github.com/uhppoted/uhppoted-codegen/issues/4)
+- [ ] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
+      - [x] models
+      - [x] Go
+      - [x] Rust
+      - [x] Python
+      - [x] Zig
+      - [x] PHP
+      - [x] Erlang
+      - [x] HTTP
+      - [x] CHANGELOG
+      - [ ] README
 
 - [ ] --delimiters
 - [ ] clang-tidy
@@ -60,6 +66,7 @@
    - [Factor](https://factorcode.orgs)
    - C#
    - [Fennel](https://fennel-lang.org)
+   - [Fleng](http://www.call-with-current-continuation.org/fleng/fleng.html)
 
 ## Notes
 

@@ -17,7 +17,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 31] = [
+pub const COMMANDS: [&Command; 32] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -137,6 +137,10 @@ pub const COMMANDS: [&Command; 31] = [
     &Command {
         name: "activate-keypads",
         func: activate_keypads,
+    },
+    &Command {
+        name: "set-door-passcodes",
+        func: set_door_passcodes,
     },
     &Command {
         name: "listen",
@@ -506,6 +510,19 @@ fn activate_keypads() {
 
     print(|| -> Result<uhppote::ActivateKeypadsResponse, error::Error> {
         futures::executor::block_on(uhppote::activate_keypads(controller, reader1, reader2, reader3, reader4))
+    })
+}
+
+fn set_door_passcodes() {
+    let controller = CONTROLLER;
+    let door = DOOR;
+    let passcode1 = 12345;
+    let passcode2 = 0;
+    let passcode3 = 999999;
+    let passcode4 = 54321;
+
+    print(|| -> Result<uhppote::SetDoorPasscodesResponse, error::Error> {
+        futures::executor::block_on(uhppote::set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4))
     })
 }
 

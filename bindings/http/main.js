@@ -10,6 +10,7 @@ export const COMMANDS = new Map([
   ['set-listener',        { fn: commands.setListener,       args: ['controller', 'listener']}],
   ['get-door-control',    { fn: commands.getDoorControl,    args: ['controller', 'door.id']}],
   ['set-door-control',    { fn: commands.setDoorControl,    args: ['controller', 'door.id', 'door.mode', 'door.delay']}],
+  ['set-door-passcodes',  { fn: commands.setDoorPasscodes,  args: ['controller', 'door.id', 'door.mode', 'door.delay', 'door.passcode1', 'door.passcode2', 'door.passcode3', 'door.passcode4']}],
   ['get-status',          { fn: commands.getStatus,         args: ['controller']}],
   ['open-door',           { fn: commands.openDoor,          args: ['controller', 'door.id']}],
   ['get-cards',           { fn: commands.getCards,          args: ['controller']}],
@@ -71,6 +72,7 @@ export const COMMANDS = new Map([
   ['clear-tasklist',   { fn: commands.clearTaskList,   args: ['controller']}],
   ['set-pc-control',   { fn: commands.setPCControl,    args: ['controller', 'pc-control']}],
   ['set-interlock',    { fn: commands.setInterlock,    args: ['controller', 'interlock']}],
+  ['activate-keypads', { fn: commands.activateKeypads, args: ['controller', 'reader1', 'reader2', 'reader3', 'reader4']}],
 ])
 
 export function exec (cmd) {

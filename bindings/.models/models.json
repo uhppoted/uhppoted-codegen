@@ -1966,6 +1966,87 @@
             }
           ]
         }
+      },
+      {
+        "name": "set door passcodes",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          },
+          {
+            "name": "door",
+            "type": "uint8"
+          },
+          {
+            "name": "passcode 1",
+            "type": "uint32"
+          },
+          {
+            "name": "passcode 2",
+            "type": "uint32"
+          },
+          {
+            "name": "passcode 3",
+            "type": "uint32"
+          },
+          {
+            "name": "passcode 4",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "set door passcodes request",
+          "msgtype": 140,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "passcode 1",
+              "type": "uint32",
+              "offset": 12
+            },
+            {
+              "name": "passcode 2",
+              "type": "uint32",
+              "offset": 16
+            },
+            {
+              "name": "passcode 3",
+              "type": "uint32",
+              "offset": 20
+            },
+            {
+              "name": "passcode 4",
+              "type": "uint32",
+              "offset": 24
+            }
+          ]
+        },
+        "response": {
+          "name": "set door passcodes response",
+          "msgtype": 140,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        }
       }
     ],
     "requests": [
@@ -2630,6 +2711,42 @@
             "name": "reader 4",
             "type": "bool",
             "offset": 11
+          }
+        ]
+      },
+      {
+        "name": "set door passcodes request",
+        "msgtype": 140,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "passcode 1",
+            "type": "uint32",
+            "offset": 12
+          },
+          {
+            "name": "passcode 2",
+            "type": "uint32",
+            "offset": 16
+          },
+          {
+            "name": "passcode 3",
+            "type": "uint32",
+            "offset": 20
+          },
+          {
+            "name": "passcode 4",
+            "type": "uint32",
+            "offset": 24
           }
         ]
       }
@@ -3415,6 +3532,22 @@
       {
         "name": "activate keypads response",
         "msgtype": 164,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "ok",
+            "type": "bool",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "set door passcodes response",
+        "msgtype": 140,
         "fields": [
           {
             "name": "controller",

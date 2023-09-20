@@ -151,7 +151,7 @@ go-test: go
 	cd generated/go && go test -v ./uhppote
 
 go-debug: go
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 activate-keypads
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-door-passcodes
 
 go-usage: regen build
 	$(GOBIN)
@@ -170,7 +170,7 @@ rust: build regen
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 activate-keypads"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-door-passcodes"
 
 rust-usage: rust
 	$(RUSTBIN)
@@ -190,7 +190,7 @@ python: build regen
 	chmod +x generated/python/main.py
 
 python-debug: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 activate-keypads
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-door-passcodes
 
 python-usage: python
 	$(PYBIN)
@@ -209,7 +209,7 @@ zig: build regen
 	cd generated/zig && zig fmt src/* && zig build
 
 zig-debug: zig
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 activate-keypads
+	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-door-passcodes
 
 zig-usage: zig
 	$(ZIGBIN) 
@@ -228,7 +228,7 @@ php: build regen
 	cd generated/php && php-cs-fixer fix .
 
 php-debug: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 activate-keypads
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 set-door-passcodes
 
 php-usage: php
 	$(PHPBIN) 
@@ -254,7 +254,7 @@ erlang: build regen
 
 erlang-debug: erlang
 	# cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
-	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller
+	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-door-passcodes
 
 erlang-usage: erlang
 	$(ERLBIN) 

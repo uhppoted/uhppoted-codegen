@@ -29,6 +29,7 @@ var Responses = []Message{
 	SetPCControlResponse,
 	SetInterlockResponse,
 	ActivateKeypadsResponse,
+	SetDoorPasscodesResponse,
 }
 
 var GetControllerResponse = Message{
@@ -838,6 +839,23 @@ var SetInterlockResponse = Message{
 var ActivateKeypadsResponse = Message{
 	Name:    "activate keypads response",
 	MsgType: 0xa4,
+	Fields: []Field{
+		Field{
+			Name:   "controller",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "ok",
+			Type:   "bool",
+			Offset: 8,
+		},
+	},
+}
+
+var SetDoorPasscodesResponse = Message{
+	Name:    "set door passcodes response",
+	MsgType: 0x8c,
 	Fields: []Field{
 		Field{
 			Name:   "controller",

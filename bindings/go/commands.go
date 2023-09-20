@@ -63,6 +63,7 @@ var commands = []command{
     command{name: "set-pc-control", f: setPCControl},
     command{name: "set-interlock", f: setInterlock},
     command{name: "activate-keypads", f: activateKeypads},
+    command{name: "set-door-passcodes", f: setDoorPasscodes},
     command{name: "listen", f: listen},
 }
 
@@ -364,6 +365,17 @@ func activateKeypads() (any, error) {
     reader4 := true
 
     return uhppote.ActivateKeypads(controller, reader1, reader2, reader3, reader4)
+}
+
+func setDoorPasscodes() (any, error) {
+    controller := CONTROLLER
+    door := DOOR
+    passcode1 := uint32(12345)
+    passcode2 := uint32(0)
+    passcode3 := uint32(999999)
+    passcode4 := uint32(54321)
+
+    return uhppote.SetDoorPasscodes(controller, door, passcode1, passcode2, passcode3, passcode4)
 }
 
 func listen() (any, error) {

@@ -30,6 +30,7 @@ var Requests = []Message{
 	SetPCControlRequest,
 	SetInterlockRequest,
 	ActivateKeypadsRequest,
+	SetDoorPasscodesRequest,
 }
 
 var GetControllerRequest = Message{
@@ -721,6 +722,43 @@ var ActivateKeypadsRequest = Message{
 			Name:   "reader 4",
 			Type:   "bool",
 			Offset: 11,
+		},
+	},
+}
+
+var SetDoorPasscodesRequest = Message{
+	Name:    "set door passcodes request",
+	MsgType: 0x8c,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		Field{
+			Name:   "passcode 1",
+			Type:   "uint32",
+			Offset: 12,
+		},
+		Field{
+			Name:   "passcode 2",
+			Type:   "uint32",
+			Offset: 16,
+		},
+		Field{
+			Name:   "passcode 3",
+			Type:   "uint32",
+			Offset: 20,
+		},
+		Field{
+			Name:   "passcode 4",
+			Type:   "uint32",
+			Offset: 24,
 		},
 	},
 }

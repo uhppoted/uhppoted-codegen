@@ -1509,6 +1509,61 @@
           ],
           "message": "F6QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
+      },
+      {
+        "name": "set door passcodes",
+        "request": {
+          "name": "set door passcodes request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "value": "3"
+            },
+            {
+              "name": "passcode 1",
+              "type": "uint32",
+              "value": "12345"
+            },
+            {
+              "name": "passcode 2",
+              "type": "uint32",
+              "value": "0"
+            },
+            {
+              "name": "passcode 3",
+              "type": "uint32",
+              "value": "999999"
+            },
+            {
+              "name": "passcode 4",
+              "type": "uint32",
+              "value": "54321"
+            }
+          ],
+          "message": "F4wAAHg3KhgDAAAAOTAAAAAAAAA/Qg8AMdQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "set door passcodes response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "message": "F4wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
       }
     ]
   }

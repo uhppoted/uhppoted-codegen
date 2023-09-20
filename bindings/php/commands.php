@@ -374,6 +374,18 @@ function activate_keypads($u, $args)
     return uhppote\activate_keypads($u, $controller, $reader1, $reader2, $reader3, $reader4);
 }
 
+function set_door_passcodes($u, $args)
+{
+    $controller = CONTROLLER;
+    $door = DOOR;
+    $passcode1 = 12345;
+    $passcode2 = 0;
+    $passcode3 = 999999;
+    $passcode4 = 54321;
+
+    return uhppote\set_door_passcodes($u, $controller, $door, $passcode1, $passcode2, $passcode3, $passcode4);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -414,6 +426,7 @@ function commands()
         'set-pc-control' => 'set_pc_control',
         'set-interlock' => 'set_interlock',
         'activate-keypads' => 'activate_keypads',
+        'set-door-passcodes' => 'set_door_passcodes',
         'listen' => 'listen'
     ];
 }

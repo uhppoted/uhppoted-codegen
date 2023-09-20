@@ -52,6 +52,7 @@ commands() ->
         {"set-pc-control", set_pc_control},
         {"set-interlock", set_interlock},
         {"activate-keypads", activate_keypads},
+        {"set-door-passcodes", set_door_passcodes},
         {"listen", listen}
     ].
 
@@ -288,6 +289,15 @@ execute(activate_keypads, _Options, Config) ->
     Reader3 = false,
     Reader4 = true,
     uhppoted:activate_keypads(Config, Controller, Reader1, Reader2, Reader3, Reader4);
+
+execute(set_door_passcodes, _Options, Config) ->
+    Controller = ?CONTROLLER,
+    Door = ?DOOR,
+    Passcode1 = 12345,
+    Passcode2 = 0,
+    Passcode3 = 999999,
+    Passcode4 = 54321,
+    uhppoted:set_door_passcodes(Config, Controller, Door, Passcode1, Passcode2, Passcode3, Passcode4);
 
 execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of
