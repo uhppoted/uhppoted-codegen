@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
+- [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
       - [x] models
       - [x] Go
       - [x] Rust
@@ -10,7 +10,7 @@
       - [x] Erlang
       - [x] HTTP
       - [x] CHANGELOG
-      - [ ] README
+      - [x] README
 
 - [ ] --delimiters
 - [ ] clang-tidy
