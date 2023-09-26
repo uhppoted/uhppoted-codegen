@@ -308,7 +308,7 @@ The suggested structure for a language binding comprises the following component
 
 The API component provides the externally visible programming interface for the rest of the application or library. In the
 Go, Rust and Python examples the API implements a CLI application, while the Javascript example implements an API for
-[_uhppoted-tunnel::http_](https://github.com/uhppoted/uhppoted-tunnel/tree/master/examples/html).
+[_uhppoted-tunnel::http_](https://github.com/uhppoted/uhppoted-tunnel/tree/main/examples/html).
 
 Functionally, the API component is responsible for:
 

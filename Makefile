@@ -12,6 +12,7 @@ HTTP   = bindings/http
 ZIG    = bindings/zig
 PHP    = bindings/php
 ERLANG = bindings/erlang
+LUA    = bindings/lua
 
 GOBIN   = ./generated/go/bin/uhppoted
 RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
@@ -19,6 +20,7 @@ PYBIN   = python3 ./generated/python/main.py
 ZIGBIN  = ./generated/zig/zig-out/bin/uhppoted
 PHPBIN  = php ./generated/php/uhppoted.php
 ERLBIN  = ./generated/erlang/_build/default/bin/cli
+LUABIN  = lua ./generated/lua/main.lua
 
 .DEFAULT_GOAL := test
 .PHONY: update
@@ -264,6 +266,12 @@ erlang-all: erlang
 
 erlang-listen: erlang
 	$(ERLBIN) listen
+
+lua: build regen
+	$(CMD) --models $(MODELS) --templates $(LUA) --out generated/lua --clean
+
+lua-debug: lua
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controllers
 	
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean

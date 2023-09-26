@@ -1,5 +1,14 @@
 # TODO
 
+- [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
+      - [ ] bindings
+      - [ ] examples
+      - [ ] tests
+      - [ ] documentation
+      - [ ] Makefile
+      - [ ] CHANGELOG
+      - [ ] README
+
 - [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
       - [x] models
       - [x] Go
