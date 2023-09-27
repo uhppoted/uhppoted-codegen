@@ -1,6 +1,7 @@
 #!/usr/local/bin/lua
 
 local argparse = require "argparse"
+local commands = require "commands"
 
 print("uhppoted-codegen: Lua sample application")
 
@@ -32,6 +33,12 @@ local command = args["command"]
 
 if command == "all" then
     print(">> ALL")
-else
+elseif commands[command] then
     print(">> " .. command)
+    f = commands[command]
+    commands.exec(f)
+else
+    print()
+    print("   *** ERROR: invalid command: " .. command)
+    print()
 end

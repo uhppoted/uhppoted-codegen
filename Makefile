@@ -20,7 +20,7 @@ PYBIN   = python3 ./generated/python/main.py
 ZIGBIN  = ./generated/zig/zig-out/bin/uhppoted
 PHPBIN  = php ./generated/php/uhppoted.php
 ERLBIN  = ./generated/erlang/_build/default/bin/cli
-LUABIN  = lua ./generated/lua/main.lua
+LUABIN  = cd ./generated/lua && lua main.lua
 
 .DEFAULT_GOAL := test
 .PHONY: update
@@ -271,7 +271,7 @@ lua: build regen
 	$(CMD) --models $(MODELS) --templates $(LUA) --out generated/lua --clean
 
 lua-debug: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controllers
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-all-controllers
 	
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
