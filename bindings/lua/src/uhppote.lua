@@ -1,18 +1,14 @@
 local uhppote = {}
 local encode = require("src/encode")
+local udp = require("src/udp")
+
+function uhppote.set_debug(debug)
+    udp.set_debug(debug)
+end
 
 function uhppote.get_all_controllers()
     request = encode.get_controller_request(0)
-
-    print(request)
-    -- if err != nil {
-    --     return nil, err
-    -- }
-
-    -- replies, err := broadcast(request)
-    -- if err != nil {
-    --     return nil, err
-    -- }
+    replies = udp.broadcast(request)
 
     -- list := []*GetControllerResponse{}
     -- for _, reply := range replies {
@@ -25,7 +21,7 @@ function uhppote.get_all_controllers()
 
     -- return list, nil
 
-    return "*** NOT IMPLEMENTED YET ***"
+    error("*** NOT IMPLEMENTED ***")
 end
 
 return uhppote

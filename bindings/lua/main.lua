@@ -2,6 +2,7 @@
 
 local argparse = require "argparse"
 local commands = require "commands"
+local uhppote = require("src/uhppote")
 
 print("uhppoted-codegen: Lua sample application")
 
@@ -12,7 +13,6 @@ local parser = argparse()
 
 parser:flag        "--debug"
       :description "Displays sent and received UDP packets"
-      :default     "false"
 
 parser:option      "--bind"
       :description "UDP IPv4 bind address"
@@ -30,6 +30,9 @@ parser:argument "command"
 
 local args = parser:parse()
 local command = args["command"]
+local debug = args["debug"]
+
+uhppote.set_debug(debug)
 
 if command == "all" then
     print(">> ALL")

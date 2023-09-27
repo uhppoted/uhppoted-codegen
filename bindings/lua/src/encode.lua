@@ -13,7 +13,7 @@ function encode.get_controller_request(device_id)
 
     packet = pack_uint32(device_id, packet, 4)
 
-  return table.concat(packet)
+    return packet
 end
 
 function pack_uint32(v,packet,offset)
