@@ -10,7 +10,13 @@ function uhppote.get_all_controllers()
     request = encode.get_controller_request(0)
     replies = udp.broadcast(request)
 
-    -- list := []*GetControllerResponse{}
+    if not replies then
+        error("no response")
+    else
+        print(">>>> replies:" .. #replies)
+    end
+
+    list = {}
     -- for _, reply := range replies {
     --     if response, err := getControllerResponse(reply); err != nil {
     --         return nil, err
@@ -19,9 +25,7 @@ function uhppote.get_all_controllers()
     --     }
     -- }
 
-    -- return list, nil
-
-    error("*** NOT IMPLEMENTED ***")
+    return list
 end
 
 return uhppote

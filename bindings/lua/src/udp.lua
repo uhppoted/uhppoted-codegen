@@ -1,49 +1,81 @@
 local udp = {}
+local socket = require "socket"
+local READ <const> = 5 -- seconds
+local READALL <const> = 2.5 -- seconds
 
-debug = false
+local debug = false
+local bind_address = "*"
+local broadcast_address = "255.255.255.255"
+local broadcast_port = 60000
+
+function udp.set_bind_addr(address)
+    bind_address = address
+end
 
 function udp.set_debug(enabled)
     debug = enabled
 end
 
 function udp.broadcast(request) 
+    local udp = socket.udp4()
+    local ok, result = pcall(function() return broadcast(udp, request) end)
+
+    udp:close()
+
+    if not ok then 
+        error(result)
+    else
+        return result
+    end
+end
+
+function broadcast(udp, request) 
     dump(request)
     
-    -- socket, err := net.ListenUDP("udp", bindAddr)
-    -- if err != nil {
-    --     return nil, err
-    -- }
-    -- 
-    -- defer socket.Close()
-    -- 
-    -- if err := socket.SetWriteDeadline(time.Now().Add(WRITE_TIMEOUT)); err != nil {
-    --     return nil, err
-    -- }
-    -- 
-    -- if err := socket.SetReadDeadline(time.Now().Add(READ_TIMEOUT)); err != nil {
-    --     return nil, fmt.Errorf("Failed to set UDP read timeout [%v]", err)
-    -- }
-    -- 
-    -- if _, err := socket.WriteToUDP(request, destAddr); err != nil {
-    --     return nil, err
-    -- }
-    -- 
-    -- return readAll(socket)
+    if udp:setsockname(bind_address,0) ~= 1 then
+        error("error binding to address")
+    end
+    
+    udp:settimeout(READ,'b')
+    udp:settimeout(READALL,'t')
 
+    if udp:setoption('broadcast',true) ~= 1 then
+        error("error setting SO_BROADCAST")
+    end
+    
+    udp:sendto(request, broadcast_address,broadcast_port)
+
+    return read_all(udp)
+end
+
+function read_all(udp)
+    local replies = {}
+
+    while true do
+        local packet = udp:receive(1024)
+        if not packet then
+            break
+        elseif #packet == 64 then
+            dump(packet)
+            table.insert(replies, packet)
+        end
+    end
+
+    return replies
 end
 
 function dump(packet)
     if debug then
-        ix = 1
+        local ix = 1
         for i=0,3 do 
             io.write(string.format("   %08x ",i*16))
             for j=1,8 do
-                io.write(string.format(" %02x",packet[ix]))
+                io.write(string.format(" %02x",string.byte(packet,ix)))
                 ix = ix + 1
             end
             io.write(" ")
             for j=1,8 do
-                io.write(string.format(" %02x",packet[ix]))
+                io.write(string.format(" %02x",string.byte(packet,ix)))
                 ix = ix + 1
             end
             io.write("\n")
