@@ -1,5 +1,6 @@
 local uhppote = {}
 local encode = require("src/encode")
+local decode = require("src/decode")
 local udp = require("src/udp")
 
 function uhppote.set_debug(debug)
@@ -12,18 +13,21 @@ function uhppote.get_all_controllers()
 
     if not replies then
         error("no response")
-    else
-        print(">>>> replies:" .. #replies)
     end
 
     list = {}
-    -- for _, reply := range replies {
+    for k, reply in ipairs(replies) do
+        response = decode.get_controller_response(reply)
+        for k,v in pairs(response) do
+            print(k, v)
+        end
+        print()
+    end
     --     if response, err := getControllerResponse(reply); err != nil {
     --         return nil, err
     --     } else if response != nil {
     --         list = append(list, response)
     --     }
-    -- }
 
     return list
 end

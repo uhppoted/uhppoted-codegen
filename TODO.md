@@ -10,16 +10,6 @@
       - [ ] README
 
 - [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
-      - [x] models
-      - [x] Go
-      - [x] Rust
-      - [x] Python
-      - [x] Zig
-      - [x] PHP
-      - [x] Erlang
-      - [x] HTTP
-      - [x] CHANGELOG
-      - [x] README
 
 - [ ] --delimiters
 - [ ] clang-tidy
