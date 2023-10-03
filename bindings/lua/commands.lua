@@ -1,11 +1,20 @@
 local uhppote = require("src/uhppote")
 
+local CONTROLLER <const> = 405419896
+
 function get_all_controllers()
-   return uhppote.get_all_controllers()
+    return uhppote.get_all_controllers()
+end
+
+function get_controller()
+    local controller = CONTROLLER
+
+    return uhppote.get_controller(controller)
 end
 
 local commands = {
    ["get-all-controllers"] = get_all_controllers,
+   ["get-controller"] = get_controller,
 }
 
 function commands.exec(cmd)

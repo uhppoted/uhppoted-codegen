@@ -25,4 +25,16 @@ function uhppote.get_all_controllers()
     return list
 end
 
+function uhppote.get_controller(device_id)
+    local request = encode.get_controller_request(device_id)
+    local reply = udp.send(request)
+
+    if not reply then
+        error("no response")
+    end
+
+    return decode.get_controller_response(reply)
+end
+
+
 return uhppote

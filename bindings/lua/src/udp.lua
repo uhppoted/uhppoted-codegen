@@ -29,6 +29,19 @@ function udp.broadcast(request)
     end
 end
 
+function udp.send(request) 
+    local udp = socket.udp4()
+    local ok, result = pcall(function() return send(udp, request) end)
+
+    udp:close()
+
+    if not ok then 
+        error(result)
+    else
+        return result
+    end
+end
+
 function broadcast(udp, request) 
     dump(request)
     
@@ -48,6 +61,25 @@ function broadcast(udp, request)
     return read_all(udp)
 end
 
+function send(udp, request) 
+    dump(request)
+    
+    if udp:setsockname(bind_address,0) ~= 1 then
+        error("error binding to address")
+    end
+    
+    udp:settimeout(READ,'b')
+    udp:settimeout(READALL,'t')
+
+    if udp:setoption('broadcast',true) ~= 1 then
+        error("error setting SO_BROADCAST")
+    end
+    
+    udp:sendto(request, broadcast_address,broadcast_port)
+
+    return read(udp)
+end
+
 function read_all(udp)
     local replies = {}
 
@@ -62,6 +94,20 @@ function read_all(udp)
     end
 
     return replies
+end
+
+function read(udp)
+    while true do
+        local packet = udp:receive(1024)
+        if not packet then
+            break
+        elseif #packet == 64 then
+            dump(packet)
+            return packet
+        end
+    end
+
+    return nil
 end
 
 function dump(packet)
