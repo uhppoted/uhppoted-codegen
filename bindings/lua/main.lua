@@ -26,7 +26,10 @@ parser:option "--listen"
       :description "UDP IPv4 listen address"
       :default     "0.0.0.0:60001"
 
-parser:argument "command"
+parser:command "all"
+for k,v in pairs(commands.commands) do
+    parser:command(k)
+end
 
 local args = parser:parse()
 local command = args["command"]
@@ -34,14 +37,28 @@ local debug = args["debug"]
 
 uhppote.set_debug(debug)
 
-if command == "all" then
-    print(">> ALL")
-elseif commands[command] then
-    print(">> " .. command)
-    f = commands[command]
-    commands.exec(f)
-else
+if args["all"] then
     print()
-    print("   *** ERROR: invalid command: " .. command)
-    print()
+    for k,v in pairs(commands.commands) do
+        if k ~= "listen" then
+            print(">> " .. k)
+            print()
+            local f = commands.commands[k]
+            commands.exec(f)
+        end
+    end
+    return
 end
+
+for k,v in pairs(commands.commands) do
+    if args[k] then
+        print()
+        print(">> " .. k)
+        print()
+        local f = commands.commands[k]
+        commands.exec(f)
+        return
+    end
+end
+
+os.exit(1)

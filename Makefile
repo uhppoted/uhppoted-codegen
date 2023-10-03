@@ -270,8 +270,15 @@ erlang-listen: erlang
 lua: build regen
 	$(CMD) --models $(MODELS) --templates $(LUA) --out generated/lua --clean
 
+lua-help: build regen
+	$(LUABIN) -h
+
 lua-debug: lua
+	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-all-controllers
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller
+
+lua-all: lua
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 all
 	
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean

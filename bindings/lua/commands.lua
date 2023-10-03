@@ -13,8 +13,10 @@ function get_controller()
 end
 
 local commands = {
-   ["get-all-controllers"] = get_all_controllers,
-   ["get-controller"] = get_controller,
+   commands = {     
+       ["get-all-controllers"] = get_all_controllers,
+       ["get-controller"] = get_controller,
+   },
 }
 
 function commands.exec(cmd)
