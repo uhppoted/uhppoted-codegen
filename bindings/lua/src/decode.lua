@@ -1,4 +1,5 @@
 local decode = {}
+local structs = require("src/structs")
 
 function decode.get_controller_response(packet) 
     if (#packet ~= 64) then
@@ -14,16 +15,15 @@ function decode.get_controller_response(packet)
         error(string.format("invalid reply function code (%02x)", string.byte(packet,2)))
     end
 
-    response = {}
-    response.controller = unpack_uint32(packet, 4)
-    response.ip_address = unpack_IPv4(packet, 8)
-    response.subnet_mask = unpack_IPv4(packet, 12)
-    response.gateway = unpack_IPv4(packet, 16)
-    response.MAC_address = unpack_MAC(packet, 20)
-    response.version = unpack_version(packet, 26)
-    response.date = unpack_date(packet, 28)
+    local controller = unpack_uint32(packet, 4)
+    local address = unpack_IPv4(packet, 8)
+    local netmask = unpack_IPv4(packet, 12)
+    local gateway = unpack_IPv4(packet, 16)
+    local MAC = unpack_MAC(packet, 20)
+    local version = unpack_version(packet, 26)
+    local date = unpack_date(packet, 28)
 
-    return response
+    return structs.get_controller_response(controller,address,netmask,gateway,MAC,version,date)
 end
 
 function unpack_uint32(packet,offset)
