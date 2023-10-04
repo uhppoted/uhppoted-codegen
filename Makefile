@@ -271,10 +271,11 @@ lua: build regen
 	$(CMD) --models $(MODELS) --templates $(LUA) --out generated/lua --clean
 
 lua-help: build regen
-	$(LUABIN) -h
+	# $(LUABIN) -h
+	$(LUABIN) -h set-ip
 
 lua-debug: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-ip
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller --controller 405419896
 
 lua-all: lua
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 all

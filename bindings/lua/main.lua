@@ -27,8 +27,10 @@ parser:option "--listen"
       :default     "0.0.0.0:60001"
 
 parser:command "all"
+parser:command_target("command")
 for k,v in pairs(commands.commands) do
-    parser:command(k)
+    local cmd = parser:command(k)
+    cmd:option "--controller"
 end
 
 local args = parser:parse()
@@ -37,28 +39,15 @@ local debug = args["debug"]
 
 uhppote.set_debug(debug)
 
-if args["all"] then
+if command == "all" then
     print()
     for k,v in pairs(commands.commands) do
         if k ~= "listen" then
-            print(">> " .. k)
-            print()
-            local f = commands.commands[k]
-            commands.exec(f)
+            commands.exec(k, args)
         end
     end
     return
+else
+    commands.exec(command, args)
 end
 
-for k,v in pairs(commands.commands) do
-    if args[k] then
-        print()
-        print(">> " .. k)
-        print()
-        local f = commands.commands[k]
-        commands.exec(f)
-        return
-    end
-end
-
-os.exit(1)

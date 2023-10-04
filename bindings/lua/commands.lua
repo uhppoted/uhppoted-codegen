@@ -5,24 +5,25 @@ local ADDRESS <const> = "192.168.1.100"
 local NETMASK <const> = "255.255.255.0"
 local GATEWAY <const> = "192.168.1.1"
 
-function get_all_controllers()
+function get_all_controllers(args)
     return uhppote.get_all_controllers()
 end
 
-function get_controller()
-    local controller = CONTROLLER
+function get_controller(args)
+    local controller = parse(args,"controller",CONTROLLER)
 
     return uhppote.get_controller(controller)
 end
 
-function set_ip()
-    local controller = CONTROLLER
-    local address = ADDRESS
-    local netmask = NETMASK
-    local gateway = GATEWAY
+function set_ip(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local address = parse(args,"address",ADDRESS)
+    local netmask = parse(args,"netmask",NETMASK)
+    local gateway = parse(args,"gateway",GATEWAY)
 
     return uhppote.set_ip(controller,address,netmask,gateway)
 end
+
 
 local commands = {
    commands = {     
@@ -32,10 +33,20 @@ local commands = {
    },
 }
 
-function commands.exec(cmd)
-    local response = cmd()
 
-    if cmd == get_all_controllers then
+function commands.exec(cmd, args)
+    local f = commands.commands[cmd]
+    if f == nil then
+        error("unknown command:" .. cmd)
+    end
+    
+    print()
+    print(">> " .. cmd)
+    print()
+
+    local response = f(args)
+
+    if cmd == "get-all-controllers" then
         for k, v in ipairs(response) do
             pprint(v)
         end
@@ -43,6 +54,7 @@ function commands.exec(cmd)
         pprint(response)
     end
 end
+
 
 function pprint(v)
     local fields = v.fields()
@@ -61,6 +73,14 @@ function pprint(v)
     end
 
     print()
+end
+
+function parse(args,key,defval)
+    if args[key] ~= nil then
+        return args[key]
+    end
+
+    return defval
 end
 
 return commands
