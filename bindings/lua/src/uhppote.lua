@@ -36,5 +36,11 @@ function uhppote.get_controller(device_id)
     return decode.get_controller_response(reply)
 end
 
+function uhppote.set_ip(device_id, address, netmask, gateway)
+    local request = encode.set_ip_request(device_id,address,netmask,gateway)
+    local reply = udp.send(request)
+
+    return nil
+end
 
 return uhppote

@@ -1,6 +1,9 @@
 local uhppote = require("src/uhppote")
 
 local CONTROLLER <const> = 405419896
+local ADDRESS <const> = "192.168.1.100"
+local NETMASK <const> = "255.255.255.0"
+local GATEWAY <const> = "192.168.1.1"
 
 function get_all_controllers()
     return uhppote.get_all_controllers()
@@ -12,10 +15,20 @@ function get_controller()
     return uhppote.get_controller(controller)
 end
 
+function set_ip()
+    local controller = CONTROLLER
+    local address = ADDRESS
+    local netmask = NETMASK
+    local gateway = GATEWAY
+
+    return uhppote.set_ip(controller,address,netmask,gateway)
+end
+
 local commands = {
    commands = {     
        ["get-all-controllers"] = get_all_controllers,
        ["get-controller"] = get_controller,
+       ["set-ip"] = set_ip,
    },
 }
 
@@ -26,7 +39,7 @@ function commands.exec(cmd)
         for k, v in ipairs(response) do
             pprint(v)
         end
-    else
+    elseif response then
         pprint(response)
     end
 end

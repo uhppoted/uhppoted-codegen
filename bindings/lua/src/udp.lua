@@ -77,6 +77,11 @@ function send(udp, request)
     
     udp:sendto(request, broadcast_address,broadcast_port)
 
+    -- set-ip doesn't return a reply
+    if string.byte(request,2) ==  0x96 then
+        return {}, nil
+    end 
+
     return read(udp)
 end
 
