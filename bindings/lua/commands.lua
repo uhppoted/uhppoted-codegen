@@ -24,12 +24,35 @@ function set_ip(args)
     return uhppote.set_ip(controller,address,netmask,gateway)
 end
 
+function listen(args)
+    local onerror = function(err)
+                       print("   *** ERROR", err)
+                   end
+
+    local handler = function(event)
+                       pprint(event)
+                   end
+
+--     errors := make(chan error)
+--     interrupt := make(chan os.Signal, 1)
+--     signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM)
+
+--     go func() {
+--         for err := range errors {
+--             log.Fatalf("ERROR  %v", err)
+--         }
+--     }()
+
+    return uhppote.listen(handler, onerror)
+end
+
 
 local commands = {
    commands = {     
        ["get-all-controllers"] = get_all_controllers,
        ["get-controller"] = get_controller,
        ["set-ip"] = set_ip,
+       ["listen"] = listen,
    },
 }
 

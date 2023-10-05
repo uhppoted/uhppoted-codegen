@@ -2,6 +2,10 @@
 
 - [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
       - [ ] bindings
+            - [ ] listen:interrupt
+      - [ ] set-bind-address
+      - [ ] set-broadcast-address
+      - [ ] set-listen-address
       - [ ] examples
       - [ ] tests
       - [ ] documentation

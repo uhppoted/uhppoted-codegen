@@ -18,6 +18,18 @@ function structs.get_controller_response(controller, address,netmask,gateway,MAC
     return response
 end
 
+function structs.event(controller)
+    local response = {
+        controller = controller,
+
+        fields = function(self) 
+                    return { "controller" }
+                  end
+    }
+
+    return response
+end
+
 return structs
 
 

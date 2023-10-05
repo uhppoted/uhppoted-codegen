@@ -26,6 +26,25 @@ function decode.get_controller_response(packet)
     return structs.get_controller_response(controller,address,netmask,gateway,MAC,version,date)
 end
 
+function decode.event(packet) 
+    if (#packet ~= 64) then
+        error("invalid reply packet length (" .. #packet .. ")")
+    end
+
+    --  Ref. v6.62 firmware event
+    if (string.byte(packet,1) ~= 0x17 and (string.byte(packet,1) ~= 0x19 or string.byte(packet,2) ~= 0x20)) then
+        error(string.format("invalid reply start of message byte (%02x)",string.byte(packet,1)))
+    end
+
+    if string.byte(packet,2) ~= 0x20 then
+        error(string.format("invalid reply function code (%02x)", string.byte(packet,2)))
+    end
+
+    local controller = unpack_uint32(packet, 4)
+
+    return structs.event(controller)
+end
+
 function unpack_uint32(packet,offset)
     return string.unpack("<I4", packet, offset+1)
 end

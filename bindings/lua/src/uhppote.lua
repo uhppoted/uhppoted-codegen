@@ -43,4 +43,23 @@ function uhppote.set_ip(device_id, address, netmask, gateway)
     return nil
 end
 
+function uhppote.listen(handler, onerror)
+    local f = function(packet) 
+                 local ok, event = xpcall(function() return decode.event(packet) end, onerror)
+                 if ok then
+                    handler(event)
+                 end
+              end
+
+    return udp.listen(f)
+end
+
+-- func Listen(events chan Event, errors chan error, interrupt chan os.Signal) error {
+--         ... 
+--         case <-interrupt:
+--             break loop
+--         }
+--     }
+
+
 return uhppote
