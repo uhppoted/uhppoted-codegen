@@ -4,6 +4,7 @@ local CONTROLLER <const> = 405419896
 local ADDRESS <const> = "192.168.1.100"
 local NETMASK <const> = "255.255.255.0"
 local GATEWAY <const> = "192.168.1.1"
+local SIGINT = 2
 
 function get_all_controllers(args)
     return uhppote.get_all_controllers()
@@ -33,15 +34,14 @@ function listen(args)
                        pprint(event)
                    end
 
---     errors := make(chan error)
---     interrupt := make(chan os.Signal, 1)
---     signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM)
-
---     go func() {
---         for err := range errors {
---             log.Fatalf("ERROR  %v", err)
---         }
---     }()
+    -- Ref. https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
+    -- posix.signal(posix.SIGINT, function(signum)
+    --     os.exit(0)
+    -- end)
+    -- 
+    -- posix.signal(posix.SIGTERM, function(signum)
+    --     os.exit(0)
+    -- end)
 
     return uhppote.listen(handler, onerror)
 end
