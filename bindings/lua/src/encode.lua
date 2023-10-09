@@ -1,28 +1,26 @@
 local encode = {}
 
-function encode.get_controller_request(device_id) 
-    packet = make_packet()
-    packet[1] = 0x17
-    packet[2] = 0x94
+{{range .model.requests}}
+{{- template "request" . -}}
+{{end}}
 
-    packet = pack_uint32(device_id, packet, 4)
+{{define "request"}}
+function encode.{{snakeCase .name}}({{template "args" .fields}})
+    packet = make_packet()
+
+    packet[1] = 0x17
+    packet[2] = {{byte2hex .msgtype}}
+    {{range .fields -}}
+    {{if ne .type "magic"}}
+    packet = pack_{{snakeCase .type}}({{snakeCase .name}}, packet, {{.offset}})
+    {{- else}}
+    packet = pack_uint32(0x55aaaa55, packet, {{.offset}})
+    {{- end}}{{end}}
 
     return string.char(table.unpack(packet))
 end
+{{end}}
 
-function encode.set_ip_request(device_id, address, netmask,gateway) 
-    packet = make_packet()
-    packet[1] = 0x17
-    packet[2] = 0x96
-
-    packet = pack_uint32(device_id, packet, 4)
-    packet = pack_IPv4(address, packet, 8)
-    packet = pack_IPv4(netmask, packet, 12)
-    packet = pack_IPv4(gateway, packet, 16)
-    packet = pack_uint32(0x55aaaa55, packet, 20)
-
-    return string.char(table.unpack(packet))
-end
 
 function make_packet() 
     return { 

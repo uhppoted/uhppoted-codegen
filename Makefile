@@ -275,8 +275,8 @@ lua-help: build regen
 	$(LUABIN) -h set-ip
 
 lua-debug: lua
-	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller --controller 405419896
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 listen
+	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 listen
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller --controller 405419896
 
 lua-all: lua
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 all
