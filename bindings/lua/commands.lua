@@ -92,7 +92,7 @@ function pprint(v)
     local fmt = string.format("   %%-%ds  ",w)
 
     for k,f in ipairs(fields) do
-        print(string.format(fmt,f) .. v[f])
+        print(string.format(fmt,f) .. tostring(v[f]))
     end
 
     print()

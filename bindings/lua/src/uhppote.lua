@@ -54,12 +54,4 @@ function uhppote.listen(handler, onerror)
     return udp.listen(f)
 end
 
--- func Listen(events chan Event, errors chan error, interrupt chan os.Signal) error {
---         ... 
---         case <-interrupt:
---             break loop
---         }
---     }
-
-
 return uhppote

@@ -22,7 +22,7 @@ PHPBIN  = php ./generated/php/uhppoted.php
 ERLBIN  = ./generated/erlang/_build/default/bin/cli
 LUABIN  = cd ./generated/lua && lua main.lua
 
-.DEFAULT_GOAL := test
+.DEFAULT_GOAL := lua-debug
 .PHONY: update
 .PHONY: update-release
 

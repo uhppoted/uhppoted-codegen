@@ -62,34 +62,6 @@ function udp.listen(handler)
     end
 end
 
-    -- events := make(chan []byte)
-    -- e := make(chan error)
-
-    -- go func() {
-    --     buffer := make([]byte, 1024)
-
-    --     for {
-    --         if N, _, err := socket.ReadFromUDP(buffer); err != nil {
-    --             e <- err
-    --         } else if N == 64 {
-    --             m := make([]byte, 64)
-    --             copy(m, buffer[0:N])
-    --             events <- m
-    --         }
-    --     }
-    -- }()
-
-    -- for {
-    --     select {
-    --     case m := <-events:
-    --         dump(m)
-    --         ch <- m
-
-    --     case err := <-e:
-    --         return err
-    --     }
-    -- }
-
 function broadcast(sock, request) 
     dump(request)
     

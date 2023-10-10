@@ -3,7 +3,8 @@
 - [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
       - [ ] generate bindings
             - [x] encode
-            - [ ] decode
+            - [x] decode
+            - [x] structs
             - [ ] uhppote
       - [ ] listen:interrupt
             - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
