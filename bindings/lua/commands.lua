@@ -1,4 +1,5 @@
 local uhppote = require("src/uhppote")
+local os = require("os")
 
 local CONTROLLER <const> = 405419896
 local ADDRESS <const> = "192.168.1.100"
@@ -23,6 +24,26 @@ function set_ip(args)
     local gateway = parse(args,"gateway",GATEWAY)
 
     return uhppote.set_ip(controller,address,netmask,gateway)
+end
+
+function get_status(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.get_status(controller)
+end
+
+function get_time(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.get_time(controller)
+end
+
+function set_time(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local datetime = parse(args,"time",os.date("%Y-%m-%d %H:%M:%S"))
+
+print(">>>>>>>>>>>>", datetime)
+    return uhppote.set_time(controller,datetime)
 end
 
 function listen(args)
@@ -52,6 +73,9 @@ local commands = {
        ["get-all-controllers"] = get_all_controllers,
        ["get-controller"] = get_controller,
        ["set-ip"] = set_ip,
+       ["get-status"] = get_status,
+       ["get-time"] = get_time,
+       ["set-time"] = set_time,
        ["listen"] = listen,
    },
 }

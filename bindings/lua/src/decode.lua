@@ -76,6 +76,22 @@ function unpack_datetime(packet, offset)
     return string.format("%04u-%02u-%02u %02u:%02u:%02u", year,month,day,hour,minute,second)
 end
 
+function unpack_optional_datetime(packet, offset)
+    local bcd = bcd2string(packet:sub(offset+1,offset+7))
+    local year = tonumber(bcd:sub(1, 4))
+    local month = tonumber(bcd:sub(5, 6))
+    local day = tonumber(bcd:sub(7, 8))
+    local hour = tonumber(bcd:sub(9,10))
+    local minute = tonumber(bcd:sub(11,12))
+    local second = tonumber(bcd:sub(13,14))
+
+    if year > 0 and month > 0 and day > 0 and hour >= 0 and hour < 24 and minute >= 0 and minute < 60 and second >= 0 and second < 60 then
+        return string.format("%04u-%02u-%02u %02u:%02u:%02u", year,month,day,hour,minute,second)
+    else
+        return ""
+    end
+end
+
 function unpack_date(packet,offset)
     local bcd = bcd2string(packet:sub(offset+1,offset+4))
     local year = tonumber(bcd:sub(1, 4))

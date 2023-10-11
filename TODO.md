@@ -18,9 +18,9 @@
              - [x] get-devices
              - [x] get-device
              - [x] set-ip
-             - [ ] get-status
-             - [ ] get-status-no-event
-             - [ ] get-time
+             - [x] get-status
+             - [x] get-status-no-event
+             - [x] get-time
              - [ ] set-time
              - [ ] get-listener
              - [ ] set-listener
