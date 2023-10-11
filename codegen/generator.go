@@ -87,7 +87,7 @@ func (g Generator) Generate() error {
 		} else if strings.HasPrefix(path, ".templates") {
 			return nil
 		} else {
-			for k, _ := range ignore {
+			for k := range ignore {
 				if k == path {
 					return nil
 				}
