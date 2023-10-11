@@ -1,0 +1,40 @@
+name: lua
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v3
+      with:
+        go-version: ^1.20
+      id: go
+
+    - name: Install staticcheck
+      run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+    - name: Install govulncheck
+      run: go install golang.org/x/vuln/cmd/govulncheck@latest
+
+    - name: Set up Lua 5.4.x
+      uses: leafo/gh-actions-lua@v10
+      with:
+        luaVersion: "5.4"
+
+    - name: Install Lua packages
+      uses: leafo/gh-actions-luarocks@v4
+      run: |
+           luarocks install argparse
+           luarocks install luasocket
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v3
+
+    - name: Build
+      run: make lua
