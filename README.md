@@ -6,6 +6,7 @@
 ![Javascript](https://github.com/uhppoted/uhppoted-codegen/workflows/javascript/badge.svg)
 ![PHP](https://github.com/uhppoted/uhppoted-codegen/workflows/php/badge.svg)
 ![Erlang](https://github.com/uhppoted/uhppoted-codegen/workflows/erlang/badge.svg)
+![Lua](https://github.com/uhppoted/uhppoted-codegen/workflows/lua/badge.svg)
 
 # uhppoted-codegen
 

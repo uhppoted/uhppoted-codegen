@@ -47,7 +47,7 @@
              - [ ] activate-keypads
              - [ ] set-door-passcodes
              - [x] listen
-      - [ ] github workflow + build status
+      - [x] github workflow + build status
       - [ ] documentation
       - [ ] Makefile
       - [ ] CHANGELOG
