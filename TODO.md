@@ -1,6 +1,8 @@
 # TODO
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
+      - [ ] README
+      - [ ] CHANGELOG
 
 - [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
       - [x] generate bindings
@@ -8,11 +10,6 @@
             - [x] decode
             - [x] structs
             - [x] uhppote
-      - [ ] listen:interrupt
-            - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
-            - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc
-            - https://www.lua.org/pil/9.4.html
-            - (?) non-blocking socket + select
       - [ ] set-bind-address
       - [ ] set-broadcast-address
       - [ ] set-listen-address
@@ -50,11 +47,17 @@
              - [ ] activate-keypads
              - [ ] set-door-passcodes
              - [x] listen
+      - [ ] github workflow + build status
       - [ ] documentation
       - [ ] Makefile
       - [ ] CHANGELOG
       - [ ] README
-      - [ ] github workflow + build status
+      - [ ] listen:interrupt
+            - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
+            - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc
+            - https://www.lua.org/pil/9.4.html
+            - (?) non-blocking socket + select
+
 
 - [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
 

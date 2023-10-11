@@ -27,8 +27,10 @@ jobs:
       with:
         luaVersion: "5.4"
 
+    - name: Set up luarocks 3.9.x
+      uses: leafo/gh-actions-luarocks
+
     - name: Install Lua packages
-      uses: leafo/gh-actions-luarocks@v4
       run: |
            luarocks install argparse
            luarocks install luasocket

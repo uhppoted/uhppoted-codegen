@@ -51,7 +51,7 @@ Installation is straightforward - download the archive and extract it to a direc
 ### Building from source
 
 Required tools:
-- [Go 1.20+](https://go.dev)
+- [Go 1.21+](https://go.dev)
 - make (optional but recommended)
 
 To build using the included Makefile:
