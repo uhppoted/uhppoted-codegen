@@ -19,16 +19,13 @@ jobs:
     - name: Install staticcheck
       run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
-    - name: Install govulncheck
-      run: go install golang.org/x/vuln/cmd/govulncheck@latest
-
     - name: Set up Lua 5.4.x
       uses: leafo/gh-actions-lua@v10
       with:
         luaVersion: "5.4"
 
-    # - name: Set up luarocks 3.9.x
-    #   uses: leafo/gh-actions-luarocks
+    - name: Set up luarocks 3.9.x
+      uses: leafo/gh-actions-luarocks@v4
 
     # - name: Install Lua packages
     #   run: |

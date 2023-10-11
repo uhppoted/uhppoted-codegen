@@ -23,9 +23,6 @@ jobs:
     - name: Install staticcheck
       run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
-    - name: Install govulncheck
-      run: go install golang.org/x/vuln/cmd/govulncheck@latest
-
     - name: Install zig
       uses: goto-bus-stop/setup-zig@v1
       with:

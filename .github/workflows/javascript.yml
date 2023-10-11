@@ -23,9 +23,6 @@ jobs:
     - name: Install staticcheck
       run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
-    - name: Install govulncheck
-      run: go install golang.org/x/vuln/cmd/govulncheck@latest
-
     - name: Set up NodeJS 16.13.2
       uses: actions/setup-node@v3
       with:
