@@ -42,7 +42,6 @@ function set_time(args)
     local controller = parse(args,"controller",CONTROLLER)
     local datetime = parse(args,"time",os.date("%Y-%m-%d %H:%M:%S"))
 
-print(">>>>>>>>>>>>", datetime)
     return uhppote.set_time(controller,datetime)
 end
 
@@ -70,35 +69,41 @@ end
 
 local commands = {
    commands = {     
-       ["get-all-controllers"] = get_all_controllers,
-       ["get-controller"] = get_controller,
-       ["set-ip"] = set_ip,
-       ["get-status"] = get_status,
-       ["get-time"] = get_time,
-       ["set-time"] = set_time,
-       ["listen"] = listen,
+       { ["command"] = "get-all-controllers", ["f"] = get_all_controllers, options = {} },
+       { ["command"] = "get-controller",      ["f"] = get_controller,      options = { "controller" } },
+       { ["command"] = "set-ip",              ["f"] = set_ip,              options = { "controller" } },
+       { ["command"] = "get-status",          ["f"] = get_status,          options = { "controller" } },
+       { ["command"] = "get-time",            ["f"] = get_time,            options = { "controller" } },
+       { ["command"] = "set-time",            ["f"] = set_time,            options = { "controller","time" } },
+       { ["command"] = "listen",              ["f"] = listen,              options = { "controller" } },
    },
 }
 
 
 function commands.exec(cmd, args)
-    local f = commands.commands[cmd]
-    if f == nil then
-        error("unknown command:" .. cmd)
-    end
-    
-    print()
-    print(">> " .. cmd)
-    print()
-
-    local response = f(args)
-
-    if cmd == "get-all-controllers" then
-        for k, v in ipairs(response) do
-            pprint(v)
+    for _,c in ipairs(commands.commands) do
+        if c.command == cmd then
+           exec(c,args)
+           return
         end
+    end
+
+    error("unknown command:" .. cmd)
+end
+
+function exec(cmd, args)
+    print()
+    print(">> " .. cmd.command)
+    print()
+
+    local response = cmd.f(args)
+
+    if cmd.command == "get-all-controllers" then
+       for _, v in ipairs(response) do
+           pprint(v)
+       end
     elseif response then
-        pprint(response)
+       pprint(response)
     end
 end
 

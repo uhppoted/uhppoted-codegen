@@ -28,9 +28,11 @@ parser:option "--listen"
 
 parser:command "all"
 parser:command_target("command")
-for k,v in pairs(commands.commands) do
-    local cmd = parser:command(k)
-    cmd:option "--controller"
+for _,v in ipairs(commands.commands) do
+    local cmd = parser:command(v.command)
+    for _,option in ipairs(v.options) do
+        cmd:option(string.format("--%s",option))
+    end
 end
 
 local args = parser:parse()
@@ -41,9 +43,9 @@ uhppote.set_debug(debug)
 
 if command == "all" then
     print()
-    for k,v in pairs(commands.commands) do
-        if k ~= "listen" then
-            commands.exec(k, args)
+    for _,v in ipairs(commands.commands) do
+        if v.command ~= "listen" then
+            commands.exec(v.command, args)
         end
     end
     return
