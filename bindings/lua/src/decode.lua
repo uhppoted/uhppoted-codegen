@@ -36,6 +36,10 @@ function unpack_uint8(packet,offset)
     return string.unpack("B", packet, offset+1)
 end
 
+function unpack_uint16(packet,offset)
+    return string.unpack("<I2", packet, offset+1)
+end
+
 function unpack_uint32(packet,offset)
     return string.unpack("<I4", packet, offset+1)
 end

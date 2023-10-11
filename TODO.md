@@ -18,12 +18,12 @@
              - [x] get-devices
              - [x] get-device
              - [x] set-ip
+             - [x] get-time
+             - [x] set-time
              - [x] get-status
              - [x] get-status-no-event
-             - [x] get-time
-             - [ ] set-time
-             - [ ] get-listener
-             - [ ] set-listener
+             - [x] get-listener
+             - [x] set-listener
              - [ ] get-door-control
              - [ ] set-door-control
              - [ ] open-door

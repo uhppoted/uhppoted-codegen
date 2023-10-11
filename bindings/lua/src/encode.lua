@@ -35,6 +35,16 @@ function make_packet()
     }
 end
 
+function pack_uint16(v,packet,offset)
+    bytes = string.pack("<I2", v)
+    
+    packet[offset+1] = string.byte(bytes,1)
+    packet[offset+2] = string.byte(bytes,2)
+   
+    return packet
+end
+
+
 function pack_uint32(v,packet,offset)
     bytes = string.pack("<I4", v)
     

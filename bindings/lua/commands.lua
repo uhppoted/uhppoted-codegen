@@ -5,6 +5,7 @@ local CONTROLLER <const> = 405419896
 local ADDRESS <const> = "192.168.1.100"
 local NETMASK <const> = "255.255.255.0"
 local GATEWAY <const> = "192.168.1.1"
+local LISTENER <const> = { ["address"] = "192.168.1.100", ["port"] = 60001 }
 local SIGINT = 2
 
 function get_all_controllers(args)
@@ -26,12 +27,6 @@ function set_ip(args)
     return uhppote.set_ip(controller,address,netmask,gateway)
 end
 
-function get_status(args)
-    local controller = parse(args,"controller",CONTROLLER)
-
-    return uhppote.get_status(controller)
-end
-
 function get_time(args)
     local controller = parse(args,"controller",CONTROLLER)
 
@@ -43,6 +38,27 @@ function set_time(args)
     local datetime = parse(args,"time",os.date("%Y-%m-%d %H:%M:%S"))
 
     return uhppote.set_time(controller,datetime)
+end
+
+function get_listener(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.get_listener(controller)
+end
+
+function set_listener(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local address = parse(args,"address",LISTENER.address)
+    local port = tonumber(parse(args,"port",LISTENER.port))
+
+    return uhppote.set_listener(controller,address,port)
+end
+
+
+function get_status(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.get_status(controller)
 end
 
 function listen(args)
@@ -71,10 +87,12 @@ local commands = {
    commands = {     
        { ["command"] = "get-all-controllers", ["f"] = get_all_controllers, options = {} },
        { ["command"] = "get-controller",      ["f"] = get_controller,      options = { "controller" } },
-       { ["command"] = "set-ip",              ["f"] = set_ip,              options = { "controller" } },
-       { ["command"] = "get-status",          ["f"] = get_status,          options = { "controller" } },
+       { ["command"] = "set-ip",              ["f"] = set_ip,              options = { "controller","address","netmask","gateway" } },
        { ["command"] = "get-time",            ["f"] = get_time,            options = { "controller" } },
        { ["command"] = "set-time",            ["f"] = set_time,            options = { "controller","time" } },
+       { ["command"] = "get-listener",        ["f"] = get_listener,        options = { "controller" } },
+       { ["command"] = "set-listener",        ["f"] = set_listener,        options = { "controller","address","port" } },
+       { ["command"] = "get-status",          ["f"] = get_status,          options = { "controller" } },
        { ["command"] = "listen",              ["f"] = listen,              options = { "controller" } },
    },
 }
