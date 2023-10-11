@@ -86,8 +86,16 @@ func (g Generator) Generate() error {
 			return nil
 		} else if strings.HasPrefix(path, ".templates") {
 			return nil
-		} else if _, ok := ignore[path]; ok {
-			return nil
+		} else {
+			for k, _ := range ignore {
+				if k == path {
+					return nil
+				}
+
+				if matched, err := filepath.Match(k, path); err == nil && matched {
+					return nil
+				}
+			}
 		}
 
 		return g.generate(fsys, path, data, funcs)

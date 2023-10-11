@@ -1,5 +1,7 @@
 # TODO
 
+- [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
+
 - [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
       - [ ] generate bindings
             - [x] encode
