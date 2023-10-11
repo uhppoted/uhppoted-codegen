@@ -15,9 +15,9 @@
       - [ ] set-broadcast-address
       - [ ] set-listen-address
       - [ ] commands
-             - [ ] get-devices
-             - [ ] get-device
-             - [ ] set-address
+             - [x] get-devices
+             - [x] get-device
+             - [x] set-ip
              - [ ] get-status
              - [ ] get-status-no-event
              - [ ] get-time
@@ -47,6 +47,7 @@
              - [ ] set-interlock
              - [ ] activate-keypads
              - [ ] set-door-passcodes
+             - [x] listen
       - [ ] documentation
       - [ ] Makefile
       - [ ] CHANGELOG

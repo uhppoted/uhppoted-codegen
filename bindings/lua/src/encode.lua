@@ -46,7 +46,7 @@ function pack_uint32(v,packet,offset)
     return packet
 end
 
-function pack_IPv4(v,packet,offset)
+function pack_ipv4(v,packet,offset)
     local a,b,c,d = string.match(v,"^([0-9]+)%.([0-9]+)%.([0-9]+)%.([0-9]+)$")
 
     a = tonumber(a)

@@ -25,24 +25,6 @@ function uhppote.get_all_controllers()
     return list
 end
 
-function uhppote.get_controller(device_id)
-    local request = encode.get_controller_request(device_id)
-    local reply = udp.send(request)
-
-    if not reply then
-        error("no response")
-    end
-
-    return decode.get_controller_response(reply)
-end
-
-function uhppote.set_ip(device_id, address, netmask, gateway)
-    local request = encode.set_ip_request(device_id,address,netmask,gateway)
-    local reply = udp.send(request)
-
-    return nil
-end
-
 function uhppote.listen(handler, onerror)
     local f = function(packet) 
                  local ok, event = xpcall(function() return decode.event(packet) end, onerror)
@@ -53,5 +35,25 @@ function uhppote.listen(handler, onerror)
 
     return udp.listen(f)
 end
+
+{{range .model.functions}}
+{{- template "function" . -}}
+{{end}}
+
+{{define "function"}}
+function uhppote.{{snakeCase .name}}({{template "args" .args}})
+    local request = encode.{{snakeCase .request.name}}({{template "params" .args}})
+    local reply = udp.send(request)
+    {{if .response}}
+    if not reply then
+        error("no response")
+    end
+    
+    return decode.{{snakeCase .response.name}}(reply)
+    {{- else}}
+    return nil
+    {{- end}}
+end
+{{end}}
 
 return uhppote
