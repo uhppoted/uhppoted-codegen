@@ -94,6 +94,28 @@ function pack_datetime(v,packet,offset)
     return packet
 end
 
+function pack_date(v,packet,offset)
+    local year,month,day,hour,minute,second = string.match(v,"^(%d%d%d%d)-(%d%d)-(%d%d)$")
+    local s = string.format("%04d%02d%02d",year,month,day)
+    local bytes = string2bcd(s)
+
+    for i=1,4,1 do
+        packet[offset+i] = bytes[i]
+    end
+
+    return packet
+end
+
+function pack_pin(v,packet,offset)
+    bytes = string.pack("<I3", v)
+    
+    packet[offset+1] = string.byte(bytes,1)
+    packet[offset+2] = string.byte(bytes,2)
+    packet[offset+3] = string.byte(bytes,3)
+   
+    return packet
+end
+
 function string2bcd(s)
     local bytes = {}
     for xx in string.gmatch(s, "(%d%d)") do

@@ -9,6 +9,12 @@ local LISTENER <const> = { ["address"] = "192.168.1.100", ["port"] = 60001 }
 local DOOR = 1
 local DOOR_MODE = "controlled"
 local DOOR_DELAY = 5
+local CARD = 10058400
+local CARD_INDEX = 1
+local CARD_START_DATE = "2023-01-01"
+local CARD_END_DATE = "2023-12-31"
+local CARD_DOORS = "1,2,3,4"
+local CARD_PIN = 0
 
 function get_all_controllers(args)
     return uhppote.get_all_controllers()
@@ -93,6 +99,68 @@ function open_door(args)
     return uhppote.open_door(controller,door)
 end
 
+function get_cards(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.get_cards(controller)
+end
+
+function get_card(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local card = parse(args,"card",CARD)
+
+    return uhppote.get_card(controller,card)
+end
+
+function get_card_by_index(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local index = parse(args,"index",CARD_INDEX)
+
+    return uhppote.get_card_by_index(controller,index)
+end
+
+function put_card(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local card = parse(args,"card",CARD)
+    local start_date = parse(args,"start-date",CARD_START_DATE)
+    local end_date = parse(args,"end-date",CARD_END_DATE)
+    local doors = parse(args,"doors",CARD_DOORS)
+    local PIN = parse(args,"PIN",CARD_PIN)
+
+    local door1 = 0
+    local door2 = 0
+    local door3 = 0
+    local door4 = 0
+
+    for v in string.gmatch(doors, "(%d+)") do
+        local door = tonumber(v)
+        if door == 1 then
+           door1 = 1
+        elseif door == 2 then
+           door2 = 1
+        elseif door == 3 then
+           door3 = 1
+        elseif door == 4 then
+           door4 = 1
+        end
+    end
+
+    return uhppote.put_card(controller,card,start_date, end_date, door1,door2, door3, door4, PIN)
+end
+
+function delete_card(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local card = parse(args,"card",CARD)
+
+    return uhppote.delete_card(controller,card)
+end
+
+function delete_all_cards(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.delete_all_cards(controller)
+end
+
 function listen(args)
     local onerror = function(err)
                        print("   *** ERROR", err)
@@ -128,6 +196,12 @@ local commands = {
        { ["command"] = "get-door-control",    ["f"] = get_door_control,    options = { "controller","door" } },
        { ["command"] = "set-door-control",    ["f"] = set_door_control,    options = { "controller","door","mode","delay" } },
        { ["command"] = "open-door",           ["f"] = open_door,           options = { "controller","door" } },
+       { ["command"] = "get-cards",           ["f"] = get_cards,           options = { "controller" } },
+       { ["command"] = "get-card",            ["f"] = get_card,            options = { "controller","card" } },
+       { ["command"] = "get-card-by-index",   ["f"] = get_card_by_index,   options = { "controller","index" } },
+       { ["command"] = "put-card",            ["f"] = put_card,            options = { "controller","card","start-date","end-date","doors","PIN" } },
+       { ["command"] = "delete-card",         ["f"] = delete_card,         options = { "controller","card" } },
+       { ["command"] = "delete-all-cards",    ["f"] = delete_all_cards,    options = { "controller" } },
        { ["command"] = "listen",              ["f"] = listen,              options = { "controller" } },
    },
 }

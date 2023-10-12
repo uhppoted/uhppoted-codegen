@@ -115,6 +115,19 @@ function unpack_shortdate(packet, offset)
     return string.format("%04u-%02u-%02u", century+year,month,day)
 end
 
+function unpack_optional_date(packet, offset)
+    local bcd = bcd2string(packet:sub(offset+1,offset+4))
+    local year = tonumber(bcd:sub(1, 4))
+    local month = tonumber(bcd:sub(5, 6))
+    local day = tonumber(bcd:sub(7, 8))
+
+    if year > 0 and month > 0 and day > 0 then
+        return string.format("%04u-%02u-%02u", year,month,day)
+    else
+        return ""
+    end
+end
+
 function unpack_time(packet, offset)
     local bcd = bcd2string(packet:sub(offset+1,offset+3))
     local hour = tonumber(bcd:sub(1,2))
@@ -122,6 +135,10 @@ function unpack_time(packet, offset)
     local second = tonumber(bcd:sub(5,6))
 
     return string.format("%02u:%02u:%02u", hour,minute,second)
+end
+
+function unpack_pin(packet, offset)
+    return string.unpack("<I3", packet, offset+1)
 end
 
 function bcd2string(bytes)
