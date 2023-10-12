@@ -95,7 +95,15 @@ Defaults to `generate` if the command is not provided.
 
 ### `generate`
 
-Generates a native UHPPOTE interface from the languages templates.
+Generates a native UHPPOTE interface from the languages templates. 
+
+Recursively processes all files in the _--templates_ folder except for those files that
+match the glob patterns in the (optional) _.ignore_ file in the base directory. A glob
+pattern may be an exact file path or a shell glob string, e.g.:
+```
+.DS_Store
+**/*.swp
+```
 
 Command line:
 

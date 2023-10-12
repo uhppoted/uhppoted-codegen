@@ -1,9 +1,9 @@
 # TODO
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
-      - [ ] README
-      - [ ] CHANGELOG
-      - [ ] globbing
+      - [x] README
+      - [x] CHANGELOG
+      - [x] globbing
 ```
       ERROR: error parsing src/.encode.lua.swp (template: codegen:12: unexpected {{end}})
 ```

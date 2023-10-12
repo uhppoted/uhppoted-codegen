@@ -25,3 +25,21 @@ func TestConstantFunc(t *testing.T) {
 		}
 	}
 }
+
+func TestIgnoreGlob(t *testing.T) {
+	tests := []struct {
+		pattern  string
+		path     string
+		expected bool
+	}{
+		{".DS_Store", "src/commands.lua", false},
+		{".DS_Store", ".DS_Store", true},
+		{"**/*.swp", "src/.encode.lua.swp", true},
+	}
+
+	for _, v := range tests {
+		if i := ignore(v.pattern, v.path); i != v.expected {
+			t.Errorf("%q %q: incorrect 'ignore' result - expected:%v, got:%v", v.pattern, v.path, v.expected, i)
+		}
+	}
+}

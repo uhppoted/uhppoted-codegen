@@ -59,7 +59,7 @@ func New(models string, templates string, out string, debug bool) Generator {
 }
 
 func (g Generator) Generate() error {
-	ignore, err := g.ignoreable()
+	ignorable, err := g.ignoreable()
 	if err != nil {
 		return err
 	}
@@ -87,7 +87,7 @@ func (g Generator) Generate() error {
 		} else if strings.HasPrefix(path, ".templates") {
 			return nil
 		} else {
-			for k := range ignore {
+			for k := range ignorable {
 				if k == path {
 					return nil
 				}
@@ -212,6 +212,18 @@ func (g Generator) generate(fsys fs.FS, src string, data any, functions template
 	}
 
 	return nil
+}
+
+func ignore(pattern string, path string) bool {
+	if path == pattern {
+		return true
+	}
+
+	if matched, err := filepath.Match(pattern, path); err == nil && matched {
+		return true
+	}
+
+	return false
 }
 
 func lowercase(s string) string {
