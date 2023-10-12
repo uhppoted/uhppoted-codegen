@@ -21,7 +21,6 @@ function encode.{{snakeCase .name}}({{template "args" .fields}})
 end
 {{end}}
 
-
 function make_packet() 
     return { 
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -35,6 +34,14 @@ function make_packet()
     }
 end
 
+function pack_uint8(v,packet,offset)
+    bytes = string.pack("B", v)
+    
+    packet[offset+1] = string.byte(bytes,1)
+   
+    return packet
+end
+
 function pack_uint16(v,packet,offset)
     bytes = string.pack("<I2", v)
     
@@ -43,7 +50,6 @@ function pack_uint16(v,packet,offset)
    
     return packet
 end
-
 
 function pack_uint32(v,packet,offset)
     bytes = string.pack("<I4", v)

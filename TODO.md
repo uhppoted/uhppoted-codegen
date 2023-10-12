@@ -3,13 +3,13 @@
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] README
       - [ ] CHANGELOG
+      - [ ] globbing
+```
+      ERROR: error parsing src/.encode.lua.swp (template: codegen:12: unexpected {{end}})
+```
 
 - [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
       - [x] generate bindings
-            - [x] encode
-            - [x] decode
-            - [x] structs
-            - [x] uhppote
       - [ ] set-bind-address
       - [ ] set-broadcast-address
       - [ ] set-listen-address
@@ -23,9 +23,9 @@
              - [x] get-status-no-event
              - [x] get-listener
              - [x] set-listener
-             - [ ] get-door-control
-             - [ ] set-door-control
-             - [ ] open-door
+             - [x] get-door-control
+             - [x] set-door-control
+             - [x] open-door
              - [ ] get-cards
              - [ ] get-card
              - [ ] get-card-by-index

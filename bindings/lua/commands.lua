@@ -6,7 +6,9 @@ local ADDRESS <const> = "192.168.1.100"
 local NETMASK <const> = "255.255.255.0"
 local GATEWAY <const> = "192.168.1.1"
 local LISTENER <const> = { ["address"] = "192.168.1.100", ["port"] = 60001 }
-local SIGINT = 2
+local DOOR = 1
+local DOOR_MODE = "controlled"
+local DOOR_DELAY = 5
 
 function get_all_controllers(args)
     return uhppote.get_all_controllers()
@@ -40,6 +42,12 @@ function set_time(args)
     return uhppote.set_time(controller,datetime)
 end
 
+function get_status(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.get_status(controller)
+end
+
 function get_listener(args)
     local controller = parse(args,"controller",CONTROLLER)
 
@@ -49,16 +57,40 @@ end
 function set_listener(args)
     local controller = parse(args,"controller",CONTROLLER)
     local address = parse(args,"address",LISTENER.address)
-    local port = tonumber(parse(args,"port",LISTENER.port))
+    local port = parse(args,"port",LISTENER.port)
 
     return uhppote.set_listener(controller,address,port)
 end
 
-
-function get_status(args)
+function get_door_control(args)
     local controller = parse(args,"controller",CONTROLLER)
+    local door = parse(args,"door",DOOR)
 
-    return uhppote.get_status(controller)
+    return uhppote.get_door_control(controller,door)
+end
+
+function set_door_control(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local door = parse(args,"door",DOOR)
+    local mode = parse(args,"mode",DOOR_MODE)
+    local delay = parse(args,"delay",DOOR_DELAY)
+
+    if mode == "normally-open" then
+        mode = 1
+    elseif mode == "normally-closed" then
+        mode = 2
+    elseif mode == "controlled" then
+        mode = 3
+    end
+
+    return uhppote.set_door_control(controller,door,mode,delay)
+end
+
+function open_door(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local door = parse(args,"door",DOOR)
+
+    return uhppote.open_door(controller,door)
 end
 
 function listen(args)
@@ -93,6 +125,9 @@ local commands = {
        { ["command"] = "get-listener",        ["f"] = get_listener,        options = { "controller" } },
        { ["command"] = "set-listener",        ["f"] = set_listener,        options = { "controller","address","port" } },
        { ["command"] = "get-status",          ["f"] = get_status,          options = { "controller" } },
+       { ["command"] = "get-door-control",    ["f"] = get_door_control,    options = { "controller","door" } },
+       { ["command"] = "set-door-control",    ["f"] = set_door_control,    options = { "controller","door","mode","delay" } },
+       { ["command"] = "open-door",           ["f"] = open_door,           options = { "controller","door" } },
        { ["command"] = "listen",              ["f"] = listen,              options = { "controller" } },
    },
 }
