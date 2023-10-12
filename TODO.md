@@ -49,9 +49,9 @@
              - [x] listen
       - [x] github workflow + build status
       - [ ] documentation
-      - [ ] Makefile
-      - [ ] CHANGELOG
-      - [ ] README
+      - [x] dist
+      - [x] CHANGELOG
+      - [x] README
       - [ ] listen:interrupt
             - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
             - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc

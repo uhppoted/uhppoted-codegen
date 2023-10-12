@@ -17,6 +17,7 @@ Code generation tool for creating native UHPPOTE controller interfaces in multip
 - Zig
 - PHP
 - Erlang
+- Lua
 - HTML + Javascript
 
 ## Raison d'être

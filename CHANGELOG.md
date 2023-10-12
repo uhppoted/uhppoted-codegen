@@ -5,6 +5,7 @@
 ### Added
 1. `set-door-passcodes` function.
 2. _.ignore_ file for files to be skipped for code-generation.
+3. _Lua_ bindings.
 
 
 ## [0.8.6](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.6) - 2023-08-30
