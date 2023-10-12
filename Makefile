@@ -97,6 +97,7 @@ release: update-release build regen build-all
 	tar --directory=generated --exclude=".DS_Store" --exclude="zig/zig-cache" --exclude="zig/zig-out" -cvzf dist/$(DIST)-zig.tar.gz      zig
 	tar --directory=generated --exclude=".DS_Store" --exclude="php/.php-cs-fixer.cache"               -cvzf dist/$(DIST)-php.tar.gz      php
 	tar --directory=generated --exclude=".DS_Store" --exclude="erlang/*.beam"                         -cvzf dist/$(DIST)-erlang.tar.gz   erlang
+	tar --directory=generated --exclude=".DS_Store"                                                   -cvzf dist/$(DIST)-lua.tar.gz      lua
 
 publish: release
 	echo "Releasing version $(VERSION)"
@@ -109,18 +110,10 @@ publish: release
 	"./dist/uhppoted-codegen_$(VERSION)-zig.tar.gz" \
 	"./dist/uhppoted-codegen_$(VERSION)-php.tar.gz" \
 	"./dist/uhppoted-codegen_$(VERSION)-erlang.tar.gz" \
+	"./dist/uhppoted-codegen_$(VERSION)-lua.tar.gz" \
 	--draft --prerelease --title "$(VERSION)-beta" --notes-file release-notes.md
 
 debug: erlang
-	# cd generated/erlang && \
-	# erl -noshell -run \
-	#               main uhppoted --debug \
-	#                             --bind 192.168.1.100:0 \
-	#                             --broadcast 192.168.1.255:60000 \
-	#                             --listen 0.0.0.0:60001 \
-	#                             get-controller yadda yadda2 yadda3\
-	#                             -s init stop
-
 	cd generated/erlang && ./_build/default/bin/cli --debug \
 	                                                --bind 192.168.1.100:0 \
 	                                                --broadcast 192.168.1.255:60000 \
@@ -255,6 +248,15 @@ erlang: build regen
 	               rebar3 escriptize
 
 erlang-debug: erlang
+	# cd generated/erlang && \
+	# erl -noshell -run \
+	#               main uhppoted --debug \
+	#                             --bind 192.168.1.100:0 \
+	#                             --broadcast 192.168.1.255:60000 \
+	#                             --listen 0.0.0.0:60001 \
+	#                             get-controller yadda yadda2 yadda3\
+	#                             -s init stop
+	# 
 	# cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
 	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-door-passcodes
 

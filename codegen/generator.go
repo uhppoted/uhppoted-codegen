@@ -148,7 +148,9 @@ func (g Generator) initialise() (map[string]any, error) {
 
 func (g Generator) ignoreable() (map[string]struct{}, error) {
 	file := filepath.Join(g.templates, ".ignore")
-	ignore := map[string]struct{}{}
+	ignore := map[string]struct{}{
+		".ignore": struct{}{},
+	}
 
 	if f, err := os.Open(file); err != nil && os.IsNotExist(err) {
 		return ignore, nil
