@@ -48,7 +48,7 @@
              - [ ] set-door-passcodes
              - [x] listen
       - [x] github workflow + build status
-      - [ ] stylua
+      - [x] stylua
       - [ ] documentation
       - [x] dist
       - [x] CHANGELOG

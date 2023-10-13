@@ -20,7 +20,7 @@ function encode.{{snakeCase .name}}({{template "args" .fields}})
     return string.char(table.unpack(packet))
 end
 {{end}}
-
+-- stylua: ignore start
 function make_packet() 
     return { 
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -33,47 +33,48 @@ function make_packet()
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     }
 end
+-- stylua: ignore end
 
-function pack_bool(v,packet,offset)
+function pack_bool(v, packet, offset)
     if v then
-        packet[offset+1] = 0x01
+        packet[offset + 1] = 0x01
     else
-        packet[offset+1] = 0x00
+        packet[offset + 1] = 0x00
     end
-   
+
     return packet
 end
 
-function pack_uint8(v,packet,offset)
+function pack_uint8(v, packet, offset)
     bytes = string.pack("B", v)
-    
-    packet[offset+1] = string.byte(bytes,1)
-   
+
+    packet[offset + 1] = string.byte(bytes, 1)
+
     return packet
 end
 
-function pack_uint16(v,packet,offset)
+function pack_uint16(v, packet, offset)
     bytes = string.pack("<I2", v)
-    
-    packet[offset+1] = string.byte(bytes,1)
-    packet[offset+2] = string.byte(bytes,2)
-   
+
+    packet[offset + 1] = string.byte(bytes, 1)
+    packet[offset + 2] = string.byte(bytes, 2)
+
     return packet
 end
 
-function pack_uint32(v,packet,offset)
+function pack_uint32(v, packet, offset)
     bytes = string.pack("<I4", v)
-    
-    packet[offset+1] = string.byte(bytes,1)
-    packet[offset+2] = string.byte(bytes,2)
-    packet[offset+3] = string.byte(bytes,3)
-    packet[offset+4] = string.byte(bytes,4)
-   
+
+    packet[offset + 1] = string.byte(bytes, 1)
+    packet[offset + 2] = string.byte(bytes, 2)
+    packet[offset + 3] = string.byte(bytes, 3)
+    packet[offset + 4] = string.byte(bytes, 4)
+
     return packet
 end
 
-function pack_ipv4(v,packet,offset)
-    local a,b,c,d = string.match(v,"^([0-9]+)%.([0-9]+)%.([0-9]+)%.([0-9]+)$")
+function pack_ipv4(v, packet, offset)
+    local a, b, c, d = string.match(v, "^([0-9]+)%.([0-9]+)%.([0-9]+)%.([0-9]+)$")
 
     a = tonumber(a)
     b = tonumber(b)
@@ -81,59 +82,58 @@ function pack_ipv4(v,packet,offset)
     d = tonumber(d)
 
     if a < 0 or a > 255 or b < 0 or b > 255 or c < 0 or c > 255 or d < 0 or d > 255 then
-      error("invalid IPv4 address (" .. v .. ")")
+        error("invalid IPv4 address (" .. v .. ")")
     end
-    
-    packet[offset+1] = a
-    packet[offset+2] = b
-    packet[offset+3] = c
-    packet[offset+4] = d
-   
+
+    packet[offset + 1] = a
+    packet[offset + 2] = b
+    packet[offset + 3] = c
+    packet[offset + 4] = d
+
     return packet
 end
 
-function pack_datetime(v,packet,offset)
-    local year,month,day,hour,minute,second = string.match(v,"^(%d%d%d%d)-(%d%d)-(%d%d) (%d%d):(%d%d):(%d%d)$")
-    local s = string.format("%04d%02d%02d%02d%02d%02d",year,month,day,hour,minute,second)
+function pack_datetime(v, packet, offset)
+    local year, month, day, hour, minute, second = string.match(v, "^(%d%d%d%d)-(%d%d)-(%d%d) (%d%d):(%d%d):(%d%d)$")
+    local s = string.format("%04d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second)
     local bytes = string2bcd(s)
 
-    for i=1,7,1 do
-        packet[offset+i] = bytes[i]
+    for i = 1, 7, 1 do
+        packet[offset + i] = bytes[i]
     end
 
     return packet
 end
 
-function pack_date(v,packet,offset)
-    local year,month,day,hour,minute,second = string.match(v,"^(%d%d%d%d)-(%d%d)-(%d%d)$")
-    local s = string.format("%04d%02d%02d",year,month,day)
+function pack_date(v, packet, offset)
+    local year, month, day, hour, minute, second = string.match(v, "^(%d%d%d%d)-(%d%d)-(%d%d)$")
+    local s = string.format("%04d%02d%02d", year, month, day)
     local bytes = string2bcd(s)
 
-    for i=1,4,1 do
-        packet[offset+i] = bytes[i]
+    for i = 1, 4, 1 do
+        packet[offset + i] = bytes[i]
     end
 
     return packet
 end
 
-function pack_pin(v,packet,offset)
+function pack_pin(v, packet, offset)
     bytes = string.pack("<I3", v)
-    
-    packet[offset+1] = string.byte(bytes,1)
-    packet[offset+2] = string.byte(bytes,2)
-    packet[offset+3] = string.byte(bytes,3)
-   
+
+    packet[offset + 1] = string.byte(bytes, 1)
+    packet[offset + 2] = string.byte(bytes, 2)
+    packet[offset + 3] = string.byte(bytes, 3)
+
     return packet
 end
 
 function string2bcd(s)
     local bytes = {}
     for xx in string.gmatch(s, "(%d%d)") do
-        table.insert(bytes,tonumber(xx,16))
+        table.insert(bytes, tonumber(xx, 16))
     end
-        
+
     return bytes
 end
-
 
 return encode

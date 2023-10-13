@@ -36,6 +36,9 @@ jobs:
            luarocks install argparse
            luarocks install luasocket
 
+    - name: Install stylua
+      run: brew install stylua
+
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
 

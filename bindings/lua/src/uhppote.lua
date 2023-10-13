@@ -38,14 +38,14 @@ function uhppote.get_all_controllers()
 end
 
 function uhppote.listen(handler, onerror)
-    local f = function(packet) 
-                 local ok, event = xpcall(function() return decode.event(packet) end, onerror)
-                 if ok then
-                    handler(event)
-                 end
-              end
-
-    return udp.listen(f)
+    local f = function(packet)
+        local ok, event = xpcall(function()
+            return decode.event(packet)
+        end, onerror)
+        if ok then
+            handler(event)
+        end
+    end
 end
 
 {{range .model.functions}}
@@ -60,7 +60,7 @@ function uhppote.{{snakeCase .name}}({{template "args" .args}})
     if not reply then
         error("no response")
     end
-    
+
     return decode.{{snakeCase .response.name}}(reply)
     {{- else}}
     return nil

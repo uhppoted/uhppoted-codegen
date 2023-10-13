@@ -271,6 +271,7 @@ erlang-listen: erlang
 
 lua: build regen
 	$(CMD) --models $(MODELS) --templates $(LUA) --out generated/lua --clean
+	cd generated/lua && stylua ./**/*.lua
 
 lua-help: build regen
 	$(LUABIN) -h

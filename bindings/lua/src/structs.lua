@@ -10,10 +10,10 @@ function structs.{{snakeCase .name}}({{- template "construct" .fields -}})
         {{range .fields}}{{snakeCase .name}} = {{snakeCase .name}},
         {{end}}
         fields = function(self) 
-                    return { {{- range .fields}}
-                        "{{snakeCase .name}}",{{end}}
-                    }
-                 end
+                     return { {{- range .fields}}
+                         "{{snakeCase .name}}",{{end}}
+                     }
+                 end,
     }
 
     return response
@@ -26,10 +26,10 @@ function structs.{{snakeCase .name}}({{- template "construct" .fields -}})
         {{range .fields}}{{snakeCase .name}} = {{snakeCase .name}},
         {{end}}
         fields = function(self) 
-                    return { {{- range .fields}}
-                        "{{snakeCase .name}}",{{end}}
-                    }
-                 end
+                     return { {{- range .fields}}
+                         "{{snakeCase .name}}",{{end}}
+                     }
+                 end,
     }
 
     return response
@@ -37,5 +37,3 @@ end
 {{end}}
 
 return structs
-
-
