@@ -10,9 +10,9 @@
 
 - [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
       - [x] generate bindings
-      - [ ] set-bind-address
-      - [ ] set-broadcast-address
-      - [ ] set-listen-address
+      - [x] set-bind-address
+      - [x] set-broadcast-address
+      - [x] set-listen-address
       - [ ] commands
              - [x] get-devices
              - [x] get-device

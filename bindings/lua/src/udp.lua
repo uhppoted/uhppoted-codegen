@@ -5,13 +5,70 @@ local READALL <const> = 2.5 -- seconds
 
 local debug = false
 local bind_address = "*"
+local bind_port = 0
 local broadcast_address = "255.255.255.255"
 local broadcast_port = 60000
 local listen_address = "*"
 local listen_port = 60001
 
-function udp.set_bind_addr(address)
-    bind_address = address
+function udp.set_bind_address(addr)
+    if not addr or addr == "" then
+       bind_address = "*"
+       bind_port = 0
+    else 
+       local address, port = addr:match("^(.-):(%d*)$")
+
+        if address and port and address ~= "" and port ~= "" then
+           bind_address = address
+           bind_port =  tonumber(port)
+         elseif address and port and port ~= "" then
+           bind_address = "*"
+           bind_port = tonumber(port)
+         else
+           bind_address = addr
+           bind_port = 0
+         end
+    end
+end
+
+function udp.set_broadcast_address(addr)
+    if not addr or addr == "" then
+       broadcast_address = "255.255.255.255"
+       broadcast_port = 60000
+    else 
+       local address, port = addr:match("^(.-):(%d*)$")
+
+        if address and port and address ~= "" and port ~= "" then
+           broadcast_address = address
+           broadcast_port =  tonumber(port)
+         elseif address and port and port ~= "" then
+           broadcast_address = "255.255.255.255"
+           broadcast_port = tonumber(port)
+         else
+           broadcast_address = addr
+           broadcast_port = 60000
+         end
+    end
+end
+
+function udp.set_listen_address(addr)
+    if not addr or addr == "" then
+       listen_address = "*"
+       listen_port = 60001
+    else 
+       local address, port = addr:match("^(.-):(%d*)$")
+
+        if address and port and address ~= "" and port ~= "" then
+           listen_address = address
+           listen_port =  tonumber(port)
+         elseif address and port and port ~= "" then
+           listen_address = "*"
+           listen_port = tonumber(port)
+         else
+           listen_address = addr
+           listen_port = 60001
+         end
+    end
 end
 
 function udp.set_debug(enabled)
@@ -65,7 +122,7 @@ end
 function broadcast(sock, request) 
     dump(request)
     
-    if sock:setsockname(bind_address,0) ~= 1 then
+    if sock:setsockname(bind_address,bind_port) ~= 1 then
         error("error binding to address")
     end
     

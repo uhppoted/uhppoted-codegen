@@ -39,6 +39,9 @@ local args = parser:parse()
 local command = args["command"]
 local debug = args["debug"]
 
+uhppote.set_bind_address(args["bind"])
+uhppote.set_broadcast_address(args["broadcast"])
+uhppote.set_listen_address(args["listen"])
 uhppote.set_debug(debug)
 
 if command == "all" then

@@ -3,6 +3,18 @@ local encode = require("src/encode")
 local decode = require("src/decode")
 local udp = require("src/udp")
 
+function uhppote.set_bind_address(address)
+    udp.set_bind_address(address)
+end
+
+function uhppote.set_broadcast_address(address)
+    udp.set_broadcast_address(address)
+end
+
+function uhppote.set_listen_address(address)
+    udp.set_listen_address(address)
+end
+
 function uhppote.set_debug(debug)
     udp.set_debug(debug)
 end
