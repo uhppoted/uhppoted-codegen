@@ -30,6 +30,11 @@ parser:command "all"
 parser:command_target("command")
 for _,v in ipairs(commands.commands) do
     local cmd = parser:command(v.command)
+
+    for _, flag in ipairs(v.flags) do
+        cmd:flag(string.format("--%s",flag))
+    end
+
     for _,option in ipairs(v.options) do
         cmd:option(string.format("--%s",option))
     end
@@ -37,11 +42,14 @@ end
 
 local args = parser:parse()
 local command = args["command"]
+local bind_addr = args["bind"]
+local broadcast_addr = args["broadcast"]
+local listen_addr = args["listen"]
 local debug = args["debug"]
 
-uhppote.set_bind_address(args["bind"])
-uhppote.set_broadcast_address(args["broadcast"])
-uhppote.set_listen_address(args["listen"])
+uhppote.set_bind_address(bind_addr)
+uhppote.set_broadcast_address(broadcast_addr)
+uhppote.set_listen_address(listen_addr)
 uhppote.set_debug(debug)
 
 if command == "all" then

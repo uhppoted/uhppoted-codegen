@@ -34,6 +34,16 @@ function make_packet()
     }
 end
 
+function pack_bool(v,packet,offset)
+    if v then
+        packet[offset+1] = 0x01
+    else
+        packet[offset+1] = 0x00
+    end
+   
+    return packet
+end
+
 function pack_uint8(v,packet,offset)
     bytes = string.pack("B", v)
     

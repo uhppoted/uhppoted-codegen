@@ -32,10 +32,10 @@
              - [x] put-card
              - [x] delete-card
              - [x] delete-all-cards
-             - [ ] get-event-index
-             - [ ] set-event-index
-             - [ ] get-event
-             - [ ] record-special-events
+             - [x] get-event
+             - [x] get-event-index
+             - [x] set-event-index
+             - [x] record-special-events
              - [ ] get-time-profile
              - [ ] set-time-profile
              - [ ] clear-time-profiles
@@ -48,6 +48,7 @@
              - [ ] set-door-passcodes
              - [x] listen
       - [x] github workflow + build status
+      - [ ] stylua
       - [ ] documentation
       - [x] dist
       - [x] CHANGELOG
