@@ -281,7 +281,8 @@ lua-debug: lua
 	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 listen
 	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller --controller 405419896
 	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 put-card --controller 405419896 --card 10058400 --start-date 2023-01-02 --end-date 2023-12-30 --doors 1,2,4 --PIN 6310
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 record-special-events --controller 405419896 
+	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-time-profile --controller 405419896 --profile 37 --start-date 2023-01-01 --end-date 2023-12-31 --weekdays Mon,Tue,Sun --segments "8:30-11:45, 13:15-17:30" --linked 33
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 delete-all-time-profiles --controller 405419896
 
 lua-all: lua
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 all

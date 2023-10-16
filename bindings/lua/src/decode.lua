@@ -147,6 +147,14 @@ function unpack_time(packet, offset)
     return string.format("%02u:%02u:%02u", hour, minute, second)
 end
 
+function unpack_hhmm(packet, offset)
+    local bcd = bcd2string(packet:sub(offset + 1, offset + 2))
+    local hour = tonumber(bcd:sub(1, 2))
+    local minute = tonumber(bcd:sub(3, 4))
+
+    return string.format("%02u:%02u", hour, minute)
+end
+
 function unpack_pin(packet, offset)
     return string.unpack("<I3", packet, offset + 1)
 end

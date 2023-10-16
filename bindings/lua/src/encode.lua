@@ -94,10 +94,12 @@ function pack_ipv4(v, packet, offset)
 end
 
 function pack_datetime(v, packet, offset)
-    local year, month, day, hour, minute, second = string.match(v, "^(%d%d%d%d)-(%d%d)-(%d%d) (%d%d):(%d%d):(%d%d)$")
-    local s = string.format("%04d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second)
-    local bytes = string2bcd(s)
+    local year, month, day, hour, minute, second = string.match(v, "^(%d%d%d%d)%-(%d%d)%-(%d%d) (%d%d):(%d%d):(%d%d)$")
+    local s = string.format("%04d%02d%02d%02d%02d%02d", 
+                            tonumber(year), tonumber(month), tonumber(day), 
+                            tonumber(hour), tonumber(minute), tonumber(second))
 
+    local bytes = string2bcd(s)
     for i = 1, 7, 1 do
         packet[offset + i] = bytes[i]
     end
@@ -106,11 +108,23 @@ function pack_datetime(v, packet, offset)
 end
 
 function pack_date(v, packet, offset)
-    local year, month, day, hour, minute, second = string.match(v, "^(%d%d%d%d)-(%d%d)-(%d%d)$")
-    local s = string.format("%04d%02d%02d", year, month, day)
+    local year, month, day, hour, minute, second = string.match(v, "^(%d%d%d%d)%-(%d%d)%-(%d%d)$")
+    local s = string.format("%04d%02d%02d", tonumber(year), tonumber(month), tonumber(day))
     local bytes = string2bcd(s)
 
     for i = 1, 4, 1 do
+        packet[offset + i] = bytes[i]
+    end
+
+    return packet
+end
+
+function pack_hhmm(v, packet, offset)
+    local hour, minute = string.match(v, "^(%d?%d):(%d%d)$")
+    local s = string.format("%02d%02d", tonumber(hour),tonumber(minute))
+
+    local bytes = string2bcd(s)
+    for i = 1, 2, 1 do
         packet[offset + i] = bytes[i]
     end
 

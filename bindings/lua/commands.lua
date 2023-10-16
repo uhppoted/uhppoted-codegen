@@ -16,6 +16,7 @@ local CARD_END_DATE = "2023-12-31"
 local CARD_DOORS = "1,2,3,4"
 local CARD_PIN = 0
 local EVENT_INDEX = 37
+local TIME_PROFILE_ID = 29
 
 function get_all_controllers(args)
     return uhppote.get_all_controllers()
@@ -123,8 +124,8 @@ end
 function put_card(args)
     local controller = parse(args, "controller", CONTROLLER)
     local card = parse(args, "card", CARD)
-    local start_date = parse(args, "start-date", CARD_START_DATE)
-    local end_date = parse(args, "end-date", CARD_END_DATE)
+    local start_date = parse(args, "start_date", CARD_START_DATE)
+    local end_date = parse(args, "end_date", CARD_END_DATE)
     local doors = parse(args, "doors", CARD_DOORS)
     local PIN = parse(args, "PIN", CARD_PIN)
 
@@ -189,6 +190,55 @@ function record_special_events(args)
     return uhppote.record_special_events(controller, not disabled)
 end
 
+function get_time_profile(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local profile = parse(args,"profile",TIME_PROFILE_ID)
+
+    return uhppote.get_time_profile(controller, profile)
+end
+
+function set_time_profile(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local profile = parse(args,"profile",TIME_PROFILE_ID)
+    local start_date = parse(args,"start_date","2023-01-01")
+    local end_date = parse(args,"end_date","2099-01-01")
+    local linked_profile = tonumber(parse(args,"linked","0"))
+
+    local weekdays = string.lower(parse(args, "weekdays", ""))
+    local monday = string.match(weekdays,"mon")
+    local tuesday = string.match(weekdays,"tue")
+    local wednesday = string.match(weekdays,"wed")
+    local thursday = string.match(weekdays,"thu")
+    local friday = string.match(weekdays,"fri")
+    local saturday = string.match(weekdays,"sat")
+    local sunday = string.match(weekdays,"sun")
+
+    local segments = { { from = "00:00", to = "00:00" },
+                       { from = "00:00", to = "00:00" },
+                       { from = "00:00", to = "00:00" } }
+
+    local ix = 1
+    for p,q in string.gmatch(parse(args, "segments", ""), "(%d?%d:%d%d)%-(%d?%d:%d%d)") do
+        segments[ix].from = p
+        segments[ix].to = q
+        ix = ix + 1
+     end
+
+    return uhppote.set_time_profile(controller, profile,
+                                    start_date, end_date,
+                                    monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+                                    segments[1].from, segments[1].to,
+                                    segments[2].from, segments[2].to,
+                                    segments[3].from, segments[3].to,
+                                    linked_profile)
+end
+
+function delete_all_time_profiles(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.delete_all_time_profiles(controller)
+end
+
 function listen(args)
     local onerror = function(err)
                        print("   *** ERROR", err)
@@ -213,28 +263,31 @@ end
 -- stylua: ignore start
 local commands = {
    commands = {     
-       { ["command"] = "get-all-controllers",   ["f"] = get_all_controllers,   flags = {},             options = {} },
-       { ["command"] = "get-controller",        ["f"] = get_controller,        flags = {},             options = { "controller" } },
-       { ["command"] = "set-ip",                ["f"] = set_ip,                flags = {},             options = { "controller","address","netmask","gateway" } },
-       { ["command"] = "get-time",              ["f"] = get_time,              flags = {},             options = { "controller" } },
-       { ["command"] = "set-time",              ["f"] = set_time,              flags = {},             options = { "controller","time" } },
-       { ["command"] = "get-listener",          ["f"] = get_listener,          flags = {},             options = { "controller" } },
-       { ["command"] = "set-listener",          ["f"] = set_listener,          flags = {},             options = { "controller","address","port" } },
-       { ["command"] = "get-status",            ["f"] = get_status,            flags = {},             options = { "controller" } },
-       { ["command"] = "get-door-control",      ["f"] = get_door_control,      flags = {},             options = { "controller","door" } },
-       { ["command"] = "set-door-control",      ["f"] = set_door_control,      flags = {},             options = { "controller","door","mode","delay" } },
-       { ["command"] = "open-door",             ["f"] = open_door,             flags = {},             options = { "controller","door" } },
-       { ["command"] = "get-cards",             ["f"] = get_cards,             flags = {},             options = { "controller" } },
-       { ["command"] = "get-card",              ["f"] = get_card,              flags = {},             options = { "controller","card" } },
-       { ["command"] = "get-card-by-index",     ["f"] = get_card_by_index,     flags = {},             options = { "controller","index" } },
-       { ["command"] = "put-card",              ["f"] = put_card,              flags = {},             options = { "controller","card","start-date","end-date","doors","PIN" } },
-       { ["command"] = "delete-card",           ["f"] = delete_card,           flags = {},             options = { "controller","card" } },
-       { ["command"] = "delete-all-cards",      ["f"] = delete_all_cards,      flags = {},             options = { "controller" } },
-       { ["command"] = "get-event",             ["f"] = get_event,             flags = {},             options = { "controller","index" } },
-       { ["command"] = "get-event-index",       ["f"] = get_event_index,       flags = {},             options = { "controller" } },
-       { ["command"] = "set-event-index",       ["f"] = set_event_index,       flags = {},             options = { "controller", "index" } },
-       { ["command"] = "record-special-events", ["f"] = record_special_events, flags = { "disabled" }, options = { "controller" } },
-       { ["command"] = "listen",                ["f"] = listen,                flags = {},             options = { "controller" } },
+       { ["command"] = "get-all-controllers",      ["f"] = get_all_controllers,      flags = {},             options = {} },
+       { ["command"] = "get-controller",           ["f"] = get_controller,           flags = {},             options = { "controller" } },
+       { ["command"] = "set-ip",                   ["f"] = set_ip,                   flags = {},             options = { "controller","address","netmask","gateway" } },
+       { ["command"] = "get-time",                 ["f"] = get_time,                 flags = {},             options = { "controller" } },
+       { ["command"] = "set-time",                 ["f"] = set_time,                 flags = {},             options = { "controller","time" } },
+       { ["command"] = "get-listener",             ["f"] = get_listener,             flags = {},             options = { "controller" } },
+       { ["command"] = "set-listener",             ["f"] = set_listener,             flags = {},             options = { "controller","address","port" } },
+       { ["command"] = "get-status",               ["f"] = get_status,               flags = {},             options = { "controller" } },
+       { ["command"] = "get-door-control",         ["f"] = get_door_control,         flags = {},             options = { "controller","door" } },
+       { ["command"] = "set-door-control",         ["f"] = set_door_control,         flags = {},             options = { "controller","door","mode","delay" } },
+       { ["command"] = "open-door",                ["f"] = open_door,                flags = {},             options = { "controller","door" } },
+       { ["command"] = "get-cards",                ["f"] = get_cards,                flags = {},             options = { "controller" } },
+       { ["command"] = "get-card",                 ["f"] = get_card,                 flags = {},             options = { "controller","card" } },
+       { ["command"] = "get-card-by-index",        ["f"] = get_card_by_index,        flags = {},             options = { "controller","index" } },
+       { ["command"] = "put-card",                 ["f"] = put_card,                 flags = {},             options = { "controller","card","start-date","end-date","doors","PIN" } },
+       { ["command"] = "delete-card",              ["f"] = delete_card,              flags = {},             options = { "controller","card" } },
+       { ["command"] = "delete-all-cards",         ["f"] = delete_all_cards,         flags = {},             options = { "controller" } },
+       { ["command"] = "get-event",                ["f"] = get_event,                flags = {},             options = { "controller","index" } },
+       { ["command"] = "get-event-index",          ["f"] = get_event_index,          flags = {},             options = { "controller" } },
+       { ["command"] = "set-event-index",          ["f"] = set_event_index,          flags = {},             options = { "controller", "index" } },
+       { ["command"] = "record-special-events",    ["f"] = record_special_events,    flags = { "disabled" }, options = { "controller" } },
+       { ["command"] = "get-time-profile",         ["f"] = get_time_profile,         flags = {},             options = { "controller", "profile" } },
+       { ["command"] = "set-time-profile",         ["f"] = set_time_profile,         flags = {},             options = { "controller", "profile", "start-date", "end-date", "weekdays", "segments", "linked" } },
+       { ["command"] = "delete-all-time-profiles", ["f"] = delete_all_time_profiles, flags = {},             options = { "controller", "profile" } },
+       { ["command"] = "listen",                   ["f"] = listen,                   flags = {},             options = { "controller" } },
    },
 }
 -- stylua: ignore end
