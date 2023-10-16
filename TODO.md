@@ -38,10 +38,10 @@
              - [x] record-special-events
              - [x] get-time-profile
              - [x] set-time-profile
-             - [ ] delete-all-time-profiles
-             - [ ] add-task
-             - [ ] refresh-tasklist
-             - [ ] clear-tasklist
+             - [x] delete-all-time-profiles
+             - [x] add-task
+             - [x] refresh-tasklist
+             - [x] clear-tasklist
              - [ ] set-pc-control
              - [ ] set-interlock
              - [ ] activate-keypads

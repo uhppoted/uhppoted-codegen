@@ -18,6 +18,22 @@ local CARD_PIN = 0
 local EVENT_INDEX = 37
 local TIME_PROFILE_ID = 29
 
+local TASKS = {
+    [0] = "door-controlled",
+    [1] = "door-normally-open",
+    [2] = "door-normally-closed",
+    [3] = "disable-time-profile",
+    [4] = "enable-time-profile",
+    [5] = "card-no-password",
+    [6] = "card-in-password",
+    [7] = "card+password",
+    [8] = "enable-more-cards",
+    [9] = "disable-more-cards",
+    [10] = "trigger-once",
+    [11] = "disable-pushbutton",
+    [12] = "enable-pushbutton"
+}
+
 function get_all_controllers(args)
     return uhppote.get_all_controllers()
 end
@@ -239,6 +255,63 @@ function delete_all_time_profiles(args)
     return uhppote.delete_all_time_profiles(controller)
 end
 
+function add_task(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local task = parse(args,"task",2)
+    local start_date = parse(args,"start_date","2023-01-01")
+    local end_date = parse(args,"end_date","2099-01-01")
+    local door = tonumber(parse(args,"door","0"))
+    local more_cards = tonumber(parse(args,"more_cards","0"))
+
+    local weekdays = string.lower(parse(args, "weekdays", ""))
+    local monday = string.match(weekdays,"mon")
+    local tuesday = string.match(weekdays,"tue")
+    local wednesday = string.match(weekdays,"wed")
+    local thursday = string.match(weekdays,"thu")
+    local friday = string.match(weekdays,"fri")
+    local saturday = string.match(weekdays,"sat")
+    local sunday = string.match(weekdays,"sun")
+
+    local hhmm = "00:00"
+    for t in string.gmatch(parse(args, "at", "00:00"), "(%d?%d:%d%d)") do
+        hhmm = t
+        break
+    end
+
+    local task_type = 255
+    local task = string.lower(parse(args, "task", ""))
+    for k,v in ipairs(TASKS) do
+      print(k,v)
+      if v == task then
+          task_type = k
+      end
+    end
+
+    if task_type == 255 then
+        error("invalid task")
+    end
+
+    return uhppote.add_task(controller, 
+                            start_date, end_date,
+                            monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+                            hhmm,
+                            door,
+                            task_type,
+                            more_cards)
+end
+
+function refresh_tasklist(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.refresh_tasklist(controller)
+end
+
+function clear_tasklist(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.clear_tasklist(controller)
+end
+
 function listen(args)
     local onerror = function(err)
                        print("   *** ERROR", err)
@@ -287,6 +360,9 @@ local commands = {
        { ["command"] = "get-time-profile",         ["f"] = get_time_profile,         flags = {},             options = { "controller", "profile" } },
        { ["command"] = "set-time-profile",         ["f"] = set_time_profile,         flags = {},             options = { "controller", "profile", "start-date", "end-date", "weekdays", "segments", "linked" } },
        { ["command"] = "delete-all-time-profiles", ["f"] = delete_all_time_profiles, flags = {},             options = { "controller", "profile" } },
+       { ["command"] = "add-task",                 ["f"] = add_task,                 flags = {},             options = { "controller", "door", "task", "at", "start-date", "end-date", "weekdays", "more-cards" } },
+       { ["command"] = "refresh-tasklist",         ["f"] = refresh_tasklist,         flags = {},             options = { "controller" } },
+       { ["command"] = "clear-tasklist",           ["f"] = clear_tasklist,           flags = {},             options = { "controller" } },
        { ["command"] = "listen",                   ["f"] = listen,                   flags = {},             options = { "controller" } },
    },
 }
