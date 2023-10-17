@@ -30,6 +30,7 @@
              - [x] get-card
              - [x] get-card-by-index
              - [x] put-card
+                   - [ ] allow time profile IDs
              - [x] delete-card
              - [x] delete-all-cards
              - [x] get-event
@@ -42,10 +43,10 @@
              - [x] add-task
              - [x] refresh-tasklist
              - [x] clear-tasklist
-             - [ ] set-pc-control
-             - [ ] set-interlock
-             - [ ] activate-keypads
-             - [ ] set-door-passcodes
+             - [x] set-pc-control
+             - [x] set-interlock
+             - [x] activate-keypads
+             - [x] set-door-passcodes
              - [x] listen
       - [x] github workflow + build status
       - [x] stylua

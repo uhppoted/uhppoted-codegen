@@ -34,6 +34,15 @@ local TASKS = {
     [12] = "enable-pushbutton"
 }
 
+local INTERLOCKS = {
+    [0] = "none",
+    [1] = "1&2",
+    [2] = "3&4",
+    [3] = "1&2,3&4",
+    [4] = "1&2&3",
+    [8] = "1&2&3&4",
+}
+
 function get_all_controllers(args)
     return uhppote.get_all_controllers()
 end
@@ -150,6 +159,7 @@ function put_card(args)
     local door3 = 0
     local door4 = 0
 
+    -- NTS: extend this to support time profile IDs
     for v in string.gmatch(doors, "(%d+)") do
         local door = tonumber(v)
         if door == 1 then
@@ -260,10 +270,11 @@ function add_task(args)
     local task = parse(args,"task",2)
     local start_date = parse(args,"start_date","2023-01-01")
     local end_date = parse(args,"end_date","2099-01-01")
+    local at = string.match(parse(args, "at", "00:00"),"(%d?%d:%d%d)") or "12:34"
     local door = tonumber(parse(args,"door","0"))
+    local weekdays = string.lower(parse(args, "weekdays", ""))
     local more_cards = tonumber(parse(args,"more_cards","0"))
 
-    local weekdays = string.lower(parse(args, "weekdays", ""))
     local monday = string.match(weekdays,"mon")
     local tuesday = string.match(weekdays,"tue")
     local wednesday = string.match(weekdays,"wed")
@@ -271,33 +282,21 @@ function add_task(args)
     local friday = string.match(weekdays,"fri")
     local saturday = string.match(weekdays,"sat")
     local sunday = string.match(weekdays,"sun")
-
-    local hhmm = "00:00"
-    for t in string.gmatch(parse(args, "at", "00:00"), "(%d?%d:%d%d)") do
-        hhmm = t
-        break
-    end
-
-    local task_type = 255
     local task = string.lower(parse(args, "task", ""))
-    for k,v in ipairs(TASKS) do
-      print(k,v)
+
+    for k,v in pairs(TASKS) do
       if v == task then
-          task_type = k
+          return uhppote.add_task(controller, 
+                                  start_date, end_date,
+                                  monday, tuesday, wednesday, thursday, friday, saturday, sunday,
+                                  at,
+                                  door,
+                                  k,
+                                  more_cards)
       end
     end
 
-    if task_type == 255 then
-        error("invalid task")
-    end
-
-    return uhppote.add_task(controller, 
-                            start_date, end_date,
-                            monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-                            hhmm,
-                            door,
-                            task_type,
-                            more_cards)
+    error("invalid task")
 end
 
 function refresh_tasklist(args)
@@ -310,6 +309,69 @@ function clear_tasklist(args)
     local controller = parse(args,"controller",CONTROLLER)
 
     return uhppote.clear_tasklist(controller)
+end
+
+function set_pc_control(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local disabled = parse(args,"disabled",false)
+
+    return uhppote.set_pc_control(controller, not disabled)
+end
+
+function set_interlock(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local interlock = parse(args, "interlock", "")
+
+    for k,v in pairs(INTERLOCKS) do
+      if v == interlock then
+          return uhppote.set_interlock(controller, k)
+      end
+    end
+
+    error ("invalid interlock")
+end
+
+function activate_keypads(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local keypads = parse(args, "keypads", "")
+
+    local reader1 = false
+    local reader2 = false
+    local reader3 = false
+    local reader4 = false
+
+    for reader in string.gmatch(keypads, "([1234])[, ]*") do
+        if reader == "1" then
+          reader1 = true
+        elseif reader == "2" then
+          reader2 = true
+        elseif reader == "3" then
+          reader3 = true
+        elseif reader == "4" then
+          reader4 = true
+        end
+    end 
+
+    return uhppote.activate_keypads(controller, reader1, reader2, reader3, reader4)
+end
+
+function set_door_passcodes(args)
+    local controller = parse(args,"controller",CONTROLLER)
+    local door = parse(args, "door", DOOR)
+    local passcodes = parse(args, "passcodes", "")
+
+    local codes = { 0, 0, 0, 0 }
+    local ix = 1
+    for v in string.gmatch(passcodes, "([0-9]+)[, ]*") do
+      local code = tonumber(v)
+
+      if code > 0 and code < 1000000 then
+         codes[ix] = code
+         ix = ix + 1
+      end
+    end 
+
+    return uhppote.set_door_passcodes(controller, tonumber(door), codes[1], codes[2], codes[3], codes[4])
 end
 
 function listen(args)
@@ -363,6 +425,10 @@ local commands = {
        { ["command"] = "add-task",                 ["f"] = add_task,                 flags = {},             options = { "controller", "door", "task", "at", "start-date", "end-date", "weekdays", "more-cards" } },
        { ["command"] = "refresh-tasklist",         ["f"] = refresh_tasklist,         flags = {},             options = { "controller" } },
        { ["command"] = "clear-tasklist",           ["f"] = clear_tasklist,           flags = {},             options = { "controller" } },
+       { ["command"] = "set-pc-control",           ["f"] = set_pc_control,           flags = { "disabled" }, options = { "controller" } },
+       { ["command"] = "set-interlock",            ["f"] = set_interlock,            flags = {},             options = { "controller", "interlock" } },
+       { ["command"] = "activate_keypads",         ["f"] = activate_keypads,         flags = {},             options = { "controller", "keypads" } },
+       { ["command"] = "set-door-passcodes",       ["f"] = set_door_passcodes,       flags = {},             options = { "controller", "door", "passcodes" } },
        { ["command"] = "listen",                   ["f"] = listen,                   flags = {},             options = { "controller" } },
    },
 }
