@@ -154,26 +154,22 @@ function put_card(args)
     local doors = parse(args, "doors", CARD_DOORS)
     local PIN = parse(args, "PIN", CARD_PIN)
 
-    local door1 = 0
-    local door2 = 0
-    local door3 = 0
-    local door4 = 0
+    local permissions = { 0,0,0,0 }
+    for v in doors:gmatch("([^, ]+)") do
+        local door, profile = v:match("^([1234]):(%d+)$")
 
-    -- NTS: extend this to support time profile IDs
-    for v in string.gmatch(doors, "(%d+)") do
-        local door = tonumber(v)
-        if door == 1 then
-           door1 = 1
-        elseif door == 2 then
-           door2 = 1
-        elseif door == 3 then
-           door3 = 1
-        elseif door == 4 then
-           door4 = 1
+        if door and profile then
+          permissions[tonumber(door)] = tonumber(profile)
+        elseif v:match("^[1234]$") then
+          permissions[tonumber(v)] = 1
         end
     end
 
-    return uhppote.put_card(controller, card, start_date, end_date, door1, door2, door3, door4, PIN)
+    return uhppote.put_card(controller, 
+                            card, 
+                            start_date, end_date, 
+                            permissions[1], permissions[2], permissions[3], permissions[4], 
+                            PIN)
 end
 
 function delete_card(args)

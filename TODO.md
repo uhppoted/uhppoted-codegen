@@ -13,7 +13,7 @@
       - [x] set-bind-address
       - [x] set-broadcast-address
       - [x] set-listen-address
-      - [ ] commands
+      - [x] commands
              - [x] get-devices
              - [x] get-device
              - [x] set-ip
@@ -30,7 +30,7 @@
              - [x] get-card
              - [x] get-card-by-index
              - [x] put-card
-                   - [ ] allow time profile IDs
+                   - [x] allow time profile IDs
              - [x] delete-card
              - [x] delete-all-cards
              - [x] get-event
