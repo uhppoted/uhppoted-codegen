@@ -30,7 +30,6 @@
              - [x] get-card
              - [x] get-card-by-index
              - [x] put-card
-                   - [x] allow time profile IDs
              - [x] delete-card
              - [x] delete-all-cards
              - [x] get-event
@@ -50,11 +49,18 @@
              - [x] listen
       - [x] github workflow + build status
       - [x] stylua
-      - [ ] documentation
+      - [x] documentation
       - [x] dist
       - [x] CHANGELOG
       - [x] README
       - [ ] listen:interrupt
+            - https://www.lua.org/pil/9.4.html
+            - https://stackoverflow.com/questions/12889361/lua-sockets-asynchronous-events
+            - https://jariou.gitbooks.io/comprehensive-lua/content/calling_c_modules_from_lua/networking_with_coroutines_example_using_luasocket.html
+            - https://stackoverflow.com/questions/13219570/lualanes-and-luasockets
+            - https://lunarmodules.github.io/copas/reference.html
+            - https://lua-users.org/wiki/CoroutinesAsConnectionHandlers
+            - https://github.com/cosock/cosock
             - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
             - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc
             - https://www.lua.org/pil/9.4.html

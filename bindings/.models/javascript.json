@@ -1,0 +1,22 @@
+{
+    "javascript": {
+        "types": {
+            "uint8": "uint8",
+            "uint16": "uint16",
+            "uint32": "uint32",
+            "bool": "bool",
+            "IPv4": "netip.Addr",
+            "MAC": "string",
+            "version": "string",
+            "date": "Date",
+            "shortdate": "Date",
+            "time": "Time",
+            "datetime": "DateTime",
+            "HHmm": "HHmm",
+            "pin": "PIN",
+
+            "optional date": "Date",
+            "optional datetime": "DateTime"
+        }
+    }
+}

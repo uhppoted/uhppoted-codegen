@@ -12,6 +12,8 @@ controller interface in:
 - [Zig](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
 - [PHP](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/php)
 - [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
+- [Erlang](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/erlang)
+- [Lua](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/lua)
 
 The models are provided as JSON files so it's entirely possible to use an alternative templating engine. However, assuming
 you've decided on using _uhppoted-codegen_, the remainder of this document outlines the process of creating a language
@@ -110,9 +112,14 @@ include:
 - [test-data.json](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
 
 as well as language specific support for:
-- [Go](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/go.json)
-- [Rust](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
-- [Python](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/python.json)
+- [Go](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go)
+- [Rust](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
+- [Python](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python)
+- [Zig](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
+- [PHP](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/php)
+- [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
+- [Erlang](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/erlang)
+- [Lua](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/lua)
 
 #### [_models.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
 
@@ -288,6 +295,126 @@ valid _Python_ types:
 The _Python_ types are used in the _Python_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python/.templates):
 ```
 {{define "type"}}{{lookup "python.types" . "???"}}{{end}}
+```
+
+#### [_zig.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/zig.json)
+
+The _zig.json_ models include any _Zig_ specific information - specifically the type conversions from the _models_ types to
+valid _Zig_ types:
+```
+{
+    "zig": {
+        "types": {
+            "uint8": "u8",
+            "uint16": "u16",
+            "uint32": "u32",
+            "bool": "bool",
+            "IPv4": "network.Address.IPv4",
+            "MAC": "[6]u8",
+            ...
+        }
+    }
+}```
+
+The _Zig_ types are used in the _Zig_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig/.templates):
+```
+{{define "type"}}{{lookup "zig.types" . "???"}}{{end}}
+```
+
+#### [_php.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/php.json)
+
+The _php.json_ models include any _PHP_ specific information - specifically the type conversions from the _models_ types to
+valid _PHP_ types:
+```
+{
+    "php": {
+        "types": {
+            "uint8": "int",
+            "uint16": "int",
+            "uint32": "int",
+            "bool": "bool",
+            "IPv4": "IPv4Address",
+            "MAC": "str",
+            ...
+        }
+    }
+}```
+
+The _PHP_ types are used in the _PHP_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/php/.templates):
+```
+{{define "type"}}{{lookup "php.types" . "???"}}{{end}}
+```
+
+#### [_javascript.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/javascript.json)
+
+The _javascript.json_ models include any _Javascript_ specific information - specifically the type conversions from the _models_ types to
+valid _Javascript_ types.
+```
+{
+    "javascript": {
+        "types": {
+            "uint8": "uint8",
+            "uint16": "uint16",
+            "uint32": "uint32",
+            "bool": "bool",
+            "IPv4": "netip.Addr",
+            "MAC": "string",
+            ...
+        }
+    }
+}```
+
+The _Javascript_ types are used in the _Javascript_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript/.templates):
+```
+{{define "type"}}{{lookup "javascript.types" . "???"}}{{end}}
+```
+
+#### [_erlang.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/erlang.json)
+
+The _erlang.json_ models include any _Erlang_ specific information - specifically the type conversions from the _models_ types to
+valid _Erlang_ types.
+```
+{
+    "erlang": {
+        "types": {
+            "uint8": "uint8",
+            "uint16": "uint16",
+            "uint32": "uint32",
+            "bool": "bool",
+            "IPv4": "address",
+            "MAC": "string",
+            ...
+        }
+    }
+}```
+
+The _Erlang_ types are used in the _Erlang_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/erlang/.templates):
+```
+{{define "type"}}{{lookup "erlang.types" . "???"}}{{end}}
+```
+
+#### [_lua.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/lua.json)
+
+The _lua.json_ models include any _Lua_ specific information - specifically the type conversions from the _models_ types to
+valid _Lua_ types.
+```
+{
+    "lua": {
+        "types": {
+            "uint8": "uint8",
+            "uint16": "uint16",
+            "uint32": "uint32",
+            "bool": "bool",
+            "IPv4": "address",
+            "MAC": "string",
+            ...
+        }
+    }
+}```
+
+The _Lua_ types are used in the _Lua_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/lua/.templates):
+```
+{{define "type"}}{{lookup "erlang.types" . "???"}}{{end}}
 ```
 
 ### Interface structure
