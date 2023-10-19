@@ -203,16 +203,35 @@ function listen_to(sock, f)
         error("error binding to listen address")
     end
 
-    sock:settimeout(nil, "b")
+    sock:settimeout(0, "b")
     sock:settimeout(nil, "t")
 
-    while true do
-        local packet = sock:receive(1024)
-        if not packet then
-            break
-        elseif #packet == 64 then
-            f(packet)
+    local recv = function(sock)
+        local packet, status = sock:receive(1024)
+        if status == "timeout" then
+            coroutine.yield(sock)
         end
+        return packet, status
+    end
+
+    local co = coroutine.create(function ()
+        while true do
+            local packet,status = recv(sock)
+            if status == "closed" then
+                break
+            elseif packet and #packet == 64 then
+                f(packet)
+            end
+        end
+    end)
+
+    while true do
+        local status, res = coroutine.resume(co)
+        if not res then
+            print("AWOOGAH")
+            break
+        end
+        socket.select({sock})
     end
 end
 
