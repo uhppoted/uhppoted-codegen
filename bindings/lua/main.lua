@@ -14,7 +14,7 @@ local parser = argparse()
 parser:flag("--debug"):description("Displays sent and received UDP packets")
 parser:option("--bind"):description("UDP IPv4 bind address"):default("0.0.0.0")
 parser:option("--broadcast"):description("UDP IPv4 broadcast address"):default("255.255.255.255:60000")
-parser:option("--listen"):description("UDP IPv4 listen address"):default("0.0.0.0:60001")
+parser:option("--events"):description("UDP IPv4 event listener bind address"):default("0.0.0.0:60001")
 
 parser:command("all")
 parser:command_target("command")
@@ -35,7 +35,7 @@ local args = parser:parse()
 local command = args["command"]
 local bind_addr = args["bind"]
 local broadcast_addr = args["broadcast"]
-local listen_addr = args["listen"]
+local listen_addr = args["events"]
 local debug = args["debug"]
 
 uhppote.set_bind_address(bind_addr)
@@ -50,7 +50,6 @@ if command == "all" then
            commands.exec(v.command, args)
         end
     end
-    return
 else
     commands.exec(command, args)
 end

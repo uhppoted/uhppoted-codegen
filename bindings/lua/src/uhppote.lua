@@ -46,6 +46,8 @@ function uhppote.listen(handler, onerror)
             handler(event)
         end
     end
+
+    udp.listen(f)
 end
 
 {{range .model.functions}}
