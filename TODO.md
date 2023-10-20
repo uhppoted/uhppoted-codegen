@@ -8,28 +8,20 @@
       ERROR: error parsing src/.encode.lua.swp (template: codegen:12: unexpected {{end}})
 ```
 
-- [ ] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
+- [x] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
       - [x] generate bindings
       - [x] set-bind-address
       - [x] set-broadcast-address
       - [x] set-listen-address
       - [x] commands
       - [x] github workflow + build status
-      - [ ] stylua
-            - [ ] github workflow
+      - [x] stylua
+            - [x] github workflow
       - [x] documentation
       - [x] dist
       - [x] CHANGELOG
       - [x] README
       - [x] listen:interrupt (cf. https://github.com/lunarmodules/luasocket/issues/319)
-            - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
-            - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc
-            - https://www.lua.org/pil/9.4.html
-            - https://stackoverflow.com/questions/12889361/lua-sockets-asynchronous-events
-            - https://stackoverflow.com/questions/13219570/lualanes-and-luasockets
-            - https://lunarmodules.github.io/copas/reference.html
-            - https://lua-users.org/wiki/CoroutinesAsConnectionHandlers
-            - https://github.com/cosock/cosock
 
 - [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
 
@@ -62,8 +54,17 @@
 ## HTTP
 - [ ] listen
 
+## Lua
+   - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
+   - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc
+   - https://www.lua.org/pil/9.4.html
+   - https://stackoverflow.com/questions/12889361/lua-sockets-asynchronous-events
+   - https://stackoverflow.com/questions/13219570/lualanes-and-luasockets
+   - https://lunarmodules.github.io/copas/reference.html
+   - https://lua-users.org/wiki/CoroutinesAsConnectionHandlers
+   - https://github.com/cosock/cosock
+
 ## Other
-   - Lua
    - [Val](https://github.com/val-lang/val-lang.github.io)
    - [Odin](https://odin-lang.org)
    - Elixir
