@@ -1,29 +1,8 @@
 # TODO
 
-- [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
-      - [x] README
-      - [x] CHANGELOG
-      - [x] globbing
-```
-      ERROR: error parsing src/.encode.lua.swp (template: codegen:12: unexpected {{end}})
-```
-
 - [x] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
-      - [x] generate bindings
-      - [x] set-bind-address
-      - [x] set-broadcast-address
-      - [x] set-listen-address
-      - [x] commands
-      - [x] github workflow + build status
-      - [x] stylua
-            - [x] github workflow
-      - [x] documentation
-      - [x] dist
-      - [x] CHANGELOG
-      - [x] README
-      - [x] listen:interrupt (cf. https://github.com/lunarmodules/luasocket/issues/319)
-
 - [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
+- [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
 
 - [ ] --delimiters
 - [ ] clang-tidy
