@@ -3,6 +3,16 @@
 - [x] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
 - [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
+- [ ] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
+      - [x] Go
+      - [ ] Rust
+      - [ ] Python
+      - [ ] Zig
+      - [ ] PHP
+      - [ ] Erlang
+      - [ ] Lua
+      - [ ] HTTP
+      - [ ] CHANGELOG
 
 - [ ] --delimiters
 - [ ] clang-tidy

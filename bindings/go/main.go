@@ -46,18 +46,18 @@ func main() {
 	uhppote.SetDebug(options.debug)
 
 	list := flag.Args()
+	cmd := list[0]
 
-	if len(list) == 1 && list[0] == "all" {
+	if cmd == "all" {
 		for _, c := range commands {
 			if c.name != "listen" {
-				c.exec()
+				c.exec(list[1:])
 			}
 		}
 	} else {
-		for _, cmd := range list {
 			ix := slices.IndexFunc[command](commands, func(c command) bool { return c.name == cmd })
 			if ix != -1 {
-				commands[ix].exec()
+				commands[ix].exec(list[1:])
 			} else {
 				fmt.Println()
 				fmt.Printf("   *** ERROR: invalid command %v\n", cmd)
@@ -65,14 +65,13 @@ func main() {
 
 				os.Exit(1)
 			}
-		}
 	}
 
 	os.Exit(0)
 }
 
 func usage() {
-	fmt.Println("  Usage: go run main.go [--debug] [--bind <address>] [--broadcast <address>] [commands]")
+	fmt.Println("  Usage: go run main.go [--debug] [--bind <address>] [--broadcast <address>] [command]")
 	fmt.Println()
 	fmt.Println("    Options:")
 	fmt.Println("    --debug                Displays sent and received UDP packets")

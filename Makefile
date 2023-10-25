@@ -88,6 +88,8 @@ build-all: test vet lint go rust python zig php erlang http
 	env GOOS=darwin  GOARCH=amd64         GOWORK=off go build -trimpath -o dist/$(DIST)/darwin  ./...
 	env GOOS=windows GOARCH=amd64         GOWORK=off go build -trimpath -o dist/$(DIST)/windows ./...
 
+test-all: go-test lua-test
+
 release: update-release build regen build-all 
 	tar --directory=dist      --exclude=".DS_Store" -cvzf dist/$(DIST).tar.gz $(DIST)
 	tar --directory=.         --exclude=".DS_Store" -cvzf dist/$(DIST)-bindings.tar.gz ./bindings
@@ -142,9 +144,6 @@ go: build regen
 	$(CMD) --models $(MODELS) --templates $(GO) --out generated/go --clean
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
-go-test: go
-	cd generated/go && go test -v ./uhppote
-
 go-debug: go
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-door-passcodes
 
@@ -159,6 +158,10 @@ go-all: go
 
 go-listen: go
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 listen
+
+go-test: go
+	cd generated/go && go test -v ./uhppote
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-status --controller 303986753
 
 rust: build regen 
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
@@ -178,6 +181,9 @@ rust-all: rust
 
 rust-listen: rust
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen"
+
+rust-test: rust
+	# $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-status 303986753
 
 python: build regen 
 	$(CMD) --models $(MODELS) --templates $(PYTHON) --out generated/python
@@ -199,6 +205,9 @@ python-all: python
 python-listen: python
 	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 listen
 
+python-test: python
+	# $(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-status 303986753
+
 zig: build regen
 	$(CMD) --models $(MODELS) --templates $(ZIG) --out generated/zig --clean
 	cd generated/zig && zig fmt src/* && zig build
@@ -218,6 +227,9 @@ zig-all: zig
 zig-listen: zig
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen
 
+zig-test: zig
+	# $(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-status 303986753
+
 php: build regen
 	$(CMD) --models $(MODELS) --templates $(PHP) --out generated/php --clean
 	cd generated/php && php-cs-fixer fix .
@@ -236,6 +248,9 @@ php-all: php
 
 php-listen: php
 	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 listen
+
+php-test: php
+	# $(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 get-status 303986753
 
 erlang: build regen
 	# cd generated/erlang && dialyzer --src *.erl
@@ -269,6 +284,9 @@ erlang-all: erlang
 erlang-listen: erlang
 	$(ERLBIN) listen
 
+erlang-test: erlang
+	# $(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-status 303986753
+
 lua: build regen
 	$(CMD) --models $(MODELS) --templates $(LUA) --out generated/lua --clean
 	cd generated/lua && stylua ./**/*.lua
@@ -287,6 +305,9 @@ lua-all: lua
 	
 lua-listen: lua
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 listen
+
+lua-test: lua
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 get-status --controller 303986753
 
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean

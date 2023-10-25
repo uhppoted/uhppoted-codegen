@@ -10,6 +10,7 @@ var Tests = []Test{
 	GetTimeTest,
 	SetTimeTest,
 	GetStatusTest,
+	GetStatusNoEventTest,
 	GetListenerTest,
 	SetListenerTest,
 	GetDoorControlTest,
@@ -376,6 +377,157 @@ var GetStatusTest = Test{
 		Message: []uint8{
 			0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
 			0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		},
+	},
+}
+
+var GetStatusNoEventTest = Test{
+	Name: "get status no event",
+	Request: &Request{
+		Name: GetStatusRequest.Name,
+		Values: []Value{
+			Value{
+				Name:  "controller",
+				Type:  "uint32",
+				Value: CONTROLLER,
+			},
+		},
+		Message: []uint8{
+			0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		},
+	},
+	Response: &Response{
+		Name: GetStatusResponse.Name,
+		Values: []Value{
+			Value{
+				Name:  "controller",
+				Type:  "uint32",
+				Value: CONTROLLER,
+			},
+			Value{
+				Name:  "system date",
+				Type:  "short date",
+				Value: "2022-08-23",
+			},
+			Value{
+				Name:  "system time",
+				Type:  "time",
+				Value: "09:49:39",
+			},
+			Value{
+				Name:  "door 1 open",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 2 open",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "door 3 open",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 4 open",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 1 button",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 2 button",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 3 button",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "door 4 button",
+				Type:  "bool",
+				Value: true,
+			},
+			Value{
+				Name:  "relays",
+				Type:  "uint8",
+				Value: "7",
+			},
+			Value{
+				Name:  "inputs",
+				Type:  "uint8",
+				Value: "9",
+			},
+			Value{
+				Name:  "system error",
+				Type:  "uint8",
+				Value: 3,
+			},
+			Value{
+				Name:  "special info",
+				Type:  "uint8",
+				Value: 39,
+			},
+			Value{
+				Name:  "event index",
+				Type:  "uint32",
+				Value: 0,
+			},
+			Value{
+				Name:  "event type",
+				Type:  "uint8",
+				Value: 0,
+			},
+			Value{
+				Name:  "event access granted",
+				Type:  "bool",
+				Value: false,
+			},
+			Value{
+				Name:  "event door",
+				Type:  "uint8",
+				Value: 0,
+			},
+			Value{
+				Name:  "event direction",
+				Type:  "uint8",
+				Value: 0,
+			},
+			Value{
+				Name:  "event card",
+				Type:  "uint32",
+				Value: "0",
+			},
+			Value{
+				Name:  "event timestamp",
+				Type:  "optional datetime",
+				Value: "",
+			},
+			Value{
+				Name:  "event reason",
+				Type:  "uint8",
+				Value: 0,
+			},
+			Value{
+				Name:  "sequence no",
+				Type:  "uint32",
+				Value: 0,
+			},
+		},
+		Message: []uint8{
+			0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},

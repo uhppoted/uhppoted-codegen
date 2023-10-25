@@ -291,6 +291,146 @@
         }
       },
       {
+        "name": "get status no event",
+        "request": {
+          "name": "get status request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            }
+          ],
+          "message": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "get status response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "system date",
+              "type": "short date",
+              "value": "2022-08-23"
+            },
+            {
+              "name": "system time",
+              "type": "time",
+              "value": "09:49:39"
+            },
+            {
+              "name": "door 1 open",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 2 open",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "door 3 open",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 4 open",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 1 button",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 2 button",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 3 button",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "door 4 button",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "relays",
+              "type": "uint8",
+              "value": "7"
+            },
+            {
+              "name": "inputs",
+              "type": "uint8",
+              "value": "9"
+            },
+            {
+              "name": "system error",
+              "type": "uint8",
+              "value": 3
+            },
+            {
+              "name": "special info",
+              "type": "uint8",
+              "value": 39
+            },
+            {
+              "name": "event index",
+              "type": "uint32",
+              "value": 0
+            },
+            {
+              "name": "event type",
+              "type": "uint8",
+              "value": 0
+            },
+            {
+              "name": "event access granted",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "event door",
+              "type": "uint8",
+              "value": 0
+            },
+            {
+              "name": "event direction",
+              "type": "uint8",
+              "value": 0
+            },
+            {
+              "name": "event card",
+              "type": "uint32",
+              "value": "0"
+            },
+            {
+              "name": "event timestamp",
+              "type": "optional datetime",
+              "value": ""
+            },
+            {
+              "name": "event reason",
+              "type": "uint8",
+              "value": 0
+            },
+            {
+              "name": "sequence no",
+              "type": "uint32",
+              "value": 0
+            }
+          ],
+          "message": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAABAwlJOQAAAAAAAAAAJwcJIggjAAAAAAAAAAAAAA=="
+        }
+      },
+      {
         "name": "get listener",
         "request": {
           "name": "get listener request",
