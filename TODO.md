@@ -5,7 +5,7 @@
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
 - [ ] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
       - [x] Go
-      - [ ] Rust
+      - [x] Rust
       - [ ] Python
       - [ ] Zig
       - [ ] PHP

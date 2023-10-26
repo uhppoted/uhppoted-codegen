@@ -76,6 +76,16 @@ pub fn {{snakeCase .name}}(packet: &Msg) -> Result<{{CamelCase .name}}> {
 }
 {{end -}}
 
+#[allow(dead_code)]
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+#[allow(dead_code)]
+pub fn bad_add(a: i32, b: i32) -> i32 {
+    a - b
+}
+
 fn unpack_uint8(packet: &Msg, offset: usize) -> Result<u8> {
     return Ok(packet[offset]);
 }
@@ -207,4 +217,100 @@ fn unpack_pin(packet: &Msg, offset: usize) -> Result<PIN> {
     bytes[3] = 0;
 
     return Ok(u32::from_le_bytes(bytes));
+}
+
+// UNIT TESTS
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_status_response() {
+        let packet = [
+            0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+            0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ];
+        
+        let result = get_status_response(&packet);
+        let date = NaiveDate::from_ymd_opt(2022,8,23).unwrap();
+        let time = NaiveTime::from_hms_opt(9, 47, 6).unwrap();
+        let timestamp = NaiveDateTime::new(date,time);
+
+        match result {
+            Ok(response) => {
+                assert_eq!(response.controller, 405419896);
+                assert_eq!(response.system_date, NaiveDate::from_ymd_opt(2022,8,23).unwrap());
+                assert_eq!(response.system_time, NaiveTime::from_hms_opt(9, 49, 39).unwrap());
+                assert_eq!(response.door_1_open, false);
+                assert_eq!(response.door_2_open, true);
+                assert_eq!(response.door_3_open, false);
+                assert_eq!(response.door_4_open, false);
+                assert_eq!(response.door_1_button, false);
+                assert_eq!(response.door_2_button, false);
+                assert_eq!(response.door_3_button, false);
+                assert_eq!(response.door_4_button, true);
+                assert_eq!(response.relays, 7);
+                assert_eq!(response.inputs, 9);
+                assert_eq!(response.system_error, 3);
+                assert_eq!(response.special_info, 39);
+                assert_eq!(response.event_index, 78);
+                assert_eq!(response.event_type, 2);
+                assert_eq!(response.event_access_granted, true);
+                assert_eq!(response.event_door, 3);
+                assert_eq!(response.event_direction, 1);
+                assert_eq!(response.event_card, 8165537);
+                assert_eq!(response.event_timestamp, Some(timestamp));
+                assert_eq!(response.event_reason, 44);
+                assert_eq!(response.sequence_no, 0)
+            }
+            Err(e) => assert!(false,"   *** error decoding get-status packet ({})",e),
+        }
+   }
+
+    #[test]
+    fn test_get_status_response_with_no_event() {
+        let packet = [
+            0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        ];
+        
+        let result = get_status_response(&packet);
+
+        match result {
+            Ok(response) => {
+                assert_eq!(response.controller, 405419896);
+                assert_eq!(response.system_date, NaiveDate::from_ymd_opt(2022,8,23).unwrap());
+                assert_eq!(response.system_time, NaiveTime::from_hms_opt(9, 49, 39).unwrap());
+                assert_eq!(response.door_1_open, false);
+                assert_eq!(response.door_2_open, true);
+                assert_eq!(response.door_3_open, false);
+                assert_eq!(response.door_4_open, false);
+                assert_eq!(response.door_1_button, false);
+                assert_eq!(response.door_2_button, false);
+                assert_eq!(response.door_3_button, false);
+                assert_eq!(response.door_4_button, true);
+                assert_eq!(response.relays, 7);
+                assert_eq!(response.inputs, 9);
+                assert_eq!(response.system_error, 3);
+                assert_eq!(response.special_info, 39);
+                assert_eq!(response.event_index, 0);
+                assert_eq!(response.event_type, 0);
+                assert_eq!(response.event_access_granted, false);
+                assert_eq!(response.event_door, 0);
+                assert_eq!(response.event_direction, 0);
+                assert_eq!(response.event_card, 0);
+                assert_eq!(response.event_timestamp, None);
+                assert_eq!(response.event_reason, 0);
+                assert_eq!(response.sequence_no, 0)
+            }
+            Err(e) => assert!(false,"   *** error decoding get-status packet without an event ({})",e),
+        }
+
+        //assert_eq!(4, 3 + 2);
+    }
 }

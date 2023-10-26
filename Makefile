@@ -33,6 +33,7 @@ all: test      \
 clean:
 	go clean
 	rm -rf bin
+	rm -rf generated
 
 update:
 	go get -u github.com/uhppoted/uhppote-core@master
@@ -164,6 +165,7 @@ go-test: go
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-status --controller 303986753
 
 rust: build regen 
+	# rm -rf generated/rust/*
 	$(CMD) --models $(MODELS) --templates $(RUST) --out generated/rust
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
@@ -184,6 +186,7 @@ rust-listen: rust
 
 rust-test: rust
 	# $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-status 303986753
+	cd generated/rust/uhppoted && cargo test
 
 python: build regen 
 	$(CMD) --models $(MODELS) --templates $(PYTHON) --out generated/python
