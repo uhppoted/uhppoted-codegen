@@ -6,7 +6,7 @@
 - [ ] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
       - [x] Go
       - [x] Rust
-      - [ ] Python
+      - [x] Python
       - [ ] Zig
       - [ ] PHP
       - [ ] Erlang

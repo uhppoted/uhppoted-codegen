@@ -189,6 +189,7 @@ rust-test: rust
 	cd generated/rust/uhppoted && cargo test
 
 python: build regen 
+	rm -rf ./generated/python/*
 	$(CMD) --models $(MODELS) --templates $(PYTHON) --out generated/python
 	cd generated/python && yapf -ri .
 	chmod +x generated/python/main.py
@@ -210,6 +211,7 @@ python-listen: python
 
 python-test: python
 	# $(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-status 303986753
+	cd generated/python && python3 -m unittest tests/*.py 
 
 zig: build regen
 	$(CMD) --models $(MODELS) --templates $(ZIG) --out generated/zig --clean

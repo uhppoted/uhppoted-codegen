@@ -59,10 +59,10 @@ def unpack_uint32(packet, offset):
     return struct.unpack_from('<L', packet, offset)[0]
 
 def unpack_ipv4(packet, offset):
-    return IPv4Address(packet[offset:offset + 4])
+    return IPv4Address(f'{packet[offset]}.{packet[offset+1]}.{packet[offset+2]}.{packet[offset+3]}')
 
 def unpack_mac(packet, offset):
-    return '{:02x}:{:02x}:{:02x}:{:02x}::{:02x}:{:02x}'.format(*packet[offset:offset+7])
+    return '{:02x}:{:02x}:{:02x}:{:02x}:{:02x}:{:02x}'.format(*packet[offset:offset+7])
 
 def unpack_version(packet, offset):
     return 'v{:x}.{:02x}'.format(*packet[offset:offset+2])
