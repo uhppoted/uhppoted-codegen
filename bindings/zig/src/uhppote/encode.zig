@@ -38,11 +38,23 @@ fn pack_uint8(v: u8, packet: *[64]u8, offset: u8) !void {
 }
 
 fn pack_uint16(v: u16, packet: *[64]u8, offset: u8) !void {
-    std.mem.writeIntLittle(u16, &packet[offset], v);
+    var slice = [2]u8{ 0, 0 };
+
+    std.mem.writeIntLittle(u16, &slice, v);
+
+    packet[offset] = slice[0];
+    packet[offset+1] = slice[1];
 }
 
 fn pack_uint32(v: u32, packet: *[64]u8, offset: u8) !void {
-    std.mem.writeIntLittle(u32, &packet[offset], v);
+    var slice = [4]u8{ 0, 0, 0, 0 };
+
+    std.mem.writeIntLittle(u32, &slice, v);
+
+    packet[offset] = slice[0];
+    packet[offset+1] = slice[1];
+    packet[offset+2] = slice[2];
+    packet[offset+3] = slice[3];
 }
 
 fn pack_ipv4(v: network.Address.IPv4, packet: *[64]u8, offset: u8) !void {
@@ -99,7 +111,13 @@ fn pack_hhmm(v: datelib.Time, packet: *[64]u8, offset: u8) !void {
 }
 
 fn pack_pin(v: u24, packet: *[64]u8, offset: u8) !void {
-    std.mem.writeIntLittle(u24, &packet[offset], v);
+    var slice = [3]u8{ 0, 0, 0};
+
+    std.mem.writeIntLittle(u24, &slice, v);
+
+    packet[offset] = slice[0];
+    packet[offset+1] = slice[1];
+    packet[offset+2] = slice[2];
 }
 
 fn string2bcd(v: []const u8, bcd: []u8) !void {

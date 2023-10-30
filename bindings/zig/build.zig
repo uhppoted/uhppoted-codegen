@@ -1,30 +1,39 @@
 const std = @import("std");
 
-pub fn build(b: *std.build.Builder) void {
+pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
-    const mode = b.standardReleaseOptions();
-    const exe = b.addExecutable("uhppoted", "src/main.zig");
+    const optimize = b.standardOptimizeOption(.{});
 
-    exe.addPackagePath("zig-network", "lib/zig-network/network.zig");
-    exe.setTarget(target);
-    exe.setBuildMode(mode);
+    const zig_network = b.addModule("zig-network", .{
+        .source_file = .{ .path = "lib/zig-network/network.zig" }
+    });
+    
+    const exe = b.addExecutable(.{
+        .name = "uhppoted", 
+        .root_source_file = .{ .path = "src/main.zig" },
+        .target = target,
+        .optimize = optimize,
+    });
+
+    exe.addModule("zig-network", zig_network);
     exe.linkLibC();
-    exe.install();
+    b.installArtifact(exe);
 
-    const run_cmd = exe.run();
+    const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
     if (b.args) |args| {
         run_cmd.addArgs(args);
     }
 
-    const run_step = b.step("run", "Run the app");
-    run_step.dependOn(&run_cmd.step);
+    const unit_tests = b.addTest(.{
+        .root_source_file = .{ .path = "src/main.zig" },
+        .target = target,
+        .optimize = optimize,
+    });
 
-    const exe_tests = b.addTest("src/main.zig");
-    exe_tests.setTarget(target);
-    exe_tests.setBuildMode(mode);
-    exe_tests.linkLibC();
+    unit_tests.linkLibC();
 
+    const run_unit_tests = b.addRunArtifact(unit_tests);
     const test_step = b.step("test", "Run unit tests");
-    test_step.dependOn(&exe_tests.step);
+    test_step.dependOn(&run_unit_tests.step);
 }

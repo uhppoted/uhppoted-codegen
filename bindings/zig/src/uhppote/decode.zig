@@ -78,11 +78,15 @@ fn unpack_uint8(packet: [64]u8, offset: u8) u8 {
 }
 
 fn unpack_uint16(packet: [64]u8, offset: u8) u16 {
-    return std.mem.readIntLittle(u16, &packet[offset]);
+    var slice = [2]u8{ packet[offset], packet[offset+1] };
+
+    return std.mem.readIntLittle(u16, &slice);
 }
 
 fn unpack_uint32(packet: [64]u8, offset: u8) u32 {
-    return std.mem.readIntLittle(u32, &packet[offset]);
+    var slice = [4]u8{ packet[offset], packet[offset+1], packet[offset+2], packet[offset+3] };
+
+    return std.mem.readIntLittle(u32, &slice);
 }
 
 fn unpack_ipv4(packet: [64]u8, offset: u8) network.Address.IPv4 {
@@ -258,7 +262,9 @@ fn unpack_optional_datetime(packet: [64]u8, offset: u8) ?datelib.DateTime {
 }
 
 fn unpack_pin(packet: [64]u8, offset: u8) u24 {
-    return std.mem.readIntLittle(u24, &packet[offset]);
+    var slice = [3]u8{ packet[offset], packet[offset+1], packet[offset+2] };
+
+    return std.mem.readIntLittle(u24, &slice);
 }
 
 fn bcd2string(slice: []const u8) ![]u8 {
