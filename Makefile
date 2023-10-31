@@ -233,7 +233,7 @@ zig-listen: zig
 	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen
 
 zig-test: zig
-	# $(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-status 303986753
+	cd generated/zig && zig test src/uhppote/decode.zig
 
 php: build regen
 	$(CMD) --models $(MODELS) --templates $(PHP) --out generated/php --clean
