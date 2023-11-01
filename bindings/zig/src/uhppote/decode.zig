@@ -1,5 +1,5 @@
 const std = @import("std");
-const network = @import("zig-network");
+const network = @import("network");
 const datelib = @import("datetime.zig");
 const errors = @import("errors.zig");
 
@@ -333,45 +333,30 @@ test "decode status response" {
 
     const response = try get_status_response(reply);
 
-    try std.testing.expect(response.controller == 405419896);
-    try std.testing.expect(response.system_date.year == 2022);
-    try std.testing.expect(response.system_date.month == 8);
-    try std.testing.expect(response.system_date.day == 23);
-    try std.testing.expect(response.system_time.hour == 9);
-    try std.testing.expect(response.system_time.minute == 49);
-    try std.testing.expect(response.system_time.second == 39);
-    try std.testing.expect(response.door_1_open == false);
-    try std.testing.expect(response.door_2_open == true);
-    try std.testing.expect(response.door_3_open == false);
-    try std.testing.expect(response.door_4_open == false);
-    try std.testing.expect(response.door_1_button == false);
-    try std.testing.expect(response.door_2_button == false);
-    try std.testing.expect(response.door_3_button == false);
-    try std.testing.expect(response.door_4_button  == true);
-    try std.testing.expect(response.relays == 7);
-    try std.testing.expect(response.inputs == 9);
-    try std.testing.expect(response.system_error == 3);
-    try std.testing.expect(response.special_info == 39);
-    try std.testing.expect(response.event_index == 78);
-    try std.testing.expect(response.event_type == 2);
-    try std.testing.expect(response.event_access_granted == true);
-    try std.testing.expect(response.event_door == 3);
-    try std.testing.expect(response.event_direction == 1);
-    try std.testing.expect(response.event_card == 8165537);
-
-    if (response.event_timestamp) |timestamp| {
-        try std.testing.expect(timestamp.year == 2022);    
-        try std.testing.expect(timestamp.month == 8);
-        try std.testing.expect(timestamp.day == 23);
-        try std.testing.expect(timestamp.hour == 9);
-        try std.testing.expect(timestamp.minute == 47);
-        try std.testing.expect(timestamp.second == 6);
-    } else {
-        try std.testing.expect(false);
-    }
-
-    try std.testing.expect(response.event_reason == 44);
-    try std.testing.expect(response.sequence_no == 0);
+    try std.testing.expectEqual(response.controller, 405419896);
+    try std.testing.expectEqual(response.system_date, datelib.Date{ .year = 2022, .month = 8, .day = 23 });
+    try std.testing.expectEqual(response.system_time, datelib.Time{ .hour = 9, .minute = 49, .second = 39 });
+    try std.testing.expectEqual(response.door_1_open, false);
+    try std.testing.expectEqual(response.door_2_open, true);
+    try std.testing.expectEqual(response.door_3_open, false);
+    try std.testing.expectEqual(response.door_4_open, false);
+    try std.testing.expectEqual(response.door_1_button, false);
+    try std.testing.expectEqual(response.door_2_button, false);
+    try std.testing.expectEqual(response.door_3_button, false);
+    try std.testing.expectEqual(response.door_4_button, true);
+    try std.testing.expectEqual(response.relays, 7);
+    try std.testing.expectEqual(response.inputs, 9);
+    try std.testing.expectEqual(response.system_error, 3);
+    try std.testing.expectEqual(response.special_info, 39);
+    try std.testing.expectEqual(response.event_index, 78);
+    try std.testing.expectEqual(response.event_type, 2);
+    try std.testing.expectEqual(response.event_access_granted, true);
+    try std.testing.expectEqual(response.event_door, 3);
+    try std.testing.expectEqual(response.event_direction, 1);
+    try std.testing.expectEqual(response.event_card, 8165537);
+    try std.testing.expectEqual(response.event_timestamp, datelib.DateTime{ .year = 2022, .month = 8, .day = 23, .hour = 9, .minute = 47, .second = 6 });
+    try std.testing.expectEqual(response.event_reason, 44);
+    try std.testing.expectEqual(response.sequence_no, 0);
 }
 
 test "decode status response with no event" {
@@ -384,44 +369,49 @@ test "decode status response with no event" {
 
     const response = try get_status_response(reply);
 
-    try std.testing.expect(response.controller == 405419896);
-    try std.testing.expect(response.system_date.year == 2022);
-    try std.testing.expect(response.system_date.month == 8);
-    try std.testing.expect(response.system_date.day == 23);
-    try std.testing.expect(response.system_time.hour == 9);
-    try std.testing.expect(response.system_time.minute == 49);
-    try std.testing.expect(response.system_time.second == 39);
-    try std.testing.expect(response.door_1_open == false);
-    try std.testing.expect(response.door_2_open == true);
-    try std.testing.expect(response.door_3_open == false);
-    try std.testing.expect(response.door_4_open == false);
-    try std.testing.expect(response.door_1_button == false);
-    try std.testing.expect(response.door_2_button == false);
-    try std.testing.expect(response.door_3_button == false);
-    try std.testing.expect(response.door_4_button  == true);
-    try std.testing.expect(response.relays == 7);
-    try std.testing.expect(response.inputs == 9);
-    try std.testing.expect(response.system_error == 3);
-    try std.testing.expect(response.special_info == 39);
-    try std.testing.expect(response.event_index == 0);
-    try std.testing.expect(response.event_type == 0);
-    try std.testing.expect(response.event_access_granted == false);
-    try std.testing.expect(response.event_door == 0);
-    try std.testing.expect(response.event_direction == 0);
-    try std.testing.expect(response.event_card == 0);
-
-    if (response.event_timestamp) |_| {
-        try std.testing.expect(false);
-        // try std.testing.expect(timestamp.year == 2022);    
-        // try std.testing.expect(timestamp.month == 8);
-        // try std.testing.expect(timestamp.day == 23);
-        // try std.testing.expect(timestamp.hour == 9);
-        // try std.testing.expect(timestamp.minute == 47);
-        // try std.testing.expect(timestamp.second == 6);
-    } else {
-        try std.testing.expect(true);
-    }
-
-    try std.testing.expect(response.event_reason == 0);
-    try std.testing.expect(response.sequence_no == 0);
+    try std.testing.expectEqual(response.controller, 405419896);
+    try std.testing.expectEqual(response.system_date, datelib.Date{ .year = 2022, .month = 8, .day = 23 });
+    try std.testing.expectEqual(response.system_time, datelib.Time{ .hour = 9, .minute = 49, .second = 39 });
+    try std.testing.expectEqual(response.door_1_open, false);
+    try std.testing.expectEqual(response.door_2_open, true);
+    try std.testing.expectEqual(response.door_3_open, false);
+    try std.testing.expectEqual(response.door_4_open, false);
+    try std.testing.expectEqual(response.door_1_button, false);
+    try std.testing.expectEqual(response.door_2_button, false);
+    try std.testing.expectEqual(response.door_3_button, false);
+    try std.testing.expectEqual(response.door_4_button, true);
+    try std.testing.expectEqual(response.relays, 7);
+    try std.testing.expectEqual(response.inputs, 9);
+    try std.testing.expectEqual(response.system_error, 3);
+    try std.testing.expectEqual(response.special_info, 39);
+    try std.testing.expectEqual(response.event_index, 0);
+    try std.testing.expectEqual(response.event_type, 0);
+    try std.testing.expectEqual(response.event_access_granted, false);
+    try std.testing.expectEqual(response.event_door, 0);
+    try std.testing.expectEqual(response.event_direction, 0);
+    try std.testing.expectEqual(response.event_card, 0);
+    try std.testing.expectEqual(response.event_timestamp, null);
+    try std.testing.expectEqual(response.event_reason, 0);
+    try std.testing.expectEqual(response.sequence_no, 0);
 }
+
+{{range .testdata.tests}}
+{{- if .response}}{{template "test" .}}{{end -}}
+{{end}}
+
+{{define "test"}}
+test "decode {{ .name }} response" {
+     const reply = [_]u8{
+        {{dump .response.message "        "}},
+     };
+
+    const response = try {{ snakeCase .response.name }}(reply);
+
+    {{range .response.values -}}
+    {{- if eq .type "IPv4" "string" "date" "short date" "optional date" "time" "datetime" "optional datetime" "HHmm"}}
+    {{- else -}}
+    try std.testing.expectEqual(response.{{ snakeCase .name }},{{template "var" .}});
+    {{- end}}
+    {{- end}}
+}
+{{end}}

@@ -8,6 +8,11 @@
       - [x] Rust
       - [x] Python
       - [ ] Zig
+```
+{{range .testdata.tests}}
+{{- if .response}}{{template "test" .}}{{end -}}
+{{end}}
+```
       - [ ] PHP
       - [ ] Erlang
       - [ ] Lua

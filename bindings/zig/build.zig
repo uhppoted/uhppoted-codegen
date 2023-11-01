@@ -15,7 +15,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.addModule("zig-network", zig_network);
+    exe.addModule("network", zig_network);
     exe.linkLibC();
     b.installArtifact(exe);
 
@@ -26,11 +26,13 @@ pub fn build(b: *std.Build) void {
     }
 
     const unit_tests = b.addTest(.{
+        .name = "uhppoted-tests",
         .root_source_file = .{ .path = "src/main.zig" },
         .target = target,
         .optimize = optimize,
     });
 
+    unit_tests.addModule("network", zig_network);
     unit_tests.linkLibC();
 
     const run_unit_tests = b.addRunArtifact(unit_tests);

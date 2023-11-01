@@ -1,5 +1,5 @@
 const std = @import("std");
-const network = @import("zig-network");
+const network = @import("network");
 
 const uhppote = @import("uhppote/uhppote.zig");
 const decode = @import("uhppote/decode.zig");

@@ -1,5 +1,5 @@
 const std = @import("std");
-const network = @import("zig-network");
+const network = @import("network");
 const errors = @import("errors.zig");
 
 const READ_TIMEOUT = 2500 * std.time.us_per_ms;

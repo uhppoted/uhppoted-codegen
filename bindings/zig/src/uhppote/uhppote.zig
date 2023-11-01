@@ -1,5 +1,5 @@
 const std = @import("std");
-const network = @import("zig-network");
+const network = @import("network");
 const datelib = @import("datetime.zig");
 
 const encode = @import("encode.zig");
