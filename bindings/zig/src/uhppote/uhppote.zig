@@ -1,10 +1,10 @@
 const std = @import("std");
-const network = @import("network");
 const datelib = @import("datetime.zig");
 
 const encode = @import("encode.zig");
 const decode = @import("decode.zig");
 const udp = @import("udp.zig");
+const network = @import("network.zig");
 
 pub fn set_bind_address(addr: [:0]const u8) !void {
     try udp.set_bind_address(addr);

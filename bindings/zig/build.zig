@@ -4,10 +4,6 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const zig_network = b.addModule("zig-network", .{
-        .source_file = .{ .path = "lib/zig-network/network.zig" }
-    });
-    
     const exe = b.addExecutable(.{
         .name = "uhppoted", 
         .root_source_file = .{ .path = "src/main.zig" },
@@ -15,7 +11,6 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.addModule("network", zig_network);
     exe.linkLibC();
     b.installArtifact(exe);
 
@@ -32,7 +27,6 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    unit_tests.addModule("network", zig_network);
     unit_tests.linkLibC();
 
     const run_unit_tests = b.addRunArtifact(unit_tests);

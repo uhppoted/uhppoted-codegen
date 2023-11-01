@@ -1,7 +1,7 @@
 const std = @import("std");
-const network = @import("network");
 const datelib = @import("datetime.zig");
 const errors = @import("errors.zig");
+const network = @import("network.zig");
 
 const ZERO_DATETIME = [_]u8{ 48, 48, 48, 48, 48,48, 48, 48, 48, 48, 48, 48, 48, 48};
 
@@ -409,6 +409,7 @@ test "decode {{ .name }} response" {
 
     {{range .response.values -}}
     {{- if eq .type "IPv4" "string" "date" "short date" "optional date" "time" "datetime" "optional datetime" "HHmm"}}
+    try std.testing.expectFmt("{{ .value }}", "{any}", .{ response.{{ snakeCase .name }} });
     {{- else -}}
     try std.testing.expectEqual(response.{{ snakeCase .name }},{{template "var" .}});
     {{- end}}

@@ -1,8 +1,8 @@
 const std = @import("std");
-const network = @import("network");
 
 const commands = @import("commands.zig");
 const uhppote = @import("uhppote/uhppote.zig");
+const network = @import("uhppote/network.zig");
 
 pub fn main() !void {
     // ... initialisation

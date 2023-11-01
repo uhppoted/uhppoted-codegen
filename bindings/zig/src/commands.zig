@@ -1,9 +1,9 @@
 const std = @import("std");
-const network = @import("network");
 
 const uhppote = @import("uhppote/uhppote.zig");
 const decode = @import("uhppote/decode.zig");
 const datelib = @import("uhppote/datetime.zig");
+const network = @import("uhppote/network.zig");
 
 const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
