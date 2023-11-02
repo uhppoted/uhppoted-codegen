@@ -45,9 +45,3 @@ pub fn now() DateTime {
         .second = @intCast(u8,second),
     };
 }
-
-// time_t rawtime;
-// struct tm * timeinfo;
-//
-// time (&rawtime);
-// timeinfo = localtime (&rawtime);

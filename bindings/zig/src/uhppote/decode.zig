@@ -95,21 +95,38 @@ fn unpack_ipv4(packet: [64]u8, offset: u8) network.Address.IPv4 {
     return network.Address.IPv4.init(packet[offset], packet[offset + 1], packet[offset + 2], packet[offset + 3]);
 }
 
-fn unpack_mac(packet: [64]u8, offset: u8) [6]u8 {
-    return packet[offset..][0..6].*;
+fn unpack_mac(packet: [64]u8, offset: u8) [:0]const u8 {
+    const allocator = std.heap.page_allocator;
+    
+    return std.fmt.allocPrintZ(allocator, "{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}",
+                                             .{ 
+                                                packet[offset], 
+                                                packet[offset+1],
+                                                packet[offset+2],
+                                                packet[offset+3],
+                                                packet[offset+4],
+                                                packet[offset+5],
+                                              }) catch "";
 }
 
-fn unpack_version(packet: [64]u8, offset: u8) [2]u8 {
-    return packet[offset..][0..2].*;
+fn unpack_version(packet: [64]u8, offset: u8) [:0]const u8 {
+    const allocator = std.heap.page_allocator;
+
+    return std.fmt.allocPrintZ(allocator, "v{x:}.{x:0>2}", .{ packet[offset], packet[offset+1] }) catch "";
 }
 
 fn unpack_date(packet: [64]u8, offset: u8) datelib.Date {
     const bcd = bcd2string(packet[offset..][0..4]);
 
     if (bcd) |string| {
-        const year = std.fmt.parseUnsigned(u16, string[0..4], 10) catch 1900;
-        const month = std.fmt.parseUnsigned(u8, string[4..6], 10) catch 1;
-        const day = std.fmt.parseUnsigned(u8, string[6..8], 10) catch 1;
+        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
+        const yyyy = [4]u8{ string[0], string[1], string[2], string[3] };
+        const mm = [2]u8{ string[4], string[5] };
+        const dd = [2]u8{ string[6], string[7] };
+
+        const year = std.fmt.parseUnsigned(u16, &yyyy, 10) catch 1900;
+        const month = std.fmt.parseUnsigned(u8, &mm, 10) catch 1;
+        const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
 
         return datelib.Date{
             .year = year,
@@ -129,7 +146,7 @@ fn unpack_shortdate(packet: [64]u8, offset: u8) datelib.Date {
     const bcd = bcd2string(packet[offset..][0..3]);
 
     if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts string somehow
+        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
         const yy = [2]u8{ string[0], string[1] };
         const mm = [2]u8{ string[2], string[3] };
         const dd = [2]u8{ string[4], string[5] };
@@ -137,10 +154,6 @@ fn unpack_shortdate(packet: [64]u8, offset: u8) datelib.Date {
         const year = std.fmt.parseUnsigned(u16, &yy, 10) catch 0;
         const month = std.fmt.parseUnsigned(u8, &mm, 10) catch 1;
         const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
-
-        // const year = std.fmt.parseUnsigned(u16, string[0..2], 10) catch 0;
-        // const month = std.fmt.parseUnsigned(u8, string[2..4], 10) catch 1;
-        // const day = std.fmt.parseUnsigned(u8, string[4..6], 10) catch 1;
 
         return datelib.Date{
             .year = 2000 + year,
@@ -160,9 +173,14 @@ fn unpack_optional_date(packet: [64]u8, offset: u8) ?datelib.Date {
     const bcd = bcd2string(packet[offset..][0..4]);
 
     if (bcd) |string| {
-        const year = std.fmt.parseUnsigned(u16, string[0..4], 10) catch 1900;
-        const month = std.fmt.parseUnsigned(u8, string[4..6], 10) catch 1;
-        const day = std.fmt.parseUnsigned(u8, string[6..8], 10) catch 1;
+        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
+        const yyyy = [4]u8{ string[0], string[1], string[2], string[3] };
+        const mm = [2]u8{ string[4], string[5] };
+        const dd = [2]u8{ string[6], string[7] };
+
+        const year = std.fmt.parseUnsigned(u16, &yyyy, 10) catch 1900;
+        const month = std.fmt.parseUnsigned(u8, &mm, 10) catch 1;
+        const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
 
         return datelib.Date{
             .year = year,
@@ -187,10 +205,6 @@ fn unpack_time(packet: [64]u8, offset: u8) datelib.Time {
         const minute = std.fmt.parseUnsigned(u8, &mm, 10) catch 0;
         const second = std.fmt.parseUnsigned(u8, &ss, 10) catch 0;
 
-        // const hour = std.fmt.parseUnsigned(u8, string[0..2], 10) catch 0;
-        // const minute = std.fmt.parseUnsigned(u8, string[2..4], 10) catch 0;
-        // const second = std.fmt.parseUnsigned(u8, string[4..6], 10) catch 0;
-
         return datelib.Time{
             .hour = hour,
             .minute = minute,
@@ -209,8 +223,12 @@ fn unpack_hhmm(packet: [64]u8, offset: u8) datelib.Time {
     const bcd = bcd2string(packet[offset..][0..2]);
 
     if (bcd) |string| {
-        const hour = std.fmt.parseUnsigned(u8, string[0..2], 10) catch 0;
-        const minute = std.fmt.parseUnsigned(u8, string[2..4], 10) catch 0;
+        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
+        const hh = [2]u8{ string[0], string[1] };
+        const mm = [2]u8{ string[2], string[3] };
+
+        const hour = std.fmt.parseUnsigned(u8, &hh, 10) catch 0;
+        const minute = std.fmt.parseUnsigned(u8, &mm, 10) catch 0;
 
         return datelib.Time{
             .hour = hour,
@@ -230,7 +248,7 @@ fn unpack_datetime(packet: [64]u8, offset: u8) datelib.DateTime {
     const bcd = bcd2string(packet[offset..][0..7]);
 
     if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts string somehow
+        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
         const yy = [4]u8{ string[0], string[1], string[2], string[3] };
         const MM = [2]u8{ string[4], string[5] };
         const dd = [2]u8{ string[6], string[7] };
@@ -273,27 +291,20 @@ fn unpack_optional_datetime(packet: [64]u8, offset: u8) ?datelib.DateTime {
         if (std.mem.eql(u8, string,&ZERO_DATETIME)) {
             return null;
         } else {
-            // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts string somehow
-            const yy = [4]u8{ string[0], string[1], string[2], string[3] };
+            // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
+            const yyyy = [4]u8{ string[0], string[1], string[2], string[3] };
             const MM = [2]u8{ string[4], string[5] };
             const dd = [2]u8{ string[6], string[7] };
             const hh = [2]u8{ string[8], string[9] };
             const mm = [2]u8{ string[10], string[11] };
             const ss = [2]u8{ string[12], string[13] };
 
-            const year = std.fmt.parseUnsigned(u16, &yy, 10) catch 1900;
+            const year = std.fmt.parseUnsigned(u16, &yyyy, 10) catch 1900;
             const month = std.fmt.parseUnsigned(u8, &MM, 10) catch 1;
             const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
             const hour = std.fmt.parseUnsigned(u8, &hh, 10) catch 0;
             const minute = std.fmt.parseUnsigned(u8, &mm, 10) catch 0;
             const second = std.fmt.parseUnsigned(u8, &ss, 10) catch 0;
-
-            // const year = std.fmt.parseUnsigned(u16, string[0..4], 10) catch 1900;
-            // const month = std.fmt.parseUnsigned(u8, string[4..6], 10) catch 1;
-            // const day = std.fmt.parseUnsigned(u8, string[6..8], 10) catch 1;
-            // const hour = std.fmt.parseUnsigned(u8, string[8..10], 10) catch 0;
-            // const minute = std.fmt.parseUnsigned(u8, string[10..12], 10) catch 0;
-            // const second = std.fmt.parseUnsigned(u8, string[12..14], 10) catch 0;
 
             return datelib.DateTime{
                 .year = year,
@@ -408,8 +419,61 @@ test "decode {{ .name }} response" {
     const response = try {{ snakeCase .response.name }}(reply);
 
     {{range .response.values -}}
-    {{- if eq .type "IPv4" "string" "date" "short date" "optional date" "time" "datetime" "optional datetime" "HHmm"}}
+    {{- if eq .type "string"}}
+    try std.testing.expectFmt("{{ .value }}", "{s}", .{ response.{{ snakeCase .name }} });
+    {{- else if eq .type "IPv4"}}
     try std.testing.expectFmt("{{ .value }}", "{any}", .{ response.{{ snakeCase .name }} });
+    {{- else if eq .type "date" "short date" }}
+    try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2}", 
+                                              .{ 
+                                                 response.{{ snakeCase .name }}.year,
+                                                 response.{{ snakeCase .name }}.month,
+                                                 response.{{ snakeCase .name }}.day
+                                               });
+    {{- else if eq .type "date" "optional date" }}
+    try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2}", 
+                                              .{ 
+                                                 response.{{ snakeCase .name }}.?.year,
+                                                 response.{{ snakeCase .name }}.?.month,
+                                                 response.{{ snakeCase .name }}.?.day
+                                               });
+    {{- else if eq .type "time" }}
+    try std.testing.expectFmt("{{ .value }}", "{d:0>2}:{d:0>2}:{d:0>2}", 
+                                              .{ 
+                                                 response.{{ snakeCase .name }}.hour,
+                                                 response.{{ snakeCase .name }}.minute,
+                                                 response.{{ snakeCase .name }}.second
+                                               });
+    {{- else if eq .type "datetime" }}
+    try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2} {d:0>2}:{d:0>2}:{d:0>2}", 
+                                              .{ 
+                                                 response.{{ snakeCase .name }}.year,
+                                                 response.{{ snakeCase .name }}.month,
+                                                 response.{{ snakeCase .name }}.day,
+                                                 response.{{ snakeCase .name }}.hour,
+                                                 response.{{ snakeCase .name }}.minute,
+                                                 response.{{ snakeCase .name }}.second
+                                               });
+    {{- else if eq .type "optional datetime"}}
+    if (std.mem.eql(u8, "{{ .value }}","")) {
+       try std.testing.expectEqual(response.{{ snakeCase .name }}, null);
+    } else {
+       try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2} {d:0>2}:{d:0>2}:{d:0>2}", 
+                                                 .{ 
+                                                    response.{{ snakeCase .name }}.?.year,
+                                                    response.{{ snakeCase .name }}.?.month,
+                                                    response.{{ snakeCase .name }}.?.day,
+                                                    response.{{ snakeCase .name }}.?.hour,
+                                                    response.{{ snakeCase .name }}.?.minute,
+                                                    response.{{ snakeCase .name }}.?.second
+                                                  });
+    }
+    {{- else if eq .type "HHmm" }}
+    try std.testing.expectFmt("{{ .value }}", "{d:0>2}:{d:0>2}", 
+                                              .{ 
+                                                 response.{{ snakeCase .name }}.hour,
+                                                 response.{{ snakeCase .name }}.minute
+                                               });
     {{- else -}}
     try std.testing.expectEqual(response.{{ snakeCase .name }},{{template "var" .}});
     {{- end}}
