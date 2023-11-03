@@ -406,77 +406,23 @@ test "decode status response with no event" {
     try std.testing.expectEqual(response.sequence_no, 0);
 }
 
-{{range .testdata.tests}}
-{{- if .response}}{{template "test" .}}{{end -}}
-{{end}}
+// test "bcd2string" {
+//     const packet = [_]u8{
+//         0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+//         0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+//         0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//         0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//     };
+// 
+//     const offset = 20;
+//     const bcd = try bcd2string(packet[offset..][0..7]);
+//     const expected: []const u8 = "20220823094705";
+// 
+//     std.debug.print("\n", .{ });
+//     std.debug.print(">>>>>>>>>>>>>> {any}\n", .{ bcd });
+//     std.debug.print(">>>>>>>>>>>>>> {s}\n", .{ bcd });
+//     std.debug.print(">>>> >>>> >>>> {s}\n", .{ expected });
+// 
+//     try std.testing.expectEqualStrings(expected, bcd);
+// }
 
-{{define "test"}}
-test "decode {{ .name }} response" {
-     const reply = [_]u8{
-        {{dump .response.message "        "}},
-     };
-
-    const response = try {{ snakeCase .response.name }}(reply);
-
-    {{range .response.values -}}
-    {{- if eq .type "string"}}
-    try std.testing.expectFmt("{{ .value }}", "{s}", .{ response.{{ snakeCase .name }} });
-    {{- else if eq .type "IPv4"}}
-    try std.testing.expectFmt("{{ .value }}", "{any}", .{ response.{{ snakeCase .name }} });
-    {{- else if eq .type "date" "short date" }}
-    try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2}", 
-                                              .{ 
-                                                 response.{{ snakeCase .name }}.year,
-                                                 response.{{ snakeCase .name }}.month,
-                                                 response.{{ snakeCase .name }}.day
-                                               });
-    {{- else if eq .type "date" "optional date" }}
-    try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2}", 
-                                              .{ 
-                                                 response.{{ snakeCase .name }}.?.year,
-                                                 response.{{ snakeCase .name }}.?.month,
-                                                 response.{{ snakeCase .name }}.?.day
-                                               });
-    {{- else if eq .type "time" }}
-    try std.testing.expectFmt("{{ .value }}", "{d:0>2}:{d:0>2}:{d:0>2}", 
-                                              .{ 
-                                                 response.{{ snakeCase .name }}.hour,
-                                                 response.{{ snakeCase .name }}.minute,
-                                                 response.{{ snakeCase .name }}.second
-                                               });
-    {{- else if eq .type "datetime" }}
-    try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2} {d:0>2}:{d:0>2}:{d:0>2}", 
-                                              .{ 
-                                                 response.{{ snakeCase .name }}.year,
-                                                 response.{{ snakeCase .name }}.month,
-                                                 response.{{ snakeCase .name }}.day,
-                                                 response.{{ snakeCase .name }}.hour,
-                                                 response.{{ snakeCase .name }}.minute,
-                                                 response.{{ snakeCase .name }}.second
-                                               });
-    {{- else if eq .type "optional datetime"}}
-    if (std.mem.eql(u8, "{{ .value }}","")) {
-       try std.testing.expectEqual(response.{{ snakeCase .name }}, null);
-    } else {
-       try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2} {d:0>2}:{d:0>2}:{d:0>2}", 
-                                                 .{ 
-                                                    response.{{ snakeCase .name }}.?.year,
-                                                    response.{{ snakeCase .name }}.?.month,
-                                                    response.{{ snakeCase .name }}.?.day,
-                                                    response.{{ snakeCase .name }}.?.hour,
-                                                    response.{{ snakeCase .name }}.?.minute,
-                                                    response.{{ snakeCase .name }}.?.second
-                                                  });
-    }
-    {{- else if eq .type "HHmm" }}
-    try std.testing.expectFmt("{{ .value }}", "{d:0>2}:{d:0>2}", 
-                                              .{ 
-                                                 response.{{ snakeCase .name }}.hour,
-                                                 response.{{ snakeCase .name }}.minute
-                                               });
-    {{- else -}}
-    try std.testing.expectEqual(response.{{ snakeCase .name }},{{template "var" .}});
-    {{- end}}
-    {{- end}}
-}
-{{end}}

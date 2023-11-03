@@ -1,4 +1,4 @@
-DIST    ?= development
+ziDIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
 COMMAND ?= get-all-controllers
@@ -234,6 +234,7 @@ zig-listen: zig
 
 zig-test: zig
 	cd generated/zig && zig test src/uhppote/decode.zig
+	cd generated/zig && zig test src/uhppote/decode_test.zig
 
 php: build regen
 	$(CMD) --models $(MODELS) --templates $(PHP) --out generated/php --clean
