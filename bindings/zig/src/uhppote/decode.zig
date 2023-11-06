@@ -116,17 +116,12 @@ fn unpack_version(packet: [64]u8, offset: u8) [:0]const u8 {
 }
 
 fn unpack_date(packet: [64]u8, offset: u8) datelib.Date {
-    const bcd = bcd2string(packet[offset..][0..4]);
+    var bcd: [8]u8 = undefined;
 
-    if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
-        const yyyy = [4]u8{ string[0], string[1], string[2], string[3] };
-        const mm = [2]u8{ string[4], string[5] };
-        const dd = [2]u8{ string[6], string[7] };
-
-        const year = std.fmt.parseUnsigned(u16, &yyyy, 10) catch 1900;
-        const month = std.fmt.parseUnsigned(u8, &mm, 10) catch 1;
-        const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
+    if (bcd2string(packet[offset..][0..4],&bcd)) |_| {
+        const year = std.fmt.parseUnsigned(u16, bcd[0..4], 10) catch 2000;
+        const month = std.fmt.parseUnsigned(u8, bcd[4..6], 10) catch 1;
+        const day = std.fmt.parseUnsigned(u8, bcd[6..8], 10) catch 1;
 
         return datelib.Date{
             .year = year,
@@ -143,17 +138,12 @@ fn unpack_date(packet: [64]u8, offset: u8) datelib.Date {
 }
 
 fn unpack_shortdate(packet: [64]u8, offset: u8) datelib.Date {
-    const bcd = bcd2string(packet[offset..][0..3]);
+    var bcd: [6]u8 = undefined;
 
-    if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
-        const yy = [2]u8{ string[0], string[1] };
-        const mm = [2]u8{ string[2], string[3] };
-        const dd = [2]u8{ string[4], string[5] };
-
-        const year = std.fmt.parseUnsigned(u16, &yy, 10) catch 0;
-        const month = std.fmt.parseUnsigned(u8, &mm, 10) catch 1;
-        const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
+    if (bcd2string(packet[offset..][0..3],&bcd)) |_| {
+        const year = std.fmt.parseUnsigned(u16, bcd[0..2], 10) catch 0;
+        const month = std.fmt.parseUnsigned(u8, bcd[2..4], 10) catch 1;
+        const day = std.fmt.parseUnsigned(u8, bcd[4..6], 10) catch 1;
 
         return datelib.Date{
             .year = 2000 + year,
@@ -170,17 +160,12 @@ fn unpack_shortdate(packet: [64]u8, offset: u8) datelib.Date {
 }
 
 fn unpack_optional_date(packet: [64]u8, offset: u8) ?datelib.Date {
-    const bcd = bcd2string(packet[offset..][0..4]);
+    var bcd: [8]u8 = undefined;
 
-    if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
-        const yyyy = [4]u8{ string[0], string[1], string[2], string[3] };
-        const mm = [2]u8{ string[4], string[5] };
-        const dd = [2]u8{ string[6], string[7] };
-
-        const year = std.fmt.parseUnsigned(u16, &yyyy, 10) catch 1900;
-        const month = std.fmt.parseUnsigned(u8, &mm, 10) catch 1;
-        const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
+    if (bcd2string(packet[offset..][0..4],&bcd)) |_| {
+        const year = std.fmt.parseUnsigned(u16, bcd[0..4], 10) catch 2000;
+        const month = std.fmt.parseUnsigned(u8, bcd[4..6], 10) catch 1;
+        const day = std.fmt.parseUnsigned(u8, bcd[6..8], 10) catch 1;
 
         return datelib.Date{
             .year = year,
@@ -193,17 +178,12 @@ fn unpack_optional_date(packet: [64]u8, offset: u8) ?datelib.Date {
 }
 
 fn unpack_time(packet: [64]u8, offset: u8) datelib.Time {
-    const bcd = bcd2string(packet[offset..][0..3]);
+    var bcd: [6]u8 = undefined;
 
-    if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts string somehow
-        const hh = [2]u8{ string[0], string[1] };
-        const mm = [2]u8{ string[2], string[3] };
-        const ss = [2]u8{ string[4], string[5] };
-
-        const hour = std.fmt.parseUnsigned(u8, &hh, 10) catch 0;
-        const minute = std.fmt.parseUnsigned(u8, &mm, 10) catch 0;
-        const second = std.fmt.parseUnsigned(u8, &ss, 10) catch 0;
+    if (bcd2string(packet[offset..][0..3],&bcd)) |_| {
+        const hour = std.fmt.parseUnsigned(u8, bcd[0..2], 10) catch 0;
+        const minute = std.fmt.parseUnsigned(u8, bcd[2..4], 10) catch 0;
+        const second = std.fmt.parseUnsigned(u8, bcd[4..6], 10) catch 0;
 
         return datelib.Time{
             .hour = hour,
@@ -220,15 +200,11 @@ fn unpack_time(packet: [64]u8, offset: u8) datelib.Time {
 }
 
 fn unpack_hhmm(packet: [64]u8, offset: u8) datelib.Time {
-    const bcd = bcd2string(packet[offset..][0..2]);
+    var bcd: [4]u8 = undefined;
 
-    if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
-        const hh = [2]u8{ string[0], string[1] };
-        const mm = [2]u8{ string[2], string[3] };
-
-        const hour = std.fmt.parseUnsigned(u8, &hh, 10) catch 0;
-        const minute = std.fmt.parseUnsigned(u8, &mm, 10) catch 0;
+    if (bcd2string(packet[offset..][0..2],&bcd)) |_| {
+        const hour = std.fmt.parseUnsigned(u8, bcd[0..2], 10) catch 0;
+        const minute = std.fmt.parseUnsigned(u8, bcd[2..4], 10) catch 0;
 
         return datelib.Time{
             .hour = hour,
@@ -245,23 +221,15 @@ fn unpack_hhmm(packet: [64]u8, offset: u8) datelib.Time {
 }
 
 fn unpack_datetime(packet: [64]u8, offset: u8) datelib.DateTime {
-    const bcd = bcd2string(packet[offset..][0..7]);
+    var bcd: [14]u8 = undefined;
 
-    if (bcd) |string| {
-        // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
-        const yy = [4]u8{ string[0], string[1], string[2], string[3] };
-        const MM = [2]u8{ string[4], string[5] };
-        const dd = [2]u8{ string[6], string[7] };
-        const hh = [2]u8{ string[8], string[9] };
-        const mm = [2]u8{ string[10], string[11] };
-        const ss = [2]u8{ string[12], string[13] };
-
-        const year = std.fmt.parseUnsigned(u16, &yy, 10) catch 1900;
-        const month = std.fmt.parseUnsigned(u8, &MM, 10) catch 1;
-        const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
-        const hour = std.fmt.parseUnsigned(u8, &hh, 10) catch 0;
-        const minute = std.fmt.parseUnsigned(u8, &mm, 10) catch 0;
-        const second = std.fmt.parseUnsigned(u8, &ss, 10) catch 0;
+    if (bcd2string(packet[offset..][0..7],&bcd)) |_| {
+        const year = std.fmt.parseUnsigned(u16, bcd[0..4], 10) catch 2000;
+        const month = std.fmt.parseUnsigned(u8, bcd[4..6], 10) catch 1;
+        const day = std.fmt.parseUnsigned(u8, bcd[6..8], 10) catch 1;
+        const hour = std.fmt.parseUnsigned(u8, bcd[8..10], 10) catch 0;
+        const minute = std.fmt.parseUnsigned(u8, bcd[10..12], 10) catch 0;
+        const second = std.fmt.parseUnsigned(u8, bcd[12..14], 10) catch 0;
 
         return datelib.DateTime{
             .year = year,
@@ -273,7 +241,7 @@ fn unpack_datetime(packet: [64]u8, offset: u8) datelib.DateTime {
         };
     } else |_| {
         return datelib.DateTime{
-            .year = 1900,
+            .year = 2000,
             .month = 1,
             .day = 1,
             .hour = 0,
@@ -284,27 +252,18 @@ fn unpack_datetime(packet: [64]u8, offset: u8) datelib.DateTime {
 }
 
 fn unpack_optional_datetime(packet: [64]u8, offset: u8) ?datelib.DateTime {
-    const bcd = bcd2string(packet[offset..][0..7]);
+    var bcd: [14]u8 = undefined;
 
-    if (bcd) |string| {
-
-        if (std.mem.eql(u8, string,&ZERO_DATETIME)) {
+    if (bcd2string(packet[offset..][0..7],&bcd)) |_| {
+        if (std.mem.eql(u8, &bcd,&ZERO_DATETIME)) {
             return null;
         } else {
-            // ... workaround for weird, obscure error in Zig v0.11.0 that corrupts BCD string somehow
-            const yyyy = [4]u8{ string[0], string[1], string[2], string[3] };
-            const MM = [2]u8{ string[4], string[5] };
-            const dd = [2]u8{ string[6], string[7] };
-            const hh = [2]u8{ string[8], string[9] };
-            const mm = [2]u8{ string[10], string[11] };
-            const ss = [2]u8{ string[12], string[13] };
-
-            const year = std.fmt.parseUnsigned(u16, &yyyy, 10) catch 1900;
-            const month = std.fmt.parseUnsigned(u8, &MM, 10) catch 1;
-            const day = std.fmt.parseUnsigned(u8, &dd, 10) catch 1;
-            const hour = std.fmt.parseUnsigned(u8, &hh, 10) catch 0;
-            const minute = std.fmt.parseUnsigned(u8, &mm, 10) catch 0;
-            const second = std.fmt.parseUnsigned(u8, &ss, 10) catch 0;
+            const year = std.fmt.parseUnsigned(u16, bcd[0..4], 10) catch 2000;
+            const month = std.fmt.parseUnsigned(u8, bcd[4..6], 10) catch 1;
+            const day = std.fmt.parseUnsigned(u8, bcd[6..8], 10) catch 1;
+            const hour = std.fmt.parseUnsigned(u8, bcd[8..10], 10) catch 0;
+            const minute = std.fmt.parseUnsigned(u8, bcd[10..12], 10) catch 0;
+            const second = std.fmt.parseUnsigned(u8, bcd[12..14], 10) catch 0;
 
             return datelib.DateTime{
                 .year = year,
@@ -326,16 +285,8 @@ fn unpack_pin(packet: [64]u8, offset: u8) u24 {
     return std.mem.readIntLittle(u24, &slice);
 }
 
-fn bcd2string(slice: []const u8) ![]u8 {
-    var buffer: [64:0]u8 = undefined;
-
-    return try std.fmt.bufPrintZ(&buffer, "{s}", .{std.fmt.fmtSliceHexLower(slice)});
-}
-
-fn bcd2stringx(slice: []const u8) ![]const u8 {
-    var buffer: [64:0]u8 = undefined;
-
-    return try std.fmt.bufPrint(&buffer, "{s}", .{std.fmt.fmtSliceHexLower(slice)});
+fn bcd2string(slice: []const u8, buffer: []u8) !void {
+    _ = try std.fmt.bufPrint(buffer, "{s}", .{std.fmt.fmtSliceHexLower(slice)});
 }
 
 // Unit tests
@@ -371,7 +322,8 @@ test "decode status response" {
     try std.testing.expectEqual(response.event_door, 3);
     try std.testing.expectEqual(response.event_direction, 1);
     try std.testing.expectEqual(response.event_card, 8165537);
-    try std.testing.expectEqual(response.event_timestamp, datelib.DateTime{ .year = 2022, .month = 8, .day = 23, .hour = 9, .minute = 47, .second = 6 });
+    try std.testing.expectEqual(response.event_timestamp, 
+                                datelib.DateTime{ .year = 2022, .month = 8, .day = 23, .hour = 9, .minute = 47, .second = 6 });
     try std.testing.expectEqual(response.event_reason, 44);
     try std.testing.expectEqual(response.sequence_no, 0);
 }
@@ -412,6 +364,104 @@ test "decode status response with no event" {
     try std.testing.expectEqual(response.sequence_no, 0);
 }
 
+test "unpack_date" {
+    const packet = [_]u8{
+        0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+        0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    const expected = datelib.Date{.year = 2022, .month=8, .day=23};
+    const date = unpack_date(packet,20);
+
+    try std.testing.expectEqual(expected, date);
+}
+
+test "unpack_shortdate" {
+    const packet = [_]u8{
+        0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+        0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    const expected = datelib.Date{.year = 2022, .month=8, .day=23};
+    const date = unpack_shortdate(packet,21);
+
+    try std.testing.expectEqual(expected, date);
+}
+
+test "unpack_optional_date" {
+    const packet = [_]u8{
+        0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+        0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    const expected = datelib.Date{.year = 2022, .month=8, .day=23};
+    const date = unpack_optional_date(packet,20);
+
+    try std.testing.expectEqual(expected, date.?);
+}
+
+test "unpack_time" {
+    const packet = [_]u8{
+        0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+        0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    const expected = datelib.Time{.hour = 9, .minute=47, .second=6};
+    const time = unpack_time(packet,24);
+
+    try std.testing.expectEqual(expected, time);
+}
+
+test "unpack_hhmm" {
+    const packet = [_]u8{
+        0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+        0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    const expected = datelib.Time{.hour = 9, .minute=47, .second=0};
+    const HHmm = unpack_hhmm(packet,24);
+
+    try std.testing.expectEqual(expected, HHmm);
+}
+
+test "unpack_datetime" {
+    const packet = [_]u8{
+        0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+        0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    const expected = datelib.DateTime{.year = 2022, .month=8, .day=23, .hour = 9, .minute=47, .second=6};
+    const datetime = unpack_datetime(packet,20);
+
+    try std.testing.expectEqual(expected, datetime);
+}
+
+test "unpack_optional_datetime" {
+    const packet = [_]u8{
+        0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
+        0xa1, 0x98, 0x7c, 0x00, 0x20, 0x22, 0x08, 0x23, 0x09, 0x47, 0x06, 0x2c, 0x00, 0x01, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x01, 0x03, 0x09, 0x49, 0x39, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x27, 0x07, 0x09, 0x22, 0x08, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    const expected = datelib.DateTime{.year = 2022, .month=8, .day=23, .hour = 9, .minute=47, .second=6};
+    const datetime = unpack_optional_datetime(packet,20);
+
+    try std.testing.expectEqual(expected, datetime.?);
+}
+
 test "bcd2string" {
     const packet = [_]u8{
         0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,
@@ -421,16 +471,11 @@ test "bcd2string" {
     };
 
     const offset = 20;
-    const bcd: []const u8 = try bcd2string(packet[offset..][0..7]);
+    var bcd: [14]u8 = undefined;
     const expected: []const u8 = "20220823094706";
 
-    // std.debug.print("\n", .{ });
-    // std.debug.print(">>>  {any} {any}\n", .{ expected,bcd });
-    // 
-    // if (std.mem.indexOfDiff(u8, bcd, expected)) |_| {
-    //     std.debug.print(">>>  {any} {any}\n", .{ expected, bcd });
-    // }
+     _ = try bcd2string(packet[offset..][0..7],&bcd);
 
-    try std.testing.expect(std.mem.eql(u8, expected,bcd));
+    try std.testing.expect(std.mem.eql(u8, expected,&bcd));
 }
 
