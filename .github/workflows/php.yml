@@ -26,10 +26,12 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.2'
-        tools: php-cs-fixer
+        tools: php-cs-fixer, phpunit
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v4
 
     - name: Build
-      run: make php
+      run: |
+           make php
+           make php-test
