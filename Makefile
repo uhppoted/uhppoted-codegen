@@ -256,7 +256,7 @@ php-listen: php
 	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 listen
 
 php-test: php
-	# $(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 get-status 303986753
+	cd generated/php && phpunit uhppote/decodeTest.php
 
 erlang: build regen
 	# cd generated/erlang && dialyzer --src *.erl

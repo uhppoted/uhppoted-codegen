@@ -4,12 +4,13 @@
 - [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store
+
 - [ ] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
       - [x] Go
       - [x] Rust
       - [x] Python
-      - [ ] Zig
-      - [ ] PHP
+      - [x] Zig
+      - [x] PHP
       - [ ] Erlang
       - [ ] Lua
       - [ ] HTTP
