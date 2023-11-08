@@ -11,7 +11,7 @@
       - [x] Python
       - [x] Zig
       - [x] PHP
-      - [ ] Erlang
+      - [x] Erlang
       - [ ] Lua
       - [ ] HTTP
       - [ ] CHANGELOG

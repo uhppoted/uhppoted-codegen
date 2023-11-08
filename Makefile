@@ -259,8 +259,6 @@ php-test: php
 	cd generated/php && phpunit uhppote/decodeTest.php
 
 erlang: build regen
-	# cd generated/erlang && dialyzer --src *.erl
-	# cd generated/erlang && erl -compile main commands uhppoted udp encoder decoder log
 	$(CMD) --models $(MODELS) --templates $(ERLANG) --out generated/erlang --clean
 	cd generated/erlang && rebar3 fmt      && \
 	               rebar3 clean    && \
@@ -291,7 +289,7 @@ erlang-listen: erlang
 	$(ERLBIN) listen
 
 erlang-test: erlang
-	# $(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-status 303986753
+	cd generated/erlang && rebar3 eunit
 
 lua: build regen
 	$(CMD) --models $(MODELS) --templates $(LUA) --out generated/lua --clean
