@@ -56,5 +56,5 @@ jobs:
     - name: Test
       run: |
            echo $PATH
-           ls -la /home/runner/work/uhppoted-codegen/uhppoted-codegen/.lua/bin
+           ls -la /home/runner/work/uhppoted-codegen/uhppoted-codegen
 
