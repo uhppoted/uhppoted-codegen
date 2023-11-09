@@ -54,4 +54,7 @@ jobs:
       run: make lua
 
     - name: Test
-      run: echo $PATH
+      run: |
+           echo $PATH
+           lua -h
+
