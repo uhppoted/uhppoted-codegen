@@ -23,6 +23,10 @@ jobs:
     - name: Install staticcheck
       run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
+    # NTS: needs to be before the lua install because it overwrites the folder
+    - name: Check out code
+      uses: actions/checkout@v4
+
     - name: Set up Lua 5.4.x
       uses: leafo/gh-actions-lua@v10
       with:
@@ -46,9 +50,6 @@ jobs:
 
     - name: Install stylua
       run: cargo install stylua --features lua54
-
-    - name: Check out code
-      uses: actions/checkout@v4
 
     - name: Build
       run: make lua
