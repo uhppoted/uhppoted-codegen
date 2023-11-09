@@ -311,7 +311,7 @@ lua-listen: lua
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 listen
 
 lua-test: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 get-status --controller 303986753
+	cd generated/lua && lua src/test_decode.lua
 
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean

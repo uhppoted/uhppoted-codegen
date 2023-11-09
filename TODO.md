@@ -12,7 +12,7 @@
       - [x] Zig
       - [x] PHP
       - [x] Erlang
-      - [ ] Lua
+      - [x] Lua
       - [ ] HTTP
       - [ ] CHANGELOG
 
