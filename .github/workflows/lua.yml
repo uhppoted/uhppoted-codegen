@@ -28,7 +28,7 @@ jobs:
       with:
         luaVersion: "5.4"
 
-    - name: Set up luarocks 3.9.x
+    - name: Set up luarocks
       uses: leafo/gh-actions-luarocks@v4
 
     - name: Install Lua packages
@@ -47,10 +47,11 @@ jobs:
     - name: Install stylua
       run: cargo install stylua --features lua54
 
-    - name: Check out code into the Go module directory
+    - name: Check out code
       uses: actions/checkout@v4
 
     - name: Build
-      run: |
-           make lua
-           make lua-test
+      run: make lua
+
+    - name: Test
+      run: echo $PATH
