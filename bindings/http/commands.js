@@ -9,9 +9,9 @@ export function getAllControllers () {
 }
 
 export function getController (controller) {
-  controller = arg(controller)
+                                 controller = arg(controller)
 
-  return uhppote.GetController(controller)
+             return uhppote.GetController(controller)
 }
 
 export function setIP (controller, address, netmask, gateway) {

@@ -7,6 +7,12 @@
 2. _.ignore_ file for files to be skipped for code-generation.
 3. _Lua_ bindings.
 
+### Updated
+1. Updated Zig to v0.11.0
+2. Added unit tests to all bindings for decoding `get-status` response without an event.
+3. Generated PyUnit unit tests from models.
+4. Generated Zig unit tests from models.
+
 
 ## [0.8.6](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.6) - 2023-08-30
 

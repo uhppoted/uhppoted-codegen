@@ -316,3 +316,7 @@ lua-test: lua
 http: build
 	$(CMD) --models $(MODELS) --templates $(HTTP) --out generated/http --clean
 	npx eslint --fix generated/http/*.js 
+	npx eslint --fix generated/http/test/*.js 
+
+http-test: http
+	npx mocha generated/http/test/**/*_spec.js

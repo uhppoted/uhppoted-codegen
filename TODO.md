@@ -5,7 +5,7 @@
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store
 
-- [ ] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
+- [x] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
       - [x] Go
       - [x] Rust
       - [x] Python
@@ -13,8 +13,8 @@
       - [x] PHP
       - [x] Erlang
       - [x] Lua
-      - [ ] HTTP
-      - [ ] CHANGELOG
+      - [x] HTTP
+      - [x] CHANGELOG
 
 - [ ] --delimiters
 - [ ] clang-tidy
