@@ -30,15 +30,19 @@ development in languages other than Go. However, because of the way the cgo comp
 require that a DLL be built specifically for the target machine which can make application distribution more complicated
 than it should be.
 
-## Releases
+## Release Notes
 
-| *Version* | *Description*                                                                             |
-| --------- | ----------------------------------------------------------------------------------------- |
-| v0.8.6    | Adds Erlang to language bindings and `activate-keypads` to generated functions            |
-| v0.8.5    | Added PHP to included language bindings and added `set-interlock` to generated functions  |
-| v0.8.4    | Added Zig to included language bindings and added `set-pc-control` to generated functions |
-| v0.8.3    | Added ARM64 to release builds                                                             |
-| v0.8.2    | Initial release                                                                           |
+### Current Release
+
+**[v0.8.7](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.7) - 2023-12-01**
+
+1. `set-door-passcodes` function.
+2. _.ignore_ file for files to be skipped for code-generation.
+3. _Lua_ bindings.
+2. Updated Zig to v0.11.0
+3. Added unit tests to all bindings for decoding `get-status` response without an event.
+4. Generated PyUnit unit tests from models.
+5. Generated Zig unit tests from models.
 
 ## Installation
 
