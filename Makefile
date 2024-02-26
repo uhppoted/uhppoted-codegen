@@ -1,7 +1,7 @@
 ziDIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= get-all-controllers
+COMMAND ?= restore-default-parameters
 
 MODELS = bindings/.models
 QUICKSTART = bindings/quickstart
@@ -162,7 +162,7 @@ go-listen: go
 
 go-test: go
 	cd generated/go && go test -v ./uhppote
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-status --controller 303986753
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 restore-default-parameters --controller 303986753
 
 rust: build regen 
 	# rm -rf generated/rust/*
@@ -282,6 +282,9 @@ erlang-debug: erlang
 erlang-usage: erlang
 	$(ERLBIN) 
 
+erlang-cmd: erlang
+	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 $(COMMAND)
+
 erlang-all: erlang
 	$(ERLBIN) all
 
@@ -303,6 +306,9 @@ lua-debug: lua
 	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 set-time-profile --controller 405419896 --profile 37 --start-date 2023-01-01 --end-date 2023-12-31 --weekdays Mon,Tue,Sun --segments "8:30-11:45, 13:15-17:30" --linked 33
 	# $(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 add-task --controller 405419896 --door 3 --task "door-normally-closed" --at "08:30" --start-date 2023-01-01 --end-date 2023-12-31 --weekdays Mon,Tue,Sun --more-cards 5
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 put-card --controller 405419896 --card 10058400 --start-date 2023-01-02 --end-date 2023-12-30 --doors 1:37,2,4 --PIN 6310
+
+lua-cmd: lua
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 $(COMMAND)
 
 lua-all: lua
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 all

@@ -2047,6 +2047,47 @@
             }
           ]
         }
+      },
+      {
+        "name": "restore default parameters",
+        "args": [
+          {
+            "name": "device id",
+            "type": "uint32"
+          }
+        ],
+        "request": {
+          "name": "restore default parameters request",
+          "msgtype": 200,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "",
+              "type": "magic",
+              "offset": 8
+            }
+          ]
+        },
+        "response": {
+          "name": "restore default parameters response",
+          "msgtype": 200,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "reset",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        }
       }
     ],
     "requests": [
@@ -2747,6 +2788,22 @@
             "name": "passcode 4",
             "type": "uint32",
             "offset": 24
+          }
+        ]
+      },
+      {
+        "name": "restore default parameters request",
+        "msgtype": 200,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "",
+            "type": "magic",
+            "offset": 8
           }
         ]
       }
@@ -3556,6 +3613,22 @@
           },
           {
             "name": "ok",
+            "type": "bool",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "restore default parameters response",
+        "msgtype": 200,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "reset",
             "type": "bool",
             "offset": 8
           }

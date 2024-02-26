@@ -176,6 +176,11 @@ pub const commands = [_]Command{
     },
 
     Command{
+        .name = "restore-default-parameters",
+        .function = restore_default_parameters,
+    },
+
+    Command{
         .name = "listen",
         .function = listen,
     },
@@ -568,6 +573,16 @@ fn set_door_passcodes(allocator: std.mem.Allocator) void {
     const passcode4 = 54321;
 
     if (uhppote.set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn restore_default_parameters(allocator: std.mem.Allocator) void {
+    const controller = CONTROLLER;
+
+    if (uhppote.restore_default_parameters(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

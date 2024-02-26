@@ -386,6 +386,13 @@ function set_door_passcodes($u, $args)
     return uhppote\set_door_passcodes($u, $controller, $door, $passcode1, $passcode2, $passcode3, $passcode4);
 }
 
+function restore_default_parameters($u, $args)
+{
+    $controller = CONTROLLER;
+
+    return uhppote\restore_default_parameters($u, $controller);
+}
+
 function listen($u, $args)
 {
     uhppote\listen($u, function ($event) {
@@ -427,6 +434,7 @@ function commands()
         'set-interlock' => 'set_interlock',
         'activate-keypads' => 'activate_keypads',
         'set-door-passcodes' => 'set_door_passcodes',
+        'restore-default-parameters' => 'restore_default_parameters',
         'listen' => 'listen'
     ];
 }

@@ -370,6 +370,12 @@ function set_door_passcodes(args)
     return uhppote.set_door_passcodes(controller, tonumber(door), codes[1], codes[2], codes[3], codes[4])
 end
 
+function restore_default_parameters(args)
+    local controller = parse(args,"controller",CONTROLLER)
+
+    return uhppote.restore_default_parameters(controller)
+end
+
 function listen(args)
     local onerror = function(err)
                        print("   *** ERROR", err)
@@ -394,38 +400,39 @@ end
 -- stylua: ignore start
 local commands = {
    commands = {     
-       { ["command"] = "get-all-controllers",      ["f"] = get_all_controllers,      flags = {},             options = {} },
-       { ["command"] = "get-controller",           ["f"] = get_controller,           flags = {},             options = { "controller" } },
-       { ["command"] = "set-ip",                   ["f"] = set_ip,                   flags = {},             options = { "controller","address","netmask","gateway" } },
-       { ["command"] = "get-time",                 ["f"] = get_time,                 flags = {},             options = { "controller" } },
-       { ["command"] = "set-time",                 ["f"] = set_time,                 flags = {},             options = { "controller","time" } },
-       { ["command"] = "get-listener",             ["f"] = get_listener,             flags = {},             options = { "controller" } },
-       { ["command"] = "set-listener",             ["f"] = set_listener,             flags = {},             options = { "controller","address","port" } },
-       { ["command"] = "get-status",               ["f"] = get_status,               flags = {},             options = { "controller" } },
-       { ["command"] = "get-door-control",         ["f"] = get_door_control,         flags = {},             options = { "controller","door" } },
-       { ["command"] = "set-door-control",         ["f"] = set_door_control,         flags = {},             options = { "controller","door","mode","delay" } },
-       { ["command"] = "open-door",                ["f"] = open_door,                flags = {},             options = { "controller","door" } },
-       { ["command"] = "get-cards",                ["f"] = get_cards,                flags = {},             options = { "controller" } },
-       { ["command"] = "get-card",                 ["f"] = get_card,                 flags = {},             options = { "controller","card" } },
-       { ["command"] = "get-card-by-index",        ["f"] = get_card_by_index,        flags = {},             options = { "controller","index" } },
-       { ["command"] = "put-card",                 ["f"] = put_card,                 flags = {},             options = { "controller","card","start-date","end-date","doors","PIN" } },
-       { ["command"] = "delete-card",              ["f"] = delete_card,              flags = {},             options = { "controller","card" } },
-       { ["command"] = "delete-all-cards",         ["f"] = delete_all_cards,         flags = {},             options = { "controller" } },
-       { ["command"] = "get-event",                ["f"] = get_event,                flags = {},             options = { "controller","index" } },
-       { ["command"] = "get-event-index",          ["f"] = get_event_index,          flags = {},             options = { "controller" } },
-       { ["command"] = "set-event-index",          ["f"] = set_event_index,          flags = {},             options = { "controller", "index" } },
-       { ["command"] = "record-special-events",    ["f"] = record_special_events,    flags = { "disabled" }, options = { "controller" } },
-       { ["command"] = "get-time-profile",         ["f"] = get_time_profile,         flags = {},             options = { "controller", "profile" } },
-       { ["command"] = "set-time-profile",         ["f"] = set_time_profile,         flags = {},             options = { "controller", "profile", "start-date", "end-date", "weekdays", "segments", "linked" } },
-       { ["command"] = "delete-all-time-profiles", ["f"] = delete_all_time_profiles, flags = {},             options = { "controller", "profile" } },
-       { ["command"] = "add-task",                 ["f"] = add_task,                 flags = {},             options = { "controller", "door", "task", "at", "start-date", "end-date", "weekdays", "more-cards" } },
-       { ["command"] = "refresh-tasklist",         ["f"] = refresh_tasklist,         flags = {},             options = { "controller" } },
-       { ["command"] = "clear-tasklist",           ["f"] = clear_tasklist,           flags = {},             options = { "controller" } },
-       { ["command"] = "set-pc-control",           ["f"] = set_pc_control,           flags = { "disabled" }, options = { "controller" } },
-       { ["command"] = "set-interlock",            ["f"] = set_interlock,            flags = {},             options = { "controller", "interlock" } },
-       { ["command"] = "activate_keypads",         ["f"] = activate_keypads,         flags = {},             options = { "controller", "keypads" } },
-       { ["command"] = "set-door-passcodes",       ["f"] = set_door_passcodes,       flags = {},             options = { "controller", "door", "passcodes" } },
-       { ["command"] = "listen",                   ["f"] = listen,                   flags = {},             options = { "controller" } },
+       { ["command"] = "get-all-controllers",        ["f"] = get_all_controllers,        flags = {},             options = {} },
+       { ["command"] = "get-controller",             ["f"] = get_controller,             flags = {},             options = { "controller" } },
+       { ["command"] = "set-ip",                     ["f"] = set_ip,                     flags = {},             options = { "controller","address","netmask","gateway" } },
+       { ["command"] = "get-time",                   ["f"] = get_time,                   flags = {},             options = { "controller" } },
+       { ["command"] = "set-time",                   ["f"] = set_time,                   flags = {},             options = { "controller","time" } },
+       { ["command"] = "get-listener",               ["f"] = get_listener,               flags = {},             options = { "controller" } },
+       { ["command"] = "set-listener",               ["f"] = set_listener,               flags = {},             options = { "controller","address","port" } },
+       { ["command"] = "get-status",                 ["f"] = get_status,                 flags = {},             options = { "controller" } },
+       { ["command"] = "get-door-control",           ["f"] = get_door_control,           flags = {},             options = { "controller","door" } },
+       { ["command"] = "set-door-control",           ["f"] = set_door_control,           flags = {},             options = { "controller","door","mode","delay" } },
+       { ["command"] = "open-door",                  ["f"] = open_door,                  flags = {},             options = { "controller","door" } },
+       { ["command"] = "get-cards",                  ["f"] = get_cards,                  flags = {},             options = { "controller" } },
+       { ["command"] = "get-card",                   ["f"] = get_card,                   flags = {},             options = { "controller","card" } },
+       { ["command"] = "get-card-by-index",          ["f"] = get_card_by_index,          flags = {},             options = { "controller","index" } },
+       { ["command"] = "put-card",                   ["f"] = put_card,                   flags = {},             options = { "controller","card","start-date","end-date","doors","PIN" } },
+       { ["command"] = "delete-card",                ["f"] = delete_card,                flags = {},             options = { "controller","card" } },
+       { ["command"] = "delete-all-cards",           ["f"] = delete_all_cards,           flags = {},             options = { "controller" } },
+       { ["command"] = "get-event",                  ["f"] = get_event,                  flags = {},             options = { "controller","index" } },
+       { ["command"] = "get-event-index",            ["f"] = get_event_index,            flags = {},             options = { "controller" } },
+       { ["command"] = "set-event-index",            ["f"] = set_event_index,            flags = {},             options = { "controller", "index" } },
+       { ["command"] = "record-special-events",      ["f"] = record_special_events,      flags = { "disabled" }, options = { "controller" } },
+       { ["command"] = "get-time-profile",           ["f"] = get_time_profile,           flags = {},             options = { "controller", "profile" } },
+       { ["command"] = "set-time-profile",           ["f"] = set_time_profile,           flags = {},             options = { "controller", "profile", "start-date", "end-date", "weekdays", "segments", "linked" } },
+       { ["command"] = "delete-all-time-profiles",   ["f"] = delete_all_time_profiles,   flags = {},             options = { "controller", "profile" } },
+       { ["command"] = "add-task",                   ["f"] = add_task,                   flags = {},             options = { "controller", "door", "task", "at", "start-date", "end-date", "weekdays", "more-cards" } },
+       { ["command"] = "refresh-tasklist",           ["f"] = refresh_tasklist,           flags = {},             options = { "controller" } },
+       { ["command"] = "clear-tasklist",             ["f"] = clear_tasklist,             flags = {},             options = { "controller" } },
+       { ["command"] = "set-pc-control",             ["f"] = set_pc_control,             flags = { "disabled" }, options = { "controller" } },
+       { ["command"] = "set-interlock",              ["f"] = set_interlock,              flags = {},             options = { "controller", "interlock" } },
+       { ["command"] = "activate_keypads",           ["f"] = activate_keypads,           flags = {},             options = { "controller", "keypads" } },
+       { ["command"] = "set-door-passcodes",         ["f"] = set_door_passcodes,         flags = {},             options = { "controller", "door", "passcodes" } },
+       { ["command"] = "restore-default-parameters", ["f"] = restore_default_parameters, flags = {},             options = { "controller" } },
+       { ["command"] = "listen",                     ["f"] = listen,                     flags = {},             options = { "controller" } },
    },
 }
 -- stylua: ignore end

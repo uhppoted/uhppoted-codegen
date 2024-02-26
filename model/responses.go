@@ -30,6 +30,7 @@ var Responses = []Message{
 	SetInterlockResponse,
 	ActivateKeypadsResponse,
 	SetDoorPasscodesResponse,
+	RestoreDefaultParametersResponse,
 }
 
 var GetControllerResponse = Message{
@@ -864,6 +865,23 @@ var SetDoorPasscodesResponse = Message{
 		},
 		Field{
 			Name:   "ok",
+			Type:   "bool",
+			Offset: 8,
+		},
+	},
+}
+
+var RestoreDefaultParametersResponse = Message{
+	Name:    "restore default parameters response",
+	MsgType: 0xc8,
+	Fields: []Field{
+		Field{
+			Name:   "controller",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "reset",
 			Type:   "bool",
 			Offset: 8,
 		},

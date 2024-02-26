@@ -31,6 +31,7 @@ var Requests = []Message{
 	SetInterlockRequest,
 	ActivateKeypadsRequest,
 	SetDoorPasscodesRequest,
+	RestoreDefaultParametersRequest,
 }
 
 var GetControllerRequest = Message{
@@ -759,6 +760,23 @@ var SetDoorPasscodesRequest = Message{
 			Name:   "passcode 4",
 			Type:   "uint32",
 			Offset: 24,
+		},
+	},
+}
+
+var RestoreDefaultParametersRequest = Message{
+	Name:    "restore default parameters request",
+	MsgType: 0xc8,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "",
+			Type:   "magic",
+			Offset: 8,
 		},
 	},
 }

@@ -53,6 +53,7 @@ commands() ->
         {"set-interlock", set_interlock},
         {"activate-keypads", activate_keypads},
         {"set-door-passcodes", set_door_passcodes},
+        {"restore-default-parameters", restore_default_parameters},
         {"listen", listen}
     ].
 
@@ -298,6 +299,10 @@ execute(set_door_passcodes, _Options, Config) ->
     Passcode3 = 999999,
     Passcode4 = 54321,
     uhppoted:set_door_passcodes(Config, Controller, Door, Passcode1, Passcode2, Passcode3, Passcode4);
+
+execute(restore_default_parameters, _Options, Config) ->
+    Controller = ?CONTROLLER,
+    uhppoted:restore_default_parameters(Config, Controller);
 
 execute(listen, _Options, Config) ->
     case uhppoted:listen(Config, self()) of

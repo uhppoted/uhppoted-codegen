@@ -17,7 +17,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 32] = [
+pub const COMMANDS: [&Command; 33] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -141,6 +141,10 @@ pub const COMMANDS: [&Command; 32] = [
     &Command {
         name: "set-door-passcodes",
         func: set_door_passcodes,
+    },
+    &Command {
+        name: "restore-default-parameters",
+        func: restore_default_parameters,
     },
     &Command {
         name: "listen",
@@ -523,6 +527,14 @@ fn set_door_passcodes() {
 
     print(|| -> Result<uhppote::SetDoorPasscodesResponse, error::Error> {
         futures::executor::block_on(uhppote::set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4))
+    })
+}
+
+fn restore_default_parameters() {
+    let controller = CONTROLLER;
+
+    print(|| -> Result<uhppote::RestoreDefaultParametersResponse, error::Error> {
+        futures::executor::block_on(uhppote::restore_default_parameters(controller))
     })
 }
 

@@ -65,6 +65,7 @@ var commands = []command{
     command{name: "set-interlock", f: setInterlock},
     command{name: "activate-keypads", f: activateKeypads},
     command{name: "set-door-passcodes", f: setDoorPasscodes},
+    command{name: "restore-default-parameters", f: restoreDefaultParameters},
     command{name: "listen", f: listen},
 }
 
@@ -402,6 +403,12 @@ func setDoorPasscodes(args []string) (any, error) {
     passcode4 := uint32(54321)
 
     return uhppote.SetDoorPasscodes(controller, door, passcode1, passcode2, passcode3, passcode4)
+}
+
+func restoreDefaultParameters(args []string) (any, error) {
+    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+
+    return uhppote.RestoreDefaultParameters(controller)
 }
 
 func listen(args []string) (any, error) {

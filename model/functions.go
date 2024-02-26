@@ -33,6 +33,7 @@ var Functions = []Function{
 	SetInterlock,
 	ActivateKeypads,
 	SetDoorPasscodes,
+	RestoreDefaultParameters,
 }
 
 var GetController = Function{
@@ -660,4 +661,16 @@ var SetDoorPasscodes = Function{
 	},
 	Request:  &SetDoorPasscodesRequest,
 	Response: &SetDoorPasscodesResponse,
+}
+
+var RestoreDefaultParameters = Function{
+	Name: "restore default parameters",
+	Args: []Arg{
+		Arg{
+			Name: "device id",
+			Type: "uint32",
+		},
+	},
+	Request:  &RestoreDefaultParametersRequest,
+	Response: &RestoreDefaultParametersResponse,
 }

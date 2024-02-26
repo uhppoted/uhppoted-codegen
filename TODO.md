@@ -1,11 +1,7 @@
 # TODO
 
-- [x] Lua bindings (cf. https://github.com/uhppoted/uhppoted-codegen/issues/10)
-- [x] `set-door-passcodes` (cf. https://github.com/uhppoted/uhppoted/issues/40)
-- [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
-      - [ ] root globs e.g. **/.DS_Store
-
-- [x] Replace Event pointer in GetStatusResponse with zero value (cf. https://github.com/uhppoted/uhppote-core/issues/18)
+- [x] [`restore-default-parameters`](https://github.com/uhppoted/uhppoted/issues/48)
+      - [x] models
       - [x] Go
       - [x] Rust
       - [x] Python
@@ -15,6 +11,9 @@
       - [x] Lua
       - [x] HTTP
       - [x] CHANGELOG
+
+- [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
+      - [ ] root globs e.g. **/.DS_Store
 
 - [ ] --delimiters
 - [ ] clang-tidy
