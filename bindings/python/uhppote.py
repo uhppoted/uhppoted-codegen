@@ -18,11 +18,11 @@ class Uhppote:
         return list
 
     def listen(self, onEvent):
-        self._udp.listen(lambda packet: events(packet, onEvent))
+        self._udp.listen(lambda packet: self.events(packet, onEvent))
         return None
 
 
-    def events(packet, onEvent):
+    def events(self, packet, onEvent):
         onEvent(decode.event(packet))
     
 {{range .model.functions}}
