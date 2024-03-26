@@ -34,15 +34,11 @@ than it should be.
 
 ### Current Release
 
-**[v0.8.7](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.7) - 2023-12-01**
+**[v0.8.8](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.8) - 2024-03-27**
 
-1. `set-door-passcodes` function.
-2. _.ignore_ file for files to be skipped for code-generation.
-3. _Lua_ bindings.
-2. Updated Zig to v0.11.0
-3. Added unit tests to all bindings for decoding `get-status` response without an event.
-4. Generated PyUnit unit tests from models.
-5. Generated Zig unit tests from models.
+1. `restore-default-parameters` function to reset a controller to the manufacturer default configuration.
+2. Updated Go version to 1.22
+
 
 ## Installation
 
