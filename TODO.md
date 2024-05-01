@@ -1,7 +1,6 @@
 # TODO
 
-- [x] [`restore-default-parameters`](https://github.com/uhppoted/uhppoted/issues/48)
-- [x] [Check event decoding](https://github.com/uhppoted/uhppoted-codegen/issues/13)
+- [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store
