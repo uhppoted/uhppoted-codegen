@@ -1,6 +1,16 @@
 # TODO
 
 - [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
+      - [ ] models: rename 'device id' to controller and set type to 'controller'
+      - [ ] Go
+            - [ ] controllers dictionary
+      - [ ] Erlang
+      - [ ] HTTP
+      - [ ] Lua
+      - [ ] Python
+      - [ ] PHP
+      - [ ] Rust
+      - [ ] Zig
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store

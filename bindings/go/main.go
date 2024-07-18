@@ -41,7 +41,7 @@ func main() {
 	}
 
 	uhppote.SetBindAddr(options.bind)
-	uhppote.SetDestAddr(options.broadcast)
+	uhppote.SetBroadcastAddr(options.broadcast)
 	uhppote.SetListenAddr(options.listen)
 	uhppote.SetDebug(options.debug)
 
