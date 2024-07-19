@@ -176,9 +176,9 @@ fn get_all_controllers() {
 }
 
 fn get_controller() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::GetControllerResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::get_controller(controller))
     })
 }
@@ -552,6 +552,14 @@ fn listen() {
     match uhppote::listen(events, errors, interrupt) {
         Ok(v) => println!("{:#?}", v),
         Err(e) => error(e),
+    }
+}
+
+fn resolve(controller: u32) -> uhppote::Controller {
+    uhppote::Controller {
+        controller: controller,
+        address: "".to_string(),
+        transport: "udp".to_string(),
     }
 }
 

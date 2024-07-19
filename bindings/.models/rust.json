@@ -14,7 +14,7 @@
             "datetime": "NaiveDateTime",
             "HHmm": "NaiveTime",
             "pin": "PIN",
-            "controller": "u32",
+            "controller": "Controller",
 
             "optional date": "Option<NaiveDate>",
             "optional datetime": "Option<NaiveDateTime>"

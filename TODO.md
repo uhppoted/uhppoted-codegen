@@ -4,12 +4,13 @@
       - [ ] models: rename 'device id' to controller and set type to 'controller'
       - [ ] Go
             - [ ] controllers dictionary
+      - [ ] Rust
+            - [ ] controllers dictionary
       - [ ] Erlang
       - [ ] HTTP
       - [ ] Lua
       - [ ] Python
       - [ ] PHP
-      - [ ] Rust
       - [ ] Zig
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)

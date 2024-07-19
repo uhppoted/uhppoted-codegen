@@ -7,7 +7,7 @@ use chrono::NaiveTime;
 
 use decode::*;
 use encode::*;
-use udp::Msg;
+use ut0311::Msg;
 
 use error::Error;
 
@@ -17,8 +17,8 @@ pub mod encode;
 #[path = "decode.rs"]
 pub mod decode;
 
-#[path = "udp.rs"]
-mod udp;
+#[path = "ut0311.rs"]
+mod ut0311;
 
 #[path = "error.rs"]
 pub mod error;
@@ -26,30 +26,35 @@ pub mod error;
 pub type PIN = u32;
 pub type Event = decode::{{ CamelCase .model.event.name }};
 pub type Result<T> = std::result::Result<T, Error>;
+pub type Controller = ut0311::Controller;
+
+trait IController {
+    fn resolve(&self) -> ut0311::Controller;
+}
 
 {{range .model.responses}}
 pub type {{CamelCase .name}} = decode::{{CamelCase .name}};
 {{- end}}
 
 pub fn set_bind_addr(addr: &str) {
-    udp::set_bind_addr(addr)
+    ut0311::set_bind_addr(addr)
 }
 
 pub fn set_broadcast_addr(addr: &str) {
-    udp::set_broadcast_addr(addr)
+    ut0311::set_broadcast_addr(addr)
 }
 
 pub fn set_listen_addr(addr: &str) {
-    udp::set_listen_addr(addr)
+    ut0311::set_listen_addr(addr)
 }
 
 pub fn set_debug(enabled: bool) {
-    udp::set_debug(enabled)
+    ut0311::set_debug(enabled)
 }
 
 pub async fn get_all_controllers() -> Result<Vec<GetControllerResponse>> {
     let request = get_controller_request(0)?;
-    let response = udp::broadcast(&request).await;
+    let response = ut0311::broadcast(&request).await;
 
     match response {
         Ok(replies) => {
@@ -69,7 +74,7 @@ pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl futur
         Err(e) => errors(e),
     };
 
-    return udp::listen(pipe, errors, interrupt);
+    return ut0311::listen(pipe, errors, interrupt);
 }
 
 {{range .model.functions}}
@@ -78,8 +83,9 @@ pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl futur
 
 {{define "function"}}
 pub async fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ 
-    let request = {{snakeCase .request.name}}({{template "params" .args}})?;
-    let response = udp::send(&request).await;
+    let c = controller.resolve();
+    let request = {{snakeCase .request.name}}(c.controller, {{template "params" slice .args 1}})?;
+    let response = ut0311::send(c, &request).await;
 
     {{if .response -}}
     match response {
@@ -94,3 +100,20 @@ pub async fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "resul
     {{end}}
 }
 {{end}}
+
+impl IController for u32 {
+    fn resolve(&self) -> ut0311::Controller {
+        ut0311::Controller{
+            controller: *self,
+            address: "".to_string(),
+            transport: "udp".to_string(),
+        }
+    } 
+}
+
+impl IController for ut0311::Controller {
+    fn resolve(&self) -> ut0311::Controller {
+        self.clone()
+    }    
+}
+

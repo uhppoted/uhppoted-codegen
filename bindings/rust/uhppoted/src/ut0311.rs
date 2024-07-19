@@ -1,6 +1,9 @@
+use std::net::TcpStream;
 use std::net::UdpSocket;
 use std::sync::RwLock;
 use std::time::Duration;
+use std::io::Write;
+use std::io::Read;
 
 use async_std::future;
 use futures;
@@ -8,6 +11,13 @@ use futures::future::FutureExt;
 use lazy_static::lazy_static;
 
 use super::error;
+
+#[derive(Clone, Debug)]
+pub struct Controller {
+    pub controller: u32,
+    pub address: String,
+    pub transport: String,
+}
 
 pub type Msg = [u8; 64];
 pub type Result<T> = std::result::Result<T, error::Error>;
@@ -62,7 +72,19 @@ pub async fn broadcast(packet: &Msg) -> Result<Vec<Msg>> {
     return read_all(socket).await;
 }
 
-pub async fn send(packet: &Msg) -> Result<Msg> {
+pub async fn send(controller: Controller, packet: &Msg) -> Result<Msg> {
+    if controller.address != "" && controller.transport == "tcp" {
+        return tcp_send_to(controller.address,packet).await;
+    }
+
+    if controller.address != "" && controller.transport == "udp" {
+        return udp_send_to(controller.address,packet).await;
+    }
+    
+    return udp_broadcast_to(packet).await;
+}
+
+async fn udp_broadcast_to(packet: &Msg) -> Result<Msg> {
     let bind = BIND_ADDR.read()?;
     let broadcast = BROADCAST_ADDR.read()?;
     let socket = UdpSocket::bind(bind.as_str())?;
@@ -79,6 +101,49 @@ pub async fn send(packet: &Msg) -> Result<Msg> {
     }
 
     return read(socket).await;
+}
+
+async fn udp_send_to(address: String, packet: &Msg) -> Result<Msg> {
+    let bind = BIND_ADDR.read()?;
+    let socket = UdpSocket::bind(bind.as_str())?;
+
+    dump(&packet);
+
+    socket.set_write_timeout(Some(WRITE_TIMEOUT))?;
+    socket.set_read_timeout(Some(READ_TIMEOUT))?;
+    socket.set_broadcast(false)?;
+    socket.send_to(packet, address.as_str())?;
+
+    if packet[1] == 0x96 {
+        return Ok([0x00; 64]);
+    }
+
+    return read(socket).await;
+}
+
+async fn tcp_send_to(address: String, packet: &Msg) -> Result<Msg> {
+    let mut socket = TcpStream::connect(address.as_str())?;
+
+    dump(&packet);
+
+    socket.set_write_timeout(Some(WRITE_TIMEOUT))?;
+    socket.set_read_timeout(Some(READ_TIMEOUT))?;
+    socket.write(packet)?;
+
+    if packet[1] == 0x96 {
+        return Ok([0x00; 64]);
+    }
+
+    let mut buffer = [0u8; 1024];
+    let n = socket.read(&mut buffer)?;
+
+    if n == 64 {
+        dump(buffer[..64].try_into()?);
+
+        return Ok(buffer[..64].try_into()?);    
+    }
+
+    return Err(error::Error::from("invalid reply"));
 }
 
 async fn read(socket: UdpSocket) -> Result<Msg> {
