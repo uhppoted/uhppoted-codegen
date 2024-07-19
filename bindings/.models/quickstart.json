@@ -13,6 +13,7 @@
             "time": "time",
             "datetime": "dateTime",
             "HHmm": "time",
+            "controller": "uint32",
 
             "optional date": "*date",
             "optional datetime": "*dateTime"

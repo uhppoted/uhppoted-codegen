@@ -28,6 +28,10 @@ var NETMASK = netip.MustParseAddr("255.255.255.0")
 var GATEWAY = netip.MustParseAddr("192.168.1.1")
 var LISTENER = netip.MustParseAddrPort("192.168.1.100:60001")
 
+var controllers = map[uint32]uhppote.Controller{
+    405419896: uhppote.Controller{405419896, "192.168.1.100:60000", "tcp"},
+}
+
 type command struct {
     name string
     f    func(args []string) (any, error)
@@ -117,7 +121,7 @@ func getAllControllers(args []string) (any, error) {
 }
 
 func getController(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.GetController(controller)
 }
@@ -439,4 +443,24 @@ func listen(args []string) (any, error) {
     }
 
     return struct{}{}, nil
+}
+
+func resolve(controller any) uhppote.Controller {
+    switch v := controller.(type) {
+    case uint32:
+        if c, ok := controllers[v]; ok {
+            return c
+        } else {
+            return uhppote.Controller{
+                Controller: v,
+                Address:    "",
+                Transport:  "udp",
+            }
+        }
+
+    case uhppote.Controller:
+        return v
+    }
+
+    panic(fmt.Sprintf("unknown controller type (%T)", controller))
 }

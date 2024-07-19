@@ -3,12 +3,13 @@ package uhppote
 import (
     "net/netip"
     "os"
+    "fmt"
 )
 
 type Controller struct {
-    controller uint32
-    address    string
-    transport  string
+    Controller uint32
+    Address    string
+    Transport  string
 }
 
 func GetAllControllers() ([]*GetControllerResponse, error) {
@@ -62,15 +63,15 @@ loop:
 
 {{define "function"}}
 func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCase .response.name}},error){{else}}error{{end}} {
-    controller := resolve(deviceId)
+    c := resolve(controller)
 
     {{if .response -}}
-    request,err := {{CamelCase .request.name}}({{template "params" .args}})
+    request,err := {{CamelCase .request.name}}(c.Controller, {{template "params" slice .args 1}})
     if err != nil {
         return nil,err
     }
 
-    if reply,err := send(controller, request); err != nil {
+    if reply,err := send(c, request); err != nil {
         return nil,err
     } else if response,err := {{camelCase .response.name}}(reply); err != nil {
         return nil, err
@@ -85,7 +86,7 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
         return err
     } 
 
-    if _, err = send(controller, request); err != nil {
+    if _, err = send(c, request); err != nil {
         return err
     }
     
@@ -93,18 +94,26 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
     {{- end}}
 }{{end}}
 
-func resolve(controller uint32) Controller {
-    address := ""
-    transport := "udp"
+func resolve(controller any) Controller {
+    switch v := controller.(type) {
+        case uint32:
+            address := ""
+            transport := "udp"
 
-    // if controller == 405419896 {
-    //     address = "192.168.1.100:60000"
-    //     transport = "tcp"
-    // }
+            // if v == 405419896 {
+            //     address = "192.168.1.100:60000"
+            //     transport = "tcp"
+            // }
 
-    return Controller {
-        controller: controller,
-        address: address,
-        transport: transport,
-    }    
+            return Controller {
+                Controller: v,
+                Address: address,
+                Transport: transport,
+            }    
+
+        case Controller:
+            return v
+    }
+
+    panic(fmt.Sprintf("unknown controller type (%T)", controller))
 }

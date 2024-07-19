@@ -5,8 +5,8 @@
         "name": "get controller",
         "args": [
           {
-            "name": "device id",
-            "type": "uint32"
+            "name": "controller",
+            "type": "controller"
           }
         ],
         "request": {
@@ -66,7 +66,7 @@
         "name": "set IP",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -118,7 +118,7 @@
         "name": "get time",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -154,7 +154,7 @@
         "name": "set time",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -199,7 +199,7 @@
         "name": "get status",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -345,7 +345,7 @@
         "name": "get listener",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -386,7 +386,7 @@
         "name": "set listener",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -440,7 +440,7 @@
         "name": "get door control",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -495,7 +495,7 @@
         "name": "set door control",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -568,7 +568,7 @@
         "name": "open door",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -613,7 +613,7 @@
         "name": "get cards",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -649,7 +649,7 @@
         "name": "get card",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -729,7 +729,7 @@
         "name": "get card by index",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -809,7 +809,7 @@
         "name": "put card",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -917,7 +917,7 @@
         "name": "delete card",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -962,7 +962,7 @@
         "name": "delete all cards",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -1003,7 +1003,7 @@
         "name": "get event",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1083,7 +1083,7 @@
         "name": "get event index",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -1119,7 +1119,7 @@
         "name": "set event index",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1169,7 +1169,7 @@
         "name": "record special events",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1214,7 +1214,7 @@
         "name": "get time profile",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1339,7 +1339,7 @@
         "name": "set time profile",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1528,7 +1528,7 @@
         "name": "delete all time profiles",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -1569,7 +1569,7 @@
         "name": "add task",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1722,7 +1722,7 @@
         "name": "refresh tasklist",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -1763,7 +1763,7 @@
         "name": "clear tasklist",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],
@@ -1804,7 +1804,7 @@
         "name": "set pc control",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1854,7 +1854,7 @@
         "name": "set interlock",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1899,7 +1899,7 @@
         "name": "activate keypads",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -1971,7 +1971,7 @@
         "name": "set door passcodes",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           },
           {
@@ -2052,7 +2052,7 @@
         "name": "restore default parameters",
         "args": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32"
           }
         ],

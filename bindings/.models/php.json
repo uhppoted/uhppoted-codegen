@@ -14,6 +14,7 @@
             "datetime": "datetime.datetime",
             "HHmm": "datetime.time",
             "pin" : "PIN",
+            "controller": "int",
 
             "optional date": "datetime.date",
             "optional datetime": "datetime.datetime"

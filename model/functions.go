@@ -40,8 +40,8 @@ var GetController = Function{
 	Name: "get controller",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
-			Type: "uint32",
+			Name: "controller",
+			Type: "controller",
 		},
 	},
 	Request:  &GetControllerRequest,
@@ -52,7 +52,7 @@ var SetIP = Function{
 	Name: "set IP",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -75,7 +75,7 @@ var GetTime = Function{
 	Name: "get time",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -87,7 +87,7 @@ var SetTime = Function{
 	Name: "set time",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -103,7 +103,7 @@ var GetStatus = Function{
 	Name: "get status",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -115,7 +115,7 @@ var GetListener = Function{
 	Name: "get listener",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -127,7 +127,7 @@ var SetListener = Function{
 	Name: "set listener",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -147,7 +147,7 @@ var GetDoorControl = Function{
 	Name: "get door control",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -163,7 +163,7 @@ var SetDoorControl = Function{
 	Name: "set door control",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -187,7 +187,7 @@ var OpenDoor = Function{
 	Name: "open door",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -203,7 +203,7 @@ var GetCards = Function{
 	Name: "get cards",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -215,7 +215,7 @@ var GetCard = Function{
 	Name: "get card",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -231,7 +231,7 @@ var GetCardByIndex = Function{
 	Name: "get card by index",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -247,7 +247,7 @@ var PutCard = Function{
 	Name: "put card",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -291,7 +291,7 @@ var DeleteCard = Function{
 	Name: "delete card",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -307,7 +307,7 @@ var DeleteAllCards = Function{
 	Name: "delete all cards",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -319,7 +319,7 @@ var GetEvent = Function{
 	Name: "get event",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -335,7 +335,7 @@ var GetEventIndex = Function{
 	Name: "get event index",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -347,7 +347,7 @@ var SetEventIndex = Function{
 	Name: "set event index",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -363,7 +363,7 @@ var RecordSpecialEvents = Function{
 	Name: "record special events",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -379,7 +379,7 @@ var GetTimeProfile = Function{
 	Name: "get time profile",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -395,7 +395,7 @@ var SetTimeProfile = Function{
 	Name: "set time profile",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -475,7 +475,7 @@ var DeleteAllTimeProfiles = Function{
 	Name: "delete all time profiles",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -487,7 +487,7 @@ var AddTask = Function{
 	Name: "add task",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -551,7 +551,7 @@ var RefreshTaskList = Function{
 	Name: "refresh tasklist",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -563,7 +563,7 @@ var ClearTaskList = Function{
 	Name: "clear tasklist",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},
@@ -575,7 +575,7 @@ var SetPCControl = Function{
 	Name: "set pc control",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -591,7 +591,7 @@ var SetInterlock = Function{
 	Name: "set interlock",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -607,7 +607,7 @@ var ActivateKeypads = Function{
 	Name: "activate keypads",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -635,7 +635,7 @@ var SetDoorPasscodes = Function{
 	Name: "set door passcodes",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 		Arg{
@@ -667,7 +667,7 @@ var RestoreDefaultParameters = Function{
 	Name: "restore default parameters",
 	Args: []Arg{
 		Arg{
-			Name: "device id",
+			Name: "controller",
 			Type: "uint32",
 		},
 	},

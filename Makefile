@@ -4,7 +4,6 @@ CMD      = ./bin/uhppoted-codegen
 COMMAND ?= restore-default-parameters
 
 MODELS = bindings/.models
-QUICKSTART = bindings/quickstart
 GO     = bindings/go
 RUST   = bindings/rust
 PYTHON = bindings/python
@@ -13,6 +12,7 @@ ZIG    = bindings/zig
 PHP    = bindings/php
 ERLANG = bindings/erlang
 LUA    = bindings/lua
+QUICKSTART = bindings/quickstart
 
 GOBIN   = ./generated/go/bin/uhppoted
 RUSTBIN = ./generated/rust/uhppoted/target/debug/uhppoted
@@ -170,7 +170,7 @@ rust: build regen
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-door-passcodes"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-controller"
 
 rust-usage: rust
 	$(RUSTBIN)

@@ -69,16 +69,16 @@ func broadcast(request []byte) ([][]byte, error) {
 }
 
 func send(controller Controller, request []byte) ([]byte, error) {
-    if controller.address != "" && controller.transport == "tcp" {
-        if addr, err := netip.ParseAddrPort(controller.address); err != nil {
+    if controller.Address != "" && controller.Transport == "tcp" {
+        if addr, err := netip.ParseAddrPort(controller.Address); err != nil {
             return nil, err
         } else {
             return tcpSendTo(request, net.TCPAddrFromAddrPort(addr))
         }
     } 
 
-    if controller.address != "" && controller.transport == "udp" {
-        if addr, err := netip.ParseAddrPort(controller.address); err != nil {
+    if controller.Address != "" && controller.Transport == "udp" {
+        if addr, err := netip.ParseAddrPort(controller.Address); err != nil {
             return nil, err
         } else {
             return udpSendTo(request, net.UDPAddrFromAddrPort(addr))
