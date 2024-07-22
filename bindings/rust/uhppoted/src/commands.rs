@@ -2,11 +2,14 @@ use chrono::offset::Local;
 use chrono::NaiveDate;
 use chrono::NaiveTime;
 use async_ctrlc::CtrlC;
+use lazy_static::lazy_static;
 
 use std::fmt::Debug;
+use std::collections::HashMap;
 
 use super::uhppote;
 use uhppote::error;
+use uhppote::Controller;
 
 const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
@@ -162,6 +165,16 @@ impl Command {
         println!("{}", self.name);
         (self.func)();
     }
+}
+
+lazy_static! {
+    static ref CONTROLLERS: HashMap<u32, Controller> = HashMap::from([
+     (405419896, Controller {
+         controller: 405419896,
+         address: String::from("192.168.1.100:60000"),
+         transport: String::from("tcp"),
+     }),
+ ]);
 }
 
 fn get_all_controllers() {
@@ -556,10 +569,14 @@ fn listen() {
 }
 
 fn resolve(controller: u32) -> uhppote::Controller {
-    uhppote::Controller {
-        controller: controller,
-        address: "".to_string(),
-        transport: "udp".to_string(),
+    if let Some(v) = CONTROLLERS.get(&controller){
+        v.clone()
+    } else {
+        uhppote::Controller {
+            controller: controller,
+            address: "".to_string(),
+            transport: "udp".to_string(),
+        }
     }
 }
 

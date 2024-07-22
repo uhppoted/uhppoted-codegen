@@ -3,9 +3,12 @@
 - [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
       - [ ] models: rename 'device id' to controller and set type to 'controller'
       - [ ] Go
-            - [ ] controllers dictionary
+            - [x] controllers dictionary
+            - [ ] remove uhppote::resolve
       - [ ] Rust
-            - [ ] controllers dictionary
+            - [x] controllers dictionary
+            - [ ] remove uhppote::resolve
+            - [ ] command line args
       - [ ] Erlang
       - [ ] HTTP
       - [ ] Lua
