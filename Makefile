@@ -195,7 +195,7 @@ python: build regen
 	chmod +x generated/python/main.py
 
 python-debug: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-door-passcodes
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-controller
 
 python-usage: python
 	$(PYBIN)

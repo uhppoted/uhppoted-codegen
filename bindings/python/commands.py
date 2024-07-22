@@ -19,6 +19,10 @@ NETMASK = ipaddress.IPv4Address('255.255.255.0')
 GATEWAY = ipaddress.IPv4Address('192.168.1.1')
 LISTENER = (ipaddress.IPv4Address('192.168.1.100'), 60001)
 
+CONTROLLERS = {
+     405419896: uhppote.Controller(405419896,'192.168.1.100:60000','tcp'),
+}
+
 
 def commands():
     return {
@@ -77,7 +81,7 @@ def get_all_controllers(u):
 
 
 def get_controller(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.get_controller(controller)
 
@@ -363,3 +367,10 @@ def listen(u):
 def onEvent(event):
     if event != None:
         pprint(event.__dict__, indent=2, width=1)
+
+def resolve(controller):
+    v = CONTROLLERS.get(controller, None)
+    if not v is None:
+        return v
+    else:
+        return uhppote.Controller(controller, None, 'udp')
