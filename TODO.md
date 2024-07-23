@@ -17,11 +17,16 @@
             - [x] tcp-sendto
             - [x] controllers dictionary
             - [ ] remove uhppote::resolve
+      - [ ] Zig
+            - [x] udp-sendto
+                  - [ ] rework withconnect/send/receive
+            - [x] tcp-sendto
+            - [ ] controllers dictionary
+            - [ ] remove uhppote::resolve
       - [ ] Erlang
       - [ ] HTTP
       - [ ] Lua
       - [ ] PHP
-      - [ ] Zig
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store

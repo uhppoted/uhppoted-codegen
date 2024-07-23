@@ -6,6 +6,12 @@ const READ_TIMEOUT = 2500 * std.time.us_per_ms;
 const WRITE_TIMEOUT = 1000 * std.time.us_per_ms;
 const BUFFER_SIZE = 1024;
 
+pub const Controller = struct {
+    controller: u32,
+    address: [:0]const u8,
+    transport: [:0]const u8,
+};
+
 var bindAddr = network.EndPoint{
     .address = network.Address{ .ipv4 = network.Address.IPv4.any },
     .port = 0,
@@ -86,6 +92,7 @@ pub fn set_debug(v: bool) !void {
 
 pub fn broadcast(packet: [64]u8, allocator: std.mem.Allocator) ![][64]u8 {
     var socket = try network.Socket.create(.ipv4, .udp);
+    
     defer socket.close();
 
     try socket.setBroadcast(true);
@@ -102,8 +109,21 @@ pub fn broadcast(packet: [64]u8, allocator: std.mem.Allocator) ![][64]u8 {
     return try read_all(&socket, allocator);
 }
 
-pub fn send(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
+pub fn send(controller: Controller, packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
+    if (!std.mem.eql(u8, controller.address, "") and std.mem.eql(u8, controller.transport, "tcp")) {
+        return tcp_sendto(packet, controller.address, allocator);
+    }
+
+    if (!std.mem.eql(u8, controller.address, "")) {
+        return udp_sendto(packet, controller.address, allocator);
+    }
+
+    return udp_broadcast_to(packet, allocator);
+}
+
+fn udp_broadcast_to(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
     var socket = try network.Socket.create(.ipv4, .udp);
+    
     defer socket.close();
 
     try socket.setBroadcast(true);
@@ -123,6 +143,78 @@ pub fn send(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
     } 
 
     return try read(&socket, allocator);    
+}
+
+fn udp_sendto(packet: [64]u8, address:[:0]const u8, allocator: std.mem.Allocator) ![64]u8 {
+    const addr = try resolve(address);
+    var socket = try network.Socket.create(.ipv4, .udp);
+    
+    defer socket.close();
+
+    try socket.setWriteTimeout(WRITE_TIMEOUT);
+    try socket.bind(bindAddr);
+
+    const N = try socket.sendTo(addr, &packet);
+    if (debug) {
+        std.debug.print("   ... sent {any} bytes\n", .{N});
+    }
+
+    dump(packet);
+
+    // set-ip does not return a response
+    if (packet[1] == 0x96) { 
+        return [_]u8{0} ** 64;
+    } 
+
+    return try read(&socket, allocator);    
+}
+
+fn tcp_sendto(packet: [64]u8, address:[:0]const u8, _: std.mem.Allocator) ![64]u8 {
+    const addr = try resolve(address);
+    var socket = try network.Socket.create(.ipv4, .tcp);
+    
+    defer socket.close();
+
+    try socket.setWriteTimeout(WRITE_TIMEOUT);
+    try socket.setReadTimeout(READ_TIMEOUT);
+    try socket.bind(bindAddr);
+    try socket.connect(addr);
+
+    const N = try socket.send(&packet);
+    if (debug) {
+        std.debug.print("   ... sent {any} bytes\n", .{N});
+    }
+
+    dump(packet);
+
+    // set-ip does not return a response
+    if (packet[1] == 0x96) { 
+        return [_]u8{0} ** 64;
+    } 
+
+
+    var msg: [BUFFER_SIZE]u8 = undefined;
+
+    if (socket.receive(&msg)) |NN| {
+        if (debug) {
+            std.debug.print("   ... received {any} bytes\n", .{NN});
+        }
+
+        if (NN != 64) {
+            return errors.UhppotedError.InvalidReply;
+        }
+
+        dump(msg[0..64].*);
+
+        return msg[0..64].*;
+    } else |err| switch (err) {
+        error.WouldBlock => {
+            return errors.UhppotedError.NoReply;
+        },
+        else => {
+            return err;
+        },
+    }
 }
 
 pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !void {
@@ -227,6 +319,25 @@ fn read(socket: *network.Socket, _: std.mem.Allocator) ![64]u8 {
             },
         }
     }
+}
+
+fn resolve(addr: [:0]const u8) !network.EndPoint {
+    var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.any };
+    var port: u16 = 60000;
+    var it = std.mem.split(u8, addr, ":");
+
+    if (it.next()) |v| {
+        address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };
+    }
+
+    if (it.next()) |v| {
+        port = try std.fmt.parseUnsigned(u16, v, 10);
+    }
+
+    return network.EndPoint{
+        .address = address,
+        .port = port,
+    };
 }
 
 fn dump(packet: [64]u8) void {

@@ -3,23 +3,23 @@ const datelib = @import("datetime.zig");
 
 const encode = @import("encode.zig");
 const decode = @import("decode.zig");
-const udp = @import("udp.zig");
+const ut0311 = @import("ut0311.zig");
 const network = @import("network.zig");
 
 pub fn set_bind_address(addr: [:0]const u8) !void {
-    try udp.set_bind_address(addr);
+    try ut0311.set_bind_address(addr);
 }
 
 pub fn set_broadcast_address(addr: [:0]const u8) !void {
-    try udp.set_broadcast_address(addr);
+    try ut0311.set_broadcast_address(addr);
 }
 
 pub fn set_listen_address(addr: [:0]const u8) !void {
-    try udp.set_listen_address(addr);
+    try ut0311.set_listen_address(addr);
 }
 
 pub fn set_debug(v: bool) !void {
-    try udp.set_debug(v);
+    try ut0311.set_debug(v);
 }
 
 // FIXME: using threads in lieu of async because async is currently broken in the nightlies
@@ -58,14 +58,14 @@ const context = struct {
 };
 
 fn on_event(ctx: context) void {
-    if (udp.listen(ctx.q, ctx.allocator)) {} else |err| {
+    if (ut0311.listen(ctx.q, ctx.allocator)) {} else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }
 }
 
 pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetControllerResponse {
     const request = try encode.get_controller_request(0);
-    const replies = try udp.broadcast(request, allocator);
+    const replies = try ut0311.broadcast(request, allocator);
 
     defer allocator.free(replies);
 
@@ -87,15 +87,24 @@ pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetController
 
 {{define "function"}}
 pub fn {{snakeCase .name}}({{template "args" .args}}, allocator: std.mem.Allocator) {{if .response -}}!decode.{{template "result" .}}{{else}}!bool{{end}} { 
+    const c = resolve(controller);
     const request = try encode.{{snakeCase .request.name}}({{template "params" .args}});
     {{if .response -}}
-    const reply = try udp.send(request, allocator);
+    const reply = try ut0311.send(c, request, allocator);
 
     return try decode.{{snakeCase .response.name}}(reply);
     {{else}}
-    _ = try udp.send(request, allocator);
+    _ = try ut0311.send(c, request, allocator);
 
     return true;
     {{end}}
 }
 {{end}}
+
+fn resolve(controller: u32) ut0311.Controller {
+    return ut0311.Controller {
+        .controller = controller,
+        .address = "",
+        .transport = "udp",
+    };
+}
