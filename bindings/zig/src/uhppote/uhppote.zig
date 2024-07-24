@@ -104,7 +104,7 @@ pub fn {{snakeCase .name}}({{template "args" .args}}, allocator: std.mem.Allocat
 {{end}}
 
 fn resolve(controller: anytype) Controller {
-    const itype = @TypeOf(controller);
+   const itype = @TypeOf(controller);
 
     if (itype == u32) {
         return Controller {

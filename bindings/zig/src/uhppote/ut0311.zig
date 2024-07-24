@@ -152,9 +152,11 @@ fn udp_sendto(packet: [64]u8, address:[:0]const u8, allocator: std.mem.Allocator
     defer socket.close();
 
     try socket.setWriteTimeout(WRITE_TIMEOUT);
+    try socket.setReadTimeout(READ_TIMEOUT);
     try socket.bind(bindAddr);
+    try socket.connect(addr);
 
-    const N = try socket.sendTo(addr, &packet);
+    const N = try socket.send(&packet);
     if (debug) {
         std.debug.print("   ... sent {any} bytes\n", .{N});
     }

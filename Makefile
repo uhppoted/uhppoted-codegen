@@ -1,4 +1,4 @@
-ziDIST    ?= development
+DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
 COMMAND ?= restore-default-parameters

@@ -13,17 +13,16 @@
             - [ ] remove uhppote::resolve
       - [ ] Zig
             - [x] udp-sendto
-                  - [ ] rework with connect/send/receive
+                  - [x] rework with connect/send/receive
             - [x] tcp-sendto
             - [x] controllers dictionary
             - [ ] update to zig 0.13.0
             - [ ] update 'network' package
             - [ ] remove uhppote::resolve
       - [ ] Erlang
-            - [ ]  udp-sendto
+            - [ ] udp-sendto
             - [ ] tcp-sendto
             - [ ] controllers dictionary
-      - [ ] HTTP
       - [ ] Lua
       - [ ] PHP
 

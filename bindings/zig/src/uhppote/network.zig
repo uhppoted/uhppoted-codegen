@@ -4,7 +4,6 @@ const builtin = @import("builtin");
 
 comptime {
     std.debug.assert(@sizeOf(std.os.sockaddr) >= @sizeOf(std.os.sockaddr.in));
-    // std.debug.assert(@sizeOf(std.os.sockaddr) >= @sizeOf(std.os.sockaddr.in6));
 }
 
 const is_windows = builtin.os.tag == .windows;
@@ -519,8 +518,11 @@ pub const Socket = struct {
     /// will always send full packets, on TCP it will append
     /// to the stream.
     pub fn send(self: Self, data: []const u8) SendError!usize {
-        if (self.endpoint) |ep|
-            return try self.sendTo(ep, data);
+        // NTS: removed - does not make sense for a connected socket (and errors with ICONNECTED)
+        // if (self.endpoint) |ep| {
+        //    return try self.sendTo(ep, data);
+        // }
+
         const send_fn = if (is_windows) windows.send else std.os.send;
         const flags = if (is_windows or is_bsd) 0 else std.os.linux.MSG.NOSIGNAL;
         return try send_fn(self.internal, data, flags);
@@ -665,7 +667,7 @@ pub const SocketEvent = struct {
 /// A set of sockets that can be used to query socket readiness.
 /// This is similar to `select()´ or `poll()` and provides a way to
 /// create non-blocking socket I/O.
-/// This is intented to be used with `waitForSocketEvents()`.
+/// This is intended to be used with `waitForSocketEvents()`.
 pub const SocketSet = struct {
     const Self = @This();
 
