@@ -15,10 +15,10 @@
             - [x] udp-sendto
                   - [ ] rework with connect/send/receive
             - [x] tcp-sendto
-            - [ ] update 'network' package
-            - [ ] controllers dictionary
-            - [ ] remove uhppote::resolve
+            - [x] controllers dictionary
             - [ ] update to zig 0.13.0
+            - [ ] update 'network' package
+            - [ ] remove uhppote::resolve
       - [ ] Erlang
             - [ ]  udp-sendto
             - [ ] tcp-sendto

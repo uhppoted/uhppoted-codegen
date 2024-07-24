@@ -6,6 +6,8 @@ const decode = @import("decode.zig");
 const ut0311 = @import("ut0311.zig");
 const network = @import("network.zig");
 
+pub const Controller = ut0311.Controller;
+
 pub fn set_bind_address(addr: [:0]const u8) !void {
     try ut0311.set_bind_address(addr);
 }
@@ -88,7 +90,7 @@ pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetController
 {{define "function"}}
 pub fn {{snakeCase .name}}({{template "args" .args}}, allocator: std.mem.Allocator) {{if .response -}}!decode.{{template "result" .}}{{else}}!bool{{end}} { 
     const c = resolve(controller);
-    const request = try encode.{{snakeCase .request.name}}({{template "params" .args}});
+    const request = try encode.{{snakeCase .request.name}}(c.controller, {{template "params" slice .args 1}});
     {{if .response -}}
     const reply = try ut0311.send(c, request, allocator);
 
@@ -101,10 +103,20 @@ pub fn {{snakeCase .name}}({{template "args" .args}}, allocator: std.mem.Allocat
 }
 {{end}}
 
-fn resolve(controller: u32) ut0311.Controller {
-    return ut0311.Controller {
-        .controller = controller,
-        .address = "",
-        .transport = "udp",
-    };
+fn resolve(controller: anytype) Controller {
+    const itype = @TypeOf(controller);
+
+    if (itype == u32) {
+        return Controller {
+            .controller = controller,
+            .address = "",
+            .transport = "udp",
+        };    
+    }
+
+    if (itype == Controller) {
+        return controller;
+    }
+
+    @compileError("Unsupported controller type");    
 }

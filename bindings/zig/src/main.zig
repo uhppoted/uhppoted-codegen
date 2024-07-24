@@ -17,6 +17,9 @@ pub fn main() !void {
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
+    try commands.init(allocator);
+    defer commands.deinit(allocator);
+
     // ... command line args
     var bind: [:0]const u8 = "0.0.0.0:0";
     var broadcast: [:0]const u8 = "255.255.255.255.60000";

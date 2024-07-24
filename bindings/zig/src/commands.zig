@@ -14,6 +14,8 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
+var CONTROLLERS = std.AutoHashMapUnmanaged(u32, uhppote.Controller){};
+
 pub const Command = struct {
     name: []const u8,
     function: *const fn (std.mem.Allocator) void,
@@ -186,6 +188,24 @@ pub const commands = [_]Command{
     },
 };
 
+pub fn init(allocator: std.mem.Allocator) !void {
+    try CONTROLLERS.put(allocator,405419896, uhppote.Controller {
+        .controller = 405419896,
+        .address = "192.168.1.100:60000",
+        .transport = "tcp",
+    });
+
+    try CONTROLLERS.put(allocator,303986753, uhppote.Controller {
+        .controller = 303986753,
+        .address = "192.168.1.100:60000",
+        .transport = "udp",
+    });
+}
+
+pub fn deinit(allocator: std.mem.Allocator) void {
+    CONTROLLERS.deinit(allocator);
+}
+
 pub fn exec(cmd: Command) !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
@@ -209,7 +229,9 @@ fn get_all_controllers(allocator: std.mem.Allocator) void {
 }
 
 fn get_controller(allocator: std.mem.Allocator) void {
-    if (uhppote.get_controller(CONTROLLER, allocator)) |controller| {
+    const c = resolve(CONTROLLER);
+
+    if (uhppote.get_controller(c, allocator)) |controller| {
         pprint(controller);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
@@ -597,6 +619,14 @@ fn listen(allocator: std.mem.Allocator) void {
 
 fn on_event(event: decode.Event) void {
     pprint(event);
+}
+
+fn resolve(controller: u32) uhppote.Controller {
+    return CONTROLLERS.get(controller) orelse uhppote.Controller {
+        .controller = controller,
+        .address = "",
+        .transport = "udp",
+    };
 }
 
 fn pprint(v: anytype) void {
