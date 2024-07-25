@@ -216,7 +216,7 @@ pub fn exec(cmd: Command) !void {
 }
 
 fn get_all_controllers(allocator: std.mem.Allocator) void {
-    var list = uhppote.get_all_controllers(allocator);
+    const list = uhppote.get_all_controllers(allocator);
     if (list) |l| {
         for (l) |controller| {
             pprint(controller);

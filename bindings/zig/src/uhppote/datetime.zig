@@ -29,19 +29,19 @@ pub const DateTime = struct {
 pub fn now() DateTime {
     const t = c.time(null);
     const tm = c.localtime(&t);
-    const year = tm.*.tm_year;
-    const month = tm.*.tm_mon;
+    const year: u16 = @intCast(tm.*.tm_year);
+    const month: u8 = @intCast(tm.*.tm_mon);
     const day = tm.*.tm_mday;
     const hour = tm.*.tm_hour;
     const minute = tm.*.tm_min;
     const second = tm.*.tm_sec;
 
     return DateTime{
-        .year = 1900 + @intCast(u16,year),
-        .month = 1 + @intCast(u8,month),
-        .day = @intCast(u8,day),
-        .hour = @intCast(u8,hour),
-        .minute = @intCast(u8,minute),
-        .second = @intCast(u8,second),
+        .year = 1900 + year,
+        .month = 1 + month,
+        .day = @intCast(day),
+        .hour = @intCast(hour),
+        .minute = @intCast(minute),
+        .second = @intCast(second),
     };
 }

@@ -26,7 +26,7 @@ pub fn set_debug(v: bool) !void {
 
 // FIXME: using threads in lieu of async because async is currently broken in the nightlies
 pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocator) !void {
-    var queue = std.atomic.Queue([64]u8).init();
+    var queue = std.fifo.LinearFifo([64]u8,.Dynamic).init(allocator);
 
     const ctx = context{
         .q = &queue,
@@ -36,8 +36,7 @@ pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocat
     var thread = try std.Thread.spawn(.{}, on_event, .{@as(context, ctx)});
 
     while (true) {
-        while (queue.get()) |node| {
-            const packet = node.data;
+        while (queue.readItem()) |packet| {
             const event = decode.get_event(packet);
 
             if (event) |e| {
@@ -55,7 +54,7 @@ pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocat
 }
 
 const context = struct {
-    q: *std.atomic.Queue([64]u8),
+    q: *std.fifo.LinearFifo([64]u8,.Dynamic),
     allocator: std.mem.Allocator,
 };
 

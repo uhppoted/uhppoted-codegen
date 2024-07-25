@@ -219,34 +219,25 @@ fn tcp_sendto(packet: [64]u8, address:[:0]const u8, _: std.mem.Allocator) ![64]u
     }
 }
 
-pub fn listen(queue: *std.atomic.Queue([64]u8), allocator: std.mem.Allocator) !void {
+pub fn listen(queue: *std.fifo.LinearFifo([64]u8,.Dynamic), _: std.mem.Allocator) !void {
     var socket = try network.Socket.create(.ipv4, .udp);
     defer socket.close();
 
     try socket.bind(listenAddr);
 
     while (true) {
-        var msg: [BUFFER_SIZE]u8 = undefined;
-        if (socket.receiveFrom(&msg)) |reply| {
+        var buffer: [BUFFER_SIZE]u8 = undefined;
+        if (socket.receiveFrom(&buffer)) |reply| {
             if (debug) {
                 std.debug.print("   ... received {any} bytes\n", .{reply.numberOfBytes});
             }
 
             if (reply.numberOfBytes == 64) {
-                dump(msg[0..64].*);
+                dump(buffer[0..64].*);
 
-                const node = allocator.create(std.atomic.Queue([64]u8).Node);
-
-                if (node) |n| {
-                    n.* = .{
-                        .prev = undefined,
-                        .next = undefined,
-                        .data = msg[0..64].*,
-                    };
-
-                    queue.put(n);
+                if (queue.writeItem(buffer[0..64].*)) {
                 } else |err| {
-                    std.debug.print("\n   *** WARN   {any}\n", .{err});
+                    std.debug.print("\n   *** WARN   {any}\n", .{err});                
                 }
             }
         } else |err| {

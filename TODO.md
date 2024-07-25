@@ -3,28 +3,22 @@
 - [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
       - [ ] models: rename 'device id' to controller and set type to 'controller'
       - [ ] Go
-            - [ ] remove uhppote::resolve
       - [ ] Rust
-            - [ ] remove uhppote::resolve
       - [ ] Python
-            - [x] udp-sendto
-            - [x] tcp-sendto
-            - [x] controllers dictionary
-            - [ ] remove uhppote::resolve
       - [ ] Zig
             - [x] udp-sendto
                   - [x] rework with connect/send/receive
             - [x] tcp-sendto
             - [x] controllers dictionary
-            - [ ] update to zig 0.13.0
-            - [ ] update 'network' package
-            - [ ] remove uhppote::resolve
+            - [x] update to zig 0.13.0
+            - [x] update 'network' package
       - [ ] Erlang
             - [ ] udp-sendto
             - [ ] tcp-sendto
             - [ ] controllers dictionary
       - [ ] Lua
       - [ ] PHP
+      - [ ] remove uhppote::resolve
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store

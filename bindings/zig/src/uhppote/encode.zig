@@ -34,13 +34,13 @@ fn pack_bool(v: bool, packet: *[64]u8, offset: u8) !void {
 }
 
 fn pack_uint8(v: u8, packet: *[64]u8, offset: u8) !void {
-    std.mem.writeIntLittle(u8, &packet[offset], v);
+    std.mem.writeInt(u8, &packet[offset], v, .little);
 }
 
 fn pack_uint16(v: u16, packet: *[64]u8, offset: u8) !void {
     var slice = [2]u8{ 0, 0 };
 
-    std.mem.writeIntLittle(u16, &slice, v);
+    std.mem.writeInt(u16, &slice, v, .little);
 
     packet[offset] = slice[0];
     packet[offset+1] = slice[1];
@@ -49,7 +49,7 @@ fn pack_uint16(v: u16, packet: *[64]u8, offset: u8) !void {
 fn pack_uint32(v: u32, packet: *[64]u8, offset: u8) !void {
     var slice = [4]u8{ 0, 0, 0, 0 };
 
-    std.mem.writeIntLittle(u32, &slice, v);
+    std.mem.writeInt(u32, &slice, v, .little);
 
     packet[offset] = slice[0];
     packet[offset+1] = slice[1];
@@ -113,7 +113,7 @@ fn pack_hhmm(v: datelib.Time, packet: *[64]u8, offset: u8) !void {
 fn pack_pin(v: u24, packet: *[64]u8, offset: u8) !void {
     var slice = [3]u8{ 0, 0, 0};
 
-    std.mem.writeIntLittle(u24, &slice, v);
+    std.mem.writeInt(u24, &slice, v, .little);
 
     packet[offset] = slice[0];
     packet[offset+1] = slice[1];
