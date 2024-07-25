@@ -7,7 +7,6 @@
       - [ ] Python
       - [ ] Zig
             - [x] udp-sendto
-                  - [x] rework with connect/send/receive
             - [x] tcp-sendto
             - [x] controllers dictionary
             - [x] update to zig 0.13.0
