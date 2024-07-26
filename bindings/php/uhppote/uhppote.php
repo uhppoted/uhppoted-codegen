@@ -4,7 +4,7 @@ namespace uhppote;
 
 include "encode.php";
 include "decode.php";
-include "udp.php";
+include "ut0311.php";
 
 class UHPPOTE
 {
@@ -29,10 +29,22 @@ class UHPPOTE
     }
 }
 
+class Controller {
+    public $controller;
+    public $address;
+    public $transport;
+
+    public function __construct(int $controller, string $address = '', string $transport = '') {
+        $this->controller = $controller;
+        $this->address = $address;
+        $this->transport = $transport;
+    }
+}
+
 function get_all_controllers($uhppote)
 {
     $request = get_controller_request(0);
-    $replies = udp\broadcast($uhppote, $request);
+    $replies = ut0311\broadcast($uhppote, $request);
 
     $list = array();
     foreach ($replies as $reply) {
@@ -55,7 +67,7 @@ function listen($uhppote, $handlerfn)
         }
     };
 
-    udp\listen($uhppote, $fn);
+    ut0311\listen($uhppote, $fn);
 }
 
 {{range $ix,$fn := .model.functions}}
@@ -65,8 +77,9 @@ function listen($uhppote, $handlerfn)
 {{define "function"}}
 function {{snakeCase .name}}($uhppote, {{template "args" .args}})
 {
-    $request = {{snakeCase .request.name}}({{template "params" .args}});
-    $reply = udp\send($uhppote, $request);
+    $c = resolve($controller);
+    $request = {{snakeCase .request.name}}($c->controller, {{template "params" slice .args 1}});
+    $reply = ut0311\send($uhppote, $c, $request);
     {{if .response}}$response = {{snakeCase .response.name}}($reply);
 
     return $response;
@@ -75,3 +88,16 @@ function {{snakeCase .name}}($uhppote, {{template "args" .args}})
     {{end}}
 }
 {{end}}
+
+function resolve($controller)
+{ 
+    if (gettype($controller) === 'integer') {
+        return new Controller($controller, '', 'udp');
+    }
+
+    if (gettype($controller) === 'object' and get_class($controller) === 'uhppote\Controller') {
+        return $controller;
+    }
+
+    return new Controller(0, '', 'udp');
+}

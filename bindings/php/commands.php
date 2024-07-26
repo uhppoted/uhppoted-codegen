@@ -72,7 +72,7 @@ function get_all_controllers($u, $args)
 
 function get_controller($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\get_controller($u, $controller);
 }
@@ -400,6 +400,17 @@ function listen($u, $args)
     });
 }
 
+function resolve($controller)
+{ 
+    $list = controllers();
+
+    if (isset($list[$controller])) {
+        return $list[$controller];
+    }
+
+    return new \uhppote\Controller($controller, '', 'udp');
+}
+
 function commands()
 {
     return  [
@@ -438,3 +449,13 @@ function commands()
         'listen' => 'listen'
     ];
 }
+
+function controllers()
+{
+    return array(
+        405419896 => new \uhppote\Controller(405419896, '192.168.1.100:60000', 'tcp'),
+        303986753 => new \uhppote\Controller(303986753, '192.168.1.100:60000', 'udp'),
+    );
+}
+
+

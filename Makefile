@@ -242,7 +242,7 @@ php: build regen
 	cd generated/php && php-cs-fixer fix .
 
 php-debug: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 set-door-passcodes
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 get-controller
 
 php-usage: php
 	$(PHPBIN) 
