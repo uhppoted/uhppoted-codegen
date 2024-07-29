@@ -4,13 +4,12 @@
       - [x] Go
       - [x] Rust
       - [x] Python
-      - [ ] Zig
-            - [ ] file bug for UDP connected sockets
+      - [x] Zig
       - [x] PHP
+      - [ ] Erlang
             - [x] udp-sendto
             - [x] tcp-sendto
-            - [x] controllers dictionary
-      - [ ] Erlang
+            - [ ] controllers dictionary
       - [ ] Lua
       - [ ] models: rename 'device id' to controller and set type to 'controller'
       - [ ] remove uhppote::resolve

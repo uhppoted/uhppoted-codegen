@@ -12,10 +12,12 @@
 
 -define(LOG_TAG, "uhppoted").
 
+-record(controller, {controller, address, transport}).
+
 get_all_controllers(Config) ->
     Request = encoder:get_controller_request(0),
 
-    case udp:broadcast(Config, Request) of
+    case ut0311:broadcast(Config, Request) of
         {ok, Received} ->
             [decoder:get_controller_response(P) || P <- Received];
         {error, Reason} ->
@@ -26,7 +28,7 @@ get_all_controllers(Config) ->
 listen(Config, Handler) ->
     PID = spawn(fun() -> listen(Handler) end),
 
-    case udp:listen(Config, PID) of
+    case ut0311:listen(Config, PID) of
         {ok, F} ->
             {ok, F};
         {error, Reason} ->
@@ -60,9 +62,10 @@ listen(Handler) ->
 
 {{define "function"}}
 {{snakeCase .name}}(Config, {{template "args" .args}}) ->
+    C = resolve(Controller),
     Request = encoder:{{snakeCase .request.name}}({{template "params" .args}}),
 
-    case udp:send(Config, Request) of
+    case ut0311:send(Config, C, Request) of
         {ok, none} ->
             {ok, none};
       {{if .response}}
@@ -73,3 +76,10 @@ listen(Handler) ->
             {error, Reason}
     end.
 {{end}}
+
+resolve(Controller) ->
+    #controller{
+        controller = Controller,
+        address = "",
+        transport = "udp"
+    }.

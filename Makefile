@@ -278,7 +278,7 @@ erlang-debug: erlang
 	#                             -s init stop
 	# 
 	# cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
-	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-door-passcodes
+	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 get-controller
 
 erlang-usage: erlang
 	$(ERLBIN) 
