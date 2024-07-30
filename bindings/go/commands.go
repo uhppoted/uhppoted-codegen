@@ -30,6 +30,7 @@ var LISTENER = netip.MustParseAddrPort("192.168.1.100:60001")
 
 var controllers = map[uint32]uhppote.Controller{
     405419896: uhppote.Controller{405419896, "192.168.1.100:60000", "tcp"},
+    303986753: uhppote.Controller{303986753,"192.168.1.100:60000","udp"},
 }
 
 type command struct {

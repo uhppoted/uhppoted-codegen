@@ -14,7 +14,7 @@
             "datetime": "datetime",
             "HHmm": "hhmm",
             "pin": "pin",
-            "controller": "uint32",
+            "controller": "Controller",
 
             "optional date": "date",
             "optional datetime": "datetime"

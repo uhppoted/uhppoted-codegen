@@ -12,7 +12,7 @@
 
 -define(LOG_TAG, "uhppoted").
 
--record(controller, {controller, address, transport}).
+-include("records.hrl").
 
 get_all_controllers(Config) ->
     Request = encoder:get_controller_request(0),
@@ -63,7 +63,7 @@ listen(Handler) ->
 {{define "function"}}
 {{snakeCase .name}}(Config, {{template "args" .args}}) ->
     C = resolve(Controller),
-    Request = encoder:{{snakeCase .request.name}}({{template "params" .args}}),
+    Request = encoder:{{snakeCase .request.name}}(C#controller.controller{{template "params" slice .args 1}}),
 
     case ut0311:send(Config, C, Request) of
         {ok, none} ->
@@ -77,9 +77,16 @@ listen(Handler) ->
     end.
 {{end}}
 
-resolve(Controller) ->
+resolve(Controller) when is_integer(Controller) ->
     #controller{
         controller = Controller,
         address = "",
         transport = "udp"
+    };
+
+resolve({controller, Controller, Address, Transport}) ->
+    #controller{
+        controller = Controller,
+        address = Address,
+        transport = Transport
     }.

@@ -1,3 +1,5 @@
+-record(controller, {controller, address, transport}).
+
 {{range .model.responses}}
 {{ template "response" . -}}
 {{end}}
@@ -17,4 +19,3 @@
     {{range (last .fields)}}{{snakeCase .name}}{{end}}
 }).
 {{end}}
-

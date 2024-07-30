@@ -6,10 +6,10 @@
       - [x] Python
       - [x] Zig
       - [x] PHP
-      - [ ] Erlang
+      - [x] Erlang
             - [x] udp-sendto
             - [x] tcp-sendto
-            - [ ] controllers dictionary
+            - [x] controllers dictionary
       - [ ] Lua
       - [ ] models: rename 'device id' to controller and set type to 'controller'
       - [ ] remove uhppote::resolve

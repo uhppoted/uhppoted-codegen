@@ -2,6 +2,8 @@
 
 -export([commands/0, find/1, exec/3]).
 
+-include("records.hrl").
+
 -define(CONTROLLER, 405419896).
 -define(DOOR, 3).
 -define(MODE, 2).
@@ -18,7 +20,19 @@
 
 -define(LOG_TAG, "commands").
 
--include("records.hrl").
+-define(CONTROLLERS, #{
+    405419896 => #controller{
+        controller = 405419896,
+        address = "192.168.1.100",
+        transport = "tcp"
+    },
+
+    303986753 => #controller{
+        controller = 303986753,
+        address = "192.168.1.100:60000",
+        transport = "udp"
+    }
+}).
 
 commands() ->
     [
@@ -79,7 +93,7 @@ execute(get_all_controllers, _Options, Config) ->
     uhppoted:get_all_controllers(Config);
 
 execute(get_controller, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:get_controller(Config, Controller);
 
 execute(set_ip, _Options, Config) ->
@@ -331,6 +345,17 @@ listen() ->
             listen();
         closed ->
             log:infof(?LOG_TAG, closed)
+    end.
+
+resolve(Controller) ->
+    case maps:find(Controller, ?CONTROLLERS) of
+        {ok, V} -> V;
+        _ ->  
+            #controller{
+                controller = Controller,
+                address = "",
+                transport = "udp"
+            }
     end.
 
 parse_addr(S) ->
