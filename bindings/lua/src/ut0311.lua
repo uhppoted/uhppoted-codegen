@@ -169,14 +169,21 @@ function udp_sendto(address, request)
 
         sock:settimeout(READ, "b")
         sock:settimeout(READALL, "t")
-        sock:sendto(request, addr, port)
+        sock:setpeername('192.168.1.100',60000)
+        sock:send(request)
 
         -- set-ip doesn't return a reply
         if string.byte(request, 2) == 0x96 then
             return {}, nil
         end
 
-        return read(sock)
+        local packet = sock:receive(1024)
+        if packet and #packet == 64 then
+            dump(packet)
+            return packet
+        end
+
+        return nil
     end)
 
     sock:close()
@@ -321,12 +328,11 @@ end
 function addrport(address)
     if address and address ~= "" then
         local addr, port = address:match("^(.-):(%d*)$")
-
         if addr and port and addr ~= "" and port ~= "" then
             return addr, tonumber(port)
-        elseif addr and addr ~= "" then
-            return addr, 60000
         end
+
+        return address, 60000
     end
 
     return "255.255.255.255", 60000
