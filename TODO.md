@@ -7,12 +7,15 @@
       - [x] Zig
       - [x] PHP
       - [x] Erlang
+      - [ ] Lua
             - [x] udp-sendto
             - [x] tcp-sendto
-            - [x] controllers dictionary
-      - [ ] Lua
+            - [ ] controllers dictionary
       - [ ] models: rename 'device id' to controller and set type to 'controller'
       - [ ] remove uhppote::resolve
+      - [ ] documentation
+      - [ ] CHANGELOG
+      - [ ] README
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store

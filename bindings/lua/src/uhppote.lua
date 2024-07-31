@@ -1,27 +1,27 @@
 local uhppote = {}
 local encode = require("src/encode")
 local decode = require("src/decode")
-local udp = require("src/udp")
+local ut0311 = require("src/ut0311")
 
 function uhppote.set_bind_address(address)
-    udp.set_bind_address(address)
+    ut0311.set_bind_address(address)
 end
 
 function uhppote.set_broadcast_address(address)
-    udp.set_broadcast_address(address)
+    ut0311.set_broadcast_address(address)
 end
 
 function uhppote.set_listen_address(address)
-    udp.set_listen_address(address)
+    ut0311.set_listen_address(address)
 end
 
 function uhppote.set_debug(debug)
-    udp.set_debug(debug)
+    ut0311.set_debug(debug)
 end
 
 function uhppote.get_all_controllers()
     local request = encode.get_controller_request(0)
-    local replies = udp.broadcast(request)
+    local replies = ut0311.broadcast(request)
 
     if not replies then
         error("no response")
@@ -47,7 +47,7 @@ function uhppote.listen(handler, onerror)
         end
     end
 
-    udp.listen(f)
+    ut0311.listen(f)
 end
 
 {{range .model.functions}}
@@ -56,8 +56,9 @@ end
 
 {{define "function"}}
 function uhppote.{{snakeCase .name}}({{template "args" .args}})
+    local c = resolve(controller)
     local request = encode.{{snakeCase .request.name}}({{template "params" .args}})
-    local reply = udp.send(request)
+    local reply = ut0311.send(c, request)
     {{if .response}}
     if not reply then
         error("no response")
@@ -69,5 +70,23 @@ function uhppote.{{snakeCase .name}}({{template "args" .args}})
     {{- end}}
 end
 {{end}}
+
+function resolve(controller)
+    local c = {
+        controller = controller,
+        address = "",
+        transport = "udp",
+
+        fields = function(self)
+            return {
+                "controller",
+                "address",
+                "transport"
+            }
+        end,
+    }
+
+    return c
+end
 
 return uhppote

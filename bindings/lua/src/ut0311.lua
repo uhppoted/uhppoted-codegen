@@ -1,4 +1,4 @@
-local udp = {}
+local ut0311 = {}
 local socket = require("socket")
 local READ <const> = 5 -- seconds
 local READALL <const> = 2.5 -- seconds
@@ -11,7 +11,7 @@ local broadcast_port = 60000
 local listen_address = "*"
 local listen_port = 60001
 
-function udp.set_bind_address(addr)
+function ut0311.set_bind_address(addr)
     if not addr or addr == "" then
         bind_address = "*"
         bind_port = 0
@@ -31,7 +31,7 @@ function udp.set_bind_address(addr)
     end
 end
 
-function udp.set_broadcast_address(addr)
+function ut0311.set_broadcast_address(addr)
     if not addr or addr == "" then
         broadcast_address = "255.255.255.255"
         broadcast_port = 60000
@@ -51,7 +51,7 @@ function udp.set_broadcast_address(addr)
     end
 end
 
-function udp.set_listen_address(addr)
+function ut0311.set_listen_address(addr)
     if not addr or addr == "" then
         listen_address = "*"
         listen_port = 60001
@@ -71,11 +71,11 @@ function udp.set_listen_address(addr)
     end
 end
 
-function udp.set_debug(enabled)
+function ut0311.set_debug(enabled)
     debug = enabled
 end
 
-function udp.broadcast(request)
+function ut0311.broadcast(request)
     local sock = socket.udp4()
     local ok, result = pcall(function()
         return broadcast(sock, request)
@@ -90,22 +90,19 @@ function udp.broadcast(request)
     end
 end
 
-function udp.send(request)
-    local sock = socket.udp4()
-    local ok, result = pcall(function()
-        return send(sock, request)
-    end)
-
-    sock:close()
-
-    if not ok then
-        error(result)
-    else
-        return result
+function ut0311.send(controller, request)
+    if controller['address'] ~= "" and controller['transport'] == "tcp" then
+        return tcp_sendto(controller['address'], request)
     end
+    
+    if controller['address'] ~= "" then
+        return udp_sendto(controller['address'], request)
+    end
+       
+    return udp_broadcast_to(request)
 end
 
-function udp.listen(handler)
+function ut0311.listen(handler)
     local f = function(packet)
         dump(packet)
         handler(packet)
@@ -142,6 +139,92 @@ function broadcast(sock, request)
     sock:sendto(request, broadcast_address, broadcast_port)
 
     return read_all(sock)
+end
+
+function udp_broadcast_to(request)
+    local sock = socket.udp4()
+    local ok, result = pcall(function()
+        return send(sock, request)
+    end)
+
+    sock:close()
+
+    if not ok then
+        error(result)
+    else
+        return result
+    end
+end
+
+function udp_sendto(address, request)
+    dump(request)
+
+    addr,port = addrport(address)
+
+    local sock = socket.udp4()
+    local ok, result = pcall(function()
+        if sock:setsockname(bind_address, 0) ~= 1 then
+            error("error binding to address")
+        end
+
+        sock:settimeout(READ, "b")
+        sock:settimeout(READALL, "t")
+        sock:sendto(request, addr, port)
+
+        -- set-ip doesn't return a reply
+        if string.byte(request, 2) == 0x96 then
+            return {}, nil
+        end
+
+        return read(sock)
+    end)
+
+    sock:close()
+
+    if not ok then
+        error(result)
+    else
+        return result
+    end
+end
+
+function tcp_sendto(address, request)
+    dump(request)
+
+    addr,port = addrport(address)
+
+    local sock = socket.tcp4()
+    local ok, result = pcall(function()
+        if sock:connect(addr, port) ~= 1 then
+            error("error connecting to ", addr, port)
+        end
+
+        sock:settimeout(READ, "b")
+        sock:settimeout(READALL, "t")
+        sock:send(request)
+
+        -- set-ip doesn't return a reply
+        if string.byte(request, 2) == 0x96 then
+            return {}, nil
+        end
+
+        local packet = sock:receive('*a')
+        if packet and #packet == 64 then
+            dump(packet)
+            return packet
+        end
+
+
+        return nil
+    end)
+
+    sock:close()
+
+    if not ok then
+        error(result)
+    else
+        return result
+    end
 end
 
 function send(sock, request)
@@ -235,6 +318,20 @@ function listen_to(sock, f)
     end
 end
 
+function addrport(address)
+    if address and address ~= "" then
+        local addr, port = address:match("^(.-):(%d*)$")
+
+        if addr and port and addr ~= "" and port ~= "" then
+            return addr, tonumber(port)
+        elseif addr and addr ~= "" then
+            return addr, 60000
+        end
+    end
+
+    return "255.255.255.255", 60000
+end
+
 function dump(packet)
     if debug then
         local ix = 1
@@ -255,4 +352,4 @@ function dump(packet)
     end
 end
 
-return udp
+return ut0311
