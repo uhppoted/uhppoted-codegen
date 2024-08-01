@@ -2,6 +2,19 @@ local uhppote = {}
 local encode = require("src/encode")
 local decode = require("src/decode")
 local ut0311 = require("src/ut0311")
+local structs = require("src/structs")
+
+local function resolve(controller)
+    if type(controller) == 'number' then
+        return structs.controller(controller, "", "udp")
+    end
+
+    if type(controller) == 'table' and getmetatable(controller) ~= nil and getmetatable(controller).__type == 'structs.controller' then
+        return controller
+    end
+
+    return structs.controller(0, "", "udp")
+end
 
 function uhppote.set_bind_address(address)
     ut0311.set_bind_address(address)
@@ -57,7 +70,7 @@ end
 {{define "function"}}
 function uhppote.{{snakeCase .name}}({{template "args" .args}})
     local c = resolve(controller)
-    local request = encode.{{snakeCase .request.name}}({{template "params" .args}})
+    local request = encode.{{snakeCase .request.name}}(c['controller']{{template "params" slice .args 1}})
     local reply = ut0311.send(c, request)
     {{if .response}}
     if not reply then
@@ -70,23 +83,5 @@ function uhppote.{{snakeCase .name}}({{template "args" .args}})
     {{- end}}
 end
 {{end}}
-
-function resolve(controller)
-    local c = {
-        controller = controller,
-        address = "",
-        transport = "udp",
-
-        fields = function(self)
-            return {
-                "controller",
-                "address",
-                "transport"
-            }
-        end,
-    }
-
-    return c
-end
 
 return uhppote

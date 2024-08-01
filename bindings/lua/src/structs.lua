@@ -36,4 +36,27 @@ function structs.{{snakeCase .name}}({{- template "construct" .fields -}})
 end
 {{end}}
 
+function structs.controller(controller, address, transport)
+    local t = {
+        controller = controller,
+        address = address,
+        transport = transport,
+
+        fields = function(self)
+            return {
+                "controller",
+                "address",
+                "transport"
+            }
+        end,
+    }
+
+    setmetatable(t, {
+        __type = 'structs.controller'
+    })
+
+    return t
+end
+
+
 return structs

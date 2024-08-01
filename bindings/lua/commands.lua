@@ -1,4 +1,5 @@
 local uhppote = require("src/uhppote")
+local structs = require("src/structs")
 local os = require("os")
 
 local CONTROLLER <const> = 405419896
@@ -17,6 +18,11 @@ local CARD_DOORS = "1,2,3,4"
 local CARD_PIN = 0
 local EVENT_INDEX = 37
 local TIME_PROFILE_ID = 29
+
+local CONTROLLERS = {
+    [405419896] = structs.controller(405419896, "192.168.1.100", "tcp"),
+    [303986753] = structs.controller(303986753, "192.168.1.100", "udp")
+}
 
 local TASKS = {
     [0] = "door-controlled",
@@ -48,7 +54,7 @@ function get_all_controllers(args)
 end
 
 function get_controller(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.get_controller(controller)
 end
@@ -464,6 +470,13 @@ function exec(cmd, args)
     end
 end
 
+function resolve(controller)
+    if CONTROLLERS[controller] ~= nil then
+        return CONTROLLERS[controller]
+    else 
+        return structs.controller(controller, "", "udp")
+    end
+end
 
 function pprint(v)
     local fields = v.fields()
