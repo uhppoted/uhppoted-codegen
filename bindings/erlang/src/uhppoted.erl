@@ -62,10 +62,9 @@ listen(Handler) ->
 
 {{define "function"}}
 {{snakeCase .name}}(Config, {{template "args" .args}}) ->
-    C = resolve(Controller),
-    Request = encoder:{{snakeCase .request.name}}(C#controller.controller{{template "params" slice .args 1}}),
+    Request = encoder:{{snakeCase .request.name}}(Controller#controller.controller{{template "params" slice .args 1}}),
 
-    case ut0311:send(Config, C, Request) of
+    case ut0311:send(Config, Controller, Request) of
         {ok, none} ->
             {ok, none};
       {{if .response}}
@@ -76,17 +75,3 @@ listen(Handler) ->
             {error, Reason}
     end.
 {{end}}
-
-resolve(Controller) when is_integer(Controller) ->
-    #controller{
-        controller = Controller,
-        address = "",
-        transport = "udp"
-    };
-
-resolve({controller, Controller, Address, Transport}) ->
-    #controller{
-        controller = Controller,
-        address = Address,
-        transport = Transport
-    }.

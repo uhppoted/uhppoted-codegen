@@ -40,11 +40,18 @@
             - [x] activate-keypads
             - [x] set-door-passcodes
             - [x] restore-default-parameters
-
-      - [ ] remove uhppote::resolve
-      - [ ] documentation
-      - [ ] CHANGELOG
-      - [ ] README
+      - [x] remove uhppote::resolve
+          - [x] Go
+          - [x] Rust
+          - [x] Python
+          - [x] Zig
+          - [x] PHP
+          - [x] Erlang
+          - [x] Lua
+      - [ ] tests
+      - [x] documentation
+      - [x] CHANGELOG
+      - [x] README
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store

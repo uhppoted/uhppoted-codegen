@@ -83,9 +83,8 @@ pub fn listen(events: fn(Event), errors: fn(error::Error), interrupt: impl futur
 
 {{define "function"}}
 pub async fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "result" .}}{ 
-    let c = controller.resolve();
-    let request = {{snakeCase .request.name}}(c.controller, {{template "params" slice .args 1}})?;
-    let response = ut0311::send(c, &request).await;
+    let request = {{snakeCase .request.name}}(controller.controller, {{template "params" slice .args 1}})?;
+    let response = ut0311::send(controller, &request).await;
 
     {{if .response -}}
     match response {
@@ -100,20 +99,3 @@ pub async fn {{snakeCase .name}}({{template "args" .args}}) -> {{template "resul
     {{end}}
 }
 {{end}}
-
-impl IController for u32 {
-    fn resolve(&self) -> ut0311::Controller {
-        ut0311::Controller{
-            controller: *self,
-            address: "".to_string(),
-            transport: "udp".to_string(),
-        }
-    } 
-}
-
-impl IController for ut0311::Controller {
-    fn resolve(&self) -> ut0311::Controller {
-        self.clone()
-    }    
-}
-

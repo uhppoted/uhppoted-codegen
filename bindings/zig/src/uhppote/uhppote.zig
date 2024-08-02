@@ -88,34 +88,15 @@ pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetController
 
 {{define "function"}}
 pub fn {{snakeCase .name}}({{template "args" .args}}, allocator: std.mem.Allocator) {{if .response -}}!decode.{{template "result" .}}{{else}}!bool{{end}} { 
-    const c = resolve(controller);
-    const request = try encode.{{snakeCase .request.name}}(c.controller, {{template "params" slice .args 1}});
+    const request = try encode.{{snakeCase .request.name}}(controller.controller, {{template "params" slice .args 1}});
     {{if .response -}}
-    const reply = try ut0311.send(c, request, allocator);
+    const reply = try ut0311.send(controller, request, allocator);
 
     return try decode.{{snakeCase .response.name}}(reply);
     {{else}}
-    _ = try ut0311.send(c, request, allocator);
+    _ = try ut0311.send(controller, request, allocator);
 
     return true;
     {{end}}
 }
 {{end}}
-
-fn resolve(controller: anytype) Controller {
-   const itype = @TypeOf(controller);
-
-    if (itype == u32) {
-        return Controller {
-            .controller = controller,
-            .address = "",
-            .transport = "udp",
-        };    
-    }
-
-    if (itype == Controller) {
-        return controller;
-    }
-
-    @compileError("Unsupported controller type");    
-}

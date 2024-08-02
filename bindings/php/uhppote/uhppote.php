@@ -77,9 +77,8 @@ function listen($uhppote, $handlerfn)
 {{define "function"}}
 function {{snakeCase .name}}($uhppote, {{template "args" .args}})
 {
-    $c = resolve($controller);
-    $request = {{snakeCase .request.name}}($c->controller, {{template "params" slice .args 1}});
-    $reply = ut0311\send($uhppote, $c, $request);
+    $request = {{snakeCase .request.name}}($controller->controller, {{template "params" slice .args 1}});
+    $reply = ut0311\send($uhppote, $controller, $request);
     {{if .response}}$response = {{snakeCase .response.name}}($reply);
 
     return $response;
@@ -88,16 +87,3 @@ function {{snakeCase .name}}($uhppote, {{template "args" .args}})
     {{end}}
 }
 {{end}}
-
-function resolve($controller)
-{ 
-    if (gettype($controller) === 'integer') {
-        return new Controller($controller, '', 'udp');
-    }
-
-    if (gettype($controller) === 'object' and get_class($controller) === 'uhppote\Controller') {
-        return $controller;
-    }
-
-    return new Controller(0, '', 'udp');
-}

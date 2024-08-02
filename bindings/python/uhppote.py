@@ -34,38 +34,17 @@ class Uhppote:
 
 {{define "function"}}
     def {{snakeCase .name}}(self, {{template "args" .args}}):
-        c = resolve(controller)
-
-        {{if .response}}request = encode.{{snakeCase .request.name}}(c.controller{{template "params" slice .args 1}})
-        reply = self._net.send(c, request)
+        {{if .response}}request = encode.{{snakeCase .request.name}}(controller.controller{{template "params" slice .args 1}})
+        reply = self._net.send(controller, request)
 
         if reply != None:
             return decode.{{snakeCase .response.name}}(reply)
             
         return None
         {{- else}}
-        request = encode.{{snakeCase .request.name}}(c.controller{{template "params" slice .args 1}})
+        request = encode.{{snakeCase .request.name}}(controller.controller{{template "params" slice .args 1}})
         self._net.send(c, request)
 
         return True
         {{end}}
 {{end}}
-
-def resolve(v):
-    if isinstance(v, int):
-        return Controller(v, None, 'udp')
-
-    if isinstance(v, tuple):
-        controller = v[0]
-        address = None
-        protocol = 'udp'
-
-        if len(v) > 1 and isinstance(v[1], str):
-            address = v[1]
-
-        if len(v) > 2 and (v[2] == 'tcp' or v[2] == 'TCP'):
-            protocol = 'tcp'
-
-        return Controller(controller, address, protocol)
-
-    return Controller(None, None, 'udp')

@@ -3,7 +3,6 @@ package uhppote
 import (
     "net/netip"
     "os"
-    "fmt"
 )
 
 type Controller struct {
@@ -63,15 +62,13 @@ loop:
 
 {{define "function"}}
 func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCase .response.name}},error){{else}}error{{end}} {
-    c := resolve(controller)
-
     {{if .response -}}
-    request,err := {{CamelCase .request.name}}(c.Controller, {{template "params" slice .args 1}})
+    request,err := {{CamelCase .request.name}}(controller.Controller, {{template "params" slice .args 1}})
     if err != nil {
         return nil,err
     }
 
-    if reply,err := send(c, request); err != nil {
+    if reply,err := send(controller, request); err != nil {
         return nil,err
     } else if response,err := {{camelCase .response.name}}(reply); err != nil {
         return nil, err
@@ -81,39 +78,15 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
 
     return nil, nil
     {{- else }}
-    request, err := {{CamelCase .request.name}}(c.Controller, {{template "params" slice .args 1}})
+    request, err := {{CamelCase .request.name}}(controller.Controller, {{template "params" slice .args 1}})
     if err != nil {
         return err
     } 
 
-    if _, err = send(c, request); err != nil {
+    if _, err = send(controller, request); err != nil {
         return err
     }
     
     return nil
     {{- end}}
 }{{end}}
-
-func resolve(controller any) Controller {
-    switch v := controller.(type) {
-        case uint32:
-            address := ""
-            transport := "udp"
-
-            // if v == 405419896 {
-            //     address = "192.168.1.100:60000"
-            //     transport = "tcp"
-            // }
-
-            return Controller {
-                Controller: v,
-                Address: address,
-                Transport: transport,
-            }    
-
-        case Controller:
-            return v
-    }
-
-    panic(fmt.Sprintf("unknown controller type (%T)", controller))
-}
