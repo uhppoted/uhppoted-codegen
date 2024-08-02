@@ -229,17 +229,17 @@ fn get_all_controllers(allocator: std.mem.Allocator) void {
 }
 
 fn get_controller(allocator: std.mem.Allocator) void {
-    const c = resolve(CONTROLLER);
+    const controller = resolve(CONTROLLER);
 
-    if (uhppote.get_controller(c, allocator)) |controller| {
-        pprint(controller);
+    if (uhppote.get_controller(controller, allocator)) |c| {
+        pprint(c);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }
 }
 
 fn set_ip(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const address = network.Address.IPv4.init(192, 168, 1, 100);
     const netmask = network.Address.IPv4.init(255, 255, 255, 0);
     const gateway = network.Address.IPv4.init(192, 168, 1, 1);
@@ -252,7 +252,7 @@ fn set_ip(allocator: std.mem.Allocator) void {
 }
 
 fn get_time(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.get_time(controller, allocator)) |response| {
         pprint(response);
@@ -262,7 +262,7 @@ fn get_time(allocator: std.mem.Allocator) void {
 }
 
 fn set_time(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const now = datelib.now();
 
     if (uhppote.set_time(controller, now, allocator)) |response| {
@@ -273,7 +273,7 @@ fn set_time(allocator: std.mem.Allocator) void {
 }
 
 fn get_status(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.get_status(controller, allocator)) |response| {
         pprint(response);
@@ -283,7 +283,7 @@ fn get_status(allocator: std.mem.Allocator) void {
 }
 
 fn get_listener(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.get_listener(controller, allocator)) |response| {
         pprint(response);
@@ -293,7 +293,7 @@ fn get_listener(allocator: std.mem.Allocator) void {
 }
 
 fn set_listener(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const address = network.Address.IPv4.init(192, 168, 1, 100);
     const port = 60002;
 
@@ -305,7 +305,7 @@ fn set_listener(allocator: std.mem.Allocator) void {
 }
 
 fn get_door_control(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const door = DOOR;
 
     if (uhppote.get_door_control(controller, door, allocator)) |response| {
@@ -316,7 +316,7 @@ fn get_door_control(allocator: std.mem.Allocator) void {
 }
 
 fn set_door_control(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const door = DOOR;
     const mode = MODE;
     const delay = DELAY;
@@ -329,7 +329,7 @@ fn set_door_control(allocator: std.mem.Allocator) void {
 }
 
 fn open_door(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const door = DOOR;
 
     if (uhppote.open_door(controller, door, allocator)) |response| {
@@ -340,7 +340,7 @@ fn open_door(allocator: std.mem.Allocator) void {
 }
 
 fn get_cards(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.get_cards(controller, allocator)) |response| {
         pprint(response);
@@ -350,7 +350,7 @@ fn get_cards(allocator: std.mem.Allocator) void {
 }
 
 fn get_card(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const card = CARD;
 
     if (uhppote.get_card(controller, card, allocator)) |response| {
@@ -361,7 +361,7 @@ fn get_card(allocator: std.mem.Allocator) void {
 }
 
 fn get_card_by_index(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const index = CARD_INDEX;
 
     if (uhppote.get_card_by_index(controller, index, allocator)) |response| {
@@ -372,7 +372,7 @@ fn get_card_by_index(allocator: std.mem.Allocator) void {
 }
 
 fn put_card(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const card = CARD;
     const start = datelib.Date{ .year = 2023, .month = 1, .day = 1 };
     const end = datelib.Date{ .year = 2023, .month = 12, .day = 31 };
@@ -390,7 +390,7 @@ fn put_card(allocator: std.mem.Allocator) void {
 }
 
 fn delete_card(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const card = CARD;
 
     if (uhppote.delete_card(controller, card, allocator)) |response| {
@@ -401,7 +401,7 @@ fn delete_card(allocator: std.mem.Allocator) void {
 }
 
 fn delete_all_cards(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.delete_all_cards(controller, allocator)) |response| {
         pprint(response);
@@ -411,7 +411,7 @@ fn delete_all_cards(allocator: std.mem.Allocator) void {
 }
 
 fn get_event(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const index = EVENT_INDEX;
 
     if (uhppote.get_event(controller, index, allocator)) |response| {
@@ -428,7 +428,7 @@ fn get_event(allocator: std.mem.Allocator) void {
 }
 
 fn get_event_index(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.get_event_index(controller, allocator)) |response| {
         pprint(response);
@@ -438,7 +438,7 @@ fn get_event_index(allocator: std.mem.Allocator) void {
 }
 
 fn set_event_index(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const index = EVENT_INDEX;
 
     if (uhppote.set_event_index(controller, index, allocator)) |response| {
@@ -449,7 +449,7 @@ fn set_event_index(allocator: std.mem.Allocator) void {
 }
 
 fn record_special_events(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const enabled = true;
 
     if (uhppote.record_special_events(controller, enabled, allocator)) |response| {
@@ -460,7 +460,7 @@ fn record_special_events(allocator: std.mem.Allocator) void {
 }
 
 fn get_time_profile(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const profile_id = TIME_PROFILE_ID;
 
     if (uhppote.get_time_profile(controller, profile_id, allocator)) |response| {
@@ -471,7 +471,7 @@ fn get_time_profile(allocator: std.mem.Allocator) void {
 }
 
 fn set_time_profile(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const profile_id = TIME_PROFILE_ID;
     const start = datelib.Date{ .year = 2023, .month = 1, .day = 1 };
     const end = datelib.Date{ .year = 2023, .month = 12, .day = 31 };
@@ -498,7 +498,7 @@ fn set_time_profile(allocator: std.mem.Allocator) void {
 }
 
 fn delete_all_time_profiles(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.delete_all_time_profiles(controller, allocator)) |response| {
         pprint(response);
@@ -508,7 +508,7 @@ fn delete_all_time_profiles(allocator: std.mem.Allocator) void {
 }
 
 fn add_task(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const start_date = datelib.Date{ .year = 2023, .month = 1, .day = 1 };
     const end_date = datelib.Date{ .year = 2023, .month = 12, .day = 31 };
     const monday = true;
@@ -531,7 +531,7 @@ fn add_task(allocator: std.mem.Allocator) void {
 }
 
 fn refresh_tasklist(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.refresh_tasklist(controller, allocator)) |response| {
         pprint(response);
@@ -541,7 +541,7 @@ fn refresh_tasklist(allocator: std.mem.Allocator) void {
 }
 
 fn clear_tasklist(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.clear_tasklist(controller, allocator)) |response| {
         pprint(response);
@@ -551,7 +551,7 @@ fn clear_tasklist(allocator: std.mem.Allocator) void {
 }
 
 fn set_pc_control(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const enabled = true;
 
     if (uhppote.set_pc_control(controller, enabled, allocator)) |response| {
@@ -562,7 +562,7 @@ fn set_pc_control(allocator: std.mem.Allocator) void {
 }
 
 fn set_interlock(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const interlock = 3;
 
     if (uhppote.set_interlock(controller, interlock, allocator)) |response| {
@@ -573,7 +573,7 @@ fn set_interlock(allocator: std.mem.Allocator) void {
 }
 
 fn activate_keypads(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const reader1 = true;
     const reader2 = true;
     const reader3 = false;
@@ -587,7 +587,7 @@ fn activate_keypads(allocator: std.mem.Allocator) void {
 }
 
 fn set_door_passcodes(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
     const door = DOOR;
     const passcode1 = 12345;
     const passcode2 = 0;
@@ -602,7 +602,7 @@ fn set_door_passcodes(allocator: std.mem.Allocator) void {
 }
 
 fn restore_default_parameters(allocator: std.mem.Allocator) void {
-    const controller = CONTROLLER;
+    const controller = resolve(CONTROLLER);
 
     if (uhppote.restore_default_parameters(controller, allocator)) |response| {
         pprint(response);

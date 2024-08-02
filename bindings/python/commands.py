@@ -87,7 +87,7 @@ def get_controller(u):
 
 
 def set_ip(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     address = ADDRESS
     netmask = NETMASK
     gateway = GATEWAY
@@ -96,40 +96,40 @@ def set_ip(u):
 
 
 def get_time(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.get_time(controller)
 
 
 def set_time(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     now = datetime.datetime.now()
 
     return u.set_time(controller, now)
 
 
 def get_listener(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.get_listener(controller)
 
 
 def set_listener(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     (address, port) = LISTENER
 
     return u.set_listener(controller, address, port)
 
 
 def get_door_control(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     door = DOOR
 
     return u.get_door_control(controller, door)
 
 
 def set_door_control(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     door = DOOR
     mode = MODE
     delay = DELAY
@@ -138,26 +138,26 @@ def set_door_control(u):
 
 
 def get_status(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.get_status(controller)
 
 
 def open_door(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     door = DOOR
 
     return u.open_door(controller, door)
 
 
 def get_cards(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.get_cards(controller)
 
 
 def get_card(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     card = CARD
 
     response = u.get_card(controller, card)
@@ -168,7 +168,7 @@ def get_card(u):
 
 
 def get_card_by_index(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     index = CARD_INDEX
 
     response = u.get_card_by_index(controller, index)
@@ -181,7 +181,7 @@ def get_card_by_index(u):
 
 
 def put_card(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     card = CARD
     start = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
     end = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
@@ -190,20 +190,20 @@ def put_card(u):
 
 
 def delete_card(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     card = CARD
 
     return u.delete_card(controller, card)
 
 
 def delete_all_cards(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.delete_all_cards(controller)
 
 
 def get_event(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     index = EVENT_INDEX
 
     response = u.get_event(controller, index)
@@ -216,27 +216,27 @@ def get_event(u):
 
 
 def get_event_index(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.get_event_index(controller)
 
 
 def set_event_index(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     index = EVENT_INDEX
 
     return u.set_event_index(controller, index)
 
 
 def record_special_events(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     enabled = True
 
     return u.record_special_events(controller, enabled)
 
 
 def get_time_profile(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     profile_id = TIME_PROFILE_ID
 
     response = u.get_time_profile(controller, profile_id)
@@ -247,7 +247,7 @@ def get_time_profile(u):
 
 
 def set_time_profile(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     profile_id = TIME_PROFILE_ID
     start = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
     end = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
@@ -278,11 +278,13 @@ def set_time_profile(u):
 
 
 def delete_all_time_profiles(u):
-    return u.delete_all_time_profiles(CONTROLLER)
+    controller = resolve(CONTROLLER)
+
+    return u.delete_all_time_profiles(controller)
 
 
 def add_task(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     start_date = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
     end_date = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
     monday = True
@@ -308,33 +310,33 @@ def add_task(u):
 
 
 def refresh_tasklist(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.refresh_tasklist(controller)
 
 
 def clear_tasklist(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.clear_tasklist(controller)
 
 
 def set_pc_control(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     enabled = True
 
     return u.set_pc_control(controller, enabled)
 
 
 def set_interlock(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     interlock = 3
 
     return u.set_interlock(controller, interlock)
 
 
 def activate_keypads(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     reader1 = True
     reader2 = True
     reader3 = False
@@ -344,7 +346,7 @@ def activate_keypads(u):
 
 
 def set_door_passcodes(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
     door = DOOR
     passcode1 = 12345
     passcode2 = 0
@@ -355,7 +357,7 @@ def set_door_passcodes(u):
 
 
 def restore_default_parameters(u):
-    controller = CONTROLLER
+    controller = resolve(CONTROLLER)
 
     return u.restore_default_parameters(controller)
 

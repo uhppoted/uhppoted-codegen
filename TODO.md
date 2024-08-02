@@ -8,10 +8,39 @@
       - [x] PHP
       - [x] Erlang
       - [x] Lua
-            - [x] udp-sendto
-            - [x] tcp-sendto
-            - [x] controllers dictionary
-      - [ ] models: rename 'device id' to controller and set type to 'controller'
+      - [x] models: rename 'device id' to controller and set type to 'controller'
+            - [x] get-controller
+            - [x] set-ip
+            - [x] get-time
+            - [x] set-time
+            - [x] get-listener
+            - [x] set-listener
+            - [x] get-door-control
+            - [x] set-door-control
+            - [x] get-status
+            - [x] open-door
+            - [x] get-cards
+            - [x] get-card
+            - [x] get-card-by-index
+            - [x] put-card
+            - [x] delete-card
+            - [x] delete-all-cards
+            - [x] get-event
+            - [x] get-event-index
+            - [x] set-event-index
+            - [x] record-special-events
+            - [x] get-time-profile
+            - [x] set-time-profile
+            - [x] delete-all-time-profiles
+            - [x] add-task
+            - [x] refresh-tasklist
+            - [x] clear-tasklist
+            - [x] set-pc-control
+            - [x] set-interlock
+            - [x] activate-keypads
+            - [x] set-door-passcodes
+            - [x] restore-default-parameters
+
       - [ ] remove uhppote::resolve
       - [ ] documentation
       - [ ] CHANGELOG
@@ -49,16 +78,6 @@
 ## HTTP
 - [ ] listen
 
-## Lua
-   - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
-   - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc
-   - https://www.lua.org/pil/9.4.html
-   - https://stackoverflow.com/questions/12889361/lua-sockets-asynchronous-events
-   - https://stackoverflow.com/questions/13219570/lualanes-and-luasockets
-   - https://lunarmodules.github.io/copas/reference.html
-   - https://lua-users.org/wiki/CoroutinesAsConnectionHandlers
-   - https://github.com/cosock/cosock
-
 ## Other
    - [Val](https://github.com/val-lang/val-lang.github.io)
    - [Odin](https://odin-lang.org)
@@ -84,6 +103,7 @@
    - C#
    - [Fennel](https://fennel-lang.org)
    - [Fleng](http://www.call-with-current-continuation.org/fleng/fleng.html)
+   - [Apex](https://apexlang.io)
 
 ## Notes
 
@@ -97,4 +117,12 @@
    - https://stackoverflow.com/questions/54689032/how-to-set-timeout-for-a-block-of-code-which-is-not-a-function-python3
    - https://stackoverflow.com/questions/35585935/start-async-function-without-importing-the-asyncio-package
 
-3. [Apex](https://apexlang.io)
+3. Lua
+   - https://stackoverflow.com/questions/50506099/why-is-lua-not-respecting-my-sigint-signal
+   - https://stackoverflow.com/questions/19145551/lua-socket-cannot-be-properly-stopped-by-ctrlc
+   - https://www.lua.org/pil/9.4.html
+   - https://stackoverflow.com/questions/12889361/lua-sockets-asynchronous-events
+   - https://stackoverflow.com/questions/13219570/lualanes-and-luasockets
+   - https://lunarmodules.github.io/copas/reference.html
+   - https://lua-users.org/wiki/CoroutinesAsConnectionHandlers
+   - https://github.com/cosock/cosock

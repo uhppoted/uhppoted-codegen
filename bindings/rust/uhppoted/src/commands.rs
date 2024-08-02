@@ -197,98 +197,98 @@ fn get_controller() {
 }
 
 fn set_ip() {
-    let controller = CONTROLLER;
-    let address = "192.168.1.100".parse().unwrap();
-    let netmask = "255.255.255.0".parse().unwrap();
-    let gateway = "192.168.1.1".parse().unwrap();
-
     print(|| -> Result<bool, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let address = "192.168.1.100".parse().unwrap();
+        let netmask = "255.255.255.0".parse().unwrap();
+        let gateway = "192.168.1.1".parse().unwrap();
+
         futures::executor::block_on(uhppote::set_ip(controller, address, netmask, gateway))
     })
 }
 
 fn get_time() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::GetTimeResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::get_time(controller))
     })
 }
 
 fn set_time() {
-    let controller = CONTROLLER;
-    let now = Local::now().naive_local();
-
     print(|| -> Result<uhppote::SetTimeResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let now = Local::now().naive_local();
+
         futures::executor::block_on(uhppote::set_time(controller, now))
     })
 }
 
 fn get_status() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::GetStatusResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::get_status(controller))
     })
 }
 
 fn get_listener() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::GetListenerResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::get_listener(controller))
     })
 }
 
 fn set_listener() {
-    let controller = CONTROLLER;
-    let address = "192.168.1.100".parse().unwrap();
-    let port: u16 = 60001;
-
     print(|| -> Result<uhppote::SetListenerResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let address = "192.168.1.100".parse().unwrap();
+        let port: u16 = 60001;
+
         futures::executor::block_on(uhppote::set_listener(controller, address, port))
     })
 }
 
 fn get_door_control() {
-    let controller = CONTROLLER;
-    let door = DOOR;
-
     print(|| -> Result<uhppote::GetDoorControlResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let door = DOOR;
+
         futures::executor::block_on(uhppote::get_door_control(controller, door))
     })
 }
 
 fn set_door_control() {
-    let controller = CONTROLLER;
-    let door = DOOR;
-    let mode = MODE;
-    let delay = DELAY;
-
     print(|| -> Result<uhppote::SetDoorControlResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let door = DOOR;
+        let mode = MODE;
+        let delay = DELAY;
+
         futures::executor::block_on(uhppote::set_door_control(controller, door, mode, delay))
     })
 }
 
 fn open_door() {
-    let controller = CONTROLLER;
-    let door = DOOR;
-
     print(|| -> Result<uhppote::OpenDoorResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let door = DOOR;
+
         futures::executor::block_on(uhppote::open_door(controller, door))
     })
 }
 
 fn get_cards() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::GetCardsResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::get_cards(controller))
     })
 }
 
 fn get_card() {
-    let controller = CONTROLLER;
+    let controller = resolve(CONTROLLER);
     let card = CARD;
 
     match futures::executor::block_on(uhppote::get_card(controller, card)) {
@@ -304,7 +304,7 @@ fn get_card() {
 }
 
 fn get_card_by_index() {
-    let controller = CONTROLLER;
+    let controller = resolve(CONTROLLER);
     let index = CARD_INDEX;
 
     match futures::executor::block_on(uhppote::get_card_by_index(controller, index)) {
@@ -322,36 +322,36 @@ fn get_card_by_index() {
 }
 
 fn put_card() {
-    let controller = CONTROLLER;
-    let card = CARD;
-    let start = NaiveDate::from_ymd_opt(2023, 1, 1).unwrap();
-    let end = NaiveDate::from_ymd_opt(2023, 12, 31).unwrap();
-    let pin = 7531;
-
     print(|| -> Result<uhppote::PutCardResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let card = CARD;
+        let start = NaiveDate::from_ymd_opt(2023, 1, 1).unwrap();
+        let end = NaiveDate::from_ymd_opt(2023, 12, 31).unwrap();
+        let pin = 7531;
+
         futures::executor::block_on(uhppote::put_card(controller, card, start, end, 0, 1, 29, 0, pin))
     })
 }
 
 fn delete_card() {
-    let controller = CONTROLLER;
-    let card = CARD;
-
     print(|| -> Result<uhppote::DeleteCardResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let card = CARD;
+
         futures::executor::block_on(uhppote::delete_card(controller, card))
     })
 }
 
 fn delete_all_cards() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::DeleteAllCardsResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::delete_all_cards(controller))
     })
 }
 
 fn get_event() {
-    let controller = CONTROLLER;
+    let controller = resolve(CONTROLLER);
     let index = EVENT_INDEX;
 
     match futures::executor::block_on(uhppote::get_event(controller, index)) {
@@ -369,33 +369,33 @@ fn get_event() {
 }
 
 fn get_event_index() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::GetEventIndexResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::get_event_index(controller))
     })
 }
 
 fn set_event_index() {
-    let controller = CONTROLLER;
-    let index = EVENT_INDEX;
-
     print(|| -> Result<uhppote::SetEventIndexResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let index = EVENT_INDEX;
+
         futures::executor::block_on(uhppote::set_event_index(controller, index))
     })
 }
 
 fn record_special_events() {
-    let controller = CONTROLLER;
-    let enabled = true;
-
     print(|| -> Result<uhppote::RecordSpecialEventsResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let enabled = true;
+
         futures::executor::block_on(uhppote::record_special_events(controller, enabled))
     })
 }
 
 fn get_time_profile() {
-    let controller = CONTROLLER;
+    let controller = resolve(CONTROLLER);
     let profile_id = TIME_PROFILE_ID;
 
     match futures::executor::block_on(uhppote::get_time_profile(controller, profile_id)) {
@@ -411,26 +411,26 @@ fn get_time_profile() {
 }
 
 fn set_time_profile() {
-    let controller = CONTROLLER;
-    let profile_id = TIME_PROFILE_ID;
-    let start = NaiveDate::parse_from_str("2022-01-01", "%Y-%m-%d").unwrap();
-    let end = NaiveDate::parse_from_str("2022-12-31", "%Y-%m-%d").unwrap();
-    let monday = true;
-    let tuesday = true;
-    let wednesday = false;
-    let thursday = true;
-    let friday = false;
-    let saturday = false;
-    let sunday = true;
-    let segment_1_start = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
-    let segment_1_end = NaiveTime::parse_from_str("11:45", "%H:%M").unwrap();
-    let segment_2_start = NaiveTime::parse_from_str("12:45", "%H:%M").unwrap();
-    let segment_2_end = NaiveTime::parse_from_str("17:00", "%H:%M").unwrap();
-    let segment_3_start = NaiveTime::parse_from_str("18:30", "%H:%M").unwrap();
-    let segment_3_end = NaiveTime::parse_from_str("20:15", "%H:%M").unwrap();
-    let linked_profile_id: u8 = 37;
-
     print(|| -> Result<uhppote::SetTimeProfileResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let profile_id = TIME_PROFILE_ID;
+        let start = NaiveDate::parse_from_str("2022-01-01", "%Y-%m-%d").unwrap();
+        let end = NaiveDate::parse_from_str("2022-12-31", "%Y-%m-%d").unwrap();
+        let monday = true;
+        let tuesday = true;
+        let wednesday = false;
+        let thursday = true;
+        let friday = false;
+        let saturday = false;
+        let sunday = true;
+        let segment_1_start = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
+        let segment_1_end = NaiveTime::parse_from_str("11:45", "%H:%M").unwrap();
+        let segment_2_start = NaiveTime::parse_from_str("12:45", "%H:%M").unwrap();
+        let segment_2_end = NaiveTime::parse_from_str("17:00", "%H:%M").unwrap();
+        let segment_3_start = NaiveTime::parse_from_str("18:30", "%H:%M").unwrap();
+        let segment_3_end = NaiveTime::parse_from_str("20:15", "%H:%M").unwrap();
+        let linked_profile_id: u8 = 37;
+
         futures::executor::block_on(uhppote::set_time_profile(
         controller,
         profile_id,
@@ -454,30 +454,30 @@ fn set_time_profile() {
 }
 
 fn delete_all_time_profiles() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::DeleteAllTimeProfilesResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::delete_all_time_profiles(controller))
     })
 }
 
 fn add_task() {
-    let controller = CONTROLLER;
-    let start_date = NaiveDate::parse_from_str("2023-01-01", "%Y-%m-%d").unwrap();
-    let end_date = NaiveDate::parse_from_str("2023-12-31", "%Y-%m-%d").unwrap();
-    let monday = true;
-    let tuesday = true;
-    let wednesday = false;
-    let thursday = true;
-    let friday = false;
-    let saturday = false;
-    let sunday = true;
-    let start_time = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
-    let door = DOOR;
-    let task_type: u8 = 2;
-    let more_cards: u8 = 0;
-
     print(|| -> Result<uhppote::AddTaskResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let start_date = NaiveDate::parse_from_str("2023-01-01", "%Y-%m-%d").unwrap();
+        let end_date = NaiveDate::parse_from_str("2023-12-31", "%Y-%m-%d").unwrap();
+        let monday = true;
+        let tuesday = true;
+        let wednesday = false;
+        let thursday = true;
+        let friday = false;
+        let saturday = false;
+        let sunday = true;
+        let start_time = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
+        let door = DOOR;
+        let task_type: u8 = 2;
+        let more_cards: u8 = 0;
+
         futures::executor::block_on(uhppote::add_task(
         controller, start_date, end_date, monday, tuesday, wednesday, thursday, friday, saturday,
         sunday, start_time, door, task_type, more_cards))
@@ -485,68 +485,68 @@ fn add_task() {
 }
 
 fn refresh_tasklist() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::RefreshTasklistResponse, error::Error> {
+	    let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::refresh_tasklist(controller))
     })
 }
 
 fn clear_tasklist() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::ClearTasklistResponse, error::Error> {
+	    let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::clear_tasklist(controller))
     })
 }
 
 fn set_pc_control() {
-    let controller = CONTROLLER;
-    let enabled = true;
-
     print(|| -> Result<uhppote::SetPcControlResponse, error::Error> {
+	    let controller = resolve(CONTROLLER);
+        let enabled = true;
+
         futures::executor::block_on(uhppote::set_pc_control(controller, enabled))
     })
 }
 
 fn set_interlock() {
-    let controller = CONTROLLER;
-    let interlock = 3;
-
     print(|| -> Result<uhppote::SetInterlockResponse, error::Error> {
+	    let controller = resolve(CONTROLLER);
+        let interlock = 3;
+
         futures::executor::block_on(uhppote::set_interlock(controller, interlock))
     })
 }
 
 fn activate_keypads() {
-    let controller = CONTROLLER;
-    let reader1 = true;
-    let reader2 = true;
-    let reader3 = true;
-    let reader4 = true;
-
     print(|| -> Result<uhppote::ActivateKeypadsResponse, error::Error> {
+	    let controller = resolve(CONTROLLER);
+        let reader1 = true;
+        let reader2 = true;
+        let reader3 = true;
+        let reader4 = true;
+
         futures::executor::block_on(uhppote::activate_keypads(controller, reader1, reader2, reader3, reader4))
     })
 }
 
 fn set_door_passcodes() {
-    let controller = CONTROLLER;
-    let door = DOOR;
-    let passcode1 = 12345;
-    let passcode2 = 0;
-    let passcode3 = 999999;
-    let passcode4 = 54321;
-
     print(|| -> Result<uhppote::SetDoorPasscodesResponse, error::Error> {
+	    let controller = resolve(CONTROLLER);
+        let door = DOOR;
+        let passcode1 = 12345;
+        let passcode2 = 0;
+        let passcode3 = 999999;
+        let passcode4 = 54321;
+
         futures::executor::block_on(uhppote::set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4))
     })
 }
 
 fn restore_default_parameters() {
-    let controller = CONTROLLER;
-
     print(|| -> Result<uhppote::RestoreDefaultParametersResponse, error::Error> {
+	    let controller = resolve(CONTROLLER);
+
         futures::executor::block_on(uhppote::restore_default_parameters(controller))
     })
 }

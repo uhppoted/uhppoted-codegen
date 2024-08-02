@@ -128,7 +128,7 @@ func getController(args []string) (any, error) {
 }
 
 func setIP(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     address := ADDRESS
     netmask := NETMASK
     gateway := GATEWAY
@@ -141,32 +141,32 @@ func setIP(args []string) (any, error) {
 }
 
 func getTime(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.GetTime(controller)
 }
 
 func setTime(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     now := uhppote.DateTime(time.Now())
 
     return uhppote.SetTime(controller, now)
 }
 
 func getStatus(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.GetStatus(controller)
 }
 
 func getListener(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.GetListener(controller)
 }
 
 func setListener(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     address := LISTENER.Addr()
     port := LISTENER.Port()
 
@@ -174,14 +174,14 @@ func setListener(args []string) (any, error) {
 }
 
 func getDoorControl(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     door := DOOR
 
     return uhppote.GetDoorControl(controller, door)
 }
 
 func setDoorControl(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     door := DOOR
     mode := MODE
     delay := DELAY
@@ -190,20 +190,20 @@ func setDoorControl(args []string) (any, error) {
 }
 
 func openDoor(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     door := DOOR
 
     return uhppote.OpenDoor(controller, door)
 }
 
 func getCards(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.GetCards(controller)
 }
 
 func getCard(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     card := CARD
 
     if response,err := uhppote.GetCard(controller, card); err != nil {
@@ -216,7 +216,7 @@ func getCard(args []string) (any, error) {
 }
 
 func getCardByIndex(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     index := CARD_INDEX
 
     if response,err := uhppote.GetCardByIndex(controller, index); err != nil {
@@ -231,7 +231,7 @@ func getCardByIndex(args []string) (any, error) {
 }
 
 func putCard(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     card := CARD
     start, _ := time.Parse("2006-01-02", "2022-01-01")
     end, _ := time.Parse("2006-01-02", "2022-12-31")
@@ -241,20 +241,20 @@ func putCard(args []string) (any, error) {
 }
 
 func deleteCard(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     card := CARD
 
     return uhppote.DeleteCard(controller, card)
 }
 
 func deleteAllCards(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.DeleteAllCards(controller)
 }
 
 func getEvent(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     index := EVENT_INDEX
 
     if response, err := uhppote.GetEvent(controller, index); err != nil {
@@ -269,27 +269,27 @@ func getEvent(args []string) (any, error) {
 }
 
 func getEventIndex(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.GetEventIndex(controller)
 }
 
 func setEventIndex(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     index := EVENT_INDEX
 
     return uhppote.SetEventIndex(controller, index)
 }
 
 func recordSpecialEvents(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     enabled := true
 
     return uhppote.RecordSpecialEvents(controller, enabled)
 }
 
 func getTimeProfile(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     profileID := TIME_PROFILE_ID
 
     if response,err := uhppote.GetTimeProfile(controller, profileID); err != nil {
@@ -302,7 +302,7 @@ func getTimeProfile(args []string) (any, error) {
 }
 
 func setTimeProfile(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     profileID := TIME_PROFILE_ID
     start, _ := time.Parse("2006-01-02", "2022-01-01")
     end, _ := time.Parse("2006-01-02", "2022-12-31")
@@ -333,13 +333,13 @@ func setTimeProfile(args []string) (any, error) {
 }
 
 func deleteAllTimeProfiles(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.DeleteAllTimeProfiles(controller)
 }
 
 func addTask(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     startDate, _ := time.Parse("2006-01-02", "2022-01-01")
     endDate, _ := time.Parse("2006-01-02", "2022-12-31")
     monday := true
@@ -364,33 +364,33 @@ func addTask(args []string) (any, error) {
 }
 
 func refreshTaskList(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.RefreshTasklist(controller)
 }
 
 func clearTaskList(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.ClearTasklist(controller)
 }
 
 func setPCControl(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     enabled := true
 
     return uhppote.SetPcControl(controller, enabled)
 }
 
 func setInterlock(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     interlock := uint8(3)
 
     return uhppote.SetInterlock(controller, interlock)
 }
 
 func activateKeypads(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     reader1 := true
     reader2 := true
     reader3 := false
@@ -400,7 +400,7 @@ func activateKeypads(args []string) (any, error) {
 }
 
 func setDoorPasscodes(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     door := DOOR
     passcode1 := uint32(12345)
     passcode2 := uint32(0)
@@ -411,7 +411,7 @@ func setDoorPasscodes(args []string) (any, error) {
 }
 
 func restoreDefaultParameters(args []string) (any, error) {
-    controller := parseArgs(args,"--controller", CONTROLLER).(uint32)
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
     return uhppote.RestoreDefaultParameters(controller)
 }

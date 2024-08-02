@@ -22,7 +22,7 @@ PHPBIN  = php ./generated/php/uhppoted.php
 ERLBIN  = ./generated/erlang/_build/default/bin/cli
 LUABIN  = cd ./generated/lua && lua main.lua
 
-.DEFAULT_GOAL := lua-debug
+.DEFAULT_GOAL := debug-all
 .PHONY: update
 .PHONY: update-release
 
@@ -122,6 +122,17 @@ debug: erlang
 	                                                --broadcast 192.168.1.255:60000 \
 	                                                --listen 0.0.0.0:60001 \
 	                                                set-ip
+
+debug-all: go rust python zig php erlang lua
+	$(eval COMMAND := restore-default-parameters)
+	echo "--- $(COMMAND)"
+	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
+	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 $(COMMAND)
+	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 $(COMMAND)
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 $(COMMAND)
 
 godoc:
 	godoc -http=:80	-index_interval=60s
@@ -304,7 +315,7 @@ lua-help: build regen
 	$(LUABIN) set-time -h 
 
 lua-debug: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 get-controller
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 add-task
 
 lua-cmd: lua
 	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 $(COMMAND)

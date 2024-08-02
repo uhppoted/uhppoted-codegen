@@ -97,7 +97,7 @@ execute(get_controller, _Options, Config) ->
     uhppoted:get_controller(Config, Controller);
 
 execute(set_ip, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     {ok, Address} = inet:parse_ipv4_address(?ADDRESS),
     {ok, Netmask} = inet:parse_ipv4_address(?NETMASK),
     {ok, Gateway} = inet:parse_ipv4_address(?GATEWAY),
@@ -105,61 +105,61 @@ execute(set_ip, _Options, Config) ->
     uhppoted:set_ip(Config, Controller, Address, Netmask, Gateway);
 
 execute(get_time, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:get_time(Config, Controller);
 
 execute(set_time, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Now = erlang:localtime(),
 
     uhppoted:set_time(Config, Controller, Now);
 
 execute(get_status, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:get_status(Config, Controller);
 
 execute(get_listener, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:get_listener(Config, Controller);
 
 execute(set_listener, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     {Addr, Port} = parse_addr(?LISTENER),
     uhppoted:set_listener(Config, Controller, Addr, Port);
 
 execute(get_door_control, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Door = ?DOOR,
     uhppoted:get_door_control(Config, Controller, Door);
 
 execute(set_door_control, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Door = ?DOOR,
     Mode = ?MODE,
     Delay = ?DELAY,
     uhppoted:set_door_control(Config, Controller, Door, Mode, Delay);
 
 execute(open_door, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Door = ?DOOR,
     uhppoted:open_door(Config, Controller, Door);
 
 execute(get_cards, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:get_cards(Config, Controller);
 
 execute(get_card, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Card = ?CARD,
     uhppoted:get_card(Config, Controller, Card);
 
 execute(get_card_by_index, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Index = ?CARD_INDEX,
     uhppoted:get_card_by_index(Config, Controller, Index);
 
 execute(put_card, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Card = ?CARD,
     Start = {2023, 1, 1},
     End = {2023, 12, 31},
@@ -167,40 +167,40 @@ execute(put_card, _Options, Config) ->
     uhppoted:put_card(Config, Controller, Card, Start, End, 0, 1, 29, 0, PIN);
 
 execute(delete_card, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Card = ?CARD,
     uhppoted:delete_card(Config, Controller, Card);
 
 execute(delete_all_cards, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:delete_all_cards(Config, Controller);
 
 execute(get_event, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Index = ?EVENT_INDEX,
     uhppoted:get_event(Config, Controller, Index);
 
 execute(get_event_index, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:get_event_index(Config, Controller);
 
 execute(set_event_index, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Index = ?EVENT_INDEX,
     uhppoted:set_event_index(Config, Controller, Index);
 
 execute(record_special_events, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Enable = true,
     uhppoted:record_special_events(Config, Controller, Enable);
 
 execute(get_time_profile, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Profile = ?TIME_PROFILE_ID,
     uhppoted:get_time_profile(Config, Controller, Profile);
 
 execute(set_time_profile, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Profile = ?TIME_PROFILE_ID,
     Start = {2023, 1, 1},
     End = {2023, 12, 31},
@@ -242,11 +242,11 @@ execute(set_time_profile, _Options, Config) ->
     );
 
 execute(delete_all_time_profiles, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:delete_all_time_profiles(Config, Controller);
 
 execute(add_task, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Door = ?DOOR,
     TaskType = 2,
     Start = {2023, 1, 1},
@@ -280,25 +280,25 @@ execute(add_task, _Options, Config) ->
     );
 
 execute(refresh_tasklist, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:refresh_tasklist(Config, Controller);
 
 execute(clear_tasklist, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:clear_tasklist(Config, Controller);
 
 execute(set_pc_control, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Enable = true,
     uhppoted:set_pc_control(Config, Controller, Enable);
 
 execute(set_interlock, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Interlock = 3,
     uhppoted:set_interlock(Config, Controller, Interlock);
 
 execute(activate_keypads, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Reader1 = true,
     Reader2 = true,
     Reader3 = false,
@@ -306,7 +306,7 @@ execute(activate_keypads, _Options, Config) ->
     uhppoted:activate_keypads(Config, Controller, Reader1, Reader2, Reader3, Reader4);
 
 execute(set_door_passcodes, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     Door = ?DOOR,
     Passcode1 = 12345,
     Passcode2 = 0,
@@ -315,7 +315,7 @@ execute(set_door_passcodes, _Options, Config) ->
     uhppoted:set_door_passcodes(Config, Controller, Door, Passcode1, Passcode2, Passcode3, Passcode4);
 
 execute(restore_default_parameters, _Options, Config) ->
-    Controller = ?CONTROLLER,
+    Controller = resolve(?CONTROLLER),
     uhppoted:restore_default_parameters(Config, Controller);
 
 execute(listen, _Options, Config) ->

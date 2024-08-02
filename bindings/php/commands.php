@@ -79,7 +79,7 @@ function get_controller($u, $args)
 
 function set_ip($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $address = ADDRESS;
     $netmask = NETMASK;
     $gateway = GATEWAY;
@@ -91,14 +91,14 @@ function set_ip($u, $args)
 
 function get_time($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\get_time($u, $controller);
 }
 
 function set_time($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $now = new DateTimeImmutable('now', new DateTimeZone('PDT'));
 
     return uhppote\set_time($u, $controller, $now);
@@ -106,14 +106,13 @@ function set_time($u, $args)
 
 function get_listener($u, $args)
 {
-    $controller = CONTROLLER;
-
+    $controller = resolve(CONTROLLER);
     return uhppote\get_listener($u, $controller);
 }
 
 function set_listener($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     list($address, $port) = explode(':', LISTENER);
 
     return uhppote\set_listener($u, $controller, $address, (int)$port);
@@ -121,7 +120,7 @@ function set_listener($u, $args)
 
 function get_door_control($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $door = DOOR;
 
     return uhppote\get_door_control($u, $controller, $door);
@@ -129,7 +128,7 @@ function get_door_control($u, $args)
 
 function set_door_control($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $door = DOOR;
     $mode = MODE;
     $delay = DELAY;
@@ -139,14 +138,14 @@ function set_door_control($u, $args)
 
 function get_status($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\get_status($u, $controller);
 }
 
 function open_door($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $door = DOOR;
 
     return uhppote\open_door($u, $controller, $door);
@@ -154,14 +153,14 @@ function open_door($u, $args)
 
 function get_cards($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\get_cards($u, $controller);
 }
 
 function get_card($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $card = CARD;
 
     return uhppote\get_card($u, $controller, $card);
@@ -169,7 +168,7 @@ function get_card($u, $args)
 
 function get_card_by_index($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $index = CARD_INDEX;
 
     return uhppote\get_card_by_index($u, $controller, $index);
@@ -177,7 +176,7 @@ function get_card_by_index($u, $args)
 
 function put_card($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $card = CARD;
     $start = new DateTimeImmutable('2023-01 -01', new DateTimeZone('PDT'));
     $end = new DateTimeImmutable('2023-12-31', new DateTimeZone('PDT'));
@@ -192,7 +191,7 @@ function put_card($u, $args)
 
 function delete_card($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $card = CARD;
 
     return uhppote\delete_card($u, $controller, $card);
@@ -200,14 +199,14 @@ function delete_card($u, $args)
 
 function delete_all_cards($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\delete_all_cards($u, $controller);
 }
 
 function get_event($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $index = EVENT_INDEX;
 
     return uhppote\get_event($u, $controller, $index);
@@ -215,14 +214,14 @@ function get_event($u, $args)
 
 function get_event_index($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\get_event_index($u, $controller);
 }
 
 function set_event_index($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $index = EVENT_INDEX;
 
     return uhppote\set_event_index($u, $controller, $index);
@@ -231,7 +230,7 @@ function set_event_index($u, $args)
 
 function record_special_events($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $enabled = true;
 
     return uhppote\record_special_events($u, $controller, $enabled);
@@ -239,7 +238,7 @@ function record_special_events($u, $args)
 
 function get_time_profile($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $profile_id = TIME_PROFILE_ID;
 
     return uhppote\get_time_profile($u, $controller, $profile_id);
@@ -247,7 +246,7 @@ function get_time_profile($u, $args)
 
 function set_time_profile($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $profile_id = TIME_PROFILE_ID;
     $start = new DateTimeImmutable('2023-01 -01', new DateTimeZone('PDT'));
     $end = new DateTimeImmutable('2023-12-31', new DateTimeZone('PDT'));
@@ -292,14 +291,14 @@ function set_time_profile($u, $args)
 
 function delete_all_time_profiles($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\delete_all_time_profiles($u, $controller);
 }
 
 function add_task($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $start_date = new DateTimeImmutable('2023-01 -01', new DateTimeZone('PDT'));
     $end_date = new DateTimeImmutable('2023-12-31', new DateTimeZone('PDT'));
     $monday = true;
@@ -335,21 +334,21 @@ function add_task($u, $args)
 
 function refresh_tasklist($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\refresh_tasklist($u, $controller);
 }
 
 function clear_tasklist($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\clear_tasklist($u, $controller);
 }
 
 function set_pc_control($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $enabled = true;
 
     return uhppote\set_pc_control($u, $controller, $enabled);
@@ -357,7 +356,7 @@ function set_pc_control($u, $args)
 
 function set_interlock($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $interlock = 3;
 
     return uhppote\set_interlock($u, $controller, $interlock);
@@ -365,7 +364,7 @@ function set_interlock($u, $args)
 
 function activate_keypads($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $reader1 = true;
     $reader2 = true;
     $reader3 = false;
@@ -376,7 +375,7 @@ function activate_keypads($u, $args)
 
 function set_door_passcodes($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
     $door = DOOR;
     $passcode1 = 12345;
     $passcode2 = 0;
@@ -388,7 +387,7 @@ function set_door_passcodes($u, $args)
 
 function restore_default_parameters($u, $args)
 {
-    $controller = CONTROLLER;
+    $controller = resolve(CONTROLLER);
 
     return uhppote\restore_default_parameters($u, $controller);
 }

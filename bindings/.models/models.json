@@ -67,7 +67,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "address",
@@ -119,7 +119,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -155,7 +155,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "time",
@@ -200,7 +200,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -346,7 +346,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -387,7 +387,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "address",
@@ -441,7 +441,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "door",
@@ -496,7 +496,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "door",
@@ -569,7 +569,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "door",
@@ -614,7 +614,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -650,7 +650,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "card number",
@@ -730,7 +730,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "card index",
@@ -810,7 +810,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "card number",
@@ -918,7 +918,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "card number",
@@ -963,7 +963,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -1004,7 +1004,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "event index",
@@ -1084,7 +1084,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -1120,7 +1120,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "event index",
@@ -1170,7 +1170,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "enable",
@@ -1215,7 +1215,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "profile id",
@@ -1340,7 +1340,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "profile id",
@@ -1529,7 +1529,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -1570,7 +1570,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "start date",
@@ -1723,7 +1723,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -1764,7 +1764,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {
@@ -1805,7 +1805,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "enable",
@@ -1855,7 +1855,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "interlock",
@@ -1900,7 +1900,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "reader 1",
@@ -1972,7 +1972,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           },
           {
             "name": "door",
@@ -2053,7 +2053,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "uint32"
+            "type": "controller"
           }
         ],
         "request": {

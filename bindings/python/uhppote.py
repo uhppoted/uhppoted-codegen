@@ -44,7 +44,7 @@ class Uhppote:
             
         return None
         {{- else}}
-        request = encode.{{snakeCase .request.name}}(c.controller, {{template "params" slice .args 1}})
+        request = encode.{{snakeCase .request.name}}(c.controller{{template "params" slice .args 1}})
         self._net.send(c, request)
 
         return True

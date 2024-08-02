@@ -60,7 +60,7 @@ function get_controller(args)
 end
 
 function set_ip(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local address = parse(args,"address",ADDRESS)
     local netmask = parse(args,"netmask",NETMASK)
     local gateway = parse(args,"gateway",GATEWAY)
@@ -69,32 +69,32 @@ function set_ip(args)
 end
 
 function get_time(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.get_time(controller)
 end
 
 function set_time(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local datetime = parse(args,"time",os.date("%Y-%m-%d %H:%M:%S"))
 
     return uhppote.set_time(controller,datetime)
 end
 
 function get_status(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.get_status(controller)
 end
 
 function get_listener(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.get_listener(controller)
 end
 
 function set_listener(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local address = parse(args,"address",LISTENER.address)
     local port = parse(args,"port",LISTENER.port)
 
@@ -102,14 +102,14 @@ function set_listener(args)
 end
 
 function get_door_control(args)
-    local controller = parse(args, "controller", CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local door = parse(args, "door", DOOR)
 
     return uhppote.get_door_control(controller, door)
 end
 
 function set_door_control(args)
-    local controller = parse(args, "controller", CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local door = parse(args, "door", DOOR)
     local mode = parse(args, "mode", DOOR_MODE)
     local delay = parse(args, "delay", DOOR_DELAY)
@@ -126,34 +126,34 @@ function set_door_control(args)
 end
 
 function open_door(args)
-    local controller = parse(args, "controller", CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local door = parse(args,"door",DOOR)
 
     return uhppote.open_door(controller, door)
 end
 
 function get_cards(args) 
-    local controller = parse(args,"controller", CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.get_cards(controller)
 end
 
 function get_card(args)
-    local controller = parse(args, "controller", CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local card = parse(args, "card", CARD)
 
     return uhppote.get_card(controller, card)
 end
 
 function get_card_by_index(args)
-    local controller = parse(args, "controller", CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local index = parse(args, "index", CARD_INDEX)
 
     return uhppote.get_card_by_index(controller, index)
 end
 
 function put_card(args)
-    local controller = parse(args, "controller", CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local card = parse(args, "card", CARD)
     local start_date = parse(args, "start_date", CARD_START_DATE)
     local end_date = parse(args, "end_date", CARD_END_DATE)
@@ -179,54 +179,54 @@ function put_card(args)
 end
 
 function delete_card(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local card = parse(args,"card",CARD)
 
     return uhppote.delete_card(controller, card)
 end
 
 function delete_all_cards(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.delete_all_cards(controller)
 end
 
 function get_event(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local index = parse(args,"index",EVENT_INDEX)
 
     return uhppote.get_event(controller, index)
 end
 
 function get_event_index(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.get_event_index(controller)
 end
 
 function set_event_index(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local index = parse(args,"index",EVENT_INDEX)
 
     return uhppote.set_event_index(controller, index)
 end
 
 function record_special_events(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local disabled = parse(args,"disabled",false)
 
     return uhppote.record_special_events(controller, not disabled)
 end
 
 function get_time_profile(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local profile = parse(args,"profile",TIME_PROFILE_ID)
 
     return uhppote.get_time_profile(controller, profile)
 end
 
 function set_time_profile(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local profile = parse(args,"profile",TIME_PROFILE_ID)
     local start_date = parse(args,"start_date","2023-01-01")
     local end_date = parse(args,"end_date","2099-01-01")
@@ -262,14 +262,13 @@ function set_time_profile(args)
 end
 
 function delete_all_time_profiles(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.delete_all_time_profiles(controller)
 end
 
 function add_task(args)
-    local controller = parse(args,"controller",CONTROLLER)
-    local task = parse(args,"task",2)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local start_date = parse(args,"start_date","2023-01-01")
     local end_date = parse(args,"end_date","2099-01-01")
     local at = string.match(parse(args, "at", "00:00"),"(%d?%d:%d%d)") or "12:34"
@@ -284,7 +283,8 @@ function add_task(args)
     local friday = string.match(weekdays,"fri")
     local saturday = string.match(weekdays,"sat")
     local sunday = string.match(weekdays,"sun")
-    local task = string.lower(parse(args, "task", ""))
+
+    local task = string.lower(parse(args, "task", "door-controlled"))
 
     for k,v in pairs(TASKS) do
       if v == task then
@@ -302,26 +302,26 @@ function add_task(args)
 end
 
 function refresh_tasklist(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.refresh_tasklist(controller)
 end
 
 function clear_tasklist(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.clear_tasklist(controller)
 end
 
 function set_pc_control(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local disabled = parse(args,"disabled",false)
 
     return uhppote.set_pc_control(controller, not disabled)
 end
 
 function set_interlock(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local interlock = parse(args, "interlock", "")
 
     for k,v in pairs(INTERLOCKS) do
@@ -334,7 +334,7 @@ function set_interlock(args)
 end
 
 function activate_keypads(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local keypads = parse(args, "keypads", "")
 
     local reader1 = false
@@ -358,7 +358,7 @@ function activate_keypads(args)
 end
 
 function set_door_passcodes(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
     local door = parse(args, "door", DOOR)
     local passcodes = parse(args, "passcodes", "")
 
@@ -377,7 +377,7 @@ function set_door_passcodes(args)
 end
 
 function restore_default_parameters(args)
-    local controller = parse(args,"controller",CONTROLLER)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
 
     return uhppote.restore_default_parameters(controller)
 end

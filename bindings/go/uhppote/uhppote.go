@@ -81,7 +81,7 @@ func {{CamelCase .name}}({{template "args" .args}}) {{if .response}}(*{{CamelCas
 
     return nil, nil
     {{- else }}
-    request, err := {{CamelCase .request.name}}({{template "params" .args}})
+    request, err := {{CamelCase .request.name}}(c.Controller, {{template "params" slice .args 1}})
     if err != nil {
         return err
     } 
