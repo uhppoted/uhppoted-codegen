@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
+- [x] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
       - [x] Go
       - [x] Rust
       - [x] Python
@@ -9,46 +9,8 @@
       - [x] Erlang
       - [x] Lua
       - [x] models: rename 'device id' to controller and set type to 'controller'
-            - [x] get-controller
-            - [x] set-ip
-            - [x] get-time
-            - [x] set-time
-            - [x] get-listener
-            - [x] set-listener
-            - [x] get-door-control
-            - [x] set-door-control
-            - [x] get-status
-            - [x] open-door
-            - [x] get-cards
-            - [x] get-card
-            - [x] get-card-by-index
-            - [x] put-card
-            - [x] delete-card
-            - [x] delete-all-cards
-            - [x] get-event
-            - [x] get-event-index
-            - [x] set-event-index
-            - [x] record-special-events
-            - [x] get-time-profile
-            - [x] set-time-profile
-            - [x] delete-all-time-profiles
-            - [x] add-task
-            - [x] refresh-tasklist
-            - [x] clear-tasklist
-            - [x] set-pc-control
-            - [x] set-interlock
-            - [x] activate-keypads
-            - [x] set-door-passcodes
-            - [x] restore-default-parameters
       - [x] remove uhppote::resolve
-          - [x] Go
-          - [x] Rust
-          - [x] Python
-          - [x] Zig
-          - [x] PHP
-          - [x] Erlang
-          - [x] Lua
-      - [ ] tests
+      - [x] tests
       - [x] documentation
       - [x] CHANGELOG
       - [x] README
