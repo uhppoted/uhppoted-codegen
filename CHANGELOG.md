@@ -5,6 +5,9 @@
 ### Added
 1. Added support for transport over UDP connected sockets and TCP.
 
+### Updated
+1. Updated to Go 1.23.
+
 
 ## [0.8.8](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.8) - 2024-03-27
 

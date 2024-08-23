@@ -1,19 +1,7 @@
 # TODO
 
 - [x] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
-      - [x] Go
-      - [x] Rust
-      - [x] Python
-      - [x] Zig
-      - [x] PHP
-      - [x] Erlang
-      - [x] Lua
-      - [x] models: rename 'device id' to controller and set type to 'controller'
-      - [x] remove uhppote::resolve
-      - [x] tests
-      - [x] documentation
-      - [x] CHANGELOG
-      - [x] README
+- [x] Update to Go 1.23 (cf. https://github.com/uhppoted/uhppoted/issues/53)
 
 - [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
       - [ ] root globs e.g. **/.DS_Store
