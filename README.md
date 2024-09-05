@@ -34,10 +34,10 @@ than it should be.
 
 ### Current Release
 
-**[v0.8.8](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.8) - 2024-03-27**
+**[v0.8.9](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.9) - 2024-09-06**
 
-1. `restore-default-parameters` function to reset a controller to the manufacturer default configuration.
-2. Updated Go version to 1.22
+1. Added support for transport over UDP connected sockets and TCP.
+2. Updated to Go 1.23.
 
 
 ## Installation

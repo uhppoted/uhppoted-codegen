@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "uhppoted-codegen",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "Code generation tool for generating UHPPOTE native language bindings",
   "dependencies": {
     "eslint-config-standard": "^17.0.0"
