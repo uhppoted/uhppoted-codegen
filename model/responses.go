@@ -255,6 +255,11 @@ var GetListenerResponse = Message{
 			Type:   "uint16",
 			Offset: 12,
 		},
+		Field{
+			Name:   "interval",
+			Type:   "uint8",
+			Offset: 14,
+		},
 	},
 }
 

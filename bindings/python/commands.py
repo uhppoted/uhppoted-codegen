@@ -13,6 +13,7 @@ CARD = 8165538
 CARD_INDEX = 3
 EVENT_INDEX = 37
 TIME_PROFILE_ID = 29
+LISTENER_INTERVAL = 15
 
 ADDRESS = ipaddress.IPv4Address('192.168.1.100')
 NETMASK = ipaddress.IPv4Address('255.255.255.0')
@@ -117,8 +118,9 @@ def get_listener(u):
 def set_listener(u):
     controller = resolve(CONTROLLER)
     (address, port) = LISTENER
+    interval = LISTENER_INTERVAL
 
-    return u.set_listener(controller, address, port)
+    return u.set_listener(controller, address, port, interval)
 
 
 def get_door_control(u):

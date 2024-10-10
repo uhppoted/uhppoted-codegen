@@ -33,6 +33,7 @@ macro_rules! bcd2string {
 
 {{- with .model.event}}
 #[derive(Clone, Debug)]
+#[allow(dead_code)]
 pub struct {{CamelCase .name}} { {{range .fields}}
     pub {{snakeCase .name}}: {{template "type" .type}},{{end}}
 }
@@ -48,6 +49,7 @@ pub struct {{CamelCase .name}} { {{range .fields}}
 
 {{define "response"}}
 #[derive(Clone, Debug)]
+#[allow(dead_code)]
 pub struct {{CamelCase .name}} { {{range .fields}}
     pub {{snakeCase .name}}: {{template "type" .type}},{{end}}
 }

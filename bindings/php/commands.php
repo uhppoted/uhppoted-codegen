@@ -10,6 +10,7 @@ define('CARD', 10058400);
 define('CARD_INDEX', 3);
 define('EVENT_INDEX', 37);
 define('TIME_PROFILE_ID', 29);
+define('LISTENER_INTERVAL', 15);
 
 define('ADDRESS', '192.168.1.100');
 define('NETMASK', '255.255.255.0');
@@ -114,8 +115,9 @@ function set_listener($u, $args)
 {
     $controller = resolve(CONTROLLER);
     list($address, $port) = explode(':', LISTENER);
+    $interval = LISTENER_INTERVAL;
 
-    return uhppote\set_listener($u, $controller, $address, (int)$port);
+    return uhppote\set_listener($u, $controller, $address, (int)$port, (int) $interval);
 }
 
 function get_door_control($u, $args)

@@ -18,6 +18,7 @@ local CARD_DOORS = "1,2,3,4"
 local CARD_PIN = 0
 local EVENT_INDEX = 37
 local TIME_PROFILE_ID = 29
+local LISTENER_INTERVAL = 15
 
 local CONTROLLERS = {
     [405419896] = structs.controller(405419896, "192.168.1.100", "tcp"),
@@ -97,8 +98,9 @@ function set_listener(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
     local address = parse(args,"address",LISTENER.address)
     local port = parse(args,"port",LISTENER.port)
+    local interval = LISTENER_INTERVAL
 
-    return uhppote.set_listener(controller,address,port)
+    return uhppote.set_listener(controller,address,port, interval)
 end
 
 function get_door_control(args)

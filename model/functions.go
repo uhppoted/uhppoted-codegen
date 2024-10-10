@@ -138,6 +138,10 @@ var SetListener = Function{
 			Name: "port",
 			Type: "uint16",
 		},
+		Arg{
+			Name: "interval",
+			Type: "uint8",
+		},
 	},
 	Request:  &SetListenerRequest,
 	Response: &SetListenerResponse,

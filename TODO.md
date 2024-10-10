@@ -1,10 +1,11 @@
 # TODO
 
-- [x] TCP/IP protocol (cf. https://github.com/uhppoted/uhppote-core/issues/17)
-- [x] Update to Go 1.23 (cf. https://github.com/uhppoted/uhppoted/issues/53)
-
-- [x] .ignore file (cf. https://github.com/uhppoted/uhppoted-codegen/issues/5)
-      - [ ] root globs e.g. **/.DS_Store
+- [x] event listener: add listen auto-send interval (cf. https://github.com/uhppoted/uhppote-core/issues/21)
+      - [x] set-event-listener
+      - [x] get-event-listener
+      - [x] documentation
+      - [x] CHANGELOG
+      - [x] README
 
 - [ ] --delimiters
 - [ ] clang-tidy

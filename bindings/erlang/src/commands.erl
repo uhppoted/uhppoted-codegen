@@ -12,6 +12,7 @@
 -define(CARD_INDEX, 1).
 -define(EVENT_INDEX, 200).
 -define(TIME_PROFILE_ID, 29).
+-define(LISTENER_INTERVAL, 15).
 
 -define(ADDRESS, "192.168.1.100").
 -define(NETMASK, "255.255.255.0").
@@ -125,7 +126,8 @@ execute(get_listener, _Options, Config) ->
 execute(set_listener, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     {Addr, Port} = parse_addr(?LISTENER),
-    uhppoted:set_listener(Config, Controller, Addr, Port);
+    Interval = ?LISTENER_INTERVAL,
+    uhppoted:set_listener(Config, Controller, Addr, Port, Interval);
 
 execute(get_door_control, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

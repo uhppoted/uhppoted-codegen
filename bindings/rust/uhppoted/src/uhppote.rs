@@ -28,6 +28,7 @@ pub type Event = decode::{{ CamelCase .model.event.name }};
 pub type Result<T> = std::result::Result<T, Error>;
 pub type Controller = ut0311::Controller;
 
+#[allow(dead_code)]
 trait IController {
     fn resolve(&self) -> ut0311::Controller;
 }

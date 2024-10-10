@@ -460,9 +460,14 @@
               "name": "port",
               "type": "uint16",
               "value": "60001"
+            },
+            {
+              "name": "interval",
+              "type": "uint8",
+              "value": "15"
             }
           ],
-          "message": "F5IAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F5IAAHg3KhjAqAFkYeoPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         }
       },
       {
@@ -484,9 +489,14 @@
               "name": "port",
               "type": "uint16",
               "value": "60001"
+            },
+            {
+              "name": "interval",
+              "type": "uint8",
+              "value": "15"
             }
           ],
-          "message": "F5AAAHg3KhjAqAFkYeoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+          "message": "F5AAAHg3KhjAqAFkYeoPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
           "name": "set listener response",

@@ -296,8 +296,9 @@ fn set_listener(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
     const address = network.Address.IPv4.init(192, 168, 1, 100);
     const port = 60002;
+    const interval = 15;
 
-    if (uhppote.set_listener(controller, address, port, allocator)) |response| {
+    if (uhppote.set_listener(controller, address, port, interval, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

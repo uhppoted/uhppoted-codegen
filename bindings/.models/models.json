@@ -378,6 +378,11 @@
               "name": "port",
               "type": "uint16",
               "offset": 12
+            },
+            {
+              "name": "interval",
+              "type": "uint8",
+              "offset": 14
             }
           ]
         }
@@ -396,6 +401,10 @@
           {
             "name": "port",
             "type": "uint16"
+          },
+          {
+            "name": "interval",
+            "type": "uint8"
           }
         ],
         "request": {
@@ -416,6 +425,11 @@
               "name": "port",
               "type": "uint16",
               "offset": 12
+            },
+            {
+              "name": "interval",
+              "type": "uint8",
+              "offset": 14
             }
           ]
         },
@@ -2200,6 +2214,11 @@
             "name": "port",
             "type": "uint16",
             "offset": 12
+          },
+          {
+            "name": "interval",
+            "type": "uint8",
+            "offset": 14
           }
         ]
       },
@@ -3026,6 +3045,11 @@
             "name": "port",
             "type": "uint16",
             "offset": 12
+          },
+          {
+            "name": "interval",
+            "type": "uint8",
+            "offset": 14
           }
         ]
       },

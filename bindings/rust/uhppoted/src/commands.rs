@@ -245,8 +245,9 @@ fn set_listener() {
         let controller = resolve(CONTROLLER);
         let address = "192.168.1.100".parse().unwrap();
         let port: u16 = 60001;
+        let interval: u8 = 15;
 
-        futures::executor::block_on(uhppote::set_listener(controller, address, port))
+        futures::executor::block_on(uhppote::set_listener(controller, address, port, interval))
     })
 }
 

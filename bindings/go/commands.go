@@ -22,6 +22,7 @@ const CARD uint32 = 8165538
 const CARD_INDEX uint32 = 3
 const EVENT_INDEX uint32 = 37
 const TIME_PROFILE_ID uint8 = 29
+const LISTENER_INTERVAL uint8 = 15
 
 var ADDRESS = netip.MustParseAddr("192.168.1.100")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
@@ -169,8 +170,9 @@ func setListener(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     address := LISTENER.Addr()
     port := LISTENER.Port()
+    interval := LISTENER_INTERVAL
 
-    return uhppote.SetListener(controller, address, port)
+    return uhppote.SetListener(controller, address, port, interval)
 }
 
 func getDoorControl(args []string) (any, error) {
