@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## [0.8.10](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.10) - 2025-01-30
 
 ### Updated
 1. Added auto-send interval to get/set-listener API.
