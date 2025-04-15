@@ -1716,6 +1716,71 @@
         }
       },
       {
+        "name": "get antipassback",
+        "request": {
+          "name": "get antipassback request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            }
+          ],
+          "message": "F4YAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "get antipassback response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "antipassback",
+              "type": "uint8",
+              "value": 2
+            }
+          ],
+          "message": "F4YAAHg3KhgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
+        "name": "set antipassback",
+        "request": {
+          "name": "set antipassback request",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "antipassback",
+              "type": "uint8",
+              "value": 2
+            }
+          ],
+          "message": "F4QAAHg3KhgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        },
+        "response": {
+          "name": "set antipassback response",
+          "values": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "value": "405419896"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "message": "F4QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+        }
+      },
+      {
         "name": "restore default parameters",
         "request": {
           "name": "restore default parameters request",

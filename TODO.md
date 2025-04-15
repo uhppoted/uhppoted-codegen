@@ -1,9 +1,16 @@
 # TODO
 
-- [x] event listener: add listen auto-send interval (cf. https://github.com/uhppoted/uhppote-core/issues/21)
-      - [x] set-event-listener
-      - [x] get-event-listener
-      - [x] documentation
+- [x] anti-passback (cf. https://github.com/uhppoted/uhppoted/issues/60)
+      - [x] `get-antipassback`
+      - [x] `set-antipassback`
+      - [x] erlang
+      - [x] go
+      - [x] http
+      - [x] lua
+      - [x] php
+      - [x] python
+      - [x] rust
+      - [x] zig
       - [x] CHANGELOG
       - [x] README
 

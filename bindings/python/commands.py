@@ -58,6 +58,8 @@ def commands():
         'set-interlock': set_interlock,
         'activate-keypads': activate_keypads,
         'set-door-passcodes': set_door_passcodes,
+        'get-antipassback': get_antipassback,
+        'set-antipassback': set_antipassback,
         'restore-default-parameters': restore_default_parameters,
         'listen': listen,
     }
@@ -356,6 +358,19 @@ def set_door_passcodes(u):
     passcode4 = 54321
 
     return u.set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4)
+
+
+def get_antipassback(u):
+    controller = resolve(CONTROLLER)
+
+    return u.get_antipassback(controller)
+
+
+def set_antipassback(u):
+    controller = resolve(CONTROLLER)
+    antipassback = 2
+
+    return u.set_antipassback(controller, antipassback)
 
 
 def restore_default_parameters(u):

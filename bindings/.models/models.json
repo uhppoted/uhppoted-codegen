@@ -2063,6 +2063,87 @@
         }
       },
       {
+        "name": "get antipassback",
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller"
+          }
+        ],
+        "request": {
+          "name": "get antipassback request",
+          "msgtype": 134,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            }
+          ]
+        },
+        "response": {
+          "name": "get antipassback response",
+          "msgtype": 134,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "antipassback",
+              "type": "uint8",
+              "offset": 8
+            }
+          ]
+        }
+      },
+      {
+        "name": "set antipassback",
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller"
+          },
+          {
+            "name": "antipassback",
+            "type": "uint8"
+          }
+        ],
+        "request": {
+          "name": "set antipassback request",
+          "msgtype": 132,
+          "fields": [
+            {
+              "name": "device id",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "antipassback",
+              "type": "uint8",
+              "offset": 8
+            }
+          ]
+        },
+        "response": {
+          "name": "set antipassback response",
+          "msgtype": 132,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        }
+      },
+      {
         "name": "restore default parameters",
         "args": [
           {
@@ -2807,6 +2888,33 @@
             "name": "passcode 4",
             "type": "uint32",
             "offset": 24
+          }
+        ]
+      },
+      {
+        "name": "get antipassback request",
+        "msgtype": 134,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          }
+        ]
+      },
+      {
+        "name": "set antipassback request",
+        "msgtype": 132,
+        "fields": [
+          {
+            "name": "device id",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "antipassback",
+            "type": "uint8",
+            "offset": 8
           }
         ]
       },
@@ -3629,6 +3737,38 @@
       {
         "name": "set door passcodes response",
         "msgtype": 140,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "ok",
+            "type": "bool",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "get antipassback response",
+        "msgtype": 134,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4
+          },
+          {
+            "name": "antipassback",
+            "type": "uint8",
+            "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "set antipassback response",
+        "msgtype": 132,
         "fields": [
           {
             "name": "controller",

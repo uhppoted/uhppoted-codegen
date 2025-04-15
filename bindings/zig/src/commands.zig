@@ -178,6 +178,16 @@ pub const commands = [_]Command{
     },
 
     Command{
+        .name = "get-antipassback",
+        .function = get_antipassback,
+    },
+
+    Command{
+        .name = "set-antipassback",
+        .function = set_antipassback,
+    },
+
+    Command{
         .name = "restore-default-parameters",
         .function = restore_default_parameters,
     },
@@ -596,6 +606,27 @@ fn set_door_passcodes(allocator: std.mem.Allocator) void {
     const passcode4 = 54321;
 
     if (uhppote.set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn get_antipassback(allocator: std.mem.Allocator) void {
+    const controller = resolve(CONTROLLER);
+
+    if (uhppote.get_antipassback(controller, allocator)) |response| {
+        pprint(response);
+    } else |err| {
+        std.debug.print("\n   *** ERROR  {any}\n", .{err});
+    }
+}
+
+fn set_antipassback(allocator: std.mem.Allocator) void {
+    const controller = resolve(CONTROLLER);
+    const antipassback = 2;
+
+    if (uhppote.set_antipassback(controller, antipassback, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

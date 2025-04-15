@@ -30,6 +30,8 @@ var Responses = []Message{
 	SetInterlockResponse,
 	ActivateKeypadsResponse,
 	SetDoorPasscodesResponse,
+	GetAntiPassbackResponse,
+	SetAntiPassbackResponse,
 	RestoreDefaultParametersResponse,
 }
 
@@ -862,6 +864,40 @@ var ActivateKeypadsResponse = Message{
 var SetDoorPasscodesResponse = Message{
 	Name:    "set door passcodes response",
 	MsgType: 0x8c,
+	Fields: []Field{
+		Field{
+			Name:   "controller",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "ok",
+			Type:   "bool",
+			Offset: 8,
+		},
+	},
+}
+
+var GetAntiPassbackResponse = Message{
+	Name:    "get antipassback response",
+	MsgType: 0x86,
+	Fields: []Field{
+		Field{
+			Name:   "controller",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "antipassback",
+			Type:   "uint8",
+			Offset: 8,
+		},
+	},
+}
+
+var SetAntiPassbackResponse = Message{
+	Name:    "set antipassback response",
+	MsgType: 0x84,
 	Fields: []Field{
 		Field{
 			Name:   "controller",

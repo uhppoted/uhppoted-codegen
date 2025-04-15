@@ -31,6 +31,8 @@ var Requests = []Message{
 	SetInterlockRequest,
 	ActivateKeypadsRequest,
 	SetDoorPasscodesRequest,
+	GetAntiPassbackRequest,
+	SetAntiPassbackRequest,
 	RestoreDefaultParametersRequest,
 }
 
@@ -765,6 +767,35 @@ var SetDoorPasscodesRequest = Message{
 			Name:   "passcode 4",
 			Type:   "uint32",
 			Offset: 24,
+		},
+	},
+}
+
+var GetAntiPassbackRequest = Message{
+	Name:    "get antipassback request",
+	MsgType: 0x86,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+	},
+}
+
+var SetAntiPassbackRequest = Message{
+	Name:    "set antipassback request",
+	MsgType: 0x84,
+	Fields: []Field{
+		Field{
+			Name:   "device id",
+			Type:   "uint32",
+			Offset: 4,
+		},
+		Field{
+			Name:   "antipassback",
+			Type:   "uint8",
+			Offset: 8,
 		},
 	},
 }

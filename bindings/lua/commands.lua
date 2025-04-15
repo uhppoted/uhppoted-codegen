@@ -50,6 +50,14 @@ local INTERLOCKS = {
     [8] = "1&2&3&4",
 }
 
+local ANTIPASSBACK = {
+    [0] = "disabled",
+    [1] = "(1:2);(3:4)",
+    [2] = "(1,3):(2,4)",
+    [3] = "1:(2,3)",
+    [4] = "1:(2,3,4)",
+}
+
 function get_all_controllers(args)
     return uhppote.get_all_controllers()
 end
@@ -378,6 +386,26 @@ function set_door_passcodes(args)
     return uhppote.set_door_passcodes(controller, tonumber(door), codes[1], codes[2], codes[3], codes[4])
 end
 
+function get_antipassback(args)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
+
+    return uhppote.get_antipassback(controller)
+end
+
+function set_antipassback(args)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
+    local antipassback = parse(args, "antipassback", "")
+
+    for k,v in pairs(ANTIPASSBACK) do
+      if v == antipassback then
+          return uhppote.set_antipassback(controller, k)
+      end
+    end
+
+    error ("invalid antipassback")
+end
+
+
 function restore_default_parameters(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
 
@@ -439,6 +467,8 @@ local commands = {
        { ["command"] = "set-interlock",              ["f"] = set_interlock,              flags = {},             options = { "controller", "interlock" } },
        { ["command"] = "activate_keypads",           ["f"] = activate_keypads,           flags = {},             options = { "controller", "keypads" } },
        { ["command"] = "set-door-passcodes",         ["f"] = set_door_passcodes,         flags = {},             options = { "controller", "door", "passcodes" } },
+       { ["command"] = "get-antipassback",           ["f"] = get_antipassback,           flags = {},             options = { "controller" } },
+       { ["command"] = "set-antipassback",           ["f"] = set_antipassback,           flags = {},             options = { "controller", "antipassback" } },
        { ["command"] = "restore-default-parameters", ["f"] = restore_default_parameters, flags = {},             options = { "controller" } },
        { ["command"] = "listen",                     ["f"] = listen,                     flags = {},             options = { "controller" } },
    },

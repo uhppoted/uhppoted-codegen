@@ -68,6 +68,8 @@ commands() ->
         {"set-interlock", set_interlock},
         {"activate-keypads", activate_keypads},
         {"set-door-passcodes", set_door_passcodes},
+        {"get-antipassback", get_antipassback},
+        {"set-antipassback", set_antipassback},
         {"restore-default-parameters", restore_default_parameters},
         {"listen", listen}
     ].
@@ -315,6 +317,15 @@ execute(set_door_passcodes, _Options, Config) ->
     Passcode3 = 999999,
     Passcode4 = 54321,
     uhppoted:set_door_passcodes(Config, Controller, Door, Passcode1, Passcode2, Passcode3, Passcode4);
+
+execute(get_antipassback, _Options, Config) ->
+    Controller = resolve(?CONTROLLER),
+    uhppoted:get_antipassback(Config, Controller);
+
+execute(set_antipassback, _Options, Config) ->
+    Controller = resolve(?CONTROLLER),
+    Antipassback = 2,
+    uhppoted:set_antipassback(Config, Controller, Antipassback);
 
 execute(restore_default_parameters, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

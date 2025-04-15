@@ -20,7 +20,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 33] = [
+pub const COMMANDS: [&Command; 35] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -144,6 +144,14 @@ pub const COMMANDS: [&Command; 33] = [
     &Command {
         name: "set-door-passcodes",
         func: set_door_passcodes,
+    },
+    &Command {
+        name: "get-antipassback",
+        func: get_antipassback,
+    },
+    &Command {
+        name: "set-antipassback",
+        func: set_antipassback,
     },
     &Command {
         name: "restore-default-parameters",
@@ -541,6 +549,23 @@ fn set_door_passcodes() {
         let passcode4 = 54321;
 
         futures::executor::block_on(uhppote::set_door_passcodes(controller, door, passcode1, passcode2, passcode3, passcode4))
+    })
+}
+
+fn get_antipassback() {
+    print(|| -> Result<uhppote::GetAntipassbackResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+
+        futures::executor::block_on(uhppote::get_antipassback(controller))
+    })
+}
+
+fn set_antipassback() {
+    print(|| -> Result<uhppote::SetAntipassbackResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let antipassback = 2;
+
+        futures::executor::block_on(uhppote::set_antipassback(controller, antipassback))
     })
 }
 

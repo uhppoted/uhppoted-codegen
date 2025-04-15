@@ -73,13 +73,6 @@ go build -trimpath -o bin/ ./...
 The above commands build the `uhppoted-codegen` executable to the `bin` directory.
 
 
-#### Dependencies
-
-| *Dependency*                                                            | *Description*                        |
-| ----------------------------------------------------------------------- | -------------------------------------|
-|                                                                         |                                      |
-
-
 ## uhppoted-codegen
 
 Usage: ```uhppoted-codegen <command> <options>```

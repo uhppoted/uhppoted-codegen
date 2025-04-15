@@ -387,6 +387,21 @@ function set_door_passcodes($u, $args)
     return uhppote\set_door_passcodes($u, $controller, $door, $passcode1, $passcode2, $passcode3, $passcode4);
 }
 
+function get_antipassback($u, $args)
+{
+    $controller = resolve(CONTROLLER);
+
+    return uhppote\get_antipassback($u, $controller);
+}
+
+function set_antipassback($u, $args)
+{
+    $controller = resolve(CONTROLLER);
+    $antipassback = 2;
+
+    return uhppote\set_antipassback($u, $controller, $antipassback);
+}
+
 function restore_default_parameters($u, $args)
 {
     $controller = resolve(CONTROLLER);
@@ -446,6 +461,8 @@ function commands()
         'set-interlock' => 'set_interlock',
         'activate-keypads' => 'activate_keypads',
         'set-door-passcodes' => 'set_door_passcodes',
+        'get-antipassback' => 'get_antipassback',
+        'set-antipassback' => 'set_antipassback',
         'restore-default-parameters' => 'restore_default_parameters',
         'listen' => 'listen'
     ];

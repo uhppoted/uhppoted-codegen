@@ -33,6 +33,8 @@ var Functions = []Function{
 	SetInterlock,
 	ActivateKeypads,
 	SetDoorPasscodes,
+	GetAntiPassback,
+	SetAntiPassback,
 	RestoreDefaultParameters,
 }
 
@@ -665,6 +667,34 @@ var SetDoorPasscodes = Function{
 	},
 	Request:  &SetDoorPasscodesRequest,
 	Response: &SetDoorPasscodesResponse,
+}
+
+var GetAntiPassback = Function{
+	Name: "get antipassback",
+	Args: []Arg{
+		Arg{
+			Name: "controller",
+			Type: "controller",
+		},
+	},
+	Request:  &GetAntiPassbackRequest,
+	Response: &GetAntiPassbackResponse,
+}
+
+var SetAntiPassback = Function{
+	Name: "set antipassback",
+	Args: []Arg{
+		Arg{
+			Name: "controller",
+			Type: "controller",
+		},
+		Arg{
+			Name: "antipassback",
+			Type: "uint8",
+		},
+	},
+	Request:  &SetAntiPassbackRequest,
+	Response: &SetAntiPassbackResponse,
 }
 
 var RestoreDefaultParameters = Function{

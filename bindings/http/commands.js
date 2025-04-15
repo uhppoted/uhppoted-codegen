@@ -320,6 +320,19 @@ export function setDoorPasscodes (controller, door, passcode1, passcode2, passco
   return uhppote.SetDoorPasscodes(controller, door, passcode1, passcode2, passcode3, passcode4)
 }
 
+export function getAntiPassback (controller) {
+  controller = arg(controller)
+
+  return uhppote.getAntiPassback(controller)
+}
+
+export function setAntiPassback (controller, antipassback) {
+  controller = arg(controller)
+  antipassback = arg(antipassback)
+
+  return uhppote.setAntiPassback(controller, antipassback)
+}
+
 export function restoreDefaultParameters (controller) {
   controller = arg(controller)
 
