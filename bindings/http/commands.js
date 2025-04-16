@@ -323,14 +323,14 @@ export function setDoorPasscodes (controller, door, passcode1, passcode2, passco
 export function getAntiPassback (controller) {
   controller = arg(controller)
 
-  return uhppote.getAntiPassback(controller)
+  return uhppote.GetAntipassback(controller)
 }
 
 export function setAntiPassback (controller, antipassback) {
   controller = arg(controller)
   antipassback = arg(antipassback)
 
-  return uhppote.setAntiPassback(controller, antipassback)
+  return uhppote.SetAntipassback(controller, antipassback)
 }
 
 export function restoreDefaultParameters (controller) {
