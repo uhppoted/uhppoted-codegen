@@ -40,39 +40,46 @@ var GetControllerResponse = Message{
 	MsgType: 0x94,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "ip address",
-			Type:   "IPv4",
-			Offset: 8,
+			Name:        "ip address",
+			Type:        "IPv4",
+			Offset:      8,
+			Description: "controller IPv4 address, e.g. 192.168.1.100",
 		},
 		Field{
-			Name:   "subnet mask",
-			Type:   "IPv4",
-			Offset: 12,
+			Name:        "subnet mask",
+			Type:        "IPv4",
+			Offset:      12,
+			Description: "controller IPv4 netmask, e.g. 255.255.255.0",
 		},
 		Field{
-			Name:   "gateway",
-			Type:   "IPv4",
-			Offset: 16,
+			Name:        "gateway",
+			Type:        "IPv4",
+			Offset:      16,
+			Description: "controller IPv4 gateway address, e.g. 192.168.1.1",
 		},
 		Field{
-			Name:   "MAC address",
-			Type:   "MAC",
-			Offset: 20,
+			Name:        "MAC address",
+			Type:        "MAC",
+			Offset:      20,
+			Description: "controller MAC address, e.g. 52:fd:fc:07:21:82",
 		},
 		Field{
-			Name:   "version",
-			Type:   "version",
-			Offset: 26,
+			Name:        "version",
+			Type:        "version",
+			Offset:      26,
+			Description: "controller firmware version, e.g. v6.62",
 		},
 		Field{
-			Name:   "date",
-			Type:   "date",
-			Offset: 28,
+			Name:        "date",
+			Type:        "date",
+			Offset:      28,
+			Description: "controller firmware release date, e.g. 2020-12-31",
 		},
 	},
 }
@@ -82,14 +89,16 @@ var GetTimeResponse = Message{
 	MsgType: 0x32,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "datetime",
-			Type:   "datetime",
-			Offset: 8,
+			Name:        "datetime",
+			Type:        "datetime",
+			Offset:      8,
+			Description: "controller system date/time",
 		},
 	},
 }
@@ -99,14 +108,16 @@ var SetTimeResponse = Message{
 	MsgType: 0x30,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "datetime",
-			Type:   "datetime",
-			Offset: 8,
+			Name:        "datetime",
+			Type:        "datetime",
+			Offset:      8,
+			Description: "controller system date/time",
 		},
 	},
 }
@@ -116,124 +127,148 @@ var GetStatusResponse = Message{
 	MsgType: 0x20,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "system date",
-			Type:   "shortdate",
-			Offset: 51,
+			Name:        "system date",
+			Type:        "shortdate",
+			Offset:      51,
+			Description: "controller system date, e.g. 2025-07-21",
 		},
 		Field{
-			Name:   "system time",
-			Type:   "time",
-			Offset: 37,
+			Name:        "system time",
+			Type:        "time",
+			Offset:      37,
+			Description: "controller system time, e.g. 13:25:47",
 		},
 		Field{
-			Name:   "door 1 open",
-			Type:   "bool",
-			Offset: 28,
+			Name:        "door 1 open",
+			Type:        "bool",
+			Offset:      28,
+			Description: "door 1 open sensor",
 		},
 		Field{
-			Name:   "door 2 open",
-			Type:   "bool",
-			Offset: 29,
+			Name:        "door 2 open",
+			Type:        "bool",
+			Offset:      29,
+			Description: "door 2 open sensor",
 		},
 		Field{
-			Name:   "door 3 open",
-			Type:   "bool",
-			Offset: 30,
+			Name:        "door 3 open",
+			Type:        "bool",
+			Offset:      30,
+			Description: "door 3 open sensor",
 		},
 		Field{
-			Name:   "door 4 open",
-			Type:   "bool",
-			Offset: 31,
+			Name:        "door 4 open",
+			Type:        "bool",
+			Offset:      31,
+			Description: "door 4 open sensor",
 		},
 		Field{
-			Name:   "door 1 button",
-			Type:   "bool",
-			Offset: 32,
+			Name:        "door 1 button",
+			Type:        "bool",
+			Offset:      32,
+			Description: "door 1 button pressed",
 		},
 		Field{
-			Name:   "door 2 button",
-			Type:   "bool",
-			Offset: 33,
+			Name:        "door 2 button",
+			Type:        "bool",
+			Offset:      33,
+			Description: "door 2 button pressed",
 		},
 		Field{
-			Name:   "door 3 button",
-			Type:   "bool",
-			Offset: 34,
+			Name:        "door 3 button",
+			Type:        "bool",
+			Offset:      34,
+			Description: "door 3 button pressed",
 		},
 		Field{
-			Name:   "door 4 button",
-			Type:   "bool",
-			Offset: 35,
+			Name:        "door 4 button",
+			Type:        "bool",
+			Offset:      35,
+			Description: "door 4 button pressed",
 		},
 		Field{
-			Name:   "relays",
-			Type:   "uint8",
-			Offset: 49,
+			Name:        "relays",
+			Type:        "uint8",
+			Offset:      49,
+			Description: "bitset of door unlock relay states",
 		},
 		Field{
-			Name:   "inputs",
-			Type:   "uint8",
-			Offset: 50,
+			Name:        "inputs",
+			Type:        "uint8",
+			Offset:      50,
+			Description: "bitset of alarm inputs",
 		},
 		Field{
-			Name:   "system error",
-			Type:   "uint8",
-			Offset: 36,
+			Name:        "system error",
+			Type:        "uint8",
+			Offset:      36,
+			Description: "system error code",
 		},
 		Field{
-			Name:   "special info",
-			Type:   "uint8",
-			Offset: 48,
+			Name:        "special info",
+			Type:        "uint8",
+			Offset:      48,
+			Description: "absolutely no idea",
 		},
 		Field{
-			Name:   "event index",
-			Type:   "uint32",
-			Offset: 8,
+			Name:        "event index",
+			Type:        "uint32",
+			Offset:      8,
+			Description: "last event index",
 		},
 		Field{
-			Name:   "event type",
-			Type:   "uint8",
-			Offset: 12,
+			Name:        "event type",
+			Type:        "uint8",
+			Offset:      12,
+			Description: "last event type",
 		},
 		Field{
-			Name:   "event access granted",
-			Type:   "bool",
-			Offset: 13,
+			Name:        "event access granted",
+			Type:        "bool",
+			Offset:      13,
+			Description: "last event access granted",
 		},
 		Field{
-			Name:   "event door",
-			Type:   "uint8",
-			Offset: 14,
+			Name:        "event door",
+			Type:        "uint8",
+			Offset:      14,
+			Description: "last event door",
 		},
 		Field{
-			Name:   "event direction",
-			Type:   "uint8",
-			Offset: 15,
+			Name:        "event direction",
+			Type:        "uint8",
+			Offset:      15,
+			Description: "last event door direction (0: in, 1: out)",
 		},
 		Field{
-			Name:   "event card",
-			Type:   "uint32",
-			Offset: 16,
+			Name:        "event card",
+			Type:        "uint32",
+			Offset:      16,
+			Description: "last event card number",
 		},
 		Field{
-			Name:   "event timestamp",
-			Type:   "optional datetime",
-			Offset: 20,
+			Name:        "event timestamp",
+			Type:        "optional datetime",
+			Offset:      20,
+			Description: "last event timestamp",
 		},
 		Field{
-			Name:   "event reason",
-			Type:   "uint8",
-			Offset: 27,
+			Name:        "event reason",
+			Type:        "uint8",
+			Offset:      27,
+			Description: "last event reason",
 		},
 		Field{
-			Name:   "sequence no",
-			Type:   "uint32",
-			Offset: 40,
+			Name:        "sequence no",
+			Type:        "uint32",
+			Offset:      40,
+			Description: "packet sequence number",
 		},
 	},
 }
@@ -243,24 +278,28 @@ var GetListenerResponse = Message{
 	MsgType: 0x92,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "address",
-			Type:   "IPv4",
-			Offset: 8,
+			Name:        "address",
+			Type:        "IPv4",
+			Offset:      8,
+			Description: "event listener IPv4 address",
 		},
 		Field{
-			Name:   "port",
-			Type:   "uint16",
-			Offset: 12,
+			Name:        "port",
+			Type:        "uint16",
+			Offset:      12,
+			Description: "event listener IPv4 port",
 		},
 		Field{
-			Name:   "interval",
-			Type:   "uint8",
-			Offset: 14,
+			Name:        "interval",
+			Type:        "uint8",
+			Offset:      14,
+			Description: "status auto-send interval (seconds)",
 		},
 	},
 }
@@ -270,14 +309,16 @@ var SetListenerResponse = Message{
 	MsgType: 0x90,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "ok",
-			Type:   "bool",
-			Offset: 8,
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Description: "set-listener succeeded/failed",
 		},
 	},
 }
@@ -287,24 +328,28 @@ var GetDoorControlResponse = Message{
 	MsgType: 0x82,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "door",
-			Type:   "uint8",
-			Offset: 8,
+			Name:        "door",
+			Type:        "uint8",
+			Offset:      8,
+			Description: "door ID ([1..4]",
 		},
 		Field{
-			Name:   "mode",
-			Type:   "uint8",
-			Offset: 9,
+			Name:        "mode",
+			Type:        "uint8",
+			Offset:      9,
+			Description: "control mode (1:normally open, 2:normally closed. 3:controlled)",
 		},
 		Field{
-			Name:   "delay",
-			Type:   "uint8",
-			Offset: 10,
+			Name:        "delay",
+			Type:        "uint8",
+			Offset:      10,
+			Description: "unlock delay (seconds)",
 		},
 	},
 }
@@ -314,9 +359,10 @@ var SetDoorControlResponse = Message{
 	MsgType: 0x80,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "door",
@@ -341,9 +387,10 @@ var OpenDoorResponse = Message{
 	MsgType: 0x40,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "opened",
@@ -358,9 +405,10 @@ var GetCardsResponse = Message{
 	MsgType: 0x58,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "cards",
@@ -375,9 +423,10 @@ var GetCardResponse = Message{
 	MsgType: 0x5a,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "card number",
@@ -427,9 +476,10 @@ var GetCardByIndexResponse = Message{
 	MsgType: 0x5c,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "card number",
@@ -479,9 +529,10 @@ var PutCardResponse = Message{
 	MsgType: 0x50,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "stored",
@@ -496,9 +547,10 @@ var DeleteCardResponse = Message{
 	MsgType: 0x52,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "deleted",
@@ -513,9 +565,10 @@ var DeleteAllCardsResponse = Message{
 	MsgType: 0x54,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "deleted",
@@ -530,9 +583,10 @@ var GetEventResponse = Message{
 	MsgType: 0xb0,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "index",
@@ -582,9 +636,10 @@ var GetEventIndexResponse = Message{
 	MsgType: 0xb4,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "event index",
@@ -599,9 +654,10 @@ var SetEventIndexResponse = Message{
 	MsgType: 0xb2,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "updated",
@@ -616,9 +672,10 @@ var RecordSpecialEventsResponse = Message{
 	MsgType: 0x8e,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "updated",
@@ -633,9 +690,10 @@ var GetTimeProfileResponse = Message{
 	MsgType: 0x98,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "profile id",
@@ -730,9 +788,10 @@ var SetTimeProfileResponse = Message{
 	MsgType: 0x88,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "stored",
@@ -747,9 +806,10 @@ var DeleteAllTimeProfilesResponse = Message{
 	MsgType: 0x8a,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "deleted",
@@ -764,9 +824,10 @@ var AddTaskResponse = Message{
 	MsgType: 0xa8,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "added",
@@ -781,9 +842,10 @@ var RefreshTaskListResponse = Message{
 	MsgType: 0xac,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "refreshed",
@@ -798,9 +860,10 @@ var ClearTaskListResponse = Message{
 	MsgType: 0xa6,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "cleared",
@@ -815,9 +878,10 @@ var SetPCControlResponse = Message{
 	MsgType: 0xa0,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "ok",
@@ -832,9 +896,10 @@ var SetInterlockResponse = Message{
 	MsgType: 0xa2,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "ok",
@@ -849,9 +914,10 @@ var ActivateKeypadsResponse = Message{
 	MsgType: 0xa4,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "ok",
@@ -866,9 +932,10 @@ var SetDoorPasscodesResponse = Message{
 	MsgType: 0x8c,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "ok",
@@ -883,9 +950,10 @@ var GetAntiPassbackResponse = Message{
 	MsgType: 0x86,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "antipassback",
@@ -900,9 +968,10 @@ var SetAntiPassbackResponse = Message{
 	MsgType: 0x84,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "ok",
@@ -917,9 +986,10 @@ var RestoreDefaultParametersResponse = Message{
 	MsgType: 0xc8,
 	Fields: []Field{
 		Field{
-			Name:   "controller",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "reset",

@@ -41,9 +41,10 @@ var GetControllerRequest = Message{
 	MsgType: 0x94,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 }
@@ -53,29 +54,34 @@ var SetIPRequest = Message{
 	MsgType: 0x96,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "address",
-			Type:   "IPv4",
-			Offset: 8,
+			Name:        "address",
+			Type:        "IPv4",
+			Offset:      8,
+			Description: "controller IPv4 address",
 		},
 		Field{
-			Name:   "netmask",
-			Type:   "IPv4",
-			Offset: 12,
+			Name:        "netmask",
+			Type:        "IPv4",
+			Offset:      12,
+			Description: "controller IPv4 subnet mask",
 		},
 		Field{
-			Name:   "gateway",
-			Type:   "IPv4",
-			Offset: 16,
+			Name:        "gateway",
+			Type:        "IPv4",
+			Offset:      16,
+			Description: "controller IPv4 gateway address",
 		},
 		Field{
-			Name:   "",
-			Type:   "magic",
-			Offset: 20,
+			Name:        "",
+			Type:        "magic",
+			Offset:      20,
+			Description: "'magic' word",
 		},
 	},
 }
@@ -85,9 +91,10 @@ var GetTimeRequest = Message{
 	MsgType: 0x32,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 }
@@ -97,14 +104,16 @@ var SetTimeRequest = Message{
 	MsgType: 0x30,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "datetime",
-			Type:   "datetime",
-			Offset: 8,
+			Name:        "datetime",
+			Type:        "datetime",
+			Offset:      8,
+			Description: "date/time",
 		},
 	},
 }
@@ -114,9 +123,10 @@ var GetStatusRequest = Message{
 	MsgType: 0x20,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 }
@@ -126,9 +136,10 @@ var GetListenerRequest = Message{
 	MsgType: 0x92,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 }
@@ -138,24 +149,28 @@ var SetListenerRequest = Message{
 	MsgType: 0x90,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "address",
-			Type:   "IPv4",
-			Offset: 8,
+			Name:        "address",
+			Type:        "IPv4",
+			Offset:      8,
+			Description: "event listener IPv4 address",
 		},
 		Field{
-			Name:   "port",
-			Type:   "uint16",
-			Offset: 12,
+			Name:        "port",
+			Type:        "uint16",
+			Offset:      12,
+			Description: "event listener IPv4 port",
 		},
 		Field{
-			Name:   "interval",
-			Type:   "uint8",
-			Offset: 14,
+			Name:        "interval",
+			Type:        "uint8",
+			Offset:      14,
+			Description: "status auto-send interval (seconds)",
 		},
 	},
 }
@@ -165,14 +180,16 @@ var GetDoorControlRequest = Message{
 	MsgType: 0x82,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
-			Name:   "door",
-			Type:   "uint8",
-			Offset: 8,
+			Name:        "door",
+			Type:        "uint8",
+			Offset:      8,
+			Description: "door ID ([1..4])",
 		},
 	},
 }
@@ -182,9 +199,10 @@ var SetDoorControlRequest = Message{
 	MsgType: 0x80,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "door",
@@ -209,9 +227,10 @@ var OpenDoorRequest = Message{
 	MsgType: 0x40,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "door",
@@ -226,9 +245,10 @@ var GetCardsRequest = Message{
 	MsgType: 0x58,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 }
@@ -238,9 +258,10 @@ var GetCardRequest = Message{
 	MsgType: 0x5a,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "card number",
@@ -255,9 +276,10 @@ var GetCardByIndexRequest = Message{
 	MsgType: 0x5c,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "card index",
@@ -272,9 +294,10 @@ var PutCardRequest = Message{
 	MsgType: 0x50,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "card number",
@@ -324,9 +347,10 @@ var DeleteCardRequest = Message{
 	MsgType: 0x52,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "card number",
@@ -341,9 +365,10 @@ var DeleteAllCardsRequest = Message{
 	MsgType: 0x54,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "",
@@ -358,9 +383,10 @@ var GetEventRequest = Message{
 	MsgType: 0xb0,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "event index",
@@ -375,9 +401,10 @@ var GetEventIndexRequest = Message{
 	MsgType: 0xb4,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 }
@@ -387,9 +414,10 @@ var SetEventIndexRequest = Message{
 	MsgType: 0xb2,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "event index",
@@ -409,9 +437,10 @@ var RecordSpecialEventsRequest = Message{
 	MsgType: 0x8e,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "enable",
@@ -426,9 +455,10 @@ var GetTimeProfileRequest = Message{
 	MsgType: 0x98,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "profile id",
@@ -443,9 +473,10 @@ var SetTimeProfileRequest = Message{
 	MsgType: 0x88,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "profile id",
@@ -540,9 +571,10 @@ var DeleteAllTimeProfilesRequest = Message{
 	MsgType: 0x8a,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "",
@@ -557,9 +589,10 @@ var AddTaskRequest = Message{
 	MsgType: 0xa8,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "start date",
@@ -634,9 +667,10 @@ var RefreshTaskListRequest = Message{
 	MsgType: 0xac,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "",
@@ -651,9 +685,10 @@ var ClearTaskListRequest = Message{
 	MsgType: 0xa6,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "",
@@ -668,9 +703,10 @@ var SetPCControlRequest = Message{
 	MsgType: 0xa0,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "",
@@ -690,9 +726,10 @@ var SetInterlockRequest = Message{
 	MsgType: 0xa2,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "interlock",
@@ -707,9 +744,10 @@ var ActivateKeypadsRequest = Message{
 	MsgType: 0xa4,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "reader 1",
@@ -739,9 +777,10 @@ var SetDoorPasscodesRequest = Message{
 	MsgType: 0x8c,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "door",
@@ -776,9 +815,10 @@ var GetAntiPassbackRequest = Message{
 	MsgType: 0x86,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 }
@@ -788,9 +828,10 @@ var SetAntiPassbackRequest = Message{
 	MsgType: 0x84,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "antipassback",
@@ -805,9 +846,10 @@ var RestoreDefaultParametersRequest = Message{
 	MsgType: 0xc8,
 	Fields: []Field{
 		Field{
-			Name:   "device id",
-			Type:   "uint32",
-			Offset: 4,
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 		Field{
 			Name:   "",

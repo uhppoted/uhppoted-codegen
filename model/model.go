@@ -36,9 +36,10 @@ type Arg struct {
 }
 
 type Field struct {
-	Name   string `json:"name"`
-	Type   string `json:"type"`
-	Offset uint8  `json:"offset"`
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Offset      uint8  `json:"offset"`
+	Description string `json:"description,omitempty"`
 }
 
 type Request struct {

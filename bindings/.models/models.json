@@ -14,9 +14,10 @@
           "msgtype": 148,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             }
           ]
         },
@@ -27,37 +28,44 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "ip address",
               "type": "IPv4",
-              "offset": 8
+              "offset": 8,
+              "description": "controller IPv4 address, e.g. 192.168.1.100"
             },
             {
               "name": "subnet mask",
               "type": "IPv4",
-              "offset": 12
+              "offset": 12,
+              "description": "controller IPv4 netmask, e.g. 255.255.255.0"
             },
             {
               "name": "gateway",
               "type": "IPv4",
-              "offset": 16
+              "offset": 16,
+              "description": "controller IPv4 gateway address, e.g. 192.168.1.1"
             },
             {
               "name": "MAC address",
               "type": "MAC",
-              "offset": 20
+              "offset": 20,
+              "description": "controller MAC address, e.g. 52:fd:fc:07:21:82"
             },
             {
               "name": "version",
               "type": "version",
-              "offset": 26
+              "offset": 26,
+              "description": "controller firmware version, e.g. v6.62"
             },
             {
               "name": "date",
               "type": "date",
-              "offset": 28
+              "offset": 28,
+              "description": "controller firmware release date, e.g. 2020-12-31"
             }
           ]
         }
@@ -87,29 +95,34 @@
           "msgtype": 150,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "address",
               "type": "IPv4",
-              "offset": 8
+              "offset": 8,
+              "description": "controller IPv4 address"
             },
             {
               "name": "netmask",
               "type": "IPv4",
-              "offset": 12
+              "offset": 12,
+              "description": "controller IPv4 subnet mask"
             },
             {
               "name": "gateway",
               "type": "IPv4",
-              "offset": 16
+              "offset": 16,
+              "description": "controller IPv4 gateway address"
             },
             {
               "name": "",
               "type": "magic",
-              "offset": 20
+              "offset": 20,
+              "description": "'magic' word"
             }
           ]
         }
@@ -127,9 +140,10 @@
           "msgtype": 50,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             }
           ]
         },
@@ -140,12 +154,14 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "datetime",
               "type": "datetime",
-              "offset": 8
+              "offset": 8,
+              "description": "controller system date/time"
             }
           ]
         }
@@ -167,14 +183,16 @@
           "msgtype": 48,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "datetime",
               "type": "datetime",
-              "offset": 8
+              "offset": 8,
+              "description": "date/time"
             }
           ]
         },
@@ -185,12 +203,14 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "datetime",
               "type": "datetime",
-              "offset": 8
+              "offset": 8,
+              "description": "controller system date/time"
             }
           ]
         }
@@ -208,9 +228,10 @@
           "msgtype": 32,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             }
           ]
         },
@@ -221,122 +242,146 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "system date",
               "type": "shortdate",
-              "offset": 51
+              "offset": 51,
+              "description": "controller system date, e.g. 2025-07-21"
             },
             {
               "name": "system time",
               "type": "time",
-              "offset": 37
+              "offset": 37,
+              "description": "controller system time, e.g. 13:25:47"
             },
             {
               "name": "door 1 open",
               "type": "bool",
-              "offset": 28
+              "offset": 28,
+              "description": "door 1 open sensor"
             },
             {
               "name": "door 2 open",
               "type": "bool",
-              "offset": 29
+              "offset": 29,
+              "description": "door 2 open sensor"
             },
             {
               "name": "door 3 open",
               "type": "bool",
-              "offset": 30
+              "offset": 30,
+              "description": "door 3 open sensor"
             },
             {
               "name": "door 4 open",
               "type": "bool",
-              "offset": 31
+              "offset": 31,
+              "description": "door 4 open sensor"
             },
             {
               "name": "door 1 button",
               "type": "bool",
-              "offset": 32
+              "offset": 32,
+              "description": "door 1 button pressed"
             },
             {
               "name": "door 2 button",
               "type": "bool",
-              "offset": 33
+              "offset": 33,
+              "description": "door 2 button pressed"
             },
             {
               "name": "door 3 button",
               "type": "bool",
-              "offset": 34
+              "offset": 34,
+              "description": "door 3 button pressed"
             },
             {
               "name": "door 4 button",
               "type": "bool",
-              "offset": 35
+              "offset": 35,
+              "description": "door 4 button pressed"
             },
             {
               "name": "relays",
               "type": "uint8",
-              "offset": 49
+              "offset": 49,
+              "description": "bitset of door unlock relay states"
             },
             {
               "name": "inputs",
               "type": "uint8",
-              "offset": 50
+              "offset": 50,
+              "description": "bitset of alarm inputs"
             },
             {
               "name": "system error",
               "type": "uint8",
-              "offset": 36
+              "offset": 36,
+              "description": "system error code"
             },
             {
               "name": "special info",
               "type": "uint8",
-              "offset": 48
+              "offset": 48,
+              "description": "absolutely no idea"
             },
             {
               "name": "event index",
               "type": "uint32",
-              "offset": 8
+              "offset": 8,
+              "description": "last event index"
             },
             {
               "name": "event type",
               "type": "uint8",
-              "offset": 12
+              "offset": 12,
+              "description": "last event type"
             },
             {
               "name": "event access granted",
               "type": "bool",
-              "offset": 13
+              "offset": 13,
+              "description": "last event access granted"
             },
             {
               "name": "event door",
               "type": "uint8",
-              "offset": 14
+              "offset": 14,
+              "description": "last event door"
             },
             {
               "name": "event direction",
               "type": "uint8",
-              "offset": 15
+              "offset": 15,
+              "description": "last event door direction (0: in, 1: out)"
             },
             {
               "name": "event card",
               "type": "uint32",
-              "offset": 16
+              "offset": 16,
+              "description": "last event card number"
             },
             {
               "name": "event timestamp",
               "type": "optional datetime",
-              "offset": 20
+              "offset": 20,
+              "description": "last event timestamp"
             },
             {
               "name": "event reason",
               "type": "uint8",
-              "offset": 27
+              "offset": 27,
+              "description": "last event reason"
             },
             {
               "name": "sequence no",
               "type": "uint32",
-              "offset": 40
+              "offset": 40,
+              "description": "packet sequence number"
             }
           ]
         }
@@ -354,9 +399,10 @@
           "msgtype": 146,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             }
           ]
         },
@@ -367,22 +413,26 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "address",
               "type": "IPv4",
-              "offset": 8
+              "offset": 8,
+              "description": "event listener IPv4 address"
             },
             {
               "name": "port",
               "type": "uint16",
-              "offset": 12
+              "offset": 12,
+              "description": "event listener IPv4 port"
             },
             {
               "name": "interval",
               "type": "uint8",
-              "offset": 14
+              "offset": 14,
+              "description": "status auto-send interval (seconds)"
             }
           ]
         }
@@ -412,24 +462,28 @@
           "msgtype": 144,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "address",
               "type": "IPv4",
-              "offset": 8
+              "offset": 8,
+              "description": "event listener IPv4 address"
             },
             {
               "name": "port",
               "type": "uint16",
-              "offset": 12
+              "offset": 12,
+              "description": "event listener IPv4 port"
             },
             {
               "name": "interval",
               "type": "uint8",
-              "offset": 14
+              "offset": 14,
+              "description": "status auto-send interval (seconds)"
             }
           ]
         },
@@ -440,12 +494,14 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "description": "set-listener succeeded/failed"
             }
           ]
         }
@@ -467,14 +523,16 @@
           "msgtype": 130,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "door",
               "type": "uint8",
-              "offset": 8
+              "offset": 8,
+              "description": "door ID ([1..4])"
             }
           ]
         },
@@ -485,22 +543,26 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "door",
               "type": "uint8",
-              "offset": 8
+              "offset": 8,
+              "description": "door ID ([1..4]"
             },
             {
               "name": "mode",
               "type": "uint8",
-              "offset": 9
+              "offset": 9,
+              "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
             },
             {
               "name": "delay",
               "type": "uint8",
-              "offset": 10
+              "offset": 10,
+              "description": "unlock delay (seconds)"
             }
           ]
         }
@@ -530,9 +592,10 @@
           "msgtype": 128,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "door",
@@ -558,7 +621,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "door",
@@ -595,9 +659,10 @@
           "msgtype": 64,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "door",
@@ -613,7 +678,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "opened",
@@ -636,9 +702,10 @@
           "msgtype": 88,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             }
           ]
         },
@@ -649,7 +716,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "cards",
@@ -676,9 +744,10 @@
           "msgtype": 90,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "card number",
@@ -694,7 +763,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "card number",
@@ -756,9 +826,10 @@
           "msgtype": 92,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "card index",
@@ -774,7 +845,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "card number",
@@ -864,9 +936,10 @@
           "msgtype": 80,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "card number",
@@ -917,7 +990,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "stored",
@@ -944,9 +1018,10 @@
           "msgtype": 82,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "card number",
@@ -962,7 +1037,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "deleted",
@@ -985,9 +1061,10 @@
           "msgtype": 84,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "",
@@ -1003,7 +1080,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "deleted",
@@ -1030,9 +1108,10 @@
           "msgtype": 176,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "event index",
@@ -1048,7 +1127,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "index",
@@ -1106,9 +1186,10 @@
           "msgtype": 180,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             }
           ]
         },
@@ -1119,7 +1200,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "event index",
@@ -1146,9 +1228,10 @@
           "msgtype": 178,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "event index",
@@ -1169,7 +1252,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "updated",
@@ -1196,9 +1280,10 @@
           "msgtype": 142,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "enable",
@@ -1214,7 +1299,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "updated",
@@ -1241,9 +1327,10 @@
           "msgtype": 152,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "profile id",
@@ -1259,7 +1346,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "profile id",
@@ -1430,9 +1518,10 @@
           "msgtype": 136,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "profile id",
@@ -1528,7 +1617,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "stored",
@@ -1551,9 +1641,10 @@
           "msgtype": 138,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "",
@@ -1569,7 +1660,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "deleted",
@@ -1644,9 +1736,10 @@
           "msgtype": 168,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "start date",
@@ -1722,7 +1815,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "added",
@@ -1745,9 +1839,10 @@
           "msgtype": 172,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "",
@@ -1763,7 +1858,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "refreshed",
@@ -1786,9 +1882,10 @@
           "msgtype": 166,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "",
@@ -1804,7 +1901,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "cleared",
@@ -1831,9 +1929,10 @@
           "msgtype": 160,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "",
@@ -1854,7 +1953,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "ok",
@@ -1881,9 +1981,10 @@
           "msgtype": 162,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "interlock",
@@ -1899,7 +2000,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "ok",
@@ -1938,9 +2040,10 @@
           "msgtype": 164,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "reader 1",
@@ -1971,7 +2074,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "ok",
@@ -2014,9 +2118,10 @@
           "msgtype": 140,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "door",
@@ -2052,7 +2157,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "ok",
@@ -2075,9 +2181,10 @@
           "msgtype": 134,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             }
           ]
         },
@@ -2088,7 +2195,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "antipassback",
@@ -2115,9 +2223,10 @@
           "msgtype": 132,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "antipassback",
@@ -2133,7 +2242,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "ok",
@@ -2156,9 +2266,10 @@
           "msgtype": 200,
           "fields": [
             {
-              "name": "device id",
+              "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "",
@@ -2174,7 +2285,8 @@
             {
               "name": "controller",
               "type": "uint32",
-              "offset": 4
+              "offset": 4,
+              "description": "controller serial number"
             },
             {
               "name": "reset",
@@ -2191,9 +2303,10 @@
         "msgtype": 148,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -2202,29 +2315,34 @@
         "msgtype": 150,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "address",
             "type": "IPv4",
-            "offset": 8
+            "offset": 8,
+            "description": "controller IPv4 address"
           },
           {
             "name": "netmask",
             "type": "IPv4",
-            "offset": 12
+            "offset": 12,
+            "description": "controller IPv4 subnet mask"
           },
           {
             "name": "gateway",
             "type": "IPv4",
-            "offset": 16
+            "offset": 16,
+            "description": "controller IPv4 gateway address"
           },
           {
             "name": "",
             "type": "magic",
-            "offset": 20
+            "offset": 20,
+            "description": "'magic' word"
           }
         ]
       },
@@ -2233,9 +2351,10 @@
         "msgtype": 50,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -2244,14 +2363,16 @@
         "msgtype": 48,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "datetime",
             "type": "datetime",
-            "offset": 8
+            "offset": 8,
+            "description": "date/time"
           }
         ]
       },
@@ -2260,9 +2381,10 @@
         "msgtype": 32,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -2271,9 +2393,10 @@
         "msgtype": 146,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -2282,24 +2405,28 @@
         "msgtype": 144,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "address",
             "type": "IPv4",
-            "offset": 8
+            "offset": 8,
+            "description": "event listener IPv4 address"
           },
           {
             "name": "port",
             "type": "uint16",
-            "offset": 12
+            "offset": 12,
+            "description": "event listener IPv4 port"
           },
           {
             "name": "interval",
             "type": "uint8",
-            "offset": 14
+            "offset": 14,
+            "description": "status auto-send interval (seconds)"
           }
         ]
       },
@@ -2308,14 +2435,16 @@
         "msgtype": 130,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "door",
             "type": "uint8",
-            "offset": 8
+            "offset": 8,
+            "description": "door ID ([1..4])"
           }
         ]
       },
@@ -2324,9 +2453,10 @@
         "msgtype": 128,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "door",
@@ -2350,9 +2480,10 @@
         "msgtype": 64,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "door",
@@ -2366,9 +2497,10 @@
         "msgtype": 88,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -2377,9 +2509,10 @@
         "msgtype": 90,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "card number",
@@ -2393,9 +2526,10 @@
         "msgtype": 92,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "card index",
@@ -2409,9 +2543,10 @@
         "msgtype": 80,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "card number",
@@ -2460,9 +2595,10 @@
         "msgtype": 82,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "card number",
@@ -2476,9 +2612,10 @@
         "msgtype": 84,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "",
@@ -2492,9 +2629,10 @@
         "msgtype": 176,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "event index",
@@ -2508,9 +2646,10 @@
         "msgtype": 180,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -2519,9 +2658,10 @@
         "msgtype": 178,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "event index",
@@ -2540,9 +2680,10 @@
         "msgtype": 142,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "enable",
@@ -2556,9 +2697,10 @@
         "msgtype": 152,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "profile id",
@@ -2572,9 +2714,10 @@
         "msgtype": 136,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "profile id",
@@ -2668,9 +2811,10 @@
         "msgtype": 138,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "",
@@ -2684,9 +2828,10 @@
         "msgtype": 168,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "start date",
@@ -2760,9 +2905,10 @@
         "msgtype": 172,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "",
@@ -2776,9 +2922,10 @@
         "msgtype": 166,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "",
@@ -2792,9 +2939,10 @@
         "msgtype": 160,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "",
@@ -2813,9 +2961,10 @@
         "msgtype": 162,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "interlock",
@@ -2829,9 +2978,10 @@
         "msgtype": 164,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "reader 1",
@@ -2860,9 +3010,10 @@
         "msgtype": 140,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "door",
@@ -2896,9 +3047,10 @@
         "msgtype": 134,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -2907,9 +3059,10 @@
         "msgtype": 132,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "antipassback",
@@ -2923,9 +3076,10 @@
         "msgtype": 200,
         "fields": [
           {
-            "name": "device id",
+            "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "",
@@ -2943,37 +3097,44 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "ip address",
             "type": "IPv4",
-            "offset": 8
+            "offset": 8,
+            "description": "controller IPv4 address, e.g. 192.168.1.100"
           },
           {
             "name": "subnet mask",
             "type": "IPv4",
-            "offset": 12
+            "offset": 12,
+            "description": "controller IPv4 netmask, e.g. 255.255.255.0"
           },
           {
             "name": "gateway",
             "type": "IPv4",
-            "offset": 16
+            "offset": 16,
+            "description": "controller IPv4 gateway address, e.g. 192.168.1.1"
           },
           {
             "name": "MAC address",
             "type": "MAC",
-            "offset": 20
+            "offset": 20,
+            "description": "controller MAC address, e.g. 52:fd:fc:07:21:82"
           },
           {
             "name": "version",
             "type": "version",
-            "offset": 26
+            "offset": 26,
+            "description": "controller firmware version, e.g. v6.62"
           },
           {
             "name": "date",
             "type": "date",
-            "offset": 28
+            "offset": 28,
+            "description": "controller firmware release date, e.g. 2020-12-31"
           }
         ]
       },
@@ -2984,12 +3145,14 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "datetime",
             "type": "datetime",
-            "offset": 8
+            "offset": 8,
+            "description": "controller system date/time"
           }
         ]
       },
@@ -3000,12 +3163,14 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "datetime",
             "type": "datetime",
-            "offset": 8
+            "offset": 8,
+            "description": "controller system date/time"
           }
         ]
       },
@@ -3016,122 +3181,146 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "system date",
             "type": "shortdate",
-            "offset": 51
+            "offset": 51,
+            "description": "controller system date, e.g. 2025-07-21"
           },
           {
             "name": "system time",
             "type": "time",
-            "offset": 37
+            "offset": 37,
+            "description": "controller system time, e.g. 13:25:47"
           },
           {
             "name": "door 1 open",
             "type": "bool",
-            "offset": 28
+            "offset": 28,
+            "description": "door 1 open sensor"
           },
           {
             "name": "door 2 open",
             "type": "bool",
-            "offset": 29
+            "offset": 29,
+            "description": "door 2 open sensor"
           },
           {
             "name": "door 3 open",
             "type": "bool",
-            "offset": 30
+            "offset": 30,
+            "description": "door 3 open sensor"
           },
           {
             "name": "door 4 open",
             "type": "bool",
-            "offset": 31
+            "offset": 31,
+            "description": "door 4 open sensor"
           },
           {
             "name": "door 1 button",
             "type": "bool",
-            "offset": 32
+            "offset": 32,
+            "description": "door 1 button pressed"
           },
           {
             "name": "door 2 button",
             "type": "bool",
-            "offset": 33
+            "offset": 33,
+            "description": "door 2 button pressed"
           },
           {
             "name": "door 3 button",
             "type": "bool",
-            "offset": 34
+            "offset": 34,
+            "description": "door 3 button pressed"
           },
           {
             "name": "door 4 button",
             "type": "bool",
-            "offset": 35
+            "offset": 35,
+            "description": "door 4 button pressed"
           },
           {
             "name": "relays",
             "type": "uint8",
-            "offset": 49
+            "offset": 49,
+            "description": "bitset of door unlock relay states"
           },
           {
             "name": "inputs",
             "type": "uint8",
-            "offset": 50
+            "offset": 50,
+            "description": "bitset of alarm inputs"
           },
           {
             "name": "system error",
             "type": "uint8",
-            "offset": 36
+            "offset": 36,
+            "description": "system error code"
           },
           {
             "name": "special info",
             "type": "uint8",
-            "offset": 48
+            "offset": 48,
+            "description": "absolutely no idea"
           },
           {
             "name": "event index",
             "type": "uint32",
-            "offset": 8
+            "offset": 8,
+            "description": "last event index"
           },
           {
             "name": "event type",
             "type": "uint8",
-            "offset": 12
+            "offset": 12,
+            "description": "last event type"
           },
           {
             "name": "event access granted",
             "type": "bool",
-            "offset": 13
+            "offset": 13,
+            "description": "last event access granted"
           },
           {
             "name": "event door",
             "type": "uint8",
-            "offset": 14
+            "offset": 14,
+            "description": "last event door"
           },
           {
             "name": "event direction",
             "type": "uint8",
-            "offset": 15
+            "offset": 15,
+            "description": "last event door direction (0: in, 1: out)"
           },
           {
             "name": "event card",
             "type": "uint32",
-            "offset": 16
+            "offset": 16,
+            "description": "last event card number"
           },
           {
             "name": "event timestamp",
             "type": "optional datetime",
-            "offset": 20
+            "offset": 20,
+            "description": "last event timestamp"
           },
           {
             "name": "event reason",
             "type": "uint8",
-            "offset": 27
+            "offset": 27,
+            "description": "last event reason"
           },
           {
             "name": "sequence no",
             "type": "uint32",
-            "offset": 40
+            "offset": 40,
+            "description": "packet sequence number"
           }
         ]
       },
@@ -3142,22 +3331,26 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "address",
             "type": "IPv4",
-            "offset": 8
+            "offset": 8,
+            "description": "event listener IPv4 address"
           },
           {
             "name": "port",
             "type": "uint16",
-            "offset": 12
+            "offset": 12,
+            "description": "event listener IPv4 port"
           },
           {
             "name": "interval",
             "type": "uint8",
-            "offset": 14
+            "offset": 14,
+            "description": "status auto-send interval (seconds)"
           }
         ]
       },
@@ -3168,12 +3361,14 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "description": "set-listener succeeded/failed"
           }
         ]
       },
@@ -3184,22 +3379,26 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "door",
             "type": "uint8",
-            "offset": 8
+            "offset": 8,
+            "description": "door ID ([1..4]"
           },
           {
             "name": "mode",
             "type": "uint8",
-            "offset": 9
+            "offset": 9,
+            "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
           },
           {
             "name": "delay",
             "type": "uint8",
-            "offset": 10
+            "offset": 10,
+            "description": "unlock delay (seconds)"
           }
         ]
       },
@@ -3210,7 +3409,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "door",
@@ -3236,7 +3436,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "opened",
@@ -3252,7 +3453,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "cards",
@@ -3268,7 +3470,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "card number",
@@ -3319,7 +3522,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "card number",
@@ -3370,7 +3574,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "stored",
@@ -3386,7 +3591,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "deleted",
@@ -3402,7 +3608,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "deleted",
@@ -3418,7 +3625,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "index",
@@ -3469,7 +3677,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "event index",
@@ -3485,7 +3694,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "updated",
@@ -3501,7 +3711,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "updated",
@@ -3517,7 +3728,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "profile id",
@@ -3613,7 +3825,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "stored",
@@ -3629,7 +3842,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "deleted",
@@ -3645,7 +3859,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "added",
@@ -3661,7 +3876,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "refreshed",
@@ -3677,7 +3893,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "cleared",
@@ -3693,7 +3910,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "ok",
@@ -3709,7 +3927,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "ok",
@@ -3725,7 +3944,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "ok",
@@ -3741,7 +3961,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "ok",
@@ -3757,7 +3978,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "antipassback",
@@ -3773,7 +3995,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "ok",
@@ -3789,7 +4012,8 @@
           {
             "name": "controller",
             "type": "uint32",
-            "offset": 4
+            "offset": 4,
+            "description": "controller serial number"
           },
           {
             "name": "reset",
