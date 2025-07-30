@@ -46,7 +46,7 @@ var GetController = Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetControllerRequest,
+	Request:  &GetControllerRequest.Message,
 	Response: &GetControllerResponse,
 }
 

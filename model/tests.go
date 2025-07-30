@@ -50,7 +50,7 @@ const TIME_PROFILE_ID = "29"
 
 var GetControllerTest = Test{
 	Name: "get controller",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetControllerRequest.Name,
 		Values: []Value{
 			Value{
@@ -66,7 +66,7 @@ var GetControllerTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetControllerResponse.Name,
 		Values: []Value{
 			Value{
@@ -116,7 +116,7 @@ var GetControllerTest = Test{
 
 var SetIPTest = Test{
 	Name: "set IP",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetIPRequest.Name,
 		Values: []Value{
 			Value{
@@ -150,7 +150,7 @@ var SetIPTest = Test{
 
 var GetTimeTest = Test{
 	Name: "get time",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetTimeRequest.Name,
 		Values: []Value{
 			Value{
@@ -166,7 +166,7 @@ var GetTimeTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetTimeResponse.Name,
 		Values: []Value{
 			Value{
@@ -191,7 +191,7 @@ var GetTimeTest = Test{
 
 var SetTimeTest = Test{
 	Name: "set time",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetTimeRequest.Name,
 		Values: []Value{
 			Value{
@@ -212,7 +212,7 @@ var SetTimeTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetTimeResponse.Name,
 		Values: []Value{
 			Value{
@@ -237,7 +237,7 @@ var SetTimeTest = Test{
 
 var GetStatusTest = Test{
 	Name: "get status",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetStatusRequest.Name,
 		Values: []Value{
 			Value{
@@ -253,7 +253,7 @@ var GetStatusTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetStatusResponse.Name,
 		Values: []Value{
 			Value{
@@ -388,7 +388,7 @@ var GetStatusTest = Test{
 
 var GetStatusNoEventTest = Test{
 	Name: "get status no event",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetStatusRequest.Name,
 		Values: []Value{
 			Value{
@@ -404,7 +404,7 @@ var GetStatusNoEventTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetStatusResponse.Name,
 		Values: []Value{
 			Value{
@@ -539,7 +539,7 @@ var GetStatusNoEventTest = Test{
 
 var GetListenerTest = Test{
 	Name: "get listener",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetListenerRequest.Name,
 		Values: []Value{
 			Value{
@@ -555,7 +555,7 @@ var GetListenerTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetListenerResponse.Name,
 		Values: []Value{
 			Value{
@@ -590,7 +590,7 @@ var GetListenerTest = Test{
 
 var SetListenerTest = Test{
 	Name: "set listener",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetListenerRequest.Name,
 		Values: []Value{
 			Value{
@@ -621,7 +621,7 @@ var SetListenerTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetListenerResponse.Name,
 		Values: []Value{
 			Value{
@@ -646,7 +646,7 @@ var SetListenerTest = Test{
 
 var GetDoorControlTest = Test{
 	Name: "get door control",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetDoorControlRequest.Name,
 		Values: []Value{
 			Value{
@@ -667,7 +667,7 @@ var GetDoorControlTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetDoorControlResponse.Name,
 		Values: []Value{
 			Value{
@@ -702,7 +702,7 @@ var GetDoorControlTest = Test{
 
 var SetDoorControlTest = Test{
 	Name: "set door control",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetDoorControlRequest.Name,
 		Values: []Value{
 			Value{
@@ -733,7 +733,7 @@ var SetDoorControlTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetDoorControlResponse.Name,
 		Values: []Value{
 			Value{
@@ -768,7 +768,7 @@ var SetDoorControlTest = Test{
 
 var OpenDoorTest = Test{
 	Name: "open door",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: OpenDoorRequest.Name,
 		Values: []Value{
 			Value{
@@ -789,7 +789,7 @@ var OpenDoorTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: OpenDoorResponse.Name,
 		Values: []Value{
 			Value{
@@ -814,7 +814,7 @@ var OpenDoorTest = Test{
 
 var GetCardsTest = Test{
 	Name: "get cards",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetCardsRequest.Name,
 		Values: []Value{
 			Value{
@@ -830,7 +830,7 @@ var GetCardsTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetCardsResponse.Name,
 		Values: []Value{
 			Value{
@@ -855,7 +855,7 @@ var GetCardsTest = Test{
 
 var GetCardTest = Test{
 	Name: "get card",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetCardRequest.Name,
 		Values: []Value{
 			Value{
@@ -876,7 +876,7 @@ var GetCardTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetCardResponse.Name,
 		Values: []Value{
 			Value{
@@ -936,7 +936,7 @@ var GetCardTest = Test{
 
 var GetCardByIndexTest = Test{
 	Name: "get card by index",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetCardByIndexRequest.Name,
 		Values: []Value{
 			Value{
@@ -957,7 +957,7 @@ var GetCardByIndexTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetCardByIndexResponse.Name,
 		Values: []Value{
 			Value{
@@ -1017,7 +1017,7 @@ var GetCardByIndexTest = Test{
 
 var PutCardTest = Test{
 	Name: "put card",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: PutCardRequest.Name,
 		Values: []Value{
 			Value{
@@ -1073,7 +1073,7 @@ var PutCardTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: PutCardResponse.Name,
 		Values: []Value{
 			Value{
@@ -1098,7 +1098,7 @@ var PutCardTest = Test{
 
 var DeleteCardTest = Test{
 	Name: "delete card",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: DeleteCardRequest.Name,
 		Values: []Value{
 			Value{
@@ -1119,7 +1119,7 @@ var DeleteCardTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: DeleteCardResponse.Name,
 		Values: []Value{
 			Value{
@@ -1144,7 +1144,7 @@ var DeleteCardTest = Test{
 
 var DeleteAllCardsTest = Test{
 	Name: "delete cards",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: DeleteAllCardsRequest.Name,
 		Values: []Value{
 			Value{
@@ -1160,7 +1160,7 @@ var DeleteAllCardsTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: DeleteAllCardsResponse.Name,
 		Values: []Value{
 			Value{
@@ -1185,7 +1185,7 @@ var DeleteAllCardsTest = Test{
 
 var GetEventTest = Test{
 	Name: "get event",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetEventRequest.Name,
 		Values: []Value{
 			Value{
@@ -1206,7 +1206,7 @@ var GetEventTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetEventResponse.Name,
 		Values: []Value{
 			Value{
@@ -1266,7 +1266,7 @@ var GetEventTest = Test{
 
 var GetEventIndexTest = Test{
 	Name: "get event index",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetEventIndexRequest.Name,
 		Values: []Value{
 			Value{
@@ -1282,7 +1282,7 @@ var GetEventIndexTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetEventIndexResponse.Name,
 		Values: []Value{
 			Value{
@@ -1307,7 +1307,7 @@ var GetEventIndexTest = Test{
 
 var SetEventIndexTest = Test{
 	Name: "set event index",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetEventIndexRequest.Name,
 		Values: []Value{
 			Value{
@@ -1328,7 +1328,7 @@ var SetEventIndexTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetEventIndexResponse.Name,
 		Values: []Value{
 			Value{
@@ -1353,7 +1353,7 @@ var SetEventIndexTest = Test{
 
 var RecordSpecialEventsTest = Test{
 	Name: "record special events",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: RecordSpecialEventsRequest.Name,
 		Values: []Value{
 			Value{
@@ -1374,7 +1374,7 @@ var RecordSpecialEventsTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: RecordSpecialEventsResponse.Name,
 		Values: []Value{
 			Value{
@@ -1399,7 +1399,7 @@ var RecordSpecialEventsTest = Test{
 
 var GetTimeProfileTest = Test{
 	Name: "get time profile",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetTimeProfileRequest.Name,
 		Values: []Value{
 			Value{
@@ -1420,7 +1420,7 @@ var GetTimeProfileTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetTimeProfileResponse.Name,
 		Values: []Value{
 			Value{
@@ -1525,7 +1525,7 @@ var GetTimeProfileTest = Test{
 
 var SetTimeProfileTest = Test{
 	Name: "set time profile",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetTimeProfileRequest.Name,
 		Values: []Value{
 			Value{
@@ -1626,7 +1626,7 @@ var SetTimeProfileTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetTimeProfileResponse.Name,
 		Values: []Value{
 			Value{
@@ -1651,7 +1651,7 @@ var SetTimeProfileTest = Test{
 
 var DeleteAllTimeProfilesTest = Test{
 	Name: "delete all time profiles",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: DeleteAllTimeProfilesRequest.Name,
 		Values: []Value{
 			Value{
@@ -1667,7 +1667,7 @@ var DeleteAllTimeProfilesTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: DeleteAllTimeProfilesResponse.Name,
 		Values: []Value{
 			Value{
@@ -1692,7 +1692,7 @@ var DeleteAllTimeProfilesTest = Test{
 
 var AddTaskTest = Test{
 	Name: "add task",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: AddTaskRequest.Name,
 		Values: []Value{
 			Value{
@@ -1773,7 +1773,7 @@ var AddTaskTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: AddTaskResponse.Name,
 		Values: []Value{
 			Value{
@@ -1798,7 +1798,7 @@ var AddTaskTest = Test{
 
 var RefreshTaskListTest = Test{
 	Name: "refresh tasklist",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: RefreshTaskListRequest.Name,
 		Values: []Value{
 			Value{
@@ -1814,7 +1814,7 @@ var RefreshTaskListTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: RefreshTaskListResponse.Name,
 		Values: []Value{
 			Value{
@@ -1839,7 +1839,7 @@ var RefreshTaskListTest = Test{
 
 var ClearTaskListTest = Test{
 	Name: "clear tasklist",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: ClearTaskListRequest.Name,
 		Values: []Value{
 			Value{
@@ -1855,7 +1855,7 @@ var ClearTaskListTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: ClearTaskListResponse.Name,
 		Values: []Value{
 			Value{
@@ -1880,7 +1880,7 @@ var ClearTaskListTest = Test{
 
 var SetPCControlTest = Test{
 	Name: "set pc control",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetPCControlRequest.Name,
 		Values: []Value{
 			Value{
@@ -1901,7 +1901,7 @@ var SetPCControlTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetPCControlResponse.Name,
 		Values: []Value{
 			Value{
@@ -1926,7 +1926,7 @@ var SetPCControlTest = Test{
 
 var SetInterlockTest = Test{
 	Name: "set interlock",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetInterlockRequest.Name,
 		Values: []Value{
 			Value{
@@ -1947,7 +1947,7 @@ var SetInterlockTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetInterlockResponse.Name,
 		Values: []Value{
 			Value{
@@ -1972,7 +1972,7 @@ var SetInterlockTest = Test{
 
 var ActivateKeypadsTest = Test{
 	Name: "activate keypads",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: ActivateKeypadsRequest.Name,
 		Values: []Value{
 			Value{
@@ -2008,7 +2008,7 @@ var ActivateKeypadsTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: ActivateKeypadsResponse.Name,
 		Values: []Value{
 			Value{
@@ -2033,7 +2033,7 @@ var ActivateKeypadsTest = Test{
 
 var SetDoorPasscodesTest = Test{
 	Name: "set door passcodes",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetDoorPasscodesRequest.Name,
 		Values: []Value{
 			Value{
@@ -2074,7 +2074,7 @@ var SetDoorPasscodesTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetDoorPasscodesResponse.Name,
 		Values: []Value{
 			Value{
@@ -2099,7 +2099,7 @@ var SetDoorPasscodesTest = Test{
 
 var GetAntiPassbackTest = Test{
 	Name: "get antipassback",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: GetAntiPassbackRequest.Name,
 		Values: []Value{
 			Value{
@@ -2115,7 +2115,7 @@ var GetAntiPassbackTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: GetAntiPassbackResponse.Name,
 		Values: []Value{
 			Value{
@@ -2140,7 +2140,7 @@ var GetAntiPassbackTest = Test{
 
 var SetAntiPassbackTest = Test{
 	Name: "set antipassback",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: SetAntiPassbackRequest.Name,
 		Values: []Value{
 			Value{
@@ -2161,7 +2161,7 @@ var SetAntiPassbackTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: SetAntiPassbackResponse.Name,
 		Values: []Value{
 			Value{
@@ -2186,7 +2186,7 @@ var SetAntiPassbackTest = Test{
 
 var RestoreDefaultParametersTest = Test{
 	Name: "restore default parameters",
-	Request: &Request{
+	Request: &TestRequest{
 		Name: RestoreDefaultParametersRequest.Name,
 		Values: []Value{
 			Value{
@@ -2202,7 +2202,7 @@ var RestoreDefaultParametersTest = Test{
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		},
 	},
-	Response: &Response{
+	Response: &TestResponse{
 		Name: RestoreDefaultParametersResponse.Name,
 		Values: []Value{
 			Value{

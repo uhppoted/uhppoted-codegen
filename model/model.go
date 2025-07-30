@@ -24,15 +24,14 @@ type Message struct {
 	Fields  []Field `json:"fields"`
 }
 
-type Test struct {
-	Name     string    `json:"name"`
-	Request  *Request  `json:"request,omitempty"`
-	Response *Response `json:"response,omitempty"`
-}
-
 type Arg struct {
 	Name string `json:"name"`
 	Type string `json:"type"`
+}
+
+type TestArg struct {
+	Arg
+	Value any `json:"value"`
 }
 
 type Field struct {
@@ -43,21 +42,38 @@ type Field struct {
 }
 
 type Request struct {
-	Name    string  `json:"name"`
-	Values  []Value `json:"values"`
-	Message []uint8 `json:"message,omitempty"`
+	Message
+	Tests []RequestTest
 }
 
-type Response struct {
-	Name    string  `json:"name"`
-	Values  []Value `json:"values"`
-	Message []uint8 `json:"message,omitempty"`
+type RequestTest struct {
+	Name     string    `json:"name"`
+	Args     []TestArg `json:"args"`
+	Expected []byte    `json:"expected"`
 }
 
 type Value struct {
 	Name  string `json:"name"`
 	Type  string `json:"type"`
 	Value any    `json:"value"`
+}
+
+type Test struct {
+	Name     string        `json:"name"`
+	Request  *TestRequest  `json:"request,omitempty"`
+	Response *TestResponse `json:"response,omitempty"`
+}
+
+type TestRequest struct {
+	Name    string  `json:"name"`
+	Values  []Value `json:"values"`
+	Message []uint8 `json:"message,omitempty"`
+}
+
+type TestResponse struct {
+	Name    string  `json:"name"`
+	Values  []Value `json:"values"`
+	Message []uint8 `json:"message,omitempty"`
 }
 
 var Event = Message{

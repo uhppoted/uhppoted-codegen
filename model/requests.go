@@ -1,7 +1,7 @@
 package model
 
 var Requests = []Message{
-	GetControllerRequest,
+	GetControllerRequest.Message,
 	SetIPRequest,
 	GetTimeRequest,
 	SetTimeRequest,
@@ -36,9 +36,62 @@ var Requests = []Message{
 	RestoreDefaultParametersRequest,
 }
 
-var GetControllerRequest = Message{
-	Name:    "get controller request",
-	MsgType: 0x94,
+var GetControllerRequest = Request{
+	Message: Message{
+		Name:    "get controller request",
+		MsgType: 0x94,
+		Fields: []Field{
+			Field{
+				Name:        "controller",
+				Type:        "uint32",
+				Offset:      4,
+				Description: "controller serial number",
+			},
+		},
+	},
+	Tests: []RequestTest{
+		{
+			Name: "get-all-controllers",
+			Args: []TestArg{
+				TestArg{
+					Arg: Arg{
+						Name: "controller",
+						Type: "uint32",
+					},
+					Value: uint32(0),
+				},
+			},
+			Expected: []byte{
+				0x17, 0x94, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			},
+		},
+		{
+			Name: "get-controller",
+			Args: []TestArg{
+				TestArg{
+					Arg: Arg{
+						Name: "controller",
+						Type: "uint32",
+					},
+					Value: uint32(405419896),
+				},
+			},
+			Expected: []byte{
+				0x17, 0x94, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			},
+		},
+	},
+}
+
+var SetIPRequest = Message{
+	Name:    "set IP request",
+	MsgType: 0x96,
 	Fields: []Field{
 		Field{
 			Name:        "controller",
@@ -46,11 +99,35 @@ var GetControllerRequest = Message{
 			Offset:      4,
 			Description: "controller serial number",
 		},
+		Field{
+			Name:        "address",
+			Type:        "IPv4",
+			Offset:      8,
+			Description: "controller IPv4 address",
+		},
+		Field{
+			Name:        "netmask",
+			Type:        "IPv4",
+			Offset:      12,
+			Description: "controller IPv4 subnet mask",
+		},
+		Field{
+			Name:        "gateway",
+			Type:        "IPv4",
+			Offset:      16,
+			Description: "controller IPv4 gateway address",
+		},
+		Field{
+			Name:        "",
+			Type:        "magic",
+			Offset:      20,
+			Description: "'magic' word",
+		},
 	},
 }
 
-var SetIPRequest = Message{
-	Name:    "set IP request",
+var SetIPv4Request = Message{
+	Name:    "set IPv4 request",
 	MsgType: 0x96,
 	Fields: []Field{
 		Field{
@@ -175,6 +252,31 @@ var SetListenerRequest = Message{
 	},
 }
 
+var SetListenerAddrPortRequest = Message{
+	Name:    "set listener request",
+	MsgType: 0x90,
+	Fields: []Field{
+		Field{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		Field{
+			Name:        "address",
+			Type:        "addrport",
+			Offset:      8,
+			Description: "event listener IPv4 address:port",
+		},
+		Field{
+			Name:        "interval",
+			Type:        "uint8",
+			Offset:      14,
+			Description: "status auto-send interval (seconds)",
+		},
+	},
+}
+
 var GetDoorControlRequest = Message{
 	Name:    "get door control request",
 	MsgType: 0x82,
@@ -196,6 +298,53 @@ var GetDoorControlRequest = Message{
 
 var SetDoorControlRequest = Message{
 	Name:    "set door control request",
+	MsgType: 0x80,
+	Fields: []Field{
+		Field{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		Field{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		Field{
+			Name:   "mode",
+			Type:   "uint8",
+			Offset: 9,
+		},
+		Field{
+			Name:   "delay",
+			Type:   "uint8",
+			Offset: 10,
+		},
+	},
+}
+
+var GetDoorRequest = Message{
+	Name:    "get door request",
+	MsgType: 0x82,
+	Fields: []Field{
+		Field{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		Field{
+			Name:        "door",
+			Type:        "uint8",
+			Offset:      8,
+			Description: "door ID ([1..4])",
+		},
+	},
+}
+
+var SetDoorRequest = Message{
+	Name:    "set door request",
 	MsgType: 0x80,
 	Fields: []Field{
 		Field{
