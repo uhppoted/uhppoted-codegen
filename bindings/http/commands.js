@@ -14,13 +14,13 @@ export function getController (controller) {
              return uhppote.GetController(controller)
 }
 
-export function setIP (controller, address, netmask, gateway) {
+export function setIPv4 (controller, address, netmask, gateway) {
   controller = arg(controller)
   address = arg(address)
   netmask = arg(netmask)
   gateway = arg(gateway)
 
-  return uhppote.SetIP(controller, address, netmask, gateway)
+  return uhppote.SetIPv4(controller, address, netmask, gateway)
 }
 
 export function getTime (controller) {

@@ -29,7 +29,7 @@ def commands():
     return {
         'get-all-controllers': get_all_controllers,
         'get-controller': get_controller,
-        'set-ip': set_ip,
+        'set-IPv4': set_IPv4,
         'get-time': get_time,
         'set-time': set_time,
         'get-listener': get_listener,
@@ -89,13 +89,13 @@ def get_controller(u):
     return u.get_controller(controller)
 
 
-def set_ip(u):
+def set_IPv4(u):
     controller = resolve(CONTROLLER)
     address = ADDRESS
     netmask = NETMASK
     gateway = GATEWAY
 
-    return u.set_ip(controller, address, netmask, gateway)
+    return u.set_ipv4(controller, address, netmask, gateway)
 
 
 def get_time(u):

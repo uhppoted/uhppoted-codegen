@@ -78,14 +78,14 @@ function get_controller($u, $args)
     return uhppote\get_controller($u, $controller);
 }
 
-function set_ip($u, $args)
+function set_ipv4($u, $args)
 {
     $controller = resolve(CONTROLLER);
     $address = ADDRESS;
     $netmask = NETMASK;
     $gateway = GATEWAY;
 
-    uhppote\set_ip($u, $controller, $address, $netmask, $gateway);
+    uhppote\set_ipv4($u, $controller, $address, $netmask, $gateway);
 
     return (object) array('set' => 'ok');
 }
@@ -432,7 +432,7 @@ function commands()
     return  [
         'get-all-controllers' => 'get_all_controllers',
         'get-controller' => 'get_controller',
-        'set-ip' => 'set_ip',
+        'set-IPv4' => 'set_ipv4',
         'get-time' => 'get_time',
         'set-time' => 'set_time',
         'get-listener' => 'get_listener',

@@ -30,8 +30,8 @@ pub const COMMANDS: [&Command; 35] = [
         func: get_controller,
     },
     &Command {
-        name: "set-ip",
-        func: set_ip,
+        name: "set-IPv4",
+        func: set_ipv4,
     },
     &Command {
         name: "get-time",
@@ -204,14 +204,14 @@ fn get_controller() {
     })
 }
 
-fn set_ip() {
+fn set_ipv4() {
     print(|| -> Result<bool, error::Error> {
         let controller = resolve(CONTROLLER);
         let address = "192.168.1.100".parse().unwrap();
         let netmask = "255.255.255.0".parse().unwrap();
         let gateway = "192.168.1.1".parse().unwrap();
 
-        futures::executor::block_on(uhppote::set_ip(controller, address, netmask, gateway))
+        futures::executor::block_on(uhppote::set_ipv4(controller, address, netmask, gateway))
     })
 }
 

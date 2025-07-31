@@ -39,7 +39,7 @@ commands() ->
     [
         {"get-all-controllers", get_all_controllers},
         {"get-controller", get_controller},
-        {"set-ip", set_ip},
+        {"set-IPv4", set_ipv4},
         {"get-time", get_time},
         {"set-time", set_time},
         {"get-status", get_status},
@@ -99,13 +99,13 @@ execute(get_controller, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     uhppoted:get_controller(Config, Controller);
 
-execute(set_ip, _Options, Config) ->
+execute(set_ipv4, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     {ok, Address} = inet:parse_ipv4_address(?ADDRESS),
     {ok, Netmask} = inet:parse_ipv4_address(?NETMASK),
     {ok, Gateway} = inet:parse_ipv4_address(?GATEWAY),
 
-    uhppoted:set_ip(Config, Controller, Address, Netmask, Gateway);
+    uhppoted:set_ipv4(Config, Controller, Address, Netmask, Gateway);
 
 execute(get_time, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

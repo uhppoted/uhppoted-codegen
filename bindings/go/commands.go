@@ -42,7 +42,7 @@ type command struct {
 var commands = []command{
     command{name: "get-all-controllers", f: getAllControllers},
     command{name: "get-controller", f: getController},
-    command{name: "set-ip", f: setIP},
+    command{name: "set-IPv4", f: setIPv4},
     command{name: "get-time", f: getTime},
     command{name: "set-time", f: setTime},
     command{name: "get-listener", f: getListener},
@@ -130,13 +130,13 @@ func getController(args []string) (any, error) {
     return uhppote.GetController(controller)
 }
 
-func setIP(args []string) (any, error) {
+func setIPv4(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     address := ADDRESS
     netmask := NETMASK
     gateway := GATEWAY
 
-    if err := uhppote.SetIP(controller, address, netmask, gateway); err != nil {
+    if err := uhppote.SetIPv4(controller, address, netmask, gateway); err != nil {
         return nil, err
     }
 

@@ -43,7 +43,7 @@ class Uhppote:
         return None
         {{- else}}
         request = encode.{{snakeCase .request.name}}(controller.controller{{template "params" slice .args 1}})
-        self._net.send(c, request)
+        self._net.send(controller, request)
 
         return True
         {{end}}

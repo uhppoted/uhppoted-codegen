@@ -57,9 +57,9 @@
         }
       },
       {
-        "name": "set IP",
+        "name": "set IPv4",
         "request": {
-          "name": "set IP request",
+          "name": "set IPv4 request",
           "values": [
             {
               "name": "controller",

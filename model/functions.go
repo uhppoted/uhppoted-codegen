@@ -4,7 +4,7 @@ import ()
 
 var Functions = []Function{
 	GetController,
-	SetIP,
+	SetIPv4,
 	GetTime,
 	SetTime,
 	GetStatus,
@@ -50,8 +50,8 @@ var GetController = Function{
 	Response: &GetControllerResponse,
 }
 
-var SetIP = Function{
-	Name: "set IP",
+var SetIPv4 = Function{
+	Name: "set IPv4",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -70,7 +70,7 @@ var SetIP = Function{
 			Type: "IPv4",
 		},
 	},
-	Request: &SetIPRequest.Message,
+	Request: &SetIPv4Request.Message,
 }
 
 var GetTime = Function{

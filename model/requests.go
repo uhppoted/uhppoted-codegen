@@ -7,7 +7,7 @@ import (
 
 var Requests = []types.Message{
 	GetControllerRequest.Message,
-	SetIPRequest.Message,
+	SetIPv4Request.Message,
 	GetTimeRequest.Message,
 	SetTimeRequest,
 	GetStatusRequest,
@@ -42,7 +42,8 @@ var Requests = []types.Message{
 }
 
 var GetControllerRequest = requests.GetControllerRequest
-var SetIPRequest = requests.SetIPRequest
+
+// var SetIPRequest = requests.SetIPRequest
 var SetIPv4Request = requests.SetIPv4Request
 var GetTimeRequest = requests.GetTimeRequest
 

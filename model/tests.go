@@ -6,7 +6,7 @@ import (
 
 var Tests = []Test{
 	GetControllerTest,
-	SetIPTest,
+	SetIPv4Test,
 	GetTimeTest,
 	SetTimeTest,
 	GetStatusTest,
@@ -114,10 +114,10 @@ var GetControllerTest = Test{
 	},
 }
 
-var SetIPTest = Test{
-	Name: "set IP",
+var SetIPv4Test = Test{
+	Name: "set IPv4",
 	Request: &TestRequest{
-		Name: SetIPRequest.Name,
+		Name: SetIPv4Request.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",

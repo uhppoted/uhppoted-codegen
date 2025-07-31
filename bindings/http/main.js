@@ -3,7 +3,7 @@ import * as commands from './commands.js'
 export const COMMANDS = new Map([
   ['get-all-controllers', { fn: commands.getAllControllers, args: []}],
   ['get-controller',      { fn: commands.getController,     args: ['controller']}],
-  ['set-IP',              { fn: commands.setIP,             args: ['controller', 'IP.address', 'IP.netmask', 'IP.gateway']}],
+  ['set-IPv4',            { fn: commands.setIPv4,           args: ['controller', 'IP.address', 'IP.netmask', 'IP.gateway']}],
   ['get-time',            { fn: commands.getTime,           args: ['controller']}],
   ['set-time',            { fn: commands.setTime,           args: ['controller', 'datetime']}],
   ['get-listener',        { fn: commands.getListener,       args: ['controller']}],

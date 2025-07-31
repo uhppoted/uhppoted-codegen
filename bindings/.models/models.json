@@ -73,7 +73,7 @@
         "description": ""
       },
       {
-        "name": "set IP",
+        "name": "set IPv4",
         "args": [
           {
             "name": "controller",
@@ -97,7 +97,7 @@
           }
         ],
         "request": {
-          "name": "set IP request",
+          "name": "set IPv4 request",
           "msgtype": 150,
           "fields": [
             {
@@ -2446,7 +2446,7 @@
         ]
       },
       {
-        "name": "set IP request",
+        "name": "set IPv4 request",
         "msgtype": 150,
         "fields": [
           {

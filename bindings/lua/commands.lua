@@ -68,13 +68,13 @@ function get_controller(args)
     return uhppote.get_controller(controller)
 end
 
-function set_ip(args)
+function set_ipv4(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
     local address = parse(args,"address",ADDRESS)
     local netmask = parse(args,"netmask",NETMASK)
     local gateway = parse(args,"gateway",GATEWAY)
 
-    return uhppote.set_ip(controller,address,netmask,gateway)
+    return uhppote.set_ipv4(controller,address,netmask,gateway)
 end
 
 function get_time(args)
@@ -438,7 +438,7 @@ local commands = {
    commands = {     
        { ["command"] = "get-all-controllers",        ["f"] = get_all_controllers,        flags = {},             options = {} },
        { ["command"] = "get-controller",             ["f"] = get_controller,             flags = {},             options = { "controller" } },
-       { ["command"] = "set-ip",                     ["f"] = set_ip,                     flags = {},             options = { "controller","address","netmask","gateway" } },
+       { ["command"] = "set-IPv4",                   ["f"] = set_ipv4,                   flags = {},             options = { "controller","address","netmask","gateway" } },
        { ["command"] = "get-time",                   ["f"] = get_time,                   flags = {},             options = { "controller" } },
        { ["command"] = "set-time",                   ["f"] = set_time,                   flags = {},             options = { "controller","time" } },
        { ["command"] = "get-listener",               ["f"] = get_listener,               flags = {},             options = { "controller" } },
