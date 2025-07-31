@@ -1,9 +1,14 @@
 package model
 
-var Requests = []Message{
+import (
+	"github.com/uhppoted/uhppoted-codegen/model/requests"
+	"github.com/uhppoted/uhppoted-codegen/model/types"
+)
+
+var Requests = []types.Message{
 	GetControllerRequest.Message,
-	SetIPRequest,
-	GetTimeRequest,
+	SetIPRequest.Message,
+	GetTimeRequest.Message,
 	SetTimeRequest,
 	GetStatusRequest,
 	GetListenerRequest,
@@ -36,157 +41,22 @@ var Requests = []Message{
 	RestoreDefaultParametersRequest,
 }
 
-var GetControllerRequest = Request{
-	Message: Message{
-		Name:    "get controller request",
-		MsgType: 0x94,
-		Fields: []Field{
-			Field{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-		},
-	},
-	Tests: []RequestTest{
-		{
-			Name: "get-all-controllers",
-			Args: []TestArg{
-				TestArg{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(0),
-				},
-			},
-			Expected: []byte{
-				0x17, 0x94, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-			},
-		},
-		{
-			Name: "get-controller",
-			Args: []TestArg{
-				TestArg{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
-				},
-			},
-			Expected: []byte{
-				0x17, 0x94, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-			},
-		},
-	},
-}
+var GetControllerRequest = requests.GetControllerRequest
+var SetIPRequest = requests.SetIPRequest
+var SetIPv4Request = requests.SetIPv4Request
+var GetTimeRequest = requests.GetTimeRequest
 
-var SetIPRequest = Message{
-	Name:    "set IP request",
-	MsgType: 0x96,
-	Fields: []Field{
-		Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		Field{
-			Name:        "address",
-			Type:        "IPv4",
-			Offset:      8,
-			Description: "controller IPv4 address",
-		},
-		Field{
-			Name:        "netmask",
-			Type:        "IPv4",
-			Offset:      12,
-			Description: "controller IPv4 subnet mask",
-		},
-		Field{
-			Name:        "gateway",
-			Type:        "IPv4",
-			Offset:      16,
-			Description: "controller IPv4 gateway address",
-		},
-		Field{
-			Name:        "",
-			Type:        "magic",
-			Offset:      20,
-			Description: "'magic' word",
-		},
-	},
-}
-
-var SetIPv4Request = Message{
-	Name:    "set IPv4 request",
-	MsgType: 0x96,
-	Fields: []Field{
-		Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		Field{
-			Name:        "address",
-			Type:        "IPv4",
-			Offset:      8,
-			Description: "controller IPv4 address",
-		},
-		Field{
-			Name:        "netmask",
-			Type:        "IPv4",
-			Offset:      12,
-			Description: "controller IPv4 subnet mask",
-		},
-		Field{
-			Name:        "gateway",
-			Type:        "IPv4",
-			Offset:      16,
-			Description: "controller IPv4 gateway address",
-		},
-		Field{
-			Name:        "",
-			Type:        "magic",
-			Offset:      20,
-			Description: "'magic' word",
-		},
-	},
-}
-
-var GetTimeRequest = Message{
-	Name:    "get time request",
-	MsgType: 0x32,
-	Fields: []Field{
-		Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-	},
-}
-
-var SetTimeRequest = Message{
+var SetTimeRequest = types.Message{
 	Name:    "set time request",
 	MsgType: 0x30,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:        "datetime",
 			Type:        "datetime",
 			Offset:      8,
@@ -195,11 +65,11 @@ var SetTimeRequest = Message{
 	},
 }
 
-var GetStatusRequest = Message{
+var GetStatusRequest = types.Message{
 	Name:    "get status request",
 	MsgType: 0x20,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
@@ -208,11 +78,11 @@ var GetStatusRequest = Message{
 	},
 }
 
-var GetListenerRequest = Message{
+var GetListenerRequest = types.Message{
 	Name:    "get listener request",
 	MsgType: 0x92,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
@@ -221,29 +91,29 @@ var GetListenerRequest = Message{
 	},
 }
 
-var SetListenerRequest = Message{
+var SetListenerRequest = types.Message{
 	Name:    "set listener request",
 	MsgType: 0x90,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:        "address",
 			Type:        "IPv4",
 			Offset:      8,
 			Description: "event listener IPv4 address",
 		},
-		Field{
+		types.Field{
 			Name:        "port",
 			Type:        "uint16",
 			Offset:      12,
 			Description: "event listener IPv4 port",
 		},
-		Field{
+		types.Field{
 			Name:        "interval",
 			Type:        "uint8",
 			Offset:      14,
@@ -252,23 +122,23 @@ var SetListenerRequest = Message{
 	},
 }
 
-var SetListenerAddrPortRequest = Message{
+var SetListenerAddrPortRequest = types.Message{
 	Name:    "set listener request",
 	MsgType: 0x90,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:        "address",
 			Type:        "addrport",
 			Offset:      8,
 			Description: "event listener IPv4 address:port",
 		},
-		Field{
+		types.Field{
 			Name:        "interval",
 			Type:        "uint8",
 			Offset:      14,
@@ -277,17 +147,17 @@ var SetListenerAddrPortRequest = Message{
 	},
 }
 
-var GetDoorControlRequest = Message{
+var GetDoorControlRequest = types.Message{
 	Name:    "get door control request",
 	MsgType: 0x82,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:        "door",
 			Type:        "uint8",
 			Offset:      8,
@@ -296,27 +166,27 @@ var GetDoorControlRequest = Message{
 	},
 }
 
-var SetDoorControlRequest = Message{
+var SetDoorControlRequest = types.Message{
 	Name:    "set door control request",
 	MsgType: 0x80,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "door",
 			Type:   "uint8",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "mode",
 			Type:   "uint8",
 			Offset: 9,
 		},
-		Field{
+		types.Field{
 			Name:   "delay",
 			Type:   "uint8",
 			Offset: 10,
@@ -324,17 +194,17 @@ var SetDoorControlRequest = Message{
 	},
 }
 
-var GetDoorRequest = Message{
+var GetDoorRequest = types.Message{
 	Name:    "get door request",
 	MsgType: 0x82,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:        "door",
 			Type:        "uint8",
 			Offset:      8,
@@ -343,27 +213,27 @@ var GetDoorRequest = Message{
 	},
 }
 
-var SetDoorRequest = Message{
+var SetDoorRequest = types.Message{
 	Name:    "set door request",
 	MsgType: 0x80,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "door",
 			Type:   "uint8",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "mode",
 			Type:   "uint8",
 			Offset: 9,
 		},
-		Field{
+		types.Field{
 			Name:   "delay",
 			Type:   "uint8",
 			Offset: 10,
@@ -371,17 +241,17 @@ var SetDoorRequest = Message{
 	},
 }
 
-var OpenDoorRequest = Message{
+var OpenDoorRequest = types.Message{
 	Name:    "open door request",
 	MsgType: 0x40,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "door",
 			Type:   "uint8",
 			Offset: 8,
@@ -389,11 +259,11 @@ var OpenDoorRequest = Message{
 	},
 }
 
-var GetCardsRequest = Message{
+var GetCardsRequest = types.Message{
 	Name:    "get cards request",
 	MsgType: 0x58,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
@@ -402,17 +272,17 @@ var GetCardsRequest = Message{
 	},
 }
 
-var GetCardRequest = Message{
+var GetCardRequest = types.Message{
 	Name:    "get card request",
 	MsgType: 0x5a,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "card number",
 			Type:   "uint32",
 			Offset: 8,
@@ -420,17 +290,17 @@ var GetCardRequest = Message{
 	},
 }
 
-var GetCardByIndexRequest = Message{
+var GetCardByIndexRequest = types.Message{
 	Name:    "get card by index request",
 	MsgType: 0x5c,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "card index",
 			Type:   "uint32",
 			Offset: 8,
@@ -438,52 +308,52 @@ var GetCardByIndexRequest = Message{
 	},
 }
 
-var PutCardRequest = Message{
+var PutCardRequest = types.Message{
 	Name:    "put card request",
 	MsgType: 0x50,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "card number",
 			Type:   "uint32",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "start date",
 			Type:   "date",
 			Offset: 12,
 		},
-		Field{
+		types.Field{
 			Name:   "end date",
 			Type:   "date",
 			Offset: 16,
 		},
-		Field{
+		types.Field{
 			Name:   "door 1",
 			Type:   "uint8",
 			Offset: 20,
 		},
-		Field{
+		types.Field{
 			Name:   "door 2",
 			Type:   "uint8",
 			Offset: 21,
 		},
-		Field{
+		types.Field{
 			Name:   "door 3",
 			Type:   "uint8",
 			Offset: 22,
 		},
-		Field{
+		types.Field{
 			Name:   "door 4",
 			Type:   "uint8",
 			Offset: 23,
 		},
-		Field{
+		types.Field{
 			Name:   "PIN",
 			Type:   "pin",
 			Offset: 24,
@@ -491,17 +361,17 @@ var PutCardRequest = Message{
 	},
 }
 
-var DeleteCardRequest = Message{
+var DeleteCardRequest = types.Message{
 	Name:    "delete card request",
 	MsgType: 0x52,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "card number",
 			Type:   "uint32",
 			Offset: 8,
@@ -509,17 +379,17 @@ var DeleteCardRequest = Message{
 	},
 }
 
-var DeleteAllCardsRequest = Message{
+var DeleteAllCardsRequest = types.Message{
 	Name:    "delete cards request",
 	MsgType: 0x54,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "",
 			Type:   "magic",
 			Offset: 8,
@@ -527,17 +397,17 @@ var DeleteAllCardsRequest = Message{
 	},
 }
 
-var GetEventRequest = Message{
+var GetEventRequest = types.Message{
 	Name:    "get event request",
 	MsgType: 0xb0,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "event index",
 			Type:   "uint32",
 			Offset: 8,
@@ -545,11 +415,11 @@ var GetEventRequest = Message{
 	},
 }
 
-var GetEventIndexRequest = Message{
+var GetEventIndexRequest = types.Message{
 	Name:    "get event index request",
 	MsgType: 0xb4,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
@@ -558,22 +428,22 @@ var GetEventIndexRequest = Message{
 	},
 }
 
-var SetEventIndexRequest = Message{
+var SetEventIndexRequest = types.Message{
 	Name:    "set event index request",
 	MsgType: 0xb2,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "event index",
 			Type:   "uint32",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "",
 			Type:   "magic",
 			Offset: 12,
@@ -581,17 +451,17 @@ var SetEventIndexRequest = Message{
 	},
 }
 
-var RecordSpecialEventsRequest = Message{
+var RecordSpecialEventsRequest = types.Message{
 	Name:    "record special events request",
 	MsgType: 0x8e,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "enable",
 			Type:   "bool",
 			Offset: 8,
@@ -599,17 +469,17 @@ var RecordSpecialEventsRequest = Message{
 	},
 }
 
-var GetTimeProfileRequest = Message{
+var GetTimeProfileRequest = types.Message{
 	Name:    "get time profile request",
 	MsgType: 0x98,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "profile id",
 			Type:   "uint8",
 			Offset: 8,
@@ -617,97 +487,97 @@ var GetTimeProfileRequest = Message{
 	},
 }
 
-var SetTimeProfileRequest = Message{
+var SetTimeProfileRequest = types.Message{
 	Name:    "set time profile request",
 	MsgType: 0x88,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "profile id",
 			Type:   "uint8",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "start date",
 			Type:   "date",
 			Offset: 9,
 		},
-		Field{
+		types.Field{
 			Name:   "end date",
 			Type:   "date",
 			Offset: 13,
 		},
-		Field{
+		types.Field{
 			Name:   "monday",
 			Type:   "bool",
 			Offset: 17,
 		},
-		Field{
+		types.Field{
 			Name:   "tuesday",
 			Type:   "bool",
 			Offset: 18,
 		},
-		Field{
+		types.Field{
 			Name:   "wednesday",
 			Type:   "bool",
 			Offset: 19,
 		},
-		Field{
+		types.Field{
 			Name:   "thursday",
 			Type:   "bool",
 			Offset: 20,
 		},
-		Field{
+		types.Field{
 			Name:   "friday",
 			Type:   "bool",
 			Offset: 21,
 		},
-		Field{
+		types.Field{
 			Name:   "saturday",
 			Type:   "bool",
 			Offset: 22,
 		},
-		Field{
+		types.Field{
 			Name:   "sunday",
 			Type:   "bool",
 			Offset: 23,
 		},
-		Field{
+		types.Field{
 			Name:   "segment 1 start",
 			Type:   "HHmm",
 			Offset: 24,
 		},
-		Field{
+		types.Field{
 			Name:   "segment 1 end",
 			Type:   "HHmm",
 			Offset: 26,
 		},
-		Field{
+		types.Field{
 			Name:   "segment 2 start",
 			Type:   "HHmm",
 			Offset: 28,
 		},
-		Field{
+		types.Field{
 			Name:   "segment 2 end",
 			Type:   "HHmm",
 			Offset: 30,
 		},
-		Field{
+		types.Field{
 			Name:   "segment 3 start",
 			Type:   "HHmm",
 			Offset: 32,
 		},
-		Field{
+		types.Field{
 			Name:   "segment 3 end",
 			Type:   "HHmm",
 			Offset: 34,
 		},
-		Field{
+		types.Field{
 			Name:   "linked profile id",
 			Type:   "uint8",
 			Offset: 36,
@@ -715,17 +585,17 @@ var SetTimeProfileRequest = Message{
 	},
 }
 
-var DeleteAllTimeProfilesRequest = Message{
+var DeleteAllTimeProfilesRequest = types.Message{
 	Name:    "delete all time profiles request",
 	MsgType: 0x8a,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "",
 			Type:   "magic",
 			Offset: 8,
@@ -733,77 +603,77 @@ var DeleteAllTimeProfilesRequest = Message{
 	},
 }
 
-var AddTaskRequest = Message{
+var AddTaskRequest = types.Message{
 	Name:    "add task request",
 	MsgType: 0xa8,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "start date",
 			Type:   "date",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "end date",
 			Type:   "date",
 			Offset: 12,
 		},
-		Field{
+		types.Field{
 			Name:   "monday",
 			Type:   "bool",
 			Offset: 16,
 		},
-		Field{
+		types.Field{
 			Name:   "tuesday",
 			Type:   "bool",
 			Offset: 17,
 		},
-		Field{
+		types.Field{
 			Name:   "wednesday",
 			Type:   "bool",
 			Offset: 18,
 		},
-		Field{
+		types.Field{
 			Name:   "thursday",
 			Type:   "bool",
 			Offset: 19,
 		},
-		Field{
+		types.Field{
 			Name:   "friday",
 			Type:   "bool",
 			Offset: 20,
 		},
-		Field{
+		types.Field{
 			Name:   "saturday",
 			Type:   "bool",
 			Offset: 21,
 		},
-		Field{
+		types.Field{
 			Name:   "sunday",
 			Type:   "bool",
 			Offset: 22,
 		},
-		Field{
+		types.Field{
 			Name:   "start time",
 			Type:   "HHmm",
 			Offset: 23,
 		},
-		Field{
+		types.Field{
 			Name:   "door",
 			Type:   "uint8",
 			Offset: 25,
 		},
-		Field{
+		types.Field{
 			Name:   "task type",
 			Type:   "uint8",
 			Offset: 26,
 		},
-		Field{
+		types.Field{
 			Name:   "more cards",
 			Type:   "uint8",
 			Offset: 27,
@@ -811,17 +681,17 @@ var AddTaskRequest = Message{
 	},
 }
 
-var RefreshTaskListRequest = Message{
+var RefreshTaskListRequest = types.Message{
 	Name:    "refresh tasklist request",
 	MsgType: 0xac,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "",
 			Type:   "magic",
 			Offset: 8,
@@ -829,17 +699,17 @@ var RefreshTaskListRequest = Message{
 	},
 }
 
-var ClearTaskListRequest = Message{
+var ClearTaskListRequest = types.Message{
 	Name:    "clear tasklist request",
 	MsgType: 0xa6,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "",
 			Type:   "magic",
 			Offset: 8,
@@ -847,22 +717,22 @@ var ClearTaskListRequest = Message{
 	},
 }
 
-var SetPCControlRequest = Message{
+var SetPCControlRequest = types.Message{
 	Name:    "set pc control request",
 	MsgType: 0xa0,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "",
 			Type:   "magic",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "enable",
 			Type:   "bool",
 			Offset: 12,
@@ -870,17 +740,17 @@ var SetPCControlRequest = Message{
 	},
 }
 
-var SetInterlockRequest = Message{
+var SetInterlockRequest = types.Message{
 	Name:    "set interlock request",
 	MsgType: 0xa2,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "interlock",
 			Type:   "uint8",
 			Offset: 8,
@@ -888,32 +758,32 @@ var SetInterlockRequest = Message{
 	},
 }
 
-var ActivateKeypadsRequest = Message{
+var ActivateKeypadsRequest = types.Message{
 	Name:    "activate keypads request",
 	MsgType: 0xa4,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "reader 1",
 			Type:   "bool",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "reader 2",
 			Type:   "bool",
 			Offset: 9,
 		},
-		Field{
+		types.Field{
 			Name:   "reader 3",
 			Type:   "bool",
 			Offset: 10,
 		},
-		Field{
+		types.Field{
 			Name:   "reader 4",
 			Type:   "bool",
 			Offset: 11,
@@ -921,37 +791,37 @@ var ActivateKeypadsRequest = Message{
 	},
 }
 
-var SetDoorPasscodesRequest = Message{
+var SetDoorPasscodesRequest = types.Message{
 	Name:    "set door passcodes request",
 	MsgType: 0x8c,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "door",
 			Type:   "uint8",
 			Offset: 8,
 		},
-		Field{
+		types.Field{
 			Name:   "passcode 1",
 			Type:   "uint32",
 			Offset: 12,
 		},
-		Field{
+		types.Field{
 			Name:   "passcode 2",
 			Type:   "uint32",
 			Offset: 16,
 		},
-		Field{
+		types.Field{
 			Name:   "passcode 3",
 			Type:   "uint32",
 			Offset: 20,
 		},
-		Field{
+		types.Field{
 			Name:   "passcode 4",
 			Type:   "uint32",
 			Offset: 24,
@@ -959,11 +829,11 @@ var SetDoorPasscodesRequest = Message{
 	},
 }
 
-var GetAntiPassbackRequest = Message{
+var GetAntiPassbackRequest = types.Message{
 	Name:    "get antipassback request",
 	MsgType: 0x86,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
@@ -972,17 +842,17 @@ var GetAntiPassbackRequest = Message{
 	},
 }
 
-var SetAntiPassbackRequest = Message{
+var SetAntiPassbackRequest = types.Message{
 	Name:    "set antipassback request",
 	MsgType: 0x84,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "antipassback",
 			Type:   "uint8",
 			Offset: 8,
@@ -990,17 +860,17 @@ var SetAntiPassbackRequest = Message{
 	},
 }
 
-var RestoreDefaultParametersRequest = Message{
+var RestoreDefaultParametersRequest = types.Message{
 	Name:    "restore default parameters request",
 	MsgType: 0xc8,
-	Fields: []Field{
-		Field{
+	Fields: []types.Field{
+		types.Field{
 			Name:        "controller",
 			Type:        "uint32",
 			Offset:      4,
 			Description: "controller serial number",
 		},
-		Field{
+		types.Field{
 			Name:   "",
 			Type:   "magic",
 			Offset: 8,

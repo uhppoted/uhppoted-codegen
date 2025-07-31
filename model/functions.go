@@ -70,7 +70,7 @@ var SetIP = Function{
 			Type: "IPv4",
 		},
 	},
-	Request: &SetIPRequest,
+	Request: &SetIPRequest.Message,
 }
 
 var GetTime = Function{
@@ -81,7 +81,7 @@ var GetTime = Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetTimeRequest,
+	Request:  &GetTimeRequest.Message,
 	Response: &GetTimeResponse,
 }
 

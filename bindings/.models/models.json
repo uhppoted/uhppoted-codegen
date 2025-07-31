@@ -6,7 +6,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -68,26 +69,31 @@
               "description": "controller firmware release date, e.g. 2020-12-31"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set IP",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "address",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": ""
           },
           {
             "name": "netmask",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": ""
           },
           {
             "name": "gateway",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": ""
           }
         ],
         "request": {
@@ -125,14 +131,16 @@
               "description": "'magic' word"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get time",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -164,18 +172,21 @@
               "description": "controller system date/time"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set time",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "time",
-            "type": "datetime"
+            "type": "datetime",
+            "description": ""
           }
         ],
         "request": {
@@ -213,14 +224,16 @@
               "description": "controller system date/time"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get status",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -384,14 +397,16 @@
               "description": "packet sequence number"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get listener",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -435,26 +450,31 @@
               "description": "status auto-send interval (seconds)"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set listener",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "address",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": ""
           },
           {
             "name": "port",
-            "type": "uint16"
+            "type": "uint16",
+            "description": ""
           },
           {
             "name": "interval",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -504,18 +524,21 @@
               "description": "set-listener succeeded/failed"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get door control",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -565,26 +588,31 @@
               "description": "unlock delay (seconds)"
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set door control",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "mode",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "delay",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -640,18 +668,21 @@
               "offset": 10
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "open door",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -687,14 +718,16 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get cards",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -725,18 +758,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get card",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "card number",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           }
         ],
         "request": {
@@ -807,18 +843,21 @@
               "offset": 24
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get card by index",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "card index",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           }
         ],
         "request": {
@@ -889,46 +928,56 @@
               "offset": 24
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "put card",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "card number",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           },
           {
             "name": "start date",
-            "type": "date"
+            "type": "date",
+            "description": ""
           },
           {
             "name": "end date",
-            "type": "date"
+            "type": "date",
+            "description": ""
           },
           {
             "name": "door 1",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "door 2",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "door 3",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "door 4",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "PIN",
-            "type": "pin"
+            "type": "pin",
+            "description": ""
           }
         ],
         "request": {
@@ -999,18 +1048,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "delete card",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "card number",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           }
         ],
         "request": {
@@ -1046,14 +1098,16 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "delete all cards",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -1089,18 +1143,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get event",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "event index",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           }
         ],
         "request": {
@@ -1171,14 +1228,16 @@
               "offset": 27
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get event index",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -1209,18 +1268,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set event index",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "event index",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           }
         ],
         "request": {
@@ -1261,18 +1323,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "record special events",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "enable",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           }
         ],
         "request": {
@@ -1308,18 +1373,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get time profile",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "profile id",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -1435,82 +1503,101 @@
               "offset": 36
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set time profile",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "profile id",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "start date",
-            "type": "date"
+            "type": "date",
+            "description": ""
           },
           {
             "name": "end date",
-            "type": "date"
+            "type": "date",
+            "description": ""
           },
           {
             "name": "monday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "tuesday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "wednesday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "thursday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "friday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "saturday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "sunday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "segment 1 start",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": ""
           },
           {
             "name": "segment 1 end",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": ""
           },
           {
             "name": "segment 2 start",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": ""
           },
           {
             "name": "segment 2 end",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": ""
           },
           {
             "name": "segment 3 start",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": ""
           },
           {
             "name": "segment 3 end",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": ""
           },
           {
             "name": "linked profile id",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -1626,14 +1713,16 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "delete all time profiles",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -1669,66 +1758,81 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "add task",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "start date",
-            "type": "date"
+            "type": "date",
+            "description": ""
           },
           {
             "name": "end date",
-            "type": "date"
+            "type": "date",
+            "description": ""
           },
           {
             "name": "monday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "tuesday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "wednesday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "thursday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "friday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "saturday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "sunday",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "start time",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": ""
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "task type",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "more cards",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -1824,14 +1928,16 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "refresh tasklist",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -1867,14 +1973,16 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "clear tasklist",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -1910,18 +2018,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set pc control",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "enable",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           }
         ],
         "request": {
@@ -1962,18 +2073,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set interlock",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "interlock",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -2009,30 +2123,36 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "activate keypads",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "reader 1",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "reader 2",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "reader 3",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           },
           {
             "name": "reader 4",
-            "type": "bool"
+            "type": "bool",
+            "description": ""
           }
         ],
         "request": {
@@ -2083,34 +2203,41 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set door passcodes",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           },
           {
             "name": "passcode 1",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           },
           {
             "name": "passcode 2",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           },
           {
             "name": "passcode 3",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           },
           {
             "name": "passcode 4",
-            "type": "uint32"
+            "type": "uint32",
+            "description": ""
           }
         ],
         "request": {
@@ -2166,14 +2293,16 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "get antipassback",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -2204,18 +2333,21 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "set antipassback",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           },
           {
             "name": "antipassback",
-            "type": "uint8"
+            "type": "uint8",
+            "description": ""
           }
         ],
         "request": {
@@ -2251,14 +2383,16 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       },
       {
         "name": "restore default parameters",
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": ""
           }
         ],
         "request": {
@@ -2294,7 +2428,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "description": ""
       }
     ],
     "requests": [
