@@ -17,10 +17,10 @@ type TestData struct {
 
 type Function struct {
 	Name        string         `json:"name"`
+	Description string         `json:"description"`
 	Args        []Arg          `json:"args"`
 	Request     *types.Message `json:"request,omitempty"`
 	Response    *types.Message `json:"response,omitempty"`
-	Description string         `json:"description"`
 }
 
 type Arg struct {
@@ -34,16 +34,16 @@ type TestArg struct {
 	Value any `json:"value"`
 }
 
-type Request struct {
-	types.Message
-	Tests []RequestTest
-}
+// type Request struct {
+// 	types.Message
+// 	Tests []RequestTest
+// }
 
-type RequestTest struct {
-	Name     string    `json:"name"`
-	Args     []TestArg `json:"args"`
-	Expected []byte    `json:"expected"`
-}
+// type RequestTest struct {
+// 	Name     string    `json:"name"`
+// 	Args     []TestArg `json:"args"`
+// 	Expected []byte    `json:"expected"`
+// }
 
 type Value struct {
 	Name  string `json:"name"`

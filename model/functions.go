@@ -39,7 +39,8 @@ var Functions = []Function{
 }
 
 var GetController = Function{
-	Name: "get controller",
+	Name:        "get controller",
+	Description: "Retrieves the system information from an access controller.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -51,7 +52,8 @@ var GetController = Function{
 }
 
 var SetIPv4 = Function{
-	Name: "set IPv4",
+	Name:        "set IPv4",
+	Description: "Sets the controller IPv4 address, netmask and gateway address.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -74,7 +76,8 @@ var SetIPv4 = Function{
 }
 
 var GetTime = Function{
-	Name: "get time",
+	Name:        "get time",
+	Description: "Retrieves the access controller system date and time.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -86,7 +89,8 @@ var GetTime = Function{
 }
 
 var SetTime = Function{
-	Name: "set time",
+	Name:        "set time",
+	Description: "Sets the access controller system date and time.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -97,12 +101,13 @@ var SetTime = Function{
 			Type: "datetime",
 		},
 	},
-	Request:  &SetTimeRequest,
+	Request:  &SetTimeRequest.Message,
 	Response: &SetTimeResponse,
 }
 
 var GetStatus = Function{
-	Name: "get status",
+	Name:        "get status",
+	Description: "Retrieves the system status from an access controller.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -114,7 +119,8 @@ var GetStatus = Function{
 }
 
 var GetListener = Function{
-	Name: "get listener",
+	Name:        "get listener",
+	Description: "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -126,7 +132,8 @@ var GetListener = Function{
 }
 
 var SetListener = Function{
-	Name: "set listener",
+	Name:        "set listener",
+	Description: "Sets the access controller event listener IPv4 address:port and auto-send interval.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -150,7 +157,8 @@ var SetListener = Function{
 }
 
 var GetDoorControl = Function{
-	Name: "get door control",
+	Name:        "get door control",
+	Description: "Retrieves the control mode and unlock delay time for an access controller door.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -166,7 +174,8 @@ var GetDoorControl = Function{
 }
 
 var SetDoorControl = Function{
-	Name: "set door control",
+	Name:        "set door control",
+	Description: "Sets the control mode and unlock delay time for an access controller door.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -190,7 +199,8 @@ var SetDoorControl = Function{
 }
 
 var OpenDoor = Function{
-	Name: "open door",
+	Name:        "open door",
+	Description: "Unlocks a door controlled by an access controller.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -201,7 +211,7 @@ var OpenDoor = Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &OpenDoorRequest,
+	Request:  &OpenDoorRequest.Message,
 	Response: &OpenDoorResponse,
 }
 
@@ -638,7 +648,8 @@ var ActivateKeypads = Function{
 }
 
 var SetDoorPasscodes = Function{
-	Name: "set door passcodes",
+	Name:        "set door passcodes",
+	Description: "Sets up to 4 passcodes for a controller door.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",

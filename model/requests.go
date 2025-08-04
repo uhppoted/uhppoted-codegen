@@ -9,13 +9,13 @@ var Requests = []types.Message{
 	GetControllerRequest.Message,
 	SetIPv4Request.Message,
 	GetTimeRequest.Message,
-	SetTimeRequest,
+	SetTimeRequest.Message,
 	GetStatusRequest,
 	GetListenerRequest,
 	SetListenerRequest,
 	GetDoorControlRequest,
 	SetDoorControlRequest,
-	OpenDoorRequest,
+	OpenDoorRequest.Message,
 	GetCardsRequest,
 	GetCardRequest,
 	GetCardByIndexRequest,
@@ -42,29 +42,9 @@ var Requests = []types.Message{
 }
 
 var GetControllerRequest = requests.GetControllerRequest
-
-// var SetIPRequest = requests.SetIPRequest
 var SetIPv4Request = requests.SetIPv4Request
 var GetTimeRequest = requests.GetTimeRequest
-
-var SetTimeRequest = types.Message{
-	Name:    "set time request",
-	MsgType: 0x30,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "datetime",
-			Type:        "datetime",
-			Offset:      8,
-			Description: "date/time",
-		},
-	},
-}
+var SetTimeRequest = requests.SetTimeRequest
 
 var GetStatusRequest = types.Message{
 	Name:    "get status request",
@@ -242,23 +222,25 @@ var SetDoorRequest = types.Message{
 	},
 }
 
-var OpenDoorRequest = types.Message{
-	Name:    "open door request",
-	MsgType: 0x40,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "door",
-			Type:   "uint8",
-			Offset: 8,
-		},
-	},
-}
+var OpenDoorRequest = requests.OpenDoorRequest
+
+// var OpenDoorRequest = types.Message{
+// 	Name:    "open door request",
+// 	MsgType: 0x40,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "door",
+// 			Type:   "uint8",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var GetCardsRequest = types.Message{
 	Name:    "get cards request",
