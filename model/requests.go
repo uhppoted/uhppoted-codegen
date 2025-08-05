@@ -17,7 +17,7 @@ var Requests = []types.Message{
 	OpenDoorRequest.Message,
 	GetStatusRequest.Message,
 	GetCardsRequest.Message,
-	GetCardRequest,
+	GetCardRequest.Message,
 	GetCardByIndexRequest,
 	PutCardRequest,
 	DeleteCardRequest,
@@ -48,6 +48,7 @@ var SetTimeRequest = requests.SetTimeRequest
 var OpenDoorRequest = requests.OpenDoorRequest
 var GetStatusRequest = requests.GetStatusRequest
 var GetCardsRequest = requests.GetCardsRequest
+var GetCardRequest = requests.GetCardRequest
 
 // var GetStatusRequest = types.Message{
 // 	Name:    "get status request",
@@ -238,23 +239,23 @@ var SetDoorRequest = types.Message{
 // 	},
 // }
 
-var GetCardRequest = types.Message{
-	Name:    "get card request",
-	MsgType: 0x5a,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "card number",
-			Type:   "uint32",
-			Offset: 8,
-		},
-	},
-}
+// var GetCardRequest = types.Message{
+// 	Name:    "get card request",
+// 	MsgType: 0x5a,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "card number",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var GetCardByIndexRequest = types.Message{
 	Name:    "get card by index request",

@@ -16,7 +16,7 @@ var Responses = []types.Message{
 	OpenDoorResponse,
 	GetStatusResponse,
 	GetCardsResponse.Message,
-	GetCardResponse,
+	GetCardResponse.Message,
 	GetCardByIndexResponse,
 	PutCardResponse,
 	DeleteCardResponse,
@@ -42,6 +42,7 @@ var Responses = []types.Message{
 
 var GetControllerResponse = responses.GetControllerResponse
 var GetCardsResponse = responses.GetCardsResponse
+var GetCardResponse = responses.GetCardResponse
 
 // var GetControllerResponse = types.Message{
 // 	Name:    "get controller response",
@@ -426,58 +427,58 @@ var OpenDoorResponse = types.Message{
 // 	},
 // }
 
-var GetCardResponse = types.Message{
-	Name:    "get card response",
-	MsgType: 0x5a,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "card number",
-			Type:   "uint32",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "start date",
-			Type:   "optional date",
-			Offset: 12,
-		},
-		types.Field{
-			Name:   "end date",
-			Type:   "optional date",
-			Offset: 16,
-		},
-		types.Field{
-			Name:   "door 1",
-			Type:   "uint8",
-			Offset: 20,
-		},
-		types.Field{
-			Name:   "door 2",
-			Type:   "uint8",
-			Offset: 21,
-		},
-		types.Field{
-			Name:   "door 3",
-			Type:   "uint8",
-			Offset: 22,
-		},
-		types.Field{
-			Name:   "door 4",
-			Type:   "uint8",
-			Offset: 23,
-		},
-		types.Field{
-			Name:   "PIN",
-			Type:   "pin",
-			Offset: 24,
-		},
-	},
-}
+// var GetCardResponse = types.Message{
+// 	Name:    "get card response",
+// 	MsgType: 0x5a,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "card number",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "start date",
+// 			Type:   "optional date",
+// 			Offset: 12,
+// 		},
+// 		types.Field{
+// 			Name:   "end date",
+// 			Type:   "optional date",
+// 			Offset: 16,
+// 		},
+// 		types.Field{
+// 			Name:   "door 1",
+// 			Type:   "uint8",
+// 			Offset: 20,
+// 		},
+// 		types.Field{
+// 			Name:   "door 2",
+// 			Type:   "uint8",
+// 			Offset: 21,
+// 		},
+// 		types.Field{
+// 			Name:   "door 3",
+// 			Type:   "uint8",
+// 			Offset: 22,
+// 		},
+// 		types.Field{
+// 			Name:   "door 4",
+// 			Type:   "uint8",
+// 			Offset: 23,
+// 		},
+// 		types.Field{
+// 			Name:   "PIN",
+// 			Type:   "pin",
+// 			Offset: 24,
+// 		},
+// 	},
+// }
 
 var GetCardByIndexResponse = types.Message{
 	Name:    "get card by index response",

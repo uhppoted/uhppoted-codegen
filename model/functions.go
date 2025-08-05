@@ -239,8 +239,8 @@ var GetCard = Function{
 			Type: "uint32",
 		},
 	},
-	Request:  &GetCardRequest,
-	Response: &GetCardResponse,
+	Request:  &GetCardRequest.Message,
+	Response: &GetCardResponse.Message,
 }
 
 var GetCardByIndex = Function{
