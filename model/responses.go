@@ -1,20 +1,21 @@
 package model
 
 import (
+	"github.com/uhppoted/uhppoted-codegen/model/responses"
 	"github.com/uhppoted/uhppoted-codegen/model/types"
 )
 
 var Responses = []types.Message{
-	GetControllerResponse,
+	GetControllerResponse.Message,
 	GetTimeResponse,
 	SetTimeResponse,
-	GetStatusResponse,
 	GetListenerResponse,
 	SetListenerResponse,
 	GetDoorControlResponse,
 	SetDoorControlResponse,
 	OpenDoorResponse,
-	GetCardsResponse,
+	GetStatusResponse,
+	GetCardsResponse.Message,
 	GetCardResponse,
 	GetCardByIndexResponse,
 	PutCardResponse,
@@ -39,54 +40,57 @@ var Responses = []types.Message{
 	RestoreDefaultParametersResponse,
 }
 
-var GetControllerResponse = types.Message{
-	Name:    "get controller response",
-	MsgType: 0x94,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "ip address",
-			Type:        "IPv4",
-			Offset:      8,
-			Description: "controller IPv4 address, e.g. 192.168.1.100",
-		},
-		types.Field{
-			Name:        "subnet mask",
-			Type:        "IPv4",
-			Offset:      12,
-			Description: "controller IPv4 netmask, e.g. 255.255.255.0",
-		},
-		types.Field{
-			Name:        "gateway",
-			Type:        "IPv4",
-			Offset:      16,
-			Description: "controller IPv4 gateway address, e.g. 192.168.1.1",
-		},
-		types.Field{
-			Name:        "MAC address",
-			Type:        "MAC",
-			Offset:      20,
-			Description: "controller MAC address, e.g. 52:fd:fc:07:21:82",
-		},
-		types.Field{
-			Name:        "version",
-			Type:        "version",
-			Offset:      26,
-			Description: "controller firmware version, e.g. v6.62",
-		},
-		types.Field{
-			Name:        "date",
-			Type:        "date",
-			Offset:      28,
-			Description: "controller firmware release date, e.g. 2020-12-31",
-		},
-	},
-}
+var GetControllerResponse = responses.GetControllerResponse
+var GetCardsResponse = responses.GetCardsResponse
+
+// var GetControllerResponse = types.Message{
+// 	Name:    "get controller response",
+// 	MsgType: 0x94,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:        "ip address",
+// 			Type:        "IPv4",
+// 			Offset:      8,
+// 			Description: "controller IPv4 address, e.g. 192.168.1.100",
+// 		},
+// 		types.Field{
+// 			Name:        "subnet mask",
+// 			Type:        "IPv4",
+// 			Offset:      12,
+// 			Description: "controller IPv4 netmask, e.g. 255.255.255.0",
+// 		},
+// 		types.Field{
+// 			Name:        "gateway",
+// 			Type:        "IPv4",
+// 			Offset:      16,
+// 			Description: "controller IPv4 gateway address, e.g. 192.168.1.1",
+// 		},
+// 		types.Field{
+// 			Name:        "MAC address",
+// 			Type:        "MAC",
+// 			Offset:      20,
+// 			Description: "controller MAC address, e.g. 52:fd:fc:07:21:82",
+// 		},
+// 		types.Field{
+// 			Name:        "version",
+// 			Type:        "version",
+// 			Offset:      26,
+// 			Description: "controller firmware version, e.g. v6.62",
+// 		},
+// 		types.Field{
+// 			Name:        "date",
+// 			Type:        "date",
+// 			Offset:      28,
+// 			Description: "controller firmware release date, e.g. 2020-12-31",
+// 		},
+// 	},
+// }
 
 var GetTimeResponse = types.Message{
 	Name:    "get time response",
@@ -404,23 +408,23 @@ var OpenDoorResponse = types.Message{
 	},
 }
 
-var GetCardsResponse = types.Message{
-	Name:    "get cards response",
-	MsgType: 0x58,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "cards",
-			Type:   "uint32",
-			Offset: 8,
-		},
-	},
-}
+// var GetCardsResponse = types.Message{
+// 	Name:    "get cards response",
+// 	MsgType: 0x58,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "cards",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var GetCardResponse = types.Message{
 	Name:    "get card response",

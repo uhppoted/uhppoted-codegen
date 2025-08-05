@@ -10,13 +10,13 @@ var Requests = []types.Message{
 	SetIPv4Request.Message,
 	GetTimeRequest.Message,
 	SetTimeRequest.Message,
-	GetStatusRequest,
 	GetListenerRequest,
 	SetListenerRequest,
 	GetDoorControlRequest,
 	SetDoorControlRequest,
 	OpenDoorRequest.Message,
-	GetCardsRequest,
+	GetStatusRequest.Message,
+	GetCardsRequest.Message,
 	GetCardRequest,
 	GetCardByIndexRequest,
 	PutCardRequest,
@@ -45,19 +45,22 @@ var GetControllerRequest = requests.GetControllerRequest
 var SetIPv4Request = requests.SetIPv4Request
 var GetTimeRequest = requests.GetTimeRequest
 var SetTimeRequest = requests.SetTimeRequest
+var OpenDoorRequest = requests.OpenDoorRequest
+var GetStatusRequest = requests.GetStatusRequest
+var GetCardsRequest = requests.GetCardsRequest
 
-var GetStatusRequest = types.Message{
-	Name:    "get status request",
-	MsgType: 0x20,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-	},
-}
+// var GetStatusRequest = types.Message{
+// 	Name:    "get status request",
+// 	MsgType: 0x20,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 	},
+// }
 
 var GetListenerRequest = types.Message{
 	Name:    "get listener request",
@@ -222,11 +225,9 @@ var SetDoorRequest = types.Message{
 	},
 }
 
-var OpenDoorRequest = requests.OpenDoorRequest
-
-// var OpenDoorRequest = types.Message{
-// 	Name:    "open door request",
-// 	MsgType: 0x40,
+// var GetCardsRequest = types.Message{
+// 	Name:    "get cards request",
+// 	MsgType: 0x58,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -234,26 +235,8 @@ var OpenDoorRequest = requests.OpenDoorRequest
 // 			Offset:      4,
 // 			Description: "controller serial number",
 // 		},
-// 		types.Field{
-// 			Name:   "door",
-// 			Type:   "uint8",
-// 			Offset: 8,
-// 		},
 // 	},
 // }
-
-var GetCardsRequest = types.Message{
-	Name:    "get cards request",
-	MsgType: 0x58,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-	},
-}
 
 var GetCardRequest = types.Message{
 	Name:    "get card request",

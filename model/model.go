@@ -34,17 +34,6 @@ type TestArg struct {
 	Value any `json:"value"`
 }
 
-// type Request struct {
-// 	types.Message
-// 	Tests []RequestTest
-// }
-
-// type RequestTest struct {
-// 	Name     string    `json:"name"`
-// 	Args     []TestArg `json:"args"`
-// 	Expected []byte    `json:"expected"`
-// }
-
 type Value struct {
 	Name  string `json:"name"`
 	Type  string `json:"type"`

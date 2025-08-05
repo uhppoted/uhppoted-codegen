@@ -7,12 +7,12 @@ var Functions = []Function{
 	SetIPv4,
 	GetTime,
 	SetTime,
-	GetStatus,
 	GetListener,
 	SetListener,
 	GetDoorControl,
 	SetDoorControl,
 	OpenDoor,
+	GetStatus,
 	GetCards,
 	GetCard,
 	GetCardByIndex,
@@ -48,7 +48,7 @@ var GetController = Function{
 		},
 	},
 	Request:  &GetControllerRequest.Message,
-	Response: &GetControllerResponse,
+	Response: &GetControllerResponse.Message,
 }
 
 var SetIPv4 = Function{
@@ -103,19 +103,6 @@ var SetTime = Function{
 	},
 	Request:  &SetTimeRequest.Message,
 	Response: &SetTimeResponse,
-}
-
-var GetStatus = Function{
-	Name:        "get status",
-	Description: "Retrieves the system status from an access controller.",
-	Args: []Arg{
-		Arg{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  &GetStatusRequest,
-	Response: &GetStatusResponse,
 }
 
 var GetListener = Function{
@@ -215,6 +202,19 @@ var OpenDoor = Function{
 	Response: &OpenDoorResponse,
 }
 
+var GetStatus = Function{
+	Name:        "get status",
+	Description: "Retrieves the system status from an access controller.",
+	Args: []Arg{
+		Arg{
+			Name: "controller",
+			Type: "controller",
+		},
+	},
+	Request:  &GetStatusRequest.Message,
+	Response: &GetStatusResponse,
+}
+
 var GetCards = Function{
 	Name: "get cards",
 	Args: []Arg{
@@ -223,8 +223,8 @@ var GetCards = Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetCardsRequest,
-	Response: &GetCardsResponse,
+	Request:  &GetCardsRequest.Message,
+	Response: &GetCardsResponse.Message,
 }
 
 var GetCard = Function{

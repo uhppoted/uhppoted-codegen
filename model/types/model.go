@@ -41,16 +41,27 @@ type RequestTest struct {
 	Expected []byte    `json:"expected"`
 }
 
+type Response struct {
+	Message
+	Tests []ResponseTest
+}
+
+type ResponseTest struct {
+	Name     string  `json:"name"`
+	Response []byte  `json:"response"`
+	Expected []Value `json:"expected"`
+}
+
 type TestArg struct {
 	Arg
 	Value any `json:"value"`
 }
 
-// type Value struct {
-//     Name  string `json:"name"`
-//     Type  string `json:"type"`
-//     Value any    `json:"value"`
-// }
+type Value struct {
+	Name  string `json:"name"`
+	Type  string `json:"type"`
+	Value any    `json:"value"`
+}
 
 // type Test struct {
 //     Name     string        `json:"name"`

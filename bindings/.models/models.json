@@ -3,6 +3,7 @@
     "functions": [
       {
         "name": "get controller",
+        "description": "Retrieves the system information from an access controller.",
         "args": [
           {
             "name": "controller",
@@ -69,11 +70,11 @@
               "description": "controller firmware release date, e.g. 2020-12-31"
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set IPv4",
+        "description": "Sets the controller IPv4 address, netmask and gateway address.",
         "args": [
           {
             "name": "controller",
@@ -131,11 +132,11 @@
               "description": "'magic' word"
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get time",
+        "description": "Retrieves the access controller system date and time.",
         "args": [
           {
             "name": "controller",
@@ -172,11 +173,11 @@
               "description": "controller system date/time"
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set time",
+        "description": "Sets the access controller system date and time.",
         "args": [
           {
             "name": "controller",
@@ -224,11 +225,332 @@
               "description": "controller system date/time"
             }
           ]
+        }
+      },
+      {
+        "name": "get listener",
+        "description": "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller",
+            "description": ""
+          }
+        ],
+        "request": {
+          "name": "get listener request",
+          "msgtype": 146,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            }
+          ]
         },
-        "description": ""
+        "response": {
+          "name": "get listener response",
+          "msgtype": 146,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "address",
+              "type": "IPv4",
+              "offset": 8,
+              "description": "event listener IPv4 address"
+            },
+            {
+              "name": "port",
+              "type": "uint16",
+              "offset": 12,
+              "description": "event listener IPv4 port"
+            },
+            {
+              "name": "interval",
+              "type": "uint8",
+              "offset": 14,
+              "description": "status auto-send interval (seconds)"
+            }
+          ]
+        }
+      },
+      {
+        "name": "set listener",
+        "description": "Sets the access controller event listener IPv4 address:port and auto-send interval.",
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller",
+            "description": ""
+          },
+          {
+            "name": "address",
+            "type": "IPv4",
+            "description": ""
+          },
+          {
+            "name": "port",
+            "type": "uint16",
+            "description": ""
+          },
+          {
+            "name": "interval",
+            "type": "uint8",
+            "description": ""
+          }
+        ],
+        "request": {
+          "name": "set listener request",
+          "msgtype": 144,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "address",
+              "type": "IPv4",
+              "offset": 8,
+              "description": "event listener IPv4 address"
+            },
+            {
+              "name": "port",
+              "type": "uint16",
+              "offset": 12,
+              "description": "event listener IPv4 port"
+            },
+            {
+              "name": "interval",
+              "type": "uint8",
+              "offset": 14,
+              "description": "status auto-send interval (seconds)"
+            }
+          ]
+        },
+        "response": {
+          "name": "set listener response",
+          "msgtype": 144,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "offset": 8,
+              "description": "set-listener succeeded/failed"
+            }
+          ]
+        }
+      },
+      {
+        "name": "get door control",
+        "description": "Retrieves the control mode and unlock delay time for an access controller door.",
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller",
+            "description": ""
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "description": ""
+          }
+        ],
+        "request": {
+          "name": "get door control request",
+          "msgtype": 130,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8,
+              "description": "door ID ([1..4])"
+            }
+          ]
+        },
+        "response": {
+          "name": "get door control response",
+          "msgtype": 130,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8,
+              "description": "door ID ([1..4]"
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "offset": 9,
+              "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "offset": 10,
+              "description": "unlock delay (seconds)"
+            }
+          ]
+        }
+      },
+      {
+        "name": "set door control",
+        "description": "Sets the control mode and unlock delay time for an access controller door.",
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller",
+            "description": ""
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "description": ""
+          },
+          {
+            "name": "mode",
+            "type": "uint8",
+            "description": ""
+          },
+          {
+            "name": "delay",
+            "type": "uint8",
+            "description": ""
+          }
+        ],
+        "request": {
+          "name": "set door control request",
+          "msgtype": 128,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "offset": 9
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "offset": 10
+            }
+          ]
+        },
+        "response": {
+          "name": "set door control response",
+          "msgtype": 128,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "mode",
+              "type": "uint8",
+              "offset": 9
+            },
+            {
+              "name": "delay",
+              "type": "uint8",
+              "offset": 10
+            }
+          ]
+        }
+      },
+      {
+        "name": "open door",
+        "description": "Unlocks a door controlled by an access controller.",
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller",
+            "description": ""
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "description": ""
+          }
+        ],
+        "request": {
+          "name": "open door request",
+          "msgtype": 64,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            }
+          ]
+        },
+        "response": {
+          "name": "open door response",
+          "msgtype": 64,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "opened",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        }
       },
       {
         "name": "get status",
+        "description": "Retrieves the system status from an access controller.",
         "args": [
           {
             "name": "controller",
@@ -397,332 +719,11 @@
               "description": "packet sequence number"
             }
           ]
-        },
-        "description": ""
-      },
-      {
-        "name": "get listener",
-        "args": [
-          {
-            "name": "controller",
-            "type": "controller",
-            "description": ""
-          }
-        ],
-        "request": {
-          "name": "get listener request",
-          "msgtype": 146,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            }
-          ]
-        },
-        "response": {
-          "name": "get listener response",
-          "msgtype": 146,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "address",
-              "type": "IPv4",
-              "offset": 8,
-              "description": "event listener IPv4 address"
-            },
-            {
-              "name": "port",
-              "type": "uint16",
-              "offset": 12,
-              "description": "event listener IPv4 port"
-            },
-            {
-              "name": "interval",
-              "type": "uint8",
-              "offset": 14,
-              "description": "status auto-send interval (seconds)"
-            }
-          ]
-        },
-        "description": ""
-      },
-      {
-        "name": "set listener",
-        "args": [
-          {
-            "name": "controller",
-            "type": "controller",
-            "description": ""
-          },
-          {
-            "name": "address",
-            "type": "IPv4",
-            "description": ""
-          },
-          {
-            "name": "port",
-            "type": "uint16",
-            "description": ""
-          },
-          {
-            "name": "interval",
-            "type": "uint8",
-            "description": ""
-          }
-        ],
-        "request": {
-          "name": "set listener request",
-          "msgtype": 144,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "address",
-              "type": "IPv4",
-              "offset": 8,
-              "description": "event listener IPv4 address"
-            },
-            {
-              "name": "port",
-              "type": "uint16",
-              "offset": 12,
-              "description": "event listener IPv4 port"
-            },
-            {
-              "name": "interval",
-              "type": "uint8",
-              "offset": 14,
-              "description": "status auto-send interval (seconds)"
-            }
-          ]
-        },
-        "response": {
-          "name": "set listener response",
-          "msgtype": 144,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "ok",
-              "type": "bool",
-              "offset": 8,
-              "description": "set-listener succeeded/failed"
-            }
-          ]
-        },
-        "description": ""
-      },
-      {
-        "name": "get door control",
-        "args": [
-          {
-            "name": "controller",
-            "type": "controller",
-            "description": ""
-          },
-          {
-            "name": "door",
-            "type": "uint8",
-            "description": ""
-          }
-        ],
-        "request": {
-          "name": "get door control request",
-          "msgtype": 130,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "door",
-              "type": "uint8",
-              "offset": 8,
-              "description": "door ID ([1..4])"
-            }
-          ]
-        },
-        "response": {
-          "name": "get door control response",
-          "msgtype": 130,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "door",
-              "type": "uint8",
-              "offset": 8,
-              "description": "door ID ([1..4]"
-            },
-            {
-              "name": "mode",
-              "type": "uint8",
-              "offset": 9,
-              "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
-            },
-            {
-              "name": "delay",
-              "type": "uint8",
-              "offset": 10,
-              "description": "unlock delay (seconds)"
-            }
-          ]
-        },
-        "description": ""
-      },
-      {
-        "name": "set door control",
-        "args": [
-          {
-            "name": "controller",
-            "type": "controller",
-            "description": ""
-          },
-          {
-            "name": "door",
-            "type": "uint8",
-            "description": ""
-          },
-          {
-            "name": "mode",
-            "type": "uint8",
-            "description": ""
-          },
-          {
-            "name": "delay",
-            "type": "uint8",
-            "description": ""
-          }
-        ],
-        "request": {
-          "name": "set door control request",
-          "msgtype": 128,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "door",
-              "type": "uint8",
-              "offset": 8
-            },
-            {
-              "name": "mode",
-              "type": "uint8",
-              "offset": 9
-            },
-            {
-              "name": "delay",
-              "type": "uint8",
-              "offset": 10
-            }
-          ]
-        },
-        "response": {
-          "name": "set door control response",
-          "msgtype": 128,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "door",
-              "type": "uint8",
-              "offset": 8
-            },
-            {
-              "name": "mode",
-              "type": "uint8",
-              "offset": 9
-            },
-            {
-              "name": "delay",
-              "type": "uint8",
-              "offset": 10
-            }
-          ]
-        },
-        "description": ""
-      },
-      {
-        "name": "open door",
-        "args": [
-          {
-            "name": "controller",
-            "type": "controller",
-            "description": ""
-          },
-          {
-            "name": "door",
-            "type": "uint8",
-            "description": ""
-          }
-        ],
-        "request": {
-          "name": "open door request",
-          "msgtype": 64,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "door",
-              "type": "uint8",
-              "offset": 8
-            }
-          ]
-        },
-        "response": {
-          "name": "open door response",
-          "msgtype": 64,
-          "fields": [
-            {
-              "name": "controller",
-              "type": "uint32",
-              "offset": 4,
-              "description": "controller serial number"
-            },
-            {
-              "name": "opened",
-              "type": "bool",
-              "offset": 8
-            }
-          ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get cards",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -758,11 +759,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get card",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -843,11 +844,11 @@
               "offset": 24
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get card by index",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -928,11 +929,11 @@
               "offset": 24
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "put card",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1048,11 +1049,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "delete card",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1098,11 +1099,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "delete all cards",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1143,11 +1144,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get event",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1228,11 +1229,11 @@
               "offset": 27
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get event index",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1268,11 +1269,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set event index",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1323,11 +1324,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "record special events",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1373,11 +1374,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get time profile",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1503,11 +1504,11 @@
               "offset": 36
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set time profile",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1713,11 +1714,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "delete all time profiles",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1758,11 +1759,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "add task",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1928,11 +1929,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "refresh tasklist",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -1973,11 +1974,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "clear tasklist",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -2018,11 +2019,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set pc control",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -2073,11 +2074,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set interlock",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -2123,11 +2124,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "activate keypads",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -2203,11 +2204,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set door passcodes",
+        "description": "Sets up to 4 passcodes for a controller door.",
         "args": [
           {
             "name": "controller",
@@ -2293,11 +2294,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "get antipassback",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -2333,11 +2334,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "set antipassback",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -2383,11 +2384,11 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       },
       {
         "name": "restore default parameters",
+        "description": "",
         "args": [
           {
             "name": "controller",
@@ -2428,8 +2429,7 @@
               "offset": 8
             }
           ]
-        },
-        "description": ""
+        }
       }
     ],
     "requests": [
@@ -2508,18 +2508,6 @@
             "type": "datetime",
             "offset": 8,
             "description": "date/time"
-          }
-        ]
-      },
-      {
-        "name": "get status request",
-        "msgtype": 32,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
           }
         ]
       },
@@ -2624,6 +2612,18 @@
             "name": "door",
             "type": "uint8",
             "offset": 8
+          }
+        ]
+      },
+      {
+        "name": "get status request",
+        "msgtype": 32,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
           }
         ]
       },
@@ -3310,6 +3310,128 @@
         ]
       },
       {
+        "name": "get listener response",
+        "msgtype": 146,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "address",
+            "type": "IPv4",
+            "offset": 8,
+            "description": "event listener IPv4 address"
+          },
+          {
+            "name": "port",
+            "type": "uint16",
+            "offset": 12,
+            "description": "event listener IPv4 port"
+          },
+          {
+            "name": "interval",
+            "type": "uint8",
+            "offset": 14,
+            "description": "status auto-send interval (seconds)"
+          }
+        ]
+      },
+      {
+        "name": "set listener response",
+        "msgtype": 144,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "ok",
+            "type": "bool",
+            "offset": 8,
+            "description": "set-listener succeeded/failed"
+          }
+        ]
+      },
+      {
+        "name": "get door control response",
+        "msgtype": 130,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8,
+            "description": "door ID ([1..4]"
+          },
+          {
+            "name": "mode",
+            "type": "uint8",
+            "offset": 9,
+            "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
+          },
+          {
+            "name": "delay",
+            "type": "uint8",
+            "offset": 10,
+            "description": "unlock delay (seconds)"
+          }
+        ]
+      },
+      {
+        "name": "set door control response",
+        "msgtype": 128,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "mode",
+            "type": "uint8",
+            "offset": 9
+          },
+          {
+            "name": "delay",
+            "type": "uint8",
+            "offset": 10
+          }
+        ]
+      },
+      {
+        "name": "open door response",
+        "msgtype": 64,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "opened",
+            "type": "bool",
+            "offset": 8
+          }
+        ]
+      },
+      {
         "name": "get status response",
         "msgtype": 32,
         "fields": [
@@ -3456,128 +3578,6 @@
             "type": "uint32",
             "offset": 40,
             "description": "packet sequence number"
-          }
-        ]
-      },
-      {
-        "name": "get listener response",
-        "msgtype": 146,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
-          },
-          {
-            "name": "address",
-            "type": "IPv4",
-            "offset": 8,
-            "description": "event listener IPv4 address"
-          },
-          {
-            "name": "port",
-            "type": "uint16",
-            "offset": 12,
-            "description": "event listener IPv4 port"
-          },
-          {
-            "name": "interval",
-            "type": "uint8",
-            "offset": 14,
-            "description": "status auto-send interval (seconds)"
-          }
-        ]
-      },
-      {
-        "name": "set listener response",
-        "msgtype": 144,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
-          },
-          {
-            "name": "ok",
-            "type": "bool",
-            "offset": 8,
-            "description": "set-listener succeeded/failed"
-          }
-        ]
-      },
-      {
-        "name": "get door control response",
-        "msgtype": 130,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
-          },
-          {
-            "name": "door",
-            "type": "uint8",
-            "offset": 8,
-            "description": "door ID ([1..4]"
-          },
-          {
-            "name": "mode",
-            "type": "uint8",
-            "offset": 9,
-            "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
-          },
-          {
-            "name": "delay",
-            "type": "uint8",
-            "offset": 10,
-            "description": "unlock delay (seconds)"
-          }
-        ]
-      },
-      {
-        "name": "set door control response",
-        "msgtype": 128,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
-          },
-          {
-            "name": "door",
-            "type": "uint8",
-            "offset": 8
-          },
-          {
-            "name": "mode",
-            "type": "uint8",
-            "offset": 9
-          },
-          {
-            "name": "delay",
-            "type": "uint8",
-            "offset": 10
-          }
-        ]
-      },
-      {
-        "name": "open door response",
-        "msgtype": 64,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
-          },
-          {
-            "name": "opened",
-            "type": "bool",
-            "offset": 8
           }
         ]
       },
