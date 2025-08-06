@@ -1,8 +1,11 @@
 package model
 
-import ()
+import (
+	"github.com/uhppoted/uhppoted-codegen/model/functions"
+	"github.com/uhppoted/uhppoted-codegen/model/types"
+)
 
-var Functions = []Function{
+var Functions = []types.Function{
 	GetController,
 	SetIPv4,
 	GetTime,
@@ -38,36 +41,25 @@ var Functions = []Function{
 	RestoreDefaultParameters,
 }
 
-var GetController = Function{
-	Name:        "get controller",
-	Description: "Retrieves the system information from an access controller.",
-	Args: []Arg{
-		Arg{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  &GetControllerRequest.Message,
-	Response: &GetControllerResponse.Message,
-}
+var GetController = functions.GetController
 
-var SetIPv4 = Function{
+var SetIPv4 = types.Function{
 	Name:        "set IPv4",
 	Description: "Sets the controller IPv4 address, netmask and gateway address.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "address",
 			Type: "IPv4",
 		},
-		Arg{
+		{
 			Name: "netmask",
 			Type: "IPv4",
 		},
-		Arg{
+		{
 			Name: "gateway",
 			Type: "IPv4",
 		},
@@ -75,28 +67,28 @@ var SetIPv4 = Function{
 	Request: &SetIPv4Request.Message,
 }
 
-var GetTime = Function{
+var GetTime = types.Function{
 	Name:        "get time",
 	Description: "Retrieves the access controller system date and time.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
 	},
 	Request:  &GetTimeRequest.Message,
-	Response: &GetTimeResponse,
+	Response: &GetTimeResponse.Message,
 }
 
-var SetTime = Function{
+var SetTime = types.Function{
 	Name:        "set time",
 	Description: "Sets the access controller system date and time.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "time",
 			Type: "datetime",
 		},
@@ -105,11 +97,11 @@ var SetTime = Function{
 	Response: &SetTimeResponse,
 }
 
-var GetListener = Function{
+var GetListener = types.Function{
 	Name:        "get listener",
 	Description: "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -118,23 +110,23 @@ var GetListener = Function{
 	Response: &GetListenerResponse,
 }
 
-var SetListener = Function{
+var SetListener = types.Function{
 	Name:        "set listener",
 	Description: "Sets the access controller event listener IPv4 address:port and auto-send interval.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "address",
 			Type: "IPv4",
 		},
-		Arg{
+		{
 			Name: "port",
 			Type: "uint16",
 		},
-		Arg{
+		{
 			Name: "interval",
 			Type: "uint8",
 		},
@@ -143,15 +135,15 @@ var SetListener = Function{
 	Response: &SetListenerResponse,
 }
 
-var GetDoorControl = Function{
+var GetDoorControl = types.Function{
 	Name:        "get door control",
 	Description: "Retrieves the control mode and unlock delay time for an access controller door.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "door",
 			Type: "uint8",
 		},
@@ -160,23 +152,23 @@ var GetDoorControl = Function{
 	Response: &GetDoorControlResponse,
 }
 
-var SetDoorControl = Function{
+var SetDoorControl = types.Function{
 	Name:        "set door control",
 	Description: "Sets the control mode and unlock delay time for an access controller door.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "door",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "mode",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "delay",
 			Type: "uint8",
 		},
@@ -185,15 +177,15 @@ var SetDoorControl = Function{
 	Response: &SetDoorControlResponse,
 }
 
-var OpenDoor = Function{
+var OpenDoor = types.Function{
 	Name:        "open door",
 	Description: "Unlocks a door controlled by an access controller.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "door",
 			Type: "uint8",
 		},
@@ -202,11 +194,11 @@ var OpenDoor = Function{
 	Response: &OpenDoorResponse,
 }
 
-var GetStatus = Function{
+var GetStatus = types.Function{
 	Name:        "get status",
 	Description: "Retrieves the system status from an access controller.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -215,10 +207,10 @@ var GetStatus = Function{
 	Response: &GetStatusResponse,
 }
 
-var GetCards = Function{
+var GetCards = types.Function{
 	Name: "get cards",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -227,14 +219,14 @@ var GetCards = Function{
 	Response: &GetCardsResponse.Message,
 }
 
-var GetCard = Function{
+var GetCard = types.Function{
 	Name: "get card",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "card number",
 			Type: "uint32",
 		},
@@ -243,58 +235,58 @@ var GetCard = Function{
 	Response: &GetCardResponse.Message,
 }
 
-var GetCardByIndex = Function{
+var GetCardByIndex = types.Function{
 	Name: "get card by index",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "card index",
 			Type: "uint32",
 		},
 	},
-	Request:  &GetCardByIndexRequest,
-	Response: &GetCardByIndexResponse,
+	Request:  &GetCardByIndexRequest.Message,
+	Response: &GetCardByIndexResponse.Message,
 }
 
-var PutCard = Function{
+var PutCard = types.Function{
 	Name: "put card",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "card number",
 			Type: "uint32",
 		},
-		Arg{
+		{
 			Name: "start date",
 			Type: "date",
 		},
-		Arg{
+		{
 			Name: "end date",
 			Type: "date",
 		},
-		Arg{
+		{
 			Name: "door 1",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "door 2",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "door 3",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "door 4",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "PIN",
 			Type: "pin",
 		},
@@ -303,14 +295,14 @@ var PutCard = Function{
 	Response: &PutCardResponse,
 }
 
-var DeleteCard = Function{
+var DeleteCard = types.Function{
 	Name: "delete card",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "card number",
 			Type: "uint32",
 		},
@@ -319,10 +311,10 @@ var DeleteCard = Function{
 	Response: &DeleteCardResponse,
 }
 
-var DeleteAllCards = Function{
+var DeleteAllCards = types.Function{
 	Name: "delete all cards",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -331,14 +323,14 @@ var DeleteAllCards = Function{
 	Response: &DeleteAllCardsResponse,
 }
 
-var GetEvent = Function{
+var GetEvent = types.Function{
 	Name: "get event",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "event index",
 			Type: "uint32",
 		},
@@ -347,10 +339,10 @@ var GetEvent = Function{
 	Response: &GetEventResponse,
 }
 
-var GetEventIndex = Function{
+var GetEventIndex = types.Function{
 	Name: "get event index",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -359,14 +351,14 @@ var GetEventIndex = Function{
 	Response: &GetEventIndexResponse,
 }
 
-var SetEventIndex = Function{
+var SetEventIndex = types.Function{
 	Name: "set event index",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "event index",
 			Type: "uint32",
 		},
@@ -375,14 +367,14 @@ var SetEventIndex = Function{
 	Response: &SetEventIndexResponse,
 }
 
-var RecordSpecialEvents = Function{
+var RecordSpecialEvents = types.Function{
 	Name: "record special events",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "enable",
 			Type: "bool",
 		},
@@ -391,14 +383,14 @@ var RecordSpecialEvents = Function{
 	Response: &RecordSpecialEventsResponse,
 }
 
-var GetTimeProfile = Function{
+var GetTimeProfile = types.Function{
 	Name: "get time profile",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "profile id",
 			Type: "uint8",
 		},
@@ -407,78 +399,78 @@ var GetTimeProfile = Function{
 	Response: &GetTimeProfileResponse,
 }
 
-var SetTimeProfile = Function{
+var SetTimeProfile = types.Function{
 	Name: "set time profile",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "profile id",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "start date",
 			Type: "date",
 		},
-		Arg{
+		{
 			Name: "end date",
 			Type: "date",
 		},
-		Arg{
+		{
 			Name: "monday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "tuesday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "wednesday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "thursday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "friday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "saturday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "sunday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "segment 1 start",
 			Type: "HHmm",
 		},
-		Arg{
+		{
 			Name: "segment 1 end",
 			Type: "HHmm",
 		},
-		Arg{
+		{
 			Name: "segment 2 start",
 			Type: "HHmm",
 		},
-		Arg{
+		{
 			Name: "segment 2 end",
 			Type: "HHmm",
 		},
-		Arg{
+		{
 			Name: "segment 3 start",
 			Type: "HHmm",
 		},
-		Arg{
+		{
 			Name: "segment 3 end",
 			Type: "HHmm",
 		},
-		Arg{
+		{
 			Name: "linked profile id",
 			Type: "uint8",
 		},
@@ -487,10 +479,10 @@ var SetTimeProfile = Function{
 	Response: &SetTimeProfileResponse,
 }
 
-var DeleteAllTimeProfiles = Function{
+var DeleteAllTimeProfiles = types.Function{
 	Name: "delete all time profiles",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -499,62 +491,62 @@ var DeleteAllTimeProfiles = Function{
 	Response: &DeleteAllTimeProfilesResponse,
 }
 
-var AddTask = Function{
+var AddTask = types.Function{
 	Name: "add task",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "start date",
 			Type: "date",
 		},
-		Arg{
+		{
 			Name: "end date",
 			Type: "date",
 		},
-		Arg{
+		{
 			Name: "monday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "tuesday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "wednesday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "thursday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "friday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "saturday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "sunday",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "start time",
 			Type: "HHmm",
 		},
-		Arg{
+		{
 			Name: "door",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "task type",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "more cards",
 			Type: "uint8",
 		},
@@ -563,10 +555,10 @@ var AddTask = Function{
 	Response: &AddTaskResponse,
 }
 
-var RefreshTaskList = Function{
+var RefreshTaskList = types.Function{
 	Name: "refresh tasklist",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -575,10 +567,10 @@ var RefreshTaskList = Function{
 	Response: &RefreshTaskListResponse,
 }
 
-var ClearTaskList = Function{
+var ClearTaskList = types.Function{
 	Name: "clear tasklist",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -587,14 +579,14 @@ var ClearTaskList = Function{
 	Response: &ClearTaskListResponse,
 }
 
-var SetPCControl = Function{
+var SetPCControl = types.Function{
 	Name: "set pc control",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "enable",
 			Type: "bool",
 		},
@@ -603,14 +595,14 @@ var SetPCControl = Function{
 	Response: &SetPCControlResponse,
 }
 
-var SetInterlock = Function{
+var SetInterlock = types.Function{
 	Name: "set interlock",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "interlock",
 			Type: "uint8",
 		},
@@ -619,26 +611,26 @@ var SetInterlock = Function{
 	Response: &SetInterlockResponse,
 }
 
-var ActivateKeypads = Function{
+var ActivateKeypads = types.Function{
 	Name: "activate keypads",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "reader 1",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "reader 2",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "reader 3",
 			Type: "bool",
 		},
-		Arg{
+		{
 			Name: "reader 4",
 			Type: "bool",
 		},
@@ -647,31 +639,31 @@ var ActivateKeypads = Function{
 	Response: &ActivateKeypadsResponse,
 }
 
-var SetDoorPasscodes = Function{
+var SetDoorPasscodes = types.Function{
 	Name:        "set door passcodes",
 	Description: "Sets up to 4 passcodes for a controller door.",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "door",
 			Type: "uint8",
 		},
-		Arg{
+		{
 			Name: "passcode 1",
 			Type: "uint32",
 		},
-		Arg{
+		{
 			Name: "passcode 2",
 			Type: "uint32",
 		},
-		Arg{
+		{
 			Name: "passcode 3",
 			Type: "uint32",
 		},
-		Arg{
+		{
 			Name: "passcode 4",
 			Type: "uint32",
 		},
@@ -680,10 +672,10 @@ var SetDoorPasscodes = Function{
 	Response: &SetDoorPasscodesResponse,
 }
 
-var GetAntiPassback = Function{
+var GetAntiPassback = types.Function{
 	Name: "get antipassback",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
@@ -692,14 +684,14 @@ var GetAntiPassback = Function{
 	Response: &GetAntiPassbackResponse,
 }
 
-var SetAntiPassback = Function{
+var SetAntiPassback = types.Function{
 	Name: "set antipassback",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},
-		Arg{
+		{
 			Name: "antipassback",
 			Type: "uint8",
 		},
@@ -708,10 +700,10 @@ var SetAntiPassback = Function{
 	Response: &SetAntiPassbackResponse,
 }
 
-var RestoreDefaultParameters = Function{
+var RestoreDefaultParameters = types.Function{
 	Name: "restore default parameters",
-	Args: []Arg{
-		Arg{
+	Args: []types.Arg{
+		{
 			Name: "controller",
 			Type: "controller",
 		},

@@ -18,7 +18,7 @@ var Requests = []types.Message{
 	GetStatusRequest.Message,
 	GetCardsRequest.Message,
 	GetCardRequest.Message,
-	GetCardByIndexRequest,
+	GetCardByIndexRequest.Message,
 	PutCardRequest,
 	DeleteCardRequest,
 	DeleteAllCardsRequest,
@@ -49,19 +49,7 @@ var OpenDoorRequest = requests.OpenDoorRequest
 var GetStatusRequest = requests.GetStatusRequest
 var GetCardsRequest = requests.GetCardsRequest
 var GetCardRequest = requests.GetCardRequest
-
-// var GetStatusRequest = types.Message{
-// 	Name:    "get status request",
-// 	MsgType: 0x20,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 	},
-// }
+var GetCardByIndexRequest = requests.GetCardByIndexRequest
 
 var GetListenerRequest = types.Message{
 	Name:    "get listener request",
@@ -226,22 +214,9 @@ var SetDoorRequest = types.Message{
 	},
 }
 
-// var GetCardsRequest = types.Message{
-// 	Name:    "get cards request",
-// 	MsgType: 0x58,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 	},
-// }
-
-// var GetCardRequest = types.Message{
-// 	Name:    "get card request",
-// 	MsgType: 0x5a,
+// var GetCardByIndexRequest = types.Message{
+// 	Name:    "get card by index request",
+// 	MsgType: 0x5c,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -250,30 +225,12 @@ var SetDoorRequest = types.Message{
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:   "card number",
+// 			Name:   "card index",
 // 			Type:   "uint32",
 // 			Offset: 8,
 // 		},
 // 	},
 // }
-
-var GetCardByIndexRequest = types.Message{
-	Name:    "get card by index request",
-	MsgType: 0x5c,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "card index",
-			Type:   "uint32",
-			Offset: 8,
-		},
-	},
-}
 
 var PutCardRequest = types.Message{
 	Name:    "put card request",

@@ -5,7 +5,7 @@ var GetCardsRequest = Request{
 		Name:    "get cards request",
 		MsgType: 0x58,
 		Fields: []Field{
-			Field{
+			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
@@ -17,7 +17,7 @@ var GetCardsRequest = Request{
 		{
 			Name: "get-cards",
 			Args: []TestArg{
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "controller",
 						Type: "uint32",

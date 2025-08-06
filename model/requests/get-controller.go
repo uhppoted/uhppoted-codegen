@@ -5,7 +5,7 @@ var GetControllerRequest = Request{
 		Name:    "get controller request",
 		MsgType: 0x94,
 		Fields: []Field{
-			Field{
+			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
@@ -17,7 +17,7 @@ var GetControllerRequest = Request{
 		{
 			Name: "find-controllers",
 			Args: []TestArg{
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "controller",
 						Type: "uint32",
@@ -35,7 +35,7 @@ var GetControllerRequest = Request{
 		{
 			Name: "get-controller",
 			Args: []TestArg{
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "controller",
 						Type: "uint32",

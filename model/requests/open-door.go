@@ -5,13 +5,13 @@ var OpenDoorRequest = Request{
 		Name:    "open door request",
 		MsgType: 0x40,
 		Fields: []Field{
-			Field{
+			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
 				Description: "controller serial number",
 			},
-			Field{
+			{
 				Name:   "door",
 				Type:   "uint8",
 				Offset: 8,
@@ -22,14 +22,14 @@ var OpenDoorRequest = Request{
 		{
 			Name: "open-door",
 			Args: []TestArg{
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "controller",
 						Type: "uint32",
 					},
 					Value: uint32(405419896),
 				},
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "door",
 						Type: "uint8",

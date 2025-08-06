@@ -5,13 +5,13 @@ var SetTimeRequest = Request{
 		Name:    "set time request",
 		MsgType: 0x30,
 		Fields: []Field{
-			Field{
+			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
 				Description: "controller serial number",
 			},
-			Field{
+			{
 				Name:        "datetime",
 				Type:        "datetime",
 				Offset:      8,
@@ -23,8 +23,20 @@ var SetTimeRequest = Request{
 		{
 			Name: "set-time",
 			Args: []TestArg{
-				TestArg{Arg: Arg{Name: "controller", Type: "uint32"}, Value: uint32(405419896)},
-				TestArg{Arg: Arg{Name: "datetime", Type: "datetime"}, Value: "2024-11-04 12:34:56"},
+				{
+					Arg: Arg{
+						Name: "controller",
+						Type: "uint32",
+					},
+					Value: uint32(405419896),
+				},
+				{
+					Arg: Arg{
+						Name: "datetime",
+						Type: "datetime",
+					},
+					Value: "2024-11-04 12:34:56",
+				},
 			},
 			Expected: []byte{
 				0x17, 0x30, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x20, 0x24, 0x11, 0x04, 0x12, 0x34, 0x56, 0x00,

@@ -5,7 +5,7 @@ var GetTimeRequest = Request{
 		Name:    "get time request",
 		MsgType: 0x32,
 		Fields: []Field{
-			Field{
+			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
@@ -17,7 +17,7 @@ var GetTimeRequest = Request{
 		{
 			Name: "get-time",
 			Args: []TestArg{
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "controller",
 						Type: "uint32",

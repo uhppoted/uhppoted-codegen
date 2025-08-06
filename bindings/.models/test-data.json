@@ -751,7 +751,7 @@
         }
       },
       {
-        "name": "get card by index",
+        "name": "get card at index",
         "request": {
           "name": "get card by index request",
           "values": [

@@ -7,7 +7,7 @@ import (
 
 var Responses = []types.Message{
 	GetControllerResponse.Message,
-	GetTimeResponse,
+	GetTimeResponse.Message,
 	SetTimeResponse,
 	GetListenerResponse,
 	SetListenerResponse,
@@ -17,7 +17,7 @@ var Responses = []types.Message{
 	GetStatusResponse,
 	GetCardsResponse.Message,
 	GetCardResponse.Message,
-	GetCardByIndexResponse,
+	GetCardByIndexResponse.Message,
 	PutCardResponse,
 	DeleteCardResponse,
 	DeleteAllCardsResponse,
@@ -41,12 +41,14 @@ var Responses = []types.Message{
 }
 
 var GetControllerResponse = responses.GetControllerResponse
+var GetTimeResponse = responses.GetTimeResponse
 var GetCardsResponse = responses.GetCardsResponse
 var GetCardResponse = responses.GetCardResponse
+var GetCardByIndexResponse = responses.GetCardByIndexResponse
 
-// var GetControllerResponse = types.Message{
-// 	Name:    "get controller response",
-// 	MsgType: 0x94,
+// var GetTimeResponse = types.Message{
+// 	Name:    "get time response",
+// 	MsgType: 0x32,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -55,62 +57,13 @@ var GetCardResponse = responses.GetCardResponse
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:        "ip address",
-// 			Type:        "IPv4",
+// 			Name:        "datetime",
+// 			Type:        "datetime",
 // 			Offset:      8,
-// 			Description: "controller IPv4 address, e.g. 192.168.1.100",
-// 		},
-// 		types.Field{
-// 			Name:        "subnet mask",
-// 			Type:        "IPv4",
-// 			Offset:      12,
-// 			Description: "controller IPv4 netmask, e.g. 255.255.255.0",
-// 		},
-// 		types.Field{
-// 			Name:        "gateway",
-// 			Type:        "IPv4",
-// 			Offset:      16,
-// 			Description: "controller IPv4 gateway address, e.g. 192.168.1.1",
-// 		},
-// 		types.Field{
-// 			Name:        "MAC address",
-// 			Type:        "MAC",
-// 			Offset:      20,
-// 			Description: "controller MAC address, e.g. 52:fd:fc:07:21:82",
-// 		},
-// 		types.Field{
-// 			Name:        "version",
-// 			Type:        "version",
-// 			Offset:      26,
-// 			Description: "controller firmware version, e.g. v6.62",
-// 		},
-// 		types.Field{
-// 			Name:        "date",
-// 			Type:        "date",
-// 			Offset:      28,
-// 			Description: "controller firmware release date, e.g. 2020-12-31",
+// 			Description: "controller system date/time",
 // 		},
 // 	},
 // }
-
-var GetTimeResponse = types.Message{
-	Name:    "get time response",
-	MsgType: 0x32,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "datetime",
-			Type:        "datetime",
-			Offset:      8,
-			Description: "controller system date/time",
-		},
-	},
-}
 
 var SetTimeResponse = types.Message{
 	Name:    "set time response",
@@ -409,27 +362,9 @@ var OpenDoorResponse = types.Message{
 	},
 }
 
-// var GetCardsResponse = types.Message{
-// 	Name:    "get cards response",
-// 	MsgType: 0x58,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "cards",
-// 			Type:   "uint32",
-// 			Offset: 8,
-// 		},
-// 	},
-// }
-
-// var GetCardResponse = types.Message{
-// 	Name:    "get card response",
-// 	MsgType: 0x5a,
+// var GetCardByIndexResponse = types.Message{
+// 	Name:    "get card by index response",
+// 	MsgType: 0x5c,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -479,59 +414,6 @@ var OpenDoorResponse = types.Message{
 // 		},
 // 	},
 // }
-
-var GetCardByIndexResponse = types.Message{
-	Name:    "get card by index response",
-	MsgType: 0x5c,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "card number",
-			Type:   "uint32",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "start date",
-			Type:   "optional date",
-			Offset: 12,
-		},
-		types.Field{
-			Name:   "end date",
-			Type:   "optional date",
-			Offset: 16,
-		},
-		types.Field{
-			Name:   "door 1",
-			Type:   "uint8",
-			Offset: 20,
-		},
-		types.Field{
-			Name:   "door 2",
-			Type:   "uint8",
-			Offset: 21,
-		},
-		types.Field{
-			Name:   "door 3",
-			Type:   "uint8",
-			Offset: 22,
-		},
-		types.Field{
-			Name:   "door 4",
-			Type:   "uint8",
-			Offset: 23,
-		},
-		types.Field{
-			Name:   "PIN",
-			Type:   "pin",
-			Offset: 24,
-		},
-	},
-}
 
 var PutCardResponse = types.Message{
 	Name:    "put card response",

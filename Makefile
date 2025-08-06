@@ -137,7 +137,7 @@ debug: erlang
 	                                                set-ip
 
 debug-all: go rust python zig php erlang lua
-	$(eval COMMAND := set-time)
+	$(eval COMMAND := get-controller)
 	echo "--- $(COMMAND)"
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"

@@ -18,7 +18,7 @@ var Tests = []Test{
 	OpenDoorTest,
 	GetCardsTest,
 	GetCardTest,
-	GetCardByIndexTest,
+	GetCardAtIndexTest,
 	PutCardTest,
 	DeleteCardTest,
 	DeleteAllCardsTest,
@@ -934,8 +934,8 @@ var GetCardTest = Test{
 	},
 }
 
-var GetCardByIndexTest = Test{
-	Name: "get card by index",
+var GetCardAtIndexTest = Test{
+	Name: "get card at index",
 	Request: &TestRequest{
 		Name: GetCardByIndexRequest.Name,
 		Values: []Value{

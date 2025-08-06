@@ -7,8 +7,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -78,23 +77,19 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "address",
-            "type": "IPv4",
-            "description": ""
+            "type": "IPv4"
           },
           {
             "name": "netmask",
-            "type": "IPv4",
-            "description": ""
+            "type": "IPv4"
           },
           {
             "name": "gateway",
-            "type": "IPv4",
-            "description": ""
+            "type": "IPv4"
           }
         ],
         "request": {
@@ -140,8 +135,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -181,13 +175,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "time",
-            "type": "datetime",
-            "description": ""
+            "type": "datetime"
           }
         ],
         "request": {
@@ -233,8 +225,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -286,23 +277,19 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "address",
-            "type": "IPv4",
-            "description": ""
+            "type": "IPv4"
           },
           {
             "name": "port",
-            "type": "uint16",
-            "description": ""
+            "type": "uint16"
           },
           {
             "name": "interval",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -360,13 +347,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "door",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -424,23 +409,19 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "door",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "mode",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "delay",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -504,13 +485,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "door",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -554,8 +533,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -727,8 +705,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -767,13 +744,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "card number",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           }
         ],
         "request": {
@@ -852,13 +827,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "card index",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           }
         ],
         "request": {
@@ -872,7 +845,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "card index",
+              "name": "index",
               "type": "uint32",
               "offset": 8
             }
@@ -937,48 +910,39 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "card number",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           },
           {
             "name": "start date",
-            "type": "date",
-            "description": ""
+            "type": "date"
           },
           {
             "name": "end date",
-            "type": "date",
-            "description": ""
+            "type": "date"
           },
           {
             "name": "door 1",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "door 2",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "door 3",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "door 4",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "PIN",
-            "type": "pin",
-            "description": ""
+            "type": "pin"
           }
         ],
         "request": {
@@ -1057,13 +1021,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "card number",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           }
         ],
         "request": {
@@ -1107,8 +1069,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -1152,13 +1113,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "event index",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           }
         ],
         "request": {
@@ -1237,8 +1196,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -1277,13 +1235,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "event index",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           }
         ],
         "request": {
@@ -1332,13 +1288,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "enable",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           }
         ],
         "request": {
@@ -1382,13 +1336,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "profile id",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -1512,93 +1464,75 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "profile id",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "start date",
-            "type": "date",
-            "description": ""
+            "type": "date"
           },
           {
             "name": "end date",
-            "type": "date",
-            "description": ""
+            "type": "date"
           },
           {
             "name": "monday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "tuesday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "wednesday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "thursday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "friday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "saturday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "sunday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "segment 1 start",
-            "type": "HHmm",
-            "description": ""
+            "type": "HHmm"
           },
           {
             "name": "segment 1 end",
-            "type": "HHmm",
-            "description": ""
+            "type": "HHmm"
           },
           {
             "name": "segment 2 start",
-            "type": "HHmm",
-            "description": ""
+            "type": "HHmm"
           },
           {
             "name": "segment 2 end",
-            "type": "HHmm",
-            "description": ""
+            "type": "HHmm"
           },
           {
             "name": "segment 3 start",
-            "type": "HHmm",
-            "description": ""
+            "type": "HHmm"
           },
           {
             "name": "segment 3 end",
-            "type": "HHmm",
-            "description": ""
+            "type": "HHmm"
           },
           {
             "name": "linked profile id",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -1722,8 +1656,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -1767,73 +1700,59 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "start date",
-            "type": "date",
-            "description": ""
+            "type": "date"
           },
           {
             "name": "end date",
-            "type": "date",
-            "description": ""
+            "type": "date"
           },
           {
             "name": "monday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "tuesday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "wednesday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "thursday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "friday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "saturday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "sunday",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "start time",
-            "type": "HHmm",
-            "description": ""
+            "type": "HHmm"
           },
           {
             "name": "door",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "task type",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "more cards",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -1937,8 +1856,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -1982,8 +1900,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -2027,13 +1944,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "enable",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           }
         ],
         "request": {
@@ -2082,13 +1997,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "interlock",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -2132,28 +2045,23 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "reader 1",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "reader 2",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "reader 3",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           },
           {
             "name": "reader 4",
-            "type": "bool",
-            "description": ""
+            "type": "bool"
           }
         ],
         "request": {
@@ -2212,33 +2120,27 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "door",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           },
           {
             "name": "passcode 1",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           },
           {
             "name": "passcode 2",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           },
           {
             "name": "passcode 3",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           },
           {
             "name": "passcode 4",
-            "type": "uint32",
-            "description": ""
+            "type": "uint32"
           }
         ],
         "request": {
@@ -2302,8 +2204,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -2342,13 +2243,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           },
           {
             "name": "antipassback",
-            "type": "uint8",
-            "description": ""
+            "type": "uint8"
           }
         ],
         "request": {
@@ -2392,8 +2291,7 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller",
-            "description": ""
+            "type": "controller"
           }
         ],
         "request": {
@@ -2667,7 +2565,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "card index",
+            "name": "index",
             "type": "uint32",
             "offset": 8
           }

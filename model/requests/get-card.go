@@ -5,13 +5,13 @@ var GetCardRequest = Request{
 		Name:    "get card request",
 		MsgType: 0x5a,
 		Fields: []Field{
-			Field{
+			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
 				Description: "controller serial number",
 			},
-			Field{
+			{
 				Name:   "card number",
 				Type:   "uint32",
 				Offset: 8,
@@ -22,14 +22,14 @@ var GetCardRequest = Request{
 		{
 			Name: "get-card",
 			Args: []TestArg{
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "controller",
 						Type: "uint32",
 					},
 					Value: uint32(405419896),
 				},
-				TestArg{
+				{
 					Arg: Arg{
 						Name: "card",
 						Type: "uint32",

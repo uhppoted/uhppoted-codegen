@@ -5,23 +5,23 @@ import (
 )
 
 type Model struct {
-	Functions []Function      `json:"functions"`
-	Requests  []types.Message `json:"requests"`
-	Responses []types.Message `json:"responses"`
-	Event     types.Message   `json:"event"`
+	Functions []types.Function `json:"functions"`
+	Requests  []types.Message  `json:"requests"`
+	Responses []types.Message  `json:"responses"`
+	Event     types.Message    `json:"event"`
 }
 
 type TestData struct {
 	Tests []Test `json:"tests"`
 }
 
-type Function struct {
-	Name        string         `json:"name"`
-	Description string         `json:"description"`
-	Args        []Arg          `json:"args"`
-	Request     *types.Message `json:"request,omitempty"`
-	Response    *types.Message `json:"response,omitempty"`
-}
+// type Function struct {
+// 	Name        string         `json:"name"`
+// 	Description string         `json:"description"`
+// 	Args        []Arg          `json:"args"`
+// 	Request     *types.Message `json:"request,omitempty"`
+// 	Response    *types.Message `json:"response,omitempty"`
+// }
 
 type Arg struct {
 	Name        string `json:"name"`
