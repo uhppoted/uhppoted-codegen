@@ -106,8 +106,8 @@ var GetListener = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetListenerRequest,
-	Response: &GetListenerResponse,
+	Request:  &GetListenerRequest.Message,
+	Response: &GetListenerResponse.Message,
 }
 
 var SetListener = types.Function{

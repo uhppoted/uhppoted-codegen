@@ -9,7 +9,7 @@ var Responses = []types.Message{
 	GetControllerResponse.Message,
 	GetTimeResponse.Message,
 	SetTimeResponse,
-	GetListenerResponse,
+	GetListenerResponse.Message,
 	SetListenerResponse,
 	GetDoorControlResponse,
 	SetDoorControlResponse,
@@ -42,28 +42,10 @@ var Responses = []types.Message{
 
 var GetControllerResponse = responses.GetControllerResponse
 var GetTimeResponse = responses.GetTimeResponse
+var GetListenerResponse = responses.GetListenerResponse
 var GetCardsResponse = responses.GetCardsResponse
 var GetCardResponse = responses.GetCardResponse
 var GetCardByIndexResponse = responses.GetCardByIndexResponse
-
-// var GetTimeResponse = types.Message{
-// 	Name:    "get time response",
-// 	MsgType: 0x32,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:        "datetime",
-// 			Type:        "datetime",
-// 			Offset:      8,
-// 			Description: "controller system date/time",
-// 		},
-// 	},
-// }
 
 var SetTimeResponse = types.Message{
 	Name:    "set time response",
@@ -235,36 +217,36 @@ var GetStatusResponse = types.Message{
 	},
 }
 
-var GetListenerResponse = types.Message{
-	Name:    "get listener response",
-	MsgType: 0x92,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "address",
-			Type:        "IPv4",
-			Offset:      8,
-			Description: "event listener IPv4 address",
-		},
-		types.Field{
-			Name:        "port",
-			Type:        "uint16",
-			Offset:      12,
-			Description: "event listener IPv4 port",
-		},
-		types.Field{
-			Name:        "interval",
-			Type:        "uint8",
-			Offset:      14,
-			Description: "status auto-send interval (seconds)",
-		},
-	},
-}
+// var GetListenerResponse = types.Message{
+// 	Name:    "get listener response",
+// 	MsgType: 0x92,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:        "address",
+// 			Type:        "IPv4",
+// 			Offset:      8,
+// 			Description: "event listener IPv4 address",
+// 		},
+// 		types.Field{
+// 			Name:        "port",
+// 			Type:        "uint16",
+// 			Offset:      12,
+// 			Description: "event listener IPv4 port",
+// 		},
+// 		types.Field{
+// 			Name:        "interval",
+// 			Type:        "uint8",
+// 			Offset:      14,
+// 			Description: "status auto-send interval (seconds)",
+// 		},
+// 	},
+// }
 
 var SetListenerResponse = types.Message{
 	Name:    "set listener response",

@@ -10,7 +10,7 @@ var Requests = []types.Message{
 	SetIPv4Request.Message,
 	GetTimeRequest.Message,
 	SetTimeRequest.Message,
-	GetListenerRequest,
+	GetListenerRequest.Message,
 	SetListenerRequest,
 	GetDoorControlRequest,
 	SetDoorControlRequest,
@@ -45,24 +45,25 @@ var GetControllerRequest = requests.GetControllerRequest
 var SetIPv4Request = requests.SetIPv4Request
 var GetTimeRequest = requests.GetTimeRequest
 var SetTimeRequest = requests.SetTimeRequest
+var GetListenerRequest = requests.GetListenerRequest
 var OpenDoorRequest = requests.OpenDoorRequest
 var GetStatusRequest = requests.GetStatusRequest
 var GetCardsRequest = requests.GetCardsRequest
 var GetCardRequest = requests.GetCardRequest
 var GetCardByIndexRequest = requests.GetCardByIndexRequest
 
-var GetListenerRequest = types.Message{
-	Name:    "get listener request",
-	MsgType: 0x92,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-	},
-}
+// var GetListenerRequest = types.Message{
+// 	Name:    "get listener request",
+// 	MsgType: 0x92,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 	},
+// }
 
 var SetListenerRequest = types.Message{
 	Name:    "set listener request",
