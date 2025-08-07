@@ -1,15 +1,22 @@
 package types
 
-// type TestData struct {
-//     Tests []Test `json:"tests"`
-// }
-
 type Function struct {
-	Name        string   `json:"name"`
-	Description string   `json:"description"`
-	Args        []Arg    `json:"args"`
-	Request     *Message `json:"request,omitempty"`
-	Response    *Message `json:"response,omitempty"`
+	Name        string     `json:"name"`
+	Description string     `json:"description"`
+	Args        []Arg      `json:"args"`
+	Request     *Message   `json:"request,omitempty"`
+	Response    *Message   `json:"response,omitempty"`
+	Tests       []FuncTest `json:"tests,omitempty"`
+}
+
+type Request struct {
+	Message
+	Tests []RequestTest `json:"tests"`
+}
+
+type Response struct {
+	Message
+	Tests []ResponseTest `json:"tests"`
 }
 
 type Message struct {
@@ -30,9 +37,10 @@ type Arg struct {
 	Type string `json:"type"`
 }
 
-type Request struct {
-	Message
-	Tests []RequestTest
+type Value struct {
+	Name  string `json:"name"`
+	Type  string `json:"type"`
+	Value any    `json:"value"`
 }
 
 type RequestTest struct {
@@ -41,15 +49,17 @@ type RequestTest struct {
 	Expected []byte    `json:"expected"`
 }
 
-type Response struct {
-	Message
-	Tests []ResponseTest
-}
-
 type ResponseTest struct {
 	Name     string  `json:"name"`
 	Response []byte  `json:"response"`
 	Expected []Value `json:"expected"`
+}
+
+type FuncTest struct {
+	Name    string      `json:"name"`
+	Args    []TestArg   `json:"args"`
+	Request []byte      `json:"request"`
+	Replies []TestReply `json:"replies"`
 }
 
 type TestArg struct {
@@ -57,26 +67,7 @@ type TestArg struct {
 	Value any `json:"value"`
 }
 
-type Value struct {
-	Name  string `json:"name"`
-	Type  string `json:"type"`
-	Value any    `json:"value"`
+type TestReply struct {
+	Message  []byte  `json:"message"`
+	Response []Value `json:"response"`
 }
-
-// type Test struct {
-//     Name     string        `json:"name"`
-//     Request  *TestRequest  `json:"request,omitempty"`
-//     Response *TestResponse `json:"response,omitempty"`
-// }
-
-// type TestRequest struct {
-//     Name    string  `json:"name"`
-//     Values  []Value `json:"values"`
-//     Message []uint8 `json:"message,omitempty"`
-// }
-
-// type TestResponse struct {
-//     Name    string  `json:"name"`
-//     Values  []Value `json:"values"`
-//     Message []uint8 `json:"message,omitempty"`
-// }

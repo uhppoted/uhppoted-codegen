@@ -19,7 +19,7 @@ var Requests = []types.Message{
 	GetCardsRequest.Message,
 	GetCardRequest.Message,
 	GetCardByIndexRequest.Message,
-	PutCardRequest,
+	PutCardRequest.Message,
 	DeleteCardRequest,
 	DeleteAllCardsRequest,
 	GetEventRequest,
@@ -51,6 +51,7 @@ var GetStatusRequest = requests.GetStatusRequest
 var GetCardsRequest = requests.GetCardsRequest
 var GetCardRequest = requests.GetCardRequest
 var GetCardByIndexRequest = requests.GetCardByIndexRequest
+var PutCardRequest = requests.PutCardRequest
 
 // var GetListenerRequest = types.Message{
 // 	Name:    "get listener request",
@@ -233,58 +234,58 @@ var SetDoorRequest = types.Message{
 // 	},
 // }
 
-var PutCardRequest = types.Message{
-	Name:    "put card request",
-	MsgType: 0x50,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "card number",
-			Type:   "uint32",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "start date",
-			Type:   "date",
-			Offset: 12,
-		},
-		types.Field{
-			Name:   "end date",
-			Type:   "date",
-			Offset: 16,
-		},
-		types.Field{
-			Name:   "door 1",
-			Type:   "uint8",
-			Offset: 20,
-		},
-		types.Field{
-			Name:   "door 2",
-			Type:   "uint8",
-			Offset: 21,
-		},
-		types.Field{
-			Name:   "door 3",
-			Type:   "uint8",
-			Offset: 22,
-		},
-		types.Field{
-			Name:   "door 4",
-			Type:   "uint8",
-			Offset: 23,
-		},
-		types.Field{
-			Name:   "PIN",
-			Type:   "pin",
-			Offset: 24,
-		},
-	},
-}
+// var PutCardRequest = types.Message{
+// 	Name:    "put card request",
+// 	MsgType: 0x50,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "card number",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "start date",
+// 			Type:   "date",
+// 			Offset: 12,
+// 		},
+// 		types.Field{
+// 			Name:   "end date",
+// 			Type:   "date",
+// 			Offset: 16,
+// 		},
+// 		types.Field{
+// 			Name:   "door 1",
+// 			Type:   "uint8",
+// 			Offset: 20,
+// 		},
+// 		types.Field{
+// 			Name:   "door 2",
+// 			Type:   "uint8",
+// 			Offset: 21,
+// 		},
+// 		types.Field{
+// 			Name:   "door 3",
+// 			Type:   "uint8",
+// 			Offset: 22,
+// 		},
+// 		types.Field{
+// 			Name:   "door 4",
+// 			Type:   "uint8",
+// 			Offset: 23,
+// 		},
+// 		types.Field{
+// 			Name:   "PIN",
+// 			Type:   "pin",
+// 			Offset: 24,
+// 		},
+// 	},
+// }
 
 var DeleteCardRequest = types.Message{
 	Name:    "delete card request",

@@ -18,7 +18,7 @@ var Responses = []types.Message{
 	GetCardsResponse.Message,
 	GetCardResponse.Message,
 	GetCardByIndexResponse.Message,
-	PutCardResponse,
+	PutCardResponse.Message,
 	DeleteCardResponse,
 	DeleteAllCardsResponse,
 	GetEventResponse,
@@ -46,6 +46,7 @@ var GetListenerResponse = responses.GetListenerResponse
 var GetCardsResponse = responses.GetCardsResponse
 var GetCardResponse = responses.GetCardResponse
 var GetCardByIndexResponse = responses.GetCardByIndexResponse
+var PutCardResponse = responses.PutCardResponse
 
 var SetTimeResponse = types.Message{
 	Name:    "set time response",
@@ -397,23 +398,23 @@ var OpenDoorResponse = types.Message{
 // 	},
 // }
 
-var PutCardResponse = types.Message{
-	Name:    "put card response",
-	MsgType: 0x50,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "stored",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var PutCardResponse = types.Message{
+// 	Name:    "put card response",
+// 	MsgType: 0x50,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "stored",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var DeleteCardResponse = types.Message{
 	Name:    "delete card response",

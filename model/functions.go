@@ -42,30 +42,8 @@ var Functions = []types.Function{
 }
 
 var GetController = functions.GetController
-
-var SetIPv4 = types.Function{
-	Name:        "set IPv4",
-	Description: "Sets the controller IPv4 address, netmask and gateway address.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "address",
-			Type: "IPv4",
-		},
-		{
-			Name: "netmask",
-			Type: "IPv4",
-		},
-		{
-			Name: "gateway",
-			Type: "IPv4",
-		},
-	},
-	Request: &SetIPv4Request.Message,
-}
+var SetIPv4 = functions.SetIPv4
+var PutCard = functions.PutCard
 
 var GetTime = types.Function{
 	Name:        "get time",
@@ -249,50 +227,6 @@ var GetCardByIndex = types.Function{
 	},
 	Request:  &GetCardByIndexRequest.Message,
 	Response: &GetCardByIndexResponse.Message,
-}
-
-var PutCard = types.Function{
-	Name: "put card",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "card number",
-			Type: "uint32",
-		},
-		{
-			Name: "start date",
-			Type: "date",
-		},
-		{
-			Name: "end date",
-			Type: "date",
-		},
-		{
-			Name: "door 1",
-			Type: "uint8",
-		},
-		{
-			Name: "door 2",
-			Type: "uint8",
-		},
-		{
-			Name: "door 3",
-			Type: "uint8",
-		},
-		{
-			Name: "door 4",
-			Type: "uint8",
-		},
-		{
-			Name: "PIN",
-			Type: "pin",
-		},
-	},
-	Request:  &PutCardRequest,
-	Response: &PutCardResponse,
 }
 
 var DeleteCard = types.Function{

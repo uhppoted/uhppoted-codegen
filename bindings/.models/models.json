@@ -69,7 +69,62 @@
               "description": "controller firmware release date, e.g. 2020-12-31"
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "get-controller",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F5QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F5QAAHg3KhjAqAFk////AMCoAQEAEiM0RVYIkiAYEQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ip address",
+                    "type": "IPv4",
+                    "value": "192.168.1.100"
+                  },
+                  {
+                    "name": "subnet mask",
+                    "type": "IPv4",
+                    "value": "255.255.255.0"
+                  },
+                  {
+                    "name": "gateway",
+                    "type": "IPv4",
+                    "value": "192.168.1.1"
+                  },
+                  {
+                    "name": "MAC address",
+                    "type": "MAC",
+                    "value": "00:12:23:34:45:56"
+                  },
+                  {
+                    "name": "version",
+                    "type": "version",
+                    "value": "v8.92"
+                  },
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "value": "2018-11-05"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set IPv4",
@@ -956,7 +1011,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "card number",
+              "name": "card",
               "type": "uint32",
               "offset": 8
             },
@@ -1008,7 +1063,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "stored",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
@@ -2582,7 +2637,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "card number",
+            "name": "card",
             "type": "uint32",
             "offset": 8
           },
@@ -3611,7 +3666,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "stored",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }
