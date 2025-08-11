@@ -182,7 +182,36 @@
               "description": "'magic' word"
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "put-card",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "address",
+                "type": "IPv4",
+                "value": "192.168.1.125"
+              },
+              {
+                "name": "netmask",
+                "type": "IPv4",
+                "value": "255.255.255.0"
+              },
+              {
+                "name": "gateway",
+                "type": "IPv4",
+                "value": "192.168.1.1"
+              }
+            ],
+            "request": "F1AAAHg3KhigepkAICUBASAlEjEBABEBP0IPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": []
+          }
+        ]
       },
       {
         "name": "get time",
@@ -222,7 +251,37 @@
               "description": "controller system date/time"
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "get-time",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "FzIAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "FzIAAHg3KhggJREBEjRWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "datetime",
+                    "type": "datetime",
+                    "value": "2025-11-01 12:34:56"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set time",
@@ -1068,7 +1127,77 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "put-card",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "card",
+                "type": "uint32",
+                "value": 10058400
+              },
+              {
+                "name": "start date",
+                "type": "date",
+                "value": "2025-01-01"
+              },
+              {
+                "name": "end date",
+                "type": "date",
+                "value": "2025-12-31"
+              },
+              {
+                "name": "door 1",
+                "type": "uint8",
+                "value": 1
+              },
+              {
+                "name": "door 2",
+                "type": "uint8",
+                "value": 0
+              },
+              {
+                "name": "door 3",
+                "type": "uint8",
+                "value": 17
+              },
+              {
+                "name": "door 4",
+                "type": "uint8",
+                "value": 1
+              },
+              {
+                "name": "PIN",
+                "type": "pin",
+                "value": 999999
+              }
+            ],
+            "request": "F1AAAHg3KhigepkAICUBASAlEjEBABEBP0IPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "delete card",
@@ -1116,7 +1245,42 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "delete-card",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "card",
+                "type": "uint32",
+                "value": 10058400
+              }
+            ],
+            "request": "F1IAAHg3KhigepkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "delete all cards",

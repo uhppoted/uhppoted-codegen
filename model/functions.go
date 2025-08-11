@@ -43,20 +43,22 @@ var Functions = []types.Function{
 
 var GetController = functions.GetController
 var SetIPv4 = functions.SetIPv4
+var GetTime = functions.GetTime
 var PutCard = functions.PutCard
+var DeleteCard = functions.DeleteCard
 
-var GetTime = types.Function{
-	Name:        "get time",
-	Description: "Retrieves the access controller system date and time.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  &GetTimeRequest.Message,
-	Response: &GetTimeResponse.Message,
-}
+// var GetTime = types.Function{
+// 	Name:        "get time",
+// 	Description: "Retrieves the access controller system date and time.",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 	},
+// 	Request:  &GetTimeRequest.Message,
+// 	Response: &GetTimeResponse.Message,
+// }
 
 var SetTime = types.Function{
 	Name:        "set time",
@@ -72,7 +74,7 @@ var SetTime = types.Function{
 		},
 	},
 	Request:  &SetTimeRequest.Message,
-	Response: &SetTimeResponse,
+	Response: &SetTimeResponse.Message,
 }
 
 var GetListener = types.Function{
@@ -109,8 +111,8 @@ var SetListener = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &SetListenerRequest,
-	Response: &SetListenerResponse,
+	Request:  &SetListenerRequest.Message,
+	Response: &SetListenerResponse.Message,
 }
 
 var GetDoorControl = types.Function{
@@ -229,21 +231,21 @@ var GetCardByIndex = types.Function{
 	Response: &GetCardByIndexResponse.Message,
 }
 
-var DeleteCard = types.Function{
-	Name: "delete card",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "card number",
-			Type: "uint32",
-		},
-	},
-	Request:  &DeleteCardRequest,
-	Response: &DeleteCardResponse,
-}
+// var DeleteCard = types.Function{
+// 	Name: "delete card",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "card number",
+// 			Type: "uint32",
+// 		},
+// 	},
+// 	Request:  &DeleteCardRequest.Message,
+// 	Response: &DeleteCardResponse.Message,
+// }
 
 var DeleteAllCards = types.Function{
 	Name: "delete all cards",

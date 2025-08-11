@@ -8,9 +8,9 @@ import (
 var Responses = []types.Message{
 	GetControllerResponse.Message,
 	GetTimeResponse.Message,
-	SetTimeResponse,
+	SetTimeResponse.Message,
 	GetListenerResponse.Message,
-	SetListenerResponse,
+	SetListenerResponse.Message,
 	GetDoorControlResponse,
 	SetDoorControlResponse,
 	OpenDoorResponse,
@@ -19,7 +19,7 @@ var Responses = []types.Message{
 	GetCardResponse.Message,
 	GetCardByIndexResponse.Message,
 	PutCardResponse.Message,
-	DeleteCardResponse,
+	DeleteCardResponse.Message,
 	DeleteAllCardsResponse,
 	GetEventResponse,
 	GetEventIndexResponse,
@@ -42,30 +42,14 @@ var Responses = []types.Message{
 
 var GetControllerResponse = responses.GetControllerResponse
 var GetTimeResponse = responses.GetTimeResponse
+var SetTimeResponse = responses.SetTimeResponse
 var GetListenerResponse = responses.GetListenerResponse
+var SetListenerResponse = responses.SetListenerResponse
 var GetCardsResponse = responses.GetCardsResponse
 var GetCardResponse = responses.GetCardResponse
 var GetCardByIndexResponse = responses.GetCardByIndexResponse
 var PutCardResponse = responses.PutCardResponse
-
-var SetTimeResponse = types.Message{
-	Name:    "set time response",
-	MsgType: 0x30,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "datetime",
-			Type:        "datetime",
-			Offset:      8,
-			Description: "controller system date/time",
-		},
-	},
-}
+var DeleteCardResponse = responses.DeleteCardResponse
 
 var GetStatusResponse = types.Message{
 	Name:    "get status response",
@@ -218,9 +202,9 @@ var GetStatusResponse = types.Message{
 	},
 }
 
-// var GetListenerResponse = types.Message{
-// 	Name:    "get listener response",
-// 	MsgType: 0x92,
+// var SetListenerResponse = types.Message{
+// 	Name:    "set listener response",
+// 	MsgType: 0x90,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -229,44 +213,13 @@ var GetStatusResponse = types.Message{
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:        "address",
-// 			Type:        "IPv4",
+// 			Name:        "ok",
+// 			Type:        "bool",
 // 			Offset:      8,
-// 			Description: "event listener IPv4 address",
-// 		},
-// 		types.Field{
-// 			Name:        "port",
-// 			Type:        "uint16",
-// 			Offset:      12,
-// 			Description: "event listener IPv4 port",
-// 		},
-// 		types.Field{
-// 			Name:        "interval",
-// 			Type:        "uint8",
-// 			Offset:      14,
-// 			Description: "status auto-send interval (seconds)",
+// 			Description: "set-listener succeeded/failed",
 // 		},
 // 	},
 // }
-
-var SetListenerResponse = types.Message{
-	Name:    "set listener response",
-	MsgType: 0x90,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "ok",
-			Type:        "bool",
-			Offset:      8,
-			Description: "set-listener succeeded/failed",
-		},
-	},
-}
 
 var GetDoorControlResponse = types.Message{
 	Name:    "get door control response",
@@ -339,95 +292,6 @@ var OpenDoorResponse = types.Message{
 		},
 		types.Field{
 			Name:   "opened",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
-
-// var GetCardByIndexResponse = types.Message{
-// 	Name:    "get card by index response",
-// 	MsgType: 0x5c,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "card number",
-// 			Type:   "uint32",
-// 			Offset: 8,
-// 		},
-// 		types.Field{
-// 			Name:   "start date",
-// 			Type:   "optional date",
-// 			Offset: 12,
-// 		},
-// 		types.Field{
-// 			Name:   "end date",
-// 			Type:   "optional date",
-// 			Offset: 16,
-// 		},
-// 		types.Field{
-// 			Name:   "door 1",
-// 			Type:   "uint8",
-// 			Offset: 20,
-// 		},
-// 		types.Field{
-// 			Name:   "door 2",
-// 			Type:   "uint8",
-// 			Offset: 21,
-// 		},
-// 		types.Field{
-// 			Name:   "door 3",
-// 			Type:   "uint8",
-// 			Offset: 22,
-// 		},
-// 		types.Field{
-// 			Name:   "door 4",
-// 			Type:   "uint8",
-// 			Offset: 23,
-// 		},
-// 		types.Field{
-// 			Name:   "PIN",
-// 			Type:   "pin",
-// 			Offset: 24,
-// 		},
-// 	},
-// }
-
-// var PutCardResponse = types.Message{
-// 	Name:    "put card response",
-// 	MsgType: 0x50,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "stored",
-// 			Type:   "bool",
-// 			Offset: 8,
-// 		},
-// 	},
-// }
-
-var DeleteCardResponse = types.Message{
-	Name:    "delete card response",
-	MsgType: 0x52,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "deleted",
 			Type:   "bool",
 			Offset: 8,
 		},

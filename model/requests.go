@@ -11,7 +11,7 @@ var Requests = []types.Message{
 	GetTimeRequest.Message,
 	SetTimeRequest.Message,
 	GetListenerRequest.Message,
-	SetListenerRequest,
+	SetListenerRequest.Message,
 	GetDoorControlRequest,
 	SetDoorControlRequest,
 	OpenDoorRequest.Message,
@@ -20,7 +20,7 @@ var Requests = []types.Message{
 	GetCardRequest.Message,
 	GetCardByIndexRequest.Message,
 	PutCardRequest.Message,
-	DeleteCardRequest,
+	DeleteCardRequest.Message,
 	DeleteAllCardsRequest,
 	GetEventRequest,
 	GetEventIndexRequest,
@@ -46,16 +46,19 @@ var SetIPv4Request = requests.SetIPv4Request
 var GetTimeRequest = requests.GetTimeRequest
 var SetTimeRequest = requests.SetTimeRequest
 var GetListenerRequest = requests.GetListenerRequest
+var SetListenerRequest = requests.SetListenerRequest
+var SetListenerAddrPortRequest = requests.SetListenerAddrPortRequest
 var OpenDoorRequest = requests.OpenDoorRequest
 var GetStatusRequest = requests.GetStatusRequest
 var GetCardsRequest = requests.GetCardsRequest
 var GetCardRequest = requests.GetCardRequest
 var GetCardByIndexRequest = requests.GetCardByIndexRequest
 var PutCardRequest = requests.PutCardRequest
+var DeleteCardRequest = requests.DeleteCardRequest
 
-// var GetListenerRequest = types.Message{
-// 	Name:    "get listener request",
-// 	MsgType: 0x92,
+// var SetListenerRequest = types.Message{
+// 	Name:    "set listener request",
+// 	MsgType: 0x90,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -63,64 +66,51 @@ var PutCardRequest = requests.PutCardRequest
 // 			Offset:      4,
 // 			Description: "controller serial number",
 // 		},
+// 		types.Field{
+// 			Name:        "address",
+// 			Type:        "IPv4",
+// 			Offset:      8,
+// 			Description: "event listener IPv4 address",
+// 		},
+// 		types.Field{
+// 			Name:        "port",
+// 			Type:        "uint16",
+// 			Offset:      12,
+// 			Description: "event listener IPv4 port",
+// 		},
+// 		types.Field{
+// 			Name:        "interval",
+// 			Type:        "uint8",
+// 			Offset:      14,
+// 			Description: "status auto-send interval (seconds)",
+// 		},
 // 	},
 // }
 
-var SetListenerRequest = types.Message{
-	Name:    "set listener request",
-	MsgType: 0x90,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "address",
-			Type:        "IPv4",
-			Offset:      8,
-			Description: "event listener IPv4 address",
-		},
-		types.Field{
-			Name:        "port",
-			Type:        "uint16",
-			Offset:      12,
-			Description: "event listener IPv4 port",
-		},
-		types.Field{
-			Name:        "interval",
-			Type:        "uint8",
-			Offset:      14,
-			Description: "status auto-send interval (seconds)",
-		},
-	},
-}
-
-var SetListenerAddrPortRequest = types.Message{
-	Name:    "set listener request",
-	MsgType: 0x90,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "address",
-			Type:        "addrport",
-			Offset:      8,
-			Description: "event listener IPv4 address:port",
-		},
-		types.Field{
-			Name:        "interval",
-			Type:        "uint8",
-			Offset:      14,
-			Description: "status auto-send interval (seconds)",
-		},
-	},
-}
+// var SetListenerAddrPortRequest = types.Message{
+// 	Name:    "set listener request",
+// 	MsgType: 0x90,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:        "address",
+// 			Type:        "addrport",
+// 			Offset:      8,
+// 			Description: "event listener IPv4 address:port",
+// 		},
+// 		types.Field{
+// 			Name:        "interval",
+// 			Type:        "uint8",
+// 			Offset:      14,
+// 			Description: "status auto-send interval (seconds)",
+// 		},
+// 	},
+// }
 
 var GetDoorControlRequest = types.Message{
 	Name:    "get door control request",
@@ -287,23 +277,23 @@ var SetDoorRequest = types.Message{
 // 	},
 // }
 
-var DeleteCardRequest = types.Message{
-	Name:    "delete card request",
-	MsgType: 0x52,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "card number",
-			Type:   "uint32",
-			Offset: 8,
-		},
-	},
-}
+// var DeleteCardRequest = types.Message{
+// 	Name:    "delete card request",
+// 	MsgType: 0x52,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "card number",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var DeleteAllCardsRequest = types.Message{
 	Name:    "delete cards request",
