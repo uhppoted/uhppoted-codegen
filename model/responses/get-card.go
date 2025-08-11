@@ -110,5 +110,61 @@ var GetCardResponse = Response{
 				},
 			},
 		},
+		{
+			Name: "get-card-not-found",
+			Response: []byte{
+				0x17, 0x5a, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			},
+			Expected: []Value{
+				{
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
+				},
+				{
+					Name:  "card",
+					Type:  "uint32",
+					Value: 0,
+				},
+				{
+					Name:  "start date",
+					Type:  "date",
+					Value: "0001-01-01",
+				},
+				{
+					Name:  "end date",
+					Type:  "date",
+					Value: "0001-01-01",
+				},
+				{
+					Name:  "door 1",
+					Type:  "uint8",
+					Value: 0,
+				},
+				{
+					Name:  "door 2",
+					Type:  "uint8",
+					Value: 0,
+				},
+				{
+					Name:  "door 3",
+					Type:  "uint8",
+					Value: 0,
+				},
+				{
+					Name:  "door 4",
+					Type:  "uint8",
+					Value: 0,
+				},
+				{
+					Name:  "PIN",
+					Type:  "uint32",
+					Value: 0,
+				},
+			},
+		},
 	},
 }
