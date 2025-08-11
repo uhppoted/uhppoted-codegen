@@ -302,7 +302,7 @@ fn get_card() {
 
     match futures::executor::block_on(uhppote::get_card(controller, card)) {
         Ok(v) => {
-            if v.card_number == 0 {
+            if v.card == 0 {
                 error(uhppote::error::Error::from(format!("card {card} not found")))
             } else {
                 println!("{:#?}", v)

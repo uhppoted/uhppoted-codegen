@@ -885,7 +885,7 @@ var GetCardTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "card number",
+				Name:  "card",
 				Type:  "uint32",
 				Value: CARD,
 			},

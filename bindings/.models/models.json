@@ -893,7 +893,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "card number",
+              "name": "card",
               "type": "uint32",
               "offset": 8
             },
@@ -3726,7 +3726,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "card number",
+            "name": "card",
             "type": "uint32",
             "offset": 8
           },

@@ -212,7 +212,7 @@ func getCard(args []string) (any, error) {
 
     if response,err := uhppote.GetCard(controller, card); err != nil {
         return nil, err
-    } else if response.CardNumber == 0 {
+    } else if response.Card == 0 {
         return nil, fmt.Errorf("card %v not found", card)
     } else {
         return response, nil
