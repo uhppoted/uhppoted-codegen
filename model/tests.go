@@ -1082,7 +1082,7 @@ var PutCardTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "stored",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},
@@ -1128,7 +1128,7 @@ var DeleteCardTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "deleted",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},

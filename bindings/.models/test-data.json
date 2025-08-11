@@ -882,7 +882,7 @@
               "value": "405419896"
             },
             {
-              "name": "stored",
+              "name": "ok",
               "type": "bool",
               "value": true
             }
@@ -917,7 +917,7 @@
               "value": "405419896"
             },
             {
-              "name": "deleted",
+              "name": "ok",
               "type": "bool",
               "value": true
             }
