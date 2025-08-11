@@ -12,7 +12,7 @@ var GetCardResponse = Response{
 				Description: "controller serial number",
 			},
 			{
-				Name:   "card number",
+				Name:   "card",
 				Type:   "uint32",
 				Offset: 8,
 			},
