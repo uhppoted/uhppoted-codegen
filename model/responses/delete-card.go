@@ -12,7 +12,7 @@ var DeleteCardResponse = Response{
 				Description: "controller serial number",
 			},
 			{
-				Name:   "deleted",
+				Name:   "ok",
 				Type:   "bool",
 				Offset: 8,
 			},

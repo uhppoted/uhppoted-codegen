@@ -6,7 +6,8 @@ import (
 )
 
 var DeleteCard = Function{
-	Name: "delete card",
+	Name:        "delete card",
+	Description: "DeleteCard removes a card record stored on a controller.",
 	Args: []Arg{
 		{
 			Name: "controller",

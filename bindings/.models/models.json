@@ -1201,7 +1201,7 @@
       },
       {
         "name": "delete card",
-        "description": "",
+        "description": "DeleteCard removes a card record stored on a controller.",
         "args": [
           {
             "name": "controller",
@@ -1240,7 +1240,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "deleted",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
@@ -3847,7 +3847,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "deleted",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }
