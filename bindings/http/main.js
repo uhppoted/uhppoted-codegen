@@ -20,7 +20,7 @@ export const COMMANDS = new Map([
   ['open-door',           { fn: commands.openDoor,          args: ['controller', 'door.id']}],
   ['get-cards',           { fn: commands.getCards,          args: ['controller']}],
   ['get-card',            { fn: commands.getCard,           args: ['controller', 'card.number']}],
-  ['get-card-by-index',   { fn: commands.getCardByIndex,    args: ['controller', 'card.index']}],
+  ['get-card-at-index',   { fn: commands.getCardAtIndex,    args: ['controller', 'card.index']}],
   ['put-card',            { fn: commands.putCard,           args: ['controller', 
                                                                    'card.number', 
                                                                    'card.start-date', 

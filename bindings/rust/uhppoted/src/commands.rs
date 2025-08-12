@@ -74,8 +74,8 @@ pub const COMMANDS: [&Command; 35] = [
         func: get_card,
     },
     &Command {
-        name: "get-card-by-index",
-        func: get_card_by_index,
+        name: "get-card-at-index",
+        func: get_card_at_index,
     },
     &Command {
         name: "put-card",
@@ -312,15 +312,15 @@ fn get_card() {
     }
 }
 
-fn get_card_by_index() {
+fn get_card_at_index() {
     let controller = resolve(CONTROLLER);
     let index = CARD_INDEX;
 
-    match futures::executor::block_on(uhppote::get_card_by_index(controller, index)) {
+    match futures::executor::block_on(uhppote::get_card_at_index(controller, index)) {
         Ok(v) => {
-            if v.card_number == 0 {
+            if v.card == 0 {
                 error(uhppote::error::Error::from(format!("card @ index {index} not found")))
-            } else if v.card_number == 0xffffffff {
+            } else if v.card == 0xffffffff {
                 error(uhppote::error::Error::from(format!("card @ index {index} deleted")))
             } else {
                 println!("{:#?}", v)

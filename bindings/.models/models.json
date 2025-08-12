@@ -933,10 +933,148 @@
               "offset": 24
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "get-card",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "card",
+                "type": "uint32",
+                "value": 10058400
+              }
+            ],
+            "request": "F1oAAHg3KhigepkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1oAAHg3KhigepkAICUBASAlEjEBABEBax0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 10058400
+                  },
+                  {
+                    "name": "start-date",
+                    "type": "date",
+                    "value": "2025-01-01"
+                  },
+                  {
+                    "name": "end-date",
+                    "type": "date",
+                    "value": "2025-12-31"
+                  },
+                  {
+                    "name": "door 1",
+                    "type": "uint8",
+                    "value": 1
+                  },
+                  {
+                    "name": "door 2",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 3",
+                    "type": "uint8",
+                    "value": 17
+                  },
+                  {
+                    "name": "door 4",
+                    "type": "uint8",
+                    "value": 1
+                  },
+                  {
+                    "name": "PIN",
+                    "type": "pin",
+                    "value": 7531
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "get-card-not-found",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "card",
+                "type": "uint32",
+                "value": 10058401
+              }
+            ],
+            "request": "F1oAAHg3KhihepkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1oAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 0
+                  },
+                  {
+                    "name": "start-date",
+                    "type": "date",
+                    "value": "0001-01-01"
+                  },
+                  {
+                    "name": "end-date",
+                    "type": "date",
+                    "value": "0001-01-01"
+                  },
+                  {
+                    "name": "door 1",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 2",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 3",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 4",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "PIN",
+                    "type": "pin",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
-        "name": "get card by index",
+        "name": "get card at index",
         "description": "",
         "args": [
           {
@@ -944,12 +1082,12 @@
             "type": "controller"
           },
           {
-            "name": "card index",
+            "name": "index",
             "type": "uint32"
           }
         ],
         "request": {
-          "name": "get card by index request",
+          "name": "get card at index request",
           "msgtype": 92,
           "fields": [
             {
@@ -966,7 +1104,7 @@
           ]
         },
         "response": {
-          "name": "get card by index response",
+          "name": "get card at index response",
           "msgtype": 92,
           "fields": [
             {
@@ -976,7 +1114,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "card number",
+              "name": "card",
               "type": "uint32",
               "offset": 8
             },
@@ -1016,7 +1154,213 @@
               "offset": 24
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "get-card-at-index",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "17",
+                "type": "uint32",
+                "value": 135
+              }
+            ],
+            "request": "F1wAAHg3KhiHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1wAAHg3KhigepkAICUBASAlEjEBABEBax0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 10058400
+                  },
+                  {
+                    "name": "start-date",
+                    "type": "date",
+                    "value": "2025-01-01"
+                  },
+                  {
+                    "name": "end-date",
+                    "type": "date",
+                    "value": "2025-12-31"
+                  },
+                  {
+                    "name": "door 1",
+                    "type": "uint8",
+                    "value": 1
+                  },
+                  {
+                    "name": "door 2",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 3",
+                    "type": "uint8",
+                    "value": 17
+                  },
+                  {
+                    "name": "door 4",
+                    "type": "uint8",
+                    "value": 1
+                  },
+                  {
+                    "name": "PIN",
+                    "type": "pin",
+                    "value": 7531
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "get-card-at-index-not-found",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "index",
+                "type": "uint32",
+                "value": 10058401
+              }
+            ],
+            "request": "F1wAAHg3KhiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1wAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 0
+                  },
+                  {
+                    "name": "start-date",
+                    "type": "date",
+                    "value": "0001-01-01"
+                  },
+                  {
+                    "name": "end-date",
+                    "type": "date",
+                    "value": "0001-01-01"
+                  },
+                  {
+                    "name": "door 1",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 2",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 3",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 4",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "PIN",
+                    "type": "pin",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "get-card-at-index-deleted",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "index",
+                "type": "uint32",
+                "value": 10058401
+              }
+            ],
+            "request": "F1wAAHg3KhiJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1wAAHg3Khj/////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 4294967295
+                  },
+                  {
+                    "name": "start-date",
+                    "type": "date",
+                    "value": "0001-01-01"
+                  },
+                  {
+                    "name": "end-date",
+                    "type": "date",
+                    "value": "0001-01-01"
+                  },
+                  {
+                    "name": "door 1",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 2",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 3",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "door 4",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "PIN",
+                    "type": "pin",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "put card",
@@ -2774,7 +3118,7 @@
         ]
       },
       {
-        "name": "get card by index request",
+        "name": "get card at index request",
         "msgtype": 92,
         "fields": [
           {
@@ -3768,7 +4112,7 @@
         ]
       },
       {
-        "name": "get card by index response",
+        "name": "get card at index response",
         "msgtype": 92,
         "fields": [
           {
@@ -3778,7 +4122,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "card number",
+            "name": "card",
             "type": "uint32",
             "offset": 8
           },

@@ -40,7 +40,7 @@ def commands():
         'open-door': open_door,
         'get-cards': get_cards,
         'get-card': get_card,
-        'get-card-by-index': get_card_by_index,
+        'get-card-at-index': get_card_at_index,
         'put-card': put_card,
         'delete-card': delete_card,
         'delete-all-cards': delete_all_cards,
@@ -165,20 +165,20 @@ def get_card(u):
     card = CARD
 
     response = u.get_card(controller, card)
-    if response.card_number == 0:
+    if response.card == 0:
         raise ValueError(f'card {card} not found')
 
     return response
 
 
-def get_card_by_index(u):
+def get_card_at_index(u):
     controller = resolve(CONTROLLER)
     index = CARD_INDEX
 
-    response = u.get_card_by_index(controller, index)
-    if response.card_number == 0:
+    response = u.get_card_at_index(controller, index)
+    if response.card == 0:
         raise ValueError(f'card @ index {index} not found')
-    elif response.card_number == 0xffffffff:
+    elif response.card == 0xffffffff:
         raise ValueError(f'card @ index {index} deleted')
 
     return response

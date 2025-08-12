@@ -88,8 +88,8 @@ pub const commands = [_]Command{
     },
 
     Command{
-        .name = "get-card-by-index",
-        .function = get_card_by_index,
+        .name = "get-card-at-index",
+        .function = get_card_at_index,
     },
 
     Command{
@@ -371,11 +371,11 @@ fn get_card(allocator: std.mem.Allocator) void {
     }
 }
 
-fn get_card_by_index(allocator: std.mem.Allocator) void {
+fn get_card_at_index(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
     const index = CARD_INDEX;
 
-    if (uhppote.get_card_by_index(controller, index, allocator)) |response| {
+    if (uhppote.get_card_at_index(controller, index, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

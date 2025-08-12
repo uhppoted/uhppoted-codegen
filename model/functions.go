@@ -18,7 +18,7 @@ var Functions = []types.Function{
 	GetStatus,
 	GetCards,
 	GetCard,
-	GetCardByIndex,
+	GetCardAtIndex,
 	PutCard,
 	DeleteCard,
 	DeleteAllCards,
@@ -45,20 +45,9 @@ var GetController = functions.GetController
 var SetIPv4 = functions.SetIPv4
 var GetTime = functions.GetTime
 var PutCard = functions.PutCard
+var GetCard = functions.GetCard
+var GetCardAtIndex = functions.GetCardAtIndex
 var DeleteCard = functions.DeleteCard
-
-// var GetTime = types.Function{
-// 	Name:        "get time",
-// 	Description: "Retrieves the access controller system date and time.",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 	},
-// 	Request:  &GetTimeRequest.Message,
-// 	Response: &GetTimeResponse.Message,
-// }
 
 var SetTime = types.Function{
 	Name:        "set time",
@@ -199,37 +188,37 @@ var GetCards = types.Function{
 	Response: &GetCardsResponse.Message,
 }
 
-var GetCard = types.Function{
-	Name: "get card",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "card number",
-			Type: "uint32",
-		},
-	},
-	Request:  &GetCardRequest.Message,
-	Response: &GetCardResponse.Message,
-}
+// var GetCard = types.Function{
+// 	Name: "get card",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "card number",
+// 			Type: "uint32",
+// 		},
+// 	},
+// 	Request:  &GetCardRequest.Message,
+// 	Response: &GetCardResponse.Message,
+// }
 
-var GetCardByIndex = types.Function{
-	Name: "get card by index",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "card index",
-			Type: "uint32",
-		},
-	},
-	Request:  &GetCardByIndexRequest.Message,
-	Response: &GetCardByIndexResponse.Message,
-}
+// var GetCardByIndex = types.Function{
+// 	Name: "get card by index",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "card index",
+// 			Type: "uint32",
+// 		},
+// 	},
+// 	Request:  &GetCardByIndexRequest.Message,
+// 	Response: &GetCardByIndexResponse.Message,
+// }
 
 // var DeleteCard = types.Function{
 // 	Name: "delete card",

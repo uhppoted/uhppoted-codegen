@@ -50,7 +50,7 @@ commands() ->
         {"open-door", open_door},
         {"get-cards", get_cards},
         {"get-card", get_card},
-        {"get-card-by-index", get_card_by_index},
+        {"get-card-at-index", get_card_at_index},
         {"put-card", put_card},
         {"delete-card", delete_card},
         {"delete-all-cards", delete_all_cards},
@@ -157,10 +157,10 @@ execute(get_card, _Options, Config) ->
     Card = ?CARD,
     uhppoted:get_card(Config, Controller, Card);
 
-execute(get_card_by_index, _Options, Config) ->
+execute(get_card_at_index, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     Index = ?CARD_INDEX,
-    uhppoted:get_card_by_index(Config, Controller, Index);
+    uhppoted:get_card_at_index(Config, Controller, Index);
 
 execute(put_card, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

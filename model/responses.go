@@ -17,7 +17,7 @@ var Responses = []types.Message{
 	GetStatusResponse.Message,
 	GetCardsResponse.Message,
 	GetCardResponse.Message,
-	GetCardByIndexResponse.Message,
+	GetCardAtIndexResponse.Message,
 	PutCardResponse.Message,
 	DeleteCardResponse.Message,
 	DeleteAllCardsResponse,
@@ -49,7 +49,7 @@ var GetDoorResponse = responses.GetDoorResponse
 var GetStatusResponse = responses.GetStatusResponse
 var GetCardsResponse = responses.GetCardsResponse
 var GetCardResponse = responses.GetCardResponse
-var GetCardByIndexResponse = responses.GetCardByIndexResponse
+var GetCardAtIndexResponse = responses.GetCardAtIndexResponse
 var PutCardResponse = responses.PutCardResponse
 var DeleteCardResponse = responses.DeleteCardResponse
 

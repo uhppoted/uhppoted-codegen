@@ -168,12 +168,12 @@ function get_card($u, $args)
     return uhppote\get_card($u, $controller, $card);
 }
 
-function get_card_by_index($u, $args)
+function get_card_at_index($u, $args)
 {
     $controller = resolve(CONTROLLER);
     $index = CARD_INDEX;
 
-    return uhppote\get_card_by_index($u, $controller, $index);
+    return uhppote\get_card_at_index($u, $controller, $index);
 }
 
 function put_card($u, $args)
@@ -443,7 +443,7 @@ function commands()
         'open-door' => 'open_door',
         'get-cards' => 'get_cards',
         'get-card' => 'get_card',
-        'get-card-by-index' => 'get_card_by_index',
+        'get-card-at-index' => 'get_card_at_index',
         'put-card' => 'put_card',
         'delete-card' => 'delete_card',
         'delete-all-cards' => 'delete_all_cards',

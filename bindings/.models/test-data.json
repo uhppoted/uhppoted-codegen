@@ -753,7 +753,7 @@
       {
         "name": "get card at index",
         "request": {
-          "name": "get card by index request",
+          "name": "get card at index request",
           "values": [
             {
               "name": "controller",
@@ -769,7 +769,7 @@
           "message": "F1wAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "name": "get card by index response",
+          "name": "get card at index response",
           "values": [
             {
               "name": "controller",

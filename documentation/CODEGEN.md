@@ -468,7 +468,7 @@ the specific details of translating the API function to a UHPPOTE function call.
 - `open-door`
 - `get-cards`
 - `get-card`
-- `get-card-by-index`
+- `get-card-at-index`
 - `put-card`
 - `delete-card`
 - `delete-all-cards`

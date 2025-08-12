@@ -12,7 +12,7 @@ commands = {
     'open-door':                open_door,
     'get_cards':                get_cards,
     'get_card':                 get_card,
-    'get_card-by-index':        get_card_by_index,
+    'get_card-at-index':        get_card_at_index,
     'put-card':                 put_card,
     'delete-card':              delete_card,
     'delete-all-cards':         delete_all_cards,
@@ -129,22 +129,22 @@ function get_card() {
 
     card = uhppote::get_card(controller, card_number)
 
-    if card.number == 0 {
+    if card.card == 0 {
         return error('card not found')
     } else {
         return card
     }
 }
 
-function get_card_by_index() {
+function get_card_at_index() {
     controller = arg('controller')
     index      = arg('card-index')
 
-    card = uhppote::get_card_by_index(controller, index)
+    card = uhppote::get_card_at_index(controller, index)
 
-    if card.number == 0 {
+    if card.card == 0 {
         return error('card not found')
-    } else if card.number == 0xffffffff {
+    } else if card.card == 0xffffffff {
         return error('card deleted')
     } else {
         return card

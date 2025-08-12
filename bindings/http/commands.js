@@ -97,7 +97,7 @@ export function getCard (controller, card) {
   card = arg(card)
 
   return uhppote.GetCard(controller, card).then(response => {
-    if (response.cardNumber === 0) {
+    if (response.card === 0) {
       throw new Error(`card ${card} not found`)
     }
 
@@ -105,14 +105,14 @@ export function getCard (controller, card) {
   })
 }
 
-export function getCardByIndex (controller, index) {
+export function getCardAtIndex (controller, index) {
   controller = arg(controller)
   index = arg(index)
 
-  return uhppote.GetCardByIndex(controller, index).then(response => {
-    if (response.cardNumber === 0) {
+  return uhppote.GetCardAtIndex(controller, index).then(response => {
+    if (response.card === 0) {
       throw new Error(`card @ index ${index} not found`)
-    } else if (response.cardNumber === 0xffffffff) {
+    } else if (response.card === 0xffffffff) {
       throw new Error(`card @ index ${index} deleted`)
     }
 

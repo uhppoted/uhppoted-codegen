@@ -155,11 +155,11 @@ function get_card(args)
     return uhppote.get_card(controller, card)
 end
 
-function get_card_by_index(args)
+function get_card_at_index(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
     local index = parse(args, "index", CARD_INDEX)
 
-    return uhppote.get_card_by_index(controller, index)
+    return uhppote.get_card_at_index(controller, index)
 end
 
 function put_card(args)
@@ -449,7 +449,7 @@ local commands = {
        { ["command"] = "open-door",                  ["f"] = open_door,                  flags = {},             options = { "controller","door" } },
        { ["command"] = "get-cards",                  ["f"] = get_cards,                  flags = {},             options = { "controller" } },
        { ["command"] = "get-card",                   ["f"] = get_card,                   flags = {},             options = { "controller","card" } },
-       { ["command"] = "get-card-by-index",          ["f"] = get_card_by_index,          flags = {},             options = { "controller","index" } },
+       { ["command"] = "get-card-at-index",          ["f"] = get_card_at_index,          flags = {},             options = { "controller","index" } },
        { ["command"] = "put-card",                   ["f"] = put_card,                   flags = {},             options = { "controller","card","start-date","end-date","doors","PIN" } },
        { ["command"] = "delete-card",                ["f"] = delete_card,                flags = {},             options = { "controller","card" } },
        { ["command"] = "delete-all-cards",           ["f"] = delete_all_cards,           flags = {},             options = { "controller" } },

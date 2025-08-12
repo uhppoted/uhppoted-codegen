@@ -937,7 +937,7 @@ var GetCardTest = Test{
 var GetCardAtIndexTest = Test{
 	Name: "get card at index",
 	Request: &TestRequest{
-		Name: GetCardByIndexRequest.Name,
+		Name: GetCardAtIndexRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -958,7 +958,7 @@ var GetCardAtIndexTest = Test{
 		},
 	},
 	Response: &TestResponse{
-		Name: GetCardByIndexResponse.Name,
+		Name: GetCardAtIndexResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",

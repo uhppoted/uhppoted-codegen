@@ -1,8 +1,8 @@
 package requests
 
-var GetCardByIndexRequest = Request{
+var GetCardAtIndexRequest = Request{
 	Message: Message{
-		Name:    "get card by index request",
+		Name:    "get card at index request",
 		MsgType: 0x5c,
 		Fields: []Field{
 			{
@@ -20,21 +20,21 @@ var GetCardByIndexRequest = Request{
 	},
 	Tests: []RequestTest{
 		{
-			Name: "get-card-by-index",
+			Name: "get-card-at-index",
 			Args: []TestArg{
 				{
 					Arg: Arg{
 						Name: "controller",
 						Type: "uint32",
 					},
-					Value: uint32(405419896),
+					Value: 405419896,
 				},
 				{
 					Arg: Arg{
 						Name: "index",
 						Type: "uint32",
 					},
-					Value: uint32(135),
+					Value: 135,
 				},
 			},
 			Expected: []byte{

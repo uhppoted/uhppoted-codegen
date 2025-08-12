@@ -53,7 +53,7 @@ var commands = []command{
     command{name: "open-door", f: openDoor},
     command{name: "get-cards", f: getCards},
     command{name: "get-card", f: getCard},
-    command{name: "get-card-by-index", f: getCardByIndex},
+    command{name: "get-card-at-index", f: getCardAtIndex},
     command{name: "put-card", f: putCard},
     command{name: "delete-card", f: deleteCard},
     command{name: "delete-all-cards", f: deleteAllCards},
@@ -219,15 +219,15 @@ func getCard(args []string) (any, error) {
     }
 }
 
-func getCardByIndex(args []string) (any, error) {
+func getCardAtIndex(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     index := CARD_INDEX
 
-    if response,err := uhppote.GetCardByIndex(controller, index); err != nil {
+    if response,err := uhppote.GetCardAtIndex(controller, index); err != nil {
         return nil, err
-    } else if response.CardNumber == 0 {
+    } else if response.Card == 0 {
         return nil, fmt.Errorf("card @ index %v not found", index)
-    } else if response.CardNumber == 0xffffffff {
+    } else if response.Card == 0xffffffff {
         return nil, fmt.Errorf("card @ index %v deleted", index)
     } else {
         return response, nil

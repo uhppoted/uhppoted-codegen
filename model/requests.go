@@ -18,7 +18,7 @@ var Requests = []types.Message{
 	GetStatusRequest.Message,
 	GetCardsRequest.Message,
 	GetCardRequest.Message,
-	GetCardByIndexRequest.Message,
+	GetCardAtIndexRequest.Message,
 	PutCardRequest.Message,
 	DeleteCardRequest.Message,
 	DeleteAllCardsRequest,
@@ -53,7 +53,7 @@ var OpenDoorRequest = requests.OpenDoorRequest
 var GetStatusRequest = requests.GetStatusRequest
 var GetCardsRequest = requests.GetCardsRequest
 var GetCardRequest = requests.GetCardRequest
-var GetCardByIndexRequest = requests.GetCardByIndexRequest
+var GetCardAtIndexRequest = requests.GetCardAtIndexRequest
 var PutCardRequest = requests.PutCardRequest
 var DeleteCardRequest = requests.DeleteCardRequest
 
