@@ -462,7 +462,7 @@ the specific details of translating the API function to a UHPPOTE function call.
 - `set-time`
 - `get-listener`
 - `set-listener`
-- `get-door-control`
+- `get-door`
 - `set-door-control`
 - `get-status`
 - `open-door`

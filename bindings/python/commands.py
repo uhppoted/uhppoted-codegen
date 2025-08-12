@@ -34,7 +34,7 @@ def commands():
         'set-time': set_time,
         'get-listener': get_listener,
         'set-listener': set_listener,
-        'get-door-control': get_door_control,
+        'get-door': get_door,
         'set-door-control': set_door_control,
         'get-status': get_status,
         'open-door': open_door,
@@ -125,11 +125,11 @@ def set_listener(u):
     return u.set_listener(controller, address, port, interval)
 
 
-def get_door_control(u):
+def get_door(u):
     controller = resolve(CONTROLLER)
     door = DOOR
 
-    return u.get_door_control(controller, door)
+    return u.get_door(controller, door)
 
 
 def set_door_control(u):

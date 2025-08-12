@@ -6,7 +6,7 @@ commands = {
     'set_time':                 set_time,
     'get_listener':             get_listener,
     'set_listener':             set_listener,
-    'get_door-control':         get_door_control,
+    'get_door':                 get_door,
     'set_door-control':         set_door_control,
     'get_status':               get_status,
     'open-door':                open_door,
@@ -94,11 +94,11 @@ function set_listener() {
     return uhppote::set_listener(controller, address, port)
 }
 
-function get_door_control() {
+function get_door() {
     controller = arg('controller')
     door       = arg('door')
 
-    return uhppote::get_door_control(controller, door)
+    return uhppote::get_door(controller, door)
 }
 
 function set_door_control() {

@@ -245,7 +245,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "datetime",
+              "name": "date time",
               "type": "datetime",
               "offset": 8,
               "description": "controller system date/time"
@@ -325,7 +325,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "datetime",
+              "name": "date time",
               "type": "datetime",
               "offset": 8,
               "description": "controller system date/time"
@@ -456,7 +456,7 @@
         }
       },
       {
-        "name": "get door control",
+        "name": "get door",
         "description": "Retrieves the control mode and unlock delay time for an access controller door.",
         "args": [
           {
@@ -469,7 +469,7 @@
           }
         ],
         "request": {
-          "name": "get door control request",
+          "name": "get door request",
           "msgtype": 130,
           "fields": [
             {
@@ -487,7 +487,7 @@
           ]
         },
         "response": {
-          "name": "get door control response",
+          "name": "get door response",
           "msgtype": 130,
           "fields": [
             {
@@ -2671,7 +2671,7 @@
         ]
       },
       {
-        "name": "get door control request",
+        "name": "get door request",
         "msgtype": 130,
         "fields": [
           {
@@ -3401,7 +3401,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "datetime",
+            "name": "date time",
             "type": "datetime",
             "offset": 8,
             "description": "controller system date/time"
@@ -3419,7 +3419,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "datetime",
+            "name": "date time",
             "type": "datetime",
             "offset": 8,
             "description": "controller system date/time"
@@ -3475,7 +3475,7 @@
         ]
       },
       {
-        "name": "get door control response",
+        "name": "get door response",
         "msgtype": 130,
         "fields": [
           {

@@ -516,9 +516,9 @@
         }
       },
       {
-        "name": "get door control",
+        "name": "get door",
         "request": {
-          "name": "get door control request",
+          "name": "get door request",
           "values": [
             {
               "name": "controller",
@@ -534,7 +534,7 @@
           "message": "F4IAAHg3KhgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "name": "get door control response",
+          "name": "get door response",
           "values": [
             {
               "name": "controller",

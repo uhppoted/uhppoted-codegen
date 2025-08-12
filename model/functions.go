@@ -12,7 +12,7 @@ var Functions = []types.Function{
 	SetTime,
 	GetListener,
 	SetListener,
-	GetDoorControl,
+	GetDoor,
 	SetDoorControl,
 	OpenDoor,
 	GetStatus,
@@ -115,8 +115,8 @@ var SetListener = types.Function{
 	Response: &SetListenerResponse.Message,
 }
 
-var GetDoorControl = types.Function{
-	Name:        "get door control",
+var GetDoor = types.Function{
+	Name:        "get door",
 	Description: "Retrieves the control mode and unlock delay time for an access controller door.",
 	Args: []types.Arg{
 		{
@@ -128,8 +128,8 @@ var GetDoorControl = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &GetDoorControlRequest,
-	Response: &GetDoorControlResponse,
+	Request:  &GetDoorRequest.Message,
+	Response: &GetDoorResponse.Message,
 }
 
 var SetDoorControl = types.Function{
@@ -184,7 +184,7 @@ var GetStatus = types.Function{
 		},
 	},
 	Request:  &GetStatusRequest.Message,
-	Response: &GetStatusResponse,
+	Response: &GetStatusResponse.Message,
 }
 
 var GetCards = types.Function{

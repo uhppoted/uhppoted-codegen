@@ -47,7 +47,7 @@ var commands = []command{
     command{name: "set-time", f: setTime},
     command{name: "get-listener", f: getListener},
     command{name: "set-listener", f: setListener},
-    command{name: "get-door-control", f: getDoorControl},
+    command{name: "get-door", f: getDoor},
     command{name: "set-door-control", f: setDoorControl},
     command{name: "get-status", f: getStatus},
     command{name: "open-door", f: openDoor},
@@ -177,11 +177,11 @@ func setListener(args []string) (any, error) {
     return uhppote.SetListener(controller, address, port, interval)
 }
 
-func getDoorControl(args []string) (any, error) {
+func getDoor(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     door := DOOR
 
-    return uhppote.GetDoorControl(controller, door)
+    return uhppote.GetDoor(controller, door)
 }
 
 func setDoorControl(args []string) (any, error) {

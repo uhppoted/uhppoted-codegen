@@ -11,10 +11,10 @@ var Responses = []types.Message{
 	SetTimeResponse.Message,
 	GetListenerResponse.Message,
 	SetListenerResponse.Message,
-	GetDoorControlResponse,
+	GetDoorResponse.Message,
 	SetDoorControlResponse,
 	OpenDoorResponse,
-	GetStatusResponse,
+	GetStatusResponse.Message,
 	GetCardsResponse.Message,
 	GetCardResponse.Message,
 	GetCardByIndexResponse.Message,
@@ -45,166 +45,17 @@ var GetTimeResponse = responses.GetTimeResponse
 var SetTimeResponse = responses.SetTimeResponse
 var GetListenerResponse = responses.GetListenerResponse
 var SetListenerResponse = responses.SetListenerResponse
+var GetDoorResponse = responses.GetDoorResponse
+var GetStatusResponse = responses.GetStatusResponse
 var GetCardsResponse = responses.GetCardsResponse
 var GetCardResponse = responses.GetCardResponse
 var GetCardByIndexResponse = responses.GetCardByIndexResponse
 var PutCardResponse = responses.PutCardResponse
 var DeleteCardResponse = responses.DeleteCardResponse
 
-var GetStatusResponse = types.Message{
-	Name:    "get status response",
-	MsgType: 0x20,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "system date",
-			Type:        "shortdate",
-			Offset:      51,
-			Description: "controller system date, e.g. 2025-07-21",
-		},
-		types.Field{
-			Name:        "system time",
-			Type:        "time",
-			Offset:      37,
-			Description: "controller system time, e.g. 13:25:47",
-		},
-		types.Field{
-			Name:        "door 1 open",
-			Type:        "bool",
-			Offset:      28,
-			Description: "door 1 open sensor",
-		},
-		types.Field{
-			Name:        "door 2 open",
-			Type:        "bool",
-			Offset:      29,
-			Description: "door 2 open sensor",
-		},
-		types.Field{
-			Name:        "door 3 open",
-			Type:        "bool",
-			Offset:      30,
-			Description: "door 3 open sensor",
-		},
-		types.Field{
-			Name:        "door 4 open",
-			Type:        "bool",
-			Offset:      31,
-			Description: "door 4 open sensor",
-		},
-		types.Field{
-			Name:        "door 1 button",
-			Type:        "bool",
-			Offset:      32,
-			Description: "door 1 button pressed",
-		},
-		types.Field{
-			Name:        "door 2 button",
-			Type:        "bool",
-			Offset:      33,
-			Description: "door 2 button pressed",
-		},
-		types.Field{
-			Name:        "door 3 button",
-			Type:        "bool",
-			Offset:      34,
-			Description: "door 3 button pressed",
-		},
-		types.Field{
-			Name:        "door 4 button",
-			Type:        "bool",
-			Offset:      35,
-			Description: "door 4 button pressed",
-		},
-		types.Field{
-			Name:        "relays",
-			Type:        "uint8",
-			Offset:      49,
-			Description: "bitset of door unlock relay states",
-		},
-		types.Field{
-			Name:        "inputs",
-			Type:        "uint8",
-			Offset:      50,
-			Description: "bitset of alarm inputs",
-		},
-		types.Field{
-			Name:        "system error",
-			Type:        "uint8",
-			Offset:      36,
-			Description: "system error code",
-		},
-		types.Field{
-			Name:        "special info",
-			Type:        "uint8",
-			Offset:      48,
-			Description: "absolutely no idea",
-		},
-		types.Field{
-			Name:        "event index",
-			Type:        "uint32",
-			Offset:      8,
-			Description: "last event index",
-		},
-		types.Field{
-			Name:        "event type",
-			Type:        "uint8",
-			Offset:      12,
-			Description: "last event type",
-		},
-		types.Field{
-			Name:        "event access granted",
-			Type:        "bool",
-			Offset:      13,
-			Description: "last event access granted",
-		},
-		types.Field{
-			Name:        "event door",
-			Type:        "uint8",
-			Offset:      14,
-			Description: "last event door",
-		},
-		types.Field{
-			Name:        "event direction",
-			Type:        "uint8",
-			Offset:      15,
-			Description: "last event door direction (0: in, 1: out)",
-		},
-		types.Field{
-			Name:        "event card",
-			Type:        "uint32",
-			Offset:      16,
-			Description: "last event card number",
-		},
-		types.Field{
-			Name:        "event timestamp",
-			Type:        "optional datetime",
-			Offset:      20,
-			Description: "last event timestamp",
-		},
-		types.Field{
-			Name:        "event reason",
-			Type:        "uint8",
-			Offset:      27,
-			Description: "last event reason",
-		},
-		types.Field{
-			Name:        "sequence no",
-			Type:        "uint32",
-			Offset:      40,
-			Description: "packet sequence number",
-		},
-	},
-}
-
-// var SetListenerResponse = types.Message{
-// 	Name:    "set listener response",
-// 	MsgType: 0x90,
+// var GetStatusResponse = types.Message{
+// 	Name:    "get status response",
+// 	MsgType: 0x20,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -213,44 +64,176 @@ var GetStatusResponse = types.Message{
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:        "ok",
+// 			Name:        "system date",
+// 			Type:        "shortdate",
+// 			Offset:      51,
+// 			Description: "controller system date, e.g. 2025-07-21",
+// 		},
+// 		types.Field{
+// 			Name:        "system time",
+// 			Type:        "time",
+// 			Offset:      37,
+// 			Description: "controller system time, e.g. 13:25:47",
+// 		},
+// 		types.Field{
+// 			Name:        "door 1 open",
 // 			Type:        "bool",
+// 			Offset:      28,
+// 			Description: "door 1 open sensor",
+// 		},
+// 		types.Field{
+// 			Name:        "door 2 open",
+// 			Type:        "bool",
+// 			Offset:      29,
+// 			Description: "door 2 open sensor",
+// 		},
+// 		types.Field{
+// 			Name:        "door 3 open",
+// 			Type:        "bool",
+// 			Offset:      30,
+// 			Description: "door 3 open sensor",
+// 		},
+// 		types.Field{
+// 			Name:        "door 4 open",
+// 			Type:        "bool",
+// 			Offset:      31,
+// 			Description: "door 4 open sensor",
+// 		},
+// 		types.Field{
+// 			Name:        "door 1 button",
+// 			Type:        "bool",
+// 			Offset:      32,
+// 			Description: "door 1 button pressed",
+// 		},
+// 		types.Field{
+// 			Name:        "door 2 button",
+// 			Type:        "bool",
+// 			Offset:      33,
+// 			Description: "door 2 button pressed",
+// 		},
+// 		types.Field{
+// 			Name:        "door 3 button",
+// 			Type:        "bool",
+// 			Offset:      34,
+// 			Description: "door 3 button pressed",
+// 		},
+// 		types.Field{
+// 			Name:        "door 4 button",
+// 			Type:        "bool",
+// 			Offset:      35,
+// 			Description: "door 4 button pressed",
+// 		},
+// 		types.Field{
+// 			Name:        "relays",
+// 			Type:        "uint8",
+// 			Offset:      49,
+// 			Description: "bitset of door unlock relay states",
+// 		},
+// 		types.Field{
+// 			Name:        "inputs",
+// 			Type:        "uint8",
+// 			Offset:      50,
+// 			Description: "bitset of alarm inputs",
+// 		},
+// 		types.Field{
+// 			Name:        "system error",
+// 			Type:        "uint8",
+// 			Offset:      36,
+// 			Description: "system error code",
+// 		},
+// 		types.Field{
+// 			Name:        "special info",
+// 			Type:        "uint8",
+// 			Offset:      48,
+// 			Description: "absolutely no idea",
+// 		},
+// 		types.Field{
+// 			Name:        "event index",
+// 			Type:        "uint32",
 // 			Offset:      8,
-// 			Description: "set-listener succeeded/failed",
+// 			Description: "last event index",
+// 		},
+// 		types.Field{
+// 			Name:        "event type",
+// 			Type:        "uint8",
+// 			Offset:      12,
+// 			Description: "last event type",
+// 		},
+// 		types.Field{
+// 			Name:        "event access granted",
+// 			Type:        "bool",
+// 			Offset:      13,
+// 			Description: "last event access granted",
+// 		},
+// 		types.Field{
+// 			Name:        "event door",
+// 			Type:        "uint8",
+// 			Offset:      14,
+// 			Description: "last event door",
+// 		},
+// 		types.Field{
+// 			Name:        "event direction",
+// 			Type:        "uint8",
+// 			Offset:      15,
+// 			Description: "last event door direction (0: in, 1: out)",
+// 		},
+// 		types.Field{
+// 			Name:        "event card",
+// 			Type:        "uint32",
+// 			Offset:      16,
+// 			Description: "last event card number",
+// 		},
+// 		types.Field{
+// 			Name:        "event timestamp",
+// 			Type:        "optional datetime",
+// 			Offset:      20,
+// 			Description: "last event timestamp",
+// 		},
+// 		types.Field{
+// 			Name:        "event reason",
+// 			Type:        "uint8",
+// 			Offset:      27,
+// 			Description: "last event reason",
+// 		},
+// 		types.Field{
+// 			Name:        "sequence no",
+// 			Type:        "uint32",
+// 			Offset:      40,
+// 			Description: "packet sequence number",
 // 		},
 // 	},
 // }
 
-var GetDoorControlResponse = types.Message{
-	Name:    "get door control response",
-	MsgType: 0x82,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:        "door",
-			Type:        "uint8",
-			Offset:      8,
-			Description: "door ID ([1..4]",
-		},
-		types.Field{
-			Name:        "mode",
-			Type:        "uint8",
-			Offset:      9,
-			Description: "control mode (1:normally open, 2:normally closed. 3:controlled)",
-		},
-		types.Field{
-			Name:        "delay",
-			Type:        "uint8",
-			Offset:      10,
-			Description: "unlock delay (seconds)",
-		},
-	},
-}
+// var GetDoorControlResponse = types.Message{
+// 	Name:    "get door control response",
+// 	MsgType: 0x82,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:        "door",
+// 			Type:        "uint8",
+// 			Offset:      8,
+// 			Description: "door ID ([1..4]",
+// 		},
+// 		types.Field{
+// 			Name:        "mode",
+// 			Type:        "uint8",
+// 			Offset:      9,
+// 			Description: "control mode (1:normally open, 2:normally closed. 3:controlled)",
+// 		},
+// 		types.Field{
+// 			Name:        "delay",
+// 			Type:        "uint8",
+// 			Offset:      10,
+// 			Description: "unlock delay (seconds)",
+// 		},
+// 	},
+// }
 
 var SetDoorControlResponse = types.Message{
 	Name:    "set door control response",

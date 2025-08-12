@@ -63,8 +63,8 @@ pub const commands = [_]Command{
     },
 
     Command{
-        .name = "get-door-control",
-        .function = get_door_control,
+        .name = "get-door",
+        .function = get_door,
     },
 
     Command{
@@ -315,11 +315,11 @@ fn set_listener(allocator: std.mem.Allocator) void {
     }
 }
 
-fn get_door_control(allocator: std.mem.Allocator) void {
+fn get_door(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
     const door = DOOR;
 
-    if (uhppote.get_door_control(controller, door, allocator)) |response| {
+    if (uhppote.get_door(controller, door, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

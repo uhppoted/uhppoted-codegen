@@ -12,7 +12,7 @@ var GetTimeResponse = Response{
 				Description: "controller serial number",
 			},
 			{
-				Name:        "datetime",
+				Name:        "date time",
 				Type:        "datetime",
 				Offset:      8,
 				Description: "controller system date/time",
@@ -35,7 +35,7 @@ var GetTimeResponse = Response{
 					Value: 405419896,
 				},
 				{
-					Name:  "datetime",
+					Name:  "date time",
 					Type:  "datetime",
 					Value: "2025-11-01 12:34:56",
 				},

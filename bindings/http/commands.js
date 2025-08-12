@@ -57,11 +57,11 @@ export function setListener (controller, listener, interval) {
   return uhppote.SetListener(controller, address, port, interval)
 }
 
-export function getDoorControl (controller, door) {
+export function getDoor (controller, door) {
   controller = arg(controller)
   door = arg(door)
 
-  return uhppote.GetDoorControl(controller, door)
+  return uhppote.GetDoor(controller, door)
 }
 
 export function setDoorControl (controller, door, mode, delay) {

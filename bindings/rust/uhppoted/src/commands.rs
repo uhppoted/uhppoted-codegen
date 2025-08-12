@@ -54,8 +54,8 @@ pub const COMMANDS: [&Command; 35] = [
         func: set_listener,
     },
     &Command {
-        name: "get-door-control",
-        func: get_door_control,
+        name: "get-door",
+        func: get_door,
     },
     &Command {
         name: "set-door-control",
@@ -259,12 +259,12 @@ fn set_listener() {
     })
 }
 
-fn get_door_control() {
-    print(|| -> Result<uhppote::GetDoorControlResponse, error::Error> {
+fn get_door() {
+    print(|| -> Result<uhppote::GetDoorResponse, error::Error> {
         let controller = resolve(CONTROLLER);
         let door = DOOR;
 
-        futures::executor::block_on(uhppote::get_door_control(controller, door))
+        futures::executor::block_on(uhppote::get_door(controller, door))
     })
 }
 

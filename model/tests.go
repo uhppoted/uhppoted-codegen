@@ -13,7 +13,7 @@ var Tests = []Test{
 	GetStatusNoEventTest,
 	GetListenerTest,
 	SetListenerTest,
-	GetDoorControlTest,
+	GetDoorTest,
 	SetDoorControlTest,
 	OpenDoorTest,
 	GetCardsTest,
@@ -644,10 +644,10 @@ var SetListenerTest = Test{
 	},
 }
 
-var GetDoorControlTest = Test{
-	Name: "get door control",
+var GetDoorTest = Test{
+	Name: "get door",
 	Request: &TestRequest{
-		Name: GetDoorControlRequest.Name,
+		Name: GetDoorRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -668,7 +668,7 @@ var GetDoorControlTest = Test{
 		},
 	},
 	Response: &TestResponse{
-		Name: GetDoorControlResponse.Name,
+		Name: GetDoorResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",

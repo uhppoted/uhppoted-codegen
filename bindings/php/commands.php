@@ -120,12 +120,12 @@ function set_listener($u, $args)
     return uhppote\set_listener($u, $controller, $address, (int)$port, (int) $interval);
 }
 
-function get_door_control($u, $args)
+function get_door($u, $args)
 {
     $controller = resolve(CONTROLLER);
     $door = DOOR;
 
-    return uhppote\get_door_control($u, $controller, $door);
+    return uhppote\get_door($u, $controller, $door);
 }
 
 function set_door_control($u, $args)
@@ -437,7 +437,7 @@ function commands()
         'set-time' => 'set_time',
         'get-listener' => 'get_listener',
         'set-listener' => 'set_listener',
-        'get-door-control' => 'get_door_control',
+        'get-door' => 'get_door',
         'set-door-control' => 'set_door_control',
         'get-status' => 'get_status',
         'open-door' => 'open_door',

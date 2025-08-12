@@ -45,7 +45,7 @@ commands() ->
         {"get-status", get_status},
         {"get-listener", get_listener},
         {"set-listener", set_listener},
-        {"get-door-control", get_door_control},
+        {"get-door", get_door},
         {"set-door-control", set_door_control},
         {"open-door", open_door},
         {"get-cards", get_cards},
@@ -131,10 +131,10 @@ execute(set_listener, _Options, Config) ->
     Interval = ?LISTENER_INTERVAL,
     uhppoted:set_listener(Config, Controller, Addr, Port, Interval);
 
-execute(get_door_control, _Options, Config) ->
+execute(get_door, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     Door = ?DOOR,
-    uhppoted:get_door_control(Config, Controller, Door);
+    uhppoted:get_door(Config, Controller, Door);
 
 execute(set_door_control, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
