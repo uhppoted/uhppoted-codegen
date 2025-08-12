@@ -200,7 +200,7 @@ var SetTimeTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "date time",
+				Name:  "datetime",
 				Type:  "datetime",
 				Value: "2022-08-23 09:49:03",
 			},
@@ -221,7 +221,7 @@ var SetTimeTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "datetime",
+				Name:  "date time",
 				Type:  "datetime",
 				Value: "2022-08-23 09:49:03",
 			},
