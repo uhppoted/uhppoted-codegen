@@ -175,7 +175,7 @@ var GetTimeTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "datetime",
+				Name:  "date time",
 				Type:  "datetime",
 				Value: "2022-08-23 09:48:09",
 			},
@@ -200,7 +200,7 @@ var SetTimeTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "datetime",
+				Name:  "date time",
 				Type:  "datetime",
 				Value: "2022-08-23 09:49:03",
 			},
@@ -966,7 +966,7 @@ var GetCardAtIndexTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "card number",
+				Name:  "card",
 				Type:  "uint32",
 				Value: CARD,
 			},
