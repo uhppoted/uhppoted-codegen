@@ -64,13 +64,13 @@ export function getDoor (controller, door) {
   return uhppote.GetDoor(controller, door)
 }
 
-export function setDoorControl (controller, door, mode, delay) {
+export function setDoor (controller, door, mode, delay) {
   controller = arg(controller)
   door = arg(door)
   mode = arg(mode)
   delay = arg(delay)
 
-  return uhppote.SetDoorControl(controller, door, mode, delay)
+  return uhppote.SetDoor(controller, door, mode, delay)
 }
 
 export function openDoor (controller, door) {

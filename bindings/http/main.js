@@ -9,7 +9,7 @@ export const COMMANDS = new Map([
   ['get-listener',        { fn: commands.getListener,       args: ['controller']}],
   ['set-listener',        { fn: commands.setListener,       args: ['controller', 'listener', 'interval']}],
   ['get-door',            { fn: commands.getDoor,           args: ['controller', 'door.id']}],
-  ['set-door-control',    { fn: commands.setDoorControl,    args: ['controller', 'door.id', 'door.mode', 'door.delay']}],
+  ['set-door',            { fn: commands.setDoor,           args: ['controller', 'door.id', 'door.mode', 'door.delay']}],
   ['set-door-passcodes',  { fn: commands.setDoorPasscodes,  args: ['controller', 
                                                                    'door.id', 
                                                                    'door.passcode1', 

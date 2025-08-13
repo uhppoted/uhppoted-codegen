@@ -3,7 +3,7 @@
     "functions": [
       {
         "name": "get controller",
-        "description": "Retrieves the system information from an access controller.",
+        "description": "Retrieves the system information for an access controller.",
         "args": [
           {
             "name": "controller",
@@ -331,7 +331,42 @@
               "description": "controller system date/time"
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "set-time",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "datetime",
+                "type": "datetime",
+                "value": "2025-11-04 12:34:56"
+              }
+            ],
+            "request": "FzAAAHg3KhggJREEEjRWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "FzAAAHg3KhggJREBEjRWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "datetime",
+                    "type": "datetime",
+                    "value": "2025-11-01 12:34:56"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get listener",
@@ -518,7 +553,7 @@
         }
       },
       {
-        "name": "set door control",
+        "name": "set door",
         "description": "Sets the control mode and unlock delay time for an access controller door.",
         "args": [
           {
@@ -539,7 +574,7 @@
           }
         ],
         "request": {
-          "name": "set door control request",
+          "name": "set door request",
           "msgtype": 128,
           "fields": [
             {
@@ -566,7 +601,7 @@
           ]
         },
         "response": {
-          "name": "set door control response",
+          "name": "set door response",
           "msgtype": 128,
           "fields": [
             {
@@ -634,7 +669,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "opened",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
@@ -815,7 +850,7 @@
       },
       {
         "name": "get cards",
-        "description": "",
+        "description": "Retrieves the number of cards stored on an access controller.",
         "args": [
           {
             "name": "controller",
@@ -850,11 +885,41 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "get-cards",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F1gAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1gAAHg3KhgLNQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "cards",
+                    "type": "uint32",
+                    "value": 13579
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get card",
-        "description": "",
+        "description": "Retrieves the card record for a given card number.",
         "args": [
           {
             "name": "controller",
@@ -1075,7 +1140,7 @@
       },
       {
         "name": "get card at index",
-        "description": "",
+        "description": "Retrieves the card record stored at a given index.",
         "args": [
           {
             "name": "controller",
@@ -1364,7 +1429,7 @@
       },
       {
         "name": "put card",
-        "description": "",
+        "description": "Creates or updates a card record stored on an access controller.",
         "args": [
           {
             "name": "controller",
@@ -1545,7 +1610,7 @@
       },
       {
         "name": "delete card",
-        "description": "DeleteCard removes a card record stored on a controller.",
+        "description": "Removes a card record stored on a controller.",
         "args": [
           {
             "name": "controller",
@@ -1628,7 +1693,7 @@
       },
       {
         "name": "delete all cards",
-        "description": "",
+        "description": "Deletes all card records stored on an access controller.",
         "args": [
           {
             "name": "controller",
@@ -1663,12 +1728,42 @@
               "description": "controller serial number"
             },
             {
-              "name": "deleted",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "delete-all-cards",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F1QAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F1QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get event",
@@ -3033,7 +3128,7 @@
         ]
       },
       {
-        "name": "set door control request",
+        "name": "set door request",
         "msgtype": 128,
         "fields": [
           {
@@ -3849,7 +3944,7 @@
         ]
       },
       {
-        "name": "set door control response",
+        "name": "set door response",
         "msgtype": 128,
         "fields": [
           {
@@ -3886,7 +3981,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "opened",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }
@@ -4208,7 +4303,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "deleted",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }

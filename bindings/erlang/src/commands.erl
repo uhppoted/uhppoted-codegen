@@ -46,7 +46,7 @@ commands() ->
         {"get-listener", get_listener},
         {"set-listener", set_listener},
         {"get-door", get_door},
-        {"set-door-control", set_door_control},
+        {"set-door", set_door},
         {"open-door", open_door},
         {"get-cards", get_cards},
         {"get-card", get_card},
@@ -136,12 +136,12 @@ execute(get_door, _Options, Config) ->
     Door = ?DOOR,
     uhppoted:get_door(Config, Controller, Door);
 
-execute(set_door_control, _Options, Config) ->
+execute(set_door, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     Door = ?DOOR,
     Mode = ?MODE,
     Delay = ?DELAY,
-    uhppoted:set_door_control(Config, Controller, Door, Mode, Delay);
+    uhppoted:set_door(Config, Controller, Door, Mode, Delay);
 
 execute(open_door, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

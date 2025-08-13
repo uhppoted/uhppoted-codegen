@@ -118,7 +118,7 @@ function get_door(args)
     return uhppote.get_door(controller, door)
 end
 
-function set_door_control(args)
+function set_door(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
     local door = parse(args, "door", DOOR)
     local mode = parse(args, "mode", DOOR_MODE)
@@ -132,7 +132,7 @@ function set_door_control(args)
         mode = 3
     end
 
-    return uhppote.set_door_control(controller, door, mode, delay)
+    return uhppote.set_door(controller, door, mode, delay)
 end
 
 function open_door(args)
@@ -445,7 +445,7 @@ local commands = {
        { ["command"] = "set-listener",               ["f"] = set_listener,               flags = {},             options = { "controller","address","port" } },
        { ["command"] = "get-status",                 ["f"] = get_status,                 flags = {},             options = { "controller" } },
        { ["command"] = "get-door",                   ["f"] = get_door,                   flags = {},             options = { "controller","door" } },
-       { ["command"] = "set-door-control",           ["f"] = set_door_control,           flags = {},             options = { "controller","door","mode","delay" } },
+       { ["command"] = "set-door",                   ["f"] = set_door,                   flags = {},             options = { "controller","door","mode","delay" } },
        { ["command"] = "open-door",                  ["f"] = open_door,                  flags = {},             options = { "controller","door" } },
        { ["command"] = "get-cards",                  ["f"] = get_cards,                  flags = {},             options = { "controller" } },
        { ["command"] = "get-card",                   ["f"] = get_card,                   flags = {},             options = { "controller","card" } },

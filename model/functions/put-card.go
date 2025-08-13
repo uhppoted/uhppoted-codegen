@@ -6,7 +6,8 @@ import (
 )
 
 var PutCard = Function{
-	Name: "put card",
+	Name:        "put card",
+	Description: "Creates or updates a card record stored on an access controller.",
 	Args: []Arg{
 		{
 			Name: "controller",

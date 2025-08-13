@@ -48,7 +48,7 @@ var commands = []command{
     command{name: "get-listener", f: getListener},
     command{name: "set-listener", f: setListener},
     command{name: "get-door", f: getDoor},
-    command{name: "set-door-control", f: setDoorControl},
+    command{name: "set-door", f: setDoor},
     command{name: "get-status", f: getStatus},
     command{name: "open-door", f: openDoor},
     command{name: "get-cards", f: getCards},
@@ -184,13 +184,13 @@ func getDoor(args []string) (any, error) {
     return uhppote.GetDoor(controller, door)
 }
 
-func setDoorControl(args []string) (any, error) {
+func setDoor(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     door := DOOR
     mode := MODE
     delay := DELAY
 
-    return uhppote.SetDoorControl(controller, door, mode, delay)
+    return uhppote.SetDoor(controller, door, mode, delay)
 }
 
 func openDoor(args []string) (any, error) {

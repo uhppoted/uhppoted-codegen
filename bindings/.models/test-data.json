@@ -107,7 +107,7 @@
               "value": "405419896"
             },
             {
-              "name": "datetime",
+              "name": "date time",
               "type": "datetime",
               "value": "2022-08-23 09:48:09"
             }
@@ -142,7 +142,7 @@
               "value": "405419896"
             },
             {
-              "name": "datetime",
+              "name": "date time",
               "type": "datetime",
               "value": "2022-08-23 09:49:03"
             }
@@ -561,9 +561,9 @@
         }
       },
       {
-        "name": "set door control",
+        "name": "set door",
         "request": {
-          "name": "set door control request",
+          "name": "set door request",
           "values": [
             {
               "name": "controller",
@@ -589,7 +589,7 @@
           "message": "F4AAAHg3KhgDAgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "name": "set door control response",
+          "name": "set door response",
           "values": [
             {
               "name": "controller",
@@ -777,7 +777,7 @@
               "value": "405419896"
             },
             {
-              "name": "card number",
+              "name": "card",
               "type": "uint32",
               "value": "8165538"
             },

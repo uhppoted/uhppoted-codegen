@@ -22,7 +22,7 @@ var GetCardsRequest = Request{
 						Name: "controller",
 						Type: "uint32",
 					},
-					Value: uint32(405419896),
+					Value: 405419896,
 				},
 			},
 			Expected: []byte{

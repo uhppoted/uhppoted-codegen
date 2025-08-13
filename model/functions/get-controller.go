@@ -7,7 +7,7 @@ import (
 
 var GetController = Function{
 	Name:        "get controller",
-	Description: "Retrieves the system information from an access controller.",
+	Description: "Retrieves the system information for an access controller.",
 	Args: []Arg{
 		Arg{
 			Name: "controller",

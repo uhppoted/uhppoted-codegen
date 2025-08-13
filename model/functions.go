@@ -13,7 +13,7 @@ var Functions = []types.Function{
 	GetListener,
 	SetListener,
 	GetDoor,
-	SetDoorControl,
+	SetDoor,
 	OpenDoor,
 	GetStatus,
 	GetCards,
@@ -44,27 +44,30 @@ var Functions = []types.Function{
 var GetController = functions.GetController
 var SetIPv4 = functions.SetIPv4
 var GetTime = functions.GetTime
+var SetTime = functions.SetTime
 var PutCard = functions.PutCard
+var GetCards = functions.GetCards
 var GetCard = functions.GetCard
 var GetCardAtIndex = functions.GetCardAtIndex
 var DeleteCard = functions.DeleteCard
+var DeleteAllCards = functions.DeleteAllCards
 
-var SetTime = types.Function{
-	Name:        "set time",
-	Description: "Sets the access controller system date and time.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "time",
-			Type: "datetime",
-		},
-	},
-	Request:  &SetTimeRequest.Message,
-	Response: &SetTimeResponse.Message,
-}
+// var SetTime = types.Function{
+// 	Name:        "set time",
+// 	Description: "Sets the access controller system date and time.",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "time",
+// 			Type: "datetime",
+// 		},
+// 	},
+// 	Request:  &SetTimeRequest.Message,
+// 	Response: &SetTimeResponse.Message,
+// }
 
 var GetListener = types.Function{
 	Name:        "get listener",
@@ -121,8 +124,8 @@ var GetDoor = types.Function{
 	Response: &GetDoorResponse.Message,
 }
 
-var SetDoorControl = types.Function{
-	Name:        "set door control",
+var SetDoor = types.Function{
+	Name:        "set door",
 	Description: "Sets the control mode and unlock delay time for an access controller door.",
 	Args: []types.Arg{
 		{
@@ -142,8 +145,8 @@ var SetDoorControl = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &SetDoorControlRequest,
-	Response: &SetDoorControlResponse,
+	Request:  &SetDoorRequest.Message,
+	Response: &SetDoorResponse.Message,
 }
 
 var OpenDoor = types.Function{
@@ -160,7 +163,7 @@ var OpenDoor = types.Function{
 		},
 	},
 	Request:  &OpenDoorRequest.Message,
-	Response: &OpenDoorResponse,
+	Response: &OpenDoorResponse.Message,
 }
 
 var GetStatus = types.Function{
@@ -176,77 +179,29 @@ var GetStatus = types.Function{
 	Response: &GetStatusResponse.Message,
 }
 
-var GetCards = types.Function{
-	Name: "get cards",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  &GetCardsRequest.Message,
-	Response: &GetCardsResponse.Message,
-}
-
-// var GetCard = types.Function{
-// 	Name: "get card",
+// var GetCards = types.Function{
+// 	Name: "get cards",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
-// 		{
-// 			Name: "card number",
-// 			Type: "uint32",
-// 		},
 // 	},
-// 	Request:  &GetCardRequest.Message,
-// 	Response: &GetCardResponse.Message,
+// 	Request:  &GetCardsRequest.Message,
+// 	Response: &GetCardsResponse.Message,
 // }
 
-// var GetCardByIndex = types.Function{
-// 	Name: "get card by index",
+// var DeleteAllCards = types.Function{
+// 	Name: "delete all cards",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
-// 		{
-// 			Name: "card index",
-// 			Type: "uint32",
-// 		},
 // 	},
-// 	Request:  &GetCardByIndexRequest.Message,
-// 	Response: &GetCardByIndexResponse.Message,
+// 	Request:  &DeleteAllCardsRequest,
+// 	Response: &DeleteAllCardsResponse,
 // }
-
-// var DeleteCard = types.Function{
-// 	Name: "delete card",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 		{
-// 			Name: "card number",
-// 			Type: "uint32",
-// 		},
-// 	},
-// 	Request:  &DeleteCardRequest.Message,
-// 	Response: &DeleteCardResponse.Message,
-// }
-
-var DeleteAllCards = types.Function{
-	Name: "delete all cards",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  &DeleteAllCardsRequest,
-	Response: &DeleteAllCardsResponse,
-}
 
 var GetEvent = types.Function{
 	Name: "get event",

@@ -463,7 +463,7 @@ the specific details of translating the API function to a UHPPOTE function call.
 - `get-listener`
 - `set-listener`
 - `get-door`
-- `set-door-control`
+- `set-door`
 - `get-status`
 - `open-door`
 - `get-cards`

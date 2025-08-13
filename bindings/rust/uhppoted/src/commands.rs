@@ -58,8 +58,8 @@ pub const COMMANDS: [&Command; 35] = [
         func: get_door,
     },
     &Command {
-        name: "set-door-control",
-        func: set_door_control,
+        name: "set-door",
+        func: set_door,
     },
     &Command {
         name: "open-door",
@@ -268,14 +268,14 @@ fn get_door() {
     })
 }
 
-fn set_door_control() {
-    print(|| -> Result<uhppote::SetDoorControlResponse, error::Error> {
+fn set_door() {
+    print(|| -> Result<uhppote::SetDoorResponse, error::Error> {
         let controller = resolve(CONTROLLER);
         let door = DOOR;
         let mode = MODE;
         let delay = DELAY;
 
-        futures::executor::block_on(uhppote::set_door_control(controller, door, mode, delay))
+        futures::executor::block_on(uhppote::set_door(controller, door, mode, delay))
     })
 }
 

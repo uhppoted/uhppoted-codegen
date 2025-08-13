@@ -128,14 +128,14 @@ function get_door($u, $args)
     return uhppote\get_door($u, $controller, $door);
 }
 
-function set_door_control($u, $args)
+function set_door($u, $args)
 {
     $controller = resolve(CONTROLLER);
     $door = DOOR;
     $mode = MODE;
     $delay = DELAY;
 
-    return uhppote\set_door_control($u, $controller, $door, $mode, $delay);
+    return uhppote\set_door($u, $controller, $door, $mode, $delay);
 }
 
 function get_status($u, $args)
@@ -438,7 +438,7 @@ function commands()
         'get-listener' => 'get_listener',
         'set-listener' => 'set_listener',
         'get-door' => 'get_door',
-        'set-door-control' => 'set_door_control',
+        'set-door' => 'set_door',
         'get-status' => 'get_status',
         'open-door' => 'open_door',
         'get-cards' => 'get_cards',

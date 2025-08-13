@@ -68,8 +68,8 @@ pub const commands = [_]Command{
     },
 
     Command{
-        .name = "set-door-control",
-        .function = set_door_control,
+        .name = "set-door",
+        .function = set_door,
     },
 
     Command{
@@ -326,13 +326,13 @@ fn get_door(allocator: std.mem.Allocator) void {
     }
 }
 
-fn set_door_control(allocator: std.mem.Allocator) void {
+fn set_door(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
     const door = DOOR;
     const mode = MODE;
     const delay = DELAY;
 
-    if (uhppote.set_door_control(controller, door, mode, delay, allocator)) |response| {
+    if (uhppote.set_door(controller, door, mode, delay, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

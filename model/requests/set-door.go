@@ -1,0 +1,49 @@
+package requests
+
+var SetDoorRequest = Request{
+	Message: Message{
+		Name:    "set door request",
+		MsgType: 0x80,
+		Fields: []Field{
+			{
+				Name:        "controller",
+				Type:        "uint32",
+				Offset:      4,
+				Description: "controller serial number",
+			},
+			{
+				Name:   "door",
+				Type:   "uint8",
+				Offset: 8,
+			},
+			{
+				Name:   "mode",
+				Type:   "uint8",
+				Offset: 9,
+			},
+			{
+				Name:   "delay",
+				Type:   "uint8",
+				Offset: 10,
+			},
+		},
+	},
+
+	Tests: []RequestTest{
+		{
+			Name: "set-door",
+			Args: []TestArg{
+				{Arg: Arg{Name: "controller", Type: "uint32"}, Value: uint32(405419896)},
+				{Arg: Arg{Name: "door", Type: "uint8"}, Value: uint8(3)},
+				{Arg: Arg{Name: "mode", Type: "uint8"}, Value: uint8(2)},
+				{Arg: Arg{Name: "delay", Type: "uint8"}, Value: uint8(17)},
+			},
+			Expected: []byte{
+				0x17, 0x80, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x03, 0x02, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			},
+		},
+	},
+}
