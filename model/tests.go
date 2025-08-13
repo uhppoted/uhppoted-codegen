@@ -798,7 +798,7 @@ var OpenDoorTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "opened",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},
@@ -1169,7 +1169,7 @@ var DeleteAllCardsTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "deleted",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},
