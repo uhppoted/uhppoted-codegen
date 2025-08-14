@@ -14,6 +14,7 @@ var Responses = []types.Message{
 	SetListenerResponse.Message,
 	GetDoorResponse.Message,
 	SetDoorResponse.Message,
+	SetDoorPasscodesResponse.Message,
 	OpenDoorResponse.Message,
 	GetStatusResponse.Message,
 	GetCardsResponse.Message,
@@ -22,7 +23,7 @@ var Responses = []types.Message{
 	PutCardResponse.Message,
 	DeleteCardResponse.Message,
 	DeleteAllCardsResponse.Message,
-	GetEventResponse,
+	GetEventResponse.Message,
 	GetEventIndexResponse,
 	SetEventIndexResponse,
 	RecordSpecialEventsResponse,
@@ -35,7 +36,6 @@ var Responses = []types.Message{
 	SetPCControlResponse,
 	SetInterlockResponse,
 	ActivateKeypadsResponse,
-	SetDoorPasscodesResponse,
 	GetAntiPassbackResponse,
 	SetAntiPassbackResponse,
 	RestoreDefaultParametersResponse,
@@ -50,6 +50,7 @@ var GetListenerAddrPortResponse = responses.GetListenerAddrPortResponse
 var SetListenerResponse = responses.SetListenerResponse
 var GetDoorResponse = responses.GetDoorResponse
 var SetDoorResponse = responses.SetDoorResponse
+var SetDoorPasscodesResponse = responses.SetDoorPasscodesResponse
 var OpenDoorResponse = responses.OpenDoorResponse
 var GetStatusResponse = responses.GetStatusResponse
 var GetCardsResponse = responses.GetCardsResponse
@@ -58,123 +59,60 @@ var GetCardAtIndexResponse = responses.GetCardAtIndexResponse
 var PutCardResponse = responses.PutCardResponse
 var DeleteCardResponse = responses.DeleteCardResponse
 var DeleteAllCardsResponse = responses.DeleteAllCardsResponse
+var GetEventResponse = responses.GetEventResponse
 
-// var SetDoorControlResponse = types.Message{
-// 	Name:    "set door control response",
-// 	MsgType: 0x80,
+// var GetEventResponse = types.Message{
+// 	Name:    "get event response",
+// 	MsgType: 0xb0,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
 // 			Type:        "uint32",
 // 			Offset:      4,
 // 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "index",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "event type",
+// 			Type:   "uint8",
+// 			Offset: 12,
+// 		},
+// 		types.Field{
+// 			Name:   "access granted",
+// 			Type:   "bool",
+// 			Offset: 13,
 // 		},
 // 		types.Field{
 // 			Name:   "door",
 // 			Type:   "uint8",
-// 			Offset: 8,
+// 			Offset: 14,
 // 		},
 // 		types.Field{
-// 			Name:   "mode",
+// 			Name:   "direction",
 // 			Type:   "uint8",
-// 			Offset: 9,
+// 			Offset: 15,
 // 		},
 // 		types.Field{
-// 			Name:   "delay",
+// 			Name:   "card",
+// 			Type:   "uint32",
+// 			Offset: 16,
+// 		},
+// 		types.Field{
+// 			Name:   "timestamp",
+// 			Type:   "optional datetime",
+// 			Offset: 20,
+// 		},
+// 		types.Field{
+// 			Name:   "reason",
 // 			Type:   "uint8",
-// 			Offset: 10,
+// 			Offset: 27,
 // 		},
 // 	},
 // }
-
-// var OpenDoorResponse = types.Message{
-// 	Name:    "open door response",
-// 	MsgType: 0x40,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "opened",
-// 			Type:   "bool",
-// 			Offset: 8,
-// 		},
-// 	},
-// }
-
-// var DeleteAllCardsResponse = types.Message{
-// 	Name:    "delete all cards response",
-// 	MsgType: 0x54,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "deleted",
-// 			Type:   "bool",
-// 			Offset: 8,
-// 		},
-// 	},
-// }
-
-var GetEventResponse = types.Message{
-	Name:    "get event response",
-	MsgType: 0xb0,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "index",
-			Type:   "uint32",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "event type",
-			Type:   "uint8",
-			Offset: 12,
-		},
-		types.Field{
-			Name:   "access granted",
-			Type:   "bool",
-			Offset: 13,
-		},
-		types.Field{
-			Name:   "door",
-			Type:   "uint8",
-			Offset: 14,
-		},
-		types.Field{
-			Name:   "direction",
-			Type:   "uint8",
-			Offset: 15,
-		},
-		types.Field{
-			Name:   "card",
-			Type:   "uint32",
-			Offset: 16,
-		},
-		types.Field{
-			Name:   "timestamp",
-			Type:   "optional datetime",
-			Offset: 20,
-		},
-		types.Field{
-			Name:   "reason",
-			Type:   "uint8",
-			Offset: 27,
-		},
-	},
-}
 
 var GetEventIndexResponse = types.Message{
 	Name:    "get event index response",
@@ -472,23 +410,23 @@ var ActivateKeypadsResponse = types.Message{
 	},
 }
 
-var SetDoorPasscodesResponse = types.Message{
-	Name:    "set door passcodes response",
-	MsgType: 0x8c,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "ok",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var SetDoorPasscodesResponse = types.Message{
+// 	Name:    "set door passcodes response",
+// 	MsgType: 0x8c,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "ok",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var GetAntiPassbackResponse = types.Message{
 	Name:    "get antipassback response",

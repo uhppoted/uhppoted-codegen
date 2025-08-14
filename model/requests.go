@@ -14,6 +14,7 @@ var Requests = []types.Message{
 	SetListenerRequest.Message,
 	GetDoorRequest.Message,
 	SetDoorRequest.Message,
+	SetDoorPasscodesRequest.Message,
 	OpenDoorRequest.Message,
 	GetStatusRequest.Message,
 	GetCardsRequest.Message,
@@ -22,7 +23,7 @@ var Requests = []types.Message{
 	PutCardRequest.Message,
 	DeleteCardRequest.Message,
 	DeleteAllCardsRequest.Message,
-	GetEventRequest,
+	GetEventRequest.Message,
 	GetEventIndexRequest,
 	SetEventIndexRequest,
 	RecordSpecialEventsRequest,
@@ -35,7 +36,6 @@ var Requests = []types.Message{
 	SetPCControlRequest,
 	SetInterlockRequest,
 	ActivateKeypadsRequest,
-	SetDoorPasscodesRequest,
 	GetAntiPassbackRequest,
 	SetAntiPassbackRequest,
 	RestoreDefaultParametersRequest,
@@ -50,6 +50,7 @@ var SetListenerRequest = requests.SetListenerRequest
 var SetListenerAddrPortRequest = requests.SetListenerAddrPortRequest
 var GetDoorRequest = requests.GetDoorRequest
 var SetDoorRequest = requests.SetDoorRequest
+var SetDoorPasscodesRequest = requests.SetDoorPasscodesRequest
 var OpenDoorRequest = requests.OpenDoorRequest
 var GetStatusRequest = requests.GetStatusRequest
 var GetCardsRequest = requests.GetCardsRequest
@@ -58,24 +59,25 @@ var GetCardAtIndexRequest = requests.GetCardAtIndexRequest
 var PutCardRequest = requests.PutCardRequest
 var DeleteCardRequest = requests.DeleteCardRequest
 var DeleteAllCardsRequest = requests.DeleteAllCardsRequest
+var GetEventRequest = requests.GetEventRequest
 
-var GetEventRequest = types.Message{
-	Name:    "get event request",
-	MsgType: 0xb0,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "event index",
-			Type:   "uint32",
-			Offset: 8,
-		},
-	},
-}
+// var GetEventRequest = types.Message{
+// 	Name:    "get event request",
+// 	MsgType: 0xb0,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "event index",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var GetEventIndexRequest = types.Message{
 	Name:    "get event index request",
@@ -453,43 +455,43 @@ var ActivateKeypadsRequest = types.Message{
 	},
 }
 
-var SetDoorPasscodesRequest = types.Message{
-	Name:    "set door passcodes request",
-	MsgType: 0x8c,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "door",
-			Type:   "uint8",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "passcode 1",
-			Type:   "uint32",
-			Offset: 12,
-		},
-		types.Field{
-			Name:   "passcode 2",
-			Type:   "uint32",
-			Offset: 16,
-		},
-		types.Field{
-			Name:   "passcode 3",
-			Type:   "uint32",
-			Offset: 20,
-		},
-		types.Field{
-			Name:   "passcode 4",
-			Type:   "uint32",
-			Offset: 24,
-		},
-	},
-}
+// var SetDoorPasscodesRequest = types.Message{
+// 	Name:    "set door passcodes request",
+// 	MsgType: 0x8c,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "door",
+// 			Type:   "uint8",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "passcode 1",
+// 			Type:   "uint32",
+// 			Offset: 12,
+// 		},
+// 		types.Field{
+// 			Name:   "passcode 2",
+// 			Type:   "uint32",
+// 			Offset: 16,
+// 		},
+// 		types.Field{
+// 			Name:   "passcode 3",
+// 			Type:   "uint32",
+// 			Offset: 20,
+// 		},
+// 		types.Field{
+// 			Name:   "passcode 4",
+// 			Type:   "uint32",
+// 			Offset: 24,
+// 		},
+// 	},
+// }
 
 var GetAntiPassbackRequest = types.Message{
 	Name:    "get antipassback request",

@@ -27,14 +27,14 @@ var GetCardRequest = Request{
 						Name: "controller",
 						Type: "uint32",
 					},
-					Value: uint32(405419896),
+					Value: 405419896,
 				},
 				{
 					Arg: Arg{
 						Name: "card",
 						Type: "uint32",
 					},
-					Value: uint32(10058400),
+					Value: 10058400,
 				},
 			},
 			Expected: []byte{

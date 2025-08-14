@@ -435,7 +435,47 @@
               "description": "status auto-send interval (seconds)"
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "get-listener",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F5IAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F5IAAHg3KhjAqAFkYeoNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "address",
+                    "type": "IPv4",
+                    "value": "192.168.1.100"
+                  },
+                  {
+                    "name": "port",
+                    "type": "uint16",
+                    "value": 60001
+                  },
+                  {
+                    "name": "interval",
+                    "type": "uint8",
+                    "value": 13
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set listener",
@@ -567,7 +607,52 @@
               "description": "unlock delay (seconds)"
             }
           ]
-        }
+        },
+        "tests": [
+          {
+            "name": "get-door",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "door",
+                "type": "uint8",
+                "value": 4
+              }
+            ],
+            "request": "F4IAAHg3KhgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F4IAAHg3KhgEAwcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "door",
+                    "type": "uint8",
+                    "value": 4
+                  },
+                  {
+                    "name": "mode",
+                    "type": "uint8",
+                    "value": 3
+                  },
+                  {
+                    "name": "delay",
+                    "type": "uint8",
+                    "value": 7
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set door",
@@ -2803,19 +2888,19 @@
           },
           {
             "name": "passcode 1",
-            "type": "uint32"
+            "type": "pin"
           },
           {
             "name": "passcode 2",
-            "type": "uint32"
+            "type": "pin"
           },
           {
             "name": "passcode 3",
-            "type": "uint32"
+            "type": "pin"
           },
           {
             "name": "passcode 4",
-            "type": "uint32"
+            "type": "pin"
           }
         ],
         "request": {
@@ -2835,22 +2920,22 @@
             },
             {
               "name": "passcode 1",
-              "type": "uint32",
+              "type": "pin",
               "offset": 12
             },
             {
               "name": "passcode 2",
-              "type": "uint32",
+              "type": "pin",
               "offset": 16
             },
             {
               "name": "passcode 3",
-              "type": "uint32",
+              "type": "pin",
               "offset": 20
             },
             {
               "name": "passcode 4",
-              "type": "uint32",
+              "type": "pin",
               "offset": 24
             }
           ]
@@ -3168,6 +3253,43 @@
             "name": "delay",
             "type": "uint8",
             "offset": 10
+          }
+        ]
+      },
+      {
+        "name": "set door passcodes request",
+        "msgtype": 140,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "passcode 1",
+            "type": "pin",
+            "offset": 12
+          },
+          {
+            "name": "passcode 2",
+            "type": "pin",
+            "offset": 16
+          },
+          {
+            "name": "passcode 3",
+            "type": "pin",
+            "offset": 20
+          },
+          {
+            "name": "passcode 4",
+            "type": "pin",
+            "offset": 24
           }
         ]
       },
@@ -3714,43 +3836,6 @@
         ]
       },
       {
-        "name": "set door passcodes request",
-        "msgtype": 140,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
-          },
-          {
-            "name": "door",
-            "type": "uint8",
-            "offset": 8
-          },
-          {
-            "name": "passcode 1",
-            "type": "uint32",
-            "offset": 12
-          },
-          {
-            "name": "passcode 2",
-            "type": "uint32",
-            "offset": 16
-          },
-          {
-            "name": "passcode 3",
-            "type": "uint32",
-            "offset": 20
-          },
-          {
-            "name": "passcode 4",
-            "type": "uint32",
-            "offset": 24
-          }
-        ]
-      },
-      {
         "name": "get antipassback request",
         "msgtype": 134,
         "fields": [
@@ -4001,6 +4086,23 @@
             "name": "delay",
             "type": "uint8",
             "offset": 10
+          }
+        ]
+      },
+      {
+        "name": "set door passcodes response",
+        "msgtype": 140,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "ok",
+            "type": "bool",
+            "offset": 8
           }
         ]
       },
@@ -4665,23 +4767,6 @@
       {
         "name": "activate keypads response",
         "msgtype": 164,
-        "fields": [
-          {
-            "name": "controller",
-            "type": "uint32",
-            "offset": 4,
-            "description": "controller serial number"
-          },
-          {
-            "name": "ok",
-            "type": "bool",
-            "offset": 8
-          }
-        ]
-      },
-      {
-        "name": "set door passcodes response",
-        "msgtype": 140,
         "fields": [
           {
             "name": "controller",

@@ -7,7 +7,3 @@
 {{define "type"}}{{lookup "go.types" . "???"}}{{end}}
 
 {{define "var"}}to{{CamelCase .type}}("{{ .value }}"){{end}}
-
-
-
-

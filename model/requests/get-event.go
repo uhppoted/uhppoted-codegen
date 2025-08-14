@@ -1,9 +1,9 @@
 package requests
 
-var SetDoorRequest = Request{
+var GetEventRequest = Request{
 	Message: Message{
-		Name:    "set door request",
-		MsgType: 0x80,
+		Name:    "get event request",
+		MsgType: 0xb0,
 		Fields: []Field{
 			{
 				Name:        "controller",
@@ -12,53 +12,33 @@ var SetDoorRequest = Request{
 				Description: "controller serial number",
 			},
 			{
-				Name:   "door",
-				Type:   "uint8",
+				Name:   "event index",
+				Type:   "uint32",
 				Offset: 8,
-			},
-			{
-				Name:   "mode",
-				Type:   "uint8",
-				Offset: 9,
-			},
-			{
-				Name:   "delay",
-				Type:   "uint8",
-				Offset: 10,
 			},
 		},
 	},
-
 	Tests: []RequestTest{
 		{
-			Name: "set-door",
+			Name: "get-event",
 			Args: []TestArg{
 				{
-					Arg: Arg{Name: "controller", Type: "uint32"}, Value: uint32(405419896)},
-				{
 					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
+						Name: "controller",
+						Type: "uint32",
 					},
-					Value: 3,
+					Value: 405419896,
 				},
 				{
 					Arg: Arg{
-						Name: "mode",
-						Type: "uint8",
+						Name: "event index",
+						Type: "uint32",
 					},
-					Value: 2,
-				},
-				{
-					Arg: Arg{
-						Name: "delay",
-						Type: "uint8",
-					},
-					Value: 17,
+					Value: 13579,
 				},
 			},
 			Expected: []byte{
-				0x17, 0x80, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x03, 0x02, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x17, 0xb0, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x0b, 0x35, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

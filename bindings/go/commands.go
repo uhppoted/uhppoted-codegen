@@ -402,10 +402,10 @@ func activateKeypads(args []string) (any, error) {
 func setDoorPasscodes(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     door := DOOR
-    passcode1 := uint32(12345)
-    passcode2 := uint32(0)
-    passcode3 := uint32(999999)
-    passcode4 := uint32(54321)
+    passcode1 := uhppote.PIN(12345)
+    passcode2 := uhppote.PIN(0)
+    passcode3 := uhppote.PIN(999999)
+    passcode4 := uhppote.PIN(54321)
 
     return uhppote.SetDoorPasscodes(controller, door, passcode1, passcode2, passcode3, passcode4)
 }

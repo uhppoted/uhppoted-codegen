@@ -45,6 +45,8 @@ var GetController = functions.GetController
 var SetIPv4 = functions.SetIPv4
 var GetTime = functions.GetTime
 var SetTime = functions.SetTime
+var GetDoor = functions.GetDoor
+var GetListener = functions.GetListener
 var PutCard = functions.PutCard
 var GetCards = functions.GetCards
 var GetCard = functions.GetCard
@@ -52,35 +54,18 @@ var GetCardAtIndex = functions.GetCardAtIndex
 var DeleteCard = functions.DeleteCard
 var DeleteAllCards = functions.DeleteAllCards
 
-// var SetTime = types.Function{
-// 	Name:        "set time",
-// 	Description: "Sets the access controller system date and time.",
+// var GetListener = types.Function{
+// 	Name:        "get listener",
+// 	Description: "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
-// 		{
-// 			Name: "time",
-// 			Type: "datetime",
-// 		},
 // 	},
-// 	Request:  SetTimeRequest.Message,
-// 	Response: SetTimeResponse.Message,
+// 	Request:  GetListenerRequest.Message,
+// 	Response: GetListenerResponse.Message,
 // }
-
-var GetListener = types.Function{
-	Name:        "get listener",
-	Description: "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  GetListenerRequest.Message,
-	Response: GetListenerResponse.Message,
-}
 
 var SetListener = types.Function{
 	Name:        "set listener",
@@ -107,22 +92,22 @@ var SetListener = types.Function{
 	Response: SetListenerResponse.Message,
 }
 
-var GetDoor = types.Function{
-	Name:        "get door",
-	Description: "Retrieves the control mode and unlock delay time for an access controller door.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "door",
-			Type: "uint8",
-		},
-	},
-	Request:  GetDoorRequest.Message,
-	Response: GetDoorResponse.Message,
-}
+// var GetDoor = types.Function{
+// 	Name:        "get door",
+// 	Description: "Retrieves the control mode and unlock delay time for an access controller door.",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "door",
+// 			Type: "uint8",
+// 		},
+// 	},
+// 	Request:  GetDoorRequest.Message,
+// 	Response: GetDoorResponse.Message,
+// }
 
 var SetDoor = types.Function{
 	Name:        "set door",
@@ -179,30 +164,6 @@ var GetStatus = types.Function{
 	Response: GetStatusResponse.Message,
 }
 
-// var GetCards = types.Function{
-// 	Name: "get cards",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 	},
-// 	Request:  GetCardsRequest.Message,
-// 	Response: GetCardsResponse.Message,
-// }
-
-// var DeleteAllCards = types.Function{
-// 	Name: "delete all cards",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 	},
-// 	Request:  DeleteAllCardsRequest,
-// 	Response: DeleteAllCardsResponse,
-// }
-
 var GetEvent = types.Function{
 	Name: "get event",
 	Args: []types.Arg{
@@ -215,8 +176,8 @@ var GetEvent = types.Function{
 			Type: "uint32",
 		},
 	},
-	Request:  GetEventRequest,
-	Response: GetEventResponse,
+	Request:  GetEventRequest.Message,
+	Response: GetEventResponse.Message,
 }
 
 var GetEventIndex = types.Function{
@@ -533,23 +494,23 @@ var SetDoorPasscodes = types.Function{
 		},
 		{
 			Name: "passcode 1",
-			Type: "uint32",
+			Type: "pin",
 		},
 		{
 			Name: "passcode 2",
-			Type: "uint32",
+			Type: "pin",
 		},
 		{
 			Name: "passcode 3",
-			Type: "uint32",
+			Type: "pin",
 		},
 		{
 			Name: "passcode 4",
-			Type: "uint32",
+			Type: "pin",
 		},
 	},
-	Request:  SetDoorPasscodesRequest,
-	Response: SetDoorPasscodesResponse,
+	Request:  SetDoorPasscodesRequest.Message,
+	Response: SetDoorPasscodesResponse.Message,
 }
 
 var GetAntiPassback = types.Function{
