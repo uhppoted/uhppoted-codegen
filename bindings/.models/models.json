@@ -183,9 +183,26 @@
             }
           ]
         },
+        "response": {
+          "name": "set IPv4 response",
+          "msgtype": 150,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "offset": 8
+            }
+          ]
+        },
         "tests": [
           {
-            "name": "put-card",
+            "name": "set-IPv4",
             "args": [
               {
                 "name": "controller",
@@ -3826,6 +3843,23 @@
             "type": "date",
             "offset": 28,
             "description": "controller firmware release date, e.g. 2020-12-31"
+          }
+        ]
+      },
+      {
+        "name": "set IPv4 response",
+        "msgtype": 150,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "ok",
+            "type": "bool",
+            "offset": 8
           }
         ]
       },

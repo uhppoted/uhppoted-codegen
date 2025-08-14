@@ -85,9 +85,7 @@ function set_ipv4($u, $args)
     $netmask = NETMASK;
     $gateway = GATEWAY;
 
-    uhppote\set_ipv4($u, $controller, $address, $netmask, $gateway);
-
-    return (object) array('set' => 'ok');
+    return uhppote\set_ipv4($u, $controller, $address, $netmask, $gateway);
 }
 
 function get_time($u, $args)

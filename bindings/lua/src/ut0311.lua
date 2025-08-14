@@ -172,9 +172,13 @@ function udp_sendto(address, request)
         sock:setpeername('192.168.1.100',60000)
         sock:send(request)
 
-        -- set-ip doesn't return a reply
+        -- set-ip doesn't return a reply so fake it
         if string.byte(request, 2) == 0x96 then
-            return {}, nil
+            local reply = request:sub(1, 8) ..
+                          string.char(0x01) .. 
+                          string.rep(string.char(0x00), 55)
+
+            return reply, nil
         end
 
         local packet = sock:receive(1024)

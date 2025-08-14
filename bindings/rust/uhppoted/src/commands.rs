@@ -205,7 +205,7 @@ fn get_controller() {
 }
 
 fn set_ipv4() {
-    print(|| -> Result<bool, error::Error> {
+    print(|| -> Result<uhppote::SetIPv4Response, error::Error> {
         let controller = resolve(CONTROLLER);
         let address = "192.168.1.100".parse().unwrap();
         let netmask = "255.255.255.0".parse().unwrap();

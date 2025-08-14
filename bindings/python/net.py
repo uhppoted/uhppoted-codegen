@@ -70,8 +70,9 @@ class Net:
 
             sock.sendto(request, address)
 
+            # set-ip doesn't return a reply so fake it
             if request[1] == 0x96:
-                return None
+                return request[:8] + bytes([0x01]) + bytes(55)
 
             return read(sock, self._debug)
 

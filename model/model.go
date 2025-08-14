@@ -15,14 +15,6 @@ type TestData struct {
 	Tests []Test `json:"tests"`
 }
 
-// type Function struct {
-// 	Name        string         `json:"name"`
-// 	Description string         `json:"description"`
-// 	Args        []Arg          `json:"args"`
-// 	Request     *types.Message `json:"request,omitempty"`
-// 	Response    *types.Message `json:"response,omitempty"`
-// }
-
 type Arg struct {
 	Name        string `json:"name"`
 	Type        string `json:"type"`

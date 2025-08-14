@@ -136,11 +136,7 @@ func setIPv4(args []string) (any, error) {
     netmask := NETMASK
     gateway := GATEWAY
 
-    if err := uhppote.SetIPv4(controller, address, netmask, gateway); err != nil {
-        return nil, err
-    }
-
-    return nil, nil
+    return uhppote.SetIPv4(controller, address, netmask, gateway)
 }
 
 func getTime(args []string) (any, error) {

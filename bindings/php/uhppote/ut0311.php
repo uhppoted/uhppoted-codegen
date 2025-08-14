@@ -124,7 +124,9 @@ function udp_broadcast_to($uhppote, $request)
 
             // set-ip doesn't return a reply
             if ($request[1] ==  0x96) {
-                return [];
+                return substr($request, 0, 8)
+                       . chr(0x01)
+                       . str_repeat(chr(0x00), 55);
             }
 
             do {

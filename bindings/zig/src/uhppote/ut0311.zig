@@ -139,7 +139,15 @@ fn udp_broadcast_to(packet: [64]u8, allocator: std.mem.Allocator) ![64]u8 {
 
     // set-ip does not return a response
     if (packet[1] == 0x96) { 
-        return [_]u8{0} ** 64;
+        var reply: [64]u8 = [_]u8{0} ** 64;
+
+        @memcpy(reply[0..8], packet[0..8]);
+        reply[8] = 0x01;
+        for (reply[9..]) |*b| {
+            b.* = 0;
+        }
+    
+        return reply;
     } 
 
     return try read(&socket, allocator);    

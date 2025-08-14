@@ -18,8 +18,8 @@ var SetTime = Function{
 			Type: "datetime",
 		},
 	},
-	Request:  &requests.SetTimeRequest.Message,
-	Response: &responses.SetTimeResponse.Message,
+	Request:  requests.SetTimeRequest.Message,
+	Response: responses.SetTimeResponse.Message,
 
 	Tests: []FuncTest{
 		{

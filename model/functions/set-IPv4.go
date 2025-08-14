@@ -4,6 +4,7 @@ import (
 	"net/netip"
 
 	"github.com/uhppoted/uhppoted-codegen/model/requests"
+	"github.com/uhppoted/uhppoted-codegen/model/responses"
 )
 
 var SetIPv4 = Function{
@@ -27,11 +28,12 @@ var SetIPv4 = Function{
 			Type: "IPv4",
 		},
 	},
-	Request: &requests.SetIPv4Request.Message,
+	Request:  requests.SetIPv4Request.Message,
+	Response: responses.SetIPv4Response.Message,
 
 	Tests: []FuncTest{
 		{
-			Name: "put-card",
+			Name: "set-IPv4",
 			Args: []TestArg{
 				{
 					Arg: Arg{

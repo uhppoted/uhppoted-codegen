@@ -14,8 +14,8 @@ var GetTime = Function{
 			Type: "controller",
 		},
 	},
-	Request:  &requests.GetTimeRequest.Message,
-	Response: &responses.GetTimeResponse.Message,
+	Request:  requests.GetTimeRequest.Message,
+	Response: responses.GetTimeResponse.Message,
 
 	Tests: []FuncTest{
 		{

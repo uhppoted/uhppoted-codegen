@@ -254,8 +254,8 @@ fn set_ipv4(allocator: std.mem.Allocator) void {
     const netmask = network.Address.IPv4.init(255, 255, 255, 0);
     const gateway = network.Address.IPv4.init(192, 168, 1, 1);
 
-    if (uhppote.set_ipv4(controller, address, netmask, gateway, allocator)) |ok| {
-        pprint(ok);
+    if (uhppote.set_ipv4(controller, address, netmask, gateway, allocator)) |response| {
+        pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
     }

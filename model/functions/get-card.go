@@ -18,8 +18,8 @@ var GetCard = Function{
 			Type: "uint32",
 		},
 	},
-	Request:  &requests.GetCardRequest.Message,
-	Response: &responses.GetCardResponse.Message,
+	Request:  requests.GetCardRequest.Message,
+	Response: responses.GetCardResponse.Message,
 
 	Tests: []FuncTest{
 		{

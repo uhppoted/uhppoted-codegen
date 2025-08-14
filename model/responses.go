@@ -7,6 +7,7 @@ import (
 
 var Responses = []types.Message{
 	GetControllerResponse.Message,
+	SetIPv4Response.Message,
 	GetTimeResponse.Message,
 	SetTimeResponse.Message,
 	GetListenerResponse.Message,
@@ -41,6 +42,7 @@ var Responses = []types.Message{
 }
 
 var GetControllerResponse = responses.GetControllerResponse
+var SetIPv4Response = responses.SetIPv4Response
 var GetTimeResponse = responses.GetTimeResponse
 var SetTimeResponse = responses.SetTimeResponse
 var GetListenerResponse = responses.GetListenerResponse

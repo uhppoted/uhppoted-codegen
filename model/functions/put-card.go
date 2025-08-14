@@ -46,8 +46,8 @@ var PutCard = Function{
 			Type: "pin",
 		},
 	},
-	Request:  &requests.PutCardRequest.Message,
-	Response: &responses.PutCardResponse.Message,
+	Request:  requests.PutCardRequest.Message,
+	Response: responses.PutCardResponse.Message,
 
 	Tests: []FuncTest{
 		{

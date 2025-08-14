@@ -18,8 +18,8 @@ var DeleteCard = Function{
 			Type: "uint32",
 		},
 	},
-	Request:  &requests.DeleteCardRequest.Message,
-	Response: &responses.DeleteCardResponse.Message,
+	Request:  requests.DeleteCardRequest.Message,
+	Response: responses.DeleteCardResponse.Message,
 
 	Tests: []FuncTest{
 		{

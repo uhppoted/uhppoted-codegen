@@ -14,8 +14,8 @@ var GetCards = Function{
 			Type: "controller",
 		},
 	},
-	Request:  &requests.GetCardsRequest.Message,
-	Response: &responses.GetCardsResponse.Message,
+	Request:  requests.GetCardsRequest.Message,
+	Response: responses.GetCardsResponse.Message,
 
 	Tests: []FuncTest{
 		{

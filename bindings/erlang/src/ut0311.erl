@@ -91,12 +91,16 @@ tcp_send_to(Config,{Addr,Port}, Request) ->
     end.
 
 
-% set-ip doesn't return a reply
+% set-ip doesn't return a reply so fake it
 send(Transport, Socket, DestAddr, <<16#17, 16#96, R/binary>>, _Debug) ->
     case sendto(Transport, Socket, DestAddr, <<16#17, 16#96, R/binary>>) of
         ok ->
             erlang:send_after(?READ_TIMEOUT, self(), timeout),
-            {ok, none};
+
+            <<H:6/binary, _/binary>> = R,
+            Reply = <<16#17, 16#96, H/binary, 16#01, 16#00:(55*8)>>,
+
+            {Reply, none};
         {error, Reason} ->
             {error, Reason}
     end;

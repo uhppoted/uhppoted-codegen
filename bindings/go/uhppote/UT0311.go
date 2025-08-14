@@ -116,9 +116,14 @@ func udpBroadcastTo(request []byte) ([]byte, error) {
             return nil, fmt.Errorf("failed to write to UDP socket [%v]", err)
         }
 
-        // NTS: set-ip doesn't return a reply
+        // NTS: set-ip doesn't return a reply so fake it
         if request[1] == 0x96 {
-            return nil, nil
+            reply := make([]byte, 64)
+
+            copy(reply, request[:8])
+            reply[8] = 0x01
+
+            return reply, nil
         }
 
         for {

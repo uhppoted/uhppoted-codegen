@@ -65,8 +65,8 @@ var DeleteAllCards = functions.DeleteAllCards
 // 			Type: "datetime",
 // 		},
 // 	},
-// 	Request:  &SetTimeRequest.Message,
-// 	Response: &SetTimeResponse.Message,
+// 	Request:  SetTimeRequest.Message,
+// 	Response: SetTimeResponse.Message,
 // }
 
 var GetListener = types.Function{
@@ -78,8 +78,8 @@ var GetListener = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetListenerRequest.Message,
-	Response: &GetListenerResponse.Message,
+	Request:  GetListenerRequest.Message,
+	Response: GetListenerResponse.Message,
 }
 
 var SetListener = types.Function{
@@ -103,8 +103,8 @@ var SetListener = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &SetListenerRequest.Message,
-	Response: &SetListenerResponse.Message,
+	Request:  SetListenerRequest.Message,
+	Response: SetListenerResponse.Message,
 }
 
 var GetDoor = types.Function{
@@ -120,8 +120,8 @@ var GetDoor = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &GetDoorRequest.Message,
-	Response: &GetDoorResponse.Message,
+	Request:  GetDoorRequest.Message,
+	Response: GetDoorResponse.Message,
 }
 
 var SetDoor = types.Function{
@@ -145,8 +145,8 @@ var SetDoor = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &SetDoorRequest.Message,
-	Response: &SetDoorResponse.Message,
+	Request:  SetDoorRequest.Message,
+	Response: SetDoorResponse.Message,
 }
 
 var OpenDoor = types.Function{
@@ -162,8 +162,8 @@ var OpenDoor = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &OpenDoorRequest.Message,
-	Response: &OpenDoorResponse.Message,
+	Request:  OpenDoorRequest.Message,
+	Response: OpenDoorResponse.Message,
 }
 
 var GetStatus = types.Function{
@@ -175,8 +175,8 @@ var GetStatus = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetStatusRequest.Message,
-	Response: &GetStatusResponse.Message,
+	Request:  GetStatusRequest.Message,
+	Response: GetStatusResponse.Message,
 }
 
 // var GetCards = types.Function{
@@ -187,8 +187,8 @@ var GetStatus = types.Function{
 // 			Type: "controller",
 // 		},
 // 	},
-// 	Request:  &GetCardsRequest.Message,
-// 	Response: &GetCardsResponse.Message,
+// 	Request:  GetCardsRequest.Message,
+// 	Response: GetCardsResponse.Message,
 // }
 
 // var DeleteAllCards = types.Function{
@@ -199,8 +199,8 @@ var GetStatus = types.Function{
 // 			Type: "controller",
 // 		},
 // 	},
-// 	Request:  &DeleteAllCardsRequest,
-// 	Response: &DeleteAllCardsResponse,
+// 	Request:  DeleteAllCardsRequest,
+// 	Response: DeleteAllCardsResponse,
 // }
 
 var GetEvent = types.Function{
@@ -215,8 +215,8 @@ var GetEvent = types.Function{
 			Type: "uint32",
 		},
 	},
-	Request:  &GetEventRequest,
-	Response: &GetEventResponse,
+	Request:  GetEventRequest,
+	Response: GetEventResponse,
 }
 
 var GetEventIndex = types.Function{
@@ -227,8 +227,8 @@ var GetEventIndex = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetEventIndexRequest,
-	Response: &GetEventIndexResponse,
+	Request:  GetEventIndexRequest,
+	Response: GetEventIndexResponse,
 }
 
 var SetEventIndex = types.Function{
@@ -243,8 +243,8 @@ var SetEventIndex = types.Function{
 			Type: "uint32",
 		},
 	},
-	Request:  &SetEventIndexRequest,
-	Response: &SetEventIndexResponse,
+	Request:  SetEventIndexRequest,
+	Response: SetEventIndexResponse,
 }
 
 var RecordSpecialEvents = types.Function{
@@ -259,8 +259,8 @@ var RecordSpecialEvents = types.Function{
 			Type: "bool",
 		},
 	},
-	Request:  &RecordSpecialEventsRequest,
-	Response: &RecordSpecialEventsResponse,
+	Request:  RecordSpecialEventsRequest,
+	Response: RecordSpecialEventsResponse,
 }
 
 var GetTimeProfile = types.Function{
@@ -275,8 +275,8 @@ var GetTimeProfile = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &GetTimeProfileRequest,
-	Response: &GetTimeProfileResponse,
+	Request:  GetTimeProfileRequest,
+	Response: GetTimeProfileResponse,
 }
 
 var SetTimeProfile = types.Function{
@@ -355,8 +355,8 @@ var SetTimeProfile = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &SetTimeProfileRequest,
-	Response: &SetTimeProfileResponse,
+	Request:  SetTimeProfileRequest,
+	Response: SetTimeProfileResponse,
 }
 
 var DeleteAllTimeProfiles = types.Function{
@@ -367,8 +367,8 @@ var DeleteAllTimeProfiles = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &DeleteAllTimeProfilesRequest,
-	Response: &DeleteAllTimeProfilesResponse,
+	Request:  DeleteAllTimeProfilesRequest,
+	Response: DeleteAllTimeProfilesResponse,
 }
 
 var AddTask = types.Function{
@@ -431,8 +431,8 @@ var AddTask = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &AddTaskRequest,
-	Response: &AddTaskResponse,
+	Request:  AddTaskRequest,
+	Response: AddTaskResponse,
 }
 
 var RefreshTaskList = types.Function{
@@ -443,8 +443,8 @@ var RefreshTaskList = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &RefreshTaskListRequest,
-	Response: &RefreshTaskListResponse,
+	Request:  RefreshTaskListRequest,
+	Response: RefreshTaskListResponse,
 }
 
 var ClearTaskList = types.Function{
@@ -455,8 +455,8 @@ var ClearTaskList = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &ClearTaskListRequest,
-	Response: &ClearTaskListResponse,
+	Request:  ClearTaskListRequest,
+	Response: ClearTaskListResponse,
 }
 
 var SetPCControl = types.Function{
@@ -471,8 +471,8 @@ var SetPCControl = types.Function{
 			Type: "bool",
 		},
 	},
-	Request:  &SetPCControlRequest,
-	Response: &SetPCControlResponse,
+	Request:  SetPCControlRequest,
+	Response: SetPCControlResponse,
 }
 
 var SetInterlock = types.Function{
@@ -487,8 +487,8 @@ var SetInterlock = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &SetInterlockRequest,
-	Response: &SetInterlockResponse,
+	Request:  SetInterlockRequest,
+	Response: SetInterlockResponse,
 }
 
 var ActivateKeypads = types.Function{
@@ -515,8 +515,8 @@ var ActivateKeypads = types.Function{
 			Type: "bool",
 		},
 	},
-	Request:  &ActivateKeypadsRequest,
-	Response: &ActivateKeypadsResponse,
+	Request:  ActivateKeypadsRequest,
+	Response: ActivateKeypadsResponse,
 }
 
 var SetDoorPasscodes = types.Function{
@@ -548,8 +548,8 @@ var SetDoorPasscodes = types.Function{
 			Type: "uint32",
 		},
 	},
-	Request:  &SetDoorPasscodesRequest,
-	Response: &SetDoorPasscodesResponse,
+	Request:  SetDoorPasscodesRequest,
+	Response: SetDoorPasscodesResponse,
 }
 
 var GetAntiPassback = types.Function{
@@ -560,8 +560,8 @@ var GetAntiPassback = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &GetAntiPassbackRequest,
-	Response: &GetAntiPassbackResponse,
+	Request:  GetAntiPassbackRequest,
+	Response: GetAntiPassbackResponse,
 }
 
 var SetAntiPassback = types.Function{
@@ -576,8 +576,8 @@ var SetAntiPassback = types.Function{
 			Type: "uint8",
 		},
 	},
-	Request:  &SetAntiPassbackRequest,
-	Response: &SetAntiPassbackResponse,
+	Request:  SetAntiPassbackRequest,
+	Response: SetAntiPassbackResponse,
 }
 
 var RestoreDefaultParameters = types.Function{
@@ -588,6 +588,6 @@ var RestoreDefaultParameters = types.Function{
 			Type: "controller",
 		},
 	},
-	Request:  &RestoreDefaultParametersRequest,
-	Response: &RestoreDefaultParametersResponse,
+	Request:  RestoreDefaultParametersRequest,
+	Response: RestoreDefaultParametersResponse,
 }

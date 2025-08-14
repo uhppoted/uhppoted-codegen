@@ -97,7 +97,12 @@ async fn udp_broadcast_to(packet: &Msg) -> Result<Msg> {
     socket.send_to(packet, broadcast.as_str())?;
 
     if packet[1] == 0x96 {
-        return Ok([0x00; 64]);
+        let mut reply = [0u8; 64];
+    
+        reply[..8].copy_from_slice(&packet[..8]);
+        reply[8] = 0x01;
+    
+        return Ok(reply);
     }
 
     return read(socket).await;
