@@ -1291,7 +1291,7 @@ var GetEventIndexTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "event index",
+				Name:  "index",
 				Type:  "uint32",
 				Value: "37",
 			},
