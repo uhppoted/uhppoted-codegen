@@ -16,8 +16,9 @@ type Request struct {
 }
 
 type Response struct {
-	Message
-	Tests []ResponseTest `json:"tests"`
+	Message     `json:"message"`
+	Description string         `json:"description"`
+	Tests       []ResponseTest `json:"tests"`
 }
 
 type Message struct {
@@ -30,6 +31,7 @@ type Field struct {
 	Name        string `json:"name"`
 	Type        string `json:"type"`
 	Offset      uint8  `json:"offset"`
+	Tag         string `json:"tag,omitempty"`
 	Description string `json:"description,omitempty"`
 }
 

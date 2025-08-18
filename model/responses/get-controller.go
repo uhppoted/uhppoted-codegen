@@ -9,46 +9,56 @@ var GetControllerResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:        "ip address",
 				Type:        "IPv4",
 				Offset:      8,
+				Tag:         "ip-address",
 				Description: "controller IPv4 address, e.g. 192.168.1.100",
 			},
 			{
 				Name:        "subnet mask",
 				Type:        "IPv4",
 				Offset:      12,
+				Tag:         "netmask",
 				Description: "controller IPv4 netmask, e.g. 255.255.255.0",
 			},
 			{
 				Name:        "gateway",
 				Type:        "IPv4",
 				Offset:      16,
+				Tag:         "gateway",
 				Description: "controller IPv4 gateway address, e.g. 192.168.1.1",
 			},
 			{
 				Name:        "MAC address",
 				Type:        "MAC",
 				Offset:      20,
+				Tag:         "MAC",
 				Description: "controller MAC address, e.g. 52:fd:fc:07:21:82",
 			},
 			{
 				Name:        "version",
 				Type:        "version",
 				Offset:      26,
+				Tag:         "version",
 				Description: "controller firmware version, e.g. v6.62",
 			},
 			{
 				Name:        "date",
 				Type:        "date",
 				Offset:      28,
+				Tag:         "version",
 				Description: "controller firmware release date, e.g. 2020-12-31",
 			},
 		},
 	},
+
+	Description: `Container struct for the response returned from a controller when retrieving the network configuration, firmware version and firmware release date.`,
+
 	Tests: []ResponseTest{
 		{
 			Name: "get-controller",
