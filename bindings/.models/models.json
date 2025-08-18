@@ -70,6 +70,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "get-controller",
@@ -200,6 +205,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "set-IPv4",
@@ -225,8 +235,24 @@
                 "value": "192.168.1.1"
               }
             ],
-            "request": "F1AAAHg3KhigepkAICUBASAlEjEBABEBP0IPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-            "replies": []
+            "request": "F5YAAHg3KhjAqAF9////AMCoAQFVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F5YAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -269,6 +295,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "get-time",
@@ -290,7 +321,7 @@
                     "value": 405419896
                   },
                   {
-                    "name": "datetime",
+                    "name": "date-time",
                     "type": "datetime",
                     "value": "2025-11-01 12:34:56"
                   }
@@ -309,7 +340,7 @@
             "type": "controller"
           },
           {
-            "name": "time",
+            "name": "date-time",
             "type": "datetime"
           }
         ],
@@ -342,13 +373,18 @@
               "description": "controller serial number"
             },
             {
-              "name": "date time",
+              "name": "date-time",
               "type": "datetime",
               "offset": 8,
               "description": "controller system date/time"
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "set-time",
@@ -359,7 +395,7 @@
                 "value": 405419896
               },
               {
-                "name": "datetime",
+                "name": "date-time",
                 "type": "datetime",
                 "value": "2025-11-04 12:34:56"
               }
@@ -375,7 +411,7 @@
                     "value": 405419896
                   },
                   {
-                    "name": "datetime",
+                    "name": "date-time",
                     "type": "datetime",
                     "value": "2025-11-01 12:34:56"
                   }
@@ -436,6 +472,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "get-listener",
@@ -545,7 +586,57 @@
               "description": "set-listener succeeded/failed"
             }
           ]
-        }
+        },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-listener",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "address",
+                "type": "IPv4",
+                "value": "192.168.1.100"
+              },
+              {
+                "name": "port",
+                "type": "uint16",
+                "value": 60001
+              },
+              {
+                "name": "interval",
+                "type": "uint8",
+                "value": "192.168.1.1"
+              }
+            ],
+            "request": "F5AAAHg3KhjAqAFkYeoRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F5AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get door",
@@ -608,6 +699,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "get-door",
@@ -728,7 +824,67 @@
               "offset": 10
             }
           ]
-        }
+        },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-door",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "door",
+                "type": "uint8",
+                "value": 4
+              },
+              {
+                "name": "mode",
+                "type": "uint8",
+                "value": 2
+              },
+              {
+                "name": "delay",
+                "type": "uint8",
+                "value": 17
+              }
+            ],
+            "request": "F4AAAHg3KhgEAhEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F4AAAHg3KhgEAhEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "door",
+                    "type": "uint8",
+                    "value": 4
+                  },
+                  {
+                    "name": "mode",
+                    "type": "uint8",
+                    "value": 2
+                  },
+                  {
+                    "name": "delay",
+                    "type": "uint8",
+                    "value": 17
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "open door",
@@ -776,7 +932,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "get status",
@@ -948,7 +1105,8 @@
               "description": "packet sequence number"
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "get cards",
@@ -988,6 +1146,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "get-cards",
@@ -1101,6 +1264,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "get-card",
@@ -1322,6 +1490,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "get-card-at-index",
@@ -1639,6 +1812,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "put-card",
@@ -1757,6 +1935,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "delete-card",
@@ -1836,6 +2019,11 @@
             }
           ]
         },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
         "tests": [
           {
             "name": "delete-all-cards",
@@ -1948,7 +2136,8 @@
               "offset": 27
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "get event index",
@@ -1982,12 +2171,47 @@
               "description": "controller serial number"
             },
             {
-              "name": "event index",
+              "name": "index",
               "type": "uint32",
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "get-event-index",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F7QAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F7QAAHg3KhgLNQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "index",
+                    "type": "uint32",
+                    "value": 13579
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set event index",
@@ -2040,7 +2264,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "record special events",
@@ -2088,7 +2313,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "get time profile",
@@ -2216,7 +2442,8 @@
               "offset": 36
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "set time profile",
@@ -2408,7 +2635,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "delete all time profiles",
@@ -2452,7 +2680,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "add task",
@@ -2608,7 +2837,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "refresh tasklist",
@@ -2652,7 +2882,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "clear tasklist",
@@ -2696,7 +2927,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "set pc control",
@@ -2749,7 +2981,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "set interlock",
@@ -2797,7 +3030,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "activate keypads",
@@ -2872,7 +3106,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "set door passcodes",
@@ -2956,7 +3191,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "get antipassback",
@@ -2995,7 +3231,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "set antipassback",
@@ -3043,7 +3280,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       },
       {
         "name": "restore default parameters",
@@ -3087,7 +3325,8 @@
               "offset": 8
             }
           ]
-        }
+        },
+        "protocols": null
       }
     ],
     "requests": [
@@ -3977,7 +4216,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "date time",
+            "name": "date-time",
             "type": "datetime",
             "offset": 8,
             "description": "controller system date/time"
@@ -4508,7 +4747,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "event index",
+            "name": "index",
             "type": "uint32",
             "offset": 8
           }

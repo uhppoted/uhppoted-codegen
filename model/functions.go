@@ -46,55 +46,45 @@ var SetIPv4 = functions.SetIPv4
 var GetTime = functions.GetTime
 var SetTime = functions.SetTime
 var GetDoor = functions.GetDoor
+var SetDoor = functions.SetDoor
 var GetListener = functions.GetListener
+var SetListener = functions.SetListener
 var PutCard = functions.PutCard
 var GetCards = functions.GetCards
 var GetCard = functions.GetCard
 var GetCardAtIndex = functions.GetCardAtIndex
 var DeleteCard = functions.DeleteCard
 var DeleteAllCards = functions.DeleteAllCards
+var GetEventIndex = functions.GetEventIndex
 
-// var GetListener = types.Function{
-// 	Name:        "get listener",
-// 	Description: "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
+// var SetListener = types.Function{
+// 	Name:        "set listener",
+// 	Description: "Sets the access controller event listener IPv4 address:port and auto-send interval.",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
+// 		{
+// 			Name: "address",
+// 			Type: "IPv4",
+// 		},
+// 		{
+// 			Name: "port",
+// 			Type: "uint16",
+// 		},
+// 		{
+// 			Name: "interval",
+// 			Type: "uint8",
+// 		},
 // 	},
-// 	Request:  GetListenerRequest.Message,
-// 	Response: GetListenerResponse.Message,
+// 	Request:  SetListenerRequest.Message,
+// 	Response: SetListenerResponse.Message,
 // }
 
-var SetListener = types.Function{
-	Name:        "set listener",
-	Description: "Sets the access controller event listener IPv4 address:port and auto-send interval.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "address",
-			Type: "IPv4",
-		},
-		{
-			Name: "port",
-			Type: "uint16",
-		},
-		{
-			Name: "interval",
-			Type: "uint8",
-		},
-	},
-	Request:  SetListenerRequest.Message,
-	Response: SetListenerResponse.Message,
-}
-
-// var GetDoor = types.Function{
-// 	Name:        "get door",
-// 	Description: "Retrieves the control mode and unlock delay time for an access controller door.",
+// var SetDoor = types.Function{
+// 	Name:        "set door",
+// 	Description: "Sets the control mode and unlock delay time for an access controller door.",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
@@ -104,35 +94,18 @@ var SetListener = types.Function{
 // 			Name: "door",
 // 			Type: "uint8",
 // 		},
+// 		{
+// 			Name: "mode",
+// 			Type: "uint8",
+// 		},
+// 		{
+// 			Name: "delay",
+// 			Type: "uint8",
+// 		},
 // 	},
-// 	Request:  GetDoorRequest.Message,
-// 	Response: GetDoorResponse.Message,
+// 	Request:  SetDoorRequest.Message,
+// 	Response: SetDoorResponse.Message,
 // }
-
-var SetDoor = types.Function{
-	Name:        "set door",
-	Description: "Sets the control mode and unlock delay time for an access controller door.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "door",
-			Type: "uint8",
-		},
-		{
-			Name: "mode",
-			Type: "uint8",
-		},
-		{
-			Name: "delay",
-			Type: "uint8",
-		},
-	},
-	Request:  SetDoorRequest.Message,
-	Response: SetDoorResponse.Message,
-}
 
 var OpenDoor = types.Function{
 	Name:        "open door",
@@ -180,17 +153,17 @@ var GetEvent = types.Function{
 	Response: GetEventResponse.Message,
 }
 
-var GetEventIndex = types.Function{
-	Name: "get event index",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  GetEventIndexRequest,
-	Response: GetEventIndexResponse,
-}
+// var GetEventIndex = types.Function{
+// 	Name: "get event index",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 	},
+// 	Request:  GetEventIndexRequest,
+// 	Response: GetEventIndexResponse,
+// }
 
 var SetEventIndex = types.Function{
 	Name: "set event index",

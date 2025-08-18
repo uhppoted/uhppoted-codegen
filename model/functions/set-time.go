@@ -14,12 +14,13 @@ var SetTime = Function{
 			Type: "controller",
 		},
 		{
-			Name: "time",
+			Name: "date-time",
 			Type: "datetime",
 		},
 	},
-	Request:  requests.SetTimeRequest.Message,
-	Response: responses.SetTimeResponse.Message,
+	Request:   requests.SetTimeRequest.Message,
+	Response:  responses.SetTimeResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{
@@ -34,7 +35,7 @@ var SetTime = Function{
 				},
 				{
 					Arg: Arg{
-						Name: "datetime",
+						Name: "date-time",
 						Type: "datetime",
 					},
 					Value: "2025-11-04 12:34:56",
@@ -61,7 +62,7 @@ var SetTime = Function{
 							Value: 405419896,
 						},
 						{
-							Name:  "datetime",
+							Name:  "date-time",
 							Type:  "datetime",
 							Value: "2025-11-01 12:34:56",
 						},

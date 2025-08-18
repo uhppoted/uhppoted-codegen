@@ -271,7 +271,7 @@ func kebabCase(s string) string {
 }
 
 func snakeCase(s string) string {
-	tokens := regexp.MustCompile(`\s+`).Split(s, -1)
+	tokens := regexp.MustCompile(`[ -]+`).Split(s, -1)
 
 	for i, token := range tokens {
 		tokens[i] = strings.ToLower(token)

@@ -14,8 +14,9 @@ var DeleteAllCards = Function{
 			Type: "controller",
 		},
 	},
-	Request:  requests.DeleteAllCardsRequest.Message,
-	Response: responses.DeleteAllCardsResponse.Message,
+	Request:   requests.DeleteAllCardsRequest.Message,
+	Response:  responses.DeleteAllCardsResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{

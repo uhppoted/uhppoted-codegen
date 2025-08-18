@@ -14,8 +14,9 @@ var GetTime = Function{
 			Type: "controller",
 		},
 	},
-	Request:  requests.GetTimeRequest.Message,
-	Response: responses.GetTimeResponse.Message,
+	Request:   requests.GetTimeRequest.Message,
+	Response:  responses.GetTimeResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{
@@ -50,7 +51,7 @@ var GetTime = Function{
 							Value: 405419896,
 						},
 						{
-							Name:  "datetime",
+							Name:  "date-time",
 							Type:  "datetime",
 							Value: "2025-11-01 12:34:56",
 						},

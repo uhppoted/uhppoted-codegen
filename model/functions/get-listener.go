@@ -14,8 +14,9 @@ var GetListener = Function{
 			Type: "controller",
 		},
 	},
-	Request:  requests.GetListenerRequest.Message,
-	Response: responses.GetListenerResponse.Message,
+	Request:   requests.GetListenerRequest.Message,
+	Response:  responses.GetListenerResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{

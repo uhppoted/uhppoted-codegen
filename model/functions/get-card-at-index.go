@@ -18,8 +18,9 @@ var GetCardAtIndex = Function{
 			Type: "uint32",
 		},
 	},
-	Request:  requests.GetCardAtIndexRequest.Message,
-	Response: responses.GetCardAtIndexResponse.Message,
+	Request:   requests.GetCardAtIndexRequest.Message,
+	Response:  responses.GetCardAtIndexResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{

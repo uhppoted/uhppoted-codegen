@@ -18,8 +18,9 @@ var GetCard = Function{
 			Type: "uint32",
 		},
 	},
-	Request:  requests.GetCardRequest.Message,
-	Response: responses.GetCardResponse.Message,
+	Request:   requests.GetCardRequest.Message,
+	Response:  responses.GetCardResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{

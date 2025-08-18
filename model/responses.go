@@ -24,7 +24,7 @@ var Responses = []types.Message{
 	DeleteCardResponse.Message,
 	DeleteAllCardsResponse.Message,
 	GetEventResponse.Message,
-	GetEventIndexResponse,
+	GetEventIndexResponse.Message,
 	SetEventIndexResponse,
 	RecordSpecialEventsResponse,
 	GetTimeProfileResponse,
@@ -60,10 +60,11 @@ var PutCardResponse = responses.PutCardResponse
 var DeleteCardResponse = responses.DeleteCardResponse
 var DeleteAllCardsResponse = responses.DeleteAllCardsResponse
 var GetEventResponse = responses.GetEventResponse
+var GetEventIndexResponse = responses.GetEventIndexResponse
 
-// var GetEventResponse = types.Message{
-// 	Name:    "get event response",
-// 	MsgType: 0xb0,
+// var GetEventIndexResponse = types.Message{
+// 	Name:    "get event index response",
+// 	MsgType: 0xb4,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -72,65 +73,12 @@ var GetEventResponse = responses.GetEventResponse
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:   "index",
+// 			Name:   "event index",
 // 			Type:   "uint32",
 // 			Offset: 8,
 // 		},
-// 		types.Field{
-// 			Name:   "event type",
-// 			Type:   "uint8",
-// 			Offset: 12,
-// 		},
-// 		types.Field{
-// 			Name:   "access granted",
-// 			Type:   "bool",
-// 			Offset: 13,
-// 		},
-// 		types.Field{
-// 			Name:   "door",
-// 			Type:   "uint8",
-// 			Offset: 14,
-// 		},
-// 		types.Field{
-// 			Name:   "direction",
-// 			Type:   "uint8",
-// 			Offset: 15,
-// 		},
-// 		types.Field{
-// 			Name:   "card",
-// 			Type:   "uint32",
-// 			Offset: 16,
-// 		},
-// 		types.Field{
-// 			Name:   "timestamp",
-// 			Type:   "optional datetime",
-// 			Offset: 20,
-// 		},
-// 		types.Field{
-// 			Name:   "reason",
-// 			Type:   "uint8",
-// 			Offset: 27,
-// 		},
 // 	},
 // }
-
-var GetEventIndexResponse = types.Message{
-	Name:    "get event index response",
-	MsgType: 0xb4,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "event index",
-			Type:   "uint32",
-			Offset: 8,
-		},
-	},
-}
 
 var SetEventIndexResponse = types.Message{
 	Name:    "set event index response",

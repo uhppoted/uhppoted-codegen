@@ -14,8 +14,9 @@ var GetController = Function{
 			Type: "controller",
 		},
 	},
-	Request:  requests.GetControllerRequest.Message,
-	Response: responses.GetControllerResponse.Message,
+	Request:   requests.GetControllerRequest.Message,
+	Response:  responses.GetControllerResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{

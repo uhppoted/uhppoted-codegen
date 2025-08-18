@@ -6,6 +6,7 @@ type Function struct {
 	Args        []Arg      `json:"args"`
 	Request     Message    `json:"request,omitempty"`
 	Response    Message    `json:"response,omitempty"`
+	Protocols   []string   `json:"protocols"`
 	Tests       []FuncTest `json:"tests,omitempty"`
 }
 

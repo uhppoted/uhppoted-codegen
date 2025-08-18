@@ -14,8 +14,9 @@ var GetCards = Function{
 			Type: "controller",
 		},
 	},
-	Request:  requests.GetCardsRequest.Message,
-	Response: responses.GetCardsResponse.Message,
+	Request:   requests.GetCardsRequest.Message,
+	Response:  responses.GetCardsResponse.Message,
+	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{
