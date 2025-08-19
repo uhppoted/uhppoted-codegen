@@ -3,7 +3,9 @@
     "functions": [
       {
         "name": "get controller",
-        "description": "Retrieves the system information for an access controller.",
+        "description": [
+          "Retrieves the system information for an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -30,42 +32,49 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ip address",
               "type": "IPv4",
               "offset": 8,
+              "tag": "ip-address",
               "description": "controller IPv4 address, e.g. 192.168.1.100"
             },
             {
               "name": "subnet mask",
               "type": "IPv4",
               "offset": 12,
+              "tag": "netmask",
               "description": "controller IPv4 netmask, e.g. 255.255.255.0"
             },
             {
               "name": "gateway",
               "type": "IPv4",
               "offset": 16,
+              "tag": "gateway",
               "description": "controller IPv4 gateway address, e.g. 192.168.1.1"
             },
             {
               "name": "MAC address",
               "type": "MAC",
               "offset": 20,
+              "tag": "MAC",
               "description": "controller MAC address, e.g. 52:fd:fc:07:21:82"
             },
             {
               "name": "version",
               "type": "version",
               "offset": 26,
+              "tag": "version",
               "description": "controller firmware version, e.g. v6.62"
             },
             {
               "name": "date",
               "type": "date",
               "offset": 28,
+              "tag": "date",
               "description": "controller firmware release date, e.g. 2020-12-31"
             }
           ]
@@ -111,7 +120,7 @@
                     "value": "192.168.1.1"
                   },
                   {
-                    "name": "MAC address",
+                    "name": "MAC",
                     "type": "MAC",
                     "value": "00:12:23:34:45:56"
                   },
@@ -133,7 +142,9 @@
       },
       {
         "name": "set IPv4",
-        "description": "Sets the controller IPv4 address, netmask and gateway address.",
+        "description": [
+          "Sets the controller IPv4 address, netmask and gateway address."
+        ],
         "args": [
           {
             "name": "controller",
@@ -258,7 +269,9 @@
       },
       {
         "name": "get time",
-        "description": "Retrieves the access controller system date and time.",
+        "description": [
+          "Retrieves the access controller system date and time."
+        ],
         "args": [
           {
             "name": "controller",
@@ -333,7 +346,9 @@
       },
       {
         "name": "set time",
-        "description": "Sets the access controller system date and time.",
+        "description": [
+          "Sets the access controller system date and time."
+        ],
         "args": [
           {
             "name": "controller",
@@ -423,7 +438,9 @@
       },
       {
         "name": "get listener",
-        "description": "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
+        "description": [
+          "Retrieves the access controller event listener IPv4 address:port and auto-send interval."
+        ],
         "args": [
           {
             "name": "controller",
@@ -520,7 +537,9 @@
       },
       {
         "name": "set listener",
-        "description": "Sets the access controller event listener IPv4 address:port and auto-send interval.",
+        "description": [
+          "Sets the access controller event listener IPv4 address:port and auto-send interval."
+        ],
         "args": [
           {
             "name": "controller",
@@ -640,7 +659,9 @@
       },
       {
         "name": "get door",
-        "description": "Retrieves the control mode and unlock delay time for an access controller door.",
+        "description": [
+          "Retrieves the control mode and unlock delay time for an access controller door."
+        ],
         "args": [
           {
             "name": "controller",
@@ -752,7 +773,9 @@
       },
       {
         "name": "set door",
-        "description": "Sets the control mode and unlock delay time for an access controller door.",
+        "description": [
+          "Sets the control mode and unlock delay time for an access controller door."
+        ],
         "args": [
           {
             "name": "controller",
@@ -888,7 +911,9 @@
       },
       {
         "name": "open door",
-        "description": "Unlocks a door controlled by an access controller.",
+        "description": [
+          "Unlocks a door controlled by an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -933,11 +958,52 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "open-door",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "door",
+                "type": "uint8",
+                "value": 4
+              }
+            ],
+            "request": "F0AAAHg3KhgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F0AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get status",
-        "description": "Retrieves the system status from an access controller.",
+        "description": [
+          "Retrieves the system status from an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -1110,7 +1176,9 @@
       },
       {
         "name": "get cards",
-        "description": "Retrieves the number of cards stored on an access controller.",
+        "description": [
+          "Retrieves the number of cards stored on an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -1184,7 +1252,9 @@
       },
       {
         "name": "get card",
-        "description": "Retrieves the card record for a given card number.",
+        "description": [
+          "Retrieves the card record for a given card number."
+        ],
         "args": [
           {
             "name": "controller",
@@ -1410,7 +1480,9 @@
       },
       {
         "name": "get card at index",
-        "description": "Retrieves the card record stored at a given index.",
+        "description": [
+          "Retrieves the card record stored at a given index."
+        ],
         "args": [
           {
             "name": "controller",
@@ -1704,7 +1776,9 @@
       },
       {
         "name": "put card",
-        "description": "Creates or updates a card record stored on an access controller.",
+        "description": [
+          "Creates or updates a card record stored on an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -1890,7 +1964,9 @@
       },
       {
         "name": "delete card",
-        "description": "Removes a card record stored on a controller.",
+        "description": [
+          "Removes a card record stored on a controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -1978,7 +2054,9 @@
       },
       {
         "name": "delete all cards",
-        "description": "Deletes all card records stored on an access controller.",
+        "description": [
+          "Deletes all card records stored on an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -2057,7 +2135,7 @@
       },
       {
         "name": "get event",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2141,7 +2219,9 @@
       },
       {
         "name": "get event index",
-        "description": "",
+        "description": [
+          "Retrieves the downloaded event index from an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -2215,7 +2295,9 @@
       },
       {
         "name": "set event index",
-        "description": "",
+        "description": [
+          "Sets the downloaded event index on an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -2259,17 +2341,56 @@
               "description": "controller serial number"
             },
             {
-              "name": "updated",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-event-index",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "index",
+                "type": "uint32",
+                "value": 13579
+              }
+            ],
+            "request": "F7IAAHg3KhgLNQAAVaqqVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F7IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "record special events",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2318,7 +2439,7 @@
       },
       {
         "name": "get time profile",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2447,7 +2568,7 @@
       },
       {
         "name": "set time profile",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2640,7 +2761,7 @@
       },
       {
         "name": "delete all time profiles",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2685,7 +2806,7 @@
       },
       {
         "name": "add task",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2842,7 +2963,7 @@
       },
       {
         "name": "refresh tasklist",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2887,7 +3008,7 @@
       },
       {
         "name": "clear tasklist",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2932,7 +3053,7 @@
       },
       {
         "name": "set pc control",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -2986,7 +3107,7 @@
       },
       {
         "name": "set interlock",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -3035,7 +3156,7 @@
       },
       {
         "name": "activate keypads",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -3111,7 +3232,9 @@
       },
       {
         "name": "set door passcodes",
-        "description": "Sets up to 4 passcodes for a controller door.",
+        "description": [
+          "Sets up to 4 passcodes for a controller door."
+        ],
         "args": [
           {
             "name": "controller",
@@ -3192,11 +3315,70 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-door-passcodes",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "door",
+                "type": "uint8",
+                "value": 4
+              },
+              {
+                "name": "passcode 1",
+                "type": "uint32",
+                "value": 12345
+              },
+              {
+                "name": "passcode 2",
+                "type": "uint32",
+                "value": 54321
+              },
+              {
+                "name": "passcode 3",
+                "type": "uint32",
+                "value": 999999
+              },
+              {
+                "name": "passcode 4",
+                "type": "uint32",
+                "value": 0
+              }
+            ],
+            "request": "F4wAAHg3KhgEAAAAOTAAADHUAAA/Qg8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F4wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get antipassback",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -3236,7 +3418,7 @@
       },
       {
         "name": "set antipassback",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -3285,7 +3467,7 @@
       },
       {
         "name": "restore default parameters",
-        "description": "",
+        "description": null,
         "args": [
           {
             "name": "controller",
@@ -4130,42 +4312,49 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ip address",
             "type": "IPv4",
             "offset": 8,
+            "tag": "ip-address",
             "description": "controller IPv4 address, e.g. 192.168.1.100"
           },
           {
             "name": "subnet mask",
             "type": "IPv4",
             "offset": 12,
+            "tag": "netmask",
             "description": "controller IPv4 netmask, e.g. 255.255.255.0"
           },
           {
             "name": "gateway",
             "type": "IPv4",
             "offset": 16,
+            "tag": "gateway",
             "description": "controller IPv4 gateway address, e.g. 192.168.1.1"
           },
           {
             "name": "MAC address",
             "type": "MAC",
             "offset": 20,
+            "tag": "MAC",
             "description": "controller MAC address, e.g. 52:fd:fc:07:21:82"
           },
           {
             "name": "version",
             "type": "version",
             "offset": 26,
+            "tag": "version",
             "description": "controller firmware version, e.g. v6.62"
           },
           {
             "name": "date",
             "type": "date",
             "offset": 28,
+            "tag": "date",
             "description": "controller firmware release date, e.g. 2020-12-31"
           }
         ]
@@ -4764,7 +4953,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "updated",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }

@@ -1337,7 +1337,7 @@ var SetEventIndexTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "updated",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},

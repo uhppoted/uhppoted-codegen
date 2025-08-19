@@ -6,8 +6,10 @@ import (
 )
 
 var SetTime = Function{
-	Name:        "set time",
-	Description: "Sets the access controller system date and time.",
+	Name: "set time",
+	Description: []string{
+		"Sets the access controller system date and time.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

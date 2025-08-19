@@ -7,6 +7,9 @@ import (
 
 var GetEventIndex = Function{
 	Name: "get event index",
+	Description: []string{
+		"Retrieves the downloaded event index from an access controller.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

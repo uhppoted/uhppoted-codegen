@@ -8,8 +8,10 @@ import (
 )
 
 var SetIPv4 = Function{
-	Name:        "set IPv4",
-	Description: "Sets the controller IPv4 address, netmask and gateway address.",
+	Name: "set IPv4",
+	Description: []string{
+		"Sets the controller IPv4 address, netmask and gateway address.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

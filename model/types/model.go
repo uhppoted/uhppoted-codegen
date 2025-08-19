@@ -2,7 +2,7 @@ package types
 
 type Function struct {
 	Name        string     `json:"name"`
-	Description string     `json:"description"`
+	Description []string   `json:"description"`
 	Args        []Arg      `json:"args"`
 	Request     Message    `json:"request,omitempty"`
 	Response    Message    `json:"response,omitempty"`
@@ -17,7 +17,7 @@ type Request struct {
 
 type Response struct {
 	Message     `json:"message"`
-	Description string         `json:"description"`
+	Description []string       `json:"description"`
 	Tests       []ResponseTest `json:"tests"`
 }
 

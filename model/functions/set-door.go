@@ -6,8 +6,10 @@ import (
 )
 
 var SetDoor = Function{
-	Name:        "set door",
-	Description: "Sets the control mode and unlock delay time for an access controller door.",
+	Name: "set door",
+	Description: []string{
+		"Sets the control mode and unlock delay time for an access controller door.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

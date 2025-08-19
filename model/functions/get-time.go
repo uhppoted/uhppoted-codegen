@@ -6,8 +6,10 @@ import (
 )
 
 var GetTime = Function{
-	Name:        "get time",
-	Description: "Retrieves the access controller system date and time.",
+	Name: "get time",
+	Description: []string{
+		"Retrieves the access controller system date and time.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

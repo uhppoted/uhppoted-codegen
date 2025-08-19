@@ -6,8 +6,10 @@ import (
 )
 
 var DeleteAllCards = Function{
-	Name:        "delete all cards",
-	Description: "Deletes all card records stored on an access controller.",
+	Name: "delete all cards",
+	Description: []string{
+		"Deletes all card records stored on an access controller.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

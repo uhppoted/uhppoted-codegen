@@ -1047,7 +1047,7 @@
               "value": "405419896"
             },
             {
-              "name": "event index",
+              "name": "index",
               "type": "uint32",
               "value": "37"
             }
@@ -1082,7 +1082,7 @@
               "value": "405419896"
             },
             {
-              "name": "updated",
+              "name": "ok",
               "type": "bool",
               "value": true
             }

@@ -6,8 +6,10 @@ import (
 )
 
 var GetController = Function{
-	Name:        "get controller",
-	Description: "Retrieves the system information for an access controller.",
+	Name: "get controller",
+	Description: []string{
+		"Retrieves the system information for an access controller.",
+	},
 	Args: []Arg{
 		Arg{
 			Name: "controller",
@@ -66,7 +68,7 @@ var GetController = Function{
 							Value: "192.168.1.1",
 						},
 						{
-							Name:  "MAC address",
+							Name:  "MAC",
 							Type:  "MAC",
 							Value: "00:12:23:34:45:56",
 						},

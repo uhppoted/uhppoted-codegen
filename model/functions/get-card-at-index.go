@@ -6,8 +6,10 @@ import (
 )
 
 var GetCardAtIndex = Function{
-	Name:        "get card at index",
-	Description: "Retrieves the card record stored at a given index.",
+	Name: "get card at index",
+	Description: []string{
+		"Retrieves the card record stored at a given index.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

@@ -8,8 +8,10 @@ import (
 )
 
 var SetListener = Function{
-	Name:        "set listener",
-	Description: "Sets the access controller event listener IPv4 address:port and auto-send interval.",
+	Name: "set listener",
+	Description: []string{
+		"Sets the access controller event listener IPv4 address:port and auto-send interval.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",

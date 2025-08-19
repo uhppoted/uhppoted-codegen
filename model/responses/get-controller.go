@@ -1,6 +1,11 @@
 package responses
 
 var GetControllerResponse = Response{
+	Description: []string{
+		"Container struct for the response returned from an access controller when retrieving the",
+		"network configuration, firmware version and firmware release date.",
+	},
+
 	Message: Message{
 		Name:    "get controller response",
 		MsgType: 0x94,
@@ -51,13 +56,11 @@ var GetControllerResponse = Response{
 				Name:        "date",
 				Type:        "date",
 				Offset:      28,
-				Tag:         "version",
+				Tag:         "date",
 				Description: "controller firmware release date, e.g. 2020-12-31",
 			},
 		},
 	},
-
-	Description: `Container struct for the response returned from a controller when retrieving the network configuration, firmware version and firmware release date.`,
 
 	Tests: []ResponseTest{
 		{

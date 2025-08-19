@@ -25,7 +25,7 @@ var Requests = []types.Message{
 	DeleteAllCardsRequest.Message,
 	GetEventRequest.Message,
 	GetEventIndexRequest.Message,
-	SetEventIndexRequest,
+	SetEventIndexRequest.Message,
 	RecordSpecialEventsRequest,
 	GetTimeProfileRequest,
 	SetTimeProfileRequest,
@@ -61,10 +61,11 @@ var DeleteCardRequest = requests.DeleteCardRequest
 var DeleteAllCardsRequest = requests.DeleteAllCardsRequest
 var GetEventRequest = requests.GetEventRequest
 var GetEventIndexRequest = requests.GetEventIndexRequest
+var SetEventIndexRequest = requests.SetEventIndexRequest
 
-// var GetEventIndexRequest = types.Message{
-// 	Name:    "get event index request",
-// 	MsgType: 0xb4,
+// var SetEventIndexRequest = types.Message{
+// 	Name:    "set event index request",
+// 	MsgType: 0xb2,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -72,31 +73,18 @@ var GetEventIndexRequest = requests.GetEventIndexRequest
 // 			Offset:      4,
 // 			Description: "controller serial number",
 // 		},
+// 		types.Field{
+// 			Name:   "event index",
+// 			Type:   "uint32",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "",
+// 			Type:   "magic",
+// 			Offset: 12,
+// 		},
 // 	},
 // }
-
-var SetEventIndexRequest = types.Message{
-	Name:    "set event index request",
-	MsgType: 0xb2,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "event index",
-			Type:   "uint32",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "",
-			Type:   "magic",
-			Offset: 12,
-		},
-	},
-}
 
 var RecordSpecialEventsRequest = types.Message{
 	Name:    "record special events request",

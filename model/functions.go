@@ -47,6 +47,8 @@ var GetTime = functions.GetTime
 var SetTime = functions.SetTime
 var GetDoor = functions.GetDoor
 var SetDoor = functions.SetDoor
+var SetDoorPasscodes = functions.SetDoorPasscodes
+var OpenDoor = functions.OpenDoor
 var GetListener = functions.GetListener
 var SetListener = functions.SetListener
 var PutCard = functions.PutCard
@@ -56,35 +58,11 @@ var GetCardAtIndex = functions.GetCardAtIndex
 var DeleteCard = functions.DeleteCard
 var DeleteAllCards = functions.DeleteAllCards
 var GetEventIndex = functions.GetEventIndex
+var SetEventIndex = functions.SetEventIndex
 
-// var SetListener = types.Function{
-// 	Name:        "set listener",
-// 	Description: "Sets the access controller event listener IPv4 address:port and auto-send interval.",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 		{
-// 			Name: "address",
-// 			Type: "IPv4",
-// 		},
-// 		{
-// 			Name: "port",
-// 			Type: "uint16",
-// 		},
-// 		{
-// 			Name: "interval",
-// 			Type: "uint8",
-// 		},
-// 	},
-// 	Request:  SetListenerRequest.Message,
-// 	Response: SetListenerResponse.Message,
-// }
-
-// var SetDoor = types.Function{
-// 	Name:        "set door",
-// 	Description: "Sets the control mode and unlock delay time for an access controller door.",
+// var OpenDoor = types.Function{
+// 	Name:        "open door",
+// 	Description: []string{"Unlocks a door controlled by an access controller.",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
@@ -94,39 +72,14 @@ var GetEventIndex = functions.GetEventIndex
 // 			Name: "door",
 // 			Type: "uint8",
 // 		},
-// 		{
-// 			Name: "mode",
-// 			Type: "uint8",
-// 		},
-// 		{
-// 			Name: "delay",
-// 			Type: "uint8",
-// 		},
 // 	},
-// 	Request:  SetDoorRequest.Message,
-// 	Response: SetDoorResponse.Message,
+// 	Request:  OpenDoorRequest.Message,
+// 	Response: OpenDoorResponse.Message,
 // }
-
-var OpenDoor = types.Function{
-	Name:        "open door",
-	Description: "Unlocks a door controlled by an access controller.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "door",
-			Type: "uint8",
-		},
-	},
-	Request:  OpenDoorRequest.Message,
-	Response: OpenDoorResponse.Message,
-}
 
 var GetStatus = types.Function{
 	Name:        "get status",
-	Description: "Retrieves the system status from an access controller.",
+	Description: []string{"Retrieves the system status from an access controller."},
 	Args: []types.Arg{
 		{
 			Name: "controller",
@@ -153,33 +106,21 @@ var GetEvent = types.Function{
 	Response: GetEventResponse.Message,
 }
 
-// var GetEventIndex = types.Function{
-// 	Name: "get event index",
+// var SetEventIndex = types.Function{
+// 	Name: "set event index",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
+// 		{
+// 			Name: "event index",
+// 			Type: "uint32",
+// 		},
 // 	},
-// 	Request:  GetEventIndexRequest,
-// 	Response: GetEventIndexResponse,
+// 	Request:  SetEventIndexRequest,
+// 	Response: SetEventIndexResponse,
 // }
-
-var SetEventIndex = types.Function{
-	Name: "set event index",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "event index",
-			Type: "uint32",
-		},
-	},
-	Request:  SetEventIndexRequest,
-	Response: SetEventIndexResponse,
-}
 
 var RecordSpecialEvents = types.Function{
 	Name: "record special events",
@@ -453,38 +394,38 @@ var ActivateKeypads = types.Function{
 	Response: ActivateKeypadsResponse,
 }
 
-var SetDoorPasscodes = types.Function{
-	Name:        "set door passcodes",
-	Description: "Sets up to 4 passcodes for a controller door.",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "door",
-			Type: "uint8",
-		},
-		{
-			Name: "passcode 1",
-			Type: "pin",
-		},
-		{
-			Name: "passcode 2",
-			Type: "pin",
-		},
-		{
-			Name: "passcode 3",
-			Type: "pin",
-		},
-		{
-			Name: "passcode 4",
-			Type: "pin",
-		},
-	},
-	Request:  SetDoorPasscodesRequest.Message,
-	Response: SetDoorPasscodesResponse.Message,
-}
+// var SetDoorPasscodes = types.Function{
+// 	Name:        "set door passcodes",
+// 	Description: []string{"Sets up to 4 passcodes for a controller door.",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "door",
+// 			Type: "uint8",
+// 		},
+// 		{
+// 			Name: "passcode 1",
+// 			Type: "pin",
+// 		},
+// 		{
+// 			Name: "passcode 2",
+// 			Type: "pin",
+// 		},
+// 		{
+// 			Name: "passcode 3",
+// 			Type: "pin",
+// 		},
+// 		{
+// 			Name: "passcode 4",
+// 			Type: "pin",
+// 		},
+// 	},
+// 	Request:  SetDoorPasscodesRequest.Message,
+// 	Response: SetDoorPasscodesResponse.Message,
+// }
 
 var GetAntiPassback = types.Function{
 	Name: "get antipassback",

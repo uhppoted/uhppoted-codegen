@@ -25,7 +25,7 @@ var Responses = []types.Message{
 	DeleteAllCardsResponse.Message,
 	GetEventResponse.Message,
 	GetEventIndexResponse.Message,
-	SetEventIndexResponse,
+	SetEventIndexResponse.Message,
 	RecordSpecialEventsResponse,
 	GetTimeProfileResponse,
 	SetTimeProfileResponse,
@@ -61,10 +61,11 @@ var DeleteCardResponse = responses.DeleteCardResponse
 var DeleteAllCardsResponse = responses.DeleteAllCardsResponse
 var GetEventResponse = responses.GetEventResponse
 var GetEventIndexResponse = responses.GetEventIndexResponse
+var SetEventIndexResponse = responses.SetEventIndexResponse
 
-// var GetEventIndexResponse = types.Message{
-// 	Name:    "get event index response",
-// 	MsgType: 0xb4,
+// var SetEventIndexResponse = types.Message{
+// 	Name:    "set event index response",
+// 	MsgType: 0xb2,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -73,30 +74,12 @@ var GetEventIndexResponse = responses.GetEventIndexResponse
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:   "event index",
-// 			Type:   "uint32",
+// 			Name:   "updated",
+// 			Type:   "bool",
 // 			Offset: 8,
 // 		},
 // 	},
 // }
-
-var SetEventIndexResponse = types.Message{
-	Name:    "set event index response",
-	MsgType: 0xb2,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "updated",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
 
 var RecordSpecialEventsResponse = types.Message{
 	Name:    "record special events response",

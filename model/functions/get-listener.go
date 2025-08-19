@@ -6,8 +6,10 @@ import (
 )
 
 var GetListener = Function{
-	Name:        "get listener",
-	Description: "Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
+	Name: "get listener",
+	Description: []string{
+		"Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
+	},
 	Args: []Arg{
 		{
 			Name: "controller",
