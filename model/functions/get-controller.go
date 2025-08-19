@@ -68,7 +68,7 @@ var GetController = Function{
 							Value: "192.168.1.1",
 						},
 						{
-							Name:  "MAC",
+							Name:  "MAC Address",
 							Type:  "MAC",
 							Value: "00:12:23:34:45:56",
 						},
