@@ -26,7 +26,7 @@ var Responses = []types.Message{
 	GetEventResponse.Message,
 	GetEventIndexResponse.Message,
 	SetEventIndexResponse.Message,
-	RecordSpecialEventsResponse,
+	RecordSpecialEventsResponse.Message,
 	GetTimeProfileResponse,
 	SetTimeProfileResponse,
 	DeleteAllTimeProfilesResponse,
@@ -48,6 +48,7 @@ var SetTimeResponse = responses.SetTimeResponse
 var GetListenerResponse = responses.GetListenerResponse
 var GetListenerAddrPortResponse = responses.GetListenerAddrPortResponse
 var SetListenerResponse = responses.SetListenerResponse
+var SetListenerAddrPortResponse = responses.SetListenerAddrPortResponse
 var GetDoorResponse = responses.GetDoorResponse
 var SetDoorResponse = responses.SetDoorResponse
 var SetDoorPasscodesResponse = responses.SetDoorPasscodesResponse
@@ -62,10 +63,11 @@ var DeleteAllCardsResponse = responses.DeleteAllCardsResponse
 var GetEventResponse = responses.GetEventResponse
 var GetEventIndexResponse = responses.GetEventIndexResponse
 var SetEventIndexResponse = responses.SetEventIndexResponse
+var RecordSpecialEventsResponse = responses.RecordSpecialEventsResponse
 
-// var SetEventIndexResponse = types.Message{
-// 	Name:    "set event index response",
-// 	MsgType: 0xb2,
+// var RecordSpecialEventsResponse = types.Message{
+// 	Name:    "record special events response",
+// 	MsgType: 0x8e,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -80,24 +82,6 @@ var SetEventIndexResponse = responses.SetEventIndexResponse
 // 		},
 // 	},
 // }
-
-var RecordSpecialEventsResponse = types.Message{
-	Name:    "record special events response",
-	MsgType: 0x8e,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "updated",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
 
 var GetTimeProfileResponse = types.Message{
 	Name:    "get time profile response",

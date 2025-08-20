@@ -120,7 +120,7 @@
                     "value": "192.168.1.1"
                   },
                   {
-                    "name": "MAC",
+                    "name": "MAC Address",
                     "type": "MAC",
                     "value": "00:12:23:34:45:56"
                   },
@@ -1172,7 +1172,289 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "get-status",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "FyAAAHg3KhhOAAAAAgEDAaGYfAAgIggjCUcGLAABAAAAAAABAwlJOQAAAAAAAAAAJwcJIggjAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "system-date",
+                    "type": "date",
+                    "value": "2022-08-23"
+                  },
+                  {
+                    "name": "system-time",
+                    "type": "time",
+                    "value": "09:49:39"
+                  },
+                  {
+                    "name": "door-1-open",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-2-open",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "door-3-open",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-4-open",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-1-button",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-2-button",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-3-button",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-4-button",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "relays",
+                    "type": "uint8",
+                    "value": 7
+                  },
+                  {
+                    "name": "inputs",
+                    "type": "uint8",
+                    "value": 9
+                  },
+                  {
+                    "name": "system-error",
+                    "type": "uint8",
+                    "value": 3
+                  },
+                  {
+                    "name": "special-info",
+                    "type": "uint8",
+                    "value": 39
+                  },
+                  {
+                    "name": "event-index",
+                    "type": "uint32",
+                    "value": 78
+                  },
+                  {
+                    "name": "event-type",
+                    "type": "uint8",
+                    "value": 2
+                  },
+                  {
+                    "name": "event-access-granted",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "event-door",
+                    "type": "uint8",
+                    "value": 3
+                  },
+                  {
+                    "name": "event-direction",
+                    "type": "uint8",
+                    "value": 1
+                  },
+                  {
+                    "name": "event-card",
+                    "type": "uint32",
+                    "value": 8165537
+                  },
+                  {
+                    "name": "event-timestamp",
+                    "type": "datetime",
+                    "value": "2022-08-23 09:47:06"
+                  },
+                  {
+                    "name": "event-reason",
+                    "type": "uint8",
+                    "value": 44
+                  },
+                  {
+                    "name": "sequence-no",
+                    "type": "uint32",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "get-status-no-event",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "FyAAAHk3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQEBAQABGxQ3U+NVAAAhAAAAmgcJJBETAACTJgSICJIAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "system-date",
+                    "type": "date",
+                    "value": "2022-08-23"
+                  },
+                  {
+                    "name": "system-time",
+                    "type": "time",
+                    "value": "09:49:39"
+                  },
+                  {
+                    "name": "door-1-open",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-2-open",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "door-3-open",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-4-open",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-1-button",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-2-button",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-3-button",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door-4-button",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "relays",
+                    "type": "uint8",
+                    "value": 7
+                  },
+                  {
+                    "name": "inputs",
+                    "type": "uint8",
+                    "value": 9
+                  },
+                  {
+                    "name": "system-error",
+                    "type": "uint8",
+                    "value": 3
+                  },
+                  {
+                    "name": "special-info",
+                    "type": "uint8",
+                    "value": 39
+                  },
+                  {
+                    "name": "event-index",
+                    "type": "uint32",
+                    "value": 78
+                  },
+                  {
+                    "name": "event-type",
+                    "type": "uint8",
+                    "value": 2
+                  },
+                  {
+                    "name": "event-access-granted",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "event-door",
+                    "type": "uint8",
+                    "value": 3
+                  },
+                  {
+                    "name": "event-direction",
+                    "type": "uint8",
+                    "value": 1
+                  },
+                  {
+                    "name": "event-card",
+                    "type": "uint32",
+                    "value": 8165537
+                  },
+                  {
+                    "name": "event-timestamp",
+                    "type": "datetime",
+                    "value": "2022-08-23 09:47:06"
+                  },
+                  {
+                    "name": "event-reason",
+                    "type": "uint8",
+                    "value": 44
+                  },
+                  {
+                    "name": "sequence-no",
+                    "type": "uint32",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get cards",
@@ -2135,7 +2417,9 @@
       },
       {
         "name": "get event",
-        "description": null,
+        "description": [
+          "Retrieves an event record stored on an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -2215,7 +2499,217 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "get-event",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "event index",
+                "type": "uint32",
+                "value": 13579
+              }
+            ],
+            "request": "F7AAAHg3KhgLNQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F7AAAHg3KhgLNQAAAgEEAqB6mQAgJREXEjRWFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "index",
+                    "type": "uint32",
+                    "value": 13579
+                  },
+                  {
+                    "name": "timestamp",
+                    "type": "datetime",
+                    "value": "2025-11-17 12:34:56"
+                  },
+                  {
+                    "name": "event type",
+                    "type": "uint8",
+                    "value": 2
+                  },
+                  {
+                    "name": "access granted",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "door",
+                    "type": "uint8",
+                    "value": 4
+                  },
+                  {
+                    "name": "direction",
+                    "type": "uint8",
+                    "value": 2
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 10058400
+                  },
+                  {
+                    "name": "reason",
+                    "type": "uint8",
+                    "value": 21
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "get-event-not-found",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "event index",
+                "type": "uint32",
+                "value": 24680
+              }
+            ],
+            "request": "F7AAAHg3KhhoYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F7AAAHg3KhhoYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "index",
+                    "type": "uint32",
+                    "value": 24680
+                  },
+                  {
+                    "name": "timestamp",
+                    "type": "datetime",
+                    "value": "0001-01-01 00:00:00"
+                  },
+                  {
+                    "name": "event type",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "access granted",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "direction",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 0
+                  },
+                  {
+                    "name": "reason",
+                    "type": "uint8",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "get-event-overwritten",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "event index",
+                "type": "uint32",
+                "value": 98765
+              }
+            ],
+            "request": "F7AAAHg3KhjNgQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F7AAAHg3KhjNgQEA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "index",
+                    "type": "uint32",
+                    "value": 98765
+                  },
+                  {
+                    "name": "timestamp",
+                    "type": "datetime",
+                    "value": "0001-01-01 00:00:00"
+                  },
+                  {
+                    "name": "event type",
+                    "type": "uint8",
+                    "value": 255
+                  },
+                  {
+                    "name": "access granted",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "door",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "direction",
+                    "type": "uint8",
+                    "value": 0
+                  },
+                  {
+                    "name": "card",
+                    "type": "uint32",
+                    "value": 0
+                  },
+                  {
+                    "name": "reason",
+                    "type": "uint8",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get event index",
@@ -2390,14 +2884,16 @@
       },
       {
         "name": "record special events",
-        "description": null,
+        "description": [
+          "Enables/disables events for door opened, door closed and door button pressed."
+        ],
         "args": [
           {
             "name": "controller",
             "type": "controller"
           },
           {
-            "name": "enable",
+            "name": "enabled",
             "type": "bool"
           }
         ],
@@ -2412,7 +2908,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "enable",
+              "name": "enabled",
               "type": "bool",
               "offset": 8
             }
@@ -2429,13 +2925,52 @@
               "description": "controller serial number"
             },
             {
-              "name": "updated",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "record-special-events",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "enabled",
+                "type": "bool",
+                "value": true
+              }
+            ],
+            "request": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F44AAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "get time profile",
@@ -3937,7 +4472,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "enable",
+            "name": "enabled",
             "type": "bool",
             "offset": 8
           }
@@ -4970,7 +5505,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "updated",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }

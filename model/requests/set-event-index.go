@@ -28,8 +28,20 @@ var SetEventIndexRequest = Request{
 		{
 			Name: "set-event-index-request",
 			Args: []TestArg{
-				{Arg: Arg{Name: "controller", Type: "uint32"}, Value: uint32(405419896)},
-				{Arg: Arg{Name: "index", Type: "uint32"}, Value: 13579},
+				{
+					Arg: Arg{
+						Name: "controller",
+						Type: "uint32",
+					},
+					Value: 405419896,
+				},
+				{
+					Arg: Arg{
+						Name: "index",
+						Type: "uint32",
+					},
+					Value: 13579,
+				},
 			},
 			Expected: []byte{
 				0x17, 0xb2, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x0b, 0x35, 0x00, 0x00, 0x55, 0xaa, 0xaa, 0x55,

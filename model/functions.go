@@ -51,63 +51,35 @@ var SetDoorPasscodes = functions.SetDoorPasscodes
 var OpenDoor = functions.OpenDoor
 var GetListener = functions.GetListener
 var SetListener = functions.SetListener
+var GetListenerAddrPort = functions.GetListenerAddrPort
+var SetListenerAddrPort = functions.SetListenerAddrPort
+var GetStatus = functions.GetStatus
 var PutCard = functions.PutCard
 var GetCards = functions.GetCards
 var GetCard = functions.GetCard
 var GetCardAtIndex = functions.GetCardAtIndex
 var DeleteCard = functions.DeleteCard
 var DeleteAllCards = functions.DeleteAllCards
+var GetEvent = functions.GetEvent
 var GetEventIndex = functions.GetEventIndex
 var SetEventIndex = functions.SetEventIndex
+var RecordSpecialEvents = functions.RecordSpecialEvents
 
-// var OpenDoor = types.Function{
-// 	Name:        "open door",
-// 	Description: []string{"Unlocks a door controlled by an access controller.",
+// var GetStatus = types.Function{
+// 	Name:        "get status",
+// 	Description: []string{"Retrieves the system status from an access controller."},
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
-// 		{
-// 			Name: "door",
-// 			Type: "uint8",
-// 		},
 // 	},
-// 	Request:  OpenDoorRequest.Message,
-// 	Response: OpenDoorResponse.Message,
+// 	Request:  GetStatusRequest.Message,
+// 	Response: GetStatusResponse.Message,
 // }
 
-var GetStatus = types.Function{
-	Name:        "get status",
-	Description: []string{"Retrieves the system status from an access controller."},
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  GetStatusRequest.Message,
-	Response: GetStatusResponse.Message,
-}
-
-var GetEvent = types.Function{
-	Name: "get event",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "event index",
-			Type: "uint32",
-		},
-	},
-	Request:  GetEventRequest.Message,
-	Response: GetEventResponse.Message,
-}
-
-// var SetEventIndex = types.Function{
-// 	Name: "set event index",
+// var GetEvent = types.Function{
+// 	Name: "get event",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
@@ -118,25 +90,25 @@ var GetEvent = types.Function{
 // 			Type: "uint32",
 // 		},
 // 	},
-// 	Request:  SetEventIndexRequest,
-// 	Response: SetEventIndexResponse,
+// 	Request:  GetEventRequest.Message,
+// 	Response: GetEventResponse.Message,
 // }
 
-var RecordSpecialEvents = types.Function{
-	Name: "record special events",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "enable",
-			Type: "bool",
-		},
-	},
-	Request:  RecordSpecialEventsRequest,
-	Response: RecordSpecialEventsResponse,
-}
+// var RecordSpecialEvents = types.Function{
+// 	Name: "record special events",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "enable",
+// 			Type: "bool",
+// 		},
+// 	},
+// 	Request:  RecordSpecialEventsRequest,
+// 	Response: RecordSpecialEventsResponse,
+// }
 
 var GetTimeProfile = types.Function{
 	Name: "get time profile",

@@ -1,6 +1,11 @@
 package responses
 
 var SetEventIndexResponse = Response{
+	Description: []string{
+		"Container struct for the response returned from an access controller when setting the",
+		"downloaded event index.",
+	},
+
 	Message: Message{
 		Name:    "set event index response",
 		MsgType: 0xb2,
@@ -9,11 +14,13 @@ var SetEventIndexResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "ok",
 				Type:   "bool",
+				Tag:         "ok",
 				Offset: 8,
 			},
 		},

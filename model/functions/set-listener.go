@@ -64,7 +64,7 @@ var SetListener = Function{
 						Name: "interval",
 						Type: "uint8",
 					},
-					Value: netip.MustParseAddr("192.168.1.1"),
+					Value: 17,
 				},
 			},
 			Request: []byte{

@@ -14,11 +14,13 @@ var SetIPv4Response = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "ok",
 				Type:   "bool",
+				Tag:         "ok",
 				Offset: 8,
 			},
 		},
