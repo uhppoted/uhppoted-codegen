@@ -1,13 +1,13 @@
 package responses
 
-var GetListenerResponse = Response{
+var GetListenerAddrPortResponse = Response{
 	Description: []string{
 		"Container struct for the response returned by a controller when retrieving",
 		"the configured event listener IPv4 address and port.",
 	},
 
 	Message: Message{
-		Name:    "get listener response",
+		Name:    "get listener addr:port response",
 		MsgType: 0x92,
 		Fields: []Field{
 			{
@@ -18,18 +18,11 @@ var GetListenerResponse = Response{
 				Description: "controller serial number",
 			},
 			{
-				Name:        "address",
-				Type:        "IPv4",
+				Name:        "listener",
+				Type:        "address:port",
 				Offset:      8,
-				Tag:         "address",
-				Description: "event listener IPv4 address",
-			},
-			{
-				Name:        "port",
-				Type:        "uint16",
-				Offset:      12,
-				Tag:         "port",
-				Description: "event listener IPv4 port",
+				Tag:         "listener",
+				Description: "event listener IPv4 address:port",
 			},
 			{
 				Name:        "interval",
@@ -42,7 +35,7 @@ var GetListenerResponse = Response{
 	},
 	Tests: []ResponseTest{
 		{
-			Name: "get-listener",
+			Name: "get-listener-address-port",
 			Response: []byte{
 				0x17, 0x92, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0xc0, 0xa8, 0x01, 0x64, 0x61, 0xea, 0x11, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -56,14 +49,9 @@ var GetListenerResponse = Response{
 					Value: 405419896,
 				},
 				{
-					Name:  "address",
-					Type:  "IPv4",
-					Value: "192.168.1.100",
-				},
-				{
-					Name:  "port",
-					Type:  "uint16",
-					Value: 60001,
+					Name:  "listener",
+					Type:  "address:port",
+					Value: "192.168.1.100:60001",
 				},
 				{
 					Name:  "interval",

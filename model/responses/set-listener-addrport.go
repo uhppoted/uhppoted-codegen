@@ -1,13 +1,13 @@
 package responses
 
-var SetListenerResponse = Response{
+var SetListenerAddrPortResponse = Response{
 	Description: []string{
 		"Container struct for the response returned by a controller when setting",
 		"the event listener IPv4 address and port.",
 	},
 
 	Message: Message{
-		Name:    "set listener response",
+		Name:    "set listener addr:port response",
 		MsgType: 0x90,
 		Fields: []Field{
 			{
@@ -26,9 +26,10 @@ var SetListenerResponse = Response{
 			},
 		},
 	},
+
 	Tests: []ResponseTest{
 		{
-			Name: "set-listener",
+			Name: "set-listener-address:port",
 			Response: []byte{
 				0x17, 0x90, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

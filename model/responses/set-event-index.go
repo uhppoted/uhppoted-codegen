@@ -20,7 +20,7 @@ var SetEventIndexResponse = Response{
 			{
 				Name:   "ok",
 				Type:   "bool",
-				Tag:         "ok",
+				Tag:    "ok",
 				Offset: 8,
 			},
 		},

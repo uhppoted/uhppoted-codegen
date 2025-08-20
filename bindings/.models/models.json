@@ -207,12 +207,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -467,24 +469,28 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "address",
               "type": "IPv4",
               "offset": 8,
+              "tag": "address",
               "description": "event listener IPv4 address"
             },
             {
               "name": "port",
               "type": "uint16",
               "offset": 12,
+              "tag": "port",
               "description": "event listener IPv4 port"
             },
             {
               "name": "interval",
               "type": "uint8",
               "offset": 14,
+              "tag": "interval",
               "description": "status auto-send interval (seconds)"
             }
           ]
@@ -596,12 +602,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
               "offset": 8,
+              "tag": "ok",
               "description": "set-listener succeeded/failed"
             }
           ]
@@ -633,7 +641,7 @@
               {
                 "name": "interval",
                 "type": "uint8",
-                "value": "192.168.1.1"
+                "value": 17
               }
             ],
             "request": "F5AAAHg3KhjAqAFkYeoRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -2832,12 +2840,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -2922,12 +2932,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -4902,12 +4914,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -4955,24 +4969,28 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "address",
             "type": "IPv4",
             "offset": 8,
+            "tag": "address",
             "description": "event listener IPv4 address"
           },
           {
             "name": "port",
             "type": "uint16",
             "offset": 12,
+            "tag": "port",
             "description": "event listener IPv4 port"
           },
           {
             "name": "interval",
             "type": "uint8",
             "offset": 14,
+            "tag": "interval",
             "description": "status auto-send interval (seconds)"
           }
         ]
@@ -4985,12 +5003,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
             "offset": 8,
+            "tag": "ok",
             "description": "set-listener succeeded/failed"
           }
         ]
@@ -5485,12 +5505,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -5502,12 +5524,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },

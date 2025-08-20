@@ -20,7 +20,7 @@ var SetIPv4Response = Response{
 			{
 				Name:   "ok",
 				Type:   "bool",
-				Tag:         "ok",
+				Tag:    "ok",
 				Offset: 8,
 			},
 		},
