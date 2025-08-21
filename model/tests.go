@@ -1676,7 +1676,7 @@ var DeleteAllTimeProfilesTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "deleted",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},
