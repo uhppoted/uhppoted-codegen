@@ -706,24 +706,28 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "door",
               "type": "uint8",
               "offset": 8,
+              "tag": "door",
               "description": "door ID ([1..4]"
             },
             {
               "name": "mode",
               "type": "uint8",
               "offset": 9,
+              "tag": "mode",
               "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
             },
             {
               "name": "delay",
               "type": "uint8",
               "offset": 10,
+              "tag": "delay",
               "description": "unlock delay (seconds)"
             }
           ]
@@ -837,22 +841,26 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "door",
               "type": "uint8",
-              "offset": 8
+              "offset": 8,
+              "tag": "door"
             },
             {
               "name": "mode",
               "type": "uint8",
-              "offset": 9
+              "offset": 9,
+              "tag": "mode"
             },
             {
               "name": "delay",
               "type": "uint8",
-              "offset": 10
+              "offset": 10,
+              "tag": "delay"
             }
           ]
         },
@@ -957,12 +965,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -2750,12 +2760,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "index",
               "type": "uint32",
-              "offset": 8
+              "offset": 8,
+              "tag": "index"
             }
           ]
         },
@@ -2986,14 +2998,16 @@
       },
       {
         "name": "get time profile",
-        "description": null,
+        "description": [
+          "Retrieves the requested access time profile from a controller."
+        ],
         "args": [
           {
             "name": "controller",
             "type": "controller"
           },
           {
-            "name": "profile id",
+            "name": "profile",
             "type": "uint8"
           }
         ],
@@ -3008,7 +3022,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "profile id",
+              "name": "profile",
               "type": "uint8",
               "offset": 8
             }
@@ -3022,100 +3036,239 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
-              "name": "profile id",
+              "name": "profile",
               "type": "uint8",
-              "offset": 8
+              "offset": 8,
+              "tag": "profile"
             },
             {
               "name": "start date",
               "type": "optional date",
-              "offset": 9
+              "offset": 9,
+              "tag": "start-date"
             },
             {
               "name": "end date",
               "type": "optional date",
-              "offset": 13
+              "offset": 13,
+              "tag": "end-date"
             },
             {
               "name": "monday",
               "type": "bool",
-              "offset": 17
+              "offset": 17,
+              "tag": "monday"
             },
             {
               "name": "tuesday",
               "type": "bool",
-              "offset": 18
+              "offset": 18,
+              "tag": "tuesday"
             },
             {
               "name": "wednesday",
               "type": "bool",
-              "offset": 19
+              "offset": 19,
+              "tag": "wednesday"
             },
             {
               "name": "thursday",
               "type": "bool",
-              "offset": 20
+              "offset": 20,
+              "tag": "thursday"
             },
             {
               "name": "friday",
               "type": "bool",
-              "offset": 21
+              "offset": 21,
+              "tag": "friday"
             },
             {
               "name": "saturday",
               "type": "bool",
-              "offset": 22
+              "offset": 22,
+              "tag": "saturday"
             },
             {
               "name": "sunday",
               "type": "bool",
-              "offset": 23
+              "offset": 23,
+              "tag": "sunday"
             },
             {
               "name": "segment 1 start",
               "type": "HHmm",
-              "offset": 24
+              "offset": 24,
+              "tag": "segment1-start"
             },
             {
               "name": "segment 1 end",
               "type": "HHmm",
-              "offset": 26
+              "offset": 26,
+              "tag": "segment1-end"
             },
             {
               "name": "segment 2 start",
               "type": "HHmm",
-              "offset": 28
+              "offset": 28,
+              "tag": "segment2-start"
             },
             {
               "name": "segment 2 end",
               "type": "HHmm",
-              "offset": 30
+              "offset": 30,
+              "tag": "segment2-end"
             },
             {
               "name": "segment 3 start",
               "type": "HHmm",
-              "offset": 32
+              "offset": 32,
+              "tag": "segment3-start"
             },
             {
               "name": "segment 3 end",
               "type": "HHmm",
-              "offset": 34
+              "offset": 34,
+              "tag": "segment3-end"
             },
             {
-              "name": "linked profile id",
+              "name": "linked profile",
               "type": "uint8",
-              "offset": 36
+              "offset": 36,
+              "tag": "linked-profile"
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "get-time-profile",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "profile",
+                "type": "uint8",
+                "value": 37
+              }
+            ],
+            "request": "F5gAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F5gAAHg3KhglICURJiAlEikBAQABAAEBCDAJRRE1ExUUARdZEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "profile",
+                    "type": "uint8",
+                    "value": 37
+                  },
+                  {
+                    "name": "start date",
+                    "type": "optional date",
+                    "value": "2025-11-26"
+                  },
+                  {
+                    "name": "end date",
+                    "type": "optional date",
+                    "value": "2025-12-29"
+                  },
+                  {
+                    "name": "monday",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "tuesday",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "wednesday",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "thursday",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "friday",
+                    "type": "bool",
+                    "value": false
+                  },
+                  {
+                    "name": "saturday",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "sunday",
+                    "type": "bool",
+                    "value": true
+                  },
+                  {
+                    "name": "segment 1 start",
+                    "type": "HHmm",
+                    "value": "08:30"
+                  },
+                  {
+                    "name": "segment 1 end",
+                    "type": "HHmm",
+                    "value": "09:45"
+                  },
+                  {
+                    "name": "segment 2 start",
+                    "type": "HHmm",
+                    "value": "11:35"
+                  },
+                  {
+                    "name": "segment 2 end",
+                    "type": "HHmm",
+                    "value": "13:15"
+                  },
+                  {
+                    "name": "segment 3 start",
+                    "type": "HHmm",
+                    "value": "14:01"
+                  },
+                  {
+                    "name": "segment 3 end",
+                    "type": "HHmm",
+                    "value": "17:59"
+                  },
+                  {
+                    "name": "linked profile",
+                    "type": "uint8",
+                    "value": 19
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set time profile",
-        "description": null,
+        "description": [
+          "Adds or updates an access time profile stored on a controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -3201,7 +3354,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "profile id",
+              "name": "profile",
               "type": "uint8",
               "offset": 8
             },
@@ -3304,11 +3457,132 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-time-profile",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "profile",
+                "type": "uint8",
+                "value": 37
+              },
+              {
+                "name": "start date",
+                "type": "date",
+                "value": "2025-11;26"
+              },
+              {
+                "name": "end date",
+                "type": "date",
+                "value": "2025-12-29"
+              },
+              {
+                "name": "monday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "tuesday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "wednesday",
+                "type": "bool",
+                "value": false
+              },
+              {
+                "name": "thursday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "friday",
+                "type": "bool",
+                "value": 405419896
+              },
+              {
+                "name": "saturday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "sunday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "segment 1 start",
+                "type": "HHmm",
+                "value": "8:30"
+              },
+              {
+                "name": "segment 1 end",
+                "type": "HHmm",
+                "value": "9:45"
+              },
+              {
+                "name": "segment 2 start",
+                "type": "HHmm",
+                "value": "11:35"
+              },
+              {
+                "name": "segment 2 end",
+                "type": "HHmm",
+                "value": "13:15"
+              },
+              {
+                "name": "segment 3 start",
+                "type": "HHmm",
+                "value": "14:01"
+              },
+              {
+                "name": "segment 3 end",
+                "type": "HHmm",
+                "value": "17:59"
+              },
+              {
+                "name": "linked profile id",
+                "type": "uint8",
+                "value": 19
+              }
+            ],
+            "request": "F4gAAHg3KhglICQRJiAkEikBAQABAAEBCDAJRRE1ExUUARdZEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F4gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "uint8",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "delete all time profiles",
-        "description": null,
+        "description": [
+          "Clears all access time profiles stored on a controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -3343,13 +3617,47 @@
               "description": "controller serial number"
             },
             {
-              "name": "deleted",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "delete-all-time-profiles",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F4oAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "uint8",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "add task",
@@ -3853,12 +4161,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -4501,7 +4811,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "profile id",
+            "name": "profile",
             "type": "uint8",
             "offset": 8
           }
@@ -4518,7 +4828,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "profile id",
+            "name": "profile",
             "type": "uint8",
             "offset": 8
           },
@@ -5023,24 +5333,28 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "door",
             "type": "uint8",
             "offset": 8,
+            "tag": "door",
             "description": "door ID ([1..4]"
           },
           {
             "name": "mode",
             "type": "uint8",
             "offset": 9,
+            "tag": "mode",
             "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
           },
           {
             "name": "delay",
             "type": "uint8",
             "offset": 10,
+            "tag": "delay",
             "description": "unlock delay (seconds)"
           }
         ]
@@ -5053,22 +5367,26 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "door",
             "type": "uint8",
-            "offset": 8
+            "offset": 8,
+            "tag": "door"
           },
           {
             "name": "mode",
             "type": "uint8",
-            "offset": 9
+            "offset": 9,
+            "tag": "mode"
           },
           {
             "name": "delay",
             "type": "uint8",
-            "offset": 10
+            "offset": 10,
+            "tag": "delay"
           }
         ]
       },
@@ -5080,12 +5398,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -5097,12 +5417,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -5488,12 +5810,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "index",
             "type": "uint32",
-            "offset": 8
+            "offset": 8,
+            "tag": "index"
           }
         ]
       },
@@ -5543,92 +5867,110 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
-            "name": "profile id",
+            "name": "profile",
             "type": "uint8",
-            "offset": 8
+            "offset": 8,
+            "tag": "profile"
           },
           {
             "name": "start date",
             "type": "optional date",
-            "offset": 9
+            "offset": 9,
+            "tag": "start-date"
           },
           {
             "name": "end date",
             "type": "optional date",
-            "offset": 13
+            "offset": 13,
+            "tag": "end-date"
           },
           {
             "name": "monday",
             "type": "bool",
-            "offset": 17
+            "offset": 17,
+            "tag": "monday"
           },
           {
             "name": "tuesday",
             "type": "bool",
-            "offset": 18
+            "offset": 18,
+            "tag": "tuesday"
           },
           {
             "name": "wednesday",
             "type": "bool",
-            "offset": 19
+            "offset": 19,
+            "tag": "wednesday"
           },
           {
             "name": "thursday",
             "type": "bool",
-            "offset": 20
+            "offset": 20,
+            "tag": "thursday"
           },
           {
             "name": "friday",
             "type": "bool",
-            "offset": 21
+            "offset": 21,
+            "tag": "friday"
           },
           {
             "name": "saturday",
             "type": "bool",
-            "offset": 22
+            "offset": 22,
+            "tag": "saturday"
           },
           {
             "name": "sunday",
             "type": "bool",
-            "offset": 23
+            "offset": 23,
+            "tag": "sunday"
           },
           {
             "name": "segment 1 start",
             "type": "HHmm",
-            "offset": 24
+            "offset": 24,
+            "tag": "segment1-start"
           },
           {
             "name": "segment 1 end",
             "type": "HHmm",
-            "offset": 26
+            "offset": 26,
+            "tag": "segment1-end"
           },
           {
             "name": "segment 2 start",
             "type": "HHmm",
-            "offset": 28
+            "offset": 28,
+            "tag": "segment2-start"
           },
           {
             "name": "segment 2 end",
             "type": "HHmm",
-            "offset": 30
+            "offset": 30,
+            "tag": "segment2-end"
           },
           {
             "name": "segment 3 start",
             "type": "HHmm",
-            "offset": 32
+            "offset": 32,
+            "tag": "segment3-start"
           },
           {
             "name": "segment 3 end",
             "type": "HHmm",
-            "offset": 34
+            "offset": 34,
+            "tag": "segment3-end"
           },
           {
-            "name": "linked profile id",
+            "name": "linked profile",
             "type": "uint8",
-            "offset": 36
+            "offset": 36,
+            "tag": "linked-profile"
           }
         ]
       },
@@ -5660,7 +6002,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "deleted",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }

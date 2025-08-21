@@ -27,9 +27,9 @@ var Requests = []types.Message{
 	GetEventIndexRequest.Message,
 	SetEventIndexRequest.Message,
 	RecordSpecialEventsRequest.Message,
-	GetTimeProfileRequest,
-	SetTimeProfileRequest,
-	DeleteAllTimeProfilesRequest,
+	GetTimeProfileRequest.Message,
+	SetTimeProfileRequest.Message,
+	DeleteAllTimeProfilesRequest.Message,
 	AddTaskRequest,
 	RefreshTaskListRequest,
 	ClearTaskListRequest,
@@ -63,10 +63,13 @@ var GetEventRequest = requests.GetEventRequest
 var GetEventIndexRequest = requests.GetEventIndexRequest
 var SetEventIndexRequest = requests.SetEventIndexRequest
 var RecordSpecialEventsRequest = requests.RecordSpecialEventsRequest
+var GetTimeProfileRequest = requests.GetTimeProfileRequest
+var SetTimeProfileRequest = requests.SetTimeProfileRequest
+var DeleteAllTimeProfilesRequest = requests.DeleteAllTimeProfilesRequest
 
-// var RecordSpecialEventsRequest = types.Message{
-// 	Name:    "record special events request",
-// 	MsgType: 0x8e,
+// var GetTimeProfileRequest = types.Message{
+// 	Name:    "get time profile request",
+// 	MsgType: 0x98,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -75,146 +78,128 @@ var RecordSpecialEventsRequest = requests.RecordSpecialEventsRequest
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:   "enable",
-// 			Type:   "bool",
+// 			Name:   "profile id",
+// 			Type:   "uint8",
 // 			Offset: 8,
 // 		},
 // 	},
 // }
 
-var GetTimeProfileRequest = types.Message{
-	Name:    "get time profile request",
-	MsgType: 0x98,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "profile id",
-			Type:   "uint8",
-			Offset: 8,
-		},
-	},
-}
+// var SetTimeProfileRequest = types.Message{
+// 	Name:    "set time profile request",
+// 	MsgType: 0x88,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "profile id",
+// 			Type:   "uint8",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "start date",
+// 			Type:   "date",
+// 			Offset: 9,
+// 		},
+// 		types.Field{
+// 			Name:   "end date",
+// 			Type:   "date",
+// 			Offset: 13,
+// 		},
+// 		types.Field{
+// 			Name:   "monday",
+// 			Type:   "bool",
+// 			Offset: 17,
+// 		},
+// 		types.Field{
+// 			Name:   "tuesday",
+// 			Type:   "bool",
+// 			Offset: 18,
+// 		},
+// 		types.Field{
+// 			Name:   "wednesday",
+// 			Type:   "bool",
+// 			Offset: 19,
+// 		},
+// 		types.Field{
+// 			Name:   "thursday",
+// 			Type:   "bool",
+// 			Offset: 20,
+// 		},
+// 		types.Field{
+// 			Name:   "friday",
+// 			Type:   "bool",
+// 			Offset: 21,
+// 		},
+// 		types.Field{
+// 			Name:   "saturday",
+// 			Type:   "bool",
+// 			Offset: 22,
+// 		},
+// 		types.Field{
+// 			Name:   "sunday",
+// 			Type:   "bool",
+// 			Offset: 23,
+// 		},
+// 		types.Field{
+// 			Name:   "segment 1 start",
+// 			Type:   "HHmm",
+// 			Offset: 24,
+// 		},
+// 		types.Field{
+// 			Name:   "segment 1 end",
+// 			Type:   "HHmm",
+// 			Offset: 26,
+// 		},
+// 		types.Field{
+// 			Name:   "segment 2 start",
+// 			Type:   "HHmm",
+// 			Offset: 28,
+// 		},
+// 		types.Field{
+// 			Name:   "segment 2 end",
+// 			Type:   "HHmm",
+// 			Offset: 30,
+// 		},
+// 		types.Field{
+// 			Name:   "segment 3 start",
+// 			Type:   "HHmm",
+// 			Offset: 32,
+// 		},
+// 		types.Field{
+// 			Name:   "segment 3 end",
+// 			Type:   "HHmm",
+// 			Offset: 34,
+// 		},
+// 		types.Field{
+// 			Name:   "linked profile id",
+// 			Type:   "uint8",
+// 			Offset: 36,
+// 		},
+// 	},
+// }
 
-var SetTimeProfileRequest = types.Message{
-	Name:    "set time profile request",
-	MsgType: 0x88,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "profile id",
-			Type:   "uint8",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "start date",
-			Type:   "date",
-			Offset: 9,
-		},
-		types.Field{
-			Name:   "end date",
-			Type:   "date",
-			Offset: 13,
-		},
-		types.Field{
-			Name:   "monday",
-			Type:   "bool",
-			Offset: 17,
-		},
-		types.Field{
-			Name:   "tuesday",
-			Type:   "bool",
-			Offset: 18,
-		},
-		types.Field{
-			Name:   "wednesday",
-			Type:   "bool",
-			Offset: 19,
-		},
-		types.Field{
-			Name:   "thursday",
-			Type:   "bool",
-			Offset: 20,
-		},
-		types.Field{
-			Name:   "friday",
-			Type:   "bool",
-			Offset: 21,
-		},
-		types.Field{
-			Name:   "saturday",
-			Type:   "bool",
-			Offset: 22,
-		},
-		types.Field{
-			Name:   "sunday",
-			Type:   "bool",
-			Offset: 23,
-		},
-		types.Field{
-			Name:   "segment 1 start",
-			Type:   "HHmm",
-			Offset: 24,
-		},
-		types.Field{
-			Name:   "segment 1 end",
-			Type:   "HHmm",
-			Offset: 26,
-		},
-		types.Field{
-			Name:   "segment 2 start",
-			Type:   "HHmm",
-			Offset: 28,
-		},
-		types.Field{
-			Name:   "segment 2 end",
-			Type:   "HHmm",
-			Offset: 30,
-		},
-		types.Field{
-			Name:   "segment 3 start",
-			Type:   "HHmm",
-			Offset: 32,
-		},
-		types.Field{
-			Name:   "segment 3 end",
-			Type:   "HHmm",
-			Offset: 34,
-		},
-		types.Field{
-			Name:   "linked profile id",
-			Type:   "uint8",
-			Offset: 36,
-		},
-	},
-}
-
-var DeleteAllTimeProfilesRequest = types.Message{
-	Name:    "delete all time profiles request",
-	MsgType: 0x8a,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "",
-			Type:   "magic",
-			Offset: 8,
-		},
-	},
-}
+// var DeleteAllTimeProfilesRequest = types.Message{
+// 	Name:    "delete all time profiles request",
+// 	MsgType: 0x8a,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "",
+// 			Type:   "magic",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var AddTaskRequest = types.Message{
 	Name:    "add task request",

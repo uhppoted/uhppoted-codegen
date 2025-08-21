@@ -409,7 +409,7 @@ fn get_time_profile() {
 
     match futures::executor::block_on(uhppote::get_time_profile(controller, profile_id)) {
         Ok(v) => {
-            if v.profile_id == 0 {
+            if v.profile == 0 {
                 error(uhppote::error::Error::from(format!("time profile {profile_id} not defined")))
             } else {
                 println!("{:#?}", v)

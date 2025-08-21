@@ -64,159 +64,117 @@ var GetEvent = functions.GetEvent
 var GetEventIndex = functions.GetEventIndex
 var SetEventIndex = functions.SetEventIndex
 var RecordSpecialEvents = functions.RecordSpecialEvents
+var GetTimeProfile = functions.GetTimeProfile
+var SetTimeProfile = functions.SetTimeProfile
+var DeleteAllTimeProfiles = functions.DeleteAllTimeProfiles
 
-// var GetStatus = types.Function{
-// 	Name:        "get status",
-// 	Description: []string{"Retrieves the system status from an access controller."},
+// var GetTimeProfile = types.Function{
+// 	Name: "get time profile",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "profile id",
+// 			Type: "uint8",
 // 		},
 // 	},
-// 	Request:  GetStatusRequest.Message,
-// 	Response: GetStatusResponse.Message,
+// 	Request:  GetTimeProfileRequest,
+// 	Response: GetTimeProfileResponse,
 // }
 
-// var GetEvent = types.Function{
-// 	Name: "get event",
+// var SetTimeProfile = types.Function{
+// 	Name: "set time profile",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
 // 		{
-// 			Name: "event index",
-// 			Type: "uint32",
-// 		},
-// 	},
-// 	Request:  GetEventRequest.Message,
-// 	Response: GetEventResponse.Message,
-// }
-
-// var RecordSpecialEvents = types.Function{
-// 	Name: "record special events",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
+// 			Name: "profile id",
+// 			Type: "uint8",
 // 		},
 // 		{
-// 			Name: "enable",
+// 			Name: "start date",
+// 			Type: "date",
+// 		},
+// 		{
+// 			Name: "end date",
+// 			Type: "date",
+// 		},
+// 		{
+// 			Name: "monday",
 // 			Type: "bool",
 // 		},
+// 		{
+// 			Name: "tuesday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "wednesday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "thursday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "friday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "saturday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "sunday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "segment 1 start",
+// 			Type: "HHmm",
+// 		},
+// 		{
+// 			Name: "segment 1 end",
+// 			Type: "HHmm",
+// 		},
+// 		{
+// 			Name: "segment 2 start",
+// 			Type: "HHmm",
+// 		},
+// 		{
+// 			Name: "segment 2 end",
+// 			Type: "HHmm",
+// 		},
+// 		{
+// 			Name: "segment 3 start",
+// 			Type: "HHmm",
+// 		},
+// 		{
+// 			Name: "segment 3 end",
+// 			Type: "HHmm",
+// 		},
+// 		{
+// 			Name: "linked profile id",
+// 			Type: "uint8",
+// 		},
 // 	},
-// 	Request:  RecordSpecialEventsRequest,
-// 	Response: RecordSpecialEventsResponse,
+// 	Request:  SetTimeProfileRequest,
+// 	Response: SetTimeProfileResponse,
 // }
 
-var GetTimeProfile = types.Function{
-	Name: "get time profile",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "profile id",
-			Type: "uint8",
-		},
-	},
-	Request:  GetTimeProfileRequest,
-	Response: GetTimeProfileResponse,
-}
-
-var SetTimeProfile = types.Function{
-	Name: "set time profile",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "profile id",
-			Type: "uint8",
-		},
-		{
-			Name: "start date",
-			Type: "date",
-		},
-		{
-			Name: "end date",
-			Type: "date",
-		},
-		{
-			Name: "monday",
-			Type: "bool",
-		},
-		{
-			Name: "tuesday",
-			Type: "bool",
-		},
-		{
-			Name: "wednesday",
-			Type: "bool",
-		},
-		{
-			Name: "thursday",
-			Type: "bool",
-		},
-		{
-			Name: "friday",
-			Type: "bool",
-		},
-		{
-			Name: "saturday",
-			Type: "bool",
-		},
-		{
-			Name: "sunday",
-			Type: "bool",
-		},
-		{
-			Name: "segment 1 start",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 1 end",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 2 start",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 2 end",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 3 start",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 3 end",
-			Type: "HHmm",
-		},
-		{
-			Name: "linked profile id",
-			Type: "uint8",
-		},
-	},
-	Request:  SetTimeProfileRequest,
-	Response: SetTimeProfileResponse,
-}
-
-var DeleteAllTimeProfiles = types.Function{
-	Name: "delete all time profiles",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  DeleteAllTimeProfilesRequest,
-	Response: DeleteAllTimeProfilesResponse,
-}
+// var DeleteAllTimeProfiles = types.Function{
+// 	Name: "delete all time profiles",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 	},
+// 	Request:  DeleteAllTimeProfilesRequest,
+// 	Response: DeleteAllTimeProfilesResponse,
+// }
 
 var AddTask = types.Function{
 	Name: "add task",

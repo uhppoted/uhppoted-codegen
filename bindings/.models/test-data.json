@@ -1136,7 +1136,7 @@
               "value": "405419896"
             },
             {
-              "name": "profile id",
+              "name": "profile",
               "type": "uint8",
               "value": "29"
             }
@@ -1152,7 +1152,7 @@
               "value": "405419896"
             },
             {
-              "name": "profile id",
+              "name": "profile",
               "type": "uint8",
               "value": 29
             },
@@ -1232,7 +1232,7 @@
               "value": "21:05"
             },
             {
-              "name": "linked profile id",
+              "name": "linked profile",
               "type": "uint8",
               "value": 31
             }
@@ -1251,7 +1251,7 @@
               "value": "405419896"
             },
             {
-              "name": "profile id",
+              "name": "profile",
               "type": "uint8",
               "value": "29"
             },

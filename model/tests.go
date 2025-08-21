@@ -1408,7 +1408,7 @@ var GetTimeProfileTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "profile id",
+				Name:  "profile",
 				Type:  "uint8",
 				Value: TIME_PROFILE_ID,
 			},
@@ -1429,7 +1429,7 @@ var GetTimeProfileTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "profile id",
+				Name:  "profile",
 				Type:  "uint8",
 				Value: 29,
 			},
@@ -1509,7 +1509,7 @@ var GetTimeProfileTest = Test{
 				Value: "21:05",
 			},
 			Value{
-				Name:  "linked profile id",
+				Name:  "linked profile",
 				Type:  "uint8",
 				Value: 31,
 			},
@@ -1534,7 +1534,7 @@ var SetTimeProfileTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "profile id",
+				Name:  "profile",
 				Type:  "uint8",
 				Value: TIME_PROFILE_ID,
 			},
