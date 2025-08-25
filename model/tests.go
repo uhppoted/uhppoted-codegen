@@ -1635,7 +1635,7 @@ var SetTimeProfileTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "stored",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},
