@@ -1377,7 +1377,7 @@
               "value": "405419896"
             },
             {
-              "name": "deleted",
+              "name": "ok",
               "type": "bool",
               "value": true
             }
@@ -1394,6 +1394,11 @@
               "name": "controller",
               "type": "uint32",
               "value": "405419896"
+            },
+            {
+              "name": "task type",
+              "type": "uint8",
+              "value": "2"
             },
             {
               "name": "start date",
@@ -1451,11 +1456,6 @@
               "value": "3"
             },
             {
-              "name": "task type",
-              "type": "uint8",
-              "value": "2"
-            },
-            {
               "name": "more cards",
               "type": "uint8",
               "value": "17"
@@ -1472,7 +1472,7 @@
               "value": "405419896"
             },
             {
-              "name": "added",
+              "name": "ok",
               "type": "bool",
               "value": true
             }
@@ -1481,9 +1481,9 @@
         }
       },
       {
-        "name": "refresh tasklist",
+        "name": "refresh task list",
         "request": {
-          "name": "refresh tasklist request",
+          "name": "refresh task list request",
           "values": [
             {
               "name": "controller",
@@ -1502,7 +1502,7 @@
               "value": "405419896"
             },
             {
-              "name": "refreshed",
+              "name": "ok",
               "type": "bool",
               "value": true
             }
@@ -1511,7 +1511,7 @@
         }
       },
       {
-        "name": "clear tasklist",
+        "name": "clear task list",
         "request": {
           "name": "clear tasklist request",
           "values": [
@@ -1532,7 +1532,7 @@
               "value": "405419896"
             },
             {
-              "name": "cleared",
+              "name": "ok",
               "type": "bool",
               "value": true
             }

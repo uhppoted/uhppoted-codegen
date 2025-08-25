@@ -299,11 +299,11 @@ function add_task(args)
     for k,v in pairs(TASKS) do
       if v == task then
           return uhppote.add_task(controller, 
+                                  k,
                                   start_date, end_date,
                                   monday, tuesday, wednesday, thursday, friday, saturday, sunday,
                                   at,
                                   door,
-                                  k,
                                   more_cards)
       end
     end
@@ -314,13 +314,13 @@ end
 function refresh_tasklist(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
 
-    return uhppote.refresh_tasklist(controller)
+    return uhppote.refresh_task_list(controller)
 end
 
 function clear_tasklist(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
 
-    return uhppote.clear_tasklist(controller)
+    return uhppote.clear_task_list(controller)
 end
 
 function set_pc_control(args)

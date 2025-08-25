@@ -242,10 +242,11 @@ export function deleteAllTimeProfiles (controller) {
 }
 
 export function addTask (controller,
+  taskType, 
   startdate, enddate,
   monday, tuesday, wednesday, thursday, friday, saturday, sunday,
   starttime,
-  door, taskType, moreCards) {
+  door, moreCards) {
 
   controller = arg(controller)
   startdate = arg(startdate)
@@ -265,11 +266,11 @@ export function addTask (controller,
   moreCards = arg(moreCards)
 
   return uhppote.AddTask(controller,
+    taskType,
     startdate, enddate,
     monday, tuesday, wednesday, thursday, friday, saturday, sunday,
     starttime,
     door,
-    taskType,
     moreCards)
 }
 

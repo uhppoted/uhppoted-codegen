@@ -60,6 +60,7 @@ export const COMMANDS = new Map([
   ['delete-all-time-profiles', { fn: commands.deleteAllTimeProfiles, args: ['controller']}],
   
   ['add-task', { fn: commands.addTask, args: ['controller',
+                                              'task.type', 
                                               'task.start-date', 
                                               'task.end-date',
                                               'task.monday', 
@@ -71,7 +72,6 @@ export const COMMANDS = new Map([
                                               'task.sunday',
                                               'task.start-time',
                                               'task.door', 
-                                              'task.type', 
                                               'task.more-cards']}],
   ['refresh-tasklist',           { fn: commands.refreshTaskList,          args: ['controller']}],
   ['clear-tasklist',             { fn: commands.clearTaskList,            args: ['controller']}],

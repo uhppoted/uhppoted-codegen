@@ -30,9 +30,9 @@ var Requests = []types.Message{
 	GetTimeProfileRequest.Message,
 	SetTimeProfileRequest.Message,
 	DeleteAllTimeProfilesRequest.Message,
-	AddTaskRequest,
-	RefreshTaskListRequest,
-	ClearTaskListRequest,
+	AddTaskRequest.Message,
+	RefreshTaskListRequest.Message,
+	ClearTaskListRequest.Message,
 	SetPCControlRequest,
 	SetInterlockRequest,
 	ActivateKeypadsRequest,
@@ -66,6 +66,9 @@ var RecordSpecialEventsRequest = requests.RecordSpecialEventsRequest
 var GetTimeProfileRequest = requests.GetTimeProfileRequest
 var SetTimeProfileRequest = requests.SetTimeProfileRequest
 var DeleteAllTimeProfilesRequest = requests.DeleteAllTimeProfilesRequest
+var AddTaskRequest = requests.AddTaskRequest
+var RefreshTaskListRequest = requests.RefreshTaskListRequest
+var ClearTaskListRequest = requests.ClearTaskListRequest
 
 // var GetTimeProfileRequest = types.Message{
 // 	Name:    "get time profile request",
@@ -201,119 +204,119 @@ var DeleteAllTimeProfilesRequest = requests.DeleteAllTimeProfilesRequest
 // 	},
 // }
 
-var AddTaskRequest = types.Message{
-	Name:    "add task request",
-	MsgType: 0xa8,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "start date",
-			Type:   "date",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "end date",
-			Type:   "date",
-			Offset: 12,
-		},
-		types.Field{
-			Name:   "monday",
-			Type:   "bool",
-			Offset: 16,
-		},
-		types.Field{
-			Name:   "tuesday",
-			Type:   "bool",
-			Offset: 17,
-		},
-		types.Field{
-			Name:   "wednesday",
-			Type:   "bool",
-			Offset: 18,
-		},
-		types.Field{
-			Name:   "thursday",
-			Type:   "bool",
-			Offset: 19,
-		},
-		types.Field{
-			Name:   "friday",
-			Type:   "bool",
-			Offset: 20,
-		},
-		types.Field{
-			Name:   "saturday",
-			Type:   "bool",
-			Offset: 21,
-		},
-		types.Field{
-			Name:   "sunday",
-			Type:   "bool",
-			Offset: 22,
-		},
-		types.Field{
-			Name:   "start time",
-			Type:   "HHmm",
-			Offset: 23,
-		},
-		types.Field{
-			Name:   "door",
-			Type:   "uint8",
-			Offset: 25,
-		},
-		types.Field{
-			Name:   "task type",
-			Type:   "uint8",
-			Offset: 26,
-		},
-		types.Field{
-			Name:   "more cards",
-			Type:   "uint8",
-			Offset: 27,
-		},
-	},
-}
+// var AddTaskRequest = types.Message{
+// 	Name:    "add task request",
+// 	MsgType: 0xa8,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "start date",
+// 			Type:   "date",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "end date",
+// 			Type:   "date",
+// 			Offset: 12,
+// 		},
+// 		types.Field{
+// 			Name:   "monday",
+// 			Type:   "bool",
+// 			Offset: 16,
+// 		},
+// 		types.Field{
+// 			Name:   "tuesday",
+// 			Type:   "bool",
+// 			Offset: 17,
+// 		},
+// 		types.Field{
+// 			Name:   "wednesday",
+// 			Type:   "bool",
+// 			Offset: 18,
+// 		},
+// 		types.Field{
+// 			Name:   "thursday",
+// 			Type:   "bool",
+// 			Offset: 19,
+// 		},
+// 		types.Field{
+// 			Name:   "friday",
+// 			Type:   "bool",
+// 			Offset: 20,
+// 		},
+// 		types.Field{
+// 			Name:   "saturday",
+// 			Type:   "bool",
+// 			Offset: 21,
+// 		},
+// 		types.Field{
+// 			Name:   "sunday",
+// 			Type:   "bool",
+// 			Offset: 22,
+// 		},
+// 		types.Field{
+// 			Name:   "start time",
+// 			Type:   "HHmm",
+// 			Offset: 23,
+// 		},
+// 		types.Field{
+// 			Name:   "door",
+// 			Type:   "uint8",
+// 			Offset: 25,
+// 		},
+// 		types.Field{
+// 			Name:   "task type",
+// 			Type:   "uint8",
+// 			Offset: 26,
+// 		},
+// 		types.Field{
+// 			Name:   "more cards",
+// 			Type:   "uint8",
+// 			Offset: 27,
+// 		},
+// 	},
+// }
 
-var RefreshTaskListRequest = types.Message{
-	Name:    "refresh tasklist request",
-	MsgType: 0xac,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "",
-			Type:   "magic",
-			Offset: 8,
-		},
-	},
-}
+// var RefreshTaskListRequest = types.Message{
+// 	Name:    "refresh tasklist request",
+// 	MsgType: 0xac,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "",
+// 			Type:   "magic",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
-var ClearTaskListRequest = types.Message{
-	Name:    "clear tasklist request",
-	MsgType: 0xa6,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "",
-			Type:   "magic",
-			Offset: 8,
-		},
-	},
-}
+// var ClearTaskListRequest = types.Message{
+// 	Name:    "clear tasklist request",
+// 	MsgType: 0xa6,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "",
+// 			Type:   "magic",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var SetPCControlRequest = types.Message{
 	Name:    "set pc control request",

@@ -316,6 +316,7 @@ function add_task($u, $args)
     return uhppote\add_task(
         $u,
         $controller,
+        $task_type,
         $start_date,
         $end_date,
         $monday,
@@ -327,7 +328,6 @@ function add_task($u, $args)
         $sunday,
         $start_time,
         $door,
-        $task_type,
         $more_cards
     );
 }
@@ -336,14 +336,14 @@ function refresh_tasklist($u, $args)
 {
     $controller = resolve(CONTROLLER);
 
-    return uhppote\refresh_tasklist($u, $controller);
+    return uhppote\refresh_task_list($u, $controller);
 }
 
 function clear_tasklist($u, $args)
 {
     $controller = resolve(CONTROLLER);
 
-    return uhppote\clear_tasklist($u, $controller);
+    return uhppote\clear_task_list($u, $controller);
 }
 
 function set_pc_control($u, $args)

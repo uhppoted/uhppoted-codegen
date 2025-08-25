@@ -488,8 +488,11 @@ fn add_task() {
         let more_cards: u8 = 0;
 
         futures::executor::block_on(uhppote::add_task(
-        controller, start_date, end_date, monday, tuesday, wednesday, thursday, friday, saturday,
-        sunday, start_time, door, task_type, more_cards))
+        controller, task_type, 
+        start_date, end_date, monday, tuesday, wednesday, thursday, friday, saturday, sunday, 
+        start_time, 
+        door, 
+        more_cards))
     })
 }
 
@@ -497,7 +500,7 @@ fn refresh_tasklist() {
     print(|| -> Result<uhppote::RefreshTasklistResponse, error::Error> {
 	    let controller = resolve(CONTROLLER);
 
-        futures::executor::block_on(uhppote::refresh_tasklist(controller))
+        futures::executor::block_on(uhppote::refresh_task_list(controller))
     })
 }
 
@@ -505,7 +508,7 @@ fn clear_tasklist() {
     print(|| -> Result<uhppote::ClearTasklistResponse, error::Error> {
 	    let controller = resolve(CONTROLLER);
 
-        futures::executor::block_on(uhppote::clear_tasklist(controller))
+        futures::executor::block_on(uhppote::clear_task_list(controller))
     })
 }
 

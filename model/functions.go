@@ -67,22 +67,9 @@ var RecordSpecialEvents = functions.RecordSpecialEvents
 var GetTimeProfile = functions.GetTimeProfile
 var SetTimeProfile = functions.SetTimeProfile
 var DeleteAllTimeProfiles = functions.DeleteAllTimeProfiles
-
-// var GetTimeProfile = types.Function{
-// 	Name: "get time profile",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 		{
-// 			Name: "profile id",
-// 			Type: "uint8",
-// 		},
-// 	},
-// 	Request:  GetTimeProfileRequest,
-// 	Response: GetTimeProfileResponse,
-// }
+var AddTask = functions.AddTask
+var RefreshTaskList = functions.RefreshTaskList
+var ClearTaskList = functions.ClearTaskList
 
 // var SetTimeProfile = types.Function{
 // 	Name: "set time profile",
@@ -176,93 +163,93 @@ var DeleteAllTimeProfiles = functions.DeleteAllTimeProfiles
 // 	Response: DeleteAllTimeProfilesResponse,
 // }
 
-var AddTask = types.Function{
-	Name: "add task",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "start date",
-			Type: "date",
-		},
-		{
-			Name: "end date",
-			Type: "date",
-		},
-		{
-			Name: "monday",
-			Type: "bool",
-		},
-		{
-			Name: "tuesday",
-			Type: "bool",
-		},
-		{
-			Name: "wednesday",
-			Type: "bool",
-		},
-		{
-			Name: "thursday",
-			Type: "bool",
-		},
-		{
-			Name: "friday",
-			Type: "bool",
-		},
-		{
-			Name: "saturday",
-			Type: "bool",
-		},
-		{
-			Name: "sunday",
-			Type: "bool",
-		},
-		{
-			Name: "start time",
-			Type: "HHmm",
-		},
-		{
-			Name: "door",
-			Type: "uint8",
-		},
-		{
-			Name: "task type",
-			Type: "uint8",
-		},
-		{
-			Name: "more cards",
-			Type: "uint8",
-		},
-	},
-	Request:  AddTaskRequest,
-	Response: AddTaskResponse,
-}
+// var AddTask = types.Function{
+// 	Name: "add task",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "start date",
+// 			Type: "date",
+// 		},
+// 		{
+// 			Name: "end date",
+// 			Type: "date",
+// 		},
+// 		{
+// 			Name: "monday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "tuesday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "wednesday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "thursday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "friday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "saturday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "sunday",
+// 			Type: "bool",
+// 		},
+// 		{
+// 			Name: "start time",
+// 			Type: "HHmm",
+// 		},
+// 		{
+// 			Name: "door",
+// 			Type: "uint8",
+// 		},
+// 		{
+// 			Name: "task type",
+// 			Type: "uint8",
+// 		},
+// 		{
+// 			Name: "more cards",
+// 			Type: "uint8",
+// 		},
+// 	},
+// 	Request:  AddTaskRequest,
+// 	Response: AddTaskResponse,
+// }
 
-var RefreshTaskList = types.Function{
-	Name: "refresh tasklist",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  RefreshTaskListRequest,
-	Response: RefreshTaskListResponse,
-}
+// var RefreshTaskList = types.Function{
+// 	Name: "refresh tasklist",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 	},
+// 	Request:  RefreshTaskListRequest,
+// 	Response: RefreshTaskListResponse,
+// }
 
-var ClearTaskList = types.Function{
-	Name: "clear tasklist",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  ClearTaskListRequest,
-	Response: ClearTaskListResponse,
-}
+// var ClearTaskList = types.Function{
+// 	Name: "clear tasklist",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 	},
+// 	Request:  ClearTaskListRequest,
+// 	Response: ClearTaskListResponse,
+// }
 
 var SetPCControl = types.Function{
 	Name: "set pc control",

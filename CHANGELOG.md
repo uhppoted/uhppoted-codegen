@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Updated
+1. Augmented models with test vectors.
+
+
 ## [0.8.11](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.11) - 2025-07-01
 
 ### Added

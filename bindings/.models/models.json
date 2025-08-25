@@ -1340,58 +1340,58 @@
               {
                 "name": "controller",
                 "type": "uint32",
-                "value": 405419896
+                "value": 405419897
               }
             ],
-            "request": "FyAAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "request": "FyAAAHk3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
             "replies": [
               {
-                "message": "FyAAAHk3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQEBAQABGxQ3U+NVAAAhAAAAmgcJJBETAACTJgSICJIAAA==",
+                "message": "FyAAAHk3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQEBAQABGxQ3U+NVAAAhAAAAJwcJJREjAACTJgSICJIAAA==",
                 "response": [
                   {
                     "name": "controller",
                     "type": "uint32",
-                    "value": 405419896
+                    "value": 405419897
                   },
                   {
                     "name": "system-date",
                     "type": "date",
-                    "value": "2022-08-23"
+                    "value": "2025-11-23"
                   },
                   {
                     "name": "system-time",
                     "type": "time",
-                    "value": "09:49:39"
+                    "value": "14:37:53"
                   },
                   {
                     "name": "door-1-open",
                     "type": "bool",
-                    "value": false
+                    "value": true
                   },
                   {
                     "name": "door-2-open",
                     "type": "bool",
-                    "value": true
+                    "value": false
                   },
                   {
                     "name": "door-3-open",
                     "type": "bool",
-                    "value": false
+                    "value": true
                   },
                   {
                     "name": "door-4-open",
                     "type": "bool",
-                    "value": false
+                    "value": true
                   },
                   {
                     "name": "door-1-button",
                     "type": "bool",
-                    "value": false
+                    "value": true
                   },
                   {
                     "name": "door-2-button",
                     "type": "bool",
-                    "value": false
+                    "value": true
                   },
                   {
                     "name": "door-3-button",
@@ -1416,7 +1416,7 @@
                   {
                     "name": "system-error",
                     "type": "uint8",
-                    "value": 3
+                    "value": 27
                   },
                   {
                     "name": "special-info",
@@ -1426,47 +1426,47 @@
                   {
                     "name": "event-index",
                     "type": "uint32",
-                    "value": 78
+                    "value": 0
                   },
                   {
                     "name": "event-type",
                     "type": "uint8",
-                    "value": 2
+                    "value": 0
                   },
                   {
                     "name": "event-access-granted",
                     "type": "bool",
-                    "value": true
+                    "value": false
                   },
                   {
                     "name": "event-door",
                     "type": "uint8",
-                    "value": 3
+                    "value": 0
                   },
                   {
                     "name": "event-direction",
                     "type": "uint8",
-                    "value": 1
+                    "value": 0
                   },
                   {
                     "name": "event-card",
                     "type": "uint32",
-                    "value": 8165537
+                    "value": 0
                   },
                   {
                     "name": "event-timestamp",
                     "type": "datetime",
-                    "value": "2022-08-23 09:47:06"
+                    "value": "0001-01-01 00:00:00"
                   },
                   {
                     "name": "event-reason",
                     "type": "uint8",
-                    "value": 44
+                    "value": 0
                   },
                   {
                     "name": "sequence-no",
                     "type": "uint32",
-                    "value": 0
+                    "value": 21987
                   }
                 ]
               }
@@ -3448,12 +3448,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
-              "name": "stored",
+              "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -3479,7 +3481,7 @@
               {
                 "name": "start date",
                 "type": "date",
-                "value": "2025-11;26"
+                "value": "2025-11-26"
               },
               {
                 "name": "end date",
@@ -3509,7 +3511,7 @@
               {
                 "name": "friday",
                 "type": "bool",
-                "value": 405419896
+                "value": false
               },
               {
                 "name": "saturday",
@@ -3557,7 +3559,7 @@
                 "value": 19
               }
             ],
-            "request": "F4gAAHg3KhglICQRJiAkEikBAQABAAEBCDAJRRE1ExUUARdZEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "request": "F4gAAHg3KhglICURJiAlEikBAQABAAEBCDAJRRE1ExUUARdZEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
             "replies": [
               {
                 "message": "F4gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -3661,11 +3663,17 @@
       },
       {
         "name": "add task",
-        "description": null,
+        "description": [
+          "Creates a scheduled task."
+        ],
         "args": [
           {
             "name": "controller",
             "type": "controller"
+          },
+          {
+            "name": "task type",
+            "type": "uint8"
           },
           {
             "name": "start date",
@@ -3712,10 +3720,6 @@
             "type": "uint8"
           },
           {
-            "name": "task type",
-            "type": "uint8"
-          },
-          {
             "name": "more cards",
             "type": "uint8"
           }
@@ -3729,6 +3733,11 @@
               "type": "uint32",
               "offset": 4,
               "description": "controller serial number"
+            },
+            {
+              "name": "task type",
+              "type": "uint8",
+              "offset": 26
             },
             {
               "name": "start date",
@@ -3786,11 +3795,6 @@
               "offset": 25
             },
             {
-              "name": "task type",
-              "type": "uint8",
-              "offset": 26
-            },
-            {
               "name": "more cards",
               "type": "uint8",
               "offset": 27
@@ -3808,17 +3812,118 @@
               "description": "controller serial number"
             },
             {
-              "name": "added",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "add-task",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "task type",
+                "type": "uint8",
+                "value": "2"
+              },
+              {
+                "name": "start date",
+                "type": "date",
+                "value": "2025-01-01"
+              },
+              {
+                "name": "end date",
+                "type": "date",
+                "value": "2025-12-31"
+              },
+              {
+                "name": "monday",
+                "type": "bool",
+                "value": "true"
+              },
+              {
+                "name": "tuesday",
+                "type": "bool",
+                "value": "true"
+              },
+              {
+                "name": "wednesday",
+                "type": "bool",
+                "value": "false"
+              },
+              {
+                "name": "thursday",
+                "type": "bool",
+                "value": "true"
+              },
+              {
+                "name": "friday",
+                "type": "bool",
+                "value": "false"
+              },
+              {
+                "name": "saturday",
+                "type": "bool",
+                "value": "true"
+              },
+              {
+                "name": "sunday",
+                "type": "bool",
+                "value": "true"
+              },
+              {
+                "name": "start time",
+                "type": "HHmm",
+                "value": "08:45"
+              },
+              {
+                "name": "door",
+                "type": "uint8",
+                "value": "3"
+              },
+              {
+                "name": "more cards",
+                "type": "uint8",
+                "value": "7"
+              }
+            ],
+            "request": "F6gAAHg3KhggJBEmICQSKQEBAAEAAQEIRQMDBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F6gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
-        "name": "refresh tasklist",
-        "description": null,
+        "name": "refresh task list",
+        "description": [
+          "Updates scheduler with newly created scheduled tasks."
+        ],
         "args": [
           {
             "name": "controller",
@@ -3826,7 +3931,7 @@
           }
         ],
         "request": {
-          "name": "refresh tasklist request",
+          "name": "refresh task list request",
           "msgtype": 172,
           "fields": [
             {
@@ -3859,11 +3964,47 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "refresh-task-list",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F6wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "uint8",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
-        "name": "clear tasklist",
-        "description": null,
+        "name": "clear task list",
+        "description": [
+          "Removes all scheduled tasks."
+        ],
         "args": [
           {
             "name": "controller",
@@ -3904,7 +4045,41 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "clear-task-list",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F6wAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "uint8",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set pc control",
@@ -4942,6 +5117,11 @@
             "description": "controller serial number"
           },
           {
+            "name": "task type",
+            "type": "uint8",
+            "offset": 26
+          },
+          {
             "name": "start date",
             "type": "date",
             "offset": 8
@@ -4997,11 +5177,6 @@
             "offset": 25
           },
           {
-            "name": "task type",
-            "type": "uint8",
-            "offset": 26
-          },
-          {
             "name": "more cards",
             "type": "uint8",
             "offset": 27
@@ -5009,7 +5184,7 @@
         ]
       },
       {
-        "name": "refresh tasklist request",
+        "name": "refresh task list request",
         "msgtype": 172,
         "fields": [
           {
@@ -5982,12 +6157,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
-            "name": "stored",
+            "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -6019,7 +6196,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "added",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }

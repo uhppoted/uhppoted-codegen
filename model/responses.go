@@ -30,9 +30,9 @@ var Responses = []types.Message{
 	GetTimeProfileResponse.Message,
 	SetTimeProfileResponse.Message,
 	DeleteAllTimeProfilesResponse.Message,
-	AddTaskResponse,
-	RefreshTaskListResponse,
-	ClearTaskListResponse,
+	AddTaskResponse.Message,
+	RefreshTaskListResponse.Message,
+	ClearTaskListResponse.Message,
 	SetPCControlResponse,
 	SetInterlockResponse,
 	ActivateKeypadsResponse,
@@ -67,6 +67,9 @@ var RecordSpecialEventsResponse = responses.RecordSpecialEventsResponse
 var GetTimeProfileResponse = responses.GetTimeProfileResponse
 var SetTimeProfileResponse = responses.SetTimeProfileResponse
 var DeleteAllTimeProfilesResponse = responses.DeleteAllTimeProfilesResponse
+var AddTaskResponse = responses.AddTaskResponse
+var RefreshTaskListResponse = responses.RefreshTaskListResponse
+var ClearTaskListResponse = responses.ClearTaskListResponse
 
 // var GetTimeProfileResponse = types.Message{
 // 	Name:    "get time profile response",
@@ -202,59 +205,59 @@ var DeleteAllTimeProfilesResponse = responses.DeleteAllTimeProfilesResponse
 // 	},
 // }
 
-var AddTaskResponse = types.Message{
-	Name:    "add task response",
-	MsgType: 0xa8,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "added",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var AddTaskResponse = types.Message{
+// 	Name:    "add task response",
+// 	MsgType: 0xa8,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "added",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
-var RefreshTaskListResponse = types.Message{
-	Name:    "refresh tasklist response",
-	MsgType: 0xac,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "refreshed",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var RefreshTaskListResponse = types.Message{
+// 	Name:    "refresh tasklist response",
+// 	MsgType: 0xac,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "refreshed",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
-var ClearTaskListResponse = types.Message{
-	Name:    "clear tasklist response",
-	MsgType: 0xa6,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "cleared",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var ClearTaskListResponse = types.Message{
+// 	Name:    "clear tasklist response",
+// 	MsgType: 0xa6,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "cleared",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var SetPCControlResponse = types.Message{
 	Name:    "set pc control response",

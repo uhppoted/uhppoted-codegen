@@ -1,9 +1,9 @@
 package requests
 
-var SetTimeProfileRequest = Request{
+var AddTaskRequest = Request{
 	Message: Message{
-		Name:    "set time profile request",
-		MsgType: 0x88,
+		Name:    "add task request",
+		MsgType: 0xa8,
 		Fields: []Field{
 			{
 				Name:        "controller",
@@ -12,96 +12,75 @@ var SetTimeProfileRequest = Request{
 				Description: "controller serial number",
 			},
 			{
-				Name:   "profile",
+				Name:   "task type",
 				Type:   "uint8",
-				Offset: 8,
+				Offset: 26,
 			},
 			{
 				Name:   "start date",
 				Type:   "date",
-				Offset: 9,
+				Offset: 8,
 			},
 			{
 				Name:   "end date",
 				Type:   "date",
-				Offset: 13,
+				Offset: 12,
 			},
 			{
 				Name:   "monday",
 				Type:   "bool",
-				Offset: 17,
+				Offset: 16,
 			},
 			{
 				Name:   "tuesday",
 				Type:   "bool",
-				Offset: 18,
+				Offset: 17,
 			},
 			{
 				Name:   "wednesday",
 				Type:   "bool",
-				Offset: 19,
+				Offset: 18,
 			},
 			{
 				Name:   "thursday",
 				Type:   "bool",
-				Offset: 20,
+				Offset: 19,
 			},
 			{
 				Name:   "friday",
 				Type:   "bool",
-				Offset: 21,
+				Offset: 20,
 			},
 			{
 				Name:   "saturday",
 				Type:   "bool",
-				Offset: 22,
+				Offset: 21,
 			},
 			{
 				Name:   "sunday",
 				Type:   "bool",
+				Offset: 22,
+			},
+			{
+				Name:   "start time",
+				Type:   "HHmm",
 				Offset: 23,
 			},
 			{
-				Name:   "segment 1 start",
-				Type:   "HHmm",
-				Offset: 24,
-			},
-			{
-				Name:   "segment 1 end",
-				Type:   "HHmm",
-				Offset: 26,
-			},
-			{
-				Name:   "segment 2 start",
-				Type:   "HHmm",
-				Offset: 28,
-			},
-			{
-				Name:   "segment 2 end",
-				Type:   "HHmm",
-				Offset: 30,
-			},
-			{
-				Name:   "segment 3 start",
-				Type:   "HHmm",
-				Offset: 32,
-			},
-			{
-				Name:   "segment 3 end",
-				Type:   "HHmm",
-				Offset: 34,
-			},
-			{
-				Name:   "linked profile id",
+				Name:   "door",
 				Type:   "uint8",
-				Offset: 36,
+				Offset: 25,
+			},
+			{
+				Name:   "more cards",
+				Type:   "uint8",
+				Offset: 27,
 			},
 		},
 	},
-
 	Tests: []RequestTest{
 		{
-			Name: "set-time-profile",
+			Name: "add-task",
 			Args: []TestArg{
 				{
 					Arg: Arg{
@@ -112,127 +91,100 @@ var SetTimeProfileRequest = Request{
 				},
 				{
 					Arg: Arg{
-						Name: "profile",
+						Name: "task type",
 						Type: "uint8",
-					}, Value: 37,
+					},
+					Value: "2",
 				},
 				{
 					Arg: Arg{
 						Name: "start date",
 						Type: "date",
 					},
-					Value: "2025-11-26",
+					Value: "2025-01-01",
 				},
 				{
 					Arg: Arg{
 						Name: "end date",
 						Type: "date",
 					},
-					Value: "2025-12-29",
+					Value: "2025-12-31",
 				},
 				{
 					Arg: Arg{
 						Name: "monday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "tuesday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "wednesday",
 						Type: "bool",
 					},
-					Value: false,
+					Value: "false",
 				},
 				{
 					Arg: Arg{
 						Name: "thursday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "friday",
 						Type: "bool",
 					},
-					Value: false,
+					Value: "false",
 				},
 				{
 					Arg: Arg{
 						Name: "saturday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "sunday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
-						Name: "segment 1 start",
+						Name: "start time",
 						Type: "HHmm",
 					},
-					Value: "8:30",
+					Value: "08:45",
 				},
 				{
 					Arg: Arg{
-						Name: "segment 1 end",
-						Type: "HHmm",
-					},
-					Value: "9:45",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 2 start",
-						Type: "HHmm",
-					},
-					Value: "11:35",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 2 end",
-						Type: "HHmm",
-					},
-					Value: "13:15",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 3 start",
-						Type: "HHmm",
-					},
-					Value: "14:01",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 3 end",
-						Type: "HHmm",
-					},
-					Value: "17:59",
-				},
-				{
-					Arg: Arg{
-						Name: "linked profile id",
+						Name: "door",
 						Type: "uint8",
 					},
-					Value: 19,
+					Value: "3",
+				},
+				{
+					Arg: Arg{
+						Name: "more cards",
+						Type: "uint8",
+					},
+					Value: "7",
 				},
 			},
 			Expected: []byte{
-				0x17, 0x88, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x25, 0x20, 0x25, 0x11, 0x26, 0x20, 0x25, 0x12,
-				0x29, 0x01, 0x01, 0x00, 0x01, 0x00, 0x01, 0x01, 0x08, 0x30, 0x09, 0x45, 0x11, 0x35, 0x13, 0x15,
-				0x14, 0x01, 0x17, 0x59, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x17, 0xa8, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x20, 0x24, 0x11, 0x26, 0x20, 0x24, 0x12, 0x29,
+				0x01, 0x01, 0x00, 0x01, 0x00, 0x01, 0x01, 0x08, 0x45, 0x03, 0x03, 0x07, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			},
 		},

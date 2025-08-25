@@ -1701,6 +1701,11 @@ var AddTaskTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
+				Name:  "task type",
+				Type:  "uint8",
+				Value: "2",
+			},
+			Value{
 				Name:  "start date",
 				Type:  "date",
 				Value: "2022-01-01",
@@ -1756,11 +1761,6 @@ var AddTaskTest = Test{
 				Value: "3",
 			},
 			Value{
-				Name:  "task type",
-				Type:  "uint8",
-				Value: "2",
-			},
-			Value{
 				Name:  "more cards",
 				Type:  "uint8",
 				Value: "17",
@@ -1782,7 +1782,7 @@ var AddTaskTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "added",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},
@@ -1797,7 +1797,7 @@ var AddTaskTest = Test{
 }
 
 var RefreshTaskListTest = Test{
-	Name: "refresh tasklist",
+	Name: "refresh task list",
 	Request: &TestRequest{
 		Name: RefreshTaskListRequest.Name,
 		Values: []Value{
@@ -1823,7 +1823,7 @@ var RefreshTaskListTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "refreshed",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},
@@ -1838,7 +1838,7 @@ var RefreshTaskListTest = Test{
 }
 
 var ClearTaskListTest = Test{
-	Name: "clear tasklist",
+	Name: "clear task list",
 	Request: &TestRequest{
 		Name: ClearTaskListRequest.Name,
 		Values: []Value{
@@ -1864,7 +1864,7 @@ var ClearTaskListTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "cleared",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},

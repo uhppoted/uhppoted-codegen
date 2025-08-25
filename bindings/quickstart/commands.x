@@ -258,7 +258,7 @@ function delete_all_time_profiles() {
 
 function add_task() {
     controller = arg('controller')
-    id         = arg('time-profile-id')
+    task_type  = arg('task'),
     start_date = arg('start-date')
     end_date   = arg('end-date')
     weekdays   = arg('weekdays')
@@ -272,6 +272,7 @@ function add_task() {
 
     return uhppote::add_task(
         controller,
+        task_type,
         start_date, end_date,
         weekdays.monday, 
         weekdays.tuesday, 
@@ -282,7 +283,6 @@ function add_task() {
         weekdays.sunday,
         start_time,
         door,
-        task_type,
         more_cards)
 }
 

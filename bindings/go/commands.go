@@ -355,24 +355,24 @@ func addTask(args []string) (any, error) {
     moreCards := uint8(0)
 
     return uhppote.AddTask(controller,
+        taskType,
         uhppote.Date(startDate), uhppote.Date(endDate),
         monday, tuesday, wednesday, thursday, friday, saturday, sunday,
         uhppote.HHmm(startTime),
         door,
-        taskType,
         moreCards)
 }
 
 func refreshTaskList(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
-    return uhppote.RefreshTasklist(controller)
+    return uhppote.RefreshTaskList(controller)
 }
 
 func clearTaskList(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
-    return uhppote.ClearTasklist(controller)
+    return uhppote.ClearTaskList(controller)
 }
 
 func setPCControl(args []string) (any, error) {

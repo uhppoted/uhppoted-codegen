@@ -534,7 +534,7 @@ fn add_task(allocator: std.mem.Allocator) void {
     const task_type = 2;
     const more_cards = 0;
 
-    if (uhppote.add_task(controller, start_date, end_date, monday, tuesday, wednesday, thursday, friday, saturday, sunday, start_time, door, task_type, more_cards, allocator)) |response| {
+    if (uhppote.add_task(controller, task_type, start_date, end_date, monday, tuesday, wednesday, thursday, friday, saturday, sunday, start_time, door,  more_cards, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
@@ -544,7 +544,7 @@ fn add_task(allocator: std.mem.Allocator) void {
 fn refresh_tasklist(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
 
-    if (uhppote.refresh_tasklist(controller, allocator)) |response| {
+    if (uhppote.refresh_task_list(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});
@@ -554,7 +554,7 @@ fn refresh_tasklist(allocator: std.mem.Allocator) void {
 fn clear_tasklist(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
 
-    if (uhppote.clear_tasklist(controller, allocator)) |response| {
+    if (uhppote.clear_task_list(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

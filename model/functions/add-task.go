@@ -5,10 +5,10 @@ import (
 	"github.com/uhppoted/uhppoted-codegen/model/responses"
 )
 
-var SetTimeProfile = Function{
-	Name: "set time profile",
+var AddTask = Function{
+	Name: "add task",
 	Description: []string{
-		"Adds or updates an access time profile stored on a controller.",
+		"Creates a scheduled task.",
 	},
 	Args: []Arg{
 		{
@@ -16,7 +16,7 @@ var SetTimeProfile = Function{
 			Type: "controller",
 		},
 		{
-			Name: "profile id",
+			Name: "task type",
 			Type: "uint8",
 		},
 		{
@@ -56,41 +56,25 @@ var SetTimeProfile = Function{
 			Type: "bool",
 		},
 		{
-			Name: "segment 1 start",
+			Name: "start time",
 			Type: "HHmm",
 		},
 		{
-			Name: "segment 1 end",
-			Type: "HHmm",
+			Name: "door",
+			Type: "uint8",
 		},
 		{
-			Name: "segment 2 start",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 2 end",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 3 start",
-			Type: "HHmm",
-		},
-		{
-			Name: "segment 3 end",
-			Type: "HHmm",
-		},
-		{
-			Name: "linked profile id",
+			Name: "more cards",
 			Type: "uint8",
 		},
 	},
-	Request:   requests.SetTimeProfileRequest.Message,
-	Response:  responses.SetTimeProfileResponse.Message,
+	Request:   requests.AddTaskRequest.Message,
+	Response:  responses.AddTaskResponse.Message,
 	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{
-			Name: "set-time-profile",
+			Name: "add-task",
 			Args: []TestArg{
 				{
 					Arg: Arg{
@@ -101,133 +85,106 @@ var SetTimeProfile = Function{
 				},
 				{
 					Arg: Arg{
-						Name: "profile",
+						Name: "task type",
 						Type: "uint8",
-					}, Value: 37,
+					},
+					Value: "2",
 				},
 				{
 					Arg: Arg{
 						Name: "start date",
 						Type: "date",
 					},
-					Value: "2025-11-26",
+					Value: "2025-01-01",
 				},
 				{
 					Arg: Arg{
 						Name: "end date",
 						Type: "date",
 					},
-					Value: "2025-12-29",
+					Value: "2025-12-31",
 				},
 				{
 					Arg: Arg{
 						Name: "monday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "tuesday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "wednesday",
 						Type: "bool",
 					},
-					Value: false,
+					Value: "false",
 				},
 				{
 					Arg: Arg{
 						Name: "thursday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "friday",
 						Type: "bool",
 					},
-					Value: false,
+					Value: "false",
 				},
 				{
 					Arg: Arg{
 						Name: "saturday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
 						Name: "sunday",
 						Type: "bool",
 					},
-					Value: true,
+					Value: "true",
 				},
 				{
 					Arg: Arg{
-						Name: "segment 1 start",
+						Name: "start time",
 						Type: "HHmm",
 					},
-					Value: "8:30",
+					Value: "08:45",
 				},
 				{
 					Arg: Arg{
-						Name: "segment 1 end",
-						Type: "HHmm",
-					},
-					Value: "9:45",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 2 start",
-						Type: "HHmm",
-					},
-					Value: "11:35",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 2 end",
-						Type: "HHmm",
-					},
-					Value: "13:15",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 3 start",
-						Type: "HHmm",
-					},
-					Value: "14:01",
-				},
-				{
-					Arg: Arg{
-						Name: "segment 3 end",
-						Type: "HHmm",
-					},
-					Value: "17:59",
-				},
-				{
-					Arg: Arg{
-						Name: "linked profile id",
+						Name: "door",
 						Type: "uint8",
 					},
-					Value: 19,
+					Value: "3",
+				},
+				{
+					Arg: Arg{
+						Name: "more cards",
+						Type: "uint8",
+					},
+					Value: "7",
 				},
 			},
 			Request: []byte{
-				0x17, 0x88, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x25, 0x20, 0x25, 0x11, 0x26, 0x20, 0x25, 0x12,
-				0x29, 0x01, 0x01, 0x00, 0x01, 0x00, 0x01, 0x01, 0x08, 0x30, 0x09, 0x45, 0x11, 0x35, 0x13, 0x15,
-				0x14, 0x01, 0x17, 0x59, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x17, 0xa8, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x20, 0x24, 0x11, 0x26, 0x20, 0x24, 0x12, 0x29,
+				0x01, 0x01, 0x00, 0x01, 0x00, 0x01, 0x01, 0x08, 0x45, 0x03, 0x03, 0x07, 0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			},
 			Replies: []TestReply{
 				{
 					Message: []byte{
-						0x17, 0x88, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+						0x17, 0xa8, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 						0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 						0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 						0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -240,7 +197,7 @@ var SetTimeProfile = Function{
 						},
 						{
 							Name:  "ok",
-							Type:  "uint8",
+							Type:  "bool",
 							Value: true,
 						},
 					},

@@ -305,24 +305,24 @@ def add_task(u):
 
     return u.add_task(
         controller,
+        task_type,
         start_date, end_date,
         monday, tuesday, wednesday, thursday, friday, saturday, sunday,
         start_time,
         door,
-        task_type,
         more_cards)
 
 
 def refresh_tasklist(u):
     controller = resolve(CONTROLLER)
 
-    return u.refresh_tasklist(controller)
+    return u.refresh_task_list(controller)
 
 
 def clear_tasklist(u):
     controller = resolve(CONTROLLER)
 
-    return u.clear_tasklist(controller)
+    return u.clear_task_list(controller)
 
 
 def set_pc_control(u):

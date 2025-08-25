@@ -251,8 +251,8 @@ execute(delete_all_time_profiles, _Options, Config) ->
 
 execute(add_task, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
-    Door = ?DOOR,
     TaskType = 2,
+    Door = ?DOOR,
     Start = {2023, 1, 1},
     End = {2023, 12, 31},
     Monday = true,
@@ -268,6 +268,7 @@ execute(add_task, _Options, Config) ->
     uhppoted:add_task(
         Config,
         Controller,
+        TaskType,
         Start,
         End,
         Monday,
@@ -279,17 +280,16 @@ execute(add_task, _Options, Config) ->
         Sunday,
         StartTime,
         Door,
-        TaskType,
         MoreCards
     );
 
 execute(refresh_tasklist, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
-    uhppoted:refresh_tasklist(Config, Controller);
+    uhppoted:refresh_task_list(Config, Controller);
 
 execute(clear_tasklist, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
-    uhppoted:clear_tasklist(Config, Controller);
+    uhppoted:clear_task_list(Config, Controller);
 
 execute(set_pc_control, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
