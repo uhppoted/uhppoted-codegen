@@ -60,7 +60,7 @@ commands() ->
         {"record-special-events", record_special_events},
         {"get-time-profile", get_time_profile},
         {"set-time-profile", set_time_profile},
-        {"delete-all-time-profiles", delete_all_time_profiles},
+        {"clear-time-profiles", clear_time_profiles},
         {"add-task", add_task},
         {"refresh-tasklist", refresh_tasklist},
         {"clear-tasklist", clear_tasklist},
@@ -245,9 +245,9 @@ execute(set_time_profile, _Options, Config) ->
         LinkedProfileID
     );
 
-execute(delete_all_time_profiles, _Options, Config) ->
+execute(clear_time_profiles, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
-    uhppoted:delete_all_time_profiles(Config, Controller);
+    uhppoted:clear_time_profiles(Config, Controller);
 
 execute(add_task, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

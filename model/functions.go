@@ -28,7 +28,7 @@ var Functions = []types.Function{
 	RecordSpecialEvents,
 	GetTimeProfile,
 	SetTimeProfile,
-	DeleteAllTimeProfiles,
+	ClearTimeProfiles,
 	AddTask,
 	RefreshTaskList,
 	ClearTaskList,
@@ -51,8 +51,9 @@ var SetDoorPasscodes = functions.SetDoorPasscodes
 var OpenDoor = functions.OpenDoor
 var GetListener = functions.GetListener
 var SetListener = functions.SetListener
-var GetListenerAddrPort = functions.GetListenerAddrPort
-var SetListenerAddrPort = functions.SetListenerAddrPort
+
+// var GetListenerAddrPort = functions.GetListenerAddrPort
+// var SetListenerAddrPort = functions.SetListenerAddrPort
 var GetStatus = functions.GetStatus
 var PutCard = functions.PutCard
 var GetCards = functions.GetCards
@@ -66,10 +67,12 @@ var SetEventIndex = functions.SetEventIndex
 var RecordSpecialEvents = functions.RecordSpecialEvents
 var GetTimeProfile = functions.GetTimeProfile
 var SetTimeProfile = functions.SetTimeProfile
-var DeleteAllTimeProfiles = functions.DeleteAllTimeProfiles
+var ClearTimeProfiles = functions.ClearTimeProfiles
 var AddTask = functions.AddTask
 var RefreshTaskList = functions.RefreshTaskList
 var ClearTaskList = functions.ClearTaskList
+var SetPCControl = functions.SetPCControl
+var SetInterlock = functions.SetInterlock
 
 // var SetTimeProfile = types.Function{
 // 	Name: "set time profile",
@@ -251,37 +254,37 @@ var ClearTaskList = functions.ClearTaskList
 // 	Response: ClearTaskListResponse,
 // }
 
-var SetPCControl = types.Function{
-	Name: "set pc control",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "enable",
-			Type: "bool",
-		},
-	},
-	Request:  SetPCControlRequest,
-	Response: SetPCControlResponse,
-}
+// var SetPCControl = types.Function{
+// 	Name: "set pc control",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "enable",
+// 			Type: "bool",
+// 		},
+// 	},
+// 	Request:  SetPCControlRequest,
+// 	Response: SetPCControlResponse,
+// }
 
-var SetInterlock = types.Function{
-	Name: "set interlock",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "interlock",
-			Type: "uint8",
-		},
-	},
-	Request:  SetInterlockRequest,
-	Response: SetInterlockResponse,
-}
+// var SetInterlock = types.Function{
+// 	Name: "set interlock",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "interlock",
+// 			Type: "uint8",
+// 		},
+// 	},
+// 	Request:  SetInterlockRequest,
+// 	Response: SetInterlockResponse,
+// }
 
 var ActivateKeypads = types.Function{
 	Name: "activate keypads",

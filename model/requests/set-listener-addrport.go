@@ -4,9 +4,9 @@ import (
 	"net/netip"
 )
 
-var SetListenerRequest = Request{
+var SetListenerAddrPortRequest = Request{
 	Message: Message{
-		Name:    "set listener request",
+		Name:    "set listener address:port request",
 		MsgType: 0x90,
 		Fields: []Field{
 			{
@@ -16,16 +16,10 @@ var SetListenerRequest = Request{
 				Description: "controller serial number",
 			},
 			{
-				Name:        "address",
-				Type:        "IPv4",
+				Name:        "listener",
+				Type:        "address:port",
 				Offset:      8,
-				Description: "event listener IPv4 address",
-			},
-			{
-				Name:        "port",
-				Type:        "uint16",
-				Offset:      12,
-				Description: "event listener IPv4 port",
+				Description: "event listener IPv4 address:port",
 			},
 			{
 				Name:        "interval",
@@ -37,7 +31,7 @@ var SetListenerRequest = Request{
 	},
 	Tests: []RequestTest{
 		{
-			Name: "set-listener",
+			Name: "set-listener-addport",
 			Args: []TestArg{
 				{
 					Arg: Arg{
@@ -48,17 +42,10 @@ var SetListenerRequest = Request{
 				},
 				{
 					Arg: Arg{
-						Name: "address",
-						Type: "IPv4",
+						Name: "listener",
+						Type: "address:port",
 					},
-					Value: netip.MustParseAddr("192.168.1.100"),
-				},
-				{
-					Arg: Arg{
-						Name: "port",
-						Type: "uint16",
-					},
-					Value: 60001,
+					Value: netip.MustParseAddrPort("192.168.1.100:60001"),
 				},
 				{
 					Arg: Arg{

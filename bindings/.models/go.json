@@ -6,6 +6,7 @@
             "uint32": "uint32",
             "bool": "bool",
             "IPv4": "netip.Addr",
+            "address:port": "netip.AddrPort",
             "MAC": "string",
             "version": "string",
             "date": "Date",

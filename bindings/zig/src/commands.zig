@@ -138,8 +138,8 @@ pub const commands = [_]Command{
     },
 
     Command{
-        .name = "delete-all-time-profiles",
-        .function = delete_all_time_profiles,
+        .name = "clear-time-profiles",
+        .function = clear_time_profiles,
     },
 
     Command{
@@ -508,10 +508,10 @@ fn set_time_profile(allocator: std.mem.Allocator) void {
     }
 }
 
-fn delete_all_time_profiles(allocator: std.mem.Allocator) void {
+fn clear_time_profiles(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
 
-    if (uhppote.delete_all_time_profiles(controller, allocator)) |response| {
+    if (uhppote.clear_time_profiles(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

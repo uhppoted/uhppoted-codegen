@@ -55,6 +55,16 @@ func packIPv4(v netip.Addr, packet []byte, offset uint8) error {
     return nil
 }
 
+func packAddressPort(v netip.AddrPort, packet []byte, offset uint8) error {
+    addr := v.Addr().As4()
+    port := v.Port()
+
+    copy(packet[offset:], addr[:])
+    binary.LittleEndian.PutUint16(packet[offset+4:offset+6], port)
+
+    return nil
+}
+
 func packDate(v Date, packet []byte, offset uint8) error {
     s := v.Format("20060102")
     

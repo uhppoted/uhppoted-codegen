@@ -1,6 +1,9 @@
 package responses
 
 var SetTimeResponse = Response{
+	Description: []string{
+		"Container struct for the response returned by a controller after setting the system date/time.",
+	},
 	Message: Message{
 		Name:    "set time response",
 		MsgType: 0x30,
@@ -9,12 +12,14 @@ var SetTimeResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:        "date-time",
 				Type:        "datetime",
 				Offset:      8,
+				Tag:         "date-time",
 				Description: "controller system date/time",
 			},
 		},

@@ -289,11 +289,11 @@ function set_time_profile($u, $args)
     );
 }
 
-function delete_all_time_profiles($u, $args)
+function clear_time_profiles($u, $args)
 {
     $controller = resolve(CONTROLLER);
 
-    return uhppote\delete_all_time_profiles($u, $controller);
+    return uhppote\clear_time_profiles($u, $controller);
 }
 
 function add_task($u, $args)
@@ -451,7 +451,7 @@ function commands()
         'record-special-events' => 'record_special_events',
         'get-time-profile' => 'get_time_profile',
         'set-time-profile' => 'set_time_profile',
-        'delete-all-time-profiles' => 'delete_all_time_profiles',
+        'clear-time-profiles' => 'clear_time_profiles',
         'add-task' => 'add_task',
         'refresh-tasklist' => 'refresh_tasklist',
         'clear-tasklist' => 'clear_tasklist',

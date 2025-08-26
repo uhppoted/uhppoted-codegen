@@ -300,12 +300,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "date time",
               "type": "datetime",
               "offset": 8,
+              "tag": "date-time",
               "description": "controller system date/time"
             }
           ]
@@ -387,12 +389,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "date-time",
               "type": "datetime",
               "offset": 8,
+              "tag": "date-time",
               "description": "controller system date/time"
             }
           ]
@@ -1505,12 +1509,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "cards",
               "type": "uint32",
-              "offset": 8
+              "offset": 8,
+              "tag": "cards"
             }
           ]
         },
@@ -2473,47 +2479,56 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "index",
               "type": "uint32",
-              "offset": 8
+              "offset": 8,
+              "tag": "index"
             },
             {
               "name": "event type",
               "type": "uint8",
-              "offset": 12
+              "offset": 12,
+              "tag": "event-type"
             },
             {
               "name": "access granted",
               "type": "bool",
-              "offset": 13
+              "offset": 13,
+              "tag": "granted"
             },
             {
               "name": "door",
               "type": "uint8",
-              "offset": 14
+              "offset": 14,
+              "tag": "door"
             },
             {
               "name": "direction",
               "type": "uint8",
-              "offset": 15
+              "offset": 15,
+              "tag": "direction"
             },
             {
               "name": "card",
               "type": "uint32",
-              "offset": 16
+              "offset": 16,
+              "tag": "card"
             },
             {
               "name": "timestamp",
               "type": "optional datetime",
-              "offset": 20
+              "offset": 20,
+              "tag": "timestamp"
             },
             {
               "name": "reason",
               "type": "uint8",
-              "offset": 27
+              "offset": 27,
+              "tag": "reason"
             }
           ]
         },
@@ -3581,7 +3596,7 @@
         ]
       },
       {
-        "name": "delete all time profiles",
+        "name": "clear time profiles",
         "description": [
           "Clears all access time profiles stored on a controller."
         ],
@@ -3592,7 +3607,7 @@
           }
         ],
         "request": {
-          "name": "delete all time profiles request",
+          "name": "clear time profiles request",
           "msgtype": 138,
           "fields": [
             {
@@ -3609,19 +3624,21 @@
           ]
         },
         "response": {
-          "name": "delete all time profiles response",
+          "name": "clear time profiles response",
           "msgtype": 138,
           "fields": [
             {
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -3632,7 +3649,7 @@
         ],
         "tests": [
           {
-            "name": "delete-all-time-profiles",
+            "name": "clear-time-profiles",
             "args": [
               {
                 "name": "controller",
@@ -3640,7 +3657,7 @@
                 "value": 405419896
               }
             ],
-            "request": "F4oAAHg3KhglAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "request": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
             "replies": [
               {
                 "message": "F4oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -4087,14 +4104,17 @@
       },
       {
         "name": "set pc control",
-        "description": null,
+        "description": [
+          "Enables remote access control. Remote access control will remain in effect provided the controller",
+          "receives a message from the host at least once every 30 seconds."
+        ],
         "args": [
           {
             "name": "controller",
             "type": "controller"
           },
           {
-            "name": "enable",
+            "name": "enabled",
             "type": "bool"
           }
         ],
@@ -4114,7 +4134,7 @@
               "offset": 8
             },
             {
-              "name": "enable",
+              "name": "enabled",
               "type": "bool",
               "offset": 12
             }
@@ -4137,11 +4157,52 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-pc-control",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "enabled",
+                "type": "bool",
+                "value": true
+              }
+            ],
+            "request": "F6AAAHg3KhhVqqpVAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F6AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set interlock",
-        "description": null,
+        "description": [
+          "Sets the door interlock mode on an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -4186,7 +4247,46 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-interlock",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "interlock",
+                "type": "uint8",
+                "value": 8
+              }
+            ],
+            "request": "F6IAAHg3KhgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F6IAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "activate keypads",
@@ -5094,7 +5194,7 @@
         ]
       },
       {
-        "name": "delete all time profiles request",
+        "name": "clear time profiles request",
         "msgtype": 138,
         "fields": [
           {
@@ -5237,7 +5337,7 @@
             "offset": 8
           },
           {
-            "name": "enable",
+            "name": "enabled",
             "type": "bool",
             "offset": 12
           }
@@ -5422,12 +5522,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "date time",
             "type": "datetime",
             "offset": 8,
+            "tag": "date-time",
             "description": "controller system date/time"
           }
         ]
@@ -5440,12 +5542,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "date-time",
             "type": "datetime",
             "offset": 8,
+            "tag": "date-time",
             "description": "controller system date/time"
           }
         ]
@@ -5765,12 +5869,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "cards",
             "type": "uint32",
-            "offset": 8
+            "offset": 8,
+            "tag": "cards"
           }
         ]
       },
@@ -5937,47 +6043,56 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "index",
             "type": "uint32",
-            "offset": 8
+            "offset": 8,
+            "tag": "index"
           },
           {
             "name": "event type",
             "type": "uint8",
-            "offset": 12
+            "offset": 12,
+            "tag": "event-type"
           },
           {
             "name": "access granted",
             "type": "bool",
-            "offset": 13
+            "offset": 13,
+            "tag": "granted"
           },
           {
             "name": "door",
             "type": "uint8",
-            "offset": 14
+            "offset": 14,
+            "tag": "door"
           },
           {
             "name": "direction",
             "type": "uint8",
-            "offset": 15
+            "offset": 15,
+            "tag": "direction"
           },
           {
             "name": "card",
             "type": "uint32",
-            "offset": 16
+            "offset": 16,
+            "tag": "card"
           },
           {
             "name": "timestamp",
             "type": "optional datetime",
-            "offset": 20
+            "offset": 20,
+            "tag": "timestamp"
           },
           {
             "name": "reason",
             "type": "uint8",
-            "offset": 27
+            "offset": 27,
+            "tag": "reason"
           }
         ]
       },
@@ -6173,19 +6288,21 @@
         ]
       },
       {
-        "name": "delete all time profiles response",
+        "name": "clear time profiles response",
         "msgtype": 138,
         "fields": [
           {
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },

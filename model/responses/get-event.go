@@ -1,6 +1,9 @@
 package responses
 
 var GetEventResponse = Response{
+	Description: []string{
+		"Container struct for the response returned from a controller for an event record request.",
+	},
 	Message: Message{
 		Name:    "get event response",
 		MsgType: 0xb0,
@@ -9,46 +12,55 @@ var GetEventResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "index",
 				Type:   "uint32",
+				Tag:    "index",
 				Offset: 8,
 			},
 			{
 				Name:   "event type",
 				Type:   "uint8",
+				Tag:    "event-type",
 				Offset: 12,
 			},
 			{
 				Name:   "access granted",
 				Type:   "bool",
+				Tag:    "granted",
 				Offset: 13,
 			},
 			{
 				Name:   "door",
 				Type:   "uint8",
+				Tag:    "door",
 				Offset: 14,
 			},
 			{
 				Name:   "direction",
 				Type:   "uint8",
+				Tag:    "direction",
 				Offset: 15,
 			},
 			{
 				Name:   "card",
 				Type:   "uint32",
+				Tag:    "card",
 				Offset: 16,
 			},
 			{
 				Name:   "timestamp",
 				Type:   "optional datetime",
+				Tag:    "timestamp",
 				Offset: 20,
 			},
 			{
 				Name:   "reason",
 				Type:   "uint8",
+				Tag:    "reason",
 				Offset: 27,
 			},
 		},

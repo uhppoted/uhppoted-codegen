@@ -63,7 +63,7 @@ var commands = []command{
     command{name: "record-special-events", f: recordSpecialEvents},
     command{name: "get-time-profile", f: getTimeProfile},
     command{name: "set-time-profile", f: setTimeProfile},
-    command{name: "delete-all-time-profiles", f: deleteAllTimeProfiles},
+    command{name: "clear-time-profiles", f: clearTimeProfiles},
     command{name: "add-task", f: addTask},
     command{name: "refresh-tasklist", f: refreshTaskList},
     command{name: "clear-tasklist", f: clearTaskList},
@@ -332,10 +332,10 @@ func setTimeProfile(args []string) (any, error) {
         linkedProfileID)
 }
 
-func deleteAllTimeProfiles(args []string) (any, error) {
+func clearTimeProfiles(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
-    return uhppote.DeleteAllTimeProfiles(controller)
+    return uhppote.ClearTimeProfiles(controller)
 }
 
 func addTask(args []string) (any, error) {

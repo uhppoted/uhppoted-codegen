@@ -235,10 +235,10 @@ export function setTimeProfile (controller,
     linkedProfileID)
 }
 
-export function deleteAllTimeProfiles (controller) {
+export function clearTimeProfiles (controller) {
   controller = arg(controller)
 
-  return uhppote.DeleteAllTimeProfiles(controller)
+  return uhppote.ClearTimeProfiles(controller)
 }
 
 export function addTask (controller,

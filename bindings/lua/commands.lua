@@ -271,10 +271,10 @@ function set_time_profile(args)
                                     linked_profile)
 end
 
-function delete_all_time_profiles(args)
+function clear_time_profiles(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
 
-    return uhppote.delete_all_time_profiles(controller)
+    return uhppote.clear_time_profiles(controller)
 end
 
 function add_task(args)
@@ -459,7 +459,7 @@ local commands = {
        { ["command"] = "record-special-events",      ["f"] = record_special_events,      flags = { "disabled" }, options = { "controller" } },
        { ["command"] = "get-time-profile",           ["f"] = get_time_profile,           flags = {},             options = { "controller", "profile" } },
        { ["command"] = "set-time-profile",           ["f"] = set_time_profile,           flags = {},             options = { "controller", "profile", "start-date", "end-date", "weekdays", "segments", "linked" } },
-       { ["command"] = "delete-all-time-profiles",   ["f"] = delete_all_time_profiles,   flags = {},             options = { "controller", "profile" } },
+       { ["command"] = "clear-time-profiles",        ["f"] = clear_time_profiles,        flags = {},             options = { "controller" } },
        { ["command"] = "add-task",                   ["f"] = add_task,                   flags = {},             options = { "controller", "door", "task", "at", "start-date", "end-date", "weekdays", "more-cards" } },
        { ["command"] = "refresh-tasklist",           ["f"] = refresh_tasklist,           flags = {},             options = { "controller" } },
        { ["command"] = "clear-tasklist",             ["f"] = clear_tasklist,             flags = {},             options = { "controller" } },

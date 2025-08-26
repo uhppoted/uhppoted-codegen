@@ -12,6 +12,8 @@ var Responses = []types.Message{
 	SetTimeResponse.Message,
 	GetListenerResponse.Message,
 	SetListenerResponse.Message,
+	// GetListenerAddrPortResponse.Message,
+	// SetListenerAddrPortResponse.Message,
 	GetDoorResponse.Message,
 	SetDoorResponse.Message,
 	SetDoorPasscodesResponse.Message,
@@ -29,12 +31,12 @@ var Responses = []types.Message{
 	RecordSpecialEventsResponse.Message,
 	GetTimeProfileResponse.Message,
 	SetTimeProfileResponse.Message,
-	DeleteAllTimeProfilesResponse.Message,
+	ClearTimeProfilesResponse.Message,
 	AddTaskResponse.Message,
 	RefreshTaskListResponse.Message,
 	ClearTaskListResponse.Message,
-	SetPCControlResponse,
-	SetInterlockResponse,
+	SetPCControlResponse.Message,
+	SetInterlockResponse.Message,
 	ActivateKeypadsResponse,
 	GetAntiPassbackResponse,
 	SetAntiPassbackResponse,
@@ -46,8 +48,8 @@ var SetIPv4Response = responses.SetIPv4Response
 var GetTimeResponse = responses.GetTimeResponse
 var SetTimeResponse = responses.SetTimeResponse
 var GetListenerResponse = responses.GetListenerResponse
-var GetListenerAddrPortResponse = responses.GetListenerAddrPortResponse
 var SetListenerResponse = responses.SetListenerResponse
+var GetListenerAddrPortResponse = responses.GetListenerAddrPortResponse
 var SetListenerAddrPortResponse = responses.SetListenerAddrPortResponse
 var GetDoorResponse = responses.GetDoorResponse
 var SetDoorResponse = responses.SetDoorResponse
@@ -66,10 +68,12 @@ var SetEventIndexResponse = responses.SetEventIndexResponse
 var RecordSpecialEventsResponse = responses.RecordSpecialEventsResponse
 var GetTimeProfileResponse = responses.GetTimeProfileResponse
 var SetTimeProfileResponse = responses.SetTimeProfileResponse
-var DeleteAllTimeProfilesResponse = responses.DeleteAllTimeProfilesResponse
+var ClearTimeProfilesResponse = responses.ClearTimeProfilesResponse
 var AddTaskResponse = responses.AddTaskResponse
 var RefreshTaskListResponse = responses.RefreshTaskListResponse
 var ClearTaskListResponse = responses.ClearTaskListResponse
+var SetPCControlResponse = responses.SetPCControlResponse
+var SetInterlockResponse = responses.SetInterlockResponse
 
 // var GetTimeProfileResponse = types.Message{
 // 	Name:    "get time profile response",
@@ -259,41 +263,41 @@ var ClearTaskListResponse = responses.ClearTaskListResponse
 // 	},
 // }
 
-var SetPCControlResponse = types.Message{
-	Name:    "set pc control response",
-	MsgType: 0xa0,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "ok",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var SetPCControlResponse = types.Message{
+// 	Name:    "set pc control response",
+// 	MsgType: 0xa0,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "ok",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
-var SetInterlockResponse = types.Message{
-	Name:    "set interlock response",
-	MsgType: 0xa2,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "ok",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var SetInterlockResponse = types.Message{
+// 	Name:    "set interlock response",
+// 	MsgType: 0xa2,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "ok",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var ActivateKeypadsResponse = types.Message{
 	Name:    "activate keypads response",

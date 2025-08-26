@@ -8,7 +8,7 @@ import (
 )
 
 var GetListenerAddrPort = Function{
-	Name: "get listener",
+	Name: "get listener addr:port",
 	Description: []string{
 		"Retrieves the access controller event listener IPv4 address:port and auto-send interval.",
 	},
@@ -18,13 +18,13 @@ var GetListenerAddrPort = Function{
 			Type: "controller",
 		},
 	},
-	Request:   requests.GetListenerRequest.Message,
+	Request:   requests.GetListenerAddrPortRequest.Message,
 	Response:  responses.GetListenerAddrPortResponse.Message,
 	Protocols: []string{"broadcast", "udp", "tcp"},
 
 	Tests: []FuncTest{
 		{
-			Name: "get-listener",
+			Name: "get-listener-addr-port",
 			Args: []TestArg{
 				{
 					Arg: Arg{

@@ -1356,9 +1356,9 @@
         }
       },
       {
-        "name": "delete all time profiles",
+        "name": "clear time profiles",
         "request": {
-          "name": "delete all time profiles request",
+          "name": "clear time profiles request",
           "values": [
             {
               "name": "controller",
@@ -1369,7 +1369,7 @@
           "message": "F4oAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "name": "delete all time profiles response",
+          "name": "clear time profiles response",
           "values": [
             {
               "name": "controller",

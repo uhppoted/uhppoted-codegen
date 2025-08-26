@@ -22,7 +22,7 @@ commands = {
     'record-special-events':    record_special_events,
     'get_time-profile':         get_time_profile,
     'set_time-profile':         set_time_profile,
-    'delete-all-time-profiles': delete_all_time_profiles,
+    'clear-time-profiles':      clear_time_profiles,
     'add-task':                 add_task,
     'refresh-tasklist':         refresh_tasklist,
     'clear-tasklist':           clear_tasklist,
@@ -250,10 +250,10 @@ function set_time_profile() {
         linked_profile)
 }
 
-function delete_all_time_profiles() {
+function clear_time_profiles() {
     controller = arg('controller')
 
-    return uhppote::delete_all_time_profiles(controller)
+    return uhppote::clear_time_profiles(controller)
 }
 
 function add_task() {

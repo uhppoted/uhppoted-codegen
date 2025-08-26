@@ -28,7 +28,7 @@ var Tests = []Test{
 	RecordSpecialEventsTest,
 	GetTimeProfileTest,
 	SetTimeProfileTest,
-	DeleteAllTimeProfilesTest,
+	ClearTimeProfilesTest,
 	AddTaskTest,
 	RefreshTaskListTest,
 	ClearTaskListTest,
@@ -1649,10 +1649,10 @@ var SetTimeProfileTest = Test{
 	},
 }
 
-var DeleteAllTimeProfilesTest = Test{
-	Name: "delete all time profiles",
+var ClearTimeProfilesTest = Test{
+	Name: "clear time profiles",
 	Request: &TestRequest{
-		Name: DeleteAllTimeProfilesRequest.Name,
+		Name: ClearTimeProfilesRequest.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",
@@ -1668,7 +1668,7 @@ var DeleteAllTimeProfilesTest = Test{
 		},
 	},
 	Response: &TestResponse{
-		Name: DeleteAllTimeProfilesResponse.Name,
+		Name: ClearTimeProfilesResponse.Name,
 		Values: []Value{
 			Value{
 				Name:  "controller",

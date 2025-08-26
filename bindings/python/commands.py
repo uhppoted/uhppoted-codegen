@@ -50,7 +50,7 @@ def commands():
         'record-special-events': record_special_events,
         'get-time-profile': get_time_profile,
         'set-time-profile': set_time_profile,
-        'delete-all-time-profiles': delete_all_time_profiles,
+        'clear-time-profiles': clear_time_profiles,
         'add-task': add_task,
         'refresh-tasklist': refresh_tasklist,
         'clear-tasklist': clear_tasklist,
@@ -281,10 +281,10 @@ def set_time_profile(u):
         linked_profile_ID)
 
 
-def delete_all_time_profiles(u):
+def clear_time_profiles(u):
     controller = resolve(CONTROLLER)
 
-    return u.delete_all_time_profiles(controller)
+    return u.clear_time_profiles(controller)
 
 
 def add_task(u):

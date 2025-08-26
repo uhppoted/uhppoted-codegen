@@ -12,6 +12,8 @@ var Requests = []types.Message{
 	SetTimeRequest.Message,
 	GetListenerRequest.Message,
 	SetListenerRequest.Message,
+	// GetListenerAddrPortRequest.Message,
+	// SetListenerAddrPortRequest.Message,
 	GetDoorRequest.Message,
 	SetDoorRequest.Message,
 	SetDoorPasscodesRequest.Message,
@@ -29,12 +31,12 @@ var Requests = []types.Message{
 	RecordSpecialEventsRequest.Message,
 	GetTimeProfileRequest.Message,
 	SetTimeProfileRequest.Message,
-	DeleteAllTimeProfilesRequest.Message,
+	ClearTimeProfilesRequest.Message,
 	AddTaskRequest.Message,
 	RefreshTaskListRequest.Message,
 	ClearTaskListRequest.Message,
-	SetPCControlRequest,
-	SetInterlockRequest,
+	SetPCControlRequest.Message,
+	SetInterlockRequest.Message,
 	ActivateKeypadsRequest,
 	GetAntiPassbackRequest,
 	SetAntiPassbackRequest,
@@ -47,6 +49,7 @@ var GetTimeRequest = requests.GetTimeRequest
 var SetTimeRequest = requests.SetTimeRequest
 var GetListenerRequest = requests.GetListenerRequest
 var SetListenerRequest = requests.SetListenerRequest
+var GetListenerAddrPortRequest = requests.GetListenerAddrPortRequest
 var SetListenerAddrPortRequest = requests.SetListenerAddrPortRequest
 var GetDoorRequest = requests.GetDoorRequest
 var SetDoorRequest = requests.SetDoorRequest
@@ -65,10 +68,12 @@ var SetEventIndexRequest = requests.SetEventIndexRequest
 var RecordSpecialEventsRequest = requests.RecordSpecialEventsRequest
 var GetTimeProfileRequest = requests.GetTimeProfileRequest
 var SetTimeProfileRequest = requests.SetTimeProfileRequest
-var DeleteAllTimeProfilesRequest = requests.DeleteAllTimeProfilesRequest
+var ClearTimeProfilesRequest = requests.ClearTimeProfilesRequest
 var AddTaskRequest = requests.AddTaskRequest
 var RefreshTaskListRequest = requests.RefreshTaskListRequest
 var ClearTaskListRequest = requests.ClearTaskListRequest
+var SetPCControlRequest = requests.SetPCControlRequest
+var SetInterlockRequest = requests.SetInterlockRequest
 
 // var GetTimeProfileRequest = types.Message{
 // 	Name:    "get time profile request",
@@ -318,46 +323,46 @@ var ClearTaskListRequest = requests.ClearTaskListRequest
 // 	},
 // }
 
-var SetPCControlRequest = types.Message{
-	Name:    "set pc control request",
-	MsgType: 0xa0,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "",
-			Type:   "magic",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "enable",
-			Type:   "bool",
-			Offset: 12,
-		},
-	},
-}
+// var SetPCControlRequest = types.Message{
+// 	Name:    "set pc control request",
+// 	MsgType: 0xa0,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "",
+// 			Type:   "magic",
+// 			Offset: 8,
+// 		},
+// 		types.Field{
+// 			Name:   "enable",
+// 			Type:   "bool",
+// 			Offset: 12,
+// 		},
+// 	},
+// }
 
-var SetInterlockRequest = types.Message{
-	Name:    "set interlock request",
-	MsgType: 0xa2,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "interlock",
-			Type:   "uint8",
-			Offset: 8,
-		},
-	},
-}
+// var SetInterlockRequest = types.Message{
+// 	Name:    "set interlock request",
+// 	MsgType: 0xa2,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "interlock",
+// 			Type:   "uint8",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
 var ActivateKeypadsRequest = types.Message{
 	Name:    "activate keypads request",

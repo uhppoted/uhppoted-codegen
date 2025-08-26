@@ -114,8 +114,8 @@ pub const COMMANDS: [&Command; 35] = [
         func: set_time_profile,
     },
     &Command {
-        name: "delete-all-time-profiles",
-        func: delete_all_time_profiles,
+        name: "clear-time-profiles",
+        func: clear_time_profiles,
     },
     &Command {
         name: "add-task",
@@ -462,11 +462,11 @@ fn set_time_profile() {
     })
 }
 
-fn delete_all_time_profiles() {
-    print(|| -> Result<uhppote::DeleteAllTimeProfilesResponse, error::Error> {
+fn clear_time_profiles() {
+    print(|| -> Result<uhppote::ClearTimeProfilesResponse, error::Error> {
         let controller = resolve(CONTROLLER);
 
-        futures::executor::block_on(uhppote::delete_all_time_profiles(controller))
+        futures::executor::block_on(uhppote::clear_time_profiles(controller))
     })
 }
 

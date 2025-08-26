@@ -1,8 +1,8 @@
 package requests
 
-var GetListenerRequest = Request{
+var GetListenerAddrPortRequest = Request{
 	Message: Message{
-		Name:    "get listener request",
+		Name:    "get listener addr port request",
 		MsgType: 0x92,
 		Fields: []Field{
 			{
@@ -15,7 +15,7 @@ var GetListenerRequest = Request{
 	},
 	Tests: []RequestTest{
 		{
-			Name: "get-listener",
+			Name: "get-listener-addr-port",
 			Args: []TestArg{
 				{
 					Arg: Arg{

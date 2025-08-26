@@ -57,7 +57,7 @@ export const COMMANDS = new Map([
                                                                        'time-profile.segment.3.end',
                                                                        'time-profile.linked-profile.id']}],          
 
-  ['delete-all-time-profiles', { fn: commands.deleteAllTimeProfiles, args: ['controller']}],
+  ['clear-time-profiles', { fn: commands.clearTimeProfiles, args: ['controller']}],
   
   ['add-task', { fn: commands.addTask, args: ['controller',
                                               'task.type', 

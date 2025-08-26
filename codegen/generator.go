@@ -241,7 +241,7 @@ func trim(s string) string {
 }
 
 func CamelCase(s string) string {
-	tokens := regexp.MustCompile(`[ -]+`).Split(s, -1)
+	tokens := regexp.MustCompile(`[ :\-]+`).Split(s, -1)
 
 	for i, token := range tokens {
 		tokens[i] = capitalize(token)
@@ -251,7 +251,7 @@ func CamelCase(s string) string {
 }
 
 func camelCase(s string) string {
-	tokens := regexp.MustCompile(`[ -]+`).Split(s, -1)
+	tokens := regexp.MustCompile(`[ :\-]+`).Split(s, -1)
 
 	for i, token := range tokens[1:] {
 		tokens[i+1] = capitalize(token)

@@ -1,34 +1,34 @@
 package responses
 
-var GetCardsResponse = Response{
+var SetInterlockResponse = Response{
 	Description: []string{
-		"Container struct for the response returned from a controller when retrieving the number of",
-		"cards stored on the controller.",
+		"Container struct for the response returned from an access controller after setting",
+		"the door interlock mode.",
 	},
+
 	Message: Message{
-		Name:    "get cards response",
-		MsgType: 0x58,
+		Name:    "set interlock response",
+		MsgType: 0xa2,
 		Fields: []Field{
 			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
-				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
-				Name:   "cards",
-				Type:   "uint32",
-				Tag:    "cards",
+				Name:   "ok",
+				Type:   "bool",
 				Offset: 8,
 			},
 		},
 	},
+
 	Tests: []ResponseTest{
 		{
-			Name: "get-cards",
+			Name: "set-interlock",
 			Response: []byte{
-				0x17, 0x58, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x0b, 0x35, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x17, 0xa2, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -40,9 +40,9 @@ var GetCardsResponse = Response{
 					Value: 405419896,
 				},
 				{
-					Name:  "cards",
-					Type:  "uint32",
-					Value: 13579,
+					Name:  "ok",
+					Type:  "bool",
+					Value: true,
 				},
 			},
 		},
