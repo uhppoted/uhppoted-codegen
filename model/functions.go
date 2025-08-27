@@ -51,9 +51,8 @@ var SetDoorPasscodes = functions.SetDoorPasscodes
 var OpenDoor = functions.OpenDoor
 var GetListener = functions.GetListener
 var SetListener = functions.SetListener
-
-// var GetListenerAddrPort = functions.GetListenerAddrPort
-// var SetListenerAddrPort = functions.SetListenerAddrPort
+var GetListenerAddrPort = functions.GetListenerAddrPort
+var SetListenerAddrPort = functions.SetListenerAddrPort
 var GetStatus = functions.GetStatus
 var PutCard = functions.PutCard
 var GetCards = functions.GetCards

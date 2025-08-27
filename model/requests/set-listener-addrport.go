@@ -6,7 +6,7 @@ import (
 
 var SetListenerAddrPortRequest = Request{
 	Message: Message{
-		Name:    "set listener address:port request",
+		Name:    "set listener addr:port request",
 		MsgType: 0x90,
 		Fields: []Field{
 			{
@@ -31,7 +31,7 @@ var SetListenerAddrPortRequest = Request{
 	},
 	Tests: []RequestTest{
 		{
-			Name: "set-listener-addport",
+			Name: "set-listener-addrport",
 			Args: []TestArg{
 				{
 					Arg: Arg{
