@@ -73,98 +73,8 @@ var RefreshTaskList = functions.RefreshTaskList
 var ClearTaskList = functions.ClearTaskList
 var SetPCControl = functions.SetPCControl
 var SetInterlock = functions.SetInterlock
-
-// var SetTimeProfile = types.Function{
-// 	Name: "set time profile",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 		{
-// 			Name: "profile id",
-// 			Type: "uint8",
-// 		},
-// 		{
-// 			Name: "start date",
-// 			Type: "date",
-// 		},
-// 		{
-// 			Name: "end date",
-// 			Type: "date",
-// 		},
-// 		{
-// 			Name: "monday",
-// 			Type: "bool",
-// 		},
-// 		{
-// 			Name: "tuesday",
-// 			Type: "bool",
-// 		},
-// 		{
-// 			Name: "wednesday",
-// 			Type: "bool",
-// 		},
-// 		{
-// 			Name: "thursday",
-// 			Type: "bool",
-// 		},
-// 		{
-// 			Name: "friday",
-// 			Type: "bool",
-// 		},
-// 		{
-// 			Name: "saturday",
-// 			Type: "bool",
-// 		},
-// 		{
-// 			Name: "sunday",
-// 			Type: "bool",
-// 		},
-// 		{
-// 			Name: "segment 1 start",
-// 			Type: "HHmm",
-// 		},
-// 		{
-// 			Name: "segment 1 end",
-// 			Type: "HHmm",
-// 		},
-// 		{
-// 			Name: "segment 2 start",
-// 			Type: "HHmm",
-// 		},
-// 		{
-// 			Name: "segment 2 end",
-// 			Type: "HHmm",
-// 		},
-// 		{
-// 			Name: "segment 3 start",
-// 			Type: "HHmm",
-// 		},
-// 		{
-// 			Name: "segment 3 end",
-// 			Type: "HHmm",
-// 		},
-// 		{
-// 			Name: "linked profile id",
-// 			Type: "uint8",
-// 		},
-// 	},
-// 	Request:  SetTimeProfileRequest,
-// 	Response: SetTimeProfileResponse,
-// }
-
-// var DeleteAllTimeProfiles = types.Function{
-// 	Name: "delete all time profiles",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 	},
-// 	Request:  DeleteAllTimeProfilesRequest,
-// 	Response: DeleteAllTimeProfilesResponse,
-// }
+var ActivateKeypads = functions.ActivateKeypads
+var GetAntiPassback = functions.GetAntiPassback
 
 // var AddTask = types.Function{
 // 	Name: "add task",
@@ -286,78 +196,45 @@ var SetInterlock = functions.SetInterlock
 // 	Response: SetInterlockResponse,
 // }
 
-var ActivateKeypads = types.Function{
-	Name: "activate keypads",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "reader 1",
-			Type: "bool",
-		},
-		{
-			Name: "reader 2",
-			Type: "bool",
-		},
-		{
-			Name: "reader 3",
-			Type: "bool",
-		},
-		{
-			Name: "reader 4",
-			Type: "bool",
-		},
-	},
-	Request:  ActivateKeypadsRequest,
-	Response: ActivateKeypadsResponse,
-}
-
-// var SetDoorPasscodes = types.Function{
-// 	Name:        "set door passcodes",
-// 	Description: []string{"Sets up to 4 passcodes for a controller door.",
+// var ActivateKeypads = types.Function{
+// 	Name: "activate keypads",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",
 // 			Type: "controller",
 // 		},
 // 		{
-// 			Name: "door",
-// 			Type: "uint8",
+// 			Name: "reader 1",
+// 			Type: "bool",
 // 		},
 // 		{
-// 			Name: "passcode 1",
-// 			Type: "pin",
+// 			Name: "reader 2",
+// 			Type: "bool",
 // 		},
 // 		{
-// 			Name: "passcode 2",
-// 			Type: "pin",
+// 			Name: "reader 3",
+// 			Type: "bool",
 // 		},
 // 		{
-// 			Name: "passcode 3",
-// 			Type: "pin",
-// 		},
-// 		{
-// 			Name: "passcode 4",
-// 			Type: "pin",
+// 			Name: "reader 4",
+// 			Type: "bool",
 // 		},
 // 	},
-// 	Request:  SetDoorPasscodesRequest.Message,
-// 	Response: SetDoorPasscodesResponse.Message,
+// 	Request:  ActivateKeypadsRequest,
+// 	Response: ActivateKeypadsResponse,
 // }
 
-var GetAntiPassback = types.Function{
-	Name: "get antipassback",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  GetAntiPassbackRequest,
-	Response: GetAntiPassbackResponse,
-}
+// var GetAntiPassback = types.Function{
+// 	Name: "get antipassback",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 	},
+// 	Request:  GetAntiPassbackRequest,
+// 	Response: GetAntiPassbackResponse,
+// }
 
 var SetAntiPassback = types.Function{
 	Name: "set antipassback",

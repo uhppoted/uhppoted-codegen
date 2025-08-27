@@ -4290,7 +4290,9 @@
       },
       {
         "name": "activate keypads",
-        "description": null,
+        "description": [
+          "Enables/disables door keypad readers."
+        ],
         "args": [
           {
             "name": "controller",
@@ -4353,16 +4355,72 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "activate-keypads",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "reader 1",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "reader 2",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "reader 3",
+                "type": "bool",
+                "value": false
+              },
+              {
+                "name": "reader 4",
+                "type": "bool",
+                "value": true
+              }
+            ],
+            "request": "F6QAAHg3KhgBAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F6QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set door passcodes",
@@ -4541,16 +4599,52 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "antipassback",
               "type": "uint8",
-              "offset": 8
+              "offset": 8,
+              "tag": "antipassback"
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "get-antipassback",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F4YAAHg3KhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F4YAAHg3KhgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "antipassback",
+                    "type": "uint8",
+                    "value": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "set antipassback",
@@ -6403,12 +6497,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -6420,12 +6516,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "antipassback",
             "type": "uint8",
-            "offset": 8
+            "offset": 8,
+            "tag": "antipassback"
           }
         ]
       },

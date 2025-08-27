@@ -1701,7 +1701,7 @@ var AddTaskTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "task type",
+				Name:  "task",
 				Type:  "uint8",
 				Value: "2",
 			},

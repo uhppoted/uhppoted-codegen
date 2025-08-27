@@ -37,8 +37,8 @@ var Requests = []types.Message{
 	ClearTaskListRequest.Message,
 	SetPCControlRequest.Message,
 	SetInterlockRequest.Message,
-	ActivateKeypadsRequest,
-	GetAntiPassbackRequest,
+	ActivateKeypadsRequest.Message,
+	GetAntiPassbackRequest.Message,
 	SetAntiPassbackRequest,
 	RestoreDefaultParametersRequest,
 }
@@ -74,140 +74,8 @@ var RefreshTaskListRequest = requests.RefreshTaskListRequest
 var ClearTaskListRequest = requests.ClearTaskListRequest
 var SetPCControlRequest = requests.SetPCControlRequest
 var SetInterlockRequest = requests.SetInterlockRequest
-
-// var GetTimeProfileRequest = types.Message{
-// 	Name:    "get time profile request",
-// 	MsgType: 0x98,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "profile id",
-// 			Type:   "uint8",
-// 			Offset: 8,
-// 		},
-// 	},
-// }
-
-// var SetTimeProfileRequest = types.Message{
-// 	Name:    "set time profile request",
-// 	MsgType: 0x88,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "profile id",
-// 			Type:   "uint8",
-// 			Offset: 8,
-// 		},
-// 		types.Field{
-// 			Name:   "start date",
-// 			Type:   "date",
-// 			Offset: 9,
-// 		},
-// 		types.Field{
-// 			Name:   "end date",
-// 			Type:   "date",
-// 			Offset: 13,
-// 		},
-// 		types.Field{
-// 			Name:   "monday",
-// 			Type:   "bool",
-// 			Offset: 17,
-// 		},
-// 		types.Field{
-// 			Name:   "tuesday",
-// 			Type:   "bool",
-// 			Offset: 18,
-// 		},
-// 		types.Field{
-// 			Name:   "wednesday",
-// 			Type:   "bool",
-// 			Offset: 19,
-// 		},
-// 		types.Field{
-// 			Name:   "thursday",
-// 			Type:   "bool",
-// 			Offset: 20,
-// 		},
-// 		types.Field{
-// 			Name:   "friday",
-// 			Type:   "bool",
-// 			Offset: 21,
-// 		},
-// 		types.Field{
-// 			Name:   "saturday",
-// 			Type:   "bool",
-// 			Offset: 22,
-// 		},
-// 		types.Field{
-// 			Name:   "sunday",
-// 			Type:   "bool",
-// 			Offset: 23,
-// 		},
-// 		types.Field{
-// 			Name:   "segment 1 start",
-// 			Type:   "HHmm",
-// 			Offset: 24,
-// 		},
-// 		types.Field{
-// 			Name:   "segment 1 end",
-// 			Type:   "HHmm",
-// 			Offset: 26,
-// 		},
-// 		types.Field{
-// 			Name:   "segment 2 start",
-// 			Type:   "HHmm",
-// 			Offset: 28,
-// 		},
-// 		types.Field{
-// 			Name:   "segment 2 end",
-// 			Type:   "HHmm",
-// 			Offset: 30,
-// 		},
-// 		types.Field{
-// 			Name:   "segment 3 start",
-// 			Type:   "HHmm",
-// 			Offset: 32,
-// 		},
-// 		types.Field{
-// 			Name:   "segment 3 end",
-// 			Type:   "HHmm",
-// 			Offset: 34,
-// 		},
-// 		types.Field{
-// 			Name:   "linked profile id",
-// 			Type:   "uint8",
-// 			Offset: 36,
-// 		},
-// 	},
-// }
-
-// var DeleteAllTimeProfilesRequest = types.Message{
-// 	Name:    "delete all time profiles request",
-// 	MsgType: 0x8a,
-// 	Fields: []types.Field{
-// 		types.Field{
-// 			Name:        "controller",
-// 			Type:        "uint32",
-// 			Offset:      4,
-// 			Description: "controller serial number",
-// 		},
-// 		types.Field{
-// 			Name:   "",
-// 			Type:   "magic",
-// 			Offset: 8,
-// 		},
-// 	},
-// }
+var ActivateKeypadsRequest = requests.ActivateKeypadsRequest
+var GetAntiPassbackRequest = requests.GetAntiPassbackRequest
 
 // var AddTaskRequest = types.Message{
 // 	Name:    "add task request",
@@ -364,42 +232,9 @@ var SetInterlockRequest = requests.SetInterlockRequest
 // 	},
 // }
 
-var ActivateKeypadsRequest = types.Message{
-	Name:    "activate keypads request",
-	MsgType: 0xa4,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "reader 1",
-			Type:   "bool",
-			Offset: 8,
-		},
-		types.Field{
-			Name:   "reader 2",
-			Type:   "bool",
-			Offset: 9,
-		},
-		types.Field{
-			Name:   "reader 3",
-			Type:   "bool",
-			Offset: 10,
-		},
-		types.Field{
-			Name:   "reader 4",
-			Type:   "bool",
-			Offset: 11,
-		},
-	},
-}
-
-// var SetDoorPasscodesRequest = types.Message{
-// 	Name:    "set door passcodes request",
-// 	MsgType: 0x8c,
+// var ActivateKeypadsRequest = types.Message{
+// 	Name:    "activate keypads request",
+// 	MsgType: 0xa4,
 // 	Fields: []types.Field{
 // 		types.Field{
 // 			Name:        "controller",
@@ -408,45 +243,40 @@ var ActivateKeypadsRequest = types.Message{
 // 			Description: "controller serial number",
 // 		},
 // 		types.Field{
-// 			Name:   "door",
-// 			Type:   "uint8",
+// 			Name:   "reader 1",
+// 			Type:   "bool",
 // 			Offset: 8,
 // 		},
 // 		types.Field{
-// 			Name:   "passcode 1",
-// 			Type:   "uint32",
-// 			Offset: 12,
+// 			Name:   "reader 2",
+// 			Type:   "bool",
+// 			Offset: 9,
 // 		},
 // 		types.Field{
-// 			Name:   "passcode 2",
-// 			Type:   "uint32",
-// 			Offset: 16,
+// 			Name:   "reader 3",
+// 			Type:   "bool",
+// 			Offset: 10,
 // 		},
 // 		types.Field{
-// 			Name:   "passcode 3",
-// 			Type:   "uint32",
-// 			Offset: 20,
-// 		},
-// 		types.Field{
-// 			Name:   "passcode 4",
-// 			Type:   "uint32",
-// 			Offset: 24,
+// 			Name:   "reader 4",
+// 			Type:   "bool",
+// 			Offset: 11,
 // 		},
 // 	},
 // }
 
-var GetAntiPassbackRequest = types.Message{
-	Name:    "get antipassback request",
-	MsgType: 0x86,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-	},
-}
+// var GetAntiPassbackRequest = types.Message{
+// 	Name:    "get antipassback request",
+// 	MsgType: 0x86,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 	},
+// }
 
 var SetAntiPassbackRequest = types.Message{
 	Name:    "set antipassback request",

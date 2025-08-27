@@ -1,9 +1,9 @@
 package requests
 
-var SetDoorRequest = Request{
+var ActivateKeypadsRequest = Request{
 	Message: Message{
-		Name:    "set door request",
-		MsgType: 0x80,
+		Name:    "activate keypads request",
+		MsgType: 0xa4,
 		Fields: []Field{
 			{
 				Name:        "controller",
@@ -12,26 +12,31 @@ var SetDoorRequest = Request{
 				Description: "controller serial number",
 			},
 			{
-				Name:   "door",
-				Type:   "uint8",
+				Name:   "reader 1",
+				Type:   "bool",
 				Offset: 8,
 			},
 			{
-				Name:   "mode",
-				Type:   "uint8",
+				Name:   "reader 2",
+				Type:   "bool",
 				Offset: 9,
 			},
 			{
-				Name:   "delay",
-				Type:   "uint8",
+				Name:   "reader 3",
+				Type:   "bool",
 				Offset: 10,
+			},
+			{
+				Name:   "reader 4",
+				Type:   "bool",
+				Offset: 11,
 			},
 		},
 	},
 
 	Tests: []RequestTest{
 		{
-			Name: "set-door",
+			Name: "activate-keypads",
 			Args: []TestArg{
 				{
 					Arg: Arg{
@@ -42,28 +47,35 @@ var SetDoorRequest = Request{
 				},
 				{
 					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
+						Name: "reader 1",
+						Type: "bool",
 					},
-					Value: 3,
+					Value: true,
 				},
 				{
 					Arg: Arg{
-						Name: "mode",
-						Type: "uint8",
+						Name: "reader 2",
+						Type: "bool",
 					},
-					Value: 2,
+					Value: true,
 				},
 				{
 					Arg: Arg{
-						Name: "delay",
-						Type: "uint8",
+						Name: "reader 3",
+						Type: "bool",
 					},
-					Value: 17,
+					Value: false,
+				},
+				{
+					Arg: Arg{
+						Name: "reader 4",
+						Type: "bool",
+					},
+					Value: false,
 				},
 			},
 			Expected: []byte{
-				0x17, 0x80, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x03, 0x02, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x17, 0xa4, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

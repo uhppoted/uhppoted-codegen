@@ -1,9 +1,9 @@
 package requests
 
-var SetDoorRequest = Request{
+var GetAntiPassbackRequest = Request{
 	Message: Message{
-		Name:    "set door request",
-		MsgType: 0x80,
+		Name:    "get antipassback request",
+		MsgType: 0x86,
 		Fields: []Field{
 			{
 				Name:        "controller",
@@ -11,27 +11,12 @@ var SetDoorRequest = Request{
 				Offset:      4,
 				Description: "controller serial number",
 			},
-			{
-				Name:   "door",
-				Type:   "uint8",
-				Offset: 8,
-			},
-			{
-				Name:   "mode",
-				Type:   "uint8",
-				Offset: 9,
-			},
-			{
-				Name:   "delay",
-				Type:   "uint8",
-				Offset: 10,
-			},
 		},
 	},
 
 	Tests: []RequestTest{
 		{
-			Name: "set-door",
+			Name: "get-antipassack",
 			Args: []TestArg{
 				{
 					Arg: Arg{
@@ -40,30 +25,9 @@ var SetDoorRequest = Request{
 					},
 					Value: 405419896,
 				},
-				{
-					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
-					},
-					Value: 3,
-				},
-				{
-					Arg: Arg{
-						Name: "mode",
-						Type: "uint8",
-					},
-					Value: 2,
-				},
-				{
-					Arg: Arg{
-						Name: "delay",
-						Type: "uint8",
-					},
-					Value: 17,
-				},
 			},
 			Expected: []byte{
-				0x17, 0x80, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x03, 0x02, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x17, 0x86, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
