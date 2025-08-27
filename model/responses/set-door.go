@@ -1,6 +1,10 @@
 package responses
 
 var SetDoorResponse = Response{
+	Description: []string{
+		"Container struct for the response returned by a controller after updating",
+		"a door configuration.",
+	},
 	Message: Message{
 		Name:    "set door response",
 		MsgType: 0x80,

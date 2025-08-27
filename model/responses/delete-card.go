@@ -1,6 +1,10 @@
 package responses
 
 var DeleteCardResponse = Response{
+	Description: []string{
+		"Container struct for the response returned by a controller after deleting a single",
+		"stored card record.",
+	},
 	Message: Message{
 		Name:    "delete card response",
 		MsgType: 0x52,
@@ -9,11 +13,13 @@ var DeleteCardResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "ok",
 				Type:   "bool",
+				Tag:    "ok",
 				Offset: 8,
 			},
 		},

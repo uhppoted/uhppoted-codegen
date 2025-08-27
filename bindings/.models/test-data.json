@@ -1396,7 +1396,7 @@
               "value": "405419896"
             },
             {
-              "name": "task type",
+              "name": "task",
               "type": "uint8",
               "value": "2"
             },

@@ -1,6 +1,10 @@
 package responses
 
 var SetDoorPasscodesResponse = Response{
+	Description: []string{
+		"Container struct for the response returned by a controller after setting the",
+		"supervisor passcodes for a door.",
+	},
 	Message: Message{
 		Name:    "set door passcodes response",
 		MsgType: 0x8c,

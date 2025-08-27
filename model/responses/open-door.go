@@ -1,6 +1,10 @@
 package responses
 
 var OpenDoorResponse = Response{
+	Description: []string{
+		"Container struct for the response returned by a controller to a request",
+		"to unlock a door.",
+	},
 	Message: Message{
 		Name:    "open door response",
 		MsgType: 0x40,

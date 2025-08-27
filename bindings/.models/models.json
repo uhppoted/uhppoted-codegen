@@ -1052,144 +1052,168 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "system date",
               "type": "shortdate",
               "offset": 51,
+              "tag": "system-date",
               "description": "controller system date, e.g. 2025-07-21"
             },
             {
               "name": "system time",
               "type": "time",
               "offset": 37,
+              "tag": "system-time",
               "description": "controller system time, e.g. 13:25:47"
             },
             {
               "name": "door 1 open",
               "type": "bool",
               "offset": 28,
+              "tag": "door-1-open",
               "description": "door 1 open sensor"
             },
             {
               "name": "door 2 open",
               "type": "bool",
               "offset": 29,
+              "tag": "door-2-open",
               "description": "door 2 open sensor"
             },
             {
               "name": "door 3 open",
               "type": "bool",
               "offset": 30,
+              "tag": "door-3-open",
               "description": "door 3 open sensor"
             },
             {
               "name": "door 4 open",
               "type": "bool",
               "offset": 31,
+              "tag": "door-4-open",
               "description": "door 4 open sensor"
             },
             {
               "name": "door 1 button",
               "type": "bool",
               "offset": 32,
+              "tag": "door-1-button",
               "description": "door 1 button pressed"
             },
             {
               "name": "door 2 button",
               "type": "bool",
               "offset": 33,
+              "tag": "door-2-button",
               "description": "door 2 button pressed"
             },
             {
               "name": "door 3 button",
               "type": "bool",
               "offset": 34,
+              "tag": "door-3-button",
               "description": "door 3 button pressed"
             },
             {
               "name": "door 4 button",
               "type": "bool",
               "offset": 35,
+              "tag": "door-4-button",
               "description": "door 4 button pressed"
             },
             {
               "name": "relays",
               "type": "uint8",
               "offset": 49,
+              "tag": "relays",
               "description": "bitset of door unlock relay states"
             },
             {
               "name": "inputs",
               "type": "uint8",
               "offset": 50,
+              "tag": "alarm-inputs",
               "description": "bitset of alarm inputs"
             },
             {
               "name": "system error",
               "type": "uint8",
               "offset": 36,
+              "tag": "system-error",
               "description": "system error code"
             },
             {
               "name": "special info",
               "type": "uint8",
               "offset": 48,
+              "tag": "special-info",
               "description": "absolutely no idea"
             },
             {
               "name": "event index",
               "type": "uint32",
               "offset": 8,
+              "tag": "event-index",
               "description": "last event index"
             },
             {
               "name": "event type",
               "type": "uint8",
               "offset": 12,
+              "tag": "event-type",
               "description": "last event type"
             },
             {
               "name": "event access granted",
               "type": "bool",
               "offset": 13,
+              "tag": "event-granted",
               "description": "last event access granted"
             },
             {
               "name": "event door",
               "type": "uint8",
               "offset": 14,
+              "tag": "event-door",
               "description": "last event door"
             },
             {
               "name": "event direction",
               "type": "uint8",
               "offset": 15,
+              "tag": "event-direction",
               "description": "last event door direction (0: in, 1: out)"
             },
             {
               "name": "event card",
               "type": "uint32",
               "offset": 16,
+              "tag": "event-card",
               "description": "last event card number"
             },
             {
               "name": "event timestamp",
               "type": "optional datetime",
               "offset": 20,
+              "tag": "event-timestamp",
               "description": "last event timestamp"
             },
             {
               "name": "event reason",
               "type": "uint8",
               "offset": 27,
+              "tag": "event-reason",
               "description": "last event reason"
             },
             {
               "name": "sequence no",
               "type": "uint32",
               "offset": 40,
+              "tag": "sequence-no",
               "description": "packet sequence number"
             }
           ]
@@ -1596,47 +1620,56 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "card",
               "type": "uint32",
-              "offset": 8
+              "offset": 8,
+              "tag": "card"
             },
             {
               "name": "start date",
               "type": "optional date",
-              "offset": 12
+              "offset": 12,
+              "tag": "start-date"
             },
             {
               "name": "end date",
               "type": "optional date",
-              "offset": 16
+              "offset": 16,
+              "tag": "end-date"
             },
             {
               "name": "door 1",
               "type": "uint8",
-              "offset": 20
+              "offset": 20,
+              "tag": "door-1"
             },
             {
               "name": "door 2",
               "type": "uint8",
-              "offset": 21
+              "offset": 21,
+              "tag": "door-2"
             },
             {
               "name": "door 3",
               "type": "uint8",
-              "offset": 22
+              "offset": 22,
+              "tag": "door-3"
             },
             {
               "name": "door 4",
               "type": "uint8",
-              "offset": 23
+              "offset": 23,
+              "tag": "door-4"
             },
             {
               "name": "PIN",
               "type": "pin",
-              "offset": 24
+              "offset": 24,
+              "tag": "PIN"
             }
           ]
         },
@@ -1824,47 +1857,56 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "card",
               "type": "uint32",
-              "offset": 8
+              "offset": 8,
+              "tag": "card"
             },
             {
               "name": "start date",
               "type": "optional date",
-              "offset": 12
+              "offset": 12,
+              "tag": "start-date"
             },
             {
               "name": "end date",
               "type": "optional date",
-              "offset": 16
+              "offset": 16,
+              "tag": "end-date"
             },
             {
               "name": "door 1",
               "type": "uint8",
-              "offset": 20
+              "offset": 20,
+              "tag": "door-1"
             },
             {
               "name": "door 2",
               "type": "uint8",
-              "offset": 21
+              "offset": 21,
+              "tag": "door-2"
             },
             {
               "name": "door 3",
               "type": "uint8",
-              "offset": 22
+              "offset": 22,
+              "tag": "door-3"
             },
             {
               "name": "door 4",
               "type": "uint8",
-              "offset": 23
+              "offset": 23,
+              "tag": "door-4"
             },
             {
               "name": "PIN",
               "type": "pin",
-              "offset": 24
+              "offset": 24,
+              "tag": "PIN"
             }
           ]
         },
@@ -2183,12 +2225,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -2308,12 +2352,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -2394,12 +2440,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -3681,7 +3729,22 @@
       {
         "name": "add task",
         "description": [
-          "Creates a scheduled task."
+          "Creates a scheduled task.",
+          "",
+          "Task types",
+          "0:  control door",
+          "1:  unlock door",
+          "2:  lock door",
+          "3:  disable time profiles",
+          "4:  enable time profiles",
+          "5:  enable card, no password",
+          "6:  enable card+IN password",
+          "7:  enable card+password",
+          "8:  enable more cards",
+          "9:  disable more cards",
+          "10: trigger once",
+          "11: disable pushbutton",
+          "12: enable pushbutton"
         ],
         "args": [
           {
@@ -3689,7 +3752,7 @@
             "type": "controller"
           },
           {
-            "name": "task type",
+            "name": "task",
             "type": "uint8"
           },
           {
@@ -3752,7 +3815,7 @@
               "description": "controller serial number"
             },
             {
-              "name": "task type",
+              "name": "task",
               "type": "uint8",
               "offset": 26
             },
@@ -3826,12 +3889,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -3850,7 +3915,7 @@
                 "value": 405419896
               },
               {
-                "name": "task type",
+                "name": "task",
                 "type": "uint8",
                 "value": "2"
               },
@@ -3915,7 +3980,7 @@
                 "value": "7"
               }
             ],
-            "request": "F6gAAHg3KhggJBEmICQSKQEBAAEAAQEIRQMDBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "request": "F6gAAHg3KhggJQEBICUSMQEBAAEAAQEIRQMCBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
             "replies": [
               {
                 "message": "F6gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -5315,7 +5380,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "task type",
+            "name": "task",
             "type": "uint8",
             "offset": 26
           },
@@ -5813,144 +5878,168 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "system date",
             "type": "shortdate",
             "offset": 51,
+            "tag": "system-date",
             "description": "controller system date, e.g. 2025-07-21"
           },
           {
             "name": "system time",
             "type": "time",
             "offset": 37,
+            "tag": "system-time",
             "description": "controller system time, e.g. 13:25:47"
           },
           {
             "name": "door 1 open",
             "type": "bool",
             "offset": 28,
+            "tag": "door-1-open",
             "description": "door 1 open sensor"
           },
           {
             "name": "door 2 open",
             "type": "bool",
             "offset": 29,
+            "tag": "door-2-open",
             "description": "door 2 open sensor"
           },
           {
             "name": "door 3 open",
             "type": "bool",
             "offset": 30,
+            "tag": "door-3-open",
             "description": "door 3 open sensor"
           },
           {
             "name": "door 4 open",
             "type": "bool",
             "offset": 31,
+            "tag": "door-4-open",
             "description": "door 4 open sensor"
           },
           {
             "name": "door 1 button",
             "type": "bool",
             "offset": 32,
+            "tag": "door-1-button",
             "description": "door 1 button pressed"
           },
           {
             "name": "door 2 button",
             "type": "bool",
             "offset": 33,
+            "tag": "door-2-button",
             "description": "door 2 button pressed"
           },
           {
             "name": "door 3 button",
             "type": "bool",
             "offset": 34,
+            "tag": "door-3-button",
             "description": "door 3 button pressed"
           },
           {
             "name": "door 4 button",
             "type": "bool",
             "offset": 35,
+            "tag": "door-4-button",
             "description": "door 4 button pressed"
           },
           {
             "name": "relays",
             "type": "uint8",
             "offset": 49,
+            "tag": "relays",
             "description": "bitset of door unlock relay states"
           },
           {
             "name": "inputs",
             "type": "uint8",
             "offset": 50,
+            "tag": "alarm-inputs",
             "description": "bitset of alarm inputs"
           },
           {
             "name": "system error",
             "type": "uint8",
             "offset": 36,
+            "tag": "system-error",
             "description": "system error code"
           },
           {
             "name": "special info",
             "type": "uint8",
             "offset": 48,
+            "tag": "special-info",
             "description": "absolutely no idea"
           },
           {
             "name": "event index",
             "type": "uint32",
             "offset": 8,
+            "tag": "event-index",
             "description": "last event index"
           },
           {
             "name": "event type",
             "type": "uint8",
             "offset": 12,
+            "tag": "event-type",
             "description": "last event type"
           },
           {
             "name": "event access granted",
             "type": "bool",
             "offset": 13,
+            "tag": "event-granted",
             "description": "last event access granted"
           },
           {
             "name": "event door",
             "type": "uint8",
             "offset": 14,
+            "tag": "event-door",
             "description": "last event door"
           },
           {
             "name": "event direction",
             "type": "uint8",
             "offset": 15,
+            "tag": "event-direction",
             "description": "last event door direction (0: in, 1: out)"
           },
           {
             "name": "event card",
             "type": "uint32",
             "offset": 16,
+            "tag": "event-card",
             "description": "last event card number"
           },
           {
             "name": "event timestamp",
             "type": "optional datetime",
             "offset": 20,
+            "tag": "event-timestamp",
             "description": "last event timestamp"
           },
           {
             "name": "event reason",
             "type": "uint8",
             "offset": 27,
+            "tag": "event-reason",
             "description": "last event reason"
           },
           {
             "name": "sequence no",
             "type": "uint32",
             "offset": 40,
+            "tag": "sequence-no",
             "description": "packet sequence number"
           }
         ]
@@ -5982,47 +6071,56 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "card",
             "type": "uint32",
-            "offset": 8
+            "offset": 8,
+            "tag": "card"
           },
           {
             "name": "start date",
             "type": "optional date",
-            "offset": 12
+            "offset": 12,
+            "tag": "start-date"
           },
           {
             "name": "end date",
             "type": "optional date",
-            "offset": 16
+            "offset": 16,
+            "tag": "end-date"
           },
           {
             "name": "door 1",
             "type": "uint8",
-            "offset": 20
+            "offset": 20,
+            "tag": "door-1"
           },
           {
             "name": "door 2",
             "type": "uint8",
-            "offset": 21
+            "offset": 21,
+            "tag": "door-2"
           },
           {
             "name": "door 3",
             "type": "uint8",
-            "offset": 22
+            "offset": 22,
+            "tag": "door-3"
           },
           {
             "name": "door 4",
             "type": "uint8",
-            "offset": 23
+            "offset": 23,
+            "tag": "door-4"
           },
           {
             "name": "PIN",
             "type": "pin",
-            "offset": 24
+            "offset": 24,
+            "tag": "PIN"
           }
         ]
       },
@@ -6034,47 +6132,56 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "card",
             "type": "uint32",
-            "offset": 8
+            "offset": 8,
+            "tag": "card"
           },
           {
             "name": "start date",
             "type": "optional date",
-            "offset": 12
+            "offset": 12,
+            "tag": "start-date"
           },
           {
             "name": "end date",
             "type": "optional date",
-            "offset": 16
+            "offset": 16,
+            "tag": "end-date"
           },
           {
             "name": "door 1",
             "type": "uint8",
-            "offset": 20
+            "offset": 20,
+            "tag": "door-1"
           },
           {
             "name": "door 2",
             "type": "uint8",
-            "offset": 21
+            "offset": 21,
+            "tag": "door-2"
           },
           {
             "name": "door 3",
             "type": "uint8",
-            "offset": 22
+            "offset": 22,
+            "tag": "door-3"
           },
           {
             "name": "door 4",
             "type": "uint8",
-            "offset": 23
+            "offset": 23,
+            "tag": "door-4"
           },
           {
             "name": "PIN",
             "type": "pin",
-            "offset": 24
+            "offset": 24,
+            "tag": "PIN"
           }
         ]
       },
@@ -6086,12 +6193,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -6103,12 +6212,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -6120,12 +6231,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },
@@ -6408,12 +6521,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },

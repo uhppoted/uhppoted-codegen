@@ -1,6 +1,10 @@
 package responses
 
 var GetDoorResponse = Response{
+	Description: []string{
+		"Container struct for the response returned by a controller to a request",
+		"for door configuration information.",
+	},
 	Message: Message{
 		Name:    "get door response",
 		MsgType: 0x82,

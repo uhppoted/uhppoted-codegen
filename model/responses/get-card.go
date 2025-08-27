@@ -1,6 +1,10 @@
 package responses
 
 var GetCardResponse = Response{
+	Description: []string{
+		"Container struct for the response returned from a controller when retrieving",
+		"a card record stored on the controller.",
+	},
 	Message: Message{
 		Name:    "get card response",
 		MsgType: 0x5a,
@@ -9,46 +13,55 @@ var GetCardResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "card",
 				Type:   "uint32",
+				Tag:    "card",
 				Offset: 8,
 			},
 			{
 				Name:   "start date",
 				Type:   "optional date",
+				Tag:    "start-date",
 				Offset: 12,
 			},
 			{
 				Name:   "end date",
 				Type:   "optional date",
+				Tag:    "end-date",
 				Offset: 16,
 			},
 			{
 				Name:   "door 1",
 				Type:   "uint8",
+				Tag:    "door-1",
 				Offset: 20,
 			},
 			{
 				Name:   "door 2",
 				Type:   "uint8",
+				Tag:    "door-2",
 				Offset: 21,
 			},
 			{
 				Name:   "door 3",
 				Type:   "uint8",
+				Tag:    "door-3",
 				Offset: 22,
 			},
 			{
 				Name:   "door 4",
 				Type:   "uint8",
+				Tag:    "door-4",
 				Offset: 23,
 			},
 			{
 				Name:   "PIN",
 				Type:   "pin",
+				Tag:    "PIN",
 				Offset: 24,
 			},
 		},

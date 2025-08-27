@@ -1,6 +1,10 @@
 package responses
 
 var PutCardResponse = Response{
+	Description: []string{
+		"Container struct for the response returned by a controller after adding or updating a",
+		"controller card record.",
+	},
 	Message: Message{
 		Name:    "put card response",
 		MsgType: 0x50,
@@ -9,11 +13,13 @@ var PutCardResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "ok",
 				Type:   "bool",
+				Tag:    "ok",
 				Offset: 8,
 			},
 		},
