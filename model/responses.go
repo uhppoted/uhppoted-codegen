@@ -39,8 +39,8 @@ var Responses = []types.Message{
 	SetInterlockResponse.Message,
 	ActivateKeypadsResponse.Message,
 	GetAntiPassbackResponse.Message,
-	SetAntiPassbackResponse,
-	RestoreDefaultParametersResponse,
+	SetAntiPassbackResponse.Message,
+	RestoreDefaultParametersResponse.Message,
 }
 
 var GetControllerResponse = responses.GetControllerResponse
@@ -76,6 +76,8 @@ var SetPCControlResponse = responses.SetPCControlResponse
 var SetInterlockResponse = responses.SetInterlockResponse
 var ActivateKeypadsResponse = responses.ActivateKeypadsResponse
 var GetAntiPassbackResponse = responses.GetAntiPassbackResponse
+var SetAntiPassbackResponse = responses.SetAntiPassbackResponse
+var RestoreDefaultParametersResponse = responses.RestoreDefaultParametersResponse
 
 // var AddTaskResponse = types.Message{
 // 	Name:    "add task response",
@@ -203,38 +205,38 @@ var GetAntiPassbackResponse = responses.GetAntiPassbackResponse
 // 	},
 // }
 
-var SetAntiPassbackResponse = types.Message{
-	Name:    "set antipassback response",
-	MsgType: 0x84,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "ok",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var SetAntiPassbackResponse = types.Message{
+// 	Name:    "set antipassback response",
+// 	MsgType: 0x84,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "ok",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
-var RestoreDefaultParametersResponse = types.Message{
-	Name:    "restore default parameters response",
-	MsgType: 0xc8,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "reset",
-			Type:   "bool",
-			Offset: 8,
-		},
-	},
-}
+// var RestoreDefaultParametersResponse = types.Message{
+// 	Name:    "restore default parameters response",
+// 	MsgType: 0xc8,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "reset",
+// 			Type:   "bool",
+// 			Offset: 8,
+// 		},
+// 	},
+// }

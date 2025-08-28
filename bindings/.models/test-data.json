@@ -1494,7 +1494,7 @@
           "message": "F6wAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "name": "refresh tasklist response",
+          "name": "refresh task list response",
           "values": [
             {
               "name": "controller",
@@ -1802,7 +1802,7 @@
               "value": "405419896"
             },
             {
-              "name": "reset",
+              "name": "ok",
               "type": "bool",
               "value": true
             }

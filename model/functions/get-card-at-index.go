@@ -37,7 +37,7 @@ var GetCardAtIndex = Function{
 				},
 				{
 					Arg: Arg{
-						Name: "17",
+						Name: "index",
 						Type: "uint32",
 					},
 					Value: 135,
@@ -122,7 +122,7 @@ var GetCardAtIndex = Function{
 						Name: "index",
 						Type: "uint32",
 					},
-					Value: 10058401,
+					Value: 136,
 				},
 			},
 			Request: []byte{
@@ -204,7 +204,7 @@ var GetCardAtIndex = Function{
 						Name: "index",
 						Type: "uint32",
 					},
-					Value: 10058401,
+					Value: 137,
 				},
 			},
 			Request: []byte{

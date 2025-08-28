@@ -2211,7 +2211,7 @@ var RestoreDefaultParametersTest = Test{
 				Value: CONTROLLER,
 			},
 			Value{
-				Name:  "reset",
+				Name:  "ok",
 				Type:  "bool",
 				Value: true,
 			},

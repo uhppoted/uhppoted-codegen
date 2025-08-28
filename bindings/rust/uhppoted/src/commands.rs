@@ -497,7 +497,7 @@ fn add_task() {
 }
 
 fn refresh_tasklist() {
-    print(|| -> Result<uhppote::RefreshTasklistResponse, error::Error> {
+    print(|| -> Result<uhppote::RefreshTaskListResponse, error::Error> {
 	    let controller = resolve(CONTROLLER);
 
         futures::executor::block_on(uhppote::refresh_task_list(controller))

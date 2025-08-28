@@ -1,26 +1,23 @@
 package responses
 
-var RefreshTaskListResponse = Response{
+var RestoreDefaultParametersResponse = Response{
 	Description: []string{
-		"Container struct for the response returned from an access controller when updating",
-		"the task list scheduler.",
+		"Container struct for the response returned by a controller after restoring the manufacturer",
+		"default settings.",
 	},
-
 	Message: Message{
-		Name:    "refresh task list response",
-		MsgType: 0xac,
+		Name:    "restore default parameters response",
+		MsgType: 0xc8,
 		Fields: []Field{
 			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
-				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "ok",
 				Type:   "bool",
-				Tag:    "ok",
 				Offset: 8,
 			},
 		},
@@ -28,9 +25,9 @@ var RefreshTaskListResponse = Response{
 
 	Tests: []ResponseTest{
 		{
-			Name: "refresh-tasklist",
+			Name: "restore-default-parameters",
 			Response: []byte{
-				0x17, 0xac, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+				0x17, 0xc8, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -43,7 +40,7 @@ var RefreshTaskListResponse = Response{
 				},
 				{
 					Name:  "ok",
-					Type:  "uint8",
+					Type:  "bool",
 					Value: true,
 				},
 			},

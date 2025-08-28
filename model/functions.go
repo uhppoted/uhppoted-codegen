@@ -74,6 +74,8 @@ var SetPCControl = functions.SetPCControl
 var SetInterlock = functions.SetInterlock
 var ActivateKeypads = functions.ActivateKeypads
 var GetAntiPassback = functions.GetAntiPassback
+var SetAntiPassback = functions.SetAntiPassback
+var RestoreDefaultParameters = functions.RestoreDefaultParameters
 
 // var AddTask = types.Function{
 // 	Name: "add task",
@@ -235,30 +237,30 @@ var GetAntiPassback = functions.GetAntiPassback
 // 	Response: GetAntiPassbackResponse,
 // }
 
-var SetAntiPassback = types.Function{
-	Name: "set antipassback",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-		{
-			Name: "antipassback",
-			Type: "uint8",
-		},
-	},
-	Request:  SetAntiPassbackRequest,
-	Response: SetAntiPassbackResponse,
-}
+// var SetAntiPassback = types.Function{
+// 	Name: "set antipassback",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 		{
+// 			Name: "antipassback",
+// 			Type: "uint8",
+// 		},
+// 	},
+// 	Request:  SetAntiPassbackRequest,
+// 	Response: SetAntiPassbackResponse,
+// }
 
-var RestoreDefaultParameters = types.Function{
-	Name: "restore default parameters",
-	Args: []types.Arg{
-		{
-			Name: "controller",
-			Type: "controller",
-		},
-	},
-	Request:  RestoreDefaultParametersRequest,
-	Response: RestoreDefaultParametersResponse,
-}
+// var RestoreDefaultParameters = types.Function{
+// 	Name: "restore default parameters",
+// 	Args: []types.Arg{
+// 		{
+// 			Name: "controller",
+// 			Type: "controller",
+// 		},
+// 	},
+// 	Request:  RestoreDefaultParametersRequest,
+// 	Response: RestoreDefaultParametersResponse,
+// }

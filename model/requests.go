@@ -39,8 +39,8 @@ var Requests = []types.Message{
 	SetInterlockRequest.Message,
 	ActivateKeypadsRequest.Message,
 	GetAntiPassbackRequest.Message,
-	SetAntiPassbackRequest,
-	RestoreDefaultParametersRequest,
+	SetAntiPassbackRequest.Message,
+	RestoreDefaultParametersRequest.Message,
 }
 
 var GetControllerRequest = requests.GetControllerRequest
@@ -76,6 +76,8 @@ var SetPCControlRequest = requests.SetPCControlRequest
 var SetInterlockRequest = requests.SetInterlockRequest
 var ActivateKeypadsRequest = requests.ActivateKeypadsRequest
 var GetAntiPassbackRequest = requests.GetAntiPassbackRequest
+var SetAntiPassbackRequest = requests.SetAntiPassbackRequest
+var RestoreDefaultParametersRequest = requests.RestoreDefaultParametersRequest
 
 // var AddTaskRequest = types.Message{
 // 	Name:    "add task request",
@@ -278,38 +280,38 @@ var GetAntiPassbackRequest = requests.GetAntiPassbackRequest
 // 	},
 // }
 
-var SetAntiPassbackRequest = types.Message{
-	Name:    "set antipassback request",
-	MsgType: 0x84,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "antipassback",
-			Type:   "uint8",
-			Offset: 8,
-		},
-	},
-}
+// var SetAntiPassbackRequest = types.Message{
+// 	Name:    "set antipassback request",
+// 	MsgType: 0x84,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "antipassback",
+// 			Type:   "uint8",
+// 			Offset: 8,
+// 		},
+// 	},
+// }
 
-var RestoreDefaultParametersRequest = types.Message{
-	Name:    "restore default parameters request",
-	MsgType: 0xc8,
-	Fields: []types.Field{
-		types.Field{
-			Name:        "controller",
-			Type:        "uint32",
-			Offset:      4,
-			Description: "controller serial number",
-		},
-		types.Field{
-			Name:   "",
-			Type:   "magic",
-			Offset: 8,
-		},
-	},
-}
+// var RestoreDefaultParametersRequest = types.Message{
+// 	Name:    "restore default parameters request",
+// 	MsgType: 0xc8,
+// 	Fields: []types.Field{
+// 		types.Field{
+// 			Name:        "controller",
+// 			Type:        "uint32",
+// 			Offset:      4,
+// 			Description: "controller serial number",
+// 		},
+// 		types.Field{
+// 			Name:   "",
+// 			Type:   "magic",
+// 			Offset: 8,
+// 		},
+// 	},
+// }

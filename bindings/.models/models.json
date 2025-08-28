@@ -1925,7 +1925,7 @@
                 "value": 405419896
               },
               {
-                "name": "17",
+                "name": "index",
                 "type": "uint32",
                 "value": 135
               }
@@ -1995,7 +1995,7 @@
               {
                 "name": "index",
                 "type": "uint32",
-                "value": 10058401
+                "value": 136
               }
             ],
             "request": "F1wAAHg3KhiIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -2063,7 +2063,7 @@
               {
                 "name": "index",
                 "type": "uint32",
-                "value": 10058401
+                "value": 137
               }
             ],
             "request": "F1wAAHg3KhiJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -4030,7 +4030,7 @@
           ]
         },
         "response": {
-          "name": "refresh tasklist response",
+          "name": "refresh task list response",
           "msgtype": 172,
           "fields": [
             {
@@ -4637,7 +4637,9 @@
       },
       {
         "name": "get antipassback",
-        "description": null,
+        "description": [
+          "Retrieves the anti-passback mode for an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -4713,7 +4715,9 @@
       },
       {
         "name": "set antipassback",
-        "description": null,
+        "description": [
+          "Sets the access controller anti-passback mode."
+        ],
         "args": [
           {
             "name": "controller",
@@ -4758,11 +4762,52 @@
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "set-antipassback",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "antipassback",
+                "type": "uint8",
+                "value": 2
+              }
+            ],
+            "request": "F4QAAHg3KhgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F4QAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "restore default parameters",
-        "description": null,
+        "description": [
+          "Deletes all card records stored on an access controller."
+        ],
         "args": [
           {
             "name": "controller",
@@ -4797,13 +4842,47 @@
               "description": "controller serial number"
             },
             {
-              "name": "reset",
+              "name": "ok",
               "type": "bool",
               "offset": 8
             }
           ]
         },
-        "protocols": null
+        "protocols": [
+          "broadcast",
+          "udp",
+          "tcp"
+        ],
+        "tests": [
+          {
+            "name": "restore-default-parameters",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              }
+            ],
+            "request": "F8gAAHg3KhhVqqpVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F8gAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ],
     "requests": [
@@ -6533,7 +6612,7 @@
         ]
       },
       {
-        "name": "refresh tasklist response",
+        "name": "refresh task list response",
         "msgtype": 172,
         "fields": [
           {
@@ -6670,7 +6749,7 @@
             "description": "controller serial number"
           },
           {
-            "name": "reset",
+            "name": "ok",
             "type": "bool",
             "offset": 8
           }
