@@ -7,18 +7,20 @@ var SetPCControlResponse = Response{
 	},
 
 	Message: Message{
-		Name:    "set pc control response",
+		Name:    "set PC control response",
 		MsgType: 0xa0,
 		Fields: []Field{
 			{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{
 				Name:   "ok",
 				Type:   "bool",
+				Tag:    "ok",
 				Offset: 8,
 			},
 		},

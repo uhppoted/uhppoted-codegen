@@ -77,20 +77,8 @@ var GetAntiPassback = functions.GetAntiPassback
 var SetAntiPassback = functions.SetAntiPassback
 var RestoreDefaultParameters = functions.RestoreDefaultParameters
 
-// var ClearTaskList = types.Function{
-// 	Name: "clear tasklist",
-// 	Args: []types.Arg{
-// 		{
-// 			Name: "controller",
-// 			Type: "controller",
-// 		},
-// 	},
-// 	Request:  ClearTaskListRequest,
-// 	Response: ClearTaskListResponse,
-// }
-
 // var SetPCControl = types.Function{
-// 	Name: "set pc control",
+// 	Name: "set PC control",
 // 	Args: []types.Arg{
 // 		{
 // 			Name: "controller",

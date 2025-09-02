@@ -379,7 +379,7 @@ func setPCControl(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     enabled := true
 
-    return uhppote.SetPcControl(controller, enabled)
+    return uhppote.SetPCControl(controller, enabled)
 }
 
 func setInterlock(args []string) (any, error) {

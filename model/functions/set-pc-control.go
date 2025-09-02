@@ -6,7 +6,7 @@ import (
 )
 
 var SetPCControl = Function{
-	Name: "set pc control",
+	Name: "set PC control",
 	Description: []string{
 		"Enables remote access control. Remote access control will remain in effect provided the controller",
 		"receives a message from the host at least once every 30 seconds.",

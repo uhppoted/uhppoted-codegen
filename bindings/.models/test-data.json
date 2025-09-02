@@ -1543,7 +1543,7 @@
       {
         "name": "set pc control",
         "request": {
-          "name": "set pc control request",
+          "name": "set PC control request",
           "values": [
             {
               "name": "controller",
@@ -1559,7 +1559,7 @@
           "message": "F6AAAHg3KhhVqqpVAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
         },
         "response": {
-          "name": "set pc control response",
+          "name": "set PC control response",
           "values": [
             {
               "name": "controller",

@@ -2,7 +2,7 @@ package requests
 
 var SetPCControlRequest = Request{
 	Message: Message{
-		Name:    "set pc control request",
+		Name:    "set PC control request",
 		MsgType: 0xa0,
 		Fields: []Field{
 			{

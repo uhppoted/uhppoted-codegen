@@ -4168,7 +4168,7 @@
         ]
       },
       {
-        "name": "set pc control",
+        "name": "set PC control",
         "description": [
           "Enables remote access control. Remote access control will remain in effect provided the controller",
           "receives a message from the host at least once every 30 seconds."
@@ -4184,7 +4184,7 @@
           }
         ],
         "request": {
-          "name": "set pc control request",
+          "name": "set PC control request",
           "msgtype": 160,
           "fields": [
             {
@@ -4206,19 +4206,21 @@
           ]
         },
         "response": {
-          "name": "set pc control response",
+          "name": "set PC control response",
           "msgtype": 160,
           "fields": [
             {
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -5560,7 +5562,7 @@
         ]
       },
       {
-        "name": "set pc control request",
+        "name": "set PC control request",
         "msgtype": 160,
         "fields": [
           {
@@ -6650,19 +6652,21 @@
         ]
       },
       {
-        "name": "set pc control response",
+        "name": "set PC control response",
         "msgtype": 160,
         "fields": [
           {
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },

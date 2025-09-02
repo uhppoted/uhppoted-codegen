@@ -513,7 +513,7 @@ fn clear_tasklist() {
 }
 
 fn set_pc_control() {
-    print(|| -> Result<uhppote::SetPcControlResponse, error::Error> {
+    print(|| -> Result<uhppote::SetPCControlResponse, error::Error> {
 	    let controller = resolve(CONTROLLER);
         let enabled = true;
 
