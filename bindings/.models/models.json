@@ -1245,7 +1245,7 @@
                   },
                   {
                     "name": "system-date",
-                    "type": "date",
+                    "type": "shortdate",
                     "value": "2022-08-23"
                   },
                   {
@@ -1383,7 +1383,7 @@
                   },
                   {
                     "name": "system-date",
-                    "type": "date",
+                    "type": "shortdate",
                     "value": "2025-11-23"
                   },
                   {
@@ -1710,12 +1710,12 @@
                   },
                   {
                     "name": "start-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "2025-01-01"
                   },
                   {
                     "name": "end-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "2025-12-31"
                   },
                   {
@@ -1778,12 +1778,12 @@
                   },
                   {
                     "name": "start-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "0001-01-01"
                   },
                   {
                     "name": "end-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "0001-01-01"
                   },
                   {
@@ -1947,12 +1947,12 @@
                   },
                   {
                     "name": "start-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "2025-01-01"
                   },
                   {
                     "name": "end-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "2025-12-31"
                   },
                   {
@@ -2015,12 +2015,12 @@
                   },
                   {
                     "name": "start-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "0001-01-01"
                   },
                   {
                     "name": "end-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "0001-01-01"
                   },
                   {
@@ -2083,12 +2083,12 @@
                   },
                   {
                     "name": "start-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "0001-01-01"
                   },
                   {
                     "name": "end-date",
-                    "type": "date",
+                    "type": "optional date",
                     "value": "0001-01-01"
                   },
                   {
@@ -4268,7 +4268,15 @@
       {
         "name": "set interlock",
         "description": [
-          "Sets the door interlock mode on an access controller."
+          "Sets the door interlock mode on an access controller.",
+          "",
+          "The following interlock modes are supported:",
+          "- 0: disabled",
+          "- 1: doors 1\u00262",
+          "- 2: doors 3\u00264",
+          "- 3: doors 1\u00262, doors 3\u00264",
+          "- 4: doors 1,2\u00263",
+          "- 8: doors 1,2,3\u00264"
         ],
         "args": [
           {
@@ -4305,12 +4313,14 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok"
             }
           ]
         },
@@ -6678,12 +6688,14 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok"
           }
         ]
       },

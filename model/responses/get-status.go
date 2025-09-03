@@ -196,7 +196,7 @@ var GetStatusResponse = Response{
 				},
 				{
 					Name:  "system date",
-					Type:  "date",
+					Type:  "shortdate",
 					Value: "2022-08-23",
 				},
 				{

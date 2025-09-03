@@ -88,12 +88,12 @@ var GetCardAtIndexResponse = Response{
 				},
 				{
 					Name:  "start date",
-					Type:  "date",
+					Type:  "optional date",
 					Value: "2024-01-01",
 				},
 				{
 					Name:  "end date",
-					Type:  "date",
+					Type:  "optional date",
 					Value: "2024-12-31",
 				},
 				{

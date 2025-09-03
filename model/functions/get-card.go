@@ -70,12 +70,12 @@ var GetCard = Function{
 						},
 						{
 							Name:  "start-date",
-							Type:  "date",
+							Type:  "optional date",
 							Value: "2025-01-01",
 						},
 						{
 							Name:  "end-date",
-							Type:  "date",
+							Type:  "optional date",
 							Value: "2025-12-31",
 						},
 						{
@@ -152,12 +152,12 @@ var GetCard = Function{
 						},
 						{
 							Name:  "start-date",
-							Type:  "date",
+							Type:  "optional date",
 							Value: "0001-01-01",
 						},
 						{
 							Name:  "end-date",
-							Type:  "date",
+							Type:  "optional date",
 							Value: "0001-01-01",
 						},
 						{

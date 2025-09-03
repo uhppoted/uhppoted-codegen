@@ -52,7 +52,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "system-date",
-							Type:  "date",
+							Type:  "shortdate",
 							Value: "2022-08-23",
 						},
 						{
@@ -202,7 +202,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "system-date",
-							Type:  "date",
+							Type:  "shortdate",
 							Value: "2025-11-23",
 						},
 						{

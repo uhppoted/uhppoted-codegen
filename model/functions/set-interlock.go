@@ -9,6 +9,14 @@ var SetInterlock = Function{
 	Name: "set interlock",
 	Description: []string{
 		"Sets the door interlock mode on an access controller.",
+		"",
+		"The following interlock modes are supported:",
+		"- 0: disabled",
+		"- 1: doors 1&2",
+		"- 2: doors 3&4",
+		"- 3: doors 1&2, doors 3&4",
+		"- 4: doors 1,2&3",
+		"- 8: doors 1,2,3&4",
 	},
 	Args: []Arg{
 		{
