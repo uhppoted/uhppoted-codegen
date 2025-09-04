@@ -14,8 +14,9 @@ var SetListener = Function{
 	},
 	Args: []Arg{
 		{
-			Name: "controller",
-			Type: "controller",
+			Name:        "controller",
+			Type:        "controller",
+			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
 			Name: "address",

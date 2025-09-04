@@ -10,8 +10,9 @@ var GetEvent = Function{
 	Description: []string{"Retrieves an event record stored on an access controller."},
 	Args: []Arg{
 		{
-			Name: "controller",
-			Type: "controller",
+			Name:        "controller",
+			Type:        "controller",
+			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
 			Name: "event index",

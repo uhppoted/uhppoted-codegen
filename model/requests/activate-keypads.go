@@ -71,7 +71,7 @@ var ActivateKeypadsRequest = Request{
 						Name: "reader 4",
 						Type: "bool",
 					},
-					Value: false,
+					Value: true,
 				},
 			},
 			Expected: []byte{

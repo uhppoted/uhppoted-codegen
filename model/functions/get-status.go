@@ -10,8 +10,9 @@ var GetStatus = Function{
 	Description: []string{"Retrieves the system status from an access controller."},
 	Args: []Arg{
 		{
-			Name: "controller",
-			Type: "controller",
+			Name:        "controller",
+			Type:        "controller",
+			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
 	Request:   requests.GetStatusRequest.Message,

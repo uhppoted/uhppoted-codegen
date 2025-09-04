@@ -22,7 +22,7 @@ var SetListenerAddrPortResponse = Response{
 				Type:        "bool",
 				Offset:      8,
 				Tag:         "ok",
-				Description: "set-listener succeeded/failed",
+				Description: "succeeded/failed",
 			},
 		},
 	},

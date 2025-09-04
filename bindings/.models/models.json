@@ -9,7 +9,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -148,7 +149,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "address",
@@ -214,7 +216,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -277,7 +280,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -356,7 +360,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "date-time",
@@ -450,7 +455,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -553,7 +559,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "address",
@@ -614,7 +621,7 @@
               "type": "bool",
               "offset": 8,
               "tag": "ok",
-              "description": "set-listener succeeded/failed"
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -677,7 +684,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "door",
@@ -795,7 +803,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "door",
@@ -937,7 +946,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "door",
@@ -976,7 +986,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -1029,7 +1040,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -1510,7 +1522,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -1588,7 +1601,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "card number",
@@ -1825,7 +1839,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "index",
@@ -2130,10 +2145,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
-            "name": "card number",
+            "name": "card",
             "type": "uint32"
           },
           {
@@ -2232,7 +2248,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -2320,7 +2337,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "card number",
@@ -2359,7 +2377,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -2412,7 +2431,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -2447,7 +2467,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -2495,7 +2516,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "event index",
@@ -2800,7 +2822,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -2878,7 +2901,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "event index",
@@ -2922,7 +2946,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -2975,7 +3000,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "enabled",
@@ -3014,7 +3040,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -3067,7 +3094,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "profile",
@@ -3335,10 +3363,11 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
-            "name": "profile id",
+            "name": "profile",
             "type": "uint8"
           },
           {
@@ -3518,7 +3547,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -3651,7 +3681,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -3686,7 +3717,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -3749,7 +3781,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "task",
@@ -3896,7 +3929,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4009,7 +4043,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -4044,7 +4079,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4092,7 +4128,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -4127,7 +4164,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4176,7 +4214,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "enabled",
@@ -4220,7 +4259,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4281,7 +4321,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "interlock",
@@ -4320,7 +4361,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4373,23 +4415,28 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "reader 1",
-            "type": "bool"
+            "type": "bool",
+            "description": "enables/disable the keypad for reader 1"
           },
           {
             "name": "reader 2",
-            "type": "bool"
+            "type": "bool",
+            "description": "enables/disables the keypad for reader 2"
           },
           {
             "name": "reader 3",
-            "type": "bool"
+            "type": "bool",
+            "description": "enables/disables the keypad for reader 3"
           },
           {
             "name": "reader 4",
-            "type": "bool"
+            "type": "bool",
+            "description": "enables/disables the keypad for reader 4"
           }
         ],
         "request": {
@@ -4439,7 +4486,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4507,7 +4555,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "door",
@@ -4582,7 +4631,8 @@
               "name": "ok",
               "type": "bool",
               "offset": 8,
-              "tag": "ok"
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4655,7 +4705,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -4685,7 +4736,8 @@
               "name": "antipassback",
               "type": "uint8",
               "offset": 8,
-              "tag": "antipassback"
+              "tag": "antipassback",
+              "description": "anti-passback mode"
             }
           ]
         },
@@ -4733,7 +4785,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
             "name": "antipassback",
@@ -4770,7 +4823,9 @@
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
@@ -4823,7 +4878,8 @@
         "args": [
           {
             "name": "controller",
-            "type": "controller"
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           }
         ],
         "request": {
@@ -5760,7 +5816,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -5854,7 +5911,7 @@
             "type": "bool",
             "offset": 8,
             "tag": "ok",
-            "description": "set-listener succeeded/failed"
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -5938,7 +5995,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -5957,7 +6015,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6291,7 +6350,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6310,7 +6370,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6329,7 +6390,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6428,7 +6490,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6447,7 +6510,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6581,7 +6645,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6600,7 +6665,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6619,7 +6685,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6638,7 +6705,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6657,7 +6725,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6676,7 +6745,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6695,7 +6765,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6714,7 +6785,8 @@
             "name": "ok",
             "type": "bool",
             "offset": 8,
-            "tag": "ok"
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
@@ -6733,7 +6805,8 @@
             "name": "antipassback",
             "type": "uint8",
             "offset": 8,
-            "tag": "antipassback"
+            "tag": "antipassback",
+            "description": "anti-passback mode"
           }
         ]
       },
@@ -6750,7 +6823,9 @@
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       },
