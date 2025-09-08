@@ -18,8 +18,9 @@ var SetPCControl = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "enabled",
-			Type: "bool",
+			Name:        "enabled",
+			Type:        "bool",
+			Description: "enables/disables remote access control",
 		},
 	},
 	Request:   requests.SetPCControlRequest.Message,

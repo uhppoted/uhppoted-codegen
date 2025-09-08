@@ -17,8 +17,9 @@ var OpenDoor = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "door",
-			Type: "uint8",
+			Name:        "door",
+			Type:        "uint8",
+			Description: "door ID ([1..4])",
 		},
 	},
 	Request:   requests.OpenDoorRequest.Message,

@@ -25,8 +25,9 @@ var SetInterlock = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "interlock",
-			Type: "uint8",
+			Name:        "interlock",
+			Type:        "uint8",
+			Description: "door interlock mode",
 		},
 	},
 	Request:   requests.SetInterlockRequest.Message,

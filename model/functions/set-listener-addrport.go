@@ -19,12 +19,14 @@ var SetListenerAddrPort = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "listener",
-			Type: "address:port",
+			Name:        "listener",
+			Type:        "address:port",
+			Description: "IPv4 address:port of host to receive controller events",
 		},
 		{
-			Name: "interval",
-			Type: "uint8",
+			Name:        "interval",
+			Type:        "uint8",
+			Description: "status auto-send interval (seconds). A '0'interval disables auto-send.",
 		},
 	},
 	Request:   requests.SetListenerAddrPortRequest.Message,

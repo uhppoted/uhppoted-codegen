@@ -363,7 +363,7 @@ def set_door_passcodes(u):
 def get_antipassback(u):
     controller = resolve(CONTROLLER)
 
-    return u.get_antipassback(controller)
+    return u.get_anti_passback(controller)
 
 
 def set_antipassback(u):

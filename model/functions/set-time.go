@@ -17,8 +17,9 @@ var SetTime = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "date-time",
-			Type: "datetime",
+			Name:        "date-time",
+			Type:        "datetime",
+			Description: "date/time to which to set controller system time",
 		},
 	},
 	Request:   requests.SetTimeRequest.Message,

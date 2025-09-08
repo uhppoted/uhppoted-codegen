@@ -559,7 +559,7 @@ fn get_antipassback() {
     print(|| -> Result<uhppote::GetAntipassbackResponse, error::Error> {
         let controller = resolve(CONTROLLER);
 
-        futures::executor::block_on(uhppote::get_antipassback(controller))
+        futures::executor::block_on(uhppote::get_anti_passback(controller))
     })
 }
 

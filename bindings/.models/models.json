@@ -154,15 +154,18 @@
           },
           {
             "name": "address",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": "controller IPv4 address"
           },
           {
             "name": "netmask",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": "controller IPv4 subnet mask"
           },
           {
             "name": "gateway",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": "controller gateway IPv4 address"
           }
         ],
         "request": {
@@ -365,7 +368,8 @@
           },
           {
             "name": "date-time",
-            "type": "datetime"
+            "type": "datetime",
+            "description": "date/time to which to set controller system time"
           }
         ],
         "request": {
@@ -564,15 +568,18 @@
           },
           {
             "name": "address",
-            "type": "IPv4"
+            "type": "IPv4",
+            "description": "IPv4 address of host to receive controller events"
           },
           {
             "name": "port",
-            "type": "uint16"
+            "type": "uint16",
+            "description": "UDP port of host for controller events"
           },
           {
             "name": "interval",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "status auto-send interval (seconds). A '0' interval disables auto-send."
           }
         ],
         "request": {
@@ -689,7 +696,8 @@
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "door ID ([1..4])"
           }
         ],
         "request": {
@@ -808,15 +816,18 @@
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "door ID ([1..4])"
           },
           {
             "name": "mode",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
           },
           {
             "name": "delay",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "unlock delay (seconds))"
           }
         ],
         "request": {
@@ -951,7 +962,8 @@
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "door ID ([1..4])"
           }
         ],
         "request": {
@@ -1553,7 +1565,8 @@
               "name": "cards",
               "type": "uint32",
               "offset": 8,
-              "tag": "cards"
+              "tag": "cards",
+              "description": "number of stored cards"
             }
           ]
         },
@@ -1606,7 +1619,8 @@
           },
           {
             "name": "card number",
-            "type": "uint32"
+            "type": "uint32",
+            "description": "card number"
           }
         ],
         "request": {
@@ -1641,49 +1655,57 @@
               "name": "card",
               "type": "uint32",
               "offset": 8,
-              "tag": "card"
+              "tag": "card",
+              "description": "card number"
             },
             {
               "name": "start date",
               "type": "optional date",
               "offset": 12,
-              "tag": "start-date"
+              "tag": "start-date",
+              "description": "'valid from' date"
             },
             {
               "name": "end date",
               "type": "optional date",
               "offset": 16,
-              "tag": "end-date"
+              "tag": "end-date",
+              "description": "'valid until' date"
             },
             {
               "name": "door 1",
               "type": "uint8",
               "offset": 20,
-              "tag": "door-1"
+              "tag": "door-1",
+              "description": "access permissions for door 1"
             },
             {
               "name": "door 2",
               "type": "uint8",
               "offset": 21,
-              "tag": "door-2"
+              "tag": "door-2",
+              "description": "access permissions for door 2"
             },
             {
               "name": "door 3",
               "type": "uint8",
               "offset": 22,
-              "tag": "door-3"
+              "tag": "door-3",
+              "description": "access permissions for door 3"
             },
             {
               "name": "door 4",
               "type": "uint8",
               "offset": 23,
-              "tag": "door-4"
+              "tag": "door-4",
+              "description": "access permissions for door 4"
             },
             {
               "name": "PIN",
               "type": "pin",
               "offset": 24,
-              "tag": "PIN"
+              "tag": "PIN",
+              "description": "(optional) PIN code [0..999999], 0 for none"
             }
           ]
         },
@@ -1844,7 +1866,8 @@
           },
           {
             "name": "index",
-            "type": "uint32"
+            "type": "uint32",
+            "description": "card record index"
           }
         ],
         "request": {
@@ -1879,49 +1902,57 @@
               "name": "card",
               "type": "uint32",
               "offset": 8,
-              "tag": "card"
+              "tag": "card",
+              "description": "card number"
             },
             {
               "name": "start date",
               "type": "optional date",
               "offset": 12,
-              "tag": "start-date"
+              "tag": "start-date",
+              "description": "'valid from' date"
             },
             {
               "name": "end date",
               "type": "optional date",
               "offset": 16,
-              "tag": "end-date"
+              "tag": "end-date",
+              "description": "'valid until' date"
             },
             {
               "name": "door 1",
               "type": "uint8",
               "offset": 20,
-              "tag": "door-1"
+              "tag": "door-1",
+              "description": "access permissions for door 1"
             },
             {
               "name": "door 2",
               "type": "uint8",
               "offset": 21,
-              "tag": "door-2"
+              "tag": "door-2",
+              "description": "access permissions for door 2"
             },
             {
               "name": "door 3",
               "type": "uint8",
               "offset": 22,
-              "tag": "door-3"
+              "tag": "door-3",
+              "description": "access permissions for door 3"
             },
             {
               "name": "door 4",
               "type": "uint8",
               "offset": 23,
-              "tag": "door-4"
+              "tag": "door-4",
+              "description": "access permissions for door 4"
             },
             {
               "name": "PIN",
               "type": "pin",
               "offset": 24,
-              "tag": "PIN"
+              "tag": "PIN",
+              "description": "(optional) PIN code [0..999999], 0 for none"
             }
           ]
         },
@@ -2150,35 +2181,43 @@
           },
           {
             "name": "card",
-            "type": "uint32"
+            "type": "uint32",
+            "description": "card number"
           },
           {
             "name": "start date",
-            "type": "date"
+            "type": "date",
+            "description": "date from which card is valid"
           },
           {
             "name": "end date",
-            "type": "date"
+            "type": "date",
+            "description": "date after which card is invalid"
           },
           {
             "name": "door 1",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "access permissions for door 1 (0: no access, 1: 24/7 access, [2..253] time profile)"
           },
           {
             "name": "door 2",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "access permissions for door 2 (0: no access, 1: 24/7 access, [2..253] time profile)"
           },
           {
             "name": "door 3",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "access permissions for door 3 (0: no access, 1: 24/7 access, [2..253] time profile)"
           },
           {
             "name": "door 4",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "access permissions for door 4 (0: no access, 1: 24/7 access, [2..253] time profile)"
           },
           {
             "name": "PIN",
-            "type": "pin"
+            "type": "pin",
+            "description": "optional PIN code [0..999999] (0 for none)"
           }
         ],
         "request": {
@@ -2342,7 +2381,8 @@
           },
           {
             "name": "card number",
-            "type": "uint32"
+            "type": "uint32",
+            "description": "card number"
           }
         ],
         "request": {
@@ -2521,7 +2561,8 @@
           },
           {
             "name": "event index",
-            "type": "uint32"
+            "type": "uint32",
+            "description": "index of event to retrieve"
           }
         ],
         "request": {
@@ -2556,49 +2597,57 @@
               "name": "index",
               "type": "uint32",
               "offset": 8,
-              "tag": "index"
+              "tag": "index",
+              "description": "event index"
             },
             {
               "name": "event type",
               "type": "uint8",
               "offset": 12,
-              "tag": "event-type"
+              "tag": "event-type",
+              "description": "event type "
             },
             {
               "name": "access granted",
               "type": "bool",
               "offset": 13,
-              "tag": "granted"
+              "tag": "granted",
+              "description": "true if the door was unlocked"
             },
             {
               "name": "door",
               "type": "uint8",
               "offset": 14,
-              "tag": "door"
+              "tag": "door",
+              "description": "door no. ([1..4]) for card and door events"
             },
             {
               "name": "direction",
               "type": "uint8",
               "offset": 15,
-              "tag": "direction"
+              "tag": "direction",
+              "description": "direction (1:IN, 2:OUT) for card and door events"
             },
             {
               "name": "card",
               "type": "uint32",
               "offset": 16,
-              "tag": "card"
+              "tag": "card",
+              "description": "card number (for card events)"
             },
             {
               "name": "timestamp",
               "type": "optional datetime",
               "offset": 20,
-              "tag": "timestamp"
+              "tag": "timestamp",
+              "description": "event timestamp"
             },
             {
               "name": "reason",
               "type": "uint8",
               "offset": 27,
-              "tag": "reason"
+              "tag": "reason",
+              "description": "reason code"
             }
           ]
         },
@@ -2853,7 +2902,8 @@
               "name": "index",
               "type": "uint32",
               "offset": 8,
-              "tag": "index"
+              "tag": "index",
+              "description": "event index"
             }
           ]
         },
@@ -2906,7 +2956,8 @@
           },
           {
             "name": "event index",
-            "type": "uint32"
+            "type": "uint32",
+            "description": "downloaded event index"
           }
         ],
         "request": {
@@ -3005,7 +3056,8 @@
           },
           {
             "name": "enabled",
-            "type": "bool"
+            "type": "bool",
+            "description": "enables door opened, door closed and button pressed events if true"
           }
         ],
         "request": {
@@ -3099,7 +3151,8 @@
           },
           {
             "name": "profile",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "profile ID ([2..254] to retrieve"
           }
         ],
         "request": {
@@ -3134,103 +3187,120 @@
               "name": "profile",
               "type": "uint8",
               "offset": 8,
-              "tag": "profile"
+              "tag": "profile",
+              "description": "profile ID [2..254]"
             },
             {
               "name": "start date",
               "type": "optional date",
               "offset": 9,
-              "tag": "start-date"
+              "tag": "start-date",
+              "description": "date from which profile is valid (inclusive)"
             },
             {
               "name": "end date",
               "type": "optional date",
               "offset": 13,
-              "tag": "end-date"
+              "tag": "end-date",
+              "description": "date after which profile is invalid"
             },
             {
               "name": "monday",
               "type": "bool",
               "offset": 17,
-              "tag": "monday"
+              "tag": "monday",
+              "description": "profile enabled on Monday if true"
             },
             {
               "name": "tuesday",
               "type": "bool",
               "offset": 18,
-              "tag": "tuesday"
+              "tag": "tuesday",
+              "description": "profile enabled on Tuesday if true"
             },
             {
               "name": "wednesday",
               "type": "bool",
               "offset": 19,
-              "tag": "wednesday"
+              "tag": "wednesday",
+              "description": "profile enabled on Wednesday if true"
             },
             {
               "name": "thursday",
               "type": "bool",
               "offset": 20,
-              "tag": "thursday"
+              "tag": "thursday",
+              "description": "profile enabled on Thursday if true"
             },
             {
               "name": "friday",
               "type": "bool",
               "offset": 21,
-              "tag": "friday"
+              "tag": "friday",
+              "description": "profile enabled on Monday if true"
             },
             {
               "name": "saturday",
               "type": "bool",
               "offset": 22,
-              "tag": "saturday"
+              "tag": "saturday",
+              "description": "profile enabled on Friday if true"
             },
             {
               "name": "sunday",
               "type": "bool",
               "offset": 23,
-              "tag": "sunday"
+              "tag": "sunday",
+              "description": "profile enabled on Sunday if true"
             },
             {
               "name": "segment 1 start",
               "type": "HHmm",
               "offset": 24,
-              "tag": "segment1-start"
+              "tag": "segment1-start",
+              "description": "start time for first time segment"
             },
             {
               "name": "segment 1 end",
               "type": "HHmm",
               "offset": 26,
-              "tag": "segment1-end"
+              "tag": "segment1-end",
+              "description": "end time for first time segment"
             },
             {
               "name": "segment 2 start",
               "type": "HHmm",
               "offset": 28,
-              "tag": "segment2-start"
+              "tag": "segment2-start",
+              "description": "start time for second time segment"
             },
             {
               "name": "segment 2 end",
               "type": "HHmm",
               "offset": 30,
-              "tag": "segment2-end"
+              "tag": "segment2-end",
+              "description": "end time for second time segment"
             },
             {
               "name": "segment 3 start",
               "type": "HHmm",
               "offset": 32,
-              "tag": "segment3-start"
+              "tag": "segment3-start",
+              "description": "start time for third time segment"
             },
             {
               "name": "segment 3 end",
               "type": "HHmm",
               "offset": 34,
-              "tag": "segment3-end"
+              "tag": "segment3-end",
+              "description": "end time for third time segment"
             },
             {
               "name": "linked profile",
               "type": "uint8",
               "offset": 36,
-              "tag": "linked-profile"
+              "tag": "linked-profile",
+              "description": "ID of linked profile (0 if not linked)"
             }
           ]
         },
@@ -3368,71 +3438,88 @@
           },
           {
             "name": "profile",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "profile Id ([2..254] to create/update"
           },
           {
             "name": "start date",
-            "type": "date"
+            "type": "date",
+            "description": "date from which profile is valid (inclusive)"
           },
           {
             "name": "end date",
-            "type": "date"
+            "type": "date",
+            "description": "date after which profile is invalid"
           },
           {
             "name": "monday",
-            "type": "bool"
+            "type": "bool",
+            "description": "profile valid on Monday if true"
           },
           {
             "name": "tuesday",
-            "type": "bool"
+            "type": "bool",
+            "description": "profile valid on Tuesday if true"
           },
           {
             "name": "wednesday",
-            "type": "bool"
+            "type": "bool",
+            "description": "profile valid on Wednesday if true"
           },
           {
             "name": "thursday",
-            "type": "bool"
+            "type": "bool",
+            "description": "profile valid on Thursday if true"
           },
           {
             "name": "friday",
-            "type": "bool"
+            "type": "bool",
+            "description": "profile valid on Friday if true"
           },
           {
             "name": "saturday",
-            "type": "bool"
+            "type": "bool",
+            "description": "profile valid on Saturday if true"
           },
           {
             "name": "sunday",
-            "type": "bool"
+            "type": "bool",
+            "description": "profile valid on Sunday if true"
           },
           {
             "name": "segment 1 start",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": "start time for first time segment"
           },
           {
             "name": "segment 1 end",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": "end time for first time segment"
           },
           {
             "name": "segment 2 start",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": "start time for second time segment"
           },
           {
             "name": "segment 2 end",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": "end time for second time segment"
           },
           {
             "name": "segment 3 start",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": "start time for third time segment"
           },
           {
             "name": "segment 3 end",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": "end time for third time segment"
           },
           {
             "name": "linked profile id",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "ID of linked profile (0 if not linked)"
           }
         ],
         "request": {
@@ -3786,55 +3873,68 @@
           },
           {
             "name": "task",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "task type"
           },
           {
             "name": "start date",
-            "type": "date"
+            "type": "date",
+            "description": "date from which task is scheduled (inclusive)"
           },
           {
             "name": "end date",
-            "type": "date"
+            "type": "date",
+            "description": "date after which task no longer scheduled"
           },
           {
             "name": "monday",
-            "type": "bool"
+            "type": "bool",
+            "description": "task enabled on Monday if true"
           },
           {
             "name": "tuesday",
-            "type": "bool"
+            "type": "bool",
+            "description": "task enabled on Tuesday if true"
           },
           {
             "name": "wednesday",
-            "type": "bool"
+            "type": "bool",
+            "description": "task enabled on Wednesday if true"
           },
           {
             "name": "thursday",
-            "type": "bool"
+            "type": "bool",
+            "description": "task enabled on Thursday if true"
           },
           {
             "name": "friday",
-            "type": "bool"
+            "type": "bool",
+            "description": "task enabled on Monday if true"
           },
           {
             "name": "saturday",
-            "type": "bool"
+            "type": "bool",
+            "description": "task enabled on Friday if true"
           },
           {
             "name": "sunday",
-            "type": "bool"
+            "type": "bool",
+            "description": "task enabled on Sunday if true"
           },
           {
             "name": "start time",
-            "type": "HHmm"
+            "type": "HHmm",
+            "description": "time at which task is scheduled"
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "door ([1..4] to which task is linked"
           },
           {
             "name": "more cards",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "number of 'more cards' for the MORE CARDS task type"
           }
         ],
         "request": {
@@ -4219,7 +4319,8 @@
           },
           {
             "name": "enabled",
-            "type": "bool"
+            "type": "bool",
+            "description": "enables/disables remote access control"
           }
         ],
         "request": {
@@ -4326,7 +4427,8 @@
           },
           {
             "name": "interlock",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "door interlock mode"
           }
         ],
         "request": {
@@ -4560,23 +4662,28 @@
           },
           {
             "name": "door",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "door ID ([1..4])"
           },
           {
             "name": "passcode 1",
-            "type": "pin"
+            "type": "pin",
+            "description": "supervisor passcode ([0..99999]), 0 for 'none'"
           },
           {
             "name": "passcode 2",
-            "type": "pin"
+            "type": "pin",
+            "description": "supervisor passcode ([0..99999]), 0 for 'none'"
           },
           {
             "name": "passcode 3",
-            "type": "pin"
+            "type": "pin",
+            "description": "supervisor passcode ([0..99999]), 0 for 'none'"
           },
           {
             "name": "passcode 4",
-            "type": "pin"
+            "type": "pin",
+            "description": "supervisor passcode ([0..99999]), 0 for 'none'"
           }
         ],
         "request": {
@@ -4698,9 +4805,15 @@
         ]
       },
       {
-        "name": "get antipassback",
+        "name": "get anti-passback",
         "description": [
-          "Retrieves the anti-passback mode for an access controller."
+          "Retrieves the anti-passback mode for an access controller. The anti-passback mode",
+          "will be one of the following:",
+          "- 0: disabled",
+          "- 1: readers 1:2; 3:4 (independently)",
+          "- 2: readers (1,3):(2,4)",
+          "- 3: readers 1:(2,3)",
+          "- 4: readers 1:(2,3,4)"
         ],
         "args": [
           {
@@ -6209,7 +6322,8 @@
             "name": "cards",
             "type": "uint32",
             "offset": 8,
-            "tag": "cards"
+            "tag": "cards",
+            "description": "number of stored cards"
           }
         ]
       },
@@ -6228,49 +6342,57 @@
             "name": "card",
             "type": "uint32",
             "offset": 8,
-            "tag": "card"
+            "tag": "card",
+            "description": "card number"
           },
           {
             "name": "start date",
             "type": "optional date",
             "offset": 12,
-            "tag": "start-date"
+            "tag": "start-date",
+            "description": "'valid from' date"
           },
           {
             "name": "end date",
             "type": "optional date",
             "offset": 16,
-            "tag": "end-date"
+            "tag": "end-date",
+            "description": "'valid until' date"
           },
           {
             "name": "door 1",
             "type": "uint8",
             "offset": 20,
-            "tag": "door-1"
+            "tag": "door-1",
+            "description": "access permissions for door 1"
           },
           {
             "name": "door 2",
             "type": "uint8",
             "offset": 21,
-            "tag": "door-2"
+            "tag": "door-2",
+            "description": "access permissions for door 2"
           },
           {
             "name": "door 3",
             "type": "uint8",
             "offset": 22,
-            "tag": "door-3"
+            "tag": "door-3",
+            "description": "access permissions for door 3"
           },
           {
             "name": "door 4",
             "type": "uint8",
             "offset": 23,
-            "tag": "door-4"
+            "tag": "door-4",
+            "description": "access permissions for door 4"
           },
           {
             "name": "PIN",
             "type": "pin",
             "offset": 24,
-            "tag": "PIN"
+            "tag": "PIN",
+            "description": "(optional) PIN code [0..999999], 0 for none"
           }
         ]
       },
@@ -6289,49 +6411,57 @@
             "name": "card",
             "type": "uint32",
             "offset": 8,
-            "tag": "card"
+            "tag": "card",
+            "description": "card number"
           },
           {
             "name": "start date",
             "type": "optional date",
             "offset": 12,
-            "tag": "start-date"
+            "tag": "start-date",
+            "description": "'valid from' date"
           },
           {
             "name": "end date",
             "type": "optional date",
             "offset": 16,
-            "tag": "end-date"
+            "tag": "end-date",
+            "description": "'valid until' date"
           },
           {
             "name": "door 1",
             "type": "uint8",
             "offset": 20,
-            "tag": "door-1"
+            "tag": "door-1",
+            "description": "access permissions for door 1"
           },
           {
             "name": "door 2",
             "type": "uint8",
             "offset": 21,
-            "tag": "door-2"
+            "tag": "door-2",
+            "description": "access permissions for door 2"
           },
           {
             "name": "door 3",
             "type": "uint8",
             "offset": 22,
-            "tag": "door-3"
+            "tag": "door-3",
+            "description": "access permissions for door 3"
           },
           {
             "name": "door 4",
             "type": "uint8",
             "offset": 23,
-            "tag": "door-4"
+            "tag": "door-4",
+            "description": "access permissions for door 4"
           },
           {
             "name": "PIN",
             "type": "pin",
             "offset": 24,
-            "tag": "PIN"
+            "tag": "PIN",
+            "description": "(optional) PIN code [0..999999], 0 for none"
           }
         ]
       },
@@ -6410,49 +6540,57 @@
             "name": "index",
             "type": "uint32",
             "offset": 8,
-            "tag": "index"
+            "tag": "index",
+            "description": "event index"
           },
           {
             "name": "event type",
             "type": "uint8",
             "offset": 12,
-            "tag": "event-type"
+            "tag": "event-type",
+            "description": "event type "
           },
           {
             "name": "access granted",
             "type": "bool",
             "offset": 13,
-            "tag": "granted"
+            "tag": "granted",
+            "description": "true if the door was unlocked"
           },
           {
             "name": "door",
             "type": "uint8",
             "offset": 14,
-            "tag": "door"
+            "tag": "door",
+            "description": "door no. ([1..4]) for card and door events"
           },
           {
             "name": "direction",
             "type": "uint8",
             "offset": 15,
-            "tag": "direction"
+            "tag": "direction",
+            "description": "direction (1:IN, 2:OUT) for card and door events"
           },
           {
             "name": "card",
             "type": "uint32",
             "offset": 16,
-            "tag": "card"
+            "tag": "card",
+            "description": "card number (for card events)"
           },
           {
             "name": "timestamp",
             "type": "optional datetime",
             "offset": 20,
-            "tag": "timestamp"
+            "tag": "timestamp",
+            "description": "event timestamp"
           },
           {
             "name": "reason",
             "type": "uint8",
             "offset": 27,
-            "tag": "reason"
+            "tag": "reason",
+            "description": "reason code"
           }
         ]
       },
@@ -6471,7 +6609,8 @@
             "name": "index",
             "type": "uint32",
             "offset": 8,
-            "tag": "index"
+            "tag": "index",
+            "description": "event index"
           }
         ]
       },
@@ -6530,103 +6669,120 @@
             "name": "profile",
             "type": "uint8",
             "offset": 8,
-            "tag": "profile"
+            "tag": "profile",
+            "description": "profile ID [2..254]"
           },
           {
             "name": "start date",
             "type": "optional date",
             "offset": 9,
-            "tag": "start-date"
+            "tag": "start-date",
+            "description": "date from which profile is valid (inclusive)"
           },
           {
             "name": "end date",
             "type": "optional date",
             "offset": 13,
-            "tag": "end-date"
+            "tag": "end-date",
+            "description": "date after which profile is invalid"
           },
           {
             "name": "monday",
             "type": "bool",
             "offset": 17,
-            "tag": "monday"
+            "tag": "monday",
+            "description": "profile enabled on Monday if true"
           },
           {
             "name": "tuesday",
             "type": "bool",
             "offset": 18,
-            "tag": "tuesday"
+            "tag": "tuesday",
+            "description": "profile enabled on Tuesday if true"
           },
           {
             "name": "wednesday",
             "type": "bool",
             "offset": 19,
-            "tag": "wednesday"
+            "tag": "wednesday",
+            "description": "profile enabled on Wednesday if true"
           },
           {
             "name": "thursday",
             "type": "bool",
             "offset": 20,
-            "tag": "thursday"
+            "tag": "thursday",
+            "description": "profile enabled on Thursday if true"
           },
           {
             "name": "friday",
             "type": "bool",
             "offset": 21,
-            "tag": "friday"
+            "tag": "friday",
+            "description": "profile enabled on Monday if true"
           },
           {
             "name": "saturday",
             "type": "bool",
             "offset": 22,
-            "tag": "saturday"
+            "tag": "saturday",
+            "description": "profile enabled on Friday if true"
           },
           {
             "name": "sunday",
             "type": "bool",
             "offset": 23,
-            "tag": "sunday"
+            "tag": "sunday",
+            "description": "profile enabled on Sunday if true"
           },
           {
             "name": "segment 1 start",
             "type": "HHmm",
             "offset": 24,
-            "tag": "segment1-start"
+            "tag": "segment1-start",
+            "description": "start time for first time segment"
           },
           {
             "name": "segment 1 end",
             "type": "HHmm",
             "offset": 26,
-            "tag": "segment1-end"
+            "tag": "segment1-end",
+            "description": "end time for first time segment"
           },
           {
             "name": "segment 2 start",
             "type": "HHmm",
             "offset": 28,
-            "tag": "segment2-start"
+            "tag": "segment2-start",
+            "description": "start time for second time segment"
           },
           {
             "name": "segment 2 end",
             "type": "HHmm",
             "offset": 30,
-            "tag": "segment2-end"
+            "tag": "segment2-end",
+            "description": "end time for second time segment"
           },
           {
             "name": "segment 3 start",
             "type": "HHmm",
             "offset": 32,
-            "tag": "segment3-start"
+            "tag": "segment3-start",
+            "description": "start time for third time segment"
           },
           {
             "name": "segment 3 end",
             "type": "HHmm",
             "offset": 34,
-            "tag": "segment3-end"
+            "tag": "segment3-end",
+            "description": "end time for third time segment"
           },
           {
             "name": "linked profile",
             "type": "uint8",
             "offset": 36,
-            "tag": "linked-profile"
+            "tag": "linked-profile",
+            "description": "ID of linked profile (0 if not linked)"
           }
         ]
       },

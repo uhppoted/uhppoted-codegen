@@ -7,9 +7,16 @@ import (
 
 var GetAntiPassback = Function{
 	Description: []string{
-		"Retrieves the anti-passback mode for an access controller.",
+		"Retrieves the anti-passback mode for an access controller. The anti-passback mode",
+		"will be one of the following:",
+		"- 0: disabled",
+		"- 1: readers 1:2; 3:4 (independently)",
+		"- 2: readers (1,3):(2,4)",
+		"- 3: readers 1:(2,3)",
+		"- 4: readers 1:(2,3,4)",
 	},
-	Name: "get antipassback",
+
+	Name: "get anti-passback",
 	Args: []Arg{
 		{
 			Name:        "controller",

@@ -17,8 +17,9 @@ var RecordSpecialEvents = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "enabled",
-			Type: "bool",
+			Name:        "enabled",
+			Type:        "bool",
+			Description: "enables door opened, door closed and button pressed events if true",
 		},
 	},
 	Request:   requests.RecordSpecialEventsRequest.Message,

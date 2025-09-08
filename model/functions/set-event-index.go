@@ -15,8 +15,9 @@ var SetEventIndex = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "event index",
-			Type: "uint32",
+			Name:        "event index",
+			Type:        "uint32",
+			Description: "downloaded event index",
 		},
 	},
 	Request:   requests.SetEventIndexRequest.Message,

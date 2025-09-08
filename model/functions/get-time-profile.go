@@ -17,8 +17,9 @@ var GetTimeProfile = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "profile",
-			Type: "uint8",
+			Name:        "profile",
+			Type:        "uint8",
+			Description: "profile ID ([2..254] to retrieve",
 		},
 	},
 	Request:   requests.GetTimeProfileRequest.Message,

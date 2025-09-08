@@ -324,7 +324,7 @@ export function setDoorPasscodes (controller, door, passcode1, passcode2, passco
 export function getAntiPassback (controller) {
   controller = arg(controller)
 
-  return uhppote.GetAntipassback(controller)
+  return uhppote.GetAntiPassback(controller)
 }
 
 export function setAntiPassback (controller, antipassback) {

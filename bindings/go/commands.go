@@ -413,7 +413,7 @@ func setDoorPasscodes(args []string) (any, error) {
 func getAntiPassback(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
 
-    return uhppote.GetAntipassback(controller)
+    return uhppote.GetAntiPassback(controller)
 }
 
 func setAntiPassback(args []string) (any, error) {

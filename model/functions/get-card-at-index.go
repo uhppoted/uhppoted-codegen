@@ -17,8 +17,9 @@ var GetCardAtIndex = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "index",
-			Type: "uint32",
+			Name:        "index",
+			Type:        "uint32",
+			Description: "card record index",
 		},
 	},
 	Request:   requests.GetCardAtIndexRequest.Message,

@@ -17,8 +17,9 @@ var GetCard = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "card number",
-			Type: "uint32",
+			Name:        "card number",
+			Type:        "uint32",
+			Description: "card number",
 		},
 	},
 	Request:   requests.GetCardRequest.Message,

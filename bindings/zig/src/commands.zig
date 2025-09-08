@@ -615,7 +615,7 @@ fn set_door_passcodes(allocator: std.mem.Allocator) void {
 fn get_antipassback(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
 
-    if (uhppote.get_antipassback(controller, allocator)) |response| {
+    if (uhppote.get_anti_passback(controller, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

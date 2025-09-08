@@ -320,7 +320,7 @@ execute(set_door_passcodes, _Options, Config) ->
 
 execute(get_antipassback, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
-    uhppoted:get_antipassback(Config, Controller);
+    uhppoted:get_anti_passback(Config, Controller);
 
 execute(set_antipassback, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

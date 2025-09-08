@@ -389,7 +389,7 @@ function get_antipassback($u, $args)
 {
     $controller = resolve(CONTROLLER);
 
-    return uhppote\get_antipassback($u, $controller);
+    return uhppote\get_anti_passback($u, $controller);
 }
 
 function set_antipassback($u, $args)

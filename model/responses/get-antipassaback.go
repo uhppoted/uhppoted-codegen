@@ -1,6 +1,16 @@
 package responses
 
 var GetAntiPassbackResponse = Response{
+	Description: []string{
+		"Container struct for the response returned from to a request for the current",
+		"anti-passback mode:",
+		"- 0: disabled",
+		"- 1: readers 1:2; 3:4 (independently)",
+		"- 2: readers (1,3):(2,4)",
+		"- 3: readers 1:(2,3)",
+		"- 4: readers 1:(2,3,4)",
+	},
+
 	Message: Message{
 		Name:    "get antipassback response",
 		MsgType: 0x86,

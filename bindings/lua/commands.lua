@@ -389,7 +389,7 @@ end
 function get_antipassback(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
 
-    return uhppote.get_antipassback(controller)
+    return uhppote.get_anti_passback(controller)
 end
 
 function set_antipassback(args)
