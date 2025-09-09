@@ -14,6 +14,7 @@ var SetAntiPassbackResponse = Response{
 				Name:        "controller",
 				Type:        "uint32",
 				Offset:      4,
+				Tag:         "controller",
 				Description: "controller serial number",
 			},
 			{

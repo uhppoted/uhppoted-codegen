@@ -626,7 +626,7 @@ fn set_antipassback(allocator: std.mem.Allocator) void {
     const controller = resolve(CONTROLLER);
     const antipassback = 2;
 
-    if (uhppote.set_antipassback(controller, antipassback, allocator)) |response| {
+    if (uhppote.set_anti_passback(controller, antipassback, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

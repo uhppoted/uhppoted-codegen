@@ -8,8 +8,16 @@ import (
 var SetAntiPassback = Function{
 	Description: []string{
 		"Sets the access controller anti-passback mode.",
+		"",
+		"The following modes are supported:",
+		"- 0: disabled",
+		"- 1: doors 1&2, doors 3&4",
+		"- 2: doors 1&3, doors 2&4",
+		"- 3: door 1 & doors 2,3",
+		"- 4: door 1 & doors 1,2,3",
 	},
-	Name: "set antipassback",
+
+	Name: "set anti-passback",
 	Args: []Arg{
 		{
 			Name:        "controller",
@@ -17,8 +25,9 @@ var SetAntiPassback = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name: "antipassback",
-			Type: "uint8",
+			Name:        "antipassback",
+			Type:        "uint8",
+			Description: "anti-passback mode",
 		},
 	},
 	Request:   requests.SetAntiPassbackRequest.Message,

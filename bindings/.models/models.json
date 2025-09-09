@@ -4891,9 +4891,16 @@
         ]
       },
       {
-        "name": "set antipassback",
+        "name": "set anti-passback",
         "description": [
-          "Sets the access controller anti-passback mode."
+          "Sets the access controller anti-passback mode.",
+          "",
+          "The following modes are supported:",
+          "- 0: disabled",
+          "- 1: doors 1\u00262, doors 3\u00264",
+          "- 2: doors 1\u00263, doors 2\u00264",
+          "- 3: door 1 \u0026 doors 2,3",
+          "- 4: door 1 \u0026 doors 1,2,3"
         ],
         "args": [
           {
@@ -4903,7 +4910,8 @@
           },
           {
             "name": "antipassback",
-            "type": "uint8"
+            "type": "uint8",
+            "description": "anti-passback mode"
           }
         ],
         "request": {
@@ -4931,6 +4939,7 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
@@ -6974,6 +6983,7 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {

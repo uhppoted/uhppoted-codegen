@@ -370,7 +370,7 @@ def set_antipassback(u):
     controller = resolve(CONTROLLER)
     antipassback = 2
 
-    return u.set_antipassback(controller, antipassback)
+    return u.set_anti_passback(controller, antipassback)
 
 
 def restore_default_parameters(u):

@@ -397,7 +397,7 @@ function set_antipassback($u, $args)
     $controller = resolve(CONTROLLER);
     $antipassback = 2;
 
-    return uhppote\set_antipassback($u, $controller, $antipassback);
+    return uhppote\set_anti_passback($u, $controller, $antipassback);
 }
 
 function restore_default_parameters($u, $args)

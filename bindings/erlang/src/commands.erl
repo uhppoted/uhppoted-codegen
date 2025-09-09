@@ -325,7 +325,7 @@ execute(get_antipassback, _Options, Config) ->
 execute(set_antipassback, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     Antipassback = 2,
-    uhppoted:set_antipassback(Config, Controller, Antipassback);
+    uhppoted:set_anti_passback(Config, Controller, Antipassback);
 
 execute(restore_default_parameters, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

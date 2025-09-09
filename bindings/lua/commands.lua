@@ -398,7 +398,7 @@ function set_antipassback(args)
 
     for k,v in pairs(ANTIPASSBACK) do
       if v == antipassback then
-          return uhppote.set_antipassback(controller, k)
+          return uhppote.set_anti_passback(controller, k)
       end
     end
 

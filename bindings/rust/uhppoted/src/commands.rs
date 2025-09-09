@@ -568,7 +568,7 @@ fn set_antipassback() {
         let controller = resolve(CONTROLLER);
         let antipassback = 2;
 
-        futures::executor::block_on(uhppote::set_antipassback(controller, antipassback))
+        futures::executor::block_on(uhppote::set_anti_passback(controller, antipassback))
     })
 }
 

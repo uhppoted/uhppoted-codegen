@@ -331,7 +331,7 @@ export function setAntiPassback (controller, antipassback) {
   controller = arg(controller)
   antipassback = arg(antipassback)
 
-  return uhppote.SetAntipassback(controller, antipassback)
+  return uhppote.SetAntiPassback(controller, antipassback)
 }
 
 export function restoreDefaultParameters (controller) {

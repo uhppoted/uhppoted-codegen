@@ -420,7 +420,7 @@ func setAntiPassback(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     antipassback := uint8(2)
 
-    return uhppote.SetAntipassback(controller, antipassback)
+    return uhppote.SetAntiPassback(controller, antipassback)
 }
 
 func restoreDefaultParameters(args []string) (any, error) {
