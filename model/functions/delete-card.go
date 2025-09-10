@@ -22,9 +22,8 @@ var DeleteCard = Function{
 			Description: "card number",
 		},
 	},
-	Request:   requests.DeleteCardRequest.Message,
-	Response:  responses.DeleteCardResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.DeleteCardRequest.Message,
+	Response: responses.DeleteCardResponse.Message,
 
 	Tests: []FuncTest{
 		{

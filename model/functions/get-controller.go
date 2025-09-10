@@ -17,9 +17,8 @@ var GetController = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.GetControllerRequest.Message,
-	Response:  responses.GetControllerResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetControllerRequest.Message,
+	Response: responses.GetControllerResponse.Message,
 
 	Tests: []FuncTest{
 		{

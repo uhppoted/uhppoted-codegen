@@ -17,9 +17,8 @@ var GetEventIndex = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.GetEventIndexRequest.Message,
-	Response:  responses.GetEventIndexResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetEventIndexRequest.Message,
+	Response: responses.GetEventIndexResponse.Message,
 
 	Tests: []FuncTest{
 		{

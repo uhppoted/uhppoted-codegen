@@ -17,9 +17,8 @@ var GetCards = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.GetCardsRequest.Message,
-	Response:  responses.GetCardsResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetCardsRequest.Message,
+	Response: responses.GetCardsResponse.Message,
 
 	Tests: []FuncTest{
 		{

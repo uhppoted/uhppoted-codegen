@@ -15,9 +15,8 @@ var GetStatus = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.GetStatusRequest.Message,
-	Response:  responses.GetStatusResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetStatusRequest.Message,
+	Response: responses.GetStatusResponse.Message,
 
 	Tests: []FuncTest{
 		{

@@ -34,9 +34,8 @@ var SetListener = Function{
 			Description: "status auto-send interval (seconds). A '0' interval disables auto-send.",
 		},
 	},
-	Request:   requests.SetListenerRequest.Message,
-	Response:  responses.SetListenerResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetListenerRequest.Message,
+	Response: responses.SetListenerResponse.Message,
 
 	Tests: []FuncTest{
 		{

@@ -22,9 +22,8 @@ var OpenDoor = Function{
 			Description: "door ID ([1..4])",
 		},
 	},
-	Request:   requests.OpenDoorRequest.Message,
-	Response:  responses.OpenDoorResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.OpenDoorRequest.Message,
+	Response: responses.OpenDoorResponse.Message,
 
 	Tests: []FuncTest{
 		{

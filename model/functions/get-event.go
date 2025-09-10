@@ -20,9 +20,8 @@ var GetEvent = Function{
 			Description: "index of event to retrieve",
 		},
 	},
-	Request:   requests.GetEventRequest.Message,
-	Response:  responses.GetEventResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetEventRequest.Message,
+	Response: responses.GetEventResponse.Message,
 
 	Tests: []FuncTest{
 		{

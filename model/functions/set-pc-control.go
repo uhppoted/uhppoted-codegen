@@ -23,9 +23,8 @@ var SetPCControl = Function{
 			Description: "enables/disables remote access control",
 		},
 	},
-	Request:   requests.SetPCControlRequest.Message,
-	Response:  responses.SetPCControlResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetPCControlRequest.Message,
+	Response: responses.SetPCControlResponse.Message,
 
 	Tests: []FuncTest{
 		{

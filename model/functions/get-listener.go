@@ -17,9 +17,8 @@ var GetListener = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.GetListenerRequest.Message,
-	Response:  responses.GetListenerResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetListenerRequest.Message,
+	Response: responses.GetListenerResponse.Message,
 
 	Tests: []FuncTest{
 		{

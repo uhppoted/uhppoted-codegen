@@ -19,9 +19,8 @@ var GetListenerAddrPort = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.GetListenerAddrPortRequest.Message,
-	Response:  responses.GetListenerAddrPortResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetListenerAddrPortRequest.Message,
+	Response: responses.GetListenerAddrPortResponse.Message,
 
 	Tests: []FuncTest{
 		{

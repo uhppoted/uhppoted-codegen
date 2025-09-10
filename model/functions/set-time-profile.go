@@ -102,9 +102,8 @@ var SetTimeProfile = Function{
 			Description: "ID of linked profile (0 if not linked)",
 		},
 	},
-	Request:   requests.SetTimeProfileRequest.Message,
-	Response:  responses.SetTimeProfileResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetTimeProfileRequest.Message,
+	Response: responses.SetTimeProfileResponse.Message,
 
 	Tests: []FuncTest{
 		{

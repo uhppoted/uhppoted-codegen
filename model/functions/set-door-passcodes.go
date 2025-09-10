@@ -42,9 +42,8 @@ var SetDoorPasscodes = Function{
 			Description: "supervisor passcode ([0..99999]), 0 for 'none'",
 		},
 	},
-	Request:   requests.SetDoorPasscodesRequest.Message,
-	Response:  responses.SetDoorPasscodesResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetDoorPasscodesRequest.Message,
+	Response: responses.SetDoorPasscodesResponse.Message,
 
 	Tests: []FuncTest{
 		{

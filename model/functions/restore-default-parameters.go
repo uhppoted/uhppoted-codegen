@@ -8,7 +8,7 @@ import (
 var RestoreDefaultParameters = Function{
 	Name: "restore default parameters",
 	Description: []string{
-		"Deletes all card records stored on an access controller.",
+		"Restores the controller configuration to the manufacturer defaults.",
 	},
 	Args: []Arg{
 		{
@@ -17,9 +17,8 @@ var RestoreDefaultParameters = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.RestoreDefaultParametersRequest.Message,
-	Response:  responses.RestoreDefaultParametersResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.RestoreDefaultParametersRequest.Message,
+	Response: responses.RestoreDefaultParametersResponse.Message,
 
 	Tests: []FuncTest{
 		{

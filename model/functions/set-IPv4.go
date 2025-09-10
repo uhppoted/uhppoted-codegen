@@ -34,9 +34,8 @@ var SetIPv4 = Function{
 			Description: "controller gateway IPv4 address",
 		},
 	},
-	Request:   requests.SetIPv4Request.Message,
-	Response:  responses.SetIPv4Response.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetIPv4Request.Message,
+	Response: responses.SetIPv4Response.Message,
 
 	Tests: []FuncTest{
 		{

@@ -17,9 +17,8 @@ var ClearTaskList = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.ClearTaskListRequest.Message,
-	Response:  responses.ClearTaskListResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.ClearTaskListRequest.Message,
+	Response: responses.ClearTaskListResponse.Message,
 
 	Tests: []FuncTest{
 		{

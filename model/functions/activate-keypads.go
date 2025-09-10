@@ -37,9 +37,8 @@ var ActivateKeypads = Function{
 			Description: "enables/disables the keypad for reader 4",
 		},
 	},
-	Request:   requests.ActivateKeypadsRequest.Message,
-	Response:  responses.ActivateKeypadsResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.ActivateKeypadsRequest.Message,
+	Response: responses.ActivateKeypadsResponse.Message,
 
 	Tests: []FuncTest{
 		{

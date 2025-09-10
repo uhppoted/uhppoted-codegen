@@ -30,9 +30,8 @@ var SetAntiPassback = Function{
 			Description: "anti-passback mode",
 		},
 	},
-	Request:   requests.SetAntiPassbackRequest.Message,
-	Response:  responses.SetAntiPassbackResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetAntiPassbackRequest.Message,
+	Response: responses.SetAntiPassbackResponse.Message,
 
 	Tests: []FuncTest{
 		{

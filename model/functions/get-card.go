@@ -22,9 +22,8 @@ var GetCard = Function{
 			Description: "card number",
 		},
 	},
-	Request:   requests.GetCardRequest.Message,
-	Response:  responses.GetCardResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetCardRequest.Message,
+	Response: responses.GetCardResponse.Message,
 
 	Tests: []FuncTest{
 		{

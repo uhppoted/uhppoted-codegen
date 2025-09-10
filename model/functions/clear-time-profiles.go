@@ -17,9 +17,8 @@ var ClearTimeProfiles = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.ClearTimeProfilesRequest.Message,
-	Response:  responses.ClearTimeProfilesResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.ClearTimeProfilesRequest.Message,
+	Response: responses.ClearTimeProfilesResponse.Message,
 
 	Tests: []FuncTest{
 		{

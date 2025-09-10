@@ -30,9 +30,8 @@ var SetInterlock = Function{
 			Description: "door interlock mode",
 		},
 	},
-	Request:   requests.SetInterlockRequest.Message,
-	Response:  responses.SetInterlockResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetInterlockRequest.Message,
+	Response: responses.SetInterlockResponse.Message,
 
 	Tests: []FuncTest{
 		{

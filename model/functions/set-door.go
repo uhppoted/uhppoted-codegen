@@ -32,9 +32,8 @@ var SetDoor = Function{
 			Description: "unlock delay (seconds))",
 		},
 	},
-	Request:   requests.SetDoorRequest.Message,
-	Response:  responses.SetDoorResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetDoorRequest.Message,
+	Response: responses.SetDoorResponse.Message,
 
 	Tests: []FuncTest{
 		{

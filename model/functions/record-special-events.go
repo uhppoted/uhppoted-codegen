@@ -22,9 +22,8 @@ var RecordSpecialEvents = Function{
 			Description: "enables door opened, door closed and button pressed events if true",
 		},
 	},
-	Request:   requests.RecordSpecialEventsRequest.Message,
-	Response:  responses.RecordSpecialEventsResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.RecordSpecialEventsRequest.Message,
+	Response: responses.RecordSpecialEventsResponse.Message,
 
 	Tests: []FuncTest{
 		{

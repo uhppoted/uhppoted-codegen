@@ -22,9 +22,8 @@ var SetTime = Function{
 			Description: "date/time to which to set controller system time",
 		},
 	},
-	Request:   requests.SetTimeRequest.Message,
-	Response:  responses.SetTimeResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetTimeRequest.Message,
+	Response: responses.SetTimeResponse.Message,
 
 	Tests: []FuncTest{
 		{

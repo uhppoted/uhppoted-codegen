@@ -22,9 +22,8 @@ var GetDoor = Function{
 			Description: "door ID ([1..4])",
 		},
 	},
-	Request:   requests.GetDoorRequest.Message,
-	Response:  responses.GetDoorResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetDoorRequest.Message,
+	Response: responses.GetDoorResponse.Message,
 
 	Tests: []FuncTest{
 		{

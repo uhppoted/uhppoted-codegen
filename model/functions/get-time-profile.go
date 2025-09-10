@@ -22,9 +22,8 @@ var GetTimeProfile = Function{
 			Description: "profile ID ([2..254] to retrieve",
 		},
 	},
-	Request:   requests.GetTimeProfileRequest.Message,
-	Response:  responses.GetTimeProfileResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetTimeProfileRequest.Message,
+	Response: responses.GetTimeProfileResponse.Message,
 
 	Tests: []FuncTest{
 		{

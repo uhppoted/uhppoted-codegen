@@ -22,9 +22,8 @@ var GetCardAtIndex = Function{
 			Description: "card record index",
 		},
 	},
-	Request:   requests.GetCardAtIndexRequest.Message,
-	Response:  responses.GetCardAtIndexResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetCardAtIndexRequest.Message,
+	Response: responses.GetCardAtIndexResponse.Message,
 
 	Tests: []FuncTest{
 		{

@@ -57,9 +57,8 @@ var PutCard = Function{
 			Description: "optional PIN code [0..999999] (0 for none)",
 		},
 	},
-	Request:   requests.PutCardRequest.Message,
-	Response:  responses.PutCardResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.PutCardRequest.Message,
+	Response: responses.PutCardResponse.Message,
 
 	Tests: []FuncTest{
 		{

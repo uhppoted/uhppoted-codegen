@@ -29,9 +29,8 @@ var SetListenerAddrPort = Function{
 			Description: "status auto-send interval (seconds). A '0'interval disables auto-send.",
 		},
 	},
-	Request:   requests.SetListenerAddrPortRequest.Message,
-	Response:  responses.SetListenerAddrPortResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetListenerAddrPortRequest.Message,
+	Response: responses.SetListenerAddrPortResponse.Message,
 
 	Tests: []FuncTest{
 		{

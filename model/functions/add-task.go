@@ -97,9 +97,8 @@ var AddTask = Function{
 			Description: "number of 'more cards' for the MORE CARDS task type",
 		},
 	},
-	Request:   requests.AddTaskRequest.Message,
-	Response:  responses.AddTaskResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.AddTaskRequest.Message,
+	Response: responses.AddTaskResponse.Message,
 
 	Tests: []FuncTest{
 		{

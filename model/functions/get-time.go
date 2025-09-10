@@ -17,9 +17,8 @@ var GetTime = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.GetTimeRequest.Message,
-	Response:  responses.GetTimeResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.GetTimeRequest.Message,
+	Response: responses.GetTimeResponse.Message,
 
 	Tests: []FuncTest{
 		{

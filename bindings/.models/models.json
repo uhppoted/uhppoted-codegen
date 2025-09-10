@@ -80,11 +80,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-controller",
@@ -224,11 +219,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-IPv4",
@@ -319,11 +309,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-time",
@@ -410,11 +395,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-time",
@@ -509,11 +489,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-listener",
@@ -632,11 +607,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-listener",
@@ -752,11 +722,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-door",
@@ -888,11 +853,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-door",
@@ -1003,11 +963,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "open-door",
@@ -1242,11 +1197,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-status",
@@ -1570,11 +1520,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-cards",
@@ -1709,11 +1654,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-card",
@@ -1956,11 +1896,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-card-at-index",
@@ -2292,11 +2227,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "put-card",
@@ -2422,11 +2352,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "delete-card",
@@ -2512,11 +2437,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "delete-all-cards",
@@ -2651,11 +2571,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-event",
@@ -2907,11 +2822,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-event-index",
@@ -3002,11 +2912,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-event-index",
@@ -3097,11 +3002,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "record-special-events",
@@ -3304,11 +3204,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-time-profile",
@@ -3639,11 +3534,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-time-profile",
@@ -3809,11 +3699,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "clear-time-profiles",
@@ -4034,11 +3919,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "add-task",
@@ -4184,11 +4064,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "refresh-task-list",
@@ -4269,11 +4144,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "clear-task-list",
@@ -4365,11 +4235,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-pc-control",
@@ -4468,11 +4333,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-interlock",
@@ -4593,11 +4453,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "activate-keypads",
@@ -4743,11 +4598,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-door-passcodes",
@@ -4854,11 +4704,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "get-antipassback",
@@ -4951,11 +4796,6 @@
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "set-antipassback",
@@ -4995,7 +4835,7 @@
       {
         "name": "restore default parameters",
         "description": [
-          "Deletes all card records stored on an access controller."
+          "Restores the controller configuration to the manufacturer defaults."
         ],
         "args": [
           {
@@ -5029,20 +4869,18 @@
               "name": "controller",
               "type": "uint32",
               "offset": 4,
+              "tag": "controller",
               "description": "controller serial number"
             },
             {
               "name": "ok",
               "type": "bool",
-              "offset": 8
+              "offset": 8,
+              "tag": "ok",
+              "description": "succeeded/failed"
             }
           ]
         },
-        "protocols": [
-          "broadcast",
-          "udp",
-          "tcp"
-        ],
         "tests": [
           {
             "name": "restore-default-parameters",
@@ -7003,12 +6841,15 @@
             "name": "controller",
             "type": "uint32",
             "offset": 4,
+            "tag": "controller",
             "description": "controller serial number"
           },
           {
             "name": "ok",
             "type": "bool",
-            "offset": 8
+            "offset": 8,
+            "tag": "ok",
+            "description": "succeeded/failed"
           }
         ]
       }

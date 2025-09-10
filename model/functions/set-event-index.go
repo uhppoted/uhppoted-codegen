@@ -20,9 +20,8 @@ var SetEventIndex = Function{
 			Description: "downloaded event index",
 		},
 	},
-	Request:   requests.SetEventIndexRequest.Message,
-	Response:  responses.SetEventIndexResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.SetEventIndexRequest.Message,
+	Response: responses.SetEventIndexResponse.Message,
 
 	Tests: []FuncTest{
 		{

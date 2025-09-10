@@ -17,9 +17,8 @@ var DeleteAllCards = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 	},
-	Request:   requests.DeleteAllCardsRequest.Message,
-	Response:  responses.DeleteAllCardsResponse.Message,
-	Protocols: []string{"broadcast", "udp", "tcp"},
+	Request:  requests.DeleteAllCardsRequest.Message,
+	Response: responses.DeleteAllCardsResponse.Message,
 
 	Tests: []FuncTest{
 		{
