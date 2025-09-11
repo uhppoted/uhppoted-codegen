@@ -7,7 +7,7 @@ var SetAntiPassbackResponse = Response{
 	},
 
 	Message: Message{
-		Name:    "set antipassback response",
+		Name:    "set anti-passback response",
 		MsgType: 0x84,
 		Fields: []Field{
 			{

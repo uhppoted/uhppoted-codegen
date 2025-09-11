@@ -4125,7 +4125,7 @@
           ]
         },
         "response": {
-          "name": "clear tasklist response",
+          "name": "clear task list response",
           "msgtype": 166,
           "fields": [
             {
@@ -4685,7 +4685,7 @@
           ]
         },
         "response": {
-          "name": "get antipassback response",
+          "name": "get anti-passback response",
           "msgtype": 134,
           "fields": [
             {
@@ -4777,7 +4777,7 @@
           ]
         },
         "response": {
-          "name": "set antipassback response",
+          "name": "set anti-passback response",
           "msgtype": 132,
           "fields": [
             {
@@ -6714,7 +6714,7 @@
         ]
       },
       {
-        "name": "clear tasklist response",
+        "name": "clear task list response",
         "msgtype": 166,
         "fields": [
           {
@@ -6794,7 +6794,7 @@
         ]
       },
       {
-        "name": "get antipassback response",
+        "name": "get anti-passback response",
         "msgtype": 134,
         "fields": [
           {
@@ -6814,7 +6814,7 @@
         ]
       },
       {
-        "name": "set antipassback response",
+        "name": "set anti-passback response",
         "msgtype": 132,
         "fields": [
           {

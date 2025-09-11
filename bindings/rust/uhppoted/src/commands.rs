@@ -505,7 +505,7 @@ fn refresh_tasklist() {
 }
 
 fn clear_tasklist() {
-    print(|| -> Result<uhppote::ClearTasklistResponse, error::Error> {
+    print(|| -> Result<uhppote::ClearTaskListResponse, error::Error> {
 	    let controller = resolve(CONTROLLER);
 
         futures::executor::block_on(uhppote::clear_task_list(controller))
@@ -556,7 +556,7 @@ fn set_door_passcodes() {
 }
 
 fn get_antipassback() {
-    print(|| -> Result<uhppote::GetAntipassbackResponse, error::Error> {
+    print(|| -> Result<uhppote::GetAntiPassbackResponse, error::Error> {
         let controller = resolve(CONTROLLER);
 
         futures::executor::block_on(uhppote::get_anti_passback(controller))
@@ -564,7 +564,7 @@ fn get_antipassback() {
 }
 
 fn set_antipassback() {
-    print(|| -> Result<uhppote::SetAntipassbackResponse, error::Error> {
+    print(|| -> Result<uhppote::SetAntiPassbackResponse, error::Error> {
         let controller = resolve(CONTROLLER);
         let antipassback = 2;
 

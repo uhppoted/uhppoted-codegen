@@ -7,7 +7,7 @@ var ClearTaskListResponse = Response{
 	},
 
 	Message: Message{
-		Name:    "clear tasklist response",
+		Name:    "clear task list response",
 		MsgType: 0xa6,
 		Fields: []Field{
 			{
