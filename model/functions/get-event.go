@@ -69,7 +69,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "timestamp",
-							Type:  "datetime",
+							Type:  "optional datetime",
 							Value: "2025-11-17 12:34:56",
 						},
 						{
@@ -151,7 +151,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "timestamp",
-							Type:  "datetime",
+							Type:  "optional datetime",
 							Value: "0001-01-01 00:00:00",
 						},
 						{
@@ -233,7 +233,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "timestamp",
-							Type:  "datetime",
+							Type:  "optional datetime",
 							Value: "0001-01-01 00:00:00",
 						},
 						{

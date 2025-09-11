@@ -295,7 +295,7 @@ var ListenerEvent = Response{
 				},
 				{
 					Name:  "event timestamp",
-					Type:  "datetime",
+					Type:  "optional datetime",
 					Value: "2022-08-23 09:47:06",
 				},
 				{

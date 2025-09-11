@@ -152,7 +152,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-timestamp",
-							Type:  "datetime",
+							Type:  "optional datetime",
 							Value: "2022-08-23 09:47:06",
 						},
 						{
@@ -302,7 +302,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-timestamp",
-							Type:  "datetime",
+							Type:  "optional datetime",
 							Value: "0001-01-01 00:00:00",
 						},
 						{
