@@ -1319,7 +1319,7 @@
                   },
                   {
                     "name": "event-timestamp",
-                    "type": "datetime",
+                    "type": "optional datetime",
                     "value": "2022-08-23 09:47:06"
                   },
                   {
@@ -1457,7 +1457,7 @@
                   },
                   {
                     "name": "event-timestamp",
-                    "type": "datetime",
+                    "type": "optional datetime",
                     "value": "0001-01-01 00:00:00"
                   },
                   {
@@ -2603,7 +2603,7 @@
                   },
                   {
                     "name": "timestamp",
-                    "type": "datetime",
+                    "type": "optional datetime",
                     "value": "2025-11-17 12:34:56"
                   },
                   {
@@ -2671,7 +2671,7 @@
                   },
                   {
                     "name": "timestamp",
-                    "type": "datetime",
+                    "type": "optional datetime",
                     "value": "0001-01-01 00:00:00"
                   },
                   {
@@ -2739,7 +2739,7 @@
                   },
                   {
                     "name": "timestamp",
-                    "type": "datetime",
+                    "type": "optional datetime",
                     "value": "0001-01-01 00:00:00"
                   },
                   {
