@@ -8,7 +8,7 @@ import (
 var GetCard = Function{
 	Name: "get card",
 	Description: []string{
-		"Retrieves the card record for a given card number.",
+		"Retrieves the card information for a given card number.",
 	},
 	Args: []Arg{
 		{
