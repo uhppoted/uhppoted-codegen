@@ -51,3 +51,7 @@ def pack_pin(v, packet, offset):
     packet[offset] = (v >> 0) & 0x00ff
     packet[offset+1] = (v >> 8) & 0x0ff
     packet[offset+2] = (v >> 16) & 0x0ff
+
+def pack_task(v, packet, offset):
+    packet[offset] = v
+

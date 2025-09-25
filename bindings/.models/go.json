@@ -15,6 +15,7 @@
             "datetime": "DateTime",
             "HHmm": "HHmm",
             "pin": "PIN",
+            "task": "uint8",
             "controller": "Controller",
 
             "optional date": "Date",

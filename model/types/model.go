@@ -38,6 +38,7 @@ type Arg struct {
 	Name        string `json:"name"`
 	Type        string `json:"type"`
 	Description string `json:"description,omitempty"`
+	Value       any    `json:"value,omitempty"`
 }
 
 type Value struct {

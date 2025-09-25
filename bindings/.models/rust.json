@@ -14,6 +14,7 @@
             "datetime": "NaiveDateTime",
             "HHmm": "NaiveTime",
             "pin": "PIN",
+            "task": "u8",
             "controller": "Controller",
 
             "optional date": "Option<NaiveDate>",

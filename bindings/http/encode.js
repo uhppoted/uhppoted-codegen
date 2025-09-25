@@ -114,6 +114,10 @@ function packPin(v, packet, offset) {
   packet.setUint8(offset+2, (v >> 16) & 0x00ff)
 }
 
+function packTask(v, packet, offset) {
+  packet.setUint8(offset, v)
+}
+
 function bcd2bin (bcd) {
   const bytes = []
   const matches = [...bcd.matchAll(/([0-9]{2})/g)]

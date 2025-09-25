@@ -13,7 +13,7 @@ var AddTaskRequest = Request{
 			},
 			{
 				Name:   "task",
-				Type:   "uint8",
+				Type:   "task",
 				Offset: 26,
 			},
 			{
@@ -92,7 +92,7 @@ var AddTaskRequest = Request{
 				{
 					Arg: Arg{
 						Name: "task",
-						Type: "uint8",
+						Type: "task",
 					},
 					Value: "2",
 				},

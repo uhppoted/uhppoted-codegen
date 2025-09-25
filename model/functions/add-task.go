@@ -33,7 +33,7 @@ var AddTask = Function{
 		},
 		{
 			Name:        "task",
-			Type:        "uint8",
+			Type:        "task",
 			Description: "task type",
 		},
 		{
@@ -114,7 +114,7 @@ var AddTask = Function{
 				{
 					Arg: Arg{
 						Name: "task",
-						Type: "uint8",
+						Type: "task",
 					},
 					Value: "2",
 				},

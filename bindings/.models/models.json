@@ -1554,7 +1554,7 @@
       {
         "name": "get card",
         "description": [
-          "Retrieves the card record for a given card number."
+          "Retrieves the card information for a given card number."
         ],
         "args": [
           {
@@ -1796,7 +1796,7 @@
       {
         "name": "get card at index",
         "description": [
-          "Retrieves the card record stored at a given index."
+          "Retrieves the card information stored at a given index."
         ],
         "args": [
           {
@@ -2106,7 +2106,7 @@
       {
         "name": "put card",
         "description": [
-          "Creates or updates a card record stored on an access controller."
+          "Creates or updates the card information stored on an access controller."
         ],
         "args": [
           {
@@ -3758,7 +3758,7 @@
           },
           {
             "name": "task",
-            "type": "uint8",
+            "type": "task",
             "description": "task type"
           },
           {
@@ -3834,7 +3834,7 @@
             },
             {
               "name": "task",
-              "type": "uint8",
+              "type": "task",
               "offset": 26
             },
             {
@@ -3930,7 +3930,7 @@
               },
               {
                 "name": "task",
-                "type": "uint8",
+                "type": "task",
                 "value": "2"
               },
               {
@@ -5488,7 +5488,7 @@
           },
           {
             "name": "task",
-            "type": "uint8",
+            "type": "task",
             "offset": 26
           },
           {
