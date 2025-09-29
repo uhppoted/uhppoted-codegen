@@ -118,6 +118,10 @@ function packTask(v, packet, offset) {
   packet.setUint8(offset, v)
 }
 
+function packInterlock(v, packet, offset) {
+  packet.setUint8(offset, v)
+}
+
 function bcd2bin (bcd) {
   const bytes = []
   const matches = [...bcd.matchAll(/([0-9]{2})/g)]

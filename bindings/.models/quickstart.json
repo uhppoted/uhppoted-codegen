@@ -13,6 +13,8 @@
             "time": "time",
             "datetime": "dateTime",
             "HHmm": "time",
+            "task": "uint8",
+            "interlock": "uint8",
             "controller": "uint32",
 
             "optional date": "*date",

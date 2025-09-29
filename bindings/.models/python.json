@@ -15,6 +15,7 @@
             "HHmm": "datetime.time",
             "pin" : "PIN",
             "task": "int",
+            "interlock": "int",
             "controller": "int",
 
             "optional date": "datetime.date",

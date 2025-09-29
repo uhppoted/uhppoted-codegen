@@ -15,6 +15,7 @@
             "HHmm": "datelib.Time",
             "pin": "u24",
             "task": "u8",
+            "interlock": "u8",
             "controller": "Controller",
 
             "optional date": "?datelib.Date",

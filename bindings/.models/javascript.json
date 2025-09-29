@@ -15,6 +15,7 @@
             "HHmm": "HHmm",
             "pin": "PIN",
             "task": "uint8",
+            "interlock": "uint8",
             "controller": "uint32",
 
             "optional date": "Date",

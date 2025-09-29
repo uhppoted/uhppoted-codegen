@@ -26,7 +26,7 @@ var SetInterlock = Function{
 		},
 		{
 			Name:        "interlock",
-			Type:        "uint8",
+			Type:        "interlock",
 			Description: "door interlock mode",
 		},
 	},
@@ -47,7 +47,7 @@ var SetInterlock = Function{
 				{
 					Arg: Arg{
 						Name: "interlock",
-						Type: "uint8",
+						Type: "interlock",
 					},
 					Value: 8,
 				},

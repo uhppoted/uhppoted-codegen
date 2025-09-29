@@ -13,7 +13,7 @@ var SetInterlockRequest = Request{
 			},
 			{
 				Name:   "interlock",
-				Type:   "uint8",
+				Type:   "interlock",
 				Offset: 8,
 			},
 		},
@@ -33,7 +33,7 @@ var SetInterlockRequest = Request{
 				{
 					Arg: Arg{
 						Name: "interlock",
-						Type: "uint8",
+						Type: "interlock",
 					},
 					Value: 8,
 				},

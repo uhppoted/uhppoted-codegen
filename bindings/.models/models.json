@@ -4292,7 +4292,7 @@
           },
           {
             "name": "interlock",
-            "type": "uint8",
+            "type": "interlock",
             "description": "door interlock mode"
           }
         ],
@@ -4308,7 +4308,7 @@
             },
             {
               "name": "interlock",
-              "type": "uint8",
+              "type": "interlock",
               "offset": 8
             }
           ]
@@ -4344,7 +4344,7 @@
               },
               {
                 "name": "interlock",
-                "type": "uint8",
+                "type": "interlock",
                 "value": 8
               }
             ],
@@ -5621,7 +5621,7 @@
           },
           {
             "name": "interlock",
-            "type": "uint8",
+            "type": "interlock",
             "offset": 8
           }
         ]

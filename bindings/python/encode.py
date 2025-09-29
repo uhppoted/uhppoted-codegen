@@ -55,3 +55,5 @@ def pack_pin(v, packet, offset):
 def pack_task(v, packet, offset):
     packet[offset] = v
 
+def pack_interlock(v, packet, offset):
+    packet[offset] = v
