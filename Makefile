@@ -137,7 +137,7 @@ debug: erlang
 	                                                set-ip
 
 debug-all: go rust python zig php erlang lua
-	$(eval COMMAND := set-interlock)
+	$(eval COMMAND := set-door)
 	echo "--- $(COMMAND)"
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
 	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
@@ -145,7 +145,7 @@ debug-all: go rust python zig php erlang lua
 	$(ZIGBIN) --debug --bind 192.168.1.100   --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001             $(COMMAND)
 	$(PHPBIN) --debug --bind=192.168.1.100   --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 --timeout=1 $(COMMAND)
 	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001                   $(COMMAND)
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001                   $(COMMAND) --interlock="1&2"
+	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001                   $(COMMAND)
 
 godoc:
 	godoc -http=:80	-index_interval=60s

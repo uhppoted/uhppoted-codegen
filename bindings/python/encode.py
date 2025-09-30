@@ -52,6 +52,9 @@ def pack_pin(v, packet, offset):
     packet[offset+1] = (v >> 8) & 0x0ff
     packet[offset+2] = (v >> 16) & 0x0ff
 
+def pack_mode(v, packet, offset):
+    packet[offset] = v
+
 def pack_task(v, packet, offset):
     packet[offset] = v
 

@@ -14,6 +14,7 @@
             "datetime": "datetime",
             "HHmm": "hhmm",
             "pin": "pin",
+            "mode": "uint8",
             "task": "uint8",
             "interlock": "uint8",
             "controller": "Controller",

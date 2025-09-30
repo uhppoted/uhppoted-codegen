@@ -86,6 +86,11 @@ pack(pin, V, Packet, Offset) ->
     <<P:Offset/binary, _:24, R/binary>> = Packet,
     <<P/binary, B/binary, R/binary>>;
 
+pack(mode, V, Packet, Offset) ->
+    B = binary:encode_unsigned(V, little),
+    <<P:Offset/binary, _:8, R/binary>> = Packet,
+    <<P/binary, B/binary, R/binary>>;
+
 pack(task, V, Packet, Offset) ->
     B = binary:encode_unsigned(V, little),
     <<P:Offset/binary, _:8, R/binary>> = Packet,

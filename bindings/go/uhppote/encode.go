@@ -122,6 +122,12 @@ func packPin(v PIN, packet []byte, offset uint8) error {
     return nil
 }
 
+func packMode(v uint8, packet []byte, offset uint8) error {
+    packet[offset] = v
+
+    return nil
+}
+
 func packTask(v uint8, packet []byte, offset uint8) error {
     packet[offset] = v
 

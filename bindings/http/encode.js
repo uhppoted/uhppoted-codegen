@@ -114,6 +114,10 @@ function packPin(v, packet, offset) {
   packet.setUint8(offset+2, (v >> 16) & 0x00ff)
 }
 
+function packMode(v, packet, offset) {
+  packet.setUint8(offset, v)
+}
+
 function packTask(v, packet, offset) {
   packet.setUint8(offset, v)
 }

@@ -23,7 +23,7 @@ var SetDoor = Function{
 		},
 		{
 			Name:        "mode",
-			Type:        "uint8",
+			Type:        "mode",
 			Description: "control mode (1:normally open, 2:normally closed. 3:controlled)",
 		},
 		{
@@ -56,7 +56,7 @@ var SetDoor = Function{
 				{
 					Arg: Arg{
 						Name: "mode",
-						Type: "uint8",
+						Type: "mode",
 					},
 					Value: 2,
 				},

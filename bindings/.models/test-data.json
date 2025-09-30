@@ -577,7 +577,7 @@
             },
             {
               "name": "mode",
-              "type": "uint8",
+              "type": "mode",
               "value": 2
             },
             {

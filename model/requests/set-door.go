@@ -18,7 +18,7 @@ var SetDoorRequest = Request{
 			},
 			{
 				Name:   "mode",
-				Type:   "uint8",
+				Type:   "mode",
 				Offset: 9,
 			},
 			{
@@ -50,7 +50,7 @@ var SetDoorRequest = Request{
 				{
 					Arg: Arg{
 						Name: "mode",
-						Type: "uint8",
+						Type: "mode",
 					},
 					Value: 2,
 				},

@@ -118,6 +118,13 @@ function pack_pin($v, $packet, $offset)
     return $packet;
 }
 
+function pack_mode($v, $packet, $offset)
+{
+    $packet[$offset] = ($v >> 0)  & 0x00ff;
+
+    return $packet;
+}
+
 function pack_task($v, $packet, $offset)
 {
     $packet[$offset] = ($v >> 0)  & 0x00ff;

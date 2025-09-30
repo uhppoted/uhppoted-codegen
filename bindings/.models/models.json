@@ -786,7 +786,7 @@
           },
           {
             "name": "mode",
-            "type": "uint8",
+            "type": "mode",
             "description": "control mode (1:normally open, 2:normally closed. 3:controlled)"
           },
           {
@@ -812,7 +812,7 @@
             },
             {
               "name": "mode",
-              "type": "uint8",
+              "type": "mode",
               "offset": 9
             },
             {
@@ -869,7 +869,7 @@
               },
               {
                 "name": "mode",
-                "type": "uint8",
+                "type": "mode",
                 "value": 2
               },
               {
@@ -5069,7 +5069,7 @@
           },
           {
             "name": "mode",
-            "type": "uint8",
+            "type": "mode",
             "offset": 9
           },
           {

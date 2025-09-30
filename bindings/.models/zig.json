@@ -14,6 +14,7 @@
             "datetime": "datelib.DateTime",
             "HHmm": "datelib.Time",
             "pin": "u24",
+            "mode": "u8",
             "task": "u8",
             "interlock": "u8",
             "controller": "Controller",

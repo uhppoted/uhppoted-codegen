@@ -141,6 +141,14 @@ function pack_pin(v, packet, offset)
     return packet
 end
 
+function pack_mode(v, packet, offset)
+    bytes = string.pack("B", v)
+
+    packet[offset + 1] = string.byte(bytes, 1)
+
+    return packet
+end
+
 function pack_task(v, packet, offset)
     bytes = string.pack("B", v)
 
