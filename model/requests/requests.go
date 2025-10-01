@@ -9,4 +9,3 @@ type Message = types.Message
 type Field = types.Field
 type RequestTest = types.RequestTest
 type Arg = types.Arg
-type TestArg = types.TestArg

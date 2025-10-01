@@ -21,19 +21,15 @@ var GetCardRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "get-card",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "card",
-						Type: "uint32",
-					},
+					Name:  "card",
+					Type:  "uint32",
 					Value: 10058400,
 				},
 			},

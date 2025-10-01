@@ -27,19 +27,15 @@ var SetEventIndexRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-event-index-request",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "index",
-						Type: "uint32",
-					},
+					Name:  "index",
+					Type:  "uint32",
 					Value: 13579,
 				},
 			},

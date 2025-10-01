@@ -22,19 +22,15 @@ var SetInterlockRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-interlock-request",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "interlock",
-						Type: "interlock",
-					},
+					Name:  "interlock",
+					Type:  "interlock",
 					Value: 8,
 				},
 			},

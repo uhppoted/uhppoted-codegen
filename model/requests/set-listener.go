@@ -38,33 +38,25 @@ var SetListenerRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-listener",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "address",
-						Type: "IPv4",
-					},
+					Name:  "address",
+					Type:  "IPv4",
 					Value: netip.MustParseAddr("192.168.1.100"),
 				},
 				{
-					Arg: Arg{
-						Name: "port",
-						Type: "uint16",
-					},
+					Name:  "port",
+					Type:  "uint16",
 					Value: 60001,
 				},
 				{
-					Arg: Arg{
-						Name: "interval",
-						Type: "uint8",
-					},
+					Name:  "interval",
+					Type:  "uint8",
 					Value: 17,
 				},
 			},

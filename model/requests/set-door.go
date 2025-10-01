@@ -32,33 +32,25 @@ var SetDoorRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-door",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
-					},
+					Name:  "door",
+					Type:  "uint8",
 					Value: 3,
 				},
 				{
-					Arg: Arg{
-						Name: "mode",
-						Type: "mode",
-					},
+					Name:  "mode",
+					Type:  "mode",
 					Value: 2,
 				},
 				{
-					Arg: Arg{
-						Name: "delay",
-						Type: "uint8",
-					},
+					Name:  "delay",
+					Type:  "uint8",
 					Value: 17,
 				},
 			},

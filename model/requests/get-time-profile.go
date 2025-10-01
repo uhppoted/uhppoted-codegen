@@ -21,19 +21,15 @@ var GetTimeProfileRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "get-time-profile",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "profile",
-						Type: "uint8",
-					},
+					Name:  "profile",
+					Type:  "uint8",
 					Value: 37,
 				},
 			},

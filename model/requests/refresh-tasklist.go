@@ -22,12 +22,10 @@ var RefreshTaskListRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "refresh-task-list",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 			},

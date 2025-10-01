@@ -27,19 +27,15 @@ var SetPCControlRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-pc-control-request",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "enabled",
-						Type: "bool",
-					},
+					Name:  "enabled",
+					Type:  "bool",
 					Value: true,
 				},
 			},

@@ -16,12 +16,10 @@ var GetListenerRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "get-listener",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 			},

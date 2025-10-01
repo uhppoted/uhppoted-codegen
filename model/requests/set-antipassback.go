@@ -22,19 +22,15 @@ var SetAntiPassbackRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-antipassack",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "antipassback",
-						Type: "uint8",
-					},
+					Name:  "antipassback",
+					Type:  "uint8",
 					Value: 2,
 				},
 			},

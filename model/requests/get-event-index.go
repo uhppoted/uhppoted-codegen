@@ -17,13 +17,11 @@ var GetEventIndexRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "get-event-index",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 			},
 			Expected: []byte{

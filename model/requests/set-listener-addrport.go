@@ -32,26 +32,20 @@ var SetListenerAddrPortRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-listener-addrport",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "listener",
-						Type: "address:port",
-					},
+					Name:  "listener",
+					Type:  "address:port",
 					Value: netip.MustParseAddrPort("192.168.1.100:60001"),
 				},
 				{
-					Arg: Arg{
-						Name: "interval",
-						Type: "uint8",
-					},
+					Name:  "interval",
+					Type:  "uint8",
 					Value: 17,
 				},
 			},

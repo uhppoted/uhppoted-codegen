@@ -21,19 +21,15 @@ var GetCardAtIndexRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "get-card-at-index",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "index",
-						Type: "uint32",
-					},
+					Name:  "index",
+					Type:  "uint32",
 					Value: 135,
 				},
 			},

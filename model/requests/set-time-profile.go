@@ -102,130 +102,95 @@ var SetTimeProfileRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-time-profile",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "profile",
-						Type: "uint8",
-					}, Value: 37,
+					Name:  "profile",
+					Type:  "uint8",
+					Value: 37,
 				},
 				{
-					Arg: Arg{
-						Name: "start date",
-						Type: "date",
-					},
+					Name:  "start date",
+					Type:  "date",
 					Value: "2025-11-26",
 				},
 				{
-					Arg: Arg{
-						Name: "end date",
-						Type: "date",
-					},
+					Name:  "end date",
+					Type:  "date",
 					Value: "2025-12-29",
 				},
 				{
-					Arg: Arg{
-						Name: "monday",
-						Type: "bool",
-					},
+					Name:  "monday",
+					Type:  "bool",
 					Value: true,
 				},
 				{
-					Arg: Arg{
-						Name: "tuesday",
-						Type: "bool",
-					},
+					Name:  "tuesday",
+					Type:  "bool",
 					Value: true,
 				},
 				{
-					Arg: Arg{
-						Name: "wednesday",
-						Type: "bool",
-					},
+					Name:  "wednesday",
+					Type:  "bool",
 					Value: false,
 				},
 				{
-					Arg: Arg{
-						Name: "thursday",
-						Type: "bool",
-					},
+					Name:  "thursday",
+					Type:  "bool",
 					Value: true,
 				},
 				{
-					Arg: Arg{
-						Name: "friday",
-						Type: "bool",
-					},
+					Name:  "friday",
+					Type:  "bool",
 					Value: false,
 				},
 				{
-					Arg: Arg{
-						Name: "saturday",
-						Type: "bool",
-					},
+					Name:  "saturday",
+					Type:  "bool",
 					Value: true,
 				},
 				{
-					Arg: Arg{
-						Name: "sunday",
-						Type: "bool",
-					},
+					Name:  "sunday",
+					Type:  "bool",
 					Value: true,
 				},
 				{
-					Arg: Arg{
-						Name: "segment 1 start",
-						Type: "HHmm",
-					},
+					Name:  "segment 1 start",
+					Type:  "HHmm",
 					Value: "8:30",
 				},
 				{
-					Arg: Arg{
-						Name: "segment 1 end",
-						Type: "HHmm",
-					},
+					Name:  "segment 1 end",
+					Type:  "HHmm",
 					Value: "9:45",
 				},
 				{
-					Arg: Arg{
-						Name: "segment 2 start",
-						Type: "HHmm",
-					},
+					Name:  "segment 2 start",
+					Type:  "HHmm",
 					Value: "11:35",
 				},
 				{
-					Arg: Arg{
-						Name: "segment 2 end",
-						Type: "HHmm",
-					},
+					Name:  "segment 2 end",
+					Type:  "HHmm",
 					Value: "13:15",
 				},
 				{
-					Arg: Arg{
-						Name: "segment 3 start",
-						Type: "HHmm",
-					},
+					Name:  "segment 3 start",
+					Type:  "HHmm",
 					Value: "14:01",
 				},
 				{
-					Arg: Arg{
-						Name: "segment 3 end",
-						Type: "HHmm",
-					},
+					Name:  "segment 3 end",
+					Type:  "HHmm",
 					Value: "17:59",
 				},
 				{
-					Arg: Arg{
-						Name: "linked profile id",
-						Type: "uint8",
-					},
+					Name:  "linked profile id",
+					Type:  "uint8",
 					Value: 19,
 				},
 			},

@@ -22,20 +22,16 @@ var DeleteCardRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "delete-card",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "card",
-						Type: "uint32",
-					},
-					Value: uint32(10058400),
+					Name:  "card",
+					Type:  "uint32",
+					Value: 10058400,
 				},
 			},
 			Expected: []byte{

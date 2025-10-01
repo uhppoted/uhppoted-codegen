@@ -42,46 +42,35 @@ var SetDoorPasscodesRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-door-passcodes",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					}, Value: 405419896,
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
-					},
+					Name:  "door",
+					Type:  "uint8",
 					Value: 3,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 1",
-						Type: "uint32",
-					},
+					Name:  "passcode 1",
+					Type:  "uint32",
 					Value: 123456,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 2",
-						Type: "uint32",
-					},
+					Name:  "passcode 2",
+					Type:  "uint32",
 					Value: 234567,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 3",
-						Type: "uint32",
-					},
+					Name:  "passcode 3",
+					Type:  "uint32",
 					Value: 345678,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 4",
-						Type: "uint32",
-					},
+					Name:  "passcode 4",
+					Type:  "uint32",
 					Value: 456789,
 				},
 			},
@@ -94,46 +83,35 @@ var SetDoorPasscodesRequest = Request{
 		},
 		{
 			Name: "set-door-passcodes-with-invalid-passcode",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					}, Value: 405419896,
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
-					},
+					Name:  "door",
+					Type:  "uint8",
 					Value: 3,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 1",
-						Type: "uint32",
-					},
+					Name:  "passcode 1",
+					Type:  "uint32",
 					Value: 123456,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 2",
-						Type: "uint32",
-					},
+					Name:  "passcode 2",
+					Type:  "uint32",
 					Value: 1234567,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 3",
-						Type: "uint32",
-					},
+					Name:  "passcode 3",
+					Type:  "uint32",
 					Value: 345678,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 4",
-						Type: "uint32",
-					},
+					Name:  "passcode 4",
+					Type:  "uint32",
 					Value: 456789,
 				},
 			},

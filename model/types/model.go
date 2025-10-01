@@ -48,9 +48,9 @@ type Value struct {
 }
 
 type RequestTest struct {
-	Name     string    `json:"name"`
-	Args     []TestArg `json:"args"`
-	Expected []byte    `json:"expected"`
+	Name     string `json:"name"`
+	Args     []Arg  `json:"args"`
+	Expected []byte `json:"expected"`
 }
 
 type ResponseTest struct {

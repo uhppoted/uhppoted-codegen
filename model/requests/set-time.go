@@ -22,19 +22,15 @@ var SetTimeRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "set-time",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "datetime",
-						Type: "datetime",
-					},
+					Name:  "datetime",
+					Type:  "datetime",
 					Value: "2025-11-04 12:34:56",
 				},
 			},

@@ -16,13 +16,11 @@ var GetControllerRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "find-controllers",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(0),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 0,
 				},
 			},
 			Expected: []byte{
@@ -34,13 +32,11 @@ var GetControllerRequest = Request{
 		},
 		{
 			Name: "get-controller",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 			},
 			Expected: []byte{

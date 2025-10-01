@@ -21,19 +21,15 @@ var GetEventRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "get-event",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "event index",
-						Type: "uint32",
-					},
+					Name:  "event index",
+					Type:  "uint32",
 					Value: 13579,
 				},
 			},

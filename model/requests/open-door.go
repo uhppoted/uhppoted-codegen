@@ -21,19 +21,15 @@ var OpenDoorRequest = Request{
 	Tests: []RequestTest{
 		{
 			Name: "open-door",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
-					Value: uint32(405419896),
+					Name:  "controller",
+					Type:  "uint32",
+					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
-					},
+					Name:  "door",
+					Type:  "uint8",
 					Value: 3,
 				},
 			},
