@@ -103,103 +103,75 @@ var AddTask = Function{
 	Tests: []FuncTest{
 		{
 			Name: "add-task",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "task",
-						Type: "task",
-					},
+					Name:  "task",
+					Type:  "task",
 					Value: "2",
 				},
 				{
-					Arg: Arg{
-						Name: "start date",
-						Type: "date",
-					},
+					Name:  "start date",
+					Type:  "date",
 					Value: "2025-01-01",
 				},
 				{
-					Arg: Arg{
-						Name: "end date",
-						Type: "date",
-					},
+					Name:  "end date",
+					Type:  "date",
 					Value: "2025-12-31",
 				},
 				{
-					Arg: Arg{
-						Name: "monday",
-						Type: "bool",
-					},
+					Name:  "monday",
+					Type:  "bool",
 					Value: "true",
 				},
 				{
-					Arg: Arg{
-						Name: "tuesday",
-						Type: "bool",
-					},
+					Name:  "tuesday",
+					Type:  "bool",
 					Value: "true",
 				},
 				{
-					Arg: Arg{
-						Name: "wednesday",
-						Type: "bool",
-					},
+					Name:  "wednesday",
+					Type:  "bool",
 					Value: "false",
 				},
 				{
-					Arg: Arg{
-						Name: "thursday",
-						Type: "bool",
-					},
+					Name:  "thursday",
+					Type:  "bool",
 					Value: "true",
 				},
 				{
-					Arg: Arg{
-						Name: "friday",
-						Type: "bool",
-					},
+					Name:  "friday",
+					Type:  "bool",
 					Value: "false",
 				},
 				{
-					Arg: Arg{
-						Name: "saturday",
-						Type: "bool",
-					},
+					Name:  "saturday",
+					Type:  "bool",
 					Value: "true",
 				},
 				{
-					Arg: Arg{
-						Name: "sunday",
-						Type: "bool",
-					},
+					Name:  "sunday",
+					Type:  "bool",
 					Value: "true",
 				},
 				{
-					Arg: Arg{
-						Name: "start time",
-						Type: "HHmm",
-					},
+					Name:  "start time",
+					Type:  "HHmm",
 					Value: "08:45",
 				},
 				{
-					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
-					},
+					Name:  "door",
+					Type:  "uint8",
 					Value: "3",
 				},
 				{
-					Arg: Arg{
-						Name: "more cards",
-						Type: "uint8",
-					},
+					Name:  "more cards",
+					Type:  "uint8",
 					Value: "7",
 				},
 			},

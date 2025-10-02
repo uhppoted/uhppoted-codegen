@@ -25,12 +25,10 @@ var GetListenerAddrPort = Function{
 	Tests: []FuncTest{
 		{
 			Name: "get-listener-addr-port",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419897,
 				},
 			},

@@ -40,33 +40,25 @@ var SetIPv4 = Function{
 	Tests: []FuncTest{
 		{
 			Name: "set-IPv4",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "address",
-						Type: "IPv4",
-					},
+					Name:  "address",
+					Type:  "IPv4",
 					Value: netip.MustParseAddr("192.168.1.125"),
 				},
 				{
-					Arg: Arg{
-						Name: "netmask",
-						Type: "IPv4",
-					},
+					Name:  "netmask",
+					Type:  "IPv4",
 					Value: netip.MustParseAddr("255.255.255.0"),
 				},
 				{
-					Arg: Arg{
-						Name: "gateway",
-						Type: "IPv4",
-					},
+					Name:  "gateway",
+					Type:  "IPv4",
 					Value: netip.MustParseAddr("192.168.1.1"),
 				},
 			},

@@ -61,14 +61,9 @@ type ResponseTest struct {
 
 type FuncTest struct {
 	Name    string      `json:"name"`
-	Args    []TestArg   `json:"args"`
+	Args    []Arg       `json:"args"`
 	Request []byte      `json:"request"`
 	Replies []TestReply `json:"replies"`
-}
-
-type TestArg struct {
-	Arg
-	Value any `json:"value"`
 }
 
 type TestReply struct {

@@ -35,26 +35,20 @@ var SetListenerAddrPort = Function{
 	Tests: []FuncTest{
 		{
 			Name: "set-listener-addr-port",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419897,
 				},
 				{
-					Arg: Arg{
-						Name: "listener",
-						Type: "address:port",
-					},
+					Name:  "listener",
+					Type:  "address:port",
 					Value: netip.MustParseAddrPort("192.168.1.100:60001"),
 				},
 				{
-					Arg: Arg{
-						Name: "interval",
-						Type: "uint8",
-					},
+					Name:  "interval",
+					Type:  "uint8",
 					Value: 17,
 				},
 			},

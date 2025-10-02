@@ -23,12 +23,10 @@ var GetController = Function{
 	Tests: []FuncTest{
 		{
 			Name: "get-controller",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 			},

@@ -48,47 +48,35 @@ var SetDoorPasscodes = Function{
 	Tests: []FuncTest{
 		{
 			Name: "set-door-passcodes",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "door",
-						Type: "uint8",
-					},
+					Name:  "door",
+					Type:  "uint8",
 					Value: 4,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 1",
-						Type: "uint32",
-					},
+					Name:  "passcode 1",
+					Type:  "uint32",
 					Value: 12345,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 2",
-						Type: "uint32",
-					},
+					Name:  "passcode 2",
+					Type:  "uint32",
 					Value: 54321,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 3",
-						Type: "uint32",
-					},
+					Name:  "passcode 3",
+					Type:  "uint32",
 					Value: 999999,
 				},
 				{
-					Arg: Arg{
-						Name: "passcode 4",
-						Type: "uint32",
-					},
+					Name:  "passcode 4",
+					Type:  "uint32",
 					Value: 0,
 				},
 			},

@@ -23,12 +23,10 @@ var RestoreDefaultParameters = Function{
 	Tests: []FuncTest{
 		{
 			Name: "restore-default-parameters",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 			},

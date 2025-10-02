@@ -63,68 +63,50 @@ var PutCard = Function{
 	Tests: []FuncTest{
 		{
 			Name: "put-card",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "card",
-						Type: "uint32",
-					},
+					Name:  "card",
+					Type:  "uint32",
 					Value: 10058400,
 				},
 				{
-					Arg: Arg{
-						Name: "start date",
-						Type: "date",
-					},
+					Name:  "start date",
+					Type:  "date",
 					Value: "2025-01-01",
 				},
 				{
-					Arg: Arg{
-						Name: "end date",
-						Type: "date",
-					},
+					Name:  "end date",
+					Type:  "date",
 					Value: "2025-12-31",
 				},
 				{
-					Arg: Arg{
-						Name: "door 1",
-						Type: "uint8",
-					},
+					Name:  "door 1",
+					Type:  "uint8",
 					Value: 1,
 				},
 				{
-					Arg: Arg{
-						Name: "door 2",
-						Type: "uint8",
-					},
+					Name:  "door 2",
+					Type:  "uint8",
 					Value: 0,
 				},
 				{
-					Arg: Arg{
-						Name: "door 3",
-						Type: "uint8",
-					},
+					Name:  "door 3",
+					Type:  "uint8",
 					Value: 17,
 				},
 				{
-					Arg: Arg{
-						Name: "door 4",
-						Type: "uint8",
-					},
+					Name:  "door 4",
+					Type:  "uint8",
 					Value: 1,
 				},
 				{
-					Arg: Arg{
-						Name: "PIN",
-						Type: "pin",
-					},
+					Name:  "PIN",
+					Type:  "pin",
 					Value: 999999,
 				},
 			},

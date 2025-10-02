@@ -28,19 +28,15 @@ var SetTime = Function{
 	Tests: []FuncTest{
 		{
 			Name: "set-time",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "date-time",
-						Type: "datetime",
-					},
+					Name:  "date-time",
+					Type:  "datetime",
 					Value: "2025-11-04 12:34:56",
 				},
 			},

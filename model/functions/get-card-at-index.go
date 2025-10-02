@@ -28,19 +28,15 @@ var GetCardAtIndex = Function{
 	Tests: []FuncTest{
 		{
 			Name: "get-card-at-index",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "index",
-						Type: "uint32",
-					},
+					Name:  "index",
+					Type:  "uint32",
 					Value: 135,
 				},
 			},
@@ -110,19 +106,15 @@ var GetCardAtIndex = Function{
 		},
 		{
 			Name: "get-card-at-index-not-found",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "index",
-						Type: "uint32",
-					},
+					Name:  "index",
+					Type:  "uint32",
 					Value: 136,
 				},
 			},
@@ -192,19 +184,15 @@ var GetCardAtIndex = Function{
 		},
 		{
 			Name: "get-card-at-index-deleted",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "index",
-						Type: "uint32",
-					},
+					Name:  "index",
+					Type:  "uint32",
 					Value: 137,
 				},
 			},

@@ -43,40 +43,30 @@ var ActivateKeypads = Function{
 	Tests: []FuncTest{
 		{
 			Name: "activate-keypads",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 				{
-					Arg: Arg{
-						Name: "reader 1",
-						Type: "bool",
-					},
+					Name:  "reader 1",
+					Type:  "bool",
 					Value: true,
 				},
 				{
-					Arg: Arg{
-						Name: "reader 2",
-						Type: "bool",
-					},
+					Name:  "reader 2",
+					Type:  "bool",
 					Value: true,
 				},
 				{
-					Arg: Arg{
-						Name: "reader 3",
-						Type: "bool",
-					},
+					Name:  "reader 3",
+					Type:  "bool",
 					Value: false,
 				},
 				{
-					Arg: Arg{
-						Name: "reader 4",
-						Type: "bool",
-					},
+					Name:  "reader 4",
+					Type:  "bool",
 					Value: true,
 				},
 			},

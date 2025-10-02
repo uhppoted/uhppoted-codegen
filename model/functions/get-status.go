@@ -21,12 +21,10 @@ var GetStatus = Function{
 	Tests: []FuncTest{
 		{
 			Name: "get-status",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 			},
@@ -171,12 +169,10 @@ var GetStatus = Function{
 		},
 		{
 			Name: "get-status-no-event",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419897,
 				},
 			},

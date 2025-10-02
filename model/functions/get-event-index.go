@@ -23,12 +23,10 @@ var GetEventIndex = Function{
 	Tests: []FuncTest{
 		{
 			Name: "get-event-index",
-			Args: []TestArg{
+			Args: []Arg{
 				{
-					Arg: Arg{
-						Name: "controller",
-						Type: "uint32",
-					},
+					Name:  "controller",
+					Type:  "uint32",
 					Value: 405419896,
 				},
 			},
