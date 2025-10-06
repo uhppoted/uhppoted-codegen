@@ -5,7 +5,7 @@ import (
 )
 
 type Function = types.Function
+type FuncTest = types.FuncTest
 type Arg = types.Arg
 type Value = types.Value
-type FuncTest = types.FuncTest
-type TestReply = types.TestReply
+type Reply = types.Reply

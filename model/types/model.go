@@ -9,17 +9,6 @@ type Function struct {
 	Tests       []FuncTest `json:"tests,omitempty"`
 }
 
-type Request struct {
-	Message
-	Tests []RequestTest `json:"tests"`
-}
-
-type Response struct {
-	Message     `json:"message"`
-	Description []string       `json:"description"`
-	Tests       []ResponseTest `json:"tests"`
-}
-
 type Message struct {
 	Name    string  `json:"name"`
 	MsgType uint8   `json:"msgtype"`
@@ -34,17 +23,15 @@ type Field struct {
 	Description string `json:"description,omitempty"`
 }
 
-type Arg struct {
-	Name        string `json:"name"`
-	Type        string `json:"type"`
-	Description string `json:"description,omitempty"`
-	Value       any    `json:"value,omitempty"`
+type Request struct {
+	Message
+	Tests []RequestTest `json:"tests"`
 }
 
-type Value struct {
-	Name  string `json:"name"`
-	Type  string `json:"type"`
-	Value any    `json:"value"`
+type Response struct {
+	Message     `json:"message"`
+	Description []string       `json:"description"`
+	Tests       []ResponseTest `json:"tests"`
 }
 
 type RequestTest struct {
@@ -60,13 +47,26 @@ type ResponseTest struct {
 }
 
 type FuncTest struct {
-	Name    string      `json:"name"`
-	Args    []Arg       `json:"args"`
-	Request []byte      `json:"request"`
-	Replies []TestReply `json:"replies"`
+	Name    string  `json:"name"`
+	Args    []Arg   `json:"args"`
+	Request []byte  `json:"request"`
+	Replies []Reply `json:"replies"`
 }
 
-type TestReply struct {
+type Arg struct {
+	Name        string `json:"name"`
+	Type        string `json:"type"`
+	Description string `json:"description,omitempty"`
+	Value       any    `json:"value,omitempty"`
+}
+
+type Value struct {
+	Name  string `json:"name"`
+	Type  string `json:"type"`
+	Value any    `json:"value"`
+}
+
+type Reply struct {
 	Message  []byte  `json:"message"`
 	Response []Value `json:"response"`
 }
