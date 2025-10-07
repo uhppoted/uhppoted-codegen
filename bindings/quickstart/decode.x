@@ -115,6 +115,10 @@ func unpackHHmm(packet, offset) {
     return datetime::parse('HHmm', bcd)
 }
 
+func unpackMode(packet, offset) {
+    return packet[offset]
+}
+
 func bcd2string(bytes) {
     return hex::encode(bytes)
 }

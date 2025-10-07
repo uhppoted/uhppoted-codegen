@@ -148,6 +148,10 @@ unpack(hhmm, Packet, Offset) ->
 
 unpack(pin, Packet, Offset) ->
     <<_:Offset/binary, B:3/binary, _/binary>> = Packet,
+    binary:decode_unsigned(B, little);
+
+unpack(mode, Packet, Offset) ->
+    <<_:Offset/binary, B:1/binary, _/binary>> = Packet,
     binary:decode_unsigned(B, little).
 
 bcd_to_integer(BCD) ->

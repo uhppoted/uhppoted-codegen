@@ -174,6 +174,11 @@ func unpackPin(packet []byte, offset uint8) (PIN, error) {
     return PIN(v), nil
 }
 
+func unpackMode(packet []byte, offset uint8) (uint8, error) {
+    return packet[offset], nil
+}
+
+
 func bcd2string(bytes []byte) string {
     BCD := hex.EncodeToString(bytes)
 

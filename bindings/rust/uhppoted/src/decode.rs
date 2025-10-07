@@ -221,6 +221,11 @@ fn unpack_pin(packet: &Msg, offset: usize) -> Result<PIN> {
     return Ok(u32::from_le_bytes(bytes));
 }
 
+fn unpack_mode(packet: &Msg, offset: usize) -> Result<u8> {
+    return Ok(packet[offset]);
+}
+
+
 // UNIT TESTS
 
 #[cfg(test)]

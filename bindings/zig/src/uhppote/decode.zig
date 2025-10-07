@@ -462,6 +462,10 @@ test "unpack_optional_datetime" {
     try std.testing.expectEqual(expected, datetime.?);
 }
 
+fn unpack_mode(packet: [64]u8, offset: u8) u8 {
+    return packet[offset];
+}
+
 test "bcd2string" {
     const packet = [_]u8{
         0x17, 0x20, 0x00, 0x00, 0x78, 0x37, 0x2a, 0x18, 0x4e, 0x00, 0x00, 0x00, 0x02, 0x01, 0x03, 0x01,

@@ -119,3 +119,7 @@ def unpack_pin(packet, offset):
     v |= packet[offset] & 0x00ff
 
     return v
+
+def unpack_mode(packet, offset):
+    return packet[offset]
+

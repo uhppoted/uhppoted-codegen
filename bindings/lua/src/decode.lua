@@ -159,6 +159,10 @@ function unpack_pin(packet, offset)
     return string.unpack("<I3", packet, offset + 1)
 end
 
+function unpack_mode(packet, offset)
+    return string.unpack("B", packet, offset + 1)
+end
+
 function bcd2string(bytes)
     return bytes:gsub(".", function(c)
         return string.format("%02x", string.byte(c))

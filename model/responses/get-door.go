@@ -25,7 +25,7 @@ var GetDoorResponse = Response{
 			},
 			{
 				Name:        "mode",
-				Type:        "uint8",
+				Type:        "mode",
 				Offset:      9,
 				Tag:         "mode",
 				Description: "control mode (1:normally open, 2:normally closed. 3:controlled)",
@@ -61,7 +61,7 @@ var GetDoorResponse = Response{
 				},
 				{
 					Name:  "mode",
-					Type:  "uint8",
+					Type:  "mode",
 					Value: 2,
 				},
 				{
