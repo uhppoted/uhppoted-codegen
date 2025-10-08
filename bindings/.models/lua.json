@@ -17,6 +17,7 @@
             "mode": "uint8",
             "task": "uint8",
             "interlock": "uint8",
+            "event-type": "uint8",
             "controller": "uint32",
 
             "optional date": "date",

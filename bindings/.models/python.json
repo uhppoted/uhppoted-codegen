@@ -17,6 +17,7 @@
             "mode": "int",
             "task": "int",
             "interlock": "int",
+            "event-type": "int",
             "controller": "int",
 
             "optional date": "datetime.date",

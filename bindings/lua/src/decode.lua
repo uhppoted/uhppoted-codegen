@@ -163,6 +163,10 @@ function unpack_mode(packet, offset)
     return string.unpack("B", packet, offset + 1)
 end
 
+function unpack_event_type(packet, offset)
+    return string.unpack("B", packet, offset + 1)
+end
+
 function bcd2string(bytes)
     return bytes:gsub(".", function(c)
         return string.format("%02x", string.byte(c))

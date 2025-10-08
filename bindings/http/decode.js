@@ -134,6 +134,9 @@ function unpackMode(packet, offset) {
   return packet.getUint8(offset)
 }
 
+function unpackEventType(packet, offset) {
+  return packet.getUint8(offset)
+}
 
 function bcd (bytes) {
   return [...bytes].map(x => [(x >>> 4) & 0x0f, (x >>> 0) & 0x0f]).flat().join('')

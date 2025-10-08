@@ -152,6 +152,10 @@ unpack(pin, Packet, Offset) ->
 
 unpack(mode, Packet, Offset) ->
     <<_:Offset/binary, B:1/binary, _/binary>> = Packet,
+    binary:decode_unsigned(B, little);
+
+unpack(event_type, Packet, Offset) ->
+    <<_:Offset/binary, B:1/binary, _/binary>> = Packet,
     binary:decode_unsigned(B, little).
 
 bcd_to_integer(BCD) ->

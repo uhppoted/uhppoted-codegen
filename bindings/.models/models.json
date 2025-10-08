@@ -2522,7 +2522,7 @@
             },
             {
               "name": "event type",
-              "type": "uint8",
+              "type": "event-type",
               "offset": 12,
               "tag": "event-type",
               "description": "event type "
@@ -6392,7 +6392,7 @@
           },
           {
             "name": "event type",
-            "type": "uint8",
+            "type": "event-type",
             "offset": 12,
             "tag": "event-type",
             "description": "event type "

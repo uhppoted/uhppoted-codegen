@@ -72,7 +72,7 @@ var GetEventResponse = Response{
 			},
 			{
 				Name:        "event type",
-				Type:        "uint8",
+				Type:        "event-type",
 				Tag:         "event-type",
 				Offset:      12,
 				Description: "event type ",
@@ -149,7 +149,7 @@ var GetEventResponse = Response{
 				},
 				{
 					Name:  "event type",
-					Type:  "uint8",
+					Type:  "event-type",
 					Value: 2,
 				},
 				{

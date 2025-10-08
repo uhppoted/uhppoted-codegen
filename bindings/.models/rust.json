@@ -17,6 +17,7 @@
             "mode": "u8",
             "task": "u8",
             "interlock": "u8",
+            "event-type": "u8",
             "controller": "Controller",
 
             "optional date": "Option<NaiveDate>",
