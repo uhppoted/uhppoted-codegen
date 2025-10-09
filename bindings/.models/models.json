@@ -1141,7 +1141,7 @@
             },
             {
               "name": "event type",
-              "type": "uint8",
+              "type": "event-type",
               "offset": 12,
               "tag": "event-type",
               "description": "last event type"
@@ -1294,7 +1294,7 @@
                   },
                   {
                     "name": "event-type",
-                    "type": "uint8",
+                    "type": "event-type",
                     "value": 2
                   },
                   {
@@ -1432,7 +1432,7 @@
                   },
                   {
                     "name": "event-type",
-                    "type": "uint8",
+                    "type": "event-type",
                     "value": 0
                   },
                   {
@@ -2608,7 +2608,7 @@
                   },
                   {
                     "name": "event type",
-                    "type": "uint8",
+                    "type": "event-type",
                     "value": 2
                   },
                   {
@@ -2676,7 +2676,7 @@
                   },
                   {
                     "name": "event type",
-                    "type": "uint8",
+                    "type": "event-type",
                     "value": 0
                   },
                   {
@@ -2744,7 +2744,7 @@
                   },
                   {
                     "name": "event type",
-                    "type": "uint8",
+                    "type": "event-type",
                     "value": 255
                   },
                   {
@@ -6098,7 +6098,7 @@
           },
           {
             "name": "event type",
-            "type": "uint8",
+            "type": "event-type",
             "offset": 12,
             "tag": "event-type",
             "description": "last event type"

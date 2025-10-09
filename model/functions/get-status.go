@@ -125,7 +125,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-type",
-							Type:  "uint8",
+							Type:  "event-type",
 							Value: 2,
 						},
 						{
@@ -273,7 +273,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-type",
-							Type:  "uint8",
+							Type:  "event-type",
 							Value: 0,
 						},
 						{

@@ -70,7 +70,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "event type",
-							Type:  "uint8",
+							Type:  "event-type",
 							Value: 2,
 						},
 						{
@@ -148,7 +148,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "event type",
-							Type:  "uint8",
+							Type:  "event-type",
 							Value: 0x00,
 						},
 						{
@@ -226,7 +226,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "event type",
-							Type:  "uint8",
+							Type:  "event-type",
 							Value: 0xff,
 						},
 						{

@@ -248,7 +248,7 @@
             },
             {
               "name": "event type",
-              "type": "uint8",
+              "type": "event-type",
               "value": 2
             },
             {
@@ -388,7 +388,7 @@
             },
             {
               "name": "event type",
-              "type": "uint8",
+              "type": "event-type",
               "value": 0
             },
             {
@@ -988,7 +988,7 @@
             },
             {
               "name": "event type",
-              "type": "uint8",
+              "type": "event-type",
               "value": 2
             },
             {

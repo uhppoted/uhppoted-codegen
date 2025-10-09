@@ -122,7 +122,7 @@ var ListenerEvent = Response{
 			},
 			{
 				Name:        "event type",
-				Type:        "uint8",
+				Type:        "event-type",
 				Offset:      12,
 				Tag:         "event-type",
 				Description: "last event type",
@@ -270,7 +270,7 @@ var ListenerEvent = Response{
 				},
 				{
 					Name:  "event type",
-					Type:  "uint8",
+					Type:  "event-type",
 					Value: 2,
 				},
 				{
@@ -401,7 +401,7 @@ var ListenerEvent = Response{
 				},
 				{
 					Name:  "event type",
-					Type:  "uint8",
+					Type:  "event-type",
 					Value: 2,
 				},
 				{

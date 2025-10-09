@@ -338,7 +338,7 @@ var GetStatusTest = Test{
 			},
 			Value{
 				Name:  "event type",
-				Type:  "uint8",
+				Type:  "event-type",
 				Value: 2,
 			},
 			Value{
@@ -489,7 +489,7 @@ var GetStatusNoEventTest = Test{
 			},
 			Value{
 				Name:  "event type",
-				Type:  "uint8",
+				Type:  "event-type",
 				Value: 0,
 			},
 			Value{
@@ -1221,7 +1221,7 @@ var GetEventTest = Test{
 			},
 			Value{
 				Name:  "event type",
-				Type:  "uint8",
+				Type:  "event-type",
 				Value: 2,
 			},
 			Value{
