@@ -7,7 +7,7 @@
 {{define "result"}}{{if .response}}{{CamelCase .response.name}}{{else}}bool{{end}}{{end}}
 
 {{define "var"}}
-{{- if eq .type "uint8" "uint16" "pin" "uint32" "bool"}}{{ .value }}
+{{- if eq .type "uint8" "uint16" "pin" "uint32" "bool" "event-type"}}{{ .value }}
 {{- else -}}
 "{{.value}}"
 {{- end -}}

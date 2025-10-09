@@ -754,7 +754,7 @@
                   },
                   {
                     "name": "mode",
-                    "type": "uint8",
+                    "type": "mode",
                     "value": 3
                   },
                   {
@@ -895,7 +895,7 @@
                   },
                   {
                     "name": "mode",
-                    "type": "uint8",
+                    "type": "mode",
                     "value": 2
                   },
                   {

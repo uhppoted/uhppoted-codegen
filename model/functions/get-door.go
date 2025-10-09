@@ -67,7 +67,7 @@ var GetDoor = Function{
 						},
 						{
 							Name:  "mode",
-							Type:  "uint8",
+							Type:  "mode",
 							Value: 3,
 						},
 						{
