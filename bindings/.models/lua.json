@@ -18,6 +18,7 @@
             "task": "uint8",
             "interlock": "uint8",
             "event-type": "uint8",
+            "direction": "uint8",
             "controller": "uint32",
 
             "optional date": "date",

@@ -144,10 +144,10 @@ var GetStatusResponse = Response{
 			},
 			{
 				Name:        "event direction",
-				Type:        "uint8",
+				Type:        "direction",
 				Offset:      15,
 				Tag:         "event-direction",
-				Description: "last event door direction (0: in, 1: out)",
+				Description: "last event door direction (1: in, 2: out)",
 			},
 			{
 				Name:        "event card",

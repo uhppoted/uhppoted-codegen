@@ -81,7 +81,7 @@ var Event = types.Message{
 		},
 		types.Field{
 			Name:   "event direction",
-			Type:   "uint8",
+			Type:   "direction",
 			Offset: 15,
 		},
 		types.Field{

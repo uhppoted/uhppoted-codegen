@@ -263,7 +263,7 @@
             },
             {
               "name": "event direction",
-              "type": "uint8",
+              "type": "direction",
               "value": 1
             },
             {
@@ -403,7 +403,7 @@
             },
             {
               "name": "event direction",
-              "type": "uint8",
+              "type": "direction",
               "value": 0
             },
             {
@@ -1003,7 +1003,7 @@
             },
             {
               "name": "direction",
-              "type": "uint8",
+              "type": "direction",
               "value": 1
             },
             {

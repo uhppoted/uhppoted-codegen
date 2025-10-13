@@ -119,6 +119,14 @@ func unpackMode(packet, offset) {
     return packet[offset]
 }
 
+func unpackEventType(packet, offset) {
+    return packet[offset]
+}
+
+func unpackDirection(packet, offset) {
+    return packet[offset]
+}
+
 func bcd2string(bytes) {
     return hex::encode(bytes)
 }

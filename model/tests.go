@@ -353,7 +353,7 @@ var GetStatusTest = Test{
 			},
 			Value{
 				Name:  "event direction",
-				Type:  "uint8",
+				Type:  "direction",
 				Value: 1,
 			},
 			Value{
@@ -504,7 +504,7 @@ var GetStatusNoEventTest = Test{
 			},
 			Value{
 				Name:  "event direction",
-				Type:  "uint8",
+				Type:  "direction",
 				Value: 0,
 			},
 			Value{
@@ -1236,7 +1236,7 @@ var GetEventTest = Test{
 			},
 			Value{
 				Name:  "direction",
-				Type:  "uint8",
+				Type:  "direction",
 				Value: 1,
 			},
 			Value{

@@ -93,7 +93,7 @@ var GetEventResponse = Response{
 			},
 			{
 				Name:        "direction",
-				Type:        "uint8",
+				Type:        "direction",
 				Tag:         "direction",
 				Offset:      15,
 				Description: "direction (1:IN, 2:OUT) for card and door events",
@@ -164,7 +164,7 @@ var GetEventResponse = Response{
 				},
 				{
 					Name:  "direction",
-					Type:  "uint8",
+					Type:  "direction",
 					Value: 2,
 				},
 				{
@@ -220,7 +220,7 @@ var GetEventResponse = Response{
 				},
 				{
 					Name:  "direction",
-					Type:  "uint8",
+					Type:  "direction",
 					Value: 0,
 				},
 				{
@@ -276,7 +276,7 @@ var GetEventResponse = Response{
 				},
 				{
 					Name:  "direction",
-					Type:  "uint8",
+					Type:  "direction",
 					Value: 0,
 				},
 				{

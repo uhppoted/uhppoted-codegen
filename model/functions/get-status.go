@@ -140,7 +140,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-direction",
-							Type:  "uint8",
+							Type:  "direction",
 							Value: 1,
 						},
 						{
@@ -288,7 +288,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-direction",
-							Type:  "uint8",
+							Type:  "direction",
 							Value: 0,
 						},
 						{

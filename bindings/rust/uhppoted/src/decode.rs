@@ -229,6 +229,9 @@ fn unpack_event_type(packet: &Msg, offset: usize) -> Result<u8> {
     return Ok(packet[offset]);
 }
 
+fn unpack_direction(packet: &Msg, offset: usize) -> Result<u8> {
+    return Ok(packet[offset]);
+}
 
 // UNIT TESTS
 

@@ -1162,10 +1162,10 @@
             },
             {
               "name": "event direction",
-              "type": "uint8",
+              "type": "direction",
               "offset": 15,
               "tag": "event-direction",
-              "description": "last event door direction (0: in, 1: out)"
+              "description": "last event door direction (1: in, 2: out)"
             },
             {
               "name": "event card",
@@ -1309,7 +1309,7 @@
                   },
                   {
                     "name": "event-direction",
-                    "type": "uint8",
+                    "type": "direction",
                     "value": 1
                   },
                   {
@@ -1447,7 +1447,7 @@
                   },
                   {
                     "name": "event-direction",
-                    "type": "uint8",
+                    "type": "direction",
                     "value": 0
                   },
                   {
@@ -2543,7 +2543,7 @@
             },
             {
               "name": "direction",
-              "type": "uint8",
+              "type": "direction",
               "offset": 15,
               "tag": "direction",
               "description": "direction (1:IN, 2:OUT) for card and door events"
@@ -2623,7 +2623,7 @@
                   },
                   {
                     "name": "direction",
-                    "type": "uint8",
+                    "type": "direction",
                     "value": 2
                   },
                   {
@@ -2691,7 +2691,7 @@
                   },
                   {
                     "name": "direction",
-                    "type": "uint8",
+                    "type": "direction",
                     "value": 0
                   },
                   {
@@ -2759,7 +2759,7 @@
                   },
                   {
                     "name": "direction",
-                    "type": "uint8",
+                    "type": "direction",
                     "value": 0
                   },
                   {
@@ -6119,10 +6119,10 @@
           },
           {
             "name": "event direction",
-            "type": "uint8",
+            "type": "direction",
             "offset": 15,
             "tag": "event-direction",
-            "description": "last event door direction (0: in, 1: out)"
+            "description": "last event door direction (1: in, 2: out)"
           },
           {
             "name": "event card",
@@ -6413,7 +6413,7 @@
           },
           {
             "name": "direction",
-            "type": "uint8",
+            "type": "direction",
             "offset": 15,
             "tag": "direction",
             "description": "direction (1:IN, 2:OUT) for card and door events"
@@ -6885,7 +6885,7 @@
         },
         {
           "name": "event direction",
-          "type": "uint8",
+          "type": "direction",
           "offset": 15
         },
         {

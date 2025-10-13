@@ -143,7 +143,7 @@ var ListenerEvent = Response{
 			},
 			{
 				Name:        "event direction",
-				Type:        "uint8",
+				Type:        "direction",
 				Offset:      15,
 				Tag:         "event-direction",
 				Description: "last event door direction (0: in, 1: out)",
@@ -285,7 +285,7 @@ var ListenerEvent = Response{
 				},
 				{
 					Name:  "event direction",
-					Type:  "uint8",
+					Type:  "direction",
 					Value: 1,
 				},
 				{

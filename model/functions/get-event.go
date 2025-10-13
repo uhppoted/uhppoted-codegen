@@ -85,7 +85,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "direction",
-							Type:  "uint8",
+							Type:  "direction",
 							Value: 2,
 						},
 						{
@@ -163,7 +163,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "direction",
-							Type:  "uint8",
+							Type:  "direction",
 							Value: 0,
 						},
 						{
@@ -241,7 +241,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "direction",
-							Type:  "uint8",
+							Type:  "direction",
 							Value: 0,
 						},
 						{
