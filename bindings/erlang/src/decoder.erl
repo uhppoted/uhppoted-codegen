@@ -158,6 +158,10 @@ unpack(event_type, Packet, Offset) ->
     <<_:Offset/binary, B:1/binary, _/binary>> = Packet,
     binary:decode_unsigned(B, little).
 
+unpack(direction, Packet, Offset) ->
+    <<_:Offset/binary, B:1/binary, _/binary>> = Packet,
+    binary:decode_unsigned(B, little).
+
 bcd_to_integer(BCD) ->
     Bytes = [<<B>> || B <- binary_to_list(BCD)],
     Nibbles = lists:flatten([[N1, N2] || <<N1:4/bits, N2:4/bits>> <- Bytes]),
