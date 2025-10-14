@@ -95,7 +95,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "reason",
-							Type:  "uint8",
+							Type:  "reason",
 							Value: 21,
 						},
 					},
@@ -173,7 +173,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "reason",
-							Type:  "uint8",
+							Type:  "reason",
 							Value: 0,
 						},
 					},
@@ -251,7 +251,7 @@ var GetEvent = Function{
 						},
 						{
 							Name:  "reason",
-							Type:  "uint8",
+							Type:  "reason",
 							Value: 0,
 						},
 					},

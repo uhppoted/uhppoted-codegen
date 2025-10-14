@@ -114,7 +114,7 @@ var GetEventResponse = Response{
 			},
 			{
 				Name:        "reason",
-				Type:        "uint8",
+				Type:        "reason",
 				Tag:         "reason",
 				Offset:      27,
 				Description: "reason code",
@@ -174,7 +174,7 @@ var GetEventResponse = Response{
 				},
 				{
 					Name:  "reason",
-					Type:  "uint8",
+					Type:  "reason",
 					Value: 21,
 				},
 			},

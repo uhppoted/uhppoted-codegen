@@ -164,7 +164,7 @@ var ListenerEvent = Response{
 			},
 			{
 				Name:        "event reason",
-				Type:        "uint8",
+				Type:        "reason",
 				Offset:      27,
 				Tag:         "event-reason",
 				Description: "last event reason",
@@ -300,7 +300,7 @@ var ListenerEvent = Response{
 				},
 				{
 					Name:  "event reason",
-					Type:  "uint8",
+					Type:  "reason",
 					Value: 44,
 				},
 				{
@@ -431,7 +431,7 @@ var ListenerEvent = Response{
 				},
 				{
 					Name:  "event reason",
-					Type:  "uint8",
+					Type:  "reason",
 					Value: 44,
 				},
 				{

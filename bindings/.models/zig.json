@@ -19,6 +19,7 @@
             "interlock": "u8",
             "event-type": "u8",
             "direction": "u8",
+            "reason": "u8",
             "controller": "Controller",
 
             "optional date": "?datelib.Date",

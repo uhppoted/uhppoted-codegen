@@ -1183,7 +1183,7 @@
             },
             {
               "name": "event reason",
-              "type": "uint8",
+              "type": "reason",
               "offset": 27,
               "tag": "event-reason",
               "description": "last event reason"
@@ -1324,7 +1324,7 @@
                   },
                   {
                     "name": "event-reason",
-                    "type": "uint8",
+                    "type": "reason",
                     "value": 44
                   },
                   {
@@ -1462,7 +1462,7 @@
                   },
                   {
                     "name": "event-reason",
-                    "type": "uint8",
+                    "type": "reason",
                     "value": 0
                   },
                   {
@@ -2564,7 +2564,7 @@
             },
             {
               "name": "reason",
-              "type": "uint8",
+              "type": "reason",
               "offset": 27,
               "tag": "reason",
               "description": "reason code"
@@ -2633,7 +2633,7 @@
                   },
                   {
                     "name": "reason",
-                    "type": "uint8",
+                    "type": "reason",
                     "value": 21
                   }
                 ]
@@ -2701,7 +2701,7 @@
                   },
                   {
                     "name": "reason",
-                    "type": "uint8",
+                    "type": "reason",
                     "value": 0
                   }
                 ]
@@ -2769,7 +2769,7 @@
                   },
                   {
                     "name": "reason",
-                    "type": "uint8",
+                    "type": "reason",
                     "value": 0
                   }
                 ]
@@ -6140,7 +6140,7 @@
           },
           {
             "name": "event reason",
-            "type": "uint8",
+            "type": "reason",
             "offset": 27,
             "tag": "event-reason",
             "description": "last event reason"
@@ -6434,7 +6434,7 @@
           },
           {
             "name": "reason",
-            "type": "uint8",
+            "type": "reason",
             "offset": 27,
             "tag": "reason",
             "description": "reason code"

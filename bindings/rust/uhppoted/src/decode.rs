@@ -233,6 +233,10 @@ fn unpack_direction(packet: &Msg, offset: usize) -> Result<u8> {
     return Ok(packet[offset]);
 }
 
+fn unpack_reason(packet: &Msg, offset: usize) -> Result<u8> {
+    return Ok(packet[offset]);
+}
+
 // UNIT TESTS
 
 #[cfg(test)]

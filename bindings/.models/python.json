@@ -19,6 +19,7 @@
             "interlock": "int",
             "event-type": "int",
             "direction": "int",
+            "reason": "int",
             "controller": "int",
 
             "optional date": "datetime.date",

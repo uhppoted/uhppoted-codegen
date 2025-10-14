@@ -128,3 +128,6 @@ def unpack_event_type(packet, offset):
 
 def unpack_direction(packet, offset):
     return packet[offset]
+
+def unpack_reason(packet, offset):
+    return packet[offset]

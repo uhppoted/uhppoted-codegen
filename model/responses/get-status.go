@@ -165,7 +165,7 @@ var GetStatusResponse = Response{
 			},
 			{
 				Name:        "event reason",
-				Type:        "uint8",
+				Type:        "reason",
 				Offset:      27,
 				Tag:         "event-reason",
 				Description: "last event reason",

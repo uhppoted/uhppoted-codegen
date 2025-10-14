@@ -155,7 +155,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-reason",
-							Type:  "uint8",
+							Type:  "reason",
 							Value: 44,
 						},
 						{
@@ -303,7 +303,7 @@ var GetStatus = Function{
 						},
 						{
 							Name:  "event-reason",
-							Type:  "uint8",
+							Type:  "reason",
 							Value: 0,
 						},
 						{
