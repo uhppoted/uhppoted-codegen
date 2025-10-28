@@ -134,6 +134,10 @@ function unpackMode(packet, offset) {
   return packet.getUint8(offset)
 }
 
+function unpackAntiPassback(packet, offset) {
+  return packet.getUint8(offset)
+}
+
 function unpackEventType(packet, offset) {
   return packet.getUint8(offset)
 }

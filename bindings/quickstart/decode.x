@@ -119,6 +119,10 @@ func unpackMode(packet, offset) {
     return packet[offset]
 }
 
+func unpackAntiPassback(packet, offset) {
+    return packet[offset]
+}
+
 func unpackEventType(packet, offset) {
     return packet[offset]
 }

@@ -225,6 +225,10 @@ fn unpack_mode(packet: &Msg, offset: usize) -> Result<u8> {
     return Ok(packet[offset]);
 }
 
+fn unpack_anti_passback(packet: &Msg, offset: usize) -> Result<u8> {
+    return Ok(packet[offset]);
+}
+
 fn unpack_event_type(packet: &Msg, offset: usize) -> Result<u8> {
     return Ok(packet[offset]);
 }

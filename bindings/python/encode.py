@@ -60,3 +60,6 @@ def pack_task(v, packet, offset):
 
 def pack_interlock(v, packet, offset):
     packet[offset] = v
+
+def pack_anti_passback(v, packet, offset):
+    packet[offset] = v

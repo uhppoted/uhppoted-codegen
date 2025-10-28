@@ -139,6 +139,13 @@ function pack_interlock($v, $packet, $offset)
     return $packet;
 }
 
+function pack_anti_passback($v, $packet, $offset)
+{
+    $packet[$offset] = ($v >> 0)  & 0x00ff;
+
+    return $packet;
+}
+
 function string2bcd($s)
 {
     return array_values(unpack('C*',pack("H*", $s)));

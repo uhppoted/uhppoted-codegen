@@ -17,6 +17,7 @@
             "mode": "int",
             "task": "int",
             "interlock": "int",
+            "anti-passback": "int",
             "event-type": "int",
             "direction": "int",
             "reason": "int",

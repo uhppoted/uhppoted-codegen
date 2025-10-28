@@ -140,6 +140,12 @@ func packInterlock(v uint8, packet []byte, offset uint8) error {
     return nil
 }
 
+func packAntiPassback(v uint8, packet []byte, offset uint8) error {
+    packet[offset] = v
+
+    return nil
+}
+
 func string2bcd(s string) ([]byte, error) {
     BCD := map[rune]uint8 {
         '0': 0x00,

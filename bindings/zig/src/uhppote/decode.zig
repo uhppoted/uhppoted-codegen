@@ -466,6 +466,10 @@ fn unpack_mode(packet: [64]u8, offset: u8) u8 {
     return packet[offset];
 }
 
+fn unpack_anti_passback(packet: [64]u8, offset: u8) u8 {
+    return packet[offset];
+}
+
 fn unpack_event_type(packet: [64]u8, offset: u8) u8 {
     return packet[offset];
 }

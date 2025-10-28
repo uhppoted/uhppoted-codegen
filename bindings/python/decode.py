@@ -123,6 +123,9 @@ def unpack_pin(packet, offset):
 def unpack_mode(packet, offset):
     return packet[offset]
 
+def unpack_anti_passback(packet, offset):
+    return packet[offset]
+
 def unpack_event_type(packet, offset):
     return packet[offset]
 

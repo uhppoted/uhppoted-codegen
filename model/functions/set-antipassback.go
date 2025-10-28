@@ -26,7 +26,7 @@ var SetAntiPassback = Function{
 		},
 		{
 			Name:        "antipassback",
-			Type:        "uint8",
+			Type:        "anti-passback",
 			Description: "anti-passback mode",
 		},
 	},
@@ -44,7 +44,7 @@ var SetAntiPassback = Function{
 				},
 				{
 					Name:  "antipassback",
-					Type:  "uint8",
+					Type:  "anti-passback",
 					Value: 2,
 				},
 			},

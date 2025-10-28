@@ -143,6 +143,11 @@ fn pack_interlock(v: u8, packet: &mut Msg, offset: usize) -> Result<()> {
     Ok(())
 }
 
+fn pack_anti_passback(v: u8, packet: &mut Msg, offset: usize) -> Result<()> {
+    packet[offset] = v;
+    Ok(())
+}
+
 fn bcd(ch: char) -> Result<u8> {
     match ch {
         '0' => Ok(0),

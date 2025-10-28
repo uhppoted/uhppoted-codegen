@@ -64,6 +64,10 @@ function packBool(v bool, packet, offset) {
     }
 }
 
+function packAntiPassback(v, packet, offset) {
+    packet[offset] = v
+}
+
 function string2bcd(s string) ([]byte, error) {
     return s.window(2).map(v => parse_hex(v))
 }

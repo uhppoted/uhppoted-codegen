@@ -59,7 +59,7 @@ var GetAntiPassback = Function{
 						},
 						{
 							Name:  "antipassback",
-							Type:  "uint8",
+							Type:  "anti-passback",
 							Value: 2,
 						},
 					},

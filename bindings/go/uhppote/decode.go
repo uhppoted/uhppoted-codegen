@@ -178,6 +178,10 @@ func unpackMode(packet []byte, offset uint8) (uint8, error) {
     return packet[offset], nil
 }
 
+func unpackAntiPassback(packet []byte, offset uint8) (uint8, error) {
+    return packet[offset], nil
+}
+
 func unpackEventType(packet []byte, offset uint8) (uint8, error) {
     return packet[offset], nil
 }

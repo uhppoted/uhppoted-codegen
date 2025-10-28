@@ -3735,20 +3735,20 @@
         "description": [
           "Creates a scheduled task.",
           "",
-          "Task types",
-          "0:  control door",
-          "1:  unlock door",
-          "2:  lock door",
-          "3:  disable time profiles",
-          "4:  enable time profiles",
-          "5:  enable card, no password",
-          "6:  enable card+IN password",
-          "7:  enable card+password",
-          "8:  enable more cards",
-          "9:  disable more cards",
-          "10: trigger once",
-          "11: disable pushbutton",
-          "12: enable pushbutton"
+          "Task types:",
+          " - 0:  control door",
+          " - 1:  unlock door",
+          " - 2:  lock door",
+          " - 3:  disable time profiles",
+          " - 4:  enable time profiles",
+          " - 5:  enable card, no password",
+          " - 6:  enable card+IN password",
+          " - 7:  enable card+password",
+          " - 8:  enable more cards",
+          " - 9:  disable more cards",
+          " - 10: trigger once",
+          " - 11: disable pushbutton",
+          " - 12: enable pushbutton"
         ],
         "args": [
           {
@@ -4277,12 +4277,12 @@
           "Sets the door interlock mode on an access controller.",
           "",
           "The following interlock modes are supported:",
-          "- 0: disabled",
-          "- 1: doors 1\u00262",
-          "- 2: doors 3\u00264",
-          "- 3: doors 1\u00262, doors 3\u00264",
-          "- 4: doors 1,2\u00263",
-          "- 8: doors 1,2,3\u00264"
+          " - 0: disabled",
+          " - 1: doors 1\u00262",
+          " - 2: doors 3\u00264",
+          " - 3: doors 1\u00262, doors 3\u00264",
+          " - 4: doors 1,2\u00263",
+          " - 8: doors 1,2,3\u00264"
         ],
         "args": [
           {
@@ -4659,11 +4659,11 @@
         "description": [
           "Retrieves the anti-passback mode for an access controller. The anti-passback mode",
           "will be one of the following:",
-          "- 0: disabled",
-          "- 1: readers 1:2; 3:4 (independently)",
-          "- 2: readers (1,3):(2,4)",
-          "- 3: readers 1:(2,3)",
-          "- 4: readers 1:(2,3,4)"
+          " - 0: disabled",
+          " - 1: readers 1:2; 3:4 (independently)",
+          " - 2: readers (1,3):(2,4)",
+          " - 3: readers 1:(2,3)",
+          " - 4: readers 1:(2,3,4)"
         ],
         "args": [
           {
@@ -4697,7 +4697,7 @@
             },
             {
               "name": "antipassback",
-              "type": "uint8",
+              "type": "anti-passback",
               "offset": 8,
               "tag": "antipassback",
               "description": "anti-passback mode"
@@ -4726,7 +4726,7 @@
                   },
                   {
                     "name": "antipassback",
-                    "type": "uint8",
+                    "type": "anti-passback",
                     "value": 2
                   }
                 ]
@@ -4741,11 +4741,11 @@
           "Sets the access controller anti-passback mode.",
           "",
           "The following modes are supported:",
-          "- 0: disabled",
-          "- 1: doors 1\u00262, doors 3\u00264",
-          "- 2: doors 1\u00263, doors 2\u00264",
-          "- 3: door 1 \u0026 doors 2,3",
-          "- 4: door 1 \u0026 doors 1,2,3"
+          " - 0: disabled",
+          " - 1: doors 1\u00262, doors 3\u00264",
+          " - 2: doors 1\u00263, doors 2\u00264",
+          " - 3: door 1 \u0026 doors 2,3",
+          " - 4: door 1 \u0026 doors 1,2,3"
         ],
         "args": [
           {
@@ -4755,7 +4755,7 @@
           },
           {
             "name": "antipassback",
-            "type": "uint8",
+            "type": "anti-passback",
             "description": "anti-passback mode"
           }
         ],
@@ -4771,7 +4771,7 @@
             },
             {
               "name": "antipassback",
-              "type": "uint8",
+              "type": "anti-passback",
               "offset": 8
             }
           ]
@@ -4807,7 +4807,7 @@
               },
               {
                 "name": "antipassback",
-                "type": "uint8",
+                "type": "anti-passback",
                 "value": 2
               }
             ],
@@ -5682,7 +5682,7 @@
           },
           {
             "name": "antipassback",
-            "type": "uint8",
+            "type": "anti-passback",
             "offset": 8
           }
         ]
@@ -6806,7 +6806,7 @@
           },
           {
             "name": "antipassback",
-            "type": "uint8",
+            "type": "anti-passback",
             "offset": 8,
             "tag": "antipassback",
             "description": "anti-passback mode"

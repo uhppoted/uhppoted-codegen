@@ -17,6 +17,7 @@
             "mode": "u8",
             "task": "u8",
             "interlock": "u8",
+            "anti-passback": "u8",
             "event-type": "u8",
             "direction": "u8",
             "reason": "u8",

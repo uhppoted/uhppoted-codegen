@@ -24,7 +24,7 @@ var GetAntiPassbackResponse = Response{
 			},
 			{
 				Name:        "antipassback",
-				Type:        "uint8",
+				Type:        "anti-passback",
 				Offset:      8,
 				Tag:         "antipassback",
 				Description: "anti-passback mode",
@@ -49,7 +49,7 @@ var GetAntiPassbackResponse = Response{
 				},
 				{
 					Name:  "antipassback",
-					Type:  "uint8",
+					Type:  "anti-passback",
 					Value: 2,
 				},
 			},

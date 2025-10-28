@@ -163,6 +163,10 @@ function unpack_mode(packet, offset)
     return string.unpack("B", packet, offset + 1)
 end
 
+function unpack_anti_passback(packet, offset)
+    return string.unpack("B", packet, offset + 1)
+end
+
 function unpack_event_type(packet, offset)
     return string.unpack("B", packet, offset + 1)
 end

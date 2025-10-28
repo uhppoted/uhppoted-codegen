@@ -132,6 +132,10 @@ fn pack_interlock(v: u8, packet: *[64]u8, offset: u8) !void {
     std.mem.writeInt(u8, &packet[offset], v, .little);
 }
 
+fn pack_anti_passback(v: u8, packet: *[64]u8, offset: u8) !void {
+    std.mem.writeInt(u8, &packet[offset], v, .little);
+}
+
 fn string2bcd(v: []const u8, bcd: []u8) !void {
     var offset:u8 = 0;
     var index:u8 = 0;

@@ -2125,7 +2125,7 @@ var GetAntiPassbackTest = Test{
 			},
 			Value{
 				Name:  "antipassback",
-				Type:  "uint8",
+				Type:  "anti-passback",
 				Value: 2,
 			},
 		},
@@ -2150,7 +2150,7 @@ var SetAntiPassbackTest = Test{
 			},
 			Value{
 				Name:  "antipassback",
-				Type:  "uint8",
+				Type:  "anti-passback",
 				Value: 2,
 			},
 		},

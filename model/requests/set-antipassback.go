@@ -13,7 +13,7 @@ var SetAntiPassbackRequest = Request{
 			},
 			{
 				Name:   "antipassback",
-				Type:   "uint8",
+				Type:   "anti-passback",
 				Offset: 8,
 			},
 		},
@@ -30,7 +30,7 @@ var SetAntiPassbackRequest = Request{
 				},
 				{
 					Name:  "antipassback",
-					Type:  "uint8",
+					Type:  "anti-passback",
 					Value: 2,
 				},
 			},

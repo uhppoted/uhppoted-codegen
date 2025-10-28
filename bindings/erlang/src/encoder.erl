@@ -101,6 +101,11 @@ pack(interlock, V, Packet, Offset) ->
     <<P:Offset/binary, _:8, R/binary>> = Packet,
     <<P/binary, B/binary, R/binary>>;
 
+pack(anti_passback, V, Packet, Offset) ->
+    B = binary:encode_unsigned(V, little),
+    <<P:Offset/binary, _:8, R/binary>> = Packet,
+    <<P/binary, B/binary, R/binary>>;
+
 pack(hhmm, {Hour, Minute}, Packet, Offset) ->
     HHmm = io_lib:format("~2..0B~2..0B", [Hour, Minute]),
     B = string2bcd(HHmm),

@@ -222,6 +222,11 @@ function unpack_mode($packet, $offset)
     return $packet[$offset] & 0x00ff;
 }
 
+function unpack_anti_passback($packet, $offset)
+{
+    return $packet[$offset] & 0x00ff;
+}
+
 function unpack_event_type($packet, $offset)
 {
     return $packet[$offset] & 0x00ff;
