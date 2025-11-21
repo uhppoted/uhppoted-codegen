@@ -9,6 +9,7 @@
    - `event-type`
    - `task`
    - `interlock`
+3. Updated to Go 1.25.
 
 
 ## [0.8.11](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.11) - 2025-07-01
