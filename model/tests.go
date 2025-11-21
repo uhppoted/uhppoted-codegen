@@ -748,7 +748,7 @@ var SetDoorTest = Test{
 			},
 			Value{
 				Name:  "mode",
-				Type:  "uint8",
+				Type:  "mode",
 				Value: 2,
 			},
 			Value{

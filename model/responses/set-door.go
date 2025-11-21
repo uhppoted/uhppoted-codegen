@@ -24,7 +24,7 @@ var SetDoorResponse = Response{
 			},
 			{
 				Name:   "mode",
-				Type:   "uint8",
+				Type:   "mode",
 				Offset: 9,
 				Tag:    "mode",
 			},
@@ -59,7 +59,7 @@ var SetDoorResponse = Response{
 				},
 				{
 					Name:  "mode",
-					Type:  "uint8",
+					Type:  "mode",
 					Value: 2,
 				},
 				{

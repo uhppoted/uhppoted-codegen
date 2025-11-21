@@ -841,7 +841,7 @@
             },
             {
               "name": "mode",
-              "type": "uint8",
+              "type": "mode",
               "offset": 9,
               "tag": "mode"
             },
@@ -5928,7 +5928,7 @@
           },
           {
             "name": "mode",
-            "type": "uint8",
+            "type": "mode",
             "offset": 9,
             "tag": "mode"
           },
