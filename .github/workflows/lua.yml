@@ -33,7 +33,7 @@ jobs:
         buildCache: false
 
     - name: Set up luarocks
-      uses: leafo/gh-actions-luarocks@v12
+      uses: leafo/gh-actions-luarocks@v6
 
     - name: Install Lua packages
       run: |
