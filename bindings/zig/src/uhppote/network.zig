@@ -76,9 +76,7 @@ pub const Address = union(AddressFamily) {
             return std.mem.eql(u8, &lhs.value, &rhs.value);
         }
 
-        pub fn format(value: Self, comptime fmt: []const u8, options: std.fmt.FormatOptions, writer: anytype) !void {
-            _ = fmt;
-            _ = options;
+        pub fn format(value: Self, writer: anytype) !void {
             try writer.print("{}.{}.{}.{}", .{
                 value.value[0],
                 value.value[1],

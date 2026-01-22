@@ -22,7 +22,7 @@ test "decode {{ .name }} response" {
     {{- if eq .type "string"}}
     try std.testing.expectFmt("{{ .value }}", "{s}", .{ response.{{ snakeCase .name }} });
     {{- else if eq .type "IPv4"}}
-    try std.testing.expectFmt("{{ .value }}", "{any}", .{ response.{{ snakeCase .name }} });
+    try std.testing.expectFmt("{{ .value }}", "{f}", .{ response.{{ snakeCase .name }} });
     {{- else if eq .type "date" "short date" }}
     try std.testing.expectFmt("{{ .value }}", "{d:0>4}-{d:0>2}-{d:0>2}", 
                                               .{ 

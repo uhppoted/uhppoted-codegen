@@ -98,21 +98,22 @@ fn unpack_ipv4(packet: [64]u8, offset: u8) network.Address.IPv4 {
 fn unpack_mac(packet: [64]u8, offset: u8) [:0]const u8 {
     const allocator = std.heap.page_allocator;
     
-    return std.fmt.allocPrintZ(allocator, "{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}",
-                                             .{ 
-                                                packet[offset], 
-                                                packet[offset+1],
-                                                packet[offset+2],
-                                                packet[offset+3],
-                                                packet[offset+4],
-                                                packet[offset+5],
-                                              }) catch "";
+    return std.fmt.allocPrintSentinel(allocator, "{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}:{x:0>2}",
+                                      .{ 
+                                          packet[offset], 
+                                          packet[offset+1],
+                                          packet[offset+2],
+                                          packet[offset+3],
+                                          packet[offset+4],
+                                          packet[offset+5],
+                                       }, 
+                                       0) catch &[_:0]u8{};
 }
 
 fn unpack_version(packet: [64]u8, offset: u8) [:0]const u8 {
     const allocator = std.heap.page_allocator;
 
-    return std.fmt.allocPrintZ(allocator, "v{x:}.{x:0>2}", .{ packet[offset], packet[offset+1] }) catch "";
+    return std.fmt.allocPrintSentinel(allocator, "v{x:}.{x:0>2}", .{ packet[offset], packet[offset+1] }, 0) catch &[_:0]u8{};
 }
 
 fn unpack_date(packet: [64]u8, offset: u8) datelib.Date {
@@ -286,8 +287,13 @@ fn unpack_pin(packet: [64]u8, offset: u8) u24 {
 }
 
 fn bcd2string(slice: []const u8, buffer: []u8) !void {
-    _ = try std.fmt.bufPrint(buffer, "{s}", .{std.fmt.fmtSliceHexLower(slice)});
-}
+var fbs = std.io.fixedBufferStream(buffer);
+    var writer = fbs.writer();
+    for (slice) |b| {
+        try writer.print("{x:0>2}", .{b});
+    }
+    }
+
 
 // Unit tests
 

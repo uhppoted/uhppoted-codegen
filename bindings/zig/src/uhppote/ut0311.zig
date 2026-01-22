@@ -227,7 +227,7 @@ fn tcp_sendto(packet: [64]u8, address:[:0]const u8, _: std.mem.Allocator) ![64]u
     }
 }
 
-pub fn listen(queue: *std.fifo.LinearFifo([64]u8,.Dynamic), _: std.mem.Allocator) !void {
+pub fn listen(queue: *std.ArrayListUnmanaged([64]u8), allocator: std.mem.Allocator) !void {
     var socket = try network.Socket.create(.ipv4, .udp);
     defer socket.close();
 
@@ -241,12 +241,13 @@ pub fn listen(queue: *std.fifo.LinearFifo([64]u8,.Dynamic), _: std.mem.Allocator
             }
 
             if (reply.numberOfBytes == 64) {
-                dump(buffer[0..64].*);
+                const packet = buffer[0..64].*;
+                
+                dump(packet);
 
-                if (queue.writeItem(buffer[0..64].*)) {
-                } else |err| {
+                queue.append(allocator, packet) catch |err| {
                     std.debug.print("\n   *** WARN   {any}\n", .{err});                
-                }
+                };
             }
         } else |err| {
             std.debug.print("{any}\n", .{err});
@@ -259,8 +260,9 @@ fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
     try socket.setReadTimeout(100 * std.time.us_per_ms);
 
     const start = std.time.milliTimestamp() * std.time.us_per_ms;
-    var replies = std.ArrayList([64]u8).init(allocator);
-    defer replies.deinit();
+    var replies = std.ArrayListUnmanaged([64]u8){};
+
+    defer replies.deinit(allocator);
 
     while (true) {
         var msg: [BUFFER_SIZE]u8 = undefined;
@@ -271,7 +273,7 @@ fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
 
             if (reply.numberOfBytes == 64) {
                 const slice: [64]u8 = msg[0..64].*;
-                if (replies.append(slice)) {
+                if (replies.append(allocator, slice)) {
                     dump(msg[0..64].*);
                 } else |err| {
                     std.debug.print("{any}\n", .{err});
@@ -292,7 +294,7 @@ fn read_all(socket: *network.Socket, allocator: std.mem.Allocator) ![][64]u8 {
         }
     }
 
-    return replies.toOwnedSlice();
+    return replies.toOwnedSlice(allocator);
 }
 
 fn read(socket: *network.Socket, _: std.mem.Allocator) ![64]u8 {

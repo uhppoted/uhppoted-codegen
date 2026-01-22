@@ -25,8 +25,10 @@ pub fn set_debug(v: bool) !void {
 }
 
 // FIXME: using threads in lieu of async because async is currently broken in the nightlies
-pub fn listen(_: *const fn (decode.Event) void, _: std.mem.Allocator) !void {
-    var queue = std.fifo.LinearFifo([64]u8,.Dynamic).init(allocator);
+pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocator) !void {
+var queue = std.ArrayListUnmanaged([64]u8){};
+
+defer queue.deinit(allocator);
 
     const ctx = context{
         .q = &queue,
@@ -36,7 +38,8 @@ pub fn listen(_: *const fn (decode.Event) void, _: std.mem.Allocator) !void {
     var thread = try std.Thread.spawn(.{}, on_event, .{@as(context, ctx)});
 
     while (true) {
-        while (queue.readItem()) |packet| {
+    while (queue.items.len > 0){
+            const packet = queue.orderedRemove(0);
             const event = decode.get_event(packet);
 
             if (event) |e| {
@@ -47,14 +50,14 @@ pub fn listen(_: *const fn (decode.Event) void, _: std.mem.Allocator) !void {
         }
 
         // Ewwww :-( .. must be some way to block/wait on a queue?
-        std.time.sleep(1000 * std.time.ns_per_ms);
+        std.Thread.sleep(1000 * std.time.ns_per_ms);
     }
 
     thread.join();
 }
 
 const context = struct {
-    q: *std.fifo.LinearFifo([64]u8,.Dynamic),
+    q: *std.ArrayListUnmanaged([64]u8),
     allocator: std.mem.Allocator,
 };
 
@@ -70,16 +73,16 @@ pub fn get_all_controllers(allocator: std.mem.Allocator) ![]decode.GetController
 
     defer allocator.free(replies);
 
-    var list = std.ArrayList(decode.GetControllerResponse).init(allocator);
-    defer list.deinit();
+    var list = std.ArrayListUnmanaged(decode.GetControllerResponse){};
+    defer list.deinit(allocator);
 
     for (replies) |reply| {
         const response = try decode.get_controller_response(reply);
 
-        try list.append(response);
+        try list.append(allocator, response);
     }
 
-    return list.toOwnedSlice();
+    return list.toOwnedSlice(allocator);
 }
 
 {{range .model.functions}}
