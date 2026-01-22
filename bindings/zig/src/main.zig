@@ -6,12 +6,12 @@ const network = @import("uhppote/network.zig");
 
 pub fn main() !void {
     // ... initialisation
-    const w = std.io.getStdOut().writer();
-    var bw = std.io.bufferedWriter(w);
-    const stdout = bw.writer();
+    var buffer: [1024]u8 = undefined;
+    var w = std.fs.File.stdout().writer(&buffer);
+    const stdout = &w.interface;
 
     try stdout.print("uhppoted-codegen: Zig sample application\n", .{});
-    try bw.flush();
+    try stdout.flush();
 
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
@@ -26,8 +26,8 @@ pub fn main() !void {
     var listen: [:0]const u8 = "0.0.0.0:60001";
     var debug = false;
 
-    var list = std.ArrayList([]const u8).init(allocator);
-    defer list.deinit();
+    var list = std.ArrayList([]const u8){};
+    defer list.deinit(allocator);
 
     var args = try std.process.argsWithAllocator(allocator);
     defer args.deinit();
@@ -49,9 +49,9 @@ pub fn main() !void {
             } else if (std.mem.eql(u8, arg, "--debug")) {
                 debug = true;
             } else {
-                try list.append(arg);
+                try list.append(allocator, arg);
                 while (args.next()) |a| {
-                    try list.append(a);
+                    try list.append(allocator, a);
                 }
             }
         }
@@ -96,9 +96,9 @@ pub fn main() !void {
 }
 
 fn usage() !void {
-    const w = std.io.getStdOut().writer();
-    var bw = std.io.bufferedWriter(w);
-    const stdout = bw.writer();
+    var buffer: [1024]u8 = undefined;
+    var w = std.fs.File.stdout().writer(&buffer);
+    const stdout = &w.interface;
 
     try stdout.print("\n", .{});
     try stdout.print("  Usage: zig build run [--debug] [--bind <address>] [--broadcast <address>] [--listen <address>] [commands]\n", .{});
@@ -116,6 +116,5 @@ fn usage() !void {
     }
 
     try stdout.print("\n", .{});
-
-    try bw.flush();
+    try stdout.flush();
 }

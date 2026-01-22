@@ -215,7 +215,7 @@ rust-test: rust
 python: build regen 
 	rm -rf ./generated/python/*
 	$(CMD) --models $(MODELS) --templates $(PYTHON) --out generated/python
-	cd generated/python && yapf -ri .
+	. .venv/bin/activate; cd generated/python && yapf -ri .
 	chmod +x generated/python/main.py
 
 python-debug: python
@@ -262,7 +262,7 @@ zig-test: zig
 
 php: build regen
 	$(CMD) --models $(MODELS) --templates $(PHP) --out generated/php --clean
-	cd generated/php && php-cs-fixer fix .
+	cd generated/php && php-cs-fixer fix --config=../../.php-cs-fixer.php .
 
 php-debug: php
 	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 set-IPv4

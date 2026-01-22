@@ -32,7 +32,7 @@ var debug: bool = false;
 pub fn set_bind_address(addr: [:0]const u8) !void {
     var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.any };
     var port: u16 = 0;
-    var it = std.mem.split(u8, addr, ":");
+    var it = std.mem.splitSequence(u8, addr, ":");
 
     if (it.next()) |v| {
         address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };
@@ -51,7 +51,7 @@ pub fn set_bind_address(addr: [:0]const u8) !void {
 pub fn set_broadcast_address(addr: [:0]const u8) !void {
     var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.broadcast };
     var port: u16 = 60000;
-    var it = std.mem.split(u8, addr, ":");
+    var it = std.mem.splitSequence(u8, addr, ":");
 
     if (it.next()) |v| {
         address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };
@@ -70,7 +70,7 @@ pub fn set_broadcast_address(addr: [:0]const u8) !void {
 pub fn set_listen_address(addr: [:0]const u8) !void {
     var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.any };
     var port: u16 = 60001;
-    var it = std.mem.split(u8, addr, ":");
+    var it = std.mem.splitSequence(u8, addr, ":");
 
     if (it.next()) |v| {
         address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };
@@ -325,7 +325,7 @@ fn read(socket: *network.Socket, _: std.mem.Allocator) ![64]u8 {
 fn resolve(addr: [:0]const u8) !network.EndPoint {
     var address: network.Address = network.Address{ .ipv4 = network.Address.IPv4.any };
     var port: u16 = 60000;
-    var it = std.mem.split(u8, addr, ":");
+    var it = std.mem.splitSequence(u8, addr, ":");
 
     if (it.next()) |v| {
         address = network.Address{ .ipv4 = try network.Address.IPv4.parse(v) };

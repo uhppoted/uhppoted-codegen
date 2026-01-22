@@ -25,7 +25,7 @@ pub fn set_debug(v: bool) !void {
 }
 
 // FIXME: using threads in lieu of async because async is currently broken in the nightlies
-pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocator) !void {
+pub fn listen(_: *const fn (decode.Event) void, _: std.mem.Allocator) !void {
     var queue = std.fifo.LinearFifo([64]u8,.Dynamic).init(allocator);
 
     const ctx = context{

@@ -10,6 +10,9 @@
    - `task`
    - `interlock`
 3. Updated to Go 1.25.
+4. Updated to Rust 1.92.
+5. Updated to Zig 0.15.
+6. Updated to PHP 8.5.2.
 
 
 ## [0.8.11](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.11) - 2025-07-01

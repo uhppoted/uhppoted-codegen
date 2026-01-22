@@ -552,14 +552,15 @@ pub const Socket = struct {
         std.debug.assert(read == null or read.? != 0);
         const micros = read orelse 0;
         var opt = if (is_windows) @as(u32, @divTrunc(micros, 1000)) else std.posix.timeval{
-            .tv_sec = @intCast(@divTrunc(micros, std.time.us_per_s)),
-            .tv_usec = @intCast(@mod(micros, std.time.us_per_s)),
+            .sec = @intCast(@divTrunc(micros, std.time.us_per_s)),
+            .usec = @intCast(@mod(micros, std.time.us_per_s)),
         };
+
         try std.posix.setsockopt(
             self.internal,
             std.posix.SOL.SOCKET,
             std.posix.SO.RCVTIMEO,
-            if (is_windows) std.mem.asBytes(&opt) else std.mem.toBytes(opt)[0..],
+            std.mem.asBytes(&opt),
         );
     }
 
@@ -568,14 +569,15 @@ pub const Socket = struct {
         std.debug.assert(write == null or write.? != 0);
         const micros = write orelse 0;
         var opt = if (is_windows) @as(u32, @divTrunc(micros, 1000)) else std.posix.timeval{
-            .tv_sec = @intCast(@divTrunc(micros, std.time.us_per_s)),
-            .tv_usec = @intCast(@mod(micros, std.time.us_per_s)),
+            .sec = @intCast(@divTrunc(micros, std.time.us_per_s)),
+            .usec = @intCast(@mod(micros, std.time.us_per_s)),
         };
+
         try std.posix.setsockopt(
             self.internal,
             std.posix.SOL.SOCKET,
-            std.posix.SO.SNDTIMEO,
-            if (is_windows) std.mem.asBytes(&opt) else std.mem.toBytes(opt)[0..],
+            std.posix.SO.RCVTIMEO,
+            std.mem.asBytes(&opt),
         );
     }
 

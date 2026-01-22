@@ -1,19 +1,5 @@
 # TODO
 
-- [x] anti-passback (cf. https://github.com/uhppoted/uhppoted/issues/60)
-      - [x] `get-antipassback`
-      - [x] `set-antipassback`
-      - [x] erlang
-      - [x] go
-      - [x] http
-      - [x] lua
-      - [x] php
-      - [x] python
-      - [x] rust
-      - [x] zig
-      - [x] CHANGELOG
-      - [x] README
-
 - [ ] --delimiters
 - [ ] clang-tidy
 
