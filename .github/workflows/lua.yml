@@ -17,7 +17,7 @@ jobs:
     - name: Set up Go 1.x
       uses: actions/setup-go@v5
       with:
-        go-version: ^1.24
+        go-version: ^1.25
       id: go
 
     - name: Install staticcheck
@@ -27,10 +27,10 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v4
 
-    - name: Set up Lua 5.4.x
+    - name: Set up Lua
       uses: leafo/gh-actions-lua@v10
       with:
-        luaVersion: "5.4"
+        luaVersion: "5.5"
         buildCache: false
 
     - name: Set up luarocks

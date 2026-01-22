@@ -23,10 +23,10 @@ jobs:
     - name: Install staticcheck
       run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
-    - name: Set up Python 3.10
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: ^3.10
+        python-version: ^3.14
       id: python
 
     - name: Install Python packages
@@ -34,6 +34,12 @@ jobs:
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v4
+
+    - name: Create (dummy) .venv virtual environment
+      run: |
+         pwd
+         python -m venv .venv
+         ls -la
 
     - name: Build
       run: make python
