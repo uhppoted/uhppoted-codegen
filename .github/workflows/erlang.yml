@@ -33,12 +33,6 @@ jobs:
         otp-version: ${{matrix.otp}}
         rebar3-version: ${{matrix.rebar3}}
 
-    - name: (hopefully rebar3 is now installed)
-      run: rebar3 version
-
-    # - name: Build Dialyzer PLT
-    # run: rebar3 dialyzer --plt
-      
     - name: Check out code into the Go module directory
       uses: actions/checkout@v5
 
