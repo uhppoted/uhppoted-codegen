@@ -34,10 +34,19 @@ than it should be.
 
 ### Current Release
 
-**[v0.8.11](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.8.11) - 2025-07-01**
-
-1. Added `get/set-antipassback` API function to manage the anti-passback mode for a controller.
-2. Updated to Go 1.24.
+**[v0.9.0](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.9.0) - 2026-01-27**
+1. Augmented models with test vectors.
+2. Reworked models with defined types for:
+   - `door-mode`
+   - `event-type`
+   - `task`
+   - `interlock`
+3. Updated to Go 1.25.
+4. Updated to Rust 1.92.
+5. Updated to Zig 0.15.
+6. Updated to PHP 8.5.2.
+7. Updated to Lua 5.5.0.
+8. Updated to Erlang 28.3.1
 
 
 ## Installation
