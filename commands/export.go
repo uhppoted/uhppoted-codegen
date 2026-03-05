@@ -60,7 +60,7 @@ func (cmd *Export) FlagSet() *flag.FlagSet {
 	return cmd.flags()
 }
 
-func (cmd *Export) Execute(args ...interface{}) error {
+func (cmd *Export) Execute(args ...any) error {
 	log.Printf("%s %s (PID %d)", APPLICATION, core.VERSION, os.Getpid())
 
 	if cmd.models == "" {

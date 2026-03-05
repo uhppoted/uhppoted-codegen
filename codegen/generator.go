@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/fs"
+	"maps"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -121,9 +122,7 @@ func (g Generator) initialise() (map[string]any, error) {
 		} else if err := json.Unmarshal(bytes, &m); err != nil {
 			return err
 		} else {
-			for k, v := range m {
-				data[k] = v
-			}
+			maps.Copy(data, m)
 
 			return nil
 		}
@@ -367,9 +366,9 @@ func dump(v any, prefix string) string {
 
 	lines := []string{}
 	ix := 0
-	for i := 0; i < 4; i++ {
+	for range 4 {
 		line := []string{}
-		for j := 0; j < 16; j++ {
+		for range 16 {
 			line = append(line, fmt.Sprintf("0x%02x", bytes[ix]))
 			ix = ix + 1
 		}

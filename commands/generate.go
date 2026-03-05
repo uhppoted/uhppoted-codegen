@@ -63,7 +63,7 @@ func (cmd *Generate) FlagSet() *flag.FlagSet {
 	return cmd.flags()
 }
 
-func (cmd *Generate) Execute(args ...interface{}) error {
+func (cmd *Generate) Execute(args ...any) error {
 	log.Printf("%s %s (PID %d)", APPLICATION, core.VERSION, os.Getpid())
 
 	if cmd.models == "" {
