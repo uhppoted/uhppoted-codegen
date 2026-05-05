@@ -216,12 +216,7 @@ pub fn deinit(allocator: std.mem.Allocator) void {
     CONTROLLERS.deinit(allocator);
 }
 
-pub fn exec(cmd: Command) !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-
-    const allocator = gpa.allocator();
-
+pub fn exec(cmd: Command, allocator: std.mem.Allocator) !void {
     cmd.function(allocator);
 }
 

@@ -81,7 +81,8 @@ regen:
 
 test-all: go-test lua-test
 
-build-all: test vet lint go rust python zig php erlang lua http
+# build-all: test vet lint go rust python zig php erlang lua http
+build-all: test vet lint go rust python php erlang lua http
 	mkdir -p dist/$(DIST)/linux
 	mkdir -p dist/$(DIST)/arm
 	mkdir -p dist/$(DIST)/arm7

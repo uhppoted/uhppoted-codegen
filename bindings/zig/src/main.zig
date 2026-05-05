@@ -4,18 +4,16 @@ const commands = @import("commands.zig");
 const uhppote = @import("uhppote/uhppote.zig");
 const network = @import("uhppote/network.zig");
 
-pub fn main() !void {
-    // ... initialisation
-    var buffer: [1024]u8 = undefined;
-    var w = std.fs.File.stdout().writer(&buffer);
+pub fn main(init: std.process.Init) !void {
+    const allocator = init.gpa; 
+    const io = init.io;
+
+    var buffer: [4096]u8 = undefined;
+    var w = std.Io.File.stdout().writer(io, &buffer);
     const stdout = &w.interface;
 
     try stdout.print("uhppoted-codegen: Zig sample application\n", .{});
     try stdout.flush();
-
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
 
     try commands.init(allocator);
     defer commands.deinit(allocator);
@@ -26,33 +24,32 @@ pub fn main() !void {
     var listen: [:0]const u8 = "0.0.0.0:60001";
     var debug = false;
 
-    var list = std.ArrayList([]const u8){};
+    var list = std.ArrayList([]const u8).empty;
     defer list.deinit(allocator);
 
-    var args = try std.process.argsWithAllocator(allocator);
-    defer args.deinit();
+    var it = try init.minimal.args.iterateAllocator(init.gpa);    
+    defer it.deinit();
 
-    if (args.next() != null) {
-        while (args.next()) |arg| {
-            if (std.mem.eql(u8, arg, "--bind")) {
-                if (args.next()) |v| {
-                    bind = v;
-                }
-            } else if (std.mem.eql(u8, arg, "--broadcast")) {
-                if (args.next()) |v| {
-                    broadcast = v;
-                }
-            } else if (std.mem.eql(u8, arg, "--listen")) {
-                if (args.next()) |v| {
-                    listen = v;
-                }
-            } else if (std.mem.eql(u8, arg, "--debug")) {
-                debug = true;
-            } else {
-                try list.append(allocator, arg);
-                while (args.next()) |a| {
-                    try list.append(allocator, a);
-                }
+    _ = it.next(); 
+    while (it.next()) |arg| {
+        if (std.mem.eql(u8, arg, "--bind")) {
+            if (it.next()) |v| {
+                bind = v;
+            }
+        } else if (std.mem.eql(u8, arg, "--broadcast")) {
+            if (it.next()) |v| {
+                broadcast = v;
+            }
+        } else if (std.mem.eql(u8, arg, "--listen")) {
+            if (it.next()) |v| {
+                listen = v;
+            }
+        } else if (std.mem.eql(u8, arg, "--debug")) {
+            debug = true;
+        } else {
+            try list.append(allocator, arg);
+            while (it.next()) |a| {
+                try list.append(allocator, a);
             }
         }
     }
@@ -67,14 +64,14 @@ pub fn main() !void {
     defer network.deinit();
 
     if (list.items.len == 0) {
-        try usage();
+        try usage(io);
         return;
     }
 
     if (list.items.len == 1 and std.mem.eql(u8, list.items[0], "all")) {
         for (commands.commands) |v| {
             if (!std.mem.eql(u8, "listen", v.name)) {
-                try commands.exec(v);            
+                try commands.exec(v, allocator);            
             }
         }
         return;
@@ -83,7 +80,7 @@ pub fn main() !void {
     for (list.items) |item| {
         for (commands.commands) |v| {
             if (std.mem.eql(u8, item, v.name)) {
-                try commands.exec(v);
+                try commands.exec(v, allocator);
                 break;
             }
         } else {
@@ -95,9 +92,9 @@ pub fn main() !void {
     }
 }
 
-fn usage() !void {
-    var buffer: [1024]u8 = undefined;
-    var w = std.fs.File.stdout().writer(&buffer);
+fn usage(io: std.Io) !void {
+    var buffer: [4096]u8 = undefined;
+    var w = std.Io.File.stdout().writer(io, &buffer);
     const stdout = &w.interface;
 
     try stdout.print("\n", .{});

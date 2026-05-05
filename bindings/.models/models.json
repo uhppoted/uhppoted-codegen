@@ -5688,6 +5688,78 @@
         ]
       },
       {
+        "name": "set first-card request",
+        "msgtype": 170,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "description": "controller serial number"
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "offset": 8
+          },
+          {
+            "name": "start-time",
+            "type": "HHmm",
+            "offset": 9
+          },
+          {
+            "name": "end-time",
+            "type": "HHmm",
+            "offset": 12
+          },
+          {
+            "name": "active-mode",
+            "type": "uint8",
+            "offset": 11
+          },
+          {
+            "name": "inactive-mode",
+            "type": "uint8",
+            "offset": 14
+          },
+          {
+            "name": "monday",
+            "type": "bool",
+            "offset": 15
+          },
+          {
+            "name": "tuesday",
+            "type": "bool",
+            "offset": 16
+          },
+          {
+            "name": "wednesday",
+            "type": "bool",
+            "offset": 17
+          },
+          {
+            "name": "thursday",
+            "type": "bool",
+            "offset": 18
+          },
+          {
+            "name": "friday",
+            "type": "bool",
+            "offset": 19
+          },
+          {
+            "name": "saturday",
+            "type": "bool",
+            "offset": 20
+          },
+          {
+            "name": "sunday",
+            "type": "bool",
+            "offset": 21
+          }
+        ]
+      },
+      {
         "name": "restore default parameters request",
         "msgtype": 200,
         "fields": [
