@@ -1,6 +1,7 @@
 const std = @import("std");
 const os = @import("os");
 const builtin = @import("builtin");
+const posix = std.posix;
 
 comptime {
     std.debug.assert(@sizeOf(std.posix.sockaddr) >= @sizeOf(std.posix.sockaddr.in));
@@ -76,8 +77,8 @@ pub const Address = union(AddressFamily) {
             return std.mem.eql(u8, &lhs.value, &rhs.value);
         }
 
-        pub fn format(value: Self, writer: anytype) !void {
-            try writer.print("{}.{}.{}.{}", .{
+        pub fn format(value: Self, writer: *std.Io.Writer) !void {
+            try writer.print("{d}.{d}.{d}.{d}", .{
                 value.value[0],
                 value.value[1],
                 value.value[2],
@@ -145,11 +146,9 @@ pub const Address = union(AddressFamily) {
                 lhs.scope_id == rhs.scope_id;
         }
 
-        pub fn format(self: Self, comptime fmt: []const u8, options: std.fmt.FormatOptions, writer: anytype) !void {
-            _ = fmt;
-            _ = options;
+        pub fn format(self: Self, writer: *std.Io.Writer) !void {
             if (std.mem.eql(u8, self.value[0..12], &[_]u8{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff })) {
-                try std.fmt.format(writer, "[::ffff:{}.{}.{}.{}]", .{
+                try writer.print("[::ffff:{d}.{d}.{d}.{d}]", .{
                     self.value[12],
                     self.value[13],
                     self.value[14],
@@ -179,7 +178,7 @@ pub const Address = union(AddressFamily) {
                     }
                     continue;
                 }
-                try std.fmt.format(writer, "{x}", .{native_endian_parts[i]});
+                try writer.print("{x}", .{native_endian_parts[i]});
                 if (i != native_endian_parts.len - 1) {
                     try writer.writeAll(":");
                 }
@@ -202,7 +201,7 @@ pub const Address = union(AddressFamily) {
             // Address cannot start or end with a single ':'.
             if ((string[0] == ':' and string[1] != ':') or
                 (string[string.len - 2] != ':' and
-                string[string.len - 1] == ':'))
+                    string[string.len - 1] == ':'))
             {
                 return error.InvalidFormat;
             }
@@ -240,7 +239,7 @@ pub const Address = union(AddressFamily) {
                         // leading/trailing abbreviation.
                         if (groups[cg_index].len == 0 and
                             (!abbreviation_ending or
-                            (i != 1 and i != string.len - 1)))
+                                (i != 1 and i != string.len - 1)))
                         {
                             return error.InvalidFormat;
                         }
@@ -311,10 +310,10 @@ pub const Address = union(AddressFamily) {
         }
     };
 
-    pub fn format(value: @This(), comptime fmt: []const u8, options: std.fmt.FormatOptions, writer: anytype) !void {
+    pub fn format(value: @This(), writer: *std.Io.Writer) !void {
         switch (value) {
-            .ipv4 => |a| try a.format(fmt, options, writer),
-            .ipv6 => |a| try a.format(fmt, options, writer),
+            .ipv4 => |a| try a.format(writer),
+            .ipv6 => |a| try a.format(writer),
         }
     }
 
@@ -373,7 +372,7 @@ pub const EndPoint = struct {
     port: u16, // Stored as native, will convert to bigEndian when moving to sockaddr
 
     pub fn parse(string: []const u8) !EndPoint {
-        const colon_index = std.mem.indexOfScalar(u8, string, ':') orelse return error.InvalidFormat;
+        const colon_index = std.mem.lastIndexOfScalar(u8, string, ':') orelse return error.InvalidFormat;
 
         const address = try Address.parse(string[0..colon_index]);
 
@@ -396,10 +395,8 @@ pub const EndPoint = struct {
         return parse(str) catch return error.UnexpectedToken;
     }
 
-    pub fn format(value: Self, comptime fmt: []const u8, options: std.fmt.FormatOptions, writer: anytype) !void {
-        _ = fmt;
-        _ = options;
-        try writer.print("{}:{}", .{
+    pub fn format(value: Self, writer: *std.Io.Writer) !void {
+        try writer.print("{f}:{d}", .{
             value.address,
             value.port,
         });
@@ -475,8 +472,67 @@ pub const Socket = struct {
     pub const SendError = (std.posix.SendError || std.posix.SendToError);
     pub const ReceiveError = std.posix.RecvFromError;
 
-    pub const Reader = std.io.Reader(Socket, ReceiveError, receive);
-    pub const Writer = std.io.Writer(Socket, SendError, send);
+    pub const Reader = struct {
+        context: Socket,
+        interface: std.Io.Reader,
+        err: ?ReceiveError = null,
+
+        fn stream(
+            r: *std.Io.Reader,
+            w: *std.Io.Writer,
+            limit: std.Io.Limit,
+        ) std.Io.Reader.StreamError!usize {
+            const self: *Reader = @fieldParentPtr("interface", r);
+            const dest = limit.slice(try w.writableSliceGreedy(1));
+
+            const received = self.context.receive(dest) catch |e| {
+                self.err = e;
+                return error.ReadFailed;
+            };
+            if (received == 0)
+                return error.EndOfStream;
+            w.advance(received);
+
+            return received;
+        }
+    };
+    pub const Writer = struct {
+        context: Socket,
+        interface: std.Io.Writer,
+        err: ?SendError = null,
+
+        fn drain(
+            w: *std.Io.Writer,
+            data: []const []const u8,
+            splat: usize,
+        ) std.Io.Writer.Error!usize {
+            const self: *Writer = @fieldParentPtr("interface", w);
+
+            const buffered = w.buffered();
+            if (buffered.len > 0) {
+                const drained = self.context.send(buffered) catch |e| {
+                    self.err = e;
+                    return error.WriteFailed;
+                };
+                return w.consume(drained);
+            }
+
+            for (data[0 .. data.len - 1]) |d| {
+                if (d.len == 0) continue;
+                return self.context.send(d) catch |e| {
+                    self.err = e;
+                    return error.WriteFailed;
+                };
+            }
+
+            const pattern = data[data.len - 1];
+            if (pattern.len == 0 or splat == 0) return 0;
+            return self.context.send(pattern) catch |e| {
+                self.err = e;
+                return error.WriteFailed;
+            };
+        }
+    };
 
     const Self = @This();
 
@@ -553,12 +609,11 @@ pub const Socket = struct {
             .sec = @intCast(@divTrunc(micros, std.time.us_per_s)),
             .usec = @intCast(@mod(micros, std.time.us_per_s)),
         };
-
         try std.posix.setsockopt(
             self.internal,
             std.posix.SOL.SOCKET,
             std.posix.SO.RCVTIMEO,
-            std.mem.asBytes(&opt),
+            if (is_windows) std.mem.asBytes(&opt) else std.mem.toBytes(opt)[0..],
         );
     }
 
@@ -570,12 +625,11 @@ pub const Socket = struct {
             .sec = @intCast(@divTrunc(micros, std.time.us_per_s)),
             .usec = @intCast(@mod(micros, std.time.us_per_s)),
         };
-
         try std.posix.setsockopt(
             self.internal,
             std.posix.SOL.SOCKET,
-            std.posix.SO.RCVTIMEO,
-            std.mem.asBytes(&opt),
+            std.posix.SO.SNDTIMEO,
+            if (is_windows) std.mem.asBytes(&opt) else std.mem.toBytes(opt)[0..],
         );
     }
 
@@ -666,9 +720,8 @@ pub const Socket = struct {
     /// will always send full packets, on TCP it will append
     /// to the stream.
     pub fn send(self: Self, data: []const u8) SendError!usize {
-        // NTS: incorrect - a connected socket uses 'send' not 'sendto'
-        // if (self.endpoint) |ep|
-        //     return try self.sendTo(ep, data);
+        if (self.endpoint) |ep|
+            return try self.sendTo(ep, data);
         const flags = if (is_windows or is_bsd) 0 else std.os.linux.MSG.NOSIGNAL;
         return try std.posix.send(self.internal, data, flags);
     }
@@ -716,15 +769,17 @@ pub const Socket = struct {
     pub fn sendTo(self: Self, receiver: EndPoint, data: []const u8) SendError!usize {
         const flags = if (is_windows or is_bsd) 0 else std.os.linux.MSG.NOSIGNAL;
 
-        return switch (receiver.toSocketAddress()) {
-            .ipv4 => |sockaddr| try std.posix.sendto(
+        const saddr = receiver.toSocketAddress();
+
+        const len = switch (saddr) {
+            .ipv4 => |sockaddr| try sendto(
                 self.internal,
                 data,
                 flags,
                 @ptrCast(&sockaddr),
                 @sizeOf(@TypeOf(sockaddr)),
             ),
-            .ipv6 => |sockaddr| try std.posix.sendto(
+            .ipv6 => |sockaddr| try sendto(
                 self.internal,
                 data,
                 flags,
@@ -732,6 +787,59 @@ pub const Socket = struct {
                 @sizeOf(@TypeOf(sockaddr)),
             ),
         };
+
+        return len;
+    }
+    // .darwin returns ISCONN error for already connected socket
+    // .windows and .lynux both don't care
+    // Intercepts ISCONN status for .darwin and retry sendto with null destination address
+    pub fn sendto(
+        /// The file descriptor of the sending socket.
+        sockfd: std.posix.socket_t,
+        /// Message to send.
+        buf: []const u8,
+        flags: u32,
+        dest_addr: ?*const std.posix.sockaddr,
+        addrlen: std.posix.socklen_t,
+    ) std.posix.SendToError!usize {
+        if (!is_darwin) {
+            return std.posix.sendto(sockfd, buf, flags, dest_addr, addrlen);
+        }
+        while (true) {
+            const rc = std.posix.system.sendto(sockfd, buf.ptr, buf.len, flags, dest_addr, addrlen);
+            switch (std.posix.errno(rc)) {
+                .SUCCESS => return @intCast(rc),
+
+                .ACCES => return error.AccessDenied,
+                .AGAIN => return error.WouldBlock,
+                .ALREADY => return error.FastOpenAlreadyInProgress,
+                .BADF => unreachable, // always a race condition
+                .CONNRESET => return error.ConnectionResetByPeer,
+                .DESTADDRREQ => unreachable, // The socket is not connection-mode, and no peer address is set.
+                .FAULT => unreachable, // An invalid user space address was specified for an argument.
+                .INTR => continue,
+                .INVAL => return error.UnreachableAddress,
+                // connection-mode socket was connected already but a recipient was specified
+                // sendto using NULL destination address
+                .ISCONN => return std.posix.sendto(sockfd, buf, flags, null, 0),
+                .MSGSIZE => return error.MessageTooBig,
+                .NOBUFS => return error.SystemResources,
+                .NOMEM => return error.SystemResources,
+                .NOTSOCK => unreachable, // The file descriptor sockfd does not refer to a socket.
+                .OPNOTSUPP => unreachable, // Some bit in the flags argument is inappropriate for the socket type.
+                .PIPE => return error.BrokenPipe,
+                .AFNOSUPPORT => return error.AddressFamilyNotSupported,
+                .LOOP => return error.SymLinkLoop,
+                .NAMETOOLONG => return error.NameTooLong,
+                .NOENT => return error.FileNotFound,
+                .NOTDIR => return error.NotDir,
+                .HOSTUNREACH => return error.NetworkUnreachable,
+                .NETUNREACH => return error.NetworkUnreachable,
+                .NOTCONN => return error.SocketNotConnected,
+                .NETDOWN => return error.NetworkSubsystemFailed,
+                else => |err| return std.posix.unexpectedErrno(err),
+            }
+        }
     }
 
     /// Sets the socket option `SO_REUSEPORT` which allows
@@ -802,13 +910,32 @@ pub const Socket = struct {
     }
 
     /// Gets an reader that allows reading data from the socket.
-    pub fn reader(self: Self) Reader {
-        return .{ .context = self };
+    /// Requires a buffer of at least size 1.
+    pub fn reader(self: Self, buffer: []u8) Reader {
+        return .{
+            .context = self,
+            .interface = .{
+                .buffer = buffer,
+                .seek = 0,
+                .end = 0,
+                .vtable = &.{
+                    .stream = Reader.stream,
+                },
+            },
+        };
     }
 
     /// Gets a writer that allows writing data to the socket.
-    pub fn writer(self: Self) Writer {
-        return .{ .context = self };
+    pub fn writer(self: Self, buffer: []u8) Writer {
+        return .{
+            .context = self,
+            .interface = .{
+                .buffer = buffer,
+                .vtable = &.{
+                    .drain = Writer.drain,
+                },
+            },
+        };
     }
 };
 
@@ -895,16 +1022,18 @@ const LinuxOSLogic = struct {
     const Self = @This();
     // use poll on linux
 
+    allocator: std.mem.Allocator,
     fds: std.ArrayList(std.posix.pollfd),
 
     inline fn init(allocator: std.mem.Allocator) !Self {
         return Self{
-            .fds = std.ArrayList(std.posix.pollfd).init(allocator),
+            .allocator = allocator,
+            .fds = .empty,
         };
     }
 
-    inline fn deinit(self: Self) void {
-        self.fds.deinit();
+    inline fn deinit(self: *Self) void {
+        self.fds.deinit(self.allocator);
     }
 
     inline fn clear(self: *Self) void {
@@ -927,7 +1056,7 @@ const LinuxOSLogic = struct {
             }
         }
 
-        try self.fds.append(std.posix.pollfd{
+        try self.fds.append(self.allocator, std.posix.pollfd{
             .fd = sock.internal,
             .events = mask,
             .revents = 0,
@@ -990,13 +1119,13 @@ const WindowsOSLogic = struct {
 
         fn fdSlice(self: *align(8) FdSet) []windows.ws2_32.SOCKET {
             const ptr: [*]u8 = @ptrCast(self);
-            const socket_ptr: [*]windows.ws2_32.SOCKET = @alignCast(@ptrCast(ptr + 4 * @sizeOf(c_uint)));
+            const socket_ptr: [*]windows.ws2_32.SOCKET = @ptrCast(@alignCast(ptr + 4 * @sizeOf(c_uint)));
             return socket_ptr[0..self.size];
         }
 
         fn make(allocator: std.mem.Allocator) !*align(8) FdSet {
             // Initialize with enough space for 8 sockets.
-            const mem = try allocator.alignedAlloc(u8, 8, 4 * @sizeOf(c_uint) + 8 * @sizeOf(windows.ws2_32.SOCKET));
+            const mem = try allocator.alignedAlloc(u8, .@"8", 4 * @sizeOf(c_uint) + 8 * @sizeOf(windows.ws2_32.SOCKET));
 
             const fd_set: *align(8) FdSet = @ptrCast(mem);
             fd_set.* = .{ .capacity = 8, .size = 0 };
@@ -1029,7 +1158,7 @@ const WindowsOSLogic = struct {
                 // Double our capacity.
                 const new_mem_size = 4 * @sizeOf(c_uint) + 2 * fd_set.*.capacity * @sizeOf(windows.ws2_32.SOCKET);
                 const ptr: []u8 align(8) = @alignCast(fd_set.*.memSlice());
-                fd_set.* = @alignCast(@ptrCast((try allocator.reallocAdvanced(ptr, new_mem_size, @returnAddress())).ptr));
+                fd_set.* = @ptrCast(@alignCast((try allocator.reallocAdvanced(ptr, new_mem_size, @returnAddress())).ptr));
                 fd_set.*.capacity *= 2;
             }
 
@@ -1048,25 +1177,30 @@ const WindowsOSLogic = struct {
 
     allocator: std.mem.Allocator,
 
-    read_fds: std.ArrayListUnmanaged(windows.ws2_32.SOCKET),
-    write_fds: std.ArrayListUnmanaged(windows.ws2_32.SOCKET),
+    read_fds: std.ArrayList(windows.ws2_32.SOCKET),
+    write_fds: std.ArrayList(windows.ws2_32.SOCKET),
 
     read_fd_set: *align(8) FdSet,
     write_fd_set: *align(8) FdSet,
     except_fd_set: *align(8) FdSet,
 
     inline fn init(allocator: std.mem.Allocator) !Self {
-        const read_fds = try std.ArrayListUnmanaged(windows.ws2_32.SOCKET).initCapacity(allocator, 8);
-        const write_fds = try std.ArrayListUnmanaged(windows.ws2_32.SOCKET).initCapacity(allocator, 8);
-
-        return Self{
+        var list = Self{
             .allocator = allocator,
-            .read_fds = read_fds,
-            .write_fds = write_fds,
-            .read_fd_set = try FdSet.make(allocator),
-            .write_fd_set = try FdSet.make(allocator),
-            .except_fd_set = try FdSet.make(allocator),
+            .read_fds = .empty,
+            .write_fds = .empty,
+            .read_fd_set = try .make(allocator),
+            .write_fd_set = try .make(allocator),
+            .except_fd_set = try .make(allocator),
         };
+
+        errdefer list.read_fds.deinit(allocator);
+        errdefer list.write_fds.deinit(allocator);
+
+        try list.read_fds.ensureTotalCapacity(allocator, 8);
+        try list.write_fds.ensureTotalCapacity(allocator, 8);
+
+        return list;
     }
 
     inline fn deinit(self: *Self) void {
@@ -1258,12 +1392,6 @@ pub fn getEndpointList(allocator: std.mem.Allocator, name: []const u8, port: u16
     if (builtin.link_libc or is_windows) {
         const getaddrinfo_fn = if (is_windows) windows.getaddrinfo else libc_getaddrinfo;
         const freeaddrinfo_fn = if (is_windows) windows.funcs.freeaddrinfo else std.posix.system.freeaddrinfo;
-        const addrinfo = if (is_windows) windows.addrinfo else std.posix.addrinfo;
-
-        const AI_NUMERICSERV = if (is_windows)
-            windows.ws2_32.AI.NUMERICSERV
-        else
-            std.c.AI.NUMERICSERV;
 
         const name_c = try allocator.dupeZ(u8, name);
         defer allocator.free(name_c);
@@ -1271,24 +1399,24 @@ pub fn getEndpointList(allocator: std.mem.Allocator, name: []const u8, port: u16
         const port_c = try std.fmt.allocPrint(allocator, "{}\x00", .{port});
         defer allocator.free(port_c);
 
-        const hints = addrinfo{
-            .flags = AI_NUMERICSERV,
-            .family = std.posix.AF.UNSPEC,
-            .socktype = std.posix.SOCK.STREAM,
-            .protocol = std.posix.IPPROTO.TCP,
+        const hints: posix.addrinfo = .{
+            .flags = .{ .NUMERICSERV = true },
+            .family = posix.AF.UNSPEC,
+            .socktype = posix.SOCK.STREAM,
+            .protocol = posix.IPPROTO.TCP,
             .canonname = null,
             .addr = null,
             .addrlen = 0,
             .next = null,
         };
 
-        var res: ?*addrinfo = undefined;
+        var res: ?*posix.addrinfo = undefined;
         try getaddrinfo_fn(name_c.ptr, @ptrCast(port_c.ptr), &hints, &res);
         defer if (res) |r| freeaddrinfo_fn(r);
 
         const addr_count = blk: {
             var count: usize = 0;
-            var it: ?*addrinfo = res;
+            var it: ?*posix.addrinfo = res;
             while (it) |info| : (it = info.next) {
                 if (info.addr != null) {
                     count += 1;
@@ -1298,7 +1426,7 @@ pub fn getEndpointList(allocator: std.mem.Allocator, name: []const u8, port: u16
         };
         result.endpoints = try arena.alloc(EndPoint, addr_count);
 
-        var it: ?*addrinfo = res;
+        var it: ?*posix.addrinfo = res;
         var i: usize = 0;
         while (it) |info| : (it = info.next) {
             const sockaddr = info.addr orelse continue;
@@ -1420,23 +1548,12 @@ const windows = struct {
         tv_usec: c_long,
     };
 
-    const addrinfo = extern struct {
-        flags: i32,
-        family: i32,
-        socktype: i32,
-        protocol: i32,
-        addrlen: std.posix.socklen_t,
-        canonname: ?[*:0]u8,
-        addr: ?*std.posix.sockaddr,
-        next: ?*addrinfo,
-    };
-
     const funcs = struct {
-        extern "ws2_32" fn recvfrom(s: ws2_32.SOCKET, buf: [*c]u8, len: c_int, flags: c_int, from: [*c]std.posix.sockaddr, fromlen: [*c]std.posix.socklen_t) callconv(std.os.windows.WINAPI) c_int;
-        extern "ws2_32" fn select(nfds: c_int, readfds: ?*anyopaque, writefds: ?*anyopaque, exceptfds: ?*anyopaque, timeout: [*c]const timeval) callconv(std.os.windows.WINAPI) c_int;
+        extern "ws2_32" fn recvfrom(s: ws2_32.SOCKET, buf: [*c]u8, len: c_int, flags: c_int, from: [*c]std.posix.sockaddr, fromlen: [*c]std.posix.socklen_t) callconv(.winapi) c_int;
+        extern "ws2_32" fn select(nfds: c_int, readfds: ?*anyopaque, writefds: ?*anyopaque, exceptfds: ?*anyopaque, timeout: [*c]const timeval) callconv(.winapi) c_int;
         extern "ws2_32" fn __WSAFDIsSet(arg0: ws2_32.SOCKET, arg1: [*]u8) c_int;
-        extern "ws2_32" fn getaddrinfo(nodename: [*:0]const u8, servicename: [*:0]const u8, hints: *const addrinfo, result: **addrinfo) callconv(std.os.windows.WINAPI) c_int;
-        extern "ws2_32" fn freeaddrinfo(res: *addrinfo) callconv(std.os.windows.WINAPI) void;
+        extern "ws2_32" fn getaddrinfo(nodename: [*:0]const u8, servicename: [*:0]const u8, hints: *const posix.addrinfo, result: **posix.addrinfo) callconv(.winapi) c_int;
+        extern "ws2_32" fn freeaddrinfo(res: *posix.addrinfo) callconv(.winapi) void;
     };
 
     // TODO: This can be removed in favor of upstream Zig `std.posix.socket` if the
@@ -1528,8 +1645,8 @@ const windows = struct {
     fn getaddrinfo(
         name: [*:0]const u8,
         port: [*:0]const u8,
-        hints: *const addrinfo,
-        result: *?*addrinfo,
+        hints: *const posix.addrinfo,
+        result: *?*posix.addrinfo,
     ) GetAddrInfoError!void {
         const rc = funcs.getaddrinfo(name, port, hints, @ptrCast(result));
         if (rc != 0)

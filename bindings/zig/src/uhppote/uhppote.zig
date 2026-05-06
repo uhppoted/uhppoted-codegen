@@ -25,10 +25,13 @@ pub fn set_debug(v: bool) !void {
 }
 
 // FIXME: using threads in lieu of async because async is currently broken in the nightlies
-pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocator) !void {
-var queue = std.ArrayListUnmanaged([64]u8){};
-
-defer queue.deinit(allocator);
+pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocator, io: std.Io) !void {
+    var queue = std.ArrayListUnmanaged([64]u8){
+        .items = &.{},
+        .capacity = 0,
+    };
+  
+    defer queue.deinit(allocator);
 
     const ctx = context{
         .q = &queue,
@@ -50,15 +53,46 @@ defer queue.deinit(allocator);
         }
 
         // Ewwww :-( .. must be some way to block/wait on a queue?
-        std.Thread.sleep(1000 * std.time.ns_per_ms);
+        io.sleep(.fromMilliseconds(1000), .monotonic) catch {};
     }
 
     thread.join();
 }
 
+// pub fn listen(handler: *const fn (decode.Event) void, allocator: std.mem.Allocator) !void {
+//     var queue = std.ArrayListUnmanaged([64]u8).empty;
+//     defer queue.deinit(allocator);
+// 
+//     var ctx = context{
+//         .q = &queue,
+//         .allocator = allocator,
+//     };
+// 
+//     var thread = try std.Thread.spawn(.{}, on_event, .{&ctx});
+//     defer thread.join();
+// 
+//     while (true) {
+//         ctx.mutex.lock();
+//         while (ctx.q.items.len == 0) {
+//             ctx.cond.wait(&ctx.mutex);
+//         }
+//         const packet = ctx.q.orderedRemove(0);
+//         ctx.mutex.unlock();
+// 
+//         const event = decode.get_event(packet);
+//         if (event) |e| {
+//             handler(e);
+//         } else |err| {
+//             std.debug.print("\n   *** ERROR  {any}\n", .{err});
+//         }
+//     }
+// }
+
 const context = struct {
     q: *std.ArrayListUnmanaged([64]u8),
     allocator: std.mem.Allocator,
+//  semaphore: std.Thread.Semaphore = .{},
+//  cond: std.Thread.Condition = .{},
 };
 
 fn on_event(ctx: context) void {

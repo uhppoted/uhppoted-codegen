@@ -126,7 +126,7 @@ publish: release
 	           "./dist/uhppoted-codegen_$(VERSION)-go.tar.gz"       \
 	           "./dist/uhppoted-codegen_$(VERSION)-python.tar.gz"   \
 	           "./dist/uhppoted-codegen_$(VERSION)-rust.tar.gz"     \
-	           "./dist/uhppoted-codegen_$(VERSION)-zig.tar.gz"      \
+ 	           "./dist/uhppoted-codegen_$(VERSION)-zig.tar.gz"      \
 	           "./dist/uhppoted-codegen_$(VERSION)-php.tar.gz"      \
 	           "./dist/uhppoted-codegen_$(VERSION)-erlang.tar.gz"   \
 	           "./dist/uhppoted-codegen_$(VERSION)-lua.tar.gz"      \
@@ -139,7 +139,8 @@ debug: erlang
 	                                                --listen 0.0.0.0:60001 \
 	                                                set-ip
 
-debug-all: go rust python zig php erlang lua
+# debug-all: go rust python zig php erlang lua
+debug-all: go rust python php erlang lua
 	$(eval COMMAND := set-door)
 	echo "--- $(COMMAND)"
 	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
