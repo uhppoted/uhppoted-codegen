@@ -55,22 +55,22 @@ var SetDoorPasscodesRequest = Request{
 				},
 				{
 					Name:  "passcode 1",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 123456,
 				},
 				{
 					Name:  "passcode 2",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 234567,
 				},
 				{
 					Name:  "passcode 3",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 345678,
 				},
 				{
 					Name:  "passcode 4",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 456789,
 				},
 			},
@@ -96,22 +96,22 @@ var SetDoorPasscodesRequest = Request{
 				},
 				{
 					Name:  "passcode 1",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 123456,
 				},
 				{
 					Name:  "passcode 2",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 1234567,
 				},
 				{
 					Name:  "passcode 3",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 345678,
 				},
 				{
 					Name:  "passcode 4",
-					Type:  "uint32",
+					Type:  "pin",
 					Value: 456789,
 				},
 			},

@@ -40,6 +40,7 @@ var Responses = []types.Message{
 	ActivateKeypadsResponse.Message,
 	GetAntiPassbackResponse.Message,
 	SetAntiPassbackResponse.Message,
+	SetFirstCardResponse.Message,
 	RestoreDefaultParametersResponse.Message,
 }
 
@@ -77,4 +78,5 @@ var SetInterlockResponse = responses.SetInterlockResponse
 var ActivateKeypadsResponse = responses.ActivateKeypadsResponse
 var GetAntiPassbackResponse = responses.GetAntiPassbackResponse
 var SetAntiPassbackResponse = responses.SetAntiPassbackResponse
+var SetFirstCardResponse = responses.SetFirstCardResponse
 var RestoreDefaultParametersResponse = responses.RestoreDefaultParametersResponse

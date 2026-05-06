@@ -24,14 +24,14 @@ const EVENT_INDEX uint32 = 37
 const TIME_PROFILE_ID uint8 = 29
 const LISTENER_INTERVAL uint8 = 15
 
-var ADDRESS = netip.MustParseAddr("192.168.1.100")
+var ADDRESS = netip.MustParseAddr("192.168.1.125")
 var NETMASK = netip.MustParseAddr("255.255.255.0")
 var GATEWAY = netip.MustParseAddr("192.168.1.1")
-var LISTENER = netip.MustParseAddrPort("192.168.1.100:60001")
+var LISTENER = netip.MustParseAddrPort("192.168.1.125:60001")
 
 var controllers = map[uint32]uhppote.Controller{
-    405419896: uhppote.Controller{405419896, "192.168.1.100:60000", "tcp"},
-    303986753: uhppote.Controller{303986753,"192.168.1.100:60000","udp"},
+    405419896: uhppote.Controller{405419896, "192.168.1.125:60000", "tcp"},
+    303986753: uhppote.Controller{303986753,"192.168.1.125:60000","udp"},
 }
 
 type command struct {
@@ -73,6 +73,7 @@ var commands = []command{
     command{name: "set-door-passcodes", f: setDoorPasscodes},
     command{name: "get-antipassback", f: getAntiPassback},
     command{name: "set-antipassback", f: setAntiPassback},
+    command{name: "set-firstcard", f: setFirstCard},
     command{name: "restore-default-parameters", f: restoreDefaultParameters},
     command{name: "listen", f: listen},
 }
@@ -421,6 +422,28 @@ func setAntiPassback(args []string) (any, error) {
     antipassback := uint8(2)
 
     return uhppote.SetAntiPassback(controller, antipassback)
+}
+
+func setFirstCard(args []string) (any, error) {
+    controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
+    door := DOOR
+    start, _ := time.Parse("15:04", "08:30")
+    end, _ := time.Parse("15:04", "16:45")
+    active := uint8(1)
+    inactive := uint8(3)
+    monday := true
+    tuesday := true
+    wednesday := false
+    thursday := true
+    friday := false
+    saturday := true
+    sunday := true
+
+    return uhppote.SetFirstCard(controller,
+                                door,
+                                uhppote.HHmm(start), uhppote.HHmm(end),
+                                active, inactive,
+                                monday,tuesday, wednesday, thursday, friday, saturday, sunday)
 }
 
 func restoreDefaultParameters(args []string) (any, error) {

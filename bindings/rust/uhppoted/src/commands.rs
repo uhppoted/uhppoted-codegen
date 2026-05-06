@@ -20,7 +20,7 @@ const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
 
-pub const COMMANDS: [&Command; 35] = [
+pub const COMMANDS: [&Command; 36] = [
     &Command {
         name: "get-all-controllers",
         func: get_all_controllers,
@@ -152,6 +152,10 @@ pub const COMMANDS: [&Command; 35] = [
     &Command {
         name: "set-antipassback",
         func: set_antipassback,
+    },
+    &Command {
+        name: "set-firstcard",
+        func: set_firstcard,
     },
     &Command {
         name: "restore-default-parameters",
@@ -569,6 +573,30 @@ fn set_antipassback() {
         let antipassback = 2;
 
         futures::executor::block_on(uhppote::set_anti_passback(controller, antipassback))
+    })
+}
+
+fn set_firstcard() {
+    print(|| -> Result<uhppote::SetFirstCardResponse, error::Error> {
+        let controller = resolve(CONTROLLER);
+        let door = 3;
+        let start = NaiveTime::parse_from_str("08:30", "%H:%M").unwrap();
+        let end = NaiveTime::parse_from_str("16:45", "%H:%M").unwrap();
+        let active =  1;
+        let inactive =  3;
+        let monday = true;
+        let tuesday  = true;
+        let  wednesday = false;
+        let thursday = true;
+        let  friday = false;
+        let saturday = true;
+        let  sunday = true;
+
+        futures::executor::block_on(uhppote::set_first_card(controller, 
+                                                            door,
+                                                            start, end,
+                                                            active, inactive,
+                                                            monday, tuesday, wednesday, thursday, friday, saturday, sunday))
     })
 }
 

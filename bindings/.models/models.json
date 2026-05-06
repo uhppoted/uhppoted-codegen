@@ -4833,6 +4833,261 @@
         ]
       },
       {
+        "name": "set first-card",
+        "description": [
+          "Sets the first card configuration for a access controller managed door."
+        ],
+        "args": [
+          {
+            "name": "controller",
+            "type": "controller",
+            "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
+          },
+          {
+            "name": "door",
+            "type": "uint8",
+            "description": "door ID ([1..4])"
+          },
+          {
+            "name": "start-time",
+            "type": "HHmm",
+            "description": "time from which first card can be activated"
+          },
+          {
+            "name": "end-time",
+            "type": "HHmm",
+            "description": "time after which first card is deactivated"
+          },
+          {
+            "name": "active-mode",
+            "type": "uint8",
+            "description": "control mode (0:normally open, 1:normally closed, 2:controlled)"
+          },
+          {
+            "name": "inactive-mode",
+            "type": "uint8",
+            "description": "control mode (0:normally open, 1:normally closed, 2:controlled, 3:first-card only)"
+          },
+          {
+            "name": "monday",
+            "type": "bool",
+            "description": "frist-card enabled on Monday if true"
+          },
+          {
+            "name": "tuesday",
+            "type": "bool",
+            "description": "frist-card enabled on Tuesday if true"
+          },
+          {
+            "name": "wednesday",
+            "type": "bool",
+            "description": "frist-card enabled on Wednesday if true"
+          },
+          {
+            "name": "thursday",
+            "type": "bool",
+            "description": "frist-card enabled on Thursday if true"
+          },
+          {
+            "name": "friday",
+            "type": "bool",
+            "description": "frist-card enabled on Friday if true"
+          },
+          {
+            "name": "saturday",
+            "type": "bool",
+            "description": "frist-card enabled on Saturday if true"
+          },
+          {
+            "name": "sunday",
+            "type": "bool",
+            "description": "frist-card enabled on Sunday if true"
+          }
+        ],
+        "request": {
+          "name": "set first-card request",
+          "msgtype": 170,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "description": "controller serial number"
+            },
+            {
+              "name": "door",
+              "type": "uint8",
+              "offset": 8
+            },
+            {
+              "name": "start-time",
+              "type": "HHmm",
+              "offset": 9
+            },
+            {
+              "name": "end-time",
+              "type": "HHmm",
+              "offset": 12
+            },
+            {
+              "name": "active-mode",
+              "type": "uint8",
+              "offset": 11
+            },
+            {
+              "name": "inactive-mode",
+              "type": "uint8",
+              "offset": 14
+            },
+            {
+              "name": "monday",
+              "type": "bool",
+              "offset": 15
+            },
+            {
+              "name": "tuesday",
+              "type": "bool",
+              "offset": 16
+            },
+            {
+              "name": "wednesday",
+              "type": "bool",
+              "offset": 17
+            },
+            {
+              "name": "thursday",
+              "type": "bool",
+              "offset": 18
+            },
+            {
+              "name": "friday",
+              "type": "bool",
+              "offset": 19
+            },
+            {
+              "name": "saturday",
+              "type": "bool",
+              "offset": 20
+            },
+            {
+              "name": "sunday",
+              "type": "bool",
+              "offset": 21
+            }
+          ]
+        },
+        "response": {
+          "name": "set first-card response",
+          "msgtype": 170,
+          "fields": [
+            {
+              "name": "controller",
+              "type": "uint32",
+              "offset": 4,
+              "tag": "controller",
+              "description": "controller serial number"
+            },
+            {
+              "name": "ok",
+              "type": "bool",
+              "offset": 8,
+              "tag": "ok",
+              "description": "succeeded/failed"
+            }
+          ]
+        },
+        "tests": [
+          {
+            "name": "set-first-card",
+            "args": [
+              {
+                "name": "controller",
+                "type": "uint32",
+                "value": 405419896
+              },
+              {
+                "name": "door",
+                "type": "uint8",
+                "value": 3
+              },
+              {
+                "name": "start-time",
+                "type": "HHmm",
+                "value": "8:30"
+              },
+              {
+                "name": "end-time",
+                "type": "HHmm",
+                "value": "17:45"
+              },
+              {
+                "name": "active-mode",
+                "type": "uint8",
+                "value": 1
+              },
+              {
+                "name": "inactive-mode",
+                "type": "uint8",
+                "value": 2
+              },
+              {
+                "name": "monday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "tuesday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "wednesday",
+                "type": "bool",
+                "value": false
+              },
+              {
+                "name": "thursday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "friday",
+                "type": "bool",
+                "value": false
+              },
+              {
+                "name": "saturday",
+                "type": "bool",
+                "value": true
+              },
+              {
+                "name": "sunday",
+                "type": "bool",
+                "value": true
+              }
+            ],
+            "request": "F6oAAHg3KhgDCDABF0UCAQEAAQABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "replies": [
+              {
+                "message": "F6oAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "response": [
+                  {
+                    "name": "controller",
+                    "type": "uint32",
+                    "value": 405419896
+                  },
+                  {
+                    "name": "ok",
+                    "type": "bool",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
         "name": "restore default parameters",
         "description": [
           "Restores the controller configuration to the manufacturer defaults."
@@ -6888,6 +7143,26 @@
       {
         "name": "set anti-passback response",
         "msgtype": 132,
+        "fields": [
+          {
+            "name": "controller",
+            "type": "uint32",
+            "offset": 4,
+            "tag": "controller",
+            "description": "controller serial number"
+          },
+          {
+            "name": "ok",
+            "type": "bool",
+            "offset": 8,
+            "tag": "ok",
+            "description": "succeeded/failed"
+          }
+        ]
+      },
+      {
+        "name": "set first-card response",
+        "msgtype": 170,
         "fields": [
           {
             "name": "controller",

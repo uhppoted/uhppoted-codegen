@@ -134,7 +134,7 @@ publish: release
 
 debug: erlang
 	cd generated/erlang && ./_build/default/bin/cli --debug \
-	                                                --bind 192.168.1.100:0 \
+	                                                --bind 192.168.1.125:0 \
 	                                                --broadcast 192.168.1.255:60000 \
 	                                                --listen 0.0.0.0:60001 \
 	                                                set-ip
@@ -143,13 +143,13 @@ debug: erlang
 debug-all: go rust python php erlang lua
 	$(eval COMMAND := set-door)
 	echo "--- $(COMMAND)"
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
-	$(PYBIN)  --debug --bind 192.168.1.100   --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001             $(COMMAND)
-	$(ZIGBIN) --debug --bind 192.168.1.100   --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001             $(COMMAND)
-	$(PHPBIN) --debug --bind=192.168.1.100   --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 --timeout=1 $(COMMAND)
-	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001                   $(COMMAND)
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001                   $(COMMAND)
+	$(GOBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 $(COMMAND)
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 $(COMMAND)"
+	$(PYBIN)  --debug --bind 192.168.1.125   --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001             $(COMMAND)
+	$(ZIGBIN) --debug --bind 192.168.1.125   --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001             $(COMMAND)
+	$(PHPBIN) --debug --bind=192.168.1.125   --broadcast=192.168.1.255:60000 --listen=192.168.1.125:60001 --timeout=1 $(COMMAND)
+	$(ERLBIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001                   $(COMMAND)
+	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001                   $(COMMAND)
 
 godoc:
 	godoc -http=:80	-index_interval=60s
@@ -174,23 +174,23 @@ go: build regen
 	cd generated/go && go fmt ./... && go mod tidy && go build -o ./bin/ ./...
 
 go-debug: go
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-IPv4
+	$(GOBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 set-firstcard
 
 go-usage: regen build
 	$(GOBIN)
 
 go-cmd: go
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	$(GOBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 $(COMMAND)
 
 go-all: go
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
+	$(GOBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 all
 
 go-listen: go
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 listen
+	$(GOBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 listen
 
 go-test: go
 	cd generated/go && go test -v ./uhppote
-	$(GOBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 restore-default-parameters --controller 303986753
+	$(GOBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 restore-default-parameters --controller 303986753
 
 rust: build regen 
 	# rm -rf generated/rust/*
@@ -198,22 +198,22 @@ rust: build regen
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-IPv4"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 set-IPv4"
 
 rust-usage: rust
 	$(RUSTBIN)
 
 rust-cmd: rust
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 $(COMMAND)"
 
 rust-all: rust
-	$(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
+	$(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 all
 
 rust-listen: rust
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 listen"
 
 rust-test: rust
-	# $(RUSTBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 get-status 303986753
+	# $(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 get-status 303986753
 	cd generated/rust/uhppoted && cargo test
 
 python: build regen 
@@ -223,22 +223,22 @@ python: build regen
 	chmod +x generated/python/main.py
 
 python-debug: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 set-IPv4
+	$(PYBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 set-IPv4
 
 python-usage: python
 	$(PYBIN)
 
 python-cmd: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 $(COMMAND)
+	$(PYBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 $(COMMAND)
 
 python-all: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255 --listen 192.168.1.100:60001 all
+	$(PYBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255 --listen 192.168.1.125:60001 all
 
 python-listen: python
-	$(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 listen
+	$(PYBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 listen
 
 python-test: python
-	# $(PYBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000 --listen 192.168.1.100:60001 get-status 303986753
+	# $(PYBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 get-status 303986753
 	cd generated/python && python3 -m unittest tests/*.py 
 
 zig: build regen
@@ -246,19 +246,19 @@ zig: build regen
 	cd generated/zig && zig fmt src/* && zig build
 
 zig-debug: zig
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 set-IPv4
+	$(ZIGBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 set-IPv4
 
 zig-usage: zig
 	$(ZIGBIN) 
 
 zig-cmd: zig
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 $(COMMAND)
+	$(ZIGBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 $(COMMAND)
 
 zig-all: zig
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 all
+	$(ZIGBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 all
 
 zig-listen: zig
-	$(ZIGBIN) --debug --bind 192.168.1.100 --broadcast 192.168.1.255:60000  --listen 192.168.1.100:60001 listen
+	$(ZIGBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 listen
 
 zig-test: zig
 	cd generated/zig && zig test src/uhppote/decode.zig
@@ -269,19 +269,19 @@ php: build regen
 	cd generated/php && php-cs-fixer fix --config=../../.php-cs-fixer.php .
 
 php-debug: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 set-IPv4
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.125 --broadcast=192.168.1.255:60000 --listen=192.168.1.125:60001 set-IPv4
 
 php-usage: php
 	$(PHPBIN) 
 
 php-cmd: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 $(COMMAND)
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.125 --broadcast=192.168.1.255:60000 --listen=192.168.1.125:60001 $(COMMAND)
 
 php-all: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 all
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.125 --broadcast=192.168.1.255:60000 --listen=192.168.1.125:60001 all
 
 php-listen: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.100 --broadcast=192.168.1.255:60000 --listen=192.168.1.100:60001 listen
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.125 --broadcast=192.168.1.255:60000 --listen=192.168.1.125:60001 listen
 
 php-test: php
 	cd generated/php && phpunit uhppote/decodeTest.php
@@ -298,20 +298,20 @@ erlang-debug: erlang
 	# cd generated/erlang && \
 	# erl -noshell -run \
 	#               main uhppoted --debug \
-	#                             --bind 192.168.1.100:0 \
+	#                             --bind 192.168.1.125:0 \
 	#                             --broadcast 192.168.1.255:60000 \
 	#                             --listen 0.0.0.0:60001 \
 	#                             get-controller yadda yadda2 yadda3\
 	#                             -s init stop
 	# 
 	# cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
-	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-IPv4
+	$(ERLBIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-IPv4
 
 erlang-usage: erlang
 	$(ERLBIN) 
 
 erlang-cmd: erlang
-	$(ERLBIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 $(COMMAND)
+	$(ERLBIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 $(COMMAND)
 
 erlang-all: erlang
 	$(ERLBIN) all
@@ -331,16 +331,16 @@ lua-help: build regen
 	$(LUABIN) set-time -h 
 
 lua-debug: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 set-interlock --interlock="1&2"
+	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 set-interlock --interlock="1&2"
 
 lua-cmd: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 $(COMMAND)
+	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 $(COMMAND)
 
 lua-all: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 all
+	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 all
 	
 lua-listen: lua
-	$(LUABIN) --debug --bind 192.168.1.100:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 listen
+	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 listen
 
 lua-test: lua
 	cd generated/lua && lua src/test_decode.lua

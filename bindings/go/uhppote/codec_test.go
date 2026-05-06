@@ -88,6 +88,31 @@ func toPin(s string) PIN {
   return PIN(v)
 }
 
+func toEventType(s string) uint8 {
+  v, _ := strconv.ParseUint(s, 10, 8)
+
+  return uint8(v)
+}
+
+func toDirection(s string) uint8 {
+  v, _ := strconv.ParseUint(s, 10, 8)
+
+  return uint8(v)
+}
+
+func toMode(s string) uint8 {
+  v, _ := strconv.ParseUint(s, 10, 8)
+
+  return uint8(v)
+}
+
+func toAntiPassback(s string) uint8 {
+  v, _ := strconv.ParseUint(s, 10, 8)
+
+  return uint8(v)
+}
+
+
 func format(packet []byte) string {
     var s strings.Builder
     

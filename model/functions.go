@@ -38,6 +38,7 @@ var Functions = []types.Function{
 	SetDoorPasscodes,
 	GetAntiPassback,
 	SetAntiPassback,
+	SetFirstCard,
 	RestoreDefaultParameters,
 }
 
@@ -75,4 +76,5 @@ var SetInterlock = functions.SetInterlock
 var ActivateKeypads = functions.ActivateKeypads
 var GetAntiPassback = functions.GetAntiPassback
 var SetAntiPassback = functions.SetAntiPassback
+var SetFirstCard = functions.SetFirstCard
 var RestoreDefaultParameters = functions.RestoreDefaultParameters
