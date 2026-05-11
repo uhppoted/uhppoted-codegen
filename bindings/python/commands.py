@@ -15,13 +15,13 @@ EVENT_INDEX = 37
 TIME_PROFILE_ID = 29
 LISTENER_INTERVAL = 15
 
-ADDRESS = ipaddress.IPv4Address('192.168.1.100')
+ADDRESS = ipaddress.IPv4Address('192.168.1.125')
 NETMASK = ipaddress.IPv4Address('255.255.255.0')
 GATEWAY = ipaddress.IPv4Address('192.168.1.1')
-LISTENER = (ipaddress.IPv4Address('192.168.1.100'), 60001)
+LISTENER = (ipaddress.IPv4Address('192.168.1.125'), 60001)
 
 CONTROLLERS = {
-     405419896: uhppote.Controller(405419896,'192.168.1.100:60000','tcp'),
+     405419896: uhppote.Controller(405419896,'192.168.1.125:60000','tcp'),
 }
 
 
@@ -60,6 +60,7 @@ def commands():
         'set-door-passcodes': set_door_passcodes,
         'get-antipassback': get_antipassback,
         'set-antipassback': set_antipassback,
+        'set-firstcard': set_firstcard,
         'restore-default-parameters': restore_default_parameters,
         'listen': listen,
     }
@@ -372,6 +373,25 @@ def set_antipassback(u):
 
     return u.set_anti_passback(controller, antipassback)
 
+def set_firstcard(u):
+    controller = resolve(CONTROLLER)
+    door = 3
+    start = datetime.datetime.strptime("08:30", '%H:%M')
+    end = datetime.datetime.strptime("16:45", '%H:%M')
+    active =  1
+    inactive =  3
+    monday = True
+    tuesday  = True
+    wednesday = False
+    thursday = True
+    friday = False
+    saturday = True
+    sunday = True
+
+    return u.set_first_card(controller, door,
+                                        start, end,
+                                        active, inactive,
+                                        monday, tuesday, wednesday, thursday, friday, saturday, sunday)
 
 def restore_default_parameters(u):
     controller = resolve(CONTROLLER)

@@ -223,7 +223,7 @@ python: build regen
 	chmod +x generated/python/main.py
 
 python-debug: python
-	$(PYBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 set-IPv4
+	$(PYBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000 --listen 192.168.1.125:60001 set-firstcard
 
 python-usage: python
 	$(PYBIN)
