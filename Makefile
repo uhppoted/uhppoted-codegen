@@ -198,7 +198,7 @@ rust: build regen
 	cd generated/rust/uhppoted && cargo fmt && cargo build
 
 rust-debug: rust
-	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 set-IPv4"
+	bash -c "exec -a uhppoted $(RUSTBIN) --debug --bind 192.168.1.125 --broadcast 192.168.1.255:60000  --listen 192.168.1.125:60001 set-firstcard"
 
 rust-usage: rust
 	$(RUSTBIN)

@@ -183,7 +183,7 @@ lazy_static! {
     static ref CONTROLLERS: HashMap<u32, Controller> = HashMap::from([
      (405419896, Controller {
          controller: 405419896,
-         address: String::from("192.168.1.100:60000"),
+         address: String::from("192.168.1.125:60000"),
          transport: String::from("tcp"),
      }),
  ]);
@@ -211,7 +211,7 @@ fn get_controller() {
 fn set_ipv4() {
     print(|| -> Result<uhppote::SetIPv4Response, error::Error> {
         let controller = resolve(CONTROLLER);
-        let address = "192.168.1.100".parse().unwrap();
+        let address = "192.168.1.125".parse().unwrap();
         let netmask = "255.255.255.0".parse().unwrap();
         let gateway = "192.168.1.1".parse().unwrap();
 
@@ -255,7 +255,7 @@ fn get_listener() {
 fn set_listener() {
     print(|| -> Result<uhppote::SetListenerResponse, error::Error> {
         let controller = resolve(CONTROLLER);
-        let address = "192.168.1.100".parse().unwrap();
+        let address = "192.168.1.125".parse().unwrap();
         let port: u16 = 60001;
         let interval: u8 = 15;
 
@@ -586,11 +586,11 @@ fn set_firstcard() {
         let inactive =  3;
         let monday = true;
         let tuesday  = true;
-        let  wednesday = false;
+        let wednesday = false;
         let thursday = true;
-        let  friday = false;
+        let friday = false;
         let saturday = true;
-        let  sunday = true;
+        let sunday = true;
 
         futures::executor::block_on(uhppote::set_first_card(controller, 
                                                             door,

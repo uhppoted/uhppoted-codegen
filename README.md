@@ -14,7 +14,7 @@ Code generation tool for creating native UHPPOTE controller interfaces in multip
 - Go
 - Rust
 - Python
-- Zig
+- ~~Zig~~
 - PHP
 - Erlang
 - Lua
