@@ -331,7 +331,7 @@ lua-help: build regen
 	$(LUABIN) set-time -h 
 
 lua-debug: lua
-	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 set-interlock --interlock="1&2"
+	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 set-firstcard
 
 lua-cmd: lua
 	$(LUABIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --events 0.0.0.0:60001 $(COMMAND)

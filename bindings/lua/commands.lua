@@ -3,10 +3,10 @@ local structs = require("src/structs")
 local os = require("os")
 
 local CONTROLLER <const> = 405419896
-local ADDRESS <const> = "192.168.1.100"
+local ADDRESS <const> = "192.168.1.125"
 local NETMASK <const> = "255.255.255.0"
 local GATEWAY <const> = "192.168.1.1"
-local LISTENER <const> = { ["address"] = "192.168.1.100", ["port"] = 60001 }
+local LISTENER <const> = { ["address"] = "192.168.1.125", ["port"] = 60001 }
 local DOOR = 1
 local DOOR_MODE = "controlled"
 local DOOR_DELAY = 5
@@ -21,8 +21,8 @@ local TIME_PROFILE_ID = 29
 local LISTENER_INTERVAL = 15
 
 local CONTROLLERS = {
-    [405419896] = structs.controller(405419896, "192.168.1.100", "tcp"),
-    [303986753] = structs.controller(303986753, "192.168.1.100", "udp")
+    [405419896] = structs.controller(405419896, "192.168.1.125", "tcp"),
+    [303986753] = structs.controller(303986753, "192.168.1.125", "udp")
 }
 
 local TASKS = {
@@ -405,6 +405,27 @@ function set_antipassback(args)
     error ("invalid antipassback")
 end
 
+function set_firstcard(args)
+    local controller = resolve(parse(args,"controller",CONTROLLER))
+    local door = 3
+    local start_time = "08:30"
+    local end_time = "16:45"
+    local active = 1
+    local inactive = 3
+    local monday = True
+    local tuesday  = True
+    local wednesday = False
+    local thursday = True
+    local friday = False
+    local saturday = True
+    local sunday = True
+
+    return uhppote.set_first_card(controller, door,
+                                              start_time, end_time,
+                                              active, inactive,
+                                              monday, tuesday, wednesday, thursday, friday, saturday, sunday)
+end
+
 
 function restore_default_parameters(args)
     local controller = resolve(parse(args,"controller",CONTROLLER))
@@ -469,6 +490,7 @@ local commands = {
        { ["command"] = "set-door-passcodes",         ["f"] = set_door_passcodes,         flags = {},             options = { "controller", "door", "passcodes" } },
        { ["command"] = "get-antipassback",           ["f"] = get_antipassback,           flags = {},             options = { "controller" } },
        { ["command"] = "set-antipassback",           ["f"] = set_antipassback,           flags = {},             options = { "controller", "antipassback" } },
+       { ["command"] = "set-firstcard",              ["f"] = set_firstcard,              flags = {},             options = { "controller" } },
        { ["command"] = "restore-default-parameters", ["f"] = restore_default_parameters, flags = {},             options = { "controller" } },
        { ["command"] = "listen",                     ["f"] = listen,                     flags = {},             options = { "controller" } },
    },
