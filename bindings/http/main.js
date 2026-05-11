@@ -80,6 +80,19 @@ export const COMMANDS = new Map([
   ['activate-keypads',           { fn: commands.activateKeypads,          args: ['controller', 'reader1', 'reader2', 'reader3', 'reader4']}],
   ['get-antipassback',           { fn: commands.getAntiPassback,          args: ['controller']}],
   ['set-antipassback',           { fn: commands.setAntiPassback,          args: ['controller', 'antipassback']}],
+  ['set-firstcard',              { fn: commands.setFirstCard,             args: ['controller', 'door',
+                                                                                               'first-card.start', 
+                                                                                               'first-card.end',
+                                                                                               'first-card.active',
+                                                                                               'first-card.inactive',
+                                                                                               'first-card.monday',
+                                                                                               'first-card.tuesday',
+                                                                                               'first-card.wednesday',
+                                                                                               'first-card.thursday',
+                                                                                               'first-card.friday',
+                                                                                               'first-card.saturday',
+                                                                                               'first-card.sunday']}],
+
   ['restore-default-parameters', { fn: commands.restoreDefaultParameters, args: ['controller']}],
 ])
 

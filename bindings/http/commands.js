@@ -334,6 +334,30 @@ export function setAntiPassback (controller, antipassback) {
   return uhppote.SetAntiPassback(controller, antipassback)
 }
 
+export function setFirstCard (controller, door,
+                                          start, end,
+                                          active, inactive,
+                                          monday, tuesday, wednesday, thursday, friday, saturday, sunday) {
+  controller = arg(controller)
+  door = arg(door)
+  start = arg(start)
+  end = arg(end)
+  active = arg(active)
+  inactive = arg(inactive)
+  monday = arg(monday)
+  tuesday  = arg(tuesday)
+  wednesday = arg(wednesday)
+  thursday = arg(thursday)
+  friday = arg(friday)
+  saturday = arg(saturday)
+  sunday = arg(sunday)
+
+  return uhppote.SetFirstCard(controller, door,
+                                          start, end,
+                                          active, inactive,
+                                          monday, tuesday, wednesday, thursday, friday, saturday, sunday)
+}
+
 export function restoreDefaultParameters (controller) {
   controller = arg(controller)
 
