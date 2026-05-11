@@ -14,23 +14,23 @@
 -define(TIME_PROFILE_ID, 29).
 -define(LISTENER_INTERVAL, 15).
 
--define(ADDRESS, "192.168.1.100").
+-define(ADDRESS, "192.168.1.125").
 -define(NETMASK, "255.255.255.0").
 -define(GATEWAY, "192.168.1.1").
--define(LISTENER, "192.168.1.100:60001").
+-define(LISTENER, "192.168.1.125:60001").
 
 -define(LOG_TAG, "commands").
 
 -define(CONTROLLERS, #{
     405419896 => #controller{
         controller = 405419896,
-        address = "192.168.1.100",
+        address = "192.168.1.125",
         transport = "tcp"
     },
 
     303986753 => #controller{
         controller = 303986753,
-        address = "192.168.1.100:60000",
+        address = "192.168.1.125:60000",
         transport = "udp"
     }
 }).
@@ -70,6 +70,7 @@ commands() ->
         {"set-door-passcodes", set_door_passcodes},
         {"get-antipassback", get_antipassback},
         {"set-antipassback", set_antipassback},
+        {"set-firstcard", set_firstcard},
         {"restore-default-parameters", restore_default_parameters},
         {"listen", listen}
     ].
@@ -326,6 +327,26 @@ execute(set_antipassback, _Options, Config) ->
     Controller = resolve(?CONTROLLER),
     Antipassback = 2,
     uhppoted:set_anti_passback(Config, Controller, Antipassback);
+
+execute(set_firstcard, _Options, Config) ->
+    Controller = resolve(?CONTROLLER),
+    Door = 3,
+    Start = {8, 30},
+    End = {16, 45},
+    Active = 1,
+    Inactive = 3,
+    Monday = true,
+    Tuesday  = true,
+    Wednesday = false,
+    Thursday = true,
+    Friday = false,
+    Saturday = true,
+    Sunday = true,
+
+    uhppoted:set_first_card(Config, Controller, Door,
+                                                Start, End,
+                                                Active, Inactive,
+                                                Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
 
 execute(restore_default_parameters, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

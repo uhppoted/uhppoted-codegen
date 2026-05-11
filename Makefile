@@ -305,7 +305,7 @@ erlang-debug: erlang
 	#                             -s init stop
 	# 
 	# cd generated/erlang && erl -noshell -run main uhppoted get-controller      -s init stop
-	$(ERLBIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-IPv4
+	$(ERLBIN) --debug --bind 192.168.1.125:0 --broadcast 192.168.1.255:60000 --listen 0.0.0.0:60001 set-firstcard
 
 erlang-usage: erlang
 	$(ERLBIN) 
