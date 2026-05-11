@@ -269,7 +269,7 @@ php: build regen
 	cd generated/php && php-cs-fixer fix --config=../../.php-cs-fixer.php .
 
 php-debug: php
-	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.125 --broadcast=192.168.1.255:60000 --listen=192.168.1.125:60001 set-IPv4
+	$(PHPBIN) --debug --timeout=1 --bind=192.168.1.125 --broadcast=192.168.1.255:60000 --listen=192.168.1.125:60001 set-firstcard
 
 php-usage: php
 	$(PHPBIN) 

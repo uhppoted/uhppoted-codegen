@@ -12,10 +12,10 @@ define('EVENT_INDEX', 37);
 define('TIME_PROFILE_ID', 29);
 define('LISTENER_INTERVAL', 15);
 
-define('ADDRESS', '192.168.1.100');
+define('ADDRESS', '192.168.1.125');
 define('NETMASK', '255.255.255.0');
 define('GATEWAY', '192.168.1.1');
-define('LISTENER', '192.168.1.100:60001');
+define('LISTENER', '192.168.1.125:60001');
 
 function execute($cmd, $fn, $options, $args)
 {
@@ -400,6 +400,28 @@ function set_antipassback($u, $args)
     return uhppote\set_anti_passback($u, $controller, $antipassback);
 }
 
+function set_firstcard($u, $args)
+{
+    $controller = resolve(CONTROLLER);
+    $door = 3;
+    $start = new DateTimeImmutable('08:30', new DateTimeZone('PDT'));
+    $end = new DateTimeImmutable('16:45', new DateTimeZone('PDT'));
+    $active = 1;
+    $inactive = 3;
+    $monday = True;
+    $tuesday  = True;
+    $wednesday = False;
+    $thursday = True;
+    $friday = False;
+    $saturday = True;
+    $sunday = True;
+
+    return uhppote\set_first_card($u, $controller, $door,
+                                                   $start, $end,
+                                                   $active, $inactive,
+                                                   $monday, $tuesday, $wednesday, $thursday, $friday, $saturday, $sunday);
+}
+
 function restore_default_parameters($u, $args)
 {
     $controller = resolve(CONTROLLER);
@@ -461,6 +483,7 @@ function commands()
         'set-door-passcodes' => 'set_door_passcodes',
         'get-antipassback' => 'get_antipassback',
         'set-antipassback' => 'set_antipassback',
+        'set-firstcard' => 'set_firstcard',
         'restore-default-parameters' => 'restore_default_parameters',
         'listen' => 'listen'
     ];
@@ -469,8 +492,8 @@ function commands()
 function controllers()
 {
     return array(
-        405419896 => new \uhppote\Controller(405419896, '192.168.1.100:60000', 'tcp'),
-        303986753 => new \uhppote\Controller(303986753, '192.168.1.100:60000', 'udp'),
+        405419896 => new \uhppote\Controller(405419896, '192.168.1.125:60000', 'tcp'),
+        303986753 => new \uhppote\Controller(303986753, '192.168.1.125:60000', 'udp'),
     );
 }
 
