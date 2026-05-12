@@ -90,7 +90,7 @@ var AddTaskRequest = Request{
 				{
 					Name:  "task",
 					Type:  "task",
-					Value: "2",
+					Value: 2,
 				},
 				{
 					Name:  "start date",
@@ -105,12 +105,12 @@ var AddTaskRequest = Request{
 				{
 					Name:  "monday",
 					Type:  "bool",
-					Value: "true",
+					Value: true,
 				},
 				{
 					Name:  "tuesday",
 					Type:  "bool",
-					Value: "true",
+					Value: true,
 				},
 				{
 					Name:  "wednesday",
@@ -120,7 +120,7 @@ var AddTaskRequest = Request{
 				{
 					Name:  "thursday",
 					Type:  "bool",
-					Value: "true",
+					Value: true,
 				},
 				{
 					Name:  "friday",
@@ -130,12 +130,12 @@ var AddTaskRequest = Request{
 				{
 					Name:  "saturday",
 					Type:  "bool",
-					Value: "true",
+					Value: true,
 				},
 				{
 					Name:  "sunday",
 					Type:  "bool",
-					Value: "true",
+					Value: true,
 				},
 				{
 					Name:  "start time",

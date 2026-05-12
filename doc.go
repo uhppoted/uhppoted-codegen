@@ -12,6 +12,9 @@ definitions into native language bindings for:
  - Python
  - Rust
  - Zig
+ - Erlang
+ - PHP
+ - Lua
  - Javascript (browser)
 
 */

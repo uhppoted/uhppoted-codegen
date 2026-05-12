@@ -1,12 +1,12 @@
 # TODO
 
-- [ ] 'first card' API (cf. https://github.com/uhppoted/uhppoted/issues/82)
+- [x] 'first card' API (cf. https://github.com/uhppoted/uhppoted/issues/82)
       - [x] request
       - [x] response
       - [x] function
-      - [ ] documentation
-      - [ ] CHANGELOG
-      - [ ] README
+      - [x] documentation
+      - [x] CHANGELOG
+      - [x] README
       - [x] go
       - [x] rust
       - [x] Python
