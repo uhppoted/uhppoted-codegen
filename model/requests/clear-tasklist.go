@@ -2,7 +2,7 @@ package requests
 
 var ClearTaskListRequest = Request{
 	Message: Message{
-		Name:    "clear tasklist request",
+		Name:    "clear task list request",
 		MsgType: 0xa6,
 		Fields: []Field{
 			{

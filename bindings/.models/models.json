@@ -4108,7 +4108,7 @@
           }
         ],
         "request": {
-          "name": "clear tasklist request",
+          "name": "clear task list request",
           "msgtype": 166,
           "fields": [
             {
@@ -5826,7 +5826,7 @@
         ]
       },
       {
-        "name": "clear tasklist request",
+        "name": "clear task list request",
         "msgtype": 166,
         "fields": [
           {

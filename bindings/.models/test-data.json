@@ -1513,7 +1513,7 @@
       {
         "name": "clear task list",
         "request": {
-          "name": "clear tasklist request",
+          "name": "clear task list request",
           "values": [
             {
               "name": "controller",
