@@ -44,7 +44,7 @@ var RefreshTaskListResponse = Response{
 				},
 				{
 					Name:  "ok",
-					Type:  "uint8",
+					Type:  "bool",
 					Value: true,
 				},
 			},
