@@ -35,7 +35,7 @@ var SetTime = Function{
 					Value: 405419896,
 				},
 				{
-					Name:  "datetime",
+					Name:  "date-time",
 					Type:  "datetime",
 					Value: "2025-11-04 12:34:56",
 				},
@@ -61,7 +61,7 @@ var SetTime = Function{
 							Value: 405419896,
 						},
 						{
-							Name:  "datetime",
+							Name:  "date-time",
 							Type:  "datetime",
 							Value: "2025-11-01 12:34:56",
 						},
