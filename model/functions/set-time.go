@@ -17,7 +17,7 @@ var SetTime = Function{
 			Description: "uint32|Controller controller serial number or {id, address, protocol} Controller struct",
 		},
 		{
-			Name:        "date-time",
+			Name:        "datetime",
 			Type:        "datetime",
 			Description: "date/time to which to set controller system time",
 		},
@@ -35,7 +35,7 @@ var SetTime = Function{
 					Value: 405419896,
 				},
 				{
-					Name:  "date-time",
+					Name:  "datetime",
 					Type:  "datetime",
 					Value: "2025-11-04 12:34:56",
 				},
@@ -61,7 +61,7 @@ var SetTime = Function{
 							Value: 405419896,
 						},
 						{
-							Name:  "date-time",
+							Name:  "datetime",
 							Type:  "datetime",
 							Value: "2025-11-01 12:34:56",
 						},

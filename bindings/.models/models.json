@@ -352,7 +352,7 @@
             "description": "uint32|Controller controller serial number or {id, address, protocol} Controller struct"
           },
           {
-            "name": "date-time",
+            "name": "datetime",
             "type": "datetime",
             "description": "date/time to which to set controller system time"
           }
@@ -405,7 +405,7 @@
                 "value": 405419896
               },
               {
-                "name": "date-time",
+                "name": "datetime",
                 "type": "datetime",
                 "value": "2025-11-04 12:34:56"
               }
@@ -421,7 +421,7 @@
                     "value": 405419896
                   },
                   {
-                    "name": "date-time",
+                    "name": "datetime",
                     "type": "datetime",
                     "value": "2025-11-01 12:34:56"
                   }
