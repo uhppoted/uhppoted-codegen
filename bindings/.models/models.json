@@ -4931,12 +4931,12 @@
             },
             {
               "name": "active-mode",
-              "type": "uint8",
+              "type": "mode",
               "offset": 11
             },
             {
               "name": "inactive-mode",
-              "type": "uint8",
+              "type": "mode",
               "offset": 14
             },
             {
@@ -5969,12 +5969,12 @@
           },
           {
             "name": "active-mode",
-            "type": "uint8",
+            "type": "mode",
             "offset": 11
           },
           {
             "name": "inactive-mode",
-            "type": "uint8",
+            "type": "mode",
             "offset": 14
           },
           {
