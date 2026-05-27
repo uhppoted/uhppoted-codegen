@@ -28,12 +28,12 @@ var SetFirstCardRequest = Request{
 			},
 			{
 				Name:   "active-mode",
-				Type:   "mode",
+				Type:   "uint8",
 				Offset: 11,
 			},
 			{
 				Name:   "inactive-mode",
-				Type:   "mode",
+				Type:   "uint8",
 				Offset: 14,
 			},
 			{
@@ -100,12 +100,12 @@ var SetFirstCardRequest = Request{
 				},
 				{
 					Name:  "active-mode",
-					Type:  "mode",
+					Type:  "uint8",
 					Value: 1,
 				},
 				{
 					Name:  "inactive-mode",
-					Type:  "mode",
+					Type:  "uint8",
 					Value: 2,
 				},
 				{
