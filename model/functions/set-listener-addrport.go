@@ -3,8 +3,8 @@ package functions
 import (
 	"net/netip"
 
-	"github.com/uhppoted/uhppoted-codegen/model/requests"
-	"github.com/uhppoted/uhppoted-codegen/model/responses"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/requests"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/responses"
 )
 
 var SetListenerAddrPort = Function{

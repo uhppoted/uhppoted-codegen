@@ -9,7 +9,7 @@ print("uhppoted-codegen: Lua sample application")
 local parser = argparse()
     :name("main.lua")
     :description("uhppoted-codegen: Lua sample application")
-    :epilog("For more info, see https://github.com/uhppoted/uhppoted-codegen")
+    :epilog("For more info, see https://codeberg.org/uhppoted/uhppoted-codegen")
 
 parser:flag("--debug"):description("Displays sent and received UDP packets")
 parser:option("--bind"):description("UDP IPv4 bind address"):default("0.0.0.0")

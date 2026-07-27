@@ -25,7 +25,7 @@ Code generation tool for creating native UHPPOTE controller interfaces in multip
 Because not everybody uses _Go_ and a sometimes a basic, uncomplicated language binding as a place to start and
 that you can customize to your heart's content is what you really want.
 
-The codegen'd bindings are an alternative to the [DLL](https://github.com/uhppoted/uhppoted-dll) which also supports
+The codegen'd bindings are an alternative to the [DLL](https://codeberg.org/uhppoted/uhppoted-dll) which also supports
 development in languages other than Go. However, because of the way the cgo compiler compiles shared libraries it does
 require that a DLL be built specifically for the target machine which can make application distribution more complicated
 than it should be.
@@ -51,9 +51,9 @@ than it should be.
 
 ## Installation
 
-Executables for all the supported operating systems are packaged in the [releases](https://github.com/uhppoted/uhppoted-codegen/releases):
+Executables for all the supported operating systems are packaged in the [releases](https://codeberg.org/uhppoted/uhppoted-codegen/releases):
 
-The release tarballs contain the executables for all the operating systems - OS specific tarballs with all the _uhppoted_ components can be found in [uhpppoted](https://github.com/uhppoted/uhppoted/releases) releases.
+The release tarballs contain the executables for all the operating systems - OS specific tarballs with all the _uhppoted_ components can be found in [uhpppoted](https://codeberg.org/uhppoted/uhppoted/releases) releases.
 
 Installation is straightforward - download the archive and extract it to a directory of your choice. 
 
@@ -68,14 +68,14 @@ Required tools:
 To build using the included Makefile:
 
 ```
-git clone https://github.com/uhppoted/uhppoted-codegen.git
+git clone https://codeberg.org/uhppoted/uhppoted-codegen.git
 cd uhppoted-codegen
 make build
 ```
 
 Without using `make`:
 ```
-git clone https://github.com/uhppoted/uhppoted-codegen.git
+git clone https://codeberg.org/uhppoted/uhppoted-codegen.git
 cd uhppoted-codegen
 go build -trimpath -o bin/ ./...
 ```

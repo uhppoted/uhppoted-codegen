@@ -14,7 +14,7 @@ import (
 	"text/template"
 	"unicode"
 
-	lib "github.com/uhppoted/uhppoted-lib/os"
+	lib "codeberg.org/uhppoted/uhppoted-lib/os"
 )
 
 type Generator struct {

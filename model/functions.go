@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/uhppoted/uhppoted-codegen/model/functions"
-	"github.com/uhppoted/uhppoted-codegen/model/types"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/functions"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/types"
 )
 
 var Functions = []types.Function{

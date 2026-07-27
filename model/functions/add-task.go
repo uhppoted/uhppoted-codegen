@@ -1,8 +1,8 @@
 package functions
 
 import (
-	"github.com/uhppoted/uhppoted-codegen/model/requests"
-	"github.com/uhppoted/uhppoted-codegen/model/responses"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/requests"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/responses"
 )
 
 var AddTask = Function{

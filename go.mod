@@ -1,10 +1,10 @@
-module github.com/uhppoted/uhppoted-codegen
+module codeberg.org/uhppoted/uhppoted-codegen
 
 go 1.26
 
 require (
-	github.com/uhppoted/uhppote-core v0.9.1-0.20260219172325-1dd279d6cc53
-	github.com/uhppoted/uhppoted-lib v0.9.1-0.20260220173047-f3a88dcbc696
+	codeberg.org/uhppoted/uhppoted-core v0.0.0-20260723154335-7d132936dee1
+	codeberg.org/uhppoted/uhppoted-lib v0.0.0-20260727160533-1532e691085e
 )
 
-require golang.org/x/sys v0.41.0 // indirect
+require golang.org/x/sys v0.47.0 // indirect

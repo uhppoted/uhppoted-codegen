@@ -6,9 +6,9 @@ import (
 	"log"
 	"os"
 
-	core "github.com/uhppoted/uhppote-core/uhppote"
+	core "codeberg.org/uhppoted/uhppoted-core/uhppote"
 
-	"github.com/uhppoted/uhppoted-codegen/codegen"
+	"codeberg.org/uhppoted/uhppoted-codegen/codegen"
 )
 
 type Generate struct {

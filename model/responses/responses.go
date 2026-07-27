@@ -1,7 +1,7 @@
 package responses
 
 import (
-	"github.com/uhppoted/uhppoted-codegen/model/types"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/types"
 )
 
 type Response = types.Response

@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/uhppoted/uhppoted-codegen/model/requests"
-	"github.com/uhppoted/uhppoted-codegen/model/types"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/requests"
+	"codeberg.org/uhppoted/uhppoted-codegen/model/types"
 )
 
 var Requests = []types.Message{

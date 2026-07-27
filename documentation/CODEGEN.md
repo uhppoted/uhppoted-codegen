@@ -2,18 +2,18 @@
 
 At its core, _uhppoted-codegen_ is just a templating engine that translates templatized documents into language specific
 code - nothing special and there are dozens of similar implementations out there. However, it does ship with a set of 
-[models](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/.models) for the UHPPOTE Wiegand controller and
-a set of [example templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings) for generating a UHPPOTE
+[models](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/.models) for the UHPPOTE Wiegand controller and
+a set of [example templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings) for generating a UHPPOTE
 controller interface in:
 
-- [Go](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go)
-- [Rust](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
-- [Python](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python)
-- [Zig](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
-- [PHP](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/php)
-- [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
-- [Erlang](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/erlang)
-- [Lua](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/lua)
+- [Go](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/go)
+- [Rust](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
+- [Python](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/python)
+- [Zig](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
+- [PHP](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/php)
+- [Javascript](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
+- [Erlang](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/erlang)
+- [Lua](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/lua)
 
 The models are provided as JSON files so it's entirely possible to use an alternative templating engine. However, assuming
 you've decided on using _uhppoted-codegen_, the remainder of this document outlines the process of creating a language
@@ -105,23 +105,23 @@ Overflow questions out there.
 
 ### Models
 
-The [models](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/.models) shipped with the example bindings
+The [models](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/.models) shipped with the example bindings
 include:
 
-- [models.json](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
-- [test-data.json](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
+- [models.json](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
+- [test-data.json](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
 
 as well as language specific support for:
-- [Go](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go)
-- [Rust](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
-- [Python](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python)
-- [Zig](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
-- [PHP](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/php)
-- [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
-- [Erlang](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/erlang)
-- [Lua](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/lua)
+- [Go](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/go)
+- [Rust](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/rust)
+- [Python](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/python)
+- [Zig](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/zig)
+- [PHP](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/php)
+- [Javascript](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/javascript)
+- [Erlang](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/erlang)
+- [Lua](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/lua)
 
-#### [_models.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
+#### [_models.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/models.json)
 
 _models.json_ provides a list of supported UHPPOTED functions, each function comprising:
 - the function name
@@ -183,7 +183,7 @@ e.g.:
 ...
 ```
 
-#### [_test-data.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
+#### [_test-data.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/test-data.json)
 
 _test-data.json_ is a set of test cases intended for generating unit tests to verify a language binding. Each test case
 includes known request/response values and the corresponding encoded request and response messages, 
@@ -234,7 +234,7 @@ e.g.
 
 For an example of using _test-data.json_ look at t=he _Go_ language binding which includes generated unit tests for encoding requests and decoding responses.
 
-#### [_go.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/go.json)
+#### [_go.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/go.json)
 
 The _go.json_ models include any _Go_ specific information - specifically the type conversions from the _models_ types to
 valid _Go_ types:
@@ -250,12 +250,12 @@ valid _Go_ types:
             ...
 ```
 
-The _Go_ types are used in the _Go_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go/.templates):
+The _Go_ types are used in the _Go_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/go/.templates):
 ```
 {{define "type"}}{{lookup "go.types" . "???"}}{{end}}
 ```
 
-#### [_rust.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
+#### [_rust.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
 
 The _rust.json_ models include any _Rust_ specific information - specifically the type conversions from the _models_ types to
 valid _Rust_ types:
@@ -271,12 +271,12 @@ valid _Rust_ types:
             ...
 ```
 
-The _Rust_ types are used in the _Rust_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust/.templates):
+The _Rust_ types are used in the _Rust_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/rust/.templates):
 ```
 {{define "type"}}{{lookup "rust.types" . "???"}}{{end}}
 ```
 
-#### [_python.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
+#### [_python.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/rust.json)
 
 The _python.json_ models include any _Python_ specific information - specifically the type conversions from the _models_ types to
 valid _Python_ types:
@@ -292,12 +292,12 @@ valid _Python_ types:
             ...
 ```
 
-The _Python_ types are used in the _Python_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python/.templates):
+The _Python_ types are used in the _Python_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/python/.templates):
 ```
 {{define "type"}}{{lookup "python.types" . "???"}}{{end}}
 ```
 
-#### [_zig.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/zig.json)
+#### [_zig.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/zig.json)
 
 The _zig.json_ models include any _Zig_ specific information - specifically the type conversions from the _models_ types to
 valid _Zig_ types:
@@ -316,12 +316,12 @@ valid _Zig_ types:
     }
 }```
 
-The _Zig_ types are used in the _Zig_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/zig/.templates):
+The _Zig_ types are used in the _Zig_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/zig/.templates):
 ```
 {{define "type"}}{{lookup "zig.types" . "???"}}{{end}}
 ```
 
-#### [_php.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/php.json)
+#### [_php.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/php.json)
 
 The _php.json_ models include any _PHP_ specific information - specifically the type conversions from the _models_ types to
 valid _PHP_ types:
@@ -340,12 +340,12 @@ valid _PHP_ types:
     }
 }```
 
-The _PHP_ types are used in the _PHP_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/php/.templates):
+The _PHP_ types are used in the _PHP_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/php/.templates):
 ```
 {{define "type"}}{{lookup "php.types" . "???"}}{{end}}
 ```
 
-#### [_javascript.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/javascript.json)
+#### [_javascript.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/javascript.json)
 
 The _javascript.json_ models include any _Javascript_ specific information - specifically the type conversions from the _models_ types to
 valid _Javascript_ types.
@@ -364,12 +364,12 @@ valid _Javascript_ types.
     }
 }```
 
-The _Javascript_ types are used in the _Javascript_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/javascript/.templates):
+The _Javascript_ types are used in the _Javascript_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/javascript/.templates):
 ```
 {{define "type"}}{{lookup "javascript.types" . "???"}}{{end}}
 ```
 
-#### [_erlang.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/erlang.json)
+#### [_erlang.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/erlang.json)
 
 The _erlang.json_ models include any _Erlang_ specific information - specifically the type conversions from the _models_ types to
 valid _Erlang_ types.
@@ -388,12 +388,12 @@ valid _Erlang_ types.
     }
 }```
 
-The _Erlang_ types are used in the _Erlang_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/erlang/.templates):
+The _Erlang_ types are used in the _Erlang_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/erlang/.templates):
 ```
 {{define "type"}}{{lookup "erlang.types" . "???"}}{{end}}
 ```
 
-#### [_lua.json_](https://github.com/uhppoted/uhppoted-codegen/blob/main/bindings/.models/lua.json)
+#### [_lua.json_](https://codeberg.org/uhppoted/uhppoted-codegen/blob/main/bindings/.models/lua.json)
 
 The _lua.json_ models include any _Lua_ specific information - specifically the type conversions from the _models_ types to
 valid _Lua_ types.
@@ -412,7 +412,7 @@ valid _Lua_ types.
     }
 }```
 
-The _Lua_ types are used in the _Lua_ bindings common [templates](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/lua/.templates):
+The _Lua_ types are used in the _Lua_ bindings common [templates](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/lua/.templates):
 ```
 {{define "type"}}{{lookup "erlang.types" . "???"}}{{end}}
 ```
@@ -421,7 +421,7 @@ The _Lua_ types are used in the _Lua_ bindings common [templates](https://github
 
 The suggested structure for a language binding comprises the following components:
 
-| Component | [Go](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/go) | [Rust](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/rust) | [Python](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/python) | [Javascript](https://github.com/uhppoted/uhppoted-codegen/tree/main/bindings/http) |
+| Component | [Go](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/go) | [Rust](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/rust) | [Python](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/python) | [Javascript](https://codeberg.org/uhppoted/uhppoted-codegen/tree/main/bindings/http) |
 |---------------------|---------------|---------------|---------------|---------------|
 | API                 | _main.go_     | _main.rs_     | _main.py_     | _main.js_     |
 | Command executor    | _commands.go_ | _commands.rs_ | _commands.py_ | _commands.js_ |
@@ -435,7 +435,7 @@ The suggested structure for a language binding comprises the following component
 
 The API component provides the externally visible programming interface for the rest of the application or library. In the
 Go, Rust and Python examples the API implements a CLI application, while the Javascript example implements an API for
-[_uhppoted-tunnel::http_](https://github.com/uhppoted/uhppoted-tunnel/tree/main/examples/html).
+[_uhppoted-tunnel::http_](https://codeberg.org/uhppoted/uhppoted-tunnel/tree/main/examples/html).
 
 Functionally, the API component is responsible for:
 

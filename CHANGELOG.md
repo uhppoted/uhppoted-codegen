@@ -9,7 +9,8 @@
 1. Updated to Go v1.26.
 2. Updated to _modern_ Go with `go fix`.
 3. Removed zig from build - zig 0.16.0 breaks too many things.
-4.  Fixed misspelling in _clear task list_.
+4. Fixed misspelling in _clear task list_.
+5. Migrated from _github.com/uhppoted/uhppoted-codegen_ to _codeberg.org/uhppoted/uhppoted-codegen_.
 
 
 ## [0.9.0](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.9.0) - 2026-01-27

@@ -8,9 +8,9 @@ import (
 	"os"
 	"path/filepath"
 
-	core "github.com/uhppoted/uhppote-core/uhppote"
-	"github.com/uhppoted/uhppoted-codegen/model"
-	lib "github.com/uhppoted/uhppoted-lib/os"
+	"codeberg.org/uhppoted/uhppoted-codegen/model"
+	core "codeberg.org/uhppoted/uhppoted-core/uhppote"
+	lib "codeberg.org/uhppoted/uhppoted-lib/os"
 )
 
 type Export struct {

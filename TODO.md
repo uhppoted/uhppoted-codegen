@@ -1,6 +1,6 @@
 # TODO
 
-- [x] 'first card' API (cf. https://github.com/uhppoted/uhppoted/issues/82)
+- [x] 'first card' API (cf. https://codeberg.org/uhppoted/issues/2)
       - [x] request
       - [x] response
       - [x] function
