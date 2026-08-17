@@ -1,13 +1,13 @@
 package main
 
 import (
-"strconv"
     "encoding/json"
     "fmt"
     "log"
     "net/netip"
     "os"
     "os/signal"
+    "strconv"
     "syscall"
     "time"
 
@@ -18,7 +18,7 @@ const CONTROLLER uint32 = 405419896
 const DOOR uint8 = 3
 const MODE uint8 = 2
 const DELAY uint8 = 10
-const CARD uint32 = 8165538
+const CARD uint32 = 10058400
 const CARD_INDEX uint32 = 3
 const EVENT_INDEX uint32 = 37
 const TIME_PROFILE_ID uint8 = 29
@@ -234,11 +234,12 @@ func getCardAtIndex(args []string) (any, error) {
 func putCard(args []string) (any, error) {
     controller := resolve(parseArgs(args,"--controller", CONTROLLER).(uint32))
     card := CARD
-    start, _ := time.Parse("2006-01-02", "2022-01-01")
-    end, _ := time.Parse("2006-01-02", "2022-12-31")
-    pin := uhppote.PIN(7531)
+    start, _ := time.Parse("2006-01-02", "2026-01-01")
+    end, _ := time.Parse("2006-01-02", "2026-12-31")
+    PIN := uhppote.PIN(7531)
+    firstcard := uint8(13)
 
-    return uhppote.PutCard(controller, card, uhppote.Date(start), uhppote.Date(end), 0, 1, 29, 0,pin)
+    return uhppote.PutCard(controller, card, uhppote.Date(start), uhppote.Date(end), 0, 1, 29, 0, PIN, firstcard)
 }
 
 func deleteCard(args []string) (any, error) {

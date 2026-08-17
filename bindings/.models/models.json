@@ -1651,6 +1651,13 @@
               "offset": 24,
               "tag": "PIN",
               "description": "(optional) PIN code [0..999999], 0 for none"
+            },
+            {
+              "name": "firstcard",
+              "type": "uint8",
+              "offset": 27,
+              "tag": "firstcard",
+              "description": "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)"
             }
           ]
         },
@@ -1893,6 +1900,13 @@
               "offset": 24,
               "tag": "PIN",
               "description": "(optional) PIN code [0..999999], 0 for none"
+            },
+            {
+              "name": "firstcard",
+              "type": "uint8",
+              "offset": 27,
+              "tag": "firstcard",
+              "description": "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)"
             }
           ]
         },
@@ -2153,6 +2167,11 @@
             "name": "PIN",
             "type": "pin",
             "description": "optional PIN code [0..999999] (0 for none)"
+          },
+          {
+            "name": "first card",
+            "type": "uint8",
+            "description": "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)"
           }
         ],
         "request": {
@@ -2204,6 +2223,13 @@
               "name": "PIN",
               "type": "pin",
               "offset": 24
+            },
+            {
+              "name": "firstcard",
+              "type": "uint8",
+              "offset": 27,
+              "tag": "firstcard",
+              "description": "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)"
             }
           ]
         },
@@ -2275,9 +2301,14 @@
                 "name": "PIN",
                 "type": "pin",
                 "value": 999999
+              },
+              {
+                "name": "first card",
+                "type": "uint8",
+                "value": 13
               }
             ],
-            "request": "F1AAAHg3KhigepkAICUBASAlEjEBABEBP0IPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "request": "F1AAAHg3KhigepkAICUBASAlEjEBABEBP0IPDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
             "replies": [
               {
                 "message": "F1AAAHg3KhgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -5495,6 +5526,13 @@
             "name": "PIN",
             "type": "pin",
             "offset": 24
+          },
+          {
+            "name": "firstcard",
+            "type": "uint8",
+            "offset": 27,
+            "tag": "firstcard",
+            "description": "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)"
           }
         ]
       },
@@ -6567,6 +6605,13 @@
             "offset": 24,
             "tag": "PIN",
             "description": "(optional) PIN code [0..999999], 0 for none"
+          },
+          {
+            "name": "firstcard",
+            "type": "uint8",
+            "offset": 27,
+            "tag": "firstcard",
+            "description": "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)"
           }
         ]
       },
@@ -6636,6 +6681,13 @@
             "offset": 24,
             "tag": "PIN",
             "description": "(optional) PIN code [0..999999], 0 for none"
+          },
+          {
+            "name": "firstcard",
+            "type": "uint8",
+            "offset": 27,
+            "tag": "firstcard",
+            "description": "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)"
           }
         ]
       },

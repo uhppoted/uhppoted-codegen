@@ -169,7 +169,8 @@ execute(put_card, _Options, Config) ->
     Start = {2023, 1, 1},
     End = {2023, 12, 31},
     PIN = 7531,
-    uhppoted:put_card(Config, Controller, Card, Start, End, 0, 1, 29, 0, PIN);
+    FirstCard = 13,
+    uhppoted:put_card(Config, Controller, Card, Start, End, 0, 1, 29, 0, PIN, FirstCard);
 
 execute(delete_card, _Options, Config) ->
     Controller = resolve(?CONTROLLER),

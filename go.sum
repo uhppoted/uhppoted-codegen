@@ -1,6 +1,6 @@
-codeberg.org/uhppoted/uhppoted-core v0.0.0-20260723154335-7d132936dee1 h1:G86Hf9223qeZAUQZCmYO6tkTGcvt+6DWU/2Ad3f0fKM=
-codeberg.org/uhppoted/uhppoted-core v0.0.0-20260723154335-7d132936dee1/go.mod h1:MoeCM7GWMq72F2tUs6/lBt9tlnBoOsMFT6effpitLRs=
-codeberg.org/uhppoted/uhppoted-lib v0.0.0-20260727160533-1532e691085e h1:3Cz4/Oa+ontH0ulcCYM7UBda/MYZcH0kvvg52m5qv1Q=
-codeberg.org/uhppoted/uhppoted-lib v0.0.0-20260727160533-1532e691085e/go.mod h1:0GAYfXxnmDI4j5wxGx4+me4Xp+RHASifTfHRVvk3BIk=
+codeberg.org/uhppoted/uhppoted-core v0.9.1-0.20260813185934-c004d9c86466 h1:i778JsUnaOMBOQ3SBS0HIt2YHt/BL/smFLj688Z5NBY=
+codeberg.org/uhppoted/uhppoted-core v0.9.1-0.20260813185934-c004d9c86466/go.mod h1:MoeCM7GWMq72F2tUs6/lBt9tlnBoOsMFT6effpitLRs=
+codeberg.org/uhppoted/uhppoted-lib v0.9.1-0.20260811151401-370952f4629a h1:yFosg4nCarDYN3l+sY3eOfqWgu0PQruf8weJGAA13ko=
+codeberg.org/uhppoted/uhppoted-lib v0.9.1-0.20260811151401-370952f4629a/go.mod h1:0GAYfXxnmDI4j5wxGx4+me4Xp+RHASifTfHRVvk3BIk=
 golang.org/x/sys v0.47.0 h1:o7XGOvZQCADBQQ4Y7VNq2dRWQR7JmOUW8Kxx4ZsNgWs=
 golang.org/x/sys v0.47.0/go.mod h1:4GL1E5IUh+htKOUEOaiffhrAeqysfVGipDYzABqnCmw=

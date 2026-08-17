@@ -9,7 +9,7 @@ const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
 const MODE: u8 = 2;
 const DELAY: u8 = 10;
-const CARD: u32 = 8165538;
+const CARD: u32 = 10058400;
 const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
@@ -387,8 +387,9 @@ fn put_card(allocator: std.mem.Allocator) void {
     const door3 = 29;
     const door4 = 0;
     const pin = 7531;
+    const firstcard: u8 = 13;
 
-    if (uhppote.put_card(controller, card, start, end, door1, door2, door3, door4, pin, allocator)) |response| {
+    if (uhppote.put_card(controller, card, start, end, door1, door2, door3, door4, pin, firstcard, allocator)) |response| {
         pprint(response);
     } else |err| {
         std.debug.print("\n   *** ERROR  {any}\n", .{err});

@@ -185,8 +185,9 @@ function put_card($u, $args)
     $door3 = 29;
     $door4 = 0;
     $pin = 7531;
+    $firstcard = 13;
 
-    return uhppote\put_card($u, $controller, $card, $start, $end, $door1, $door2, $door3, $door4, $pin);
+    return uhppote\put_card($u, $controller, $card, $start, $end, $door1, $door2, $door3, $door4, $pin, $firstcard);
 }
 
 function delete_card($u, $args)

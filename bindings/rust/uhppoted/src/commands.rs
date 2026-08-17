@@ -15,7 +15,7 @@ const CONTROLLER: u32 = 405419896;
 const DOOR: u8 = 3;
 const MODE: u8 = 2;
 const DELAY: u8 = 10;
-const CARD: u32 = 8165538;
+const CARD: u32 = 10058400;
 const CARD_INDEX: u32 = 3;
 const EVENT_INDEX: u32 = 37;
 const TIME_PROFILE_ID: u8 = 29;
@@ -341,8 +341,9 @@ fn put_card() {
         let start = NaiveDate::from_ymd_opt(2023, 1, 1).unwrap();
         let end = NaiveDate::from_ymd_opt(2023, 12, 31).unwrap();
         let pin = 7531;
+        let firstcard = 13;
 
-        futures::executor::block_on(uhppote::put_card(controller, card, start, end, 0, 1, 29, 0, pin))
+        futures::executor::block_on(uhppote::put_card(controller, card, start, end, 0, 1, 29, 0, pin, firstcard))
     })
 }
 

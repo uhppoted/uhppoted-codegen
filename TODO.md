@@ -1,21 +1,13 @@
 # TODO
 
 - [x] 'first card' API (cf. https://codeberg.org/uhppoted/issues/2)
-      - [x] request
-      - [x] response
-      - [x] function
-      - [x] documentation
-      - [x] CHANGELOG
-      - [x] README
-      - [x] go
-      - [x] rust
-      - [x] Python
-      - [x] ~~zig~~
-      - [x] PHP
-      - [x] Erlang
+- [x] add first-card privilege to `get-card` and `put-card` (cf. https://codeberg.org/uhppoted/uhppoted/issues/3)
+    - [x] get-card
+    - [x] get-card-at-index
+    - [x] put-card
 
-      - [ ] [zig](https://github.com/uhppoted/uhppoted-codegen/commit/d14ac96a8aa240b9bf55916fd1446a4db86d687b#diff-b80311027908d831dce927d314e1e3a6ddbec01922595209557fa3f5abef1ad1L522-R528)
 
+- [ ] [zig](https://github.com/uhppoted/uhppoted-codegen/commit/d14ac96a8aa240b9bf55916fd1446a4db86d687b#diff-b80311027908d831dce927d314e1e3a6ddbec01922595209557fa3f5abef1ad1L522-R528)
 - [ ] --delimiters
 - [ ] clang-tidy
 

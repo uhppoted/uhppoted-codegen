@@ -16,6 +16,7 @@ local CARD_START_DATE = "2023-01-01"
 local CARD_END_DATE = "2023-12-31"
 local CARD_DOORS = "1,2,3,4"
 local CARD_PIN = 0
+local CARD_FIRSTCARD = 13
 local EVENT_INDEX = 37
 local TIME_PROFILE_ID = 29
 local LISTENER_INTERVAL = 15
@@ -169,6 +170,7 @@ function put_card(args)
     local end_date = parse(args, "end_date", CARD_END_DATE)
     local doors = parse(args, "doors", CARD_DOORS)
     local PIN = parse(args, "PIN", CARD_PIN)
+    local firstcard = parse(args, "firstcard", CARD_FIRSTCARD)
 
     local permissions = { 0,0,0,0 }
     for v in doors:gmatch("([^, ]+)") do
@@ -185,7 +187,8 @@ function put_card(args)
                             card, 
                             start_date, end_date, 
                             permissions[1], permissions[2], permissions[3], permissions[4], 
-                            PIN)
+                            PIN,
+                            firstcard)
 end
 
 function delete_card(args)

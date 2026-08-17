@@ -9,7 +9,7 @@ CONTROLLER = 405419896
 DOOR = 3
 MODE = 2
 DELAY = 10
-CARD = 8165538
+CARD = 10058400
 CARD_INDEX = 3
 EVENT_INDEX = 37
 TIME_PROFILE_ID = 29
@@ -190,8 +190,10 @@ def put_card(u):
     card = CARD
     start = datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
     end = datetime.datetime.strptime("2022-12-31", '%Y-%m-%d').date()
+    PIN = 7531
+    firstcard = 13
 
-    return u.put_card(controller, card, start, end, 0, 1, 29, 0, 7531)
+    return u.put_card(controller, card, start, end, 0, 1, 29, 0, PIN, firstcard)
 
 
 def delete_card(u):

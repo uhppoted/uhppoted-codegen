@@ -1,7 +1,7 @@
 DIST    ?= development
 DEBUG   ?= --debug
 CMD      = ./bin/uhppoted-codegen
-COMMAND ?= restore-default-parameters
+COMMAND ?= get-card
 
 MODELS = bindings/.models
 GO     = bindings/go
