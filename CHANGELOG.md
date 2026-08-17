@@ -4,6 +4,7 @@
 
 ### Added
 1. `set-first-card` API models and  bindings.
+2. Added first-card privilege bitmask to get-card, get-card-at-index and put-card APIs.
 
 ### Updated
 1. Updated to Go v1.26.
