@@ -157,8 +157,10 @@ function put_card() {
     start_date  = arg('start-date')
     end_date    = arg('end-date')
     doors       = arg('permissions')
+    PIN         = arg('PIN')
+    firstcard   = arg('first-card')
 
-    return uhppote::put_card(controller, card_number, start_date, end_date, doors.1, doors.2, doors.3, doors.4)
+    return uhppote::put_card(controller, card_number, start_date, end_date, doors.1, doors.2, doors.3, doors.4, PIN, firstcard)
 }
 
 function delete_card() {
