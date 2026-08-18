@@ -112,7 +112,7 @@ release: update-release build regen build-all
 	tar --directory=generated --exclude=".DS_Store" --exclude="go/bin"                                -cvzf dist/$(DIST)-go.tar.gz       go
 	tar --directory=generated --exclude=".DS_Store" --exclude="rust/uhppoted/target"                  -cvzf dist/$(DIST)-rust.tar.gz     rust
 	tar --directory=generated --exclude=".DS_Store" --exclude="python/__pycache__"                    -cvzf dist/$(DIST)-python.tar.gz   python
-	tar --directory=generated --exclude=".DS_Store" --exclude="zig/zig-cache" --exclude="zig/zig-out" -cvzf dist/$(DIST)-zig.tar.gz      zig
+# 	tar --directory=generated --exclude=".DS_Store" --exclude="zig/zig-cache" --exclude="zig/zig-out" -cvzf dist/$(DIST)-zig.tar.gz      zig
 	tar --directory=generated --exclude=".DS_Store" --exclude="php/.php-cs-fixer.cache"               -cvzf dist/$(DIST)-php.tar.gz      php
 	tar --directory=generated --exclude=".DS_Store" --exclude="erlang/*.beam"                         -cvzf dist/$(DIST)-erlang.tar.gz   erlang
 	tar --directory=generated --exclude=".DS_Store"                                                   -cvzf dist/$(DIST)-lua.tar.gz      lua

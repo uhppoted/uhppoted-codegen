@@ -117,7 +117,7 @@ var PutCard = Function{
 				{
 					Name:  "first card",
 					Type:  "uint8",
-					Value: 13,
+					Value: 12,
 				},
 			},
 			Request: []byte{

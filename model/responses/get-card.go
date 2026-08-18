@@ -73,7 +73,7 @@ var GetCardResponse = Response{
 				Description: "(optional) PIN code [0..999999], 0 for none",
 			},
 			{
-				Name:        "firstcard",
+				Name:        "first card",
 				Type:        "uint8",
 				Tag:         "firstcard",
 				Offset:      27,
@@ -137,7 +137,7 @@ var GetCardResponse = Response{
 					Value: 999999,
 				},
 				{
-					Name:  "firstcard",
+					Name:  "first card",
 					Type:  "uint32",
 					Value: 11,
 				},
@@ -198,7 +198,7 @@ var GetCardResponse = Response{
 					Value: 0,
 				},
 				{
-					Name:  "firstcard",
+					Name:  "first card",
 					Type:  "uint32",
 					Value: 0,
 				},

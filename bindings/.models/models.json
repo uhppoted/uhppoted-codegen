@@ -1653,7 +1653,7 @@
               "description": "(optional) PIN code [0..999999], 0 for none"
             },
             {
-              "name": "firstcard",
+              "name": "first card",
               "type": "uint8",
               "offset": 27,
               "tag": "firstcard",
@@ -1679,7 +1679,7 @@
             "request": "F1oAAHg3KhigepkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
             "replies": [
               {
-                "message": "F1oAAHg3KhigepkAICUBASAlEjEBABEBax0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "message": "F1oAAHg3KhigepkAICUBASAlEjEBABEBax0ADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
                 "response": [
                   {
                     "name": "controller",
@@ -1725,6 +1725,11 @@
                     "name": "PIN",
                     "type": "pin",
                     "value": 7531
+                  },
+                  {
+                    "name": "first card",
+                    "type": "uint8",
+                    "value": 12
                   }
                 ]
               }
@@ -1792,6 +1797,11 @@
                   {
                     "name": "PIN",
                     "type": "pin",
+                    "value": 0
+                  },
+                  {
+                    "name": "first card",
+                    "type": "uint8",
                     "value": 0
                   }
                 ]
@@ -1902,7 +1912,7 @@
               "description": "(optional) PIN code [0..999999], 0 for none"
             },
             {
-              "name": "firstcard",
+              "name": "first card",
               "type": "uint8",
               "offset": 27,
               "tag": "firstcard",
@@ -1928,7 +1938,7 @@
             "request": "F1wAAHg3KhiHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
             "replies": [
               {
-                "message": "F1wAAHg3KhigepkAICUBASAlEjEBABEBax0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+                "message": "F1wAAHg3KhigepkAICUBASAlEjEBABEBax0ACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
                 "response": [
                   {
                     "name": "controller",
@@ -1974,6 +1984,11 @@
                     "name": "PIN",
                     "type": "pin",
                     "value": 7531
+                  },
+                  {
+                    "name": "first card",
+                    "type": "uint8",
+                    "value": 11
                   }
                 ]
               }
@@ -2042,6 +2057,11 @@
                     "name": "PIN",
                     "type": "pin",
                     "value": 0
+                  },
+                  {
+                    "name": "first card",
+                    "type": "uint8",
+                    "value": 0
                   }
                 ]
               }
@@ -2109,6 +2129,11 @@
                   {
                     "name": "PIN",
                     "type": "pin",
+                    "value": 0
+                  },
+                  {
+                    "name": "first card",
+                    "type": "uint8",
                     "value": 0
                   }
                 ]
@@ -2225,7 +2250,7 @@
               "offset": 24
             },
             {
-              "name": "firstcard",
+              "name": "first card",
               "type": "uint8",
               "offset": 27,
               "tag": "firstcard",
@@ -2305,7 +2330,7 @@
               {
                 "name": "first card",
                 "type": "uint8",
-                "value": 13
+                "value": 12
               }
             ],
             "request": "F1AAAHg3KhigepkAICUBASAlEjEBABEBP0IPDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
@@ -5528,7 +5553,7 @@
             "offset": 24
           },
           {
-            "name": "firstcard",
+            "name": "first card",
             "type": "uint8",
             "offset": 27,
             "tag": "firstcard",
@@ -6607,7 +6632,7 @@
             "description": "(optional) PIN code [0..999999], 0 for none"
           },
           {
-            "name": "firstcard",
+            "name": "first card",
             "type": "uint8",
             "offset": 27,
             "tag": "firstcard",
@@ -6683,7 +6708,7 @@
             "description": "(optional) PIN code [0..999999], 0 for none"
           },
           {
-            "name": "firstcard",
+            "name": "first card",
             "type": "uint8",
             "offset": 27,
             "tag": "firstcard",

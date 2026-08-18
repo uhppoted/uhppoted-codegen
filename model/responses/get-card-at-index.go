@@ -73,7 +73,7 @@ var GetCardAtIndexResponse = Response{
 				Description: "(optional) PIN code [0..999999], 0 for none",
 			},
 			{
-				Name:        "firstcard",
+				Name:        "first card",
 				Type:        "uint8",
 				Tag:         "firstcard",
 				Offset:      27,
@@ -137,7 +137,7 @@ var GetCardAtIndexResponse = Response{
 					Value: 999999,
 				},
 				{
-					Name:  "firstcard",
+					Name:  "first card",
 					Type:  "uint32",
 					Value: 11,
 				},
