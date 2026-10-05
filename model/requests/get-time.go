@@ -1,16 +1,14 @@
 package requests
 
 var GetTimeRequest = Request{
-	Message: Message{
-		Name:    "get time request",
-		MsgType: 0x32,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get time request",
+	MsgType: 0x32,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 	Tests: []RequestTest{

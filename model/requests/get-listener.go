@@ -1,16 +1,14 @@
 package requests
 
 var GetListenerRequest = Request{
-	Message: Message{
-		Name:    "get listener request",
-		MsgType: 0x92,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get listener request",
+	MsgType: 0x92,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 	Tests: []RequestTest{

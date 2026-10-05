@@ -1,16 +1,14 @@
 package requests
 
 var GetEventIndexRequest = Request{
-	Message: Message{
-		Name:    "get event index request",
-		MsgType: 0xb4,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get event index request",
+	MsgType: 0xb4,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 

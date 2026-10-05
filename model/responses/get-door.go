@@ -5,38 +5,36 @@ var GetDoorResponse = Response{
 		"Container struct for the response returned by a controller to a request",
 		"for door configuration information.",
 	},
-	Message: Message{
-		Name:    "get door response",
-		MsgType: 0x82,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "door",
-				Type:        "uint8",
-				Offset:      8,
-				Tag:         "door",
-				Description: "door ID ([1..4]",
-			},
-			{
-				Name:        "mode",
-				Type:        "mode",
-				Offset:      9,
-				Tag:         "mode",
-				Description: "control mode (1:normally open, 2:normally closed. 3:controlled)",
-			},
-			{
-				Name:        "delay",
-				Type:        "uint8",
-				Offset:      10,
-				Tag:         "delay",
-				Description: "unlock delay (seconds)",
-			},
+	Name:    "get door response",
+	MsgType: 0x82,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "door",
+			Type:        "uint8",
+			Offset:      8,
+			Tag:         "door",
+			Description: "door ID ([1..4]",
+		},
+		{
+			Name:        "mode",
+			Type:        "mode",
+			Offset:      9,
+			Tag:         "mode",
+			Description: "control mode (1:normally open, 2:normally closed. 3:controlled)",
+		},
+		{
+			Name:        "delay",
+			Type:        "uint8",
+			Offset:      10,
+			Tag:         "delay",
+			Description: "unlock delay (seconds)",
 		},
 	},
 	Tests: []ResponseTest{

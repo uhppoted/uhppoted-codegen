@@ -5,24 +5,22 @@ var PutCardResponse = Response{
 		"Container struct for the response returned by a controller after adding or updating a",
 		"controller card record.",
 	},
-	Message: Message{
-		Name:    "put card response",
-		MsgType: 0x50,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "put card response",
+	MsgType: 0x50,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 	Tests: []ResponseTest{

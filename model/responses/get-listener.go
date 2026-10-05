@@ -6,38 +6,36 @@ var GetListenerResponse = Response{
 		"the configured event listener IPv4 address and port.",
 	},
 
-	Message: Message{
-		Name:    "get listener response",
-		MsgType: 0x92,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "address",
-				Type:        "IPv4",
-				Offset:      8,
-				Tag:         "address",
-				Description: "event listener IPv4 address",
-			},
-			{
-				Name:        "port",
-				Type:        "uint16",
-				Offset:      12,
-				Tag:         "port",
-				Description: "event listener IPv4 port",
-			},
-			{
-				Name:        "interval",
-				Type:        "uint8",
-				Offset:      14,
-				Tag:         "interval",
-				Description: "status auto-send interval (seconds)",
-			},
+	Name:    "get listener response",
+	MsgType: 0x92,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "address",
+			Type:        "IPv4",
+			Offset:      8,
+			Tag:         "address",
+			Description: "event listener IPv4 address",
+		},
+		{
+			Name:        "port",
+			Type:        "uint16",
+			Offset:      12,
+			Tag:         "port",
+			Description: "event listener IPv4 port",
+		},
+		{
+			Name:        "interval",
+			Type:        "uint8",
+			Offset:      14,
+			Tag:         "interval",
+			Description: "status auto-send interval (seconds)",
 		},
 	},
 	Tests: []ResponseTest{

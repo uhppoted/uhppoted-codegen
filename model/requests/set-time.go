@@ -1,22 +1,20 @@
 package requests
 
 var SetTimeRequest = Request{
-	Message: Message{
-		Name:    "set time request",
-		MsgType: 0x30,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:        "datetime",
-				Type:        "datetime",
-				Offset:      8,
-				Description: "date/time",
-			},
+	Name:    "set time request",
+	MsgType: 0x30,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:        "datetime",
+			Type:        "datetime",
+			Offset:      8,
+			Description: "date/time",
 		},
 	},
 	Tests: []RequestTest{

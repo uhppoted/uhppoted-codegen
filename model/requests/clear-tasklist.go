@@ -1,21 +1,19 @@
 package requests
 
 var ClearTaskListRequest = Request{
-	Message: Message{
-		Name:    "clear task list request",
-		MsgType: 0xa6,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "",
-				Type:   "magic",
-				Offset: 8,
-			},
+	Name:    "clear task list request",
+	MsgType: 0xa6,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "",
+			Type:   "magic",
+			Offset: 8,
 		},
 	},
 

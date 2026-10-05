@@ -1,21 +1,19 @@
 package requests
 
 var RecordSpecialEventsRequest = Request{
-	Message: Message{
-		Name:    "record special events request",
-		MsgType: 0x8e,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "enabled",
-				Type:   "bool",
-				Offset: 8,
-			},
+	Name:    "record special events request",
+	MsgType: 0x8e,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "enabled",
+			Type:   "bool",
+			Offset: 8,
 		},
 	},
 

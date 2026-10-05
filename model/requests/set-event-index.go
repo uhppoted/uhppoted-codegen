@@ -1,26 +1,24 @@
 package requests
 
 var SetEventIndexRequest = Request{
-	Message: Message{
-		Name:    "set event index request",
-		MsgType: 0xb2,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "event index",
-				Type:   "uint32",
-				Offset: 8,
-			},
-			{
-				Name:   "",
-				Type:   "magic",
-				Offset: 12,
-			},
+	Name:    "set event index request",
+	MsgType: 0xb2,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "event index",
+			Type:   "uint32",
+			Offset: 8,
+		},
+		{
+			Name:   "",
+			Type:   "magic",
+			Offset: 12,
 		},
 	},
 

@@ -5,28 +5,26 @@ import (
 )
 
 var SetListenerAddrPortRequest = Request{
-	Message: Message{
-		Name:    "set listener addr:port request",
-		MsgType: 0x90,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:        "listener",
-				Type:        "address:port",
-				Offset:      8,
-				Description: "event listener IPv4 address:port",
-			},
-			{
-				Name:        "interval",
-				Type:        "uint8",
-				Offset:      14,
-				Description: "status auto-send interval (seconds)",
-			},
+	Name:    "set listener addr:port request",
+	MsgType: 0x90,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:        "listener",
+			Type:        "address:port",
+			Offset:      8,
+			Description: "event listener IPv4 address:port",
+		},
+		{
+			Name:        "interval",
+			Type:        "uint8",
+			Offset:      14,
+			Description: "status auto-send interval (seconds)",
 		},
 	},
 	Tests: []RequestTest{

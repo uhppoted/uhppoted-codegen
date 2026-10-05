@@ -1,24 +1,22 @@
 package responses
 
 var GetEventIndexResponse = Response{
-	Message: Message{
-		Name:    "get event index response",
-		MsgType: 0xb4,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "index",
-				Type:        "uint32",
-				Offset:      8,
-				Tag:         "index",
-				Description: "event index",
-			},
+	Name:    "get event index response",
+	MsgType: 0xb4,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "index",
+			Type:        "uint32",
+			Offset:      8,
+			Tag:         "index",
+			Description: "event index",
 		},
 	},
 

@@ -1,16 +1,14 @@
 package requests
 
 var GetControllerRequest = Request{
-	Message: Message{
-		Name:    "get controller request",
-		MsgType: 0x94,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get controller request",
+	MsgType: 0x94,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 	Tests: []RequestTest{

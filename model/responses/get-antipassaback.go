@@ -11,24 +11,22 @@ var GetAntiPassbackResponse = Response{
 		" - 4: readers 1:(2,3,4)",
 	},
 
-	Message: Message{
-		Name:    "get anti-passback response",
-		MsgType: 0x86,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "antipassback",
-				Type:        "anti-passback",
-				Offset:      8,
-				Tag:         "antipassback",
-				Description: "anti-passback mode",
-			},
+	Name:    "get anti-passback response",
+	MsgType: 0x86,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "antipassback",
+			Type:        "anti-passback",
+			Offset:      8,
+			Tag:         "antipassback",
+			Description: "anti-passback mode",
 		},
 	},
 

@@ -1,36 +1,34 @@
 package requests
 
 var ActivateKeypadsRequest = Request{
-	Message: Message{
-		Name:    "activate keypads request",
-		MsgType: 0xa4,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "reader 1",
-				Type:   "bool",
-				Offset: 8,
-			},
-			{
-				Name:   "reader 2",
-				Type:   "bool",
-				Offset: 9,
-			},
-			{
-				Name:   "reader 3",
-				Type:   "bool",
-				Offset: 10,
-			},
-			{
-				Name:   "reader 4",
-				Type:   "bool",
-				Offset: 11,
-			},
+	Name:    "activate keypads request",
+	MsgType: 0xa4,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "reader 1",
+			Type:   "bool",
+			Offset: 8,
+		},
+		{
+			Name:   "reader 2",
+			Type:   "bool",
+			Offset: 9,
+		},
+		{
+			Name:   "reader 3",
+			Type:   "bool",
+			Offset: 10,
+		},
+		{
+			Name:   "reader 4",
+			Type:   "bool",
+			Offset: 11,
 		},
 	},
 

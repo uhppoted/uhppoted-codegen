@@ -1,21 +1,19 @@
 package requests
 
 var RestoreDefaultParametersRequest = Request{
-	Message: Message{
-		Name:    "restore default parameters request",
-		MsgType: 0xc8,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "",
-				Type:   "magic",
-				Offset: 8,
-			},
+	Name:    "restore default parameters request",
+	MsgType: 0xc8,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "",
+			Type:   "magic",
+			Offset: 8,
 		},
 	},
 

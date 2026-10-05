@@ -6,24 +6,22 @@ var SetPCControlResponse = Response{
 		"disabling remote access control.",
 	},
 
-	Message: Message{
-		Name:    "set PC control response",
-		MsgType: 0xa0,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "set PC control response",
+	MsgType: 0xa0,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 

@@ -6,24 +6,22 @@ var SetInterlockResponse = Response{
 		"the door interlock mode.",
 	},
 
-	Message: Message{
-		Name:    "set interlock response",
-		MsgType: 0xa2,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "set interlock response",
+	MsgType: 0xa2,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 

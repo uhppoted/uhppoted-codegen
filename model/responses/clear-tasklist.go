@@ -6,24 +6,22 @@ var ClearTaskListResponse = Response{
 		"all scheduled tasks.",
 	},
 
-	Message: Message{
-		Name:    "clear task list response",
-		MsgType: 0xa6,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "clear task list response",
+	MsgType: 0xa6,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 

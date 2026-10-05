@@ -1,22 +1,20 @@
 package requests
 
 var GetDoorRequest = Request{
-	Message: Message{
-		Name:    "get door request",
-		MsgType: 0x82,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:        "door",
-				Type:        "uint8",
-				Offset:      8,
-				Description: "door ID ([1..4])",
-			},
+	Name:    "get door request",
+	MsgType: 0x82,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:        "door",
+			Type:        "uint8",
+			Offset:      8,
+			Description: "door ID ([1..4])",
 		},
 	},
 	Tests: []RequestTest{

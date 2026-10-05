@@ -6,24 +6,22 @@ var SetFirstCardResponse = Response{
 		"the first card configuration for a door.",
 	},
 
-	Message: Message{
-		Name:    "set first-card response",
-		MsgType: 0xaa,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "set first-card response",
+	MsgType: 0xaa,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 	Tests: []ResponseTest{

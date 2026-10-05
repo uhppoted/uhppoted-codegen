@@ -5,40 +5,38 @@ import (
 )
 
 var SetIPv4Request = Request{
-	Message: Message{
-		Name:    "set IPv4 request",
-		MsgType: 0x96,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:        "address",
-				Type:        "IPv4",
-				Offset:      8,
-				Description: "controller IPv4 address",
-			},
-			{
-				Name:        "netmask",
-				Type:        "IPv4",
-				Offset:      12,
-				Description: "controller IPv4 subnet mask",
-			},
-			{
-				Name:        "gateway",
-				Type:        "IPv4",
-				Offset:      16,
-				Description: "controller IPv4 gateway address",
-			},
-			{
-				Name:        "",
-				Type:        "magic",
-				Offset:      20,
-				Description: "'magic' word",
-			},
+	Name:    "set IPv4 request",
+	MsgType: 0x96,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:        "address",
+			Type:        "IPv4",
+			Offset:      8,
+			Description: "controller IPv4 address",
+		},
+		{
+			Name:        "netmask",
+			Type:        "IPv4",
+			Offset:      12,
+			Description: "controller IPv4 subnet mask",
+		},
+		{
+			Name:        "gateway",
+			Type:        "IPv4",
+			Offset:      16,
+			Description: "controller IPv4 gateway address",
+		},
+		{
+			Name:        "",
+			Type:        "magic",
+			Offset:      20,
+			Description: "'magic' word",
 		},
 	},
 	Tests: []RequestTest{

@@ -1,21 +1,19 @@
 package requests
 
 var GetTimeProfileRequest = Request{
-	Message: Message{
-		Name:    "get time profile request",
-		MsgType: 0x98,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "profile",
-				Type:   "uint8",
-				Offset: 8,
-			},
+	Name:    "get time profile request",
+	MsgType: 0x98,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "profile",
+			Type:   "uint8",
+			Offset: 8,
 		},
 	},
 	Tests: []RequestTest{

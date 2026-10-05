@@ -1,41 +1,39 @@
 package requests
 
 var SetDoorPasscodesRequest = Request{
-	Message: Message{
-		Name:    "set door passcodes request",
-		MsgType: 0x8c,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "door",
-				Type:   "uint8",
-				Offset: 8,
-			},
-			{
-				Name:   "passcode 1",
-				Type:   "pin",
-				Offset: 12,
-			},
-			{
-				Name:   "passcode 2",
-				Type:   "pin",
-				Offset: 16,
-			},
-			{
-				Name:   "passcode 3",
-				Type:   "pin",
-				Offset: 20,
-			},
-			{
-				Name:   "passcode 4",
-				Type:   "pin",
-				Offset: 24,
-			},
+	Name:    "set door passcodes request",
+	MsgType: 0x8c,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		{
+			Name:   "passcode 1",
+			Type:   "pin",
+			Offset: 12,
+		},
+		{
+			Name:   "passcode 2",
+			Type:   "pin",
+			Offset: 16,
+		},
+		{
+			Name:   "passcode 3",
+			Type:   "pin",
+			Offset: 20,
+		},
+		{
+			Name:   "passcode 4",
+			Type:   "pin",
+			Offset: 24,
 		},
 	},
 

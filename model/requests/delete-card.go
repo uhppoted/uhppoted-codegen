@@ -1,21 +1,19 @@
 package requests
 
 var DeleteCardRequest = Request{
-	Message: Message{
-		Name:    "delete card request",
-		MsgType: 0x52,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "card number",
-				Type:   "uint32",
-				Offset: 8,
-			},
+	Name:    "delete card request",
+	MsgType: 0x52,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "card number",
+			Type:   "uint32",
+			Offset: 8,
 		},
 	},
 

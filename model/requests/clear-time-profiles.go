@@ -1,21 +1,19 @@
 package requests
 
 var ClearTimeProfilesRequest = Request{
-	Message: Message{
-		Name:    "clear time profiles request",
-		MsgType: 0x8a,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "",
-				Type:   "magic",
-				Offset: 8,
-			},
+	Name:    "clear time profiles request",
+	MsgType: 0x8a,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "",
+			Type:   "magic",
+			Offset: 8,
 		},
 	},
 	Tests: []RequestTest{

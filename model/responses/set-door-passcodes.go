@@ -5,24 +5,22 @@ var SetDoorPasscodesResponse = Response{
 		"Container struct for the response returned by a controller after setting the",
 		"supervisor passcodes for a door.",
 	},
-	Message: Message{
-		Name:    "set door passcodes response",
-		MsgType: 0x8c,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "set door passcodes response",
+	MsgType: 0x8c,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 

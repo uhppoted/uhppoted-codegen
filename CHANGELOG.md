@@ -7,7 +7,7 @@
 2. Added first-card privilege bitmask to get-card, get-card-at-index and put-card APIs.
 
 ### Updated
-1. Updated to Go v1.26.
+1. Updated to Go v1.27.
 2. Updated to _modern_ Go with `go fix`.
 3. Removed zig from build - zig 0.16.0 breaks too many things.
 4. Fixed misspelling in _clear task list_.

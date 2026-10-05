@@ -1,16 +1,14 @@
 package requests
 
 var GetListenerAddrPortRequest = Request{
-	Message: Message{
-		Name:    "get listener addr port request",
-		MsgType: 0x92,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get listener addr port request",
+	MsgType: 0x92,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 	Tests: []RequestTest{

@@ -5,24 +5,22 @@ var DeleteCardResponse = Response{
 		"Container struct for the response returned by a controller after deleting a single",
 		"stored card record.",
 	},
-	Message: Message{
-		Name:    "delete card response",
-		MsgType: 0x52,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "delete card response",
+	MsgType: 0x52,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 	Tests: []ResponseTest{

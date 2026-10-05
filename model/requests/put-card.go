@@ -1,63 +1,61 @@
 package requests
 
 var PutCardRequest = Request{
-	Message: Message{
-		Name:    "put card request",
-		MsgType: 0x50,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "card",
-				Type:   "uint32",
-				Offset: 8,
-			},
-			{
-				Name:   "start date",
-				Type:   "date",
-				Offset: 12,
-			},
-			{
-				Name:   "end date",
-				Type:   "date",
-				Offset: 16,
-			},
-			{
-				Name:   "door 1",
-				Type:   "uint8",
-				Offset: 20,
-			},
-			{
-				Name:   "door 2",
-				Type:   "uint8",
-				Offset: 21,
-			},
-			{
-				Name:   "door 3",
-				Type:   "uint8",
-				Offset: 22,
-			},
-			{
-				Name:   "door 4",
-				Type:   "uint8",
-				Offset: 23,
-			},
-			{
-				Name:   "PIN",
-				Type:   "pin",
-				Offset: 24,
-			},
-			{
-				Name:        "first card",
-				Type:        "uint8",
-				Tag:         "firstcard",
-				Offset:      27,
-				Description: "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)",
-			},
+	Name:    "put card request",
+	MsgType: 0x50,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "card",
+			Type:   "uint32",
+			Offset: 8,
+		},
+		{
+			Name:   "start date",
+			Type:   "date",
+			Offset: 12,
+		},
+		{
+			Name:   "end date",
+			Type:   "date",
+			Offset: 16,
+		},
+		{
+			Name:   "door 1",
+			Type:   "uint8",
+			Offset: 20,
+		},
+		{
+			Name:   "door 2",
+			Type:   "uint8",
+			Offset: 21,
+		},
+		{
+			Name:   "door 3",
+			Type:   "uint8",
+			Offset: 22,
+		},
+		{
+			Name:   "door 4",
+			Type:   "uint8",
+			Offset: 23,
+		},
+		{
+			Name:   "PIN",
+			Type:   "pin",
+			Offset: 24,
+		},
+		{
+			Name:        "first card",
+			Type:        "uint8",
+			Tag:         "firstcard",
+			Offset:      27,
+			Description: "(optional) first-card privileges bitmask (bit 0: door 1, bit 1: door 2, bit 3: door 3, bit 4: door 4)",
 		},
 	},
 	Tests: []RequestTest{

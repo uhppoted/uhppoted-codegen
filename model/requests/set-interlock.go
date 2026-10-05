@@ -1,21 +1,19 @@
 package requests
 
 var SetInterlockRequest = Request{
-	Message: Message{
-		Name:    "set interlock request",
-		MsgType: 0xa2,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "interlock",
-				Type:   "interlock",
-				Offset: 8,
-			},
+	Name:    "set interlock request",
+	MsgType: 0xa2,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "interlock",
+			Type:   "interlock",
+			Offset: 8,
 		},
 	},
 

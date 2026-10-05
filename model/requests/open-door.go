@@ -1,21 +1,19 @@
 package requests
 
 var OpenDoorRequest = Request{
-	Message: Message{
-		Name:    "open door request",
-		MsgType: 0x40,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "door",
-				Type:   "uint8",
-				Offset: 8,
-			},
+	Name:    "open door request",
+	MsgType: 0x40,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
 		},
 	},
 	Tests: []RequestTest{

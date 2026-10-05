@@ -1,16 +1,14 @@
 package requests
 
 var GetCardsRequest = Request{
-	Message: Message{
-		Name:    "get cards request",
-		MsgType: 0x58,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get cards request",
+	MsgType: 0x58,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 	Tests: []RequestTest{

@@ -1,16 +1,14 @@
 package requests
 
 var GetAntiPassbackRequest = Request{
-	Message: Message{
-		Name:    "get antipassback request",
-		MsgType: 0x86,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get antipassback request",
+	MsgType: 0x86,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 

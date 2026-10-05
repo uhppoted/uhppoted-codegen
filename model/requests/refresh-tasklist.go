@@ -1,21 +1,19 @@
 package requests
 
 var RefreshTaskListRequest = Request{
-	Message: Message{
-		Name:    "refresh task list request",
-		MsgType: 0xac,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "",
-				Type:   "magic",
-				Offset: 8,
-			},
+	Name:    "refresh task list request",
+	MsgType: 0xac,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "",
+			Type:   "magic",
+			Offset: 8,
 		},
 	},
 

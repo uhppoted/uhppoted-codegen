@@ -1,76 +1,74 @@
 package requests
 
 var SetFirstCardRequest = Request{
-	Message: Message{
-		Name:    "set first-card request",
-		MsgType: 0xaa,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "door",
-				Type:   "uint8",
-				Offset: 8,
-			},
-			{
-				Name:   "start-time",
-				Type:   "HHmm",
-				Offset: 9,
-			},
-			{
-				Name:   "end-time",
-				Type:   "HHmm",
-				Offset: 12,
-			},
-			{
-				Name:   "active-mode",
-				Type:   "uint8",
-				Offset: 11,
-			},
-			{
-				Name:   "inactive-mode",
-				Type:   "uint8",
-				Offset: 14,
-			},
-			{
-				Name:   "monday",
-				Type:   "bool",
-				Offset: 15,
-			},
-			{
-				Name:   "tuesday",
-				Type:   "bool",
-				Offset: 16,
-			},
-			{
-				Name:   "wednesday",
-				Type:   "bool",
-				Offset: 17,
-			},
-			{
-				Name:   "thursday",
-				Type:   "bool",
-				Offset: 18,
-			},
-			{
-				Name:   "friday",
-				Type:   "bool",
-				Offset: 19,
-			},
-			{
-				Name:   "saturday",
-				Type:   "bool",
-				Offset: 20,
-			},
-			{
-				Name:   "sunday",
-				Type:   "bool",
-				Offset: 21,
-			},
+	Name:    "set first-card request",
+	MsgType: 0xaa,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		{
+			Name:   "start-time",
+			Type:   "HHmm",
+			Offset: 9,
+		},
+		{
+			Name:   "end-time",
+			Type:   "HHmm",
+			Offset: 12,
+		},
+		{
+			Name:   "active-mode",
+			Type:   "uint8",
+			Offset: 11,
+		},
+		{
+			Name:   "inactive-mode",
+			Type:   "uint8",
+			Offset: 14,
+		},
+		{
+			Name:   "monday",
+			Type:   "bool",
+			Offset: 15,
+		},
+		{
+			Name:   "tuesday",
+			Type:   "bool",
+			Offset: 16,
+		},
+		{
+			Name:   "wednesday",
+			Type:   "bool",
+			Offset: 17,
+		},
+		{
+			Name:   "thursday",
+			Type:   "bool",
+			Offset: 18,
+		},
+		{
+			Name:   "friday",
+			Type:   "bool",
+			Offset: 19,
+		},
+		{
+			Name:   "saturday",
+			Type:   "bool",
+			Offset: 20,
+		},
+		{
+			Name:   "sunday",
+			Type:   "bool",
+			Offset: 21,
 		},
 	},
 

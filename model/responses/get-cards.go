@@ -5,24 +5,22 @@ var GetCardsResponse = Response{
 		"Container struct for the response returned from a controller when retrieving the number of",
 		"cards stored on the controller.",
 	},
-	Message: Message{
-		Name:    "get cards response",
-		MsgType: 0x58,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "cards",
-				Type:        "uint32",
-				Tag:         "cards",
-				Offset:      8,
-				Description: "number of stored cards",
-			},
+	Name:    "get cards response",
+	MsgType: 0x58,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "cards",
+			Type:        "uint32",
+			Tag:         "cards",
+			Offset:      8,
+			Description: "number of stored cards",
 		},
 	},
 	Tests: []ResponseTest{

@@ -1,21 +1,19 @@
 package requests
 
 var GetEventRequest = Request{
-	Message: Message{
-		Name:    "get event request",
-		MsgType: 0xb0,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "event index",
-				Type:   "uint32",
-				Offset: 8,
-			},
+	Name:    "get event request",
+	MsgType: 0xb0,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "event index",
+			Type:   "uint32",
+			Offset: 8,
 		},
 	},
 	Tests: []RequestTest{

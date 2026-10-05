@@ -1,16 +1,14 @@
 package requests
 
 var GetStatusRequest = Request{
-	Message: Message{
-		Name:    "get status request",
-		MsgType: 0x20,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
+	Name:    "get status request",
+	MsgType: 0x20,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
 		},
 	},
 	Tests: []RequestTest{

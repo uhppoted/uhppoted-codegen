@@ -1,26 +1,24 @@
 package requests
 
 var SetPCControlRequest = Request{
-	Message: Message{
-		Name:    "set PC control request",
-		MsgType: 0xa0,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "",
-				Type:   "magic",
-				Offset: 8,
-			},
-			{
-				Name:   "enabled",
-				Type:   "bool",
-				Offset: 12,
-			},
+	Name:    "set PC control request",
+	MsgType: 0xa0,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "",
+			Type:   "magic",
+			Offset: 8,
+		},
+		{
+			Name:   "enabled",
+			Type:   "bool",
+			Offset: 12,
 		},
 	},
 

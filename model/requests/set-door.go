@@ -1,31 +1,29 @@
 package requests
 
 var SetDoorRequest = Request{
-	Message: Message{
-		Name:    "set door request",
-		MsgType: 0x80,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "door",
-				Type:   "uint8",
-				Offset: 8,
-			},
-			{
-				Name:   "mode",
-				Type:   "mode",
-				Offset: 9,
-			},
-			{
-				Name:   "delay",
-				Type:   "uint8",
-				Offset: 10,
-			},
+	Name:    "set door request",
+	MsgType: 0x80,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		{
+			Name:   "mode",
+			Type:   "mode",
+			Offset: 9,
+		},
+		{
+			Name:   "delay",
+			Type:   "uint8",
+			Offset: 10,
 		},
 	},
 

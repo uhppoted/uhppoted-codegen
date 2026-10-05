@@ -5,35 +5,33 @@ var SetDoorResponse = Response{
 		"Container struct for the response returned by a controller after updating",
 		"a door configuration.",
 	},
-	Message: Message{
-		Name:    "set door response",
-		MsgType: 0x80,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:   "door",
-				Type:   "uint8",
-				Offset: 8,
-				Tag:    "door",
-			},
-			{
-				Name:   "mode",
-				Type:   "mode",
-				Offset: 9,
-				Tag:    "mode",
-			},
-			{
-				Name:   "delay",
-				Type:   "uint8",
-				Offset: 10,
-				Tag:    "delay",
-			},
+	Name:    "set door response",
+	MsgType: 0x80,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 8,
+			Tag:    "door",
+		},
+		{
+			Name:   "mode",
+			Type:   "mode",
+			Offset: 9,
+			Tag:    "mode",
+		},
+		{
+			Name:   "delay",
+			Type:   "uint8",
+			Offset: 10,
+			Tag:    "delay",
 		},
 	},
 

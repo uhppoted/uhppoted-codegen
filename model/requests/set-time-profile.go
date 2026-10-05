@@ -1,101 +1,99 @@
 package requests
 
 var SetTimeProfileRequest = Request{
-	Message: Message{
-		Name:    "set time profile request",
-		MsgType: 0x88,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "profile",
-				Type:   "uint8",
-				Offset: 8,
-			},
-			{
-				Name:   "start date",
-				Type:   "date",
-				Offset: 9,
-			},
-			{
-				Name:   "end date",
-				Type:   "date",
-				Offset: 13,
-			},
-			{
-				Name:   "monday",
-				Type:   "bool",
-				Offset: 17,
-			},
-			{
-				Name:   "tuesday",
-				Type:   "bool",
-				Offset: 18,
-			},
-			{
-				Name:   "wednesday",
-				Type:   "bool",
-				Offset: 19,
-			},
-			{
-				Name:   "thursday",
-				Type:   "bool",
-				Offset: 20,
-			},
-			{
-				Name:   "friday",
-				Type:   "bool",
-				Offset: 21,
-			},
-			{
-				Name:   "saturday",
-				Type:   "bool",
-				Offset: 22,
-			},
-			{
-				Name:   "sunday",
-				Type:   "bool",
-				Offset: 23,
-			},
-			{
-				Name:   "segment 1 start",
-				Type:   "HHmm",
-				Offset: 24,
-			},
-			{
-				Name:   "segment 1 end",
-				Type:   "HHmm",
-				Offset: 26,
-			},
-			{
-				Name:   "segment 2 start",
-				Type:   "HHmm",
-				Offset: 28,
-			},
-			{
-				Name:   "segment 2 end",
-				Type:   "HHmm",
-				Offset: 30,
-			},
-			{
-				Name:   "segment 3 start",
-				Type:   "HHmm",
-				Offset: 32,
-			},
-			{
-				Name:   "segment 3 end",
-				Type:   "HHmm",
-				Offset: 34,
-			},
-			{
-				Name:   "linked profile id",
-				Type:   "uint8",
-				Offset: 36,
-			},
+	Name:    "set time profile request",
+	MsgType: 0x88,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "profile",
+			Type:   "uint8",
+			Offset: 8,
+		},
+		{
+			Name:   "start date",
+			Type:   "date",
+			Offset: 9,
+		},
+		{
+			Name:   "end date",
+			Type:   "date",
+			Offset: 13,
+		},
+		{
+			Name:   "monday",
+			Type:   "bool",
+			Offset: 17,
+		},
+		{
+			Name:   "tuesday",
+			Type:   "bool",
+			Offset: 18,
+		},
+		{
+			Name:   "wednesday",
+			Type:   "bool",
+			Offset: 19,
+		},
+		{
+			Name:   "thursday",
+			Type:   "bool",
+			Offset: 20,
+		},
+		{
+			Name:   "friday",
+			Type:   "bool",
+			Offset: 21,
+		},
+		{
+			Name:   "saturday",
+			Type:   "bool",
+			Offset: 22,
+		},
+		{
+			Name:   "sunday",
+			Type:   "bool",
+			Offset: 23,
+		},
+		{
+			Name:   "segment 1 start",
+			Type:   "HHmm",
+			Offset: 24,
+		},
+		{
+			Name:   "segment 1 end",
+			Type:   "HHmm",
+			Offset: 26,
+		},
+		{
+			Name:   "segment 2 start",
+			Type:   "HHmm",
+			Offset: 28,
+		},
+		{
+			Name:   "segment 2 end",
+			Type:   "HHmm",
+			Offset: 30,
+		},
+		{
+			Name:   "segment 3 start",
+			Type:   "HHmm",
+			Offset: 32,
+		},
+		{
+			Name:   "segment 3 end",
+			Type:   "HHmm",
+			Offset: 34,
+		},
+		{
+			Name:   "linked profile id",
+			Type:   "uint8",
+			Offset: 36,
 		},
 	},
 

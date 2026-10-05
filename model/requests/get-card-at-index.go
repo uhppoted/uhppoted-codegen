@@ -1,21 +1,19 @@
 package requests
 
 var GetCardAtIndexRequest = Request{
-	Message: Message{
-		Name:    "get card at index request",
-		MsgType: 0x5c,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "index",
-				Type:   "uint32",
-				Offset: 8,
-			},
+	Name:    "get card at index request",
+	MsgType: 0x5c,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "index",
+			Type:   "uint32",
+			Offset: 8,
 		},
 	},
 	Tests: []RequestTest{

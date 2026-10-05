@@ -1,81 +1,79 @@
 package requests
 
 var AddTaskRequest = Request{
-	Message: Message{
-		Name:    "add task request",
-		MsgType: 0xa8,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Description: "controller serial number",
-			},
-			{
-				Name:   "task",
-				Type:   "task",
-				Offset: 26,
-			},
-			{
-				Name:   "start date",
-				Type:   "date",
-				Offset: 8,
-			},
-			{
-				Name:   "end date",
-				Type:   "date",
-				Offset: 12,
-			},
-			{
-				Name:   "monday",
-				Type:   "bool",
-				Offset: 16,
-			},
-			{
-				Name:   "tuesday",
-				Type:   "bool",
-				Offset: 17,
-			},
-			{
-				Name:   "wednesday",
-				Type:   "bool",
-				Offset: 18,
-			},
-			{
-				Name:   "thursday",
-				Type:   "bool",
-				Offset: 19,
-			},
-			{
-				Name:   "friday",
-				Type:   "bool",
-				Offset: 20,
-			},
-			{
-				Name:   "saturday",
-				Type:   "bool",
-				Offset: 21,
-			},
-			{
-				Name:   "sunday",
-				Type:   "bool",
-				Offset: 22,
-			},
-			{
-				Name:   "start time",
-				Type:   "HHmm",
-				Offset: 23,
-			},
-			{
-				Name:   "door",
-				Type:   "uint8",
-				Offset: 25,
-			},
-			{
-				Name:   "more cards",
-				Type:   "uint8",
-				Offset: 27,
-			},
+	Name:    "add task request",
+	MsgType: 0xa8,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Description: "controller serial number",
+		},
+		{
+			Name:   "task",
+			Type:   "task",
+			Offset: 26,
+		},
+		{
+			Name:   "start date",
+			Type:   "date",
+			Offset: 8,
+		},
+		{
+			Name:   "end date",
+			Type:   "date",
+			Offset: 12,
+		},
+		{
+			Name:   "monday",
+			Type:   "bool",
+			Offset: 16,
+		},
+		{
+			Name:   "tuesday",
+			Type:   "bool",
+			Offset: 17,
+		},
+		{
+			Name:   "wednesday",
+			Type:   "bool",
+			Offset: 18,
+		},
+		{
+			Name:   "thursday",
+			Type:   "bool",
+			Offset: 19,
+		},
+		{
+			Name:   "friday",
+			Type:   "bool",
+			Offset: 20,
+		},
+		{
+			Name:   "saturday",
+			Type:   "bool",
+			Offset: 21,
+		},
+		{
+			Name:   "sunday",
+			Type:   "bool",
+			Offset: 22,
+		},
+		{
+			Name:   "start time",
+			Type:   "HHmm",
+			Offset: 23,
+		},
+		{
+			Name:   "door",
+			Type:   "uint8",
+			Offset: 25,
+		},
+		{
+			Name:   "more cards",
+			Type:   "uint8",
+			Offset: 27,
 		},
 	},
 	Tests: []RequestTest{

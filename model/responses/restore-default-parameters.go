@@ -5,24 +5,22 @@ var RestoreDefaultParametersResponse = Response{
 		"Container struct for the response returned by a controller after restoring the manufacturer",
 		"default settings.",
 	},
-	Message: Message{
-		Name:    "restore default parameters response",
-		MsgType: 0xc8,
-		Fields: []Field{
-			{
-				Name:        "controller",
-				Type:        "uint32",
-				Offset:      4,
-				Tag:         "controller",
-				Description: "controller serial number",
-			},
-			{
-				Name:        "ok",
-				Type:        "bool",
-				Offset:      8,
-				Tag:         "ok",
-				Description: "succeeded/failed",
-			},
+	Name:    "restore default parameters response",
+	MsgType: 0xc8,
+	Fields: []Field{
+		{
+			Name:        "controller",
+			Type:        "uint32",
+			Offset:      4,
+			Tag:         "controller",
+			Description: "controller serial number",
+		},
+		{
+			Name:        "ok",
+			Type:        "bool",
+			Offset:      8,
+			Tag:         "ok",
+			Description: "succeeded/failed",
 		},
 	},
 
