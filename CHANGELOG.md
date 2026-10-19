@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## [0.9.1](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.9.1) - 2026-01-27
+## Unreleased
+
+
+## [0.9.1](https://codeberg.org/uhppoted/uhppoted-codegen/releases/tag/v0.9.1) - 2026-01-27
 
 ### Added
 1. `set-first-card` API models and  bindings.
@@ -14,7 +17,7 @@
 5. Migrated from _github.com/uhppoted/uhppoted-codegen_ to _codeberg.org/uhppoted/uhppoted-codegen_.
 
 
-## [0.9.0](https://codeberg.org/uhppoted/uhppoted-codegen/releases/tag/v0.9.0) - 2026-01-27
+## [0.9.0](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.9.0) - 2026-01-27
 
 ### Updated
 1. Augmented models with test vectors.

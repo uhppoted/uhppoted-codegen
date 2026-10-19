@@ -1,12 +1,13 @@
-![build](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen.json)
-![Go](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-go.json)
-![Rust](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-rust.json)
-![Python](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-python.json)
-![Zig](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-zig.json)
-![Javascript](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-javascript.json)
-![PHP](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-php.json)
-![Erlang](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-erlang.json)
-![Lua](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/twystd/2609d9356470acaf904386ce4a74f54e/raw/uhppoted-codegen-lua.json)
+![build](https://github.com/uhppoted/uhppoted-codegen/workflows/build/badge.svg)
+![Go](https://github.com/uhppoted/uhppoted-codegen/workflows/go/badge.svg)
+![Rust](https://github.com/uhppoted/uhppoted-codegen/workflows/rust/badge.svg)
+![Python](https://github.com/uhppoted/uhppoted-codegen/workflows/python/badge.svg)
+![Zig](https://github.com/uhppoted/uhppoted-codegen/workflows/zig/badge.svg)
+![Javascript](https://github.com/uhppoted/uhppoted-codegen/workflows/javascript/badge.svg)
+![PHP](https://github.com/uhppoted/uhppoted-codegen/workflows/php/badge.svg)
+![Erlang](https://github.com/uhppoted/uhppoted-codegen/workflows/erlang/badge.svg)
+![Lua](https://github.com/uhppoted/uhppoted-codegen/workflows/lua/badge.svg)
+
 
 # uhppoted-codegen
 
@@ -34,7 +35,7 @@ than it should be.
 
 ### Current Release
 
-## [0.9.1](https://github.com/uhppoted/uhppoted-codegen/releases/tag/v0.9.1) - 2026-01-27
+## [0.9.1](https://codeberg.org/uhppoted/uhppoted-codegen/releases/tag/v0.9.1) - 2026-01-27
 
 1. Migrated from _github_ to _codeberg_.
 2. Updated to Go v1.27.

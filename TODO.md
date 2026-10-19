@@ -1,9 +1,9 @@
 # TODO
 
-- [x] 'first card' API (cf. https://codeberg.org/uhppoted/issues/2)
-- [x] add first-card privilege to `get-card` and `put-card` (cf. https://codeberg.org/uhppoted/uhppoted/issues/3)
+## In Progress
 
 
+## To Be Done
 - [ ] [zig](https://github.com/uhppoted/uhppoted-codegen/commit/d14ac96a8aa240b9bf55916fd1446a4db86d687b#diff-b80311027908d831dce927d314e1e3a6ddbec01922595209557fa3f5abef1ad1L522-R528)
 - [ ] --delimiters
 - [ ] clang-tidy
