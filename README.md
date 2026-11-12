@@ -9,6 +9,15 @@
 ![Lua](https://github.com/uhppoted/uhppoted-codegen/workflows/lua/badge.svg)
 
 
+<div align="center">
+
+_The primary repository for this project is hosted on codeberg: https://codeberg.org/uhppoted/uhppoted-codegen_
+
+_The [github repository](https://github.com/uhppoted/uhppoted-codegen) will be kept up to date and maintained as a courtesy and for archival
+releases but please use _codeberg_ for reporting issues, etc._
+</div>
+
+
 # uhppoted-codegen
 
 Code generation tool for creating native UHPPOTE controller interfaces in multiple languages:

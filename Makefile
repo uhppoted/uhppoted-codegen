@@ -30,10 +30,6 @@ all: test      \
      benchmark \
      coverage
 
-push:
-	git push
-	git push bitbucket
-
 clean:
 	go clean
 	rm -rf bin
