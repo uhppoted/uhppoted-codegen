@@ -63,7 +63,7 @@ var GetCardAtIndex = Function{
 						{
 							Name:  "card",
 							Type:  "uint32",
-							Value: 10058400,
+							Value: uint32(10058400),
 						},
 						{
 							Name:  "start-date",
@@ -146,7 +146,7 @@ var GetCardAtIndex = Function{
 						{
 							Name:  "card",
 							Type:  "uint32",
-							Value: 0,
+							Value: uint32(0),
 						},
 						{
 							Name:  "start-date",
