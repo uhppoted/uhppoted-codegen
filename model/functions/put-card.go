@@ -72,12 +72,12 @@ var PutCard = Function{
 				{
 					Name:  "controller",
 					Type:  "uint32",
-					Value: 405419896,
+					Value: uint32(405419896),
 				},
 				{
 					Name:  "card",
 					Type:  "uint32",
-					Value: 10058400,
+					Value: uint32(10058400),
 				},
 				{
 					Name:  "start date",
@@ -92,32 +92,32 @@ var PutCard = Function{
 				{
 					Name:  "door 1",
 					Type:  "uint8",
-					Value: 1,
+					Value: uint8(1),
 				},
 				{
 					Name:  "door 2",
 					Type:  "uint8",
-					Value: 0,
+					Value: uint8(0),
 				},
 				{
 					Name:  "door 3",
 					Type:  "uint8",
-					Value: 17,
+					Value: uint8(17),
 				},
 				{
 					Name:  "door 4",
 					Type:  "uint8",
-					Value: 1,
+					Value: uint8(1),
 				},
 				{
 					Name:  "PIN",
 					Type:  "pin",
-					Value: 999999,
+					Value: uint32(999999),
 				},
 				{
 					Name:  "first card",
 					Type:  "uint8",
-					Value: 12,
+					Value: uint8(12),
 				},
 			},
 			Request: []byte{
